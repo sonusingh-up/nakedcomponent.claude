@@ -113,4 +113,24 @@
     <priority>0.4</priority>
   </url>
 
+  <!-- Legal / utility -->
+  <url>
+    <loc>https://nakedcompound.in/pages/privacy</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://nakedcompound.in/pages/terms</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://nakedcompound.in/pages/rss</loc>
+    <lastmod>2026-04-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>

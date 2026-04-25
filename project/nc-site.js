@@ -128,9 +128,9 @@
           <div class="footer-bottom">
             <span>© 2026 Naked Compound · Made in Bengaluru</span>
             <div style="display:flex; gap:20px;">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">RSS</a>
+              <a href="${selfDir}privacy.html">Privacy</a>
+              <a href="${selfDir}terms.html">Terms</a>
+              <a href="${selfDir}rss.html">RSS</a>
             </div>
           </div>
         </div>
