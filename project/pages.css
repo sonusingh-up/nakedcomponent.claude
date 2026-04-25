@@ -1226,3 +1226,26 @@
   font-weight: 400;
 }
 .stat-cell .l { font-size: 13.5px; color: var(--ink-soft); line-height: 1.4; }
+
+/* ---------------------------------------------------------------- */
+/* Verified brands — card header layout                               */
+/* ---------------------------------------------------------------- */
+.brand-card-head {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: var(--s-3);
+}
+.brand-card .brand-mark {
+  width: 56px; height: 56px;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 20px;
+  letter-spacing: -0.03em; color: var(--ink);
+  flex-shrink: 0;
+}
+.brand-card .brand-mark.mk2 { background: color-mix(in oklab, var(--mint) 60%, var(--surface)); color: #3a5c3f; }
+.brand-card .brand-mark.mk3 { background: color-mix(in oklab, var(--sky) 60%, var(--surface)); color: #2e4a6b; }
+.brand-card .brand-mark.mk4 { background: color-mix(in oklab, var(--rose) 60%, var(--surface)); color: #8a4a3a; }
+.brand-card .brand-meta { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 0.02em; margin-top: 2px; }

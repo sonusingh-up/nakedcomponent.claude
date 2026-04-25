@@ -191,6 +191,27 @@
     });
   });
 
+  // Newsletter form
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[type="email"]');
+      const btn = form.querySelector('button[type="submit"]');
+      if (!input || !btn) return;
+      const val = (input.value || '').trim();
+      if (!val || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)) {
+        input.focus();
+        input.style.boxShadow = '0 0 0 2px var(--accent)';
+        setTimeout(() => { input.style.boxShadow = ''; }, 1200);
+        return;
+      }
+      btn.textContent = 'Subscribed ✓';
+      btn.disabled = true;
+      input.value = '';
+      setTimeout(() => { btn.textContent = 'Subscribe'; btn.disabled = false; }, 3000);
+    });
+  });
+
   // Reveal observer for .reveal elements
   const io = new IntersectionObserver((entries) => {
     for (const en of entries) {
