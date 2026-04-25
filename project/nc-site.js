@@ -123,6 +123,8 @@
             <strong>Not medical advice.</strong> Content on Naked Compound is educational and reflects our reading of published research. Nothing here replaces a licensed physician, dietician, or pharmacist. Consult a qualified professional before starting, stopping, or combining any supplement — especially if you are pregnant, on medication, or managing a chronic condition.
             <br><br>
             <strong>AI-assisted analysis.</strong> Product evaluations, scores, and summaries on this site are produced with the assistance of AI tools applied to our structured scoring inputs and editorial criteria. AI can make errors of omission or interpretation. Always verify label claims, ingredient dosages, and current pricing directly with the brand before making a purchase decision.
+            <br><br>
+            <strong>Affiliate disclosure.</strong> Naked Compound is a participant in the Amazon Associates Programme. Some product links on this site are affiliate links — if you click and buy, we earn a small commission at no extra cost to you. This never influences our scores, rankings, or recommendations.
           </div>
 
           <div class="footer-bottom">
