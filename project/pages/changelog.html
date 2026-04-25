@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Database changelog — Naked Compound</title>
+  <meta name="description" content="Every change to the public Naked Compound database, with diffs and reasoning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=3" />
+  <link rel="stylesheet" href="../pages.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <script>window.PAGE_KEY = 'about';</script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span>Changelog</span></div>
+      <h1>Every database change, <em>logged in public.</em></h1>
+      <p class="kicker">Score adjustments, new entries, corrections, and methodology revisions — with the diff and the reason. Your scroll depth here is also our internal audit log.</p>
+      <div class="meta-chips">
+        <span class="meta-chip ok"><span class="dot"></span>Live · updated every weekday</span>
+        <span class="meta-chip"><span class="dot"></span>1,847 entries since Jan 2024</span>
+        <span class="meta-chip"><span class="dot"></span><a href="https://example.com" style="color:inherit;">RSS</a></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" style="padding-top: var(--s-7);">
+    <div class="filter-bar" style="margin-bottom: var(--s-6);">
+      <label class="filter-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" placeholder="Search the changelog by product, ingredient, or commit ID…" />
+      </label>
+      <div class="filter-group">
+        <button class="active">All</button>
+        <button>Score change</button>
+        <button>New entry</button>
+        <button>Correction</button>
+        <button>Method</button>
+      </div>
+    </div>
+
+    <div class="changelog">
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 22, 2026</div>
+          <div class="cl-id">#cl-1847 · Priya K.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-correction">Correction</span>
+          <h3>Carbamide Forte Omega-3 — peroxide value updated for Apr-2026 batch.</h3>
+          <p>April lab work showed peroxide at 6.2 meq/kg, down from 9.4 in Jan's batch. Purity sub-score raised from 6.5 to 7.4. Total score adjusts 6.5 → 6.8.</p>
+          <div class="cl-diff"><span class="del">- purity: 6.5</span><span class="add">+ purity: 7.4</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 19, 2026</div>
+          <div class="cl-id">#cl-1846 · Aarav S.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-new">New entry</span>
+          <h3>Pure Nutrition KSM-66 Ashwagandha — added to reviews.</h3>
+          <p>Genuine KSM-66 at the studied 600mg dose with quarterly batch COA. Initial total: 8.4. Full review and sources published.</p>
+          <div class="cl-diff"><span class="add">+ product: pure-nutrition-ksm-66</span><span class="add">+ score: 8.4 (clinical 9.5, form 9.0, purity 8.5, value 7.5, honesty 7.5)</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 17, 2026</div>
+          <div class="cl-id">#cl-1845 · Meera N.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-method">Method</span>
+          <h3>Vitamin D guides updated to ICMR 2025 reference values.</h3>
+          <p>Replaced 2018 ICMR thresholds with the 2025 revision across 14 affected guides. Recommended supplementation ranges unchanged; serum cut-offs adjusted.</p>
+          <div class="cl-diff"><span class="del">- ref: ICMR 2018 (deficiency &lt;20 ng/mL)</span><span class="add">+ ref: ICMR 2025 (deficiency &lt;20 ng/mL, insufficiency 20–29)</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 14, 2026</div>
+          <div class="cl-id">#cl-1844 · Aarav S.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-new">New entry</span>
+          <h3>New ingredient: Ashwagandha — split into KSM-66 and Sensoril entries.</h3>
+          <p>The two patented standardisations differ enough on stress vs sleep endpoints that bundling them into one entry was misleading. Library now has separate pages for each.</p>
+          <div class="cl-diff"><span class="add">+ ingredient: ashwagandha-ksm66 (27 studies)</span><span class="add">+ ingredient: ashwagandha-sensoril (11 studies)</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 11, 2026</div>
+          <div class="cl-id">#cl-1843 · Rohit V.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-score">Score change</span>
+          <h3>Bigmuscles Premium Whey — re-tested after batch reformulation.</h3>
+          <p>Brand updated the protein blend in March. New batch protein-per-serving matches the label within tolerance. Score moves 7.1 → 7.5.</p>
+          <div class="cl-diff"><span class="del">- score: 7.1</span><span class="add">+ score: 7.5</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 8, 2026</div>
+          <div class="cl-id">#cl-1842 · Priya K.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-correction">Correction</span>
+          <h3>Magnesium glycinate guide — typo in tolerable upper intake.</h3>
+          <p>Corrected an incorrect "350mg" upper limit to the actual 350mg-from-supplements (food not counted) framing per the IOM. Reader-flagged via tips@.</p>
+          <div class="cl-diff"><span class="del">- UL: 350mg total</span><span class="add">+ UL: 350mg from supplemental sources only</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span><span class="line"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 4, 2026</div>
+          <div class="cl-id">#cl-1841 · Aarav S.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-score">Score change</span>
+          <h3>HK Vitals Multivitamin — iron form change reduces score.</h3>
+          <p>Brand quietly switched from ferrous bisglycinate to ferrous fumarate in the Q1 batch without reformulating the front-of-label. Form and honesty sub-scores both fall.</p>
+          <div class="cl-diff"><span class="del">- score: 6.4 (form 7.0, honesty 7.0)</span><span class="add">+ score: 6.1 (form 6.0, honesty 6.0)</span></div>
+        </div>
+      </article>
+
+      <article class="changelog-row">
+        <div class="cl-rail"><span class="dot"></span></div>
+        <div class="cl-meta">
+          <div class="cl-date">Apr 1, 2026</div>
+          <div class="cl-id">#cl-1840 · Meera N.</div>
+        </div>
+        <div class="cl-body">
+          <span class="cl-tag t-method">Method</span>
+          <h3>Conflicts policy v4.2 — added prohibition on supplement-adjacent services.</h3>
+          <p>Closed a small ambiguity: lab-test marketplaces and other supplement-adjacent businesses are now explicitly within the policy. <a href="conflicts-policy.html" style="color: var(--accent);">View policy</a>.</p>
+          <div class="cl-diff"><span class="add">+ scope: supplement-adjacent services</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="#" class="ghost-link">Load older entries<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="../nc-site.js"></script>
+</body>
+</html>

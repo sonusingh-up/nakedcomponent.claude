@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Methodology — Naked Compound</title>
+  <meta name="description" content="How we research, score, and review supplements. Step by step, with no black box." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=3" />
+  <link rel="stylesheet" href="../pages.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <script>window.PAGE_KEY = 'about';</script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span>Methodology</span></div>
+      <h1>How we go from a label to a score, <em>step by step.</em></h1>
+      <p class="kicker">Reviews on Naked Compound are queries against a structured database, not opinions in prose. Here is exactly what happens between a product hitting the shelf and a number landing on this site.</p>
+      <div class="meta-chips">
+        <span class="meta-chip ok"><span class="dot"></span>Methodology v6.1 · April 2026</span>
+        <span class="meta-chip"><span class="dot"></span>Last material change: Mar 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container" style="padding-top: var(--s-7);">
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div>
+          <h3>Identify the product.</h3>
+          <p>A new SKU enters the queue when (a) we receive a tip, (b) a reviewed brand launches a new product, or (c) it appears in our quarterly shelf-survey of major Indian retailers and online platforms. Each entry gets a unique product ID and is linked to a brand record.</p>
+          <div class="fine">Tools: shelf-survey checklist · DB schema v3.4</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">02</div>
+        <div>
+          <h3>Source the unit.</h3>
+          <p>We buy the actual unit anonymously from a normal retail or D2C channel — never from the brand's PR contact. We document the channel, batch number, manufacturing date, MRP, and shipping date so that purity follow-ups have a referenceable batch.</p>
+          <div class="fine">Channels: Amazon · HealthKart · Apollo · Brand D2C</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">03</div>
+        <div>
+          <h3>Enter label data, blind.</h3>
+          <p>The supplement-facts panel, ingredient list, and any claim-bearing copy on jar/box/insert are entered into the database — without the brand name visible to the data-entry researcher. We record dose per serving, form, extract identity (e.g. KSM-66 vs generic root), and supplier where stated.</p>
+          <div class="fine">Blind layer · double-keyed · ~10 min per SKU</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">04</div>
+        <div>
+          <h3>Verify against supplier docs.</h3>
+          <p>We request batch-level Certificates of Analysis from the brand or from the upstream supplier. If documentation is unavailable, the product is flagged "unverified supplier" — that flag affects the Purity sub-score directly.</p>
+          <div class="fine">~58% of brands provide batch COA on request</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">05</div>
+        <div>
+          <h3>Commission lab work where it matters.</h3>
+          <p>For categories where label vs reality routinely diverges (fish oil freshness, whey protein content, heavy-metal contamination in herbal extracts) we commission independent lab analysis at NABL-accredited facilities. Lab partners do not see brand identity.</p>
+          <div class="fine">~12% of products go to external lab; ~₹4–22k per analysis</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">06</div>
+        <div>
+          <h3>Score against the rubric.</h3>
+          <p>The reviewer scores the entry against five dimensions — clinical dose, ingredient form, purity, value, and label honesty — each on a 0–10 scale with a written standard. The rubric weights are fixed and public; see the <a href="scoring-rubric.html">rubric page</a>.</p>
+          <div class="fine">Rubric v3.0 · weights frozen since Jan 2024</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">07</div>
+        <div>
+          <h3>Second-pair-of-eyes review.</h3>
+          <p>Every score is reviewed by a second researcher before publication. Disagreements over half a point trigger a panel review with three reviewers. The published number is the panel median, not the original draft.</p>
+          <div class="fine">~17% of scores trigger panel review</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">08</div>
+        <div>
+          <h3>Publish, with the citations attached.</h3>
+          <p>The review goes live with every cited paper, every COA, and every lab report linked from the Sources section. Subscores are visible — readers can see which dimension dragged the total up or down.</p>
+          <div class="fine">Median 14 sources cited per review</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="num">09</div>
+        <div>
+          <h3>Re-review on triggers.</h3>
+          <p>A published score is automatically re-opened when (a) the brand changes formulation, (b) a new batch tests significantly outside the prior range, (c) we receive credible reader reports, or (d) annual review at the 12-month mark. Every re-review is logged in the <a href="changelog.html">database changelog</a>.</p>
+          <div class="fine">Automated triggers via supplier-doc monitoring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container section">
+      <div class="section-head">
+        <div class="head-left">
+          <div class="eyebrow">Things we do not do</div>
+          <h2>The shortcuts we refuse to take.</h2>
+        </div>
+      </div>
+
+      <div class="why-grid">
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 8 8 8M16 8l-8 8"/></svg>
+          </div>
+          <h3>No press samples.</h3>
+          <p>We don't accept anything for review. Every unit is purchased; the cost is part of our editorial budget.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 8 8 8M16 8l-8 8"/></svg>
+          </div>
+          <h3>No "best of" rankings for pay.</h3>
+          <p>Lists on Naked Compound are the result of database queries against the rubric. Nothing on this site can be paid into a list.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 8 8 8M16 8l-8 8"/></svg>
+          </div>
+          <h3>No anecdotal scores.</h3>
+          <p>If a sub-score can't be tied to a measurement, document, or written rubric standard, it doesn't get included.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="../nc-site.js"></script>
+</body>
+</html>
