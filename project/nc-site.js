@@ -35,7 +35,7 @@
 
           <nav aria-label="Primary">
             <ul class="nav-links">
-              ${navItems.map(n => `<li><a href="${root}${n.href}"${CURRENT === n.key ? ' aria-current="page" class="current"' : ''}>${n.label}</a></li>`).join('')}
+              ${navItems.map(n => `<li><a href="${n.href}"${CURRENT === n.key ? ' aria-current="page" class="current"' : ''}>${n.label}</a></li>`).join('')}
             </ul>
           </nav>
 
@@ -51,7 +51,7 @@
               <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
             </button>
 
-            <a href="${root}${selfDir}research.html" class="btn btn-primary">Explore research</a>
+            <a href="${selfDir}research.html" class="btn btn-primary">Explore research</a>
 
             <button class="menu-toggle" data-menu-toggle aria-label="Open menu">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -65,7 +65,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
           <input type="search" placeholder="Search 312 ingredients…" />
         </label>
-        ${navItems.map(n => `<a href="${root}${n.href}">${n.label}</a>`).join('')}
+        ${navItems.map(n => `<a href="${n.href}">${n.label}</a>`).join('')}
       </div>
     `;
   }
@@ -87,40 +87,42 @@
             <div class="footer-col">
               <h4>Research</h4>
               <ul>
-                <li><a href="${root}${selfDir}research.html">Research hub</a></li>
-                <li><a href="${root}${selfDir}guides.html">Guides</a></li>
-                <li><a href="${root}${selfDir}protocols.html">Protocols</a></li>
-                <li><a href="${root}${selfDir}reviews.html">Reviews</a></li>
-                <li><a href="${root}${selfDir}ingredients.html">Ingredients</a></li>
+                <li><a href="${selfDir}research.html">Research hub</a></li>
+                <li><a href="${selfDir}guides.html">Guides</a></li>
+                <li><a href="${selfDir}protocols.html">Protocols</a></li>
+                <li><a href="${selfDir}reviews.html">Reviews</a></li>
+                <li><a href="${selfDir}ingredients.html">Ingredients</a></li>
               </ul>
             </div>
 
             <div class="footer-col">
               <h4>Library</h4>
               <ul>
-                <li><a href="${root}${selfDir}categories.html">Categories</a></li>
-                <li><a href="${root}${selfDir}blog.html">Blog</a></li>
-                <li><a href="${root}${selfDir}learn.html">Learn</a></li>
-                <li><a href="${root}${selfDir}verified-brands.html">Verified brands</a></li>
-                <li><a href="${root}${selfDir}changelog.html">Database changelog</a></li>
+                <li><a href="${selfDir}categories.html">Categories</a></li>
+                <li><a href="${selfDir}blog.html">Blog</a></li>
+                <li><a href="${selfDir}learn.html">Learn</a></li>
+                <li><a href="${selfDir}verified-brands.html">Verified brands</a></li>
+                <li><a href="${selfDir}changelog.html">Database changelog</a></li>
               </ul>
             </div>
 
             <div class="footer-col">
               <h4>Company</h4>
               <ul>
-                <li><a href="${root}${selfDir}about.html">About</a></li>
-                <li><a href="${root}${selfDir}authors.html">Authors</a></li>
-                <li><a href="${root}${selfDir}methodology.html">Methodology</a></li>
-                <li><a href="${root}${selfDir}scoring-rubric.html">Scoring rubric</a></li>
-                <li><a href="${root}${selfDir}conflicts-policy.html">Conflicts policy</a></li>
-                <li><a href="${root}${selfDir}contact.html">Contact</a></li>
+                <li><a href="${selfDir}about.html">About</a></li>
+                <li><a href="${selfDir}authors.html">Authors</a></li>
+                <li><a href="${selfDir}methodology.html">Methodology</a></li>
+                <li><a href="${selfDir}scoring-rubric.html">Scoring rubric</a></li>
+                <li><a href="${selfDir}conflicts-policy.html">Conflicts policy</a></li>
+                <li><a href="${selfDir}contact.html">Contact</a></li>
               </ul>
             </div>
           </div>
 
           <div class="footer-disclaimer">
             <strong>Not medical advice.</strong> Content on Naked Compound is educational and reflects our reading of published research. Nothing here replaces a licensed physician, dietician, or pharmacist. Consult a qualified professional before starting, stopping, or combining any supplement — especially if you are pregnant, on medication, or managing a chronic condition.
+            <br><br>
+            <strong>AI-assisted analysis.</strong> Product evaluations, scores, and summaries on this site are produced with the assistance of AI tools applied to our structured scoring inputs and editorial criteria. AI can make errors of omission or interpretation. Always verify label claims, ingredient dosages, and current pricing directly with the brand before making a purchase decision.
           </div>
 
           <div class="footer-bottom">
