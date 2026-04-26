@@ -44,23 +44,15 @@
     </div>
 
     <div class="ingredient-grid">
-<!-- Before (stub, no link) -->
-<article class="ingredient">
+      <article class="ingredient" style="position:relative;">
+
+  <!-- ADD THIS ONE LINE — invisible overlay, entire card becomes clickable -->
+  <a href="ingredients/creatine-monohydrate.html" aria-label="Read creatine monohydrate deep-dive"
+     style="position:absolute;inset:0;border-radius:inherit;z-index:1;"></a>
+
+  <!-- everything else stays exactly as-is -->
   <div class="ing-head">
     <h3>Creatine monohydrate</h3>
-    <span class="evidence e-strong">Strong</span>
-  </div>
-  ...
-</article>
-
-<!-- After (linked) -->
-<article class="ingredient">
-  <div class="ing-head">
-    <h3>
-      <a href="ingredients/creatine-monohydrate.html">
-        Creatine monohydrate
-      </a>
-    </h3>
     <span class="evidence e-strong">Strong</span>
   </div>
   ...
