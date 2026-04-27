@@ -118,6 +118,22 @@
     @media (max-width:600px) {
       .brand-grid { grid-template-columns:1fr; }
     }
+
+    /* ── Mobile overflow prevention ── */
+    html, body { overflow-x: hidden; max-width: 100%; }
+    *, *::before, *::after { box-sizing: border-box; }
+    .container { max-width: 100%; }
+    .article-body, .prose, .article-layout { min-width: 0; max-width: 100%; }
+    .verdict-card, .callout, .method-box, .brand-card,
+    .data-table-wrap, .refs-section, .toc-card, .sidebar-meta { max-width: 100%; }
+    /* Table: allow brand column to wrap cleanly */
+    .data-table { table-layout: fixed; }
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) { min-width: 90px; word-break: break-word; }
+    .data-table td.num { white-space: nowrap; }
+    /* Sidebar meta: prevent values overflowing */
+    .sm-row { flex-wrap: wrap; }
+    .sm-value { word-break: break-word; max-width: 100%; }
   </style>
 </head>
 <body>
