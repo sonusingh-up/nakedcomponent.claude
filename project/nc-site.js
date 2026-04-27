@@ -1,42 +1,75 @@
 // Naked Compound — shared header + footer + nav behavior
 // Renders into <div id="site-header"></div> and <div id="site-footer"></div>.
 // Also wires up: theme toggle, sticky shadow, mobile nav, smooth-scroll, ⌘K focus.
+//
+// URL structure follows Google SEO best practices:
+//   - All paths are absolute root-relative (start with /) — work from ANY subfolder depth
+//   - No .html extensions (Vercel cleanUrls:true strips them automatically)
+//   - No trailing slashes (Vercel trailingSlash:false enforces this)
+//   - Lowercase, hyphen-separated slugs throughout
+//   - Two-level max depth: /pages/about  /research/creatine-loading
+//
+// Pages set window.PAGE_KEY before this script to highlight the active nav item.
 
 (function () {
   'use strict';
 
-  // --- path prefix auto-detect (works from any subfolder depth) ---
-  // Always use absolute root-relative paths so /research/, /pages/, or
-  // any future subfolder never breaks nav or footer links.
-  const root    = '/';
-  const selfDir = '/pages/';
+  // ─── URL map ──────────────────────────────────────────────────────────────
+  // All absolute root-relative — never relative (../), they break the moment
+  // a page moves to a different subfolder depth.
+  const HOME  = '/';
+  const PAGES = {
+    research:        '/pages/research',
+    guides:          '/pages/guides',
+    protocols:       '/pages/protocols',
+    reviews:         '/pages/reviews',
+    ingredients:     '/pages/ingredients',
+    brands:          '/pages/verified-brands',
+    categories:      '/pages/categories',
+    learn:           '/pages/learn',
+    blog:            '/pages/blog',
+    changelog:       '/pages/changelog',
+    about:           '/pages/about',
+    authors:         '/pages/authors',
+    methodology:     '/pages/methodology',
+    scoringRubric:   '/pages/scoring-rubric',
+    conflictsPolicy: '/pages/conflicts-policy',
+    contact:         '/pages/contact',
+    privacy:         '/pages/privacy',
+    terms:           '/pages/terms',
+    rss:             '/pages/rss',
+  };
 
-  // Which nav item is "current" — set by each page via window.PAGE_KEY before nc-site.js
+  // Which nav item is "current" — set by each page via window.PAGE_KEY
   const CURRENT = (window.PAGE_KEY || '').toLowerCase();
 
   const navItems = [
-    { key: 'research',    label: 'Research',    href: `${selfDir}research.html` },
-    { key: 'protocols',   label: 'Protocols',   href: `${selfDir}protocols.html` },
-    { key: 'reviews',     label: 'Reviews',     href: `${selfDir}reviews.html` },
-    { key: 'ingredients', label: 'Ingredients', href: `${selfDir}ingredients.html` },
-    { key: 'brands',      label: 'Verified brands',  href: `${selfDir}verified-brands.html` },
-    { key: 'learn',       label: 'Learn',       href: `${selfDir}learn.html` },
-    { key: 'about',       label: 'About',       href: `${selfDir}about.html` },
+    { key: 'research',    label: 'Research',        href: PAGES.research    },
+    { key: 'protocols',   label: 'Protocols',       href: PAGES.protocols   },
+    { key: 'reviews',     label: 'Reviews',         href: PAGES.reviews     },
+    { key: 'ingredients', label: 'Ingredients',     href: PAGES.ingredients },
+    { key: 'brands',      label: 'Verified brands', href: PAGES.brands      },
+    { key: 'learn',       label: 'Learn',           href: PAGES.learn       },
+    { key: 'about',       label: 'About',           href: PAGES.about       },
   ];
 
+  // ─── Header ───────────────────────────────────────────────────────────────
   const header = document.getElementById('site-header');
   if (header) {
     header.innerHTML = `
       <header class="site-header">
         <div class="container nav">
-          <a class="brand" href="${root}index.html" aria-label="Naked Compound home">
+          <a class="brand" href="${HOME}" aria-label="Naked Compound home">
             <span class="mark" aria-hidden="true"></span>
             <span class="brand-name">Naked<em>·</em>Compound</span>
           </a>
 
           <nav aria-label="Primary">
             <ul class="nav-links">
-              ${navItems.map(n => `<li><a href="${n.href}"${CURRENT === n.key ? ' aria-current="page" class="current"' : ''}>${n.label}</a></li>`).join('')}
+              ${navItems.map(n => `
+              <li>
+                <a href="${n.href}"${CURRENT === n.key ? ' aria-current="page" class="current"' : ''}>${n.label}</a>
+              </li>`).join('')}
             </ul>
           </nav>
 
@@ -52,7 +85,7 @@
               <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
             </button>
 
-            <a href="${selfDir}research.html" class="btn btn-primary">Explore research</a>
+            <a href="${PAGES.research}" class="btn btn-primary">Explore research</a>
 
             <button class="menu-toggle" data-menu-toggle aria-label="Open menu">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -71,14 +104,16 @@
     `;
   }
 
+  // ─── Footer ───────────────────────────────────────────────────────────────
   const footer = document.getElementById('site-footer');
   if (footer) {
     footer.innerHTML = `
       <footer class="site-footer">
         <div class="container">
           <div class="footer-grid">
+
             <div class="footer-brand">
-              <a class="brand" href="${root}index.html">
+              <a class="brand" href="${HOME}">
                 <span class="mark" aria-hidden="true"></span>
                 <span class="brand-name">Naked<em>·</em>Compound</span>
               </a>
@@ -88,36 +123,37 @@
             <div class="footer-col">
               <h4>Research</h4>
               <ul>
-                <li><a href="${selfDir}research.html">Research hub</a></li>
-                <li><a href="${selfDir}guides.html">Guides</a></li>
-                <li><a href="${selfDir}protocols.html">Protocols</a></li>
-                <li><a href="${selfDir}reviews.html">Reviews</a></li>
-                <li><a href="${selfDir}ingredients.html">Ingredients</a></li>
+                <li><a href="${PAGES.research}">Research hub</a></li>
+                <li><a href="${PAGES.guides}">Guides</a></li>
+                <li><a href="${PAGES.protocols}">Protocols</a></li>
+                <li><a href="${PAGES.reviews}">Reviews</a></li>
+                <li><a href="${PAGES.ingredients}">Ingredients</a></li>
               </ul>
             </div>
 
             <div class="footer-col">
               <h4>Library</h4>
               <ul>
-                <li><a href="${selfDir}categories.html">Categories</a></li>
-                <li><a href="${selfDir}blog.html">Blog</a></li>
-                <li><a href="${selfDir}learn.html">Learn</a></li>
-                <li><a href="${selfDir}verified-brands.html">Verified brands</a></li>
-                <li><a href="${selfDir}changelog.html">Database changelog</a></li>
+                <li><a href="${PAGES.categories}">Categories</a></li>
+                <li><a href="${PAGES.blog}">Blog</a></li>
+                <li><a href="${PAGES.learn}">Learn</a></li>
+                <li><a href="${PAGES.brands}">Verified brands</a></li>
+                <li><a href="${PAGES.changelog}">Database changelog</a></li>
               </ul>
             </div>
 
             <div class="footer-col">
               <h4>Company</h4>
               <ul>
-                <li><a href="${selfDir}about.html">About</a></li>
-                <li><a href="${selfDir}authors.html">Authors</a></li>
-                <li><a href="${selfDir}methodology.html">Methodology</a></li>
-                <li><a href="${selfDir}scoring-rubric.html">Scoring rubric</a></li>
-                <li><a href="${selfDir}conflicts-policy.html">Conflicts policy</a></li>
-                <li><a href="${selfDir}contact.html">Contact</a></li>
+                <li><a href="${PAGES.about}">About</a></li>
+                <li><a href="${PAGES.authors}">Authors</a></li>
+                <li><a href="${PAGES.methodology}">Methodology</a></li>
+                <li><a href="${PAGES.scoringRubric}">Scoring rubric</a></li>
+                <li><a href="${PAGES.conflictsPolicy}">Conflicts policy</a></li>
+                <li><a href="${PAGES.contact}">Contact</a></li>
               </ul>
             </div>
+
           </div>
 
           <div class="footer-disclaimer">
@@ -131,17 +167,18 @@
           <div class="footer-bottom">
             <span>© 2026 Naked Compound · Made in Bengaluru</span>
             <div style="display:flex; gap:20px;">
-              <a href="${selfDir}privacy.html">Privacy</a>
-              <a href="${selfDir}terms.html">Terms</a>
-              <a href="${selfDir}rss.html">RSS</a>
+              <a href="${PAGES.privacy}">Privacy</a>
+              <a href="${PAGES.terms}">Terms</a>
+              <a href="${PAGES.rss}">RSS</a>
             </div>
           </div>
+
         </div>
       </footer>
     `;
   }
 
-  // ---- behaviors ----
+  // ─── Theme ────────────────────────────────────────────────────────────────
   const THEME_KEY = 'nc-theme';
   const docEl = document.documentElement;
   const saved = localStorage.getItem(THEME_KEY);
@@ -158,6 +195,7 @@
     localStorage.setItem(THEME_KEY, next);
   });
 
+  // ─── Sticky header shadow ─────────────────────────────────────────────────
   const hdr = document.querySelector('.site-header');
   const onScroll = () => {
     if (!hdr) return;
@@ -166,8 +204,9 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // ─── Mobile nav ───────────────────────────────────────────────────────────
   const menuToggle = document.querySelector('[data-menu-toggle]');
-  const mobileNav = document.querySelector('.mobile-nav');
+  const mobileNav  = document.querySelector('.mobile-nav');
   if (menuToggle && mobileNav) {
     menuToggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
     mobileNav.addEventListener('click', (e) => {
@@ -175,6 +214,7 @@
     });
   }
 
+  // ─── ⌘K / Ctrl+K search focus ────────────────────────────────────────────
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
@@ -183,7 +223,7 @@
     }
   });
 
-  // Smooth-scroll for in-page anchors only
+  // ─── Smooth-scroll for in-page anchors ───────────────────────────────────
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
@@ -196,12 +236,12 @@
     });
   });
 
-  // Newsletter form
+  // ─── Newsletter form ──────────────────────────────────────────────────────
   document.querySelectorAll('.newsletter-form').forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const input = form.querySelector('input[type="email"]');
-      const btn = form.querySelector('button[type="submit"]');
+      const btn   = form.querySelector('button[type="submit"]');
       if (!input || !btn) return;
       const val = (input.value || '').trim();
       if (!val || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(val)) {
@@ -211,40 +251,56 @@
         return;
       }
       btn.textContent = 'Subscribed ✓';
-      btn.disabled = true;
-      input.value = '';
+      btn.disabled    = true;
+      input.value     = '';
       setTimeout(() => { btn.textContent = 'Subscribe'; btn.disabled = false; }, 3000);
     });
   });
 
-  // Reveal observer for .reveal elements
+  // ─── Reveal + counter animations ─────────────────────────────────────────
   const io = new IntersectionObserver((entries) => {
     for (const en of entries) {
       if (!en.isIntersecting) continue;
       en.target.classList.add('in');
+
+      // Progress bars
       en.target.querySelectorAll('.sr-bar > span').forEach((bar) => {
         const pct = bar.dataset.pct || '80';
         requestAnimationFrame(() => { bar.style.width = pct + '%'; });
       });
+
+      // Animated counters
       en.target.querySelectorAll('[data-num]').forEach((el) => {
-        const target = parseFloat(el.dataset.num || '0');
-        const isFloat = (el.dataset.num || '').includes('.');
+        const target   = parseFloat(el.dataset.num || '0');
+        const isFloat  = (el.dataset.num || '').includes('.');
         const duration = 1200;
-        const start = performance.now();
+        const start    = performance.now();
         if (!el.firstChild || el.firstChild.nodeType !== 3) {
           el.insertBefore(document.createTextNode('0'), el.firstChild || null);
-        } else { el.firstChild.nodeValue = '0'; }
+        } else {
+          el.firstChild.nodeValue = '0';
+        }
         const step = (now) => {
           const t = Math.min(1, (now - start) / duration);
           const v = target * (1 - Math.pow(1 - t, 3));
-          el.firstChild.nodeValue = isFloat ? v.toFixed(1) : Math.round(v).toLocaleString('en-IN');
-          if (t < 1) requestAnimationFrame(step);
-          else el.firstChild.nodeValue = isFloat ? target.toFixed(1) : target.toLocaleString('en-IN');
+          el.firstChild.nodeValue = isFloat
+            ? v.toFixed(1)
+            : Math.round(v).toLocaleString('en-IN');
+          if (t < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.firstChild.nodeValue = isFloat
+              ? target.toFixed(1)
+              : target.toLocaleString('en-IN');
+          }
         };
         requestAnimationFrame(step);
       });
+
       io.unobserve(en.target);
     }
   }, { threshold: 0.18 });
+
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
 })();
