@@ -5,10 +5,11 @@
 (function () {
   'use strict';
 
-  // --- path prefix auto-detect (so pages in ./pages/ still link home) ---
-  const inPages = location.pathname.includes('/pages/') || location.pathname.endsWith('/pages');
-  const root = inPages ? '../' : '';
-  const selfDir = inPages ? '' : 'pages/';
+  // --- path prefix auto-detect (works from any subfolder depth) ---
+  // Always use absolute root-relative paths so /research/, /pages/, or
+  // any future subfolder never breaks nav or footer links.
+  const root    = '/';
+  const selfDir = '/pages/';
 
   // Which nav item is "current" — set by each page via window.PAGE_KEY before nc-site.js
   const CURRENT = (window.PAGE_KEY || '').toLowerCase();
