@@ -1,5 +1,5 @@
 {
-  "buildCommand": "echo 'static site'",
+  "buildCommand": "node scripts/update-sitemap.js",
   "outputDirectory": "project",
   "framework": null,
   "cleanUrls": true,
