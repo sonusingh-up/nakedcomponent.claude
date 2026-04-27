@@ -1,5 +1,5 @@
 {
-  "buildCommand": "node scripts/update-sitemap.js",
+  "buildCommand": "[ -f scripts/update-sitemap.js ] && node scripts/update-sitemap.js || echo 'sitemap script not found, skipping'",
   "outputDirectory": "project",
   "framework": null,
   "cleanUrls": true,
