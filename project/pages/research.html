@@ -4,172 +4,498 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Research — Naked Compound</title>
-  <meta name="description" content="The Naked Compound research index — guides, protocols, reviews, and ingredients in one place." />
+  <meta name="description" content="The Naked Compound research index — 84 guides, 19 protocols, 287 product reviews, and 312 ingredient entries, all searchable and filterable." />
+  <link rel="canonical" href="https://nakedcompound.in/pages/research" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css?v=3" />
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <style>
+    /* ── Page head ── */
+    .page-head{padding:var(--s-9) 0 var(--s-7);border-bottom:1px solid var(--line);background:radial-gradient(900px 360px at 80% -20%,color-mix(in oklab,var(--accent-soft) 60%,transparent),transparent 70%),linear-gradient(180deg,var(--bg-elev),var(--bg) 85%);}
+    .page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-4);flex-wrap:wrap;}
+    .page-head .crumbs a{color:var(--ink-muted);}
+    .page-head .crumbs a:hover{color:var(--accent);}
+    .page-head .crumbs .sep{opacity:.4;}
+    .page-head h1{font-size:clamp(34px,5vw,64px);font-weight:500;letter-spacing:-.03em;line-height:1.06;margin-bottom:var(--s-4);max-width:20ch;}
+    .page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
+    .page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:58ch;line-height:1.6;margin-bottom:var(--s-5);}
+    .meta-chips{display:flex;flex-wrap:wrap;gap:8px;}
+    .meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
+    .meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
+    .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
+
+    /* ── Section nav (category tabs) ── */
+    .section-nav{display:flex;align-items:center;gap:4px;padding:var(--s-5) 0 0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .section-nav::-webkit-scrollbar{display:none;}
+    .snav-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--r-pill);font-size:14px;font-weight:500;color:var(--ink-soft);background:transparent;border:1px solid transparent;transition:all .15s;white-space:nowrap;cursor:pointer;}
+    .snav-btn:hover{color:var(--ink);background:var(--bg-elev);border-color:var(--line);}
+    .snav-btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
+    .snav-btn .snav-count{font-family:var(--font-mono);font-size:11px;opacity:.6;}
+
+    /* ── Search bar ── */
+    .search-wrap{padding:var(--s-6) 0 var(--s-4);}
+    .research-search{display:flex;align-items:center;gap:12px;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-pill);padding:12px 20px;transition:border-color .15s,box-shadow .15s;max-width:600px;}
+    .research-search:focus-within{border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 20%,transparent);}
+    .research-search svg{width:16px;height:16px;color:var(--ink-muted);flex:0 0 auto;}
+    .research-search input{border:0;outline:0;background:transparent;font:inherit;font-size:15px;color:var(--ink);flex:1;min-width:0;}
+    .research-search input::placeholder{color:var(--ink-muted);}
+    .search-clear{font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);cursor:pointer;padding:3px 8px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--bg);display:none;}
+    .search-clear.visible{display:inline-block;}
+
+    /* ── Featured article (hero slot) ── */
+    .featured-article{display:grid;grid-template-columns:1fr 1.3fr;gap:0;border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;background:var(--bg-elev);margin-bottom:var(--s-7);transition:box-shadow .2s;text-decoration:none;color:inherit;}
+    .featured-article:hover{box-shadow:var(--shadow-lg);}
+    .fa-visual{background:linear-gradient(135deg,var(--accent-soft),var(--butter));display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",Georgia,serif;font-size:108px;color:var(--accent-deep);opacity:.4;font-style:italic;letter-spacing:-.04em;min-height:260px;}
+    .fa-body{padding:var(--s-6) var(--s-6) var(--s-5);}
+    .fa-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);background:var(--accent-soft);padding:4px 10px;border-radius:var(--r-pill);margin-bottom:var(--s-4);}
+    .fa-body h2{font-size:clamp(22px,2.4vw,30px);letter-spacing:-.025em;line-height:1.12;font-weight:500;margin-bottom:var(--s-3);max-width:22ch;}
+    .fa-body p{color:var(--ink-soft);font-size:15px;line-height:1.6;max-width:54ch;margin-bottom:var(--s-5);}
+    .fa-meta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);}
+    .fa-read-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:var(--r-pill);background:var(--ink);color:var(--bg);font-size:13px;font-weight:500;transition:background .15s;}
+    .fa-read-btn:hover{background:var(--accent);}
+    @media (max-width:720px){.featured-article{grid-template-columns:1fr;}.fa-visual{min-height:160px;font-size:72px;}}
+
+    /* ── Article list (main feed) ── */
+    .article-feed{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;}
+    .article-row{display:grid;grid-template-columns:72px 1fr auto;gap:var(--s-5);padding:var(--s-5);border-bottom:1px solid var(--line);align-items:center;transition:background .15s;text-decoration:none;color:inherit;cursor:pointer;}
+    .article-row:last-child{border-bottom:0;}
+    .article-row:hover{background:var(--surface);}
+    .article-row.hidden{display:none;}
+    .ar-thumb{width:72px;height:72px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",Georgia,serif;font-size:28px;color:var(--accent-deep);font-style:italic;letter-spacing:-.03em;background:var(--accent-soft);flex:0 0 auto;}
+    .ar-thumb.t-mint{background:var(--mint);color:#3a5c3f;}
+    .ar-thumb.t-sky{background:var(--sky);color:#2e4a6b;}
+    .ar-thumb.t-butter{background:var(--butter);color:#7a5c15;}
+    .ar-thumb.t-rose{background:var(--rose);color:#8a4a3a;}
+    .ar-body{min-width:0;}
+    .ar-tags{display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap;}
+    .ar-tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:var(--r-pill);background:var(--bg);border:1px solid var(--line);color:var(--ink-muted);}
+    .ar-tag.new{background:color-mix(in oklab,#5ba672 14%,var(--bg));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 30%,var(--line));}
+    .ar-tag.updated{background:var(--sky);color:#2e4a6b;border-color:color-mix(in oklab,#2e4a6b 20%,var(--line));}
+    [data-theme="dark"] .ar-tag.new{color:#a7d2a9;}
+    [data-theme="dark"] .ar-tag.updated{color:#9cc1e0;}
+    .ar-body h3{font-size:17px;font-weight:500;letter-spacing:-.015em;line-height:1.3;color:var(--ink);margin-bottom:4px;}
+    .ar-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;max-width:64ch;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .ar-meta{display:flex;gap:12px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11.5px;color:var(--ink-muted);letter-spacing:.01em;}
+    .ar-trail{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:0 0 auto;}
+    .ar-arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:all .15s;font-size:14px;}
+    .article-row:hover .ar-arrow{background:var(--ink);color:var(--bg);border-color:var(--ink);transform:translateX(2px);}
+    .ar-read-time{font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);}
+    @media (max-width:720px){.article-row{grid-template-columns:56px 1fr;}.ar-trail{display:none;}.ar-thumb{width:56px;height:56px;font-size:22px;}.ar-desc{display:none;}}
+
+    /* ── Category browse ── */
+    .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-4);margin-bottom:var(--s-7);}
+    .cat-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:var(--s-3);transition:all .2s;}
+    .cat-card:hover{border-color:var(--line-strong);transform:translateY(-2px);box-shadow:var(--shadow-md);}
+    .cat-card .cc-icon{font-family:"Instrument Serif",Georgia,serif;font-size:36px;font-style:italic;color:var(--accent-deep);line-height:1;margin-bottom:4px;}
+    .cat-card h3{font-size:17px;font-weight:500;letter-spacing:-.01em;}
+    .cat-card .cc-count{font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);letter-spacing:.04em;}
+    @media (max-width:720px){.cat-grid{grid-template-columns:1fr 1fr;}}
+    @media (max-width:480px){.cat-grid{grid-template-columns:1fr;}}
+
+    /* ── Section heads ── */
+    .rh{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-4);margin-bottom:var(--s-5);border-bottom:1px solid var(--line);flex-wrap:wrap;}
+    .rh h2{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.02em;}
+    .rh a{font-size:13.5px;color:var(--accent);font-weight:500;border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);padding-bottom:2px;transition:border-color .15s;}
+    .rh a:hover{border-color:var(--accent);}
+
+    /* ── No results ── */
+    .no-results{text-align:center;padding:var(--s-8) 0;color:var(--ink-muted);display:none;}
+    .no-results.visible{display:block;}
+    .no-results p{font-size:16px;margin-bottom:var(--s-3);}
+    .no-results .nr-hint{font-family:var(--font-mono);font-size:13px;}
+  </style>
   <script>window.PAGE_KEY = 'research';</script>
 </head>
 <body>
 <div id="site-header"></div>
 
 <main>
+  <!-- ── Page header ── -->
   <section class="page-head">
     <div class="container">
       <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><span>Research</span></div>
-      <h1>Everything we've published, <em>indexed and searchable.</em></h1>
-      <p class="kicker">Four ways into the same database. Pick a long-form guide, a ready-made protocol, a product review, or a single ingredient breakdown — they all share the same scores and citations.</p>
+      <h1>Everything we've published, <em>indexed.</em></h1>
+      <p class="kicker">Guides, protocols, product reviews, and ingredient breakdowns — all from the same database, scored against the same public rubric. Search or browse by topic below.</p>
       <div class="meta-chips">
         <span class="meta-chip ok"><span class="dot"></span>Updated daily</span>
-        <span class="meta-chip"><span class="dot"></span>312 ingredients · 614 products</span>
+        <span class="meta-chip"><span class="dot"></span>84 guides · 19 protocols</span>
+        <span class="meta-chip"><span class="dot"></span>312 ingredients · 287 reviews</span>
         <span class="meta-chip"><span class="dot"></span>~2,400 cited papers</span>
       </div>
+
+      <!-- Section nav tabs -->
+      <nav class="section-nav" aria-label="Filter by type">
+        <button class="snav-btn active" data-filter="all">All <span class="snav-count">84</span></button>
+        <button class="snav-btn" data-filter="performance">Performance <span class="snav-count">24</span></button>
+        <button class="snav-btn" data-filter="sleep">Sleep &amp; Recovery <span class="snav-count">14</span></button>
+        <button class="snav-btn" data-filter="cognition">Cognition <span class="snav-count">18</span></button>
+        <button class="snav-btn" data-filter="health">General Health <span class="snav-count">28</span></button>
+        <button class="snav-btn" data-filter="review">Review updates <span class="snav-count">12</span></button>
+      </nav>
     </div>
   </section>
 
-  <section class="section container">
-    <div class="card-grid">
-      <a class="card guide-card g1" href="guides.html">
-        <div class="visual"><span class="glyph">G</span></div>
-        <span class="card-tag"><span class="swatch"></span>84 published</span>
-        <h3>Long-form guides.</h3>
-        <p>Evidence-weighted, dosage-specific, and written for what's sold in Mumbai and Bengaluru — not California. The deepest reading.</p>
-        <div class="card-meta">
-          <span>Avg. 11 min read</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
+  <div class="container">
 
-      <a class="card guide-card g2" href="protocols.html">
-        <div class="visual"><span class="glyph">P</span></div>
-        <span class="card-tag"><span class="swatch"></span>19 protocols</span>
-        <h3>Goal-specific protocols.</h3>
-        <p>Opinionated stacks priced in INR, not shopping lists. Foundation, lean mass, sleep, focus, recovery, and a half-dozen niche cases.</p>
-        <div class="card-meta">
-          <span>From ₹820 / month</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="card guide-card g3" href="reviews.html">
-        <div class="visual"><span class="glyph">R</span></div>
-        <span class="card-tag"><span class="swatch"></span>287 reviews</span>
-        <h3>Product reviews.</h3>
-        <p>Every product on Indian shelves, scored against the same five-question rubric. No commission, no ranking-for-pay.</p>
-        <div class="card-meta">
-          <span>Across 38 brands</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="card guide-card g4" href="ingredients.html">
-        <div class="visual"><span class="glyph">i</span></div>
-        <span class="card-tag"><span class="swatch"></span>312 ingredients</span>
-        <h3>Ingredient library.</h3>
-        <p>Mechanism, evidence tier, typical dose range, and the common-sense red flags for everything you keep seeing on back-of-jar lists.</p>
-        <div class="card-meta">
-          <span>~2,400 papers cited</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="card guide-card g5" href="categories.html">
-        <div class="visual"><span class="glyph">C</span></div>
-        <span class="card-tag"><span class="swatch"></span>15 categories</span>
-        <h3>Browse by category.</h3>
-        <p>Sleep, focus, gut health, joints, women's health — fix-this-first views into the whole library.</p>
-        <div class="card-meta">
-          <span>Cross-cuts the database</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
-
-      <a class="card guide-card g6" href="verified-brands.html">
-        <div class="visual"><span class="glyph">V</span></div>
-        <span class="card-tag"><span class="swatch"></span>22 verified</span>
-        <h3>Verified brands.</h3>
-        <p>The Indian brands that consistently clear our purity, dosing, and label-honesty bars across multiple products. Updated quarterly.</p>
-        <div class="card-meta">
-          <span>Q2 2026 review</span>
-          <span class="read-link">Browse<span aria-hidden="true">→</span></span>
-        </div>
-      </a>
+    <!-- ── Search ── -->
+    <div class="search-wrap">
+      <label class="research-search" aria-label="Search all research">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="researchSearch" placeholder="Search guides, ingredients, brands — try "magnesium", "whey", "melatonin"…" autocomplete="off" />
+        <span class="search-clear" id="searchClear" role="button" tabindex="0">Clear</span>
+      </label>
     </div>
-  </section>
 
-  <section class="section container" style="padding-top: 0;">
-    <div class="section-head">
-      <div class="head-left">
-        <div class="eyebrow">This week</div>
-        <h2>Recently published or updated.</h2>
+    <!-- ── Featured / latest ── -->
+    <div id="featuredSection">
+      <div class="rh">
+        <h2>Featured this month</h2>
+        <a href="../research/creatine-loading.html">View all guides →</a>
       </div>
-      <div class="head-right">
-        <p class="lede">A live feed of every change to the public database — new guides, score adjustments, new ingredient entries, and corrections.</p>
+
+      <a class="featured-article" href="../research/magnesium-forms-glycinate-citrate-oxide.html" data-category="health" data-search="magnesium glycinate citrate oxide form absorption sleep cramps">
+        <div class="fa-visual">Mg</div>
+        <div class="fa-body">
+          <div class="fa-tag">Featured · Minerals</div>
+          <h2>Magnesium glycinate vs citrate vs oxide: the form actually matters.</h2>
+          <p>Why the cheapest magnesium on Amazon India is also the least absorbed — and which form to pick depending on whether your goal is sleep, cramps, constipation, or anxiety.</p>
+          <div class="fa-meta">
+            <span class="fa-read-btn">Read guide →</span>
+            <span>8 min read</span>
+            <span>Updated Apr 2026</span>
+            <span>18 studies reviewed</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ── No results ── -->
+    <div class="no-results" id="noResults">
+      <p>No articles match "<span id="noResultsTerm"></span>"</p>
+      <p class="nr-hint">Try a shorter term — ingredient name, brand, or topic.</p>
+    </div>
+
+    <!-- ── Main article feed ── -->
+    <section style="margin-bottom: var(--s-9);">
+      <div class="rh">
+        <h2>All research <span id="resultCount" style="font-size:14px;font-family:var(--font-mono);color:var(--ink-muted);font-weight:400;margin-left:8px;"></span></h2>
+        <a href="guides.html">View guides index →</a>
       </div>
-    </div>
 
-    <div class="index-list">
-      <a href="#" class="index-row">
-        <div class="thumb">Cr</div>
-        <div>
-          <h3>Should you really "load" creatine? A look at 27 trials.</h3>
-          <div class="desc">We mapped 27 RCTs to see whether the 20g/day loading phase actually beats a steady 3–5g. The honest answer is more interesting than either camp admits.</div>
-          <div class="meta"><span>Guide</span><span class="sep">·</span><span>11 min read</span><span class="sep">·</span><span>Updated 21 Apr 2026</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
+      <div class="article-feed" id="articleFeed">
 
-      <a href="#" class="index-row">
-        <div class="thumb g4">Ω3</div>
-        <div>
-          <h3>Updated: Fish oil freshness scores after Q1 2026 batch testing.</h3>
-          <div class="desc">Six brands moved up, two moved down. Full peroxide and anisidine numbers in the appendix; methodology unchanged from 2024.</div>
-          <div class="meta"><span>Review update</span><span class="sep">·</span><span>22 brands</span><span class="sep">·</span><span>17 Apr 2026</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
+        <!-- ─ PUBLISHED ARTICLES ─ -->
 
-      <a href="#" class="index-row">
-        <div class="thumb g2">Ash</div>
-        <div>
-          <h3>New ingredient entry: Ashwagandha (Sensoril vs KSM-66 head-to-head).</h3>
-          <div class="desc">Both are standardised root extracts but the standardisation differs in ways that matter for stress vs sleep endpoints. Now in the library with full citations.</div>
-          <div class="meta"><span>Ingredient</span><span class="sep">·</span><span>Adaptogen</span><span class="sep">·</span><span>14 Apr 2026</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
+        <a class="article-row" href="../research/creatine-loading.html" data-category="performance" data-search="creatine loading monohydrate rct phosphocreatine atp vegetarian muscleblaze gnc creapure">
+          <div class="ar-thumb">Cr</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag updated">Updated Apr 2026</span></div>
+            <h3>Should you really "load" creatine? A look at 27 trials.</h3>
+            <div class="ar-desc">We mapped 27 RCTs to see whether the 20g/day loading phase actually beats a steady 3–5g. The honest answer is more interesting than either camp admits. Includes India vegetarian context.</div>
+            <div class="ar-meta"><span>Guide · 11 min read</span><span>27 studies</span><span>Updated 21 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">11 min</span></div>
+        </a>
 
-      <a href="#" class="index-row">
-        <div class="thumb g3">D₃</div>
-        <div>
-          <h3>The 60,000 IU weekly sachet: a uniquely Indian problem.</h3>
-          <div class="desc">South Asian vitamin D deficiency is real, but mega-dose sachets aren't the only answer. A look at serum response curves and the 2025 ICMR revision.</div>
-          <div class="meta"><span>Guide</span><span class="sep">·</span><span>12 min read</span><span class="sep">·</span><span>9 Apr 2026</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
+        <a class="article-row" href="../research/vitamin-d-60000iu-weekly-sachet.html" data-category="health" data-search="vitamin d deficiency sachet 60000 iu weekly icmr 2025 cholecalciferol d3 south asian india sun exposure">
+          <div class="ar-thumb t-sky">D₃</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">General Health</span><span class="ar-tag updated">Updated Apr 2026</span></div>
+            <h3>The 60,000 IU weekly sachet: a uniquely Indian problem.</h3>
+            <div class="ar-desc">South Asian vitamin D deficiency is real, but mega-dose sachets aren't the only answer. A look at serum response curves and the 2025 ICMR revision on target ranges.</div>
+            <div class="ar-meta"><span>Guide · 12 min read</span><span>ICMR 2025 aligned</span><span>Updated 9 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">12 min</span></div>
+        </a>
 
-      <a href="#" class="index-row">
-        <div class="thumb g5">P</div>
-        <div>
-          <h3>Wind-Down Protocol — refreshed for IST commute patterns.</h3>
-          <div class="desc">Magnesium glycinate, L-theanine, and a low-dose melatonin window with caffeine cutoff guidance for late-shift desk work.</div>
-          <div class="meta"><span>Protocol</span><span class="sep">·</span><span>₹1,120 / month</span><span class="sep">·</span><span>5 Apr 2026</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
-    </div>
+        <a class="article-row" href="../research/fish-oil-freshness-q1-2026.html" data-category="review" data-search="fish oil omega-3 totox peroxide anisidine freshness oxidation epa dha india brand muscleblaze gnc wow carbamide">
+          <div class="ar-thumb t-butter">Ω3</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Review update</span><span class="ar-tag updated">Q1 2026</span></div>
+            <h3>Fish oil freshness scores after Q1 2026 batch testing.</h3>
+            <div class="ar-desc">Six brands moved up, two moved down. Full peroxide and anisidine numbers in the appendix. 22 brands tested — methodology unchanged from 2024 baseline.</div>
+            <div class="ar-meta"><span>Review update · 10 min read</span><span>22 brands tested</span><span>17 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">10 min</span></div>
+        </a>
 
-    <div style="text-align:center; margin-top: 40px;">
-      <a href="changelog.html" class="ghost-link">View full database changelog<span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-  </section>
+        <a class="article-row" href="../research/magnesium-forms-glycinate-citrate-oxide.html" data-category="health" data-search="magnesium glycinate citrate oxide form absorption sleep anxiety cramps constipation india amazon">
+          <div class="ar-thumb t-mint">Mg</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">General Health</span><span class="ar-tag new">New</span></div>
+            <h3>Magnesium glycinate vs citrate vs oxide: the form actually matters.</h3>
+            <div class="ar-desc">Why the cheapest magnesium on Amazon India is also the least absorbed — and which form to pick depending on sleep, cramps, anxiety, or bowel issues.</div>
+            <div class="ar-meta"><span>Guide · 8 min read</span><span>18 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">8 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/whey-isolate-vs-concentrate-lactose.html" data-category="performance" data-search="whey protein isolate concentrate lactose intolerance india dairy price difference muscleblaze on gnc nutrabay">
+          <div class="ar-thumb t-sky">Wp</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag new">New</span></div>
+            <h3>Whey isolate vs concentrate for the Indian lactose-sensitive lifter.</h3>
+            <div class="ar-desc">When the ₹800 price gap between isolate and concentrate matters — and when it's pure brand marketing. Includes lactose thresholds and a decision flowchart for Indian buyers.</div>
+            <div class="ar-meta"><span>Guide · 14 min read</span><span>22 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">14 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/preworkout-prop-blends-india.html" data-category="performance" data-search="preworkout pre-workout proprietary blend underdosed citrulline beta-alanine caffeine india muscleblaze sixpack nutrition">
+          <div class="ar-thumb t-rose">PW</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag new">New</span></div>
+            <h3>Pre-workout prop blends: what's actually in them.</h3>
+            <div class="ar-desc">Proprietary blends hide underdosed actives behind branded names. We reverse-engineer the math on 14 Indian pre-workouts and show what the label is — and isn't — telling you.</div>
+            <div class="ar-meta"><span>Guide · 13 min read</span><span>14 products dissected</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">13 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/protein-timing-anabolic-window.html" data-category="performance" data-search="protein timing anabolic window post workout muscle synthesis leucine whey india myth">
+          <div class="ar-thumb">Po</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag new">New</span></div>
+            <h3>Protein timing: is the anabolic window real?</h3>
+            <div class="ar-desc">The "30-minute window" has been nutrition dogma for two decades. What does the 2024 meta-analysis evidence actually say about when you eat protein, and how much it matters relative to total daily intake?</div>
+            <div class="ar-meta"><span>Guide · 10 min read</span><span>31 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">10 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/melatonin-indian-10mg-tablets-wrong.html" data-category="sleep" data-search="melatonin sleep 10mg overdose circadian dose india tablets 0.3mg chronobiotic jet lag shift work">
+          <div class="ar-thumb t-sky">Ml</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Sleep &amp; Recovery</span><span class="ar-tag new">New</span></div>
+            <h3>Melatonin: why Indian 10mg tablets are the wrong dose.</h3>
+            <div class="ar-desc">India's shelves are stacked with 5–10mg melatonin tablets. The research-supported dose for circadian phase shifting is 0.3–1mg. A deep dive into why more is pharmacologically counterproductive.</div>
+            <div class="ar-meta"><span>Guide · 9 min read</span><span>24 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">9 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/zma-zinc-magnesium-evidence.html" data-category="performance" data-search="ZMA zinc magnesium b6 testosterone sleep recovery evidence india marketing nocebo muscleblaze">
+          <div class="ar-thumb t-butter">Zn</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag new">New</span></div>
+            <h3>Zinc + Magnesium (ZMA): evidence vs marketing.</h3>
+            <div class="ar-desc">ZMA has been sold as a testosterone booster and recovery accelerant for 25 years. The evidence is thinner — and more interesting — than the marketing suggests. What it actually does, and for whom.</div>
+            <div class="ar-meta"><span>Guide · 9 min read</span><span>16 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">9 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/probiotics-gut-health-indian-diet.html" data-category="health" data-search="probiotics gut microbiome india lactobacillus bifidobacterium dal rice curd fermented food IBS irritable bowel">
+          <div class="ar-thumb t-mint">Gb</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">General Health</span><span class="ar-tag new">New</span></div>
+            <h3>Gut health: probiotics for the Indian diet.</h3>
+            <div class="ar-desc">The Indian gut microbiome is structurally different from the Western populations in most probiotic RCTs. Which strains have Indian-specific evidence, what curd and fermented foods already provide, and what supplements actually add.</div>
+            <div class="ar-meta"><span>Guide · 11 min read</span><span>26 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">11 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/caffeine-tolerance-chai-india.html" data-category="cognition" data-search="caffeine tolerance cycling withdrawal chai tea india adenosine receptor coffee pre-workout energy focus">
+          <div class="ar-thumb t-rose">Ca</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Cognition</span><span class="ar-tag new">New</span></div>
+            <h3>Caffeine tolerance, cycling, and the Indian chai problem.</h3>
+            <div class="ar-desc">Most Indian adults consume 150–400mg of caffeine daily through chai alone — before any supplement. How this baseline shapes caffeine sensitivity, tolerance timelines, and smart cycling strategies for urban Indians.</div>
+            <div class="ar-meta"><span>Guide · 10 min read</span><span>19 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">10 min</span></div>
+        </a>
+
+        <a class="article-row" href="../research/bcaa-worth-it-or-expensive-whey.html" data-category="performance" data-search="BCAA branched chain amino acid leucine isoleucine valine whey protein muscle synthesis india expensive marketing">
+          <div class="ar-thumb">AA</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Performance</span><span class="ar-tag new">New</span></div>
+            <h3>BCAA: still worth it, or just expensive whey?</h3>
+            <div class="ar-desc">BCAAs are a ₹2,000–₹4,000/month line item for many Indian gym-goers. What the leucine-threshold evidence actually shows, when BCAAs have a role, and when you'd do better buying another scoop of whey.</div>
+            <div class="ar-meta"><span>Guide · 9 min read</span><span>21 studies</span><span>28 Apr 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">9 min</span></div>
+        </a>
+
+        <!-- Placeholder rows — upcoming -->
+        <a class="article-row" href="#" data-category="health" data-search="ashwagandha ksm-66 sensoril withania somnifera cortisol stress adaptogen india ixoreal nutraceutics">
+          <div class="ar-thumb t-mint">Ash</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Adaptogens</span><span class="ar-tag" style="background:var(--butter);color:#7a5c15;border-color:color-mix(in oklab,#7a5c15 20%,var(--line));">Coming soon</span></div>
+            <h3>Ashwagandha: what KSM-66 and Sensoril trials actually show.</h3>
+            <div class="ar-desc">Everyone sells it, few cite it correctly. Patented extract evidence vs generic powder evidence — with real Indian pricing from Amazon and health stores in Mumbai.</div>
+            <div class="ar-meta"><span>Guide · 16 min read</span><span>27 studies</span><span>Publishing May 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div><span class="ar-read-time">16 min</span></div>
+        </a>
+
+        <a class="article-row" href="#" data-category="health" data-search="iron deficiency anemia indian women ferritin hemoglobin vegetarian supplementation">
+          <div class="ar-thumb t-rose">Fe</div>
+          <div class="ar-body">
+            <div class="ar-tags"><span class="ar-tag">Women's Health</span><span class="ar-tag" style="background:var(--butter);color:#7a5c15;border-color:color-mix(in oklab,#7a5c15 20%,var(--line));">Coming soon</span></div>
+            <h3>Iron deficiency in Indian women: the most under-supplemented problem.</h3>
+            <div class="ar-desc">NFHS-5 data: 57% of Indian women of reproductive age are anaemic. Which iron forms absorb best, what inhibits absorption in a dal-rice diet, and when a test matters more than a supplement.</div>
+            <div class="ar-meta"><span>Guide · 13 min read</span><span>Publishing May 2026</span></div>
+          </div>
+          <div class="ar-trail"><div class="ar-arrow">→</div></div>
+        </a>
+
+      </div><!-- /article-feed -->
+    </section>
+
+    <!-- ── Browse by category ── -->
+    <section id="categorySection" style="margin-bottom:var(--s-9);">
+      <div class="rh">
+        <h2>Browse by goal</h2>
+        <a href="categories.html">All categories →</a>
+      </div>
+      <div class="cat-grid">
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">Cr</div>
+          <h3>Creatine</h3>
+          <div class="cc-count">9 articles · Strong evidence</div>
+        </a>
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">Ω</div>
+          <h3>Omega-3s</h3>
+          <div class="cc-count">8 articles · Freshness testing</div>
+        </a>
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">Wp</div>
+          <h3>Protein</h3>
+          <div class="cc-count">42 articles · Form, timing, dose</div>
+        </a>
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">Ml</div>
+          <h3>Sleep &amp; Recovery</h3>
+          <div class="cc-count">19 articles · India-specific</div>
+        </a>
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">Ash</div>
+          <h3>Adaptogens</h3>
+          <div class="cc-count">18 articles · Extract vs powder</div>
+        </a>
+        <a class="cat-card" href="categories.html">
+          <div class="cc-icon">D₃</div>
+          <h3>Vitamins &amp; Minerals</h3>
+          <div class="cc-count">37 articles · ICMR aligned</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Database entry points ── -->
+    <section style="margin-bottom:var(--s-9);">
+      <div class="rh">
+        <h2>Other ways in</h2>
+      </div>
+      <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
+        <a class="card guide-card g2" href="protocols.html" style="text-decoration:none;">
+          <div class="visual"><span class="glyph">P</span></div>
+          <span class="card-tag"><span class="swatch"></span>19 protocols</span>
+          <h3>Goal-specific protocols.</h3>
+          <p>Opinionated stacks priced in INR. Foundation, lean mass, sleep, focus — each with a budget breakdown and substitution guide.</p>
+          <div class="card-meta"><span>From ₹820/month</span><span class="read-link">Browse→</span></div>
+        </a>
+        <a class="card guide-card g3" href="reviews.html" style="text-decoration:none;">
+          <div class="visual"><span class="glyph">R</span></div>
+          <span class="card-tag"><span class="swatch"></span>287 reviews</span>
+          <h3>Product reviews.</h3>
+          <p>Every major Indian brand scored against the same five-question rubric. No commission-based ranking.</p>
+          <div class="card-meta"><span>38 brands</span><span class="read-link">Browse→</span></div>
+        </a>
+        <a class="card guide-card g4" href="ingredients.html" style="text-decoration:none;">
+          <div class="visual"><span class="glyph">i</span></div>
+          <span class="card-tag"><span class="swatch"></span>312 ingredients</span>
+          <h3>Ingredient library.</h3>
+          <p>Mechanism, evidence tier, dose range, and red flags for every compound that appears on Indian supplement labels.</p>
+          <div class="card-meta"><span>~2,400 papers</span><span class="read-link">Browse→</span></div>
+        </a>
+      </div>
+    </section>
+
+  </div><!-- /container -->
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+<script>
+(function(){
+  const searchInput = document.getElementById('researchSearch');
+  const searchClear = document.getElementById('searchClear');
+  const articleFeed = document.getElementById('articleFeed');
+  const noResults = document.getElementById('noResults');
+  const noResultsTerm = document.getElementById('noResultsTerm');
+  const resultCount = document.getElementById('resultCount');
+  const featuredSection = document.getElementById('featuredSection');
+  const categorySection = document.getElementById('categorySection');
+  const allRows = Array.from(articleFeed.querySelectorAll('.article-row'));
+
+  // Tab filter
+  let activeFilter = 'all';
+  document.querySelectorAll('.snav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.snav-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  // Search
+  searchInput.addEventListener('input', () => {
+    searchClear.classList.toggle('visible', searchInput.value.length > 0);
+    applyFilters();
+  });
+  searchClear.addEventListener('click', () => {
+    searchInput.value = '';
+    searchClear.classList.remove('visible');
+    applyFilters();
+    searchInput.focus();
+  });
+
+  function applyFilters(){
+    const q = searchInput.value.trim().toLowerCase();
+    const isSearching = q.length > 1;
+
+    // Hide featured & category when searching
+    featuredSection.style.display = isSearching ? 'none' : '';
+    categorySection.style.display = isSearching ? 'none' : '';
+
+    let visible = 0;
+    allRows.forEach(row => {
+      const cat = row.dataset.category || '';
+      const searchText = (row.dataset.search || '') + ' ' + (row.querySelector('h3')?.textContent || '').toLowerCase();
+      const matchesFilter = activeFilter === 'all' || cat === activeFilter;
+      const matchesSearch = !isSearching || searchText.includes(q);
+      const show = matchesFilter && matchesSearch;
+      row.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+
+    // Show count only when searching or filtered
+    if(isSearching || activeFilter !== 'all'){
+      resultCount.textContent = `(${visible} article${visible !== 1 ? 's' : ''})`;
+    } else {
+      resultCount.textContent = '';
+    }
+
+    // No results state
+    noResults.classList.toggle('visible', visible === 0);
+    noResultsTerm.textContent = q;
+  }
+
+  // Keyboard shortcut — focus search on /
+  document.addEventListener('keydown', e => {
+    if(e.key === '/' && document.activeElement.tagName !== 'INPUT'){
+      e.preventDefault();
+      searchInput.focus();
+    }
+  });
+})();
+</script>
 </body>
 </html>
