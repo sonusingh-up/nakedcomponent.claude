@@ -12,141 +12,117 @@
   <link rel="stylesheet" href="/style.css?v=3" />
   <link rel="stylesheet" href="/pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
-  <script>window.PAGE_KEY = 'research';</script>
   <style>
-    /* ── Page head ── */
-    .page-head { padding: var(--s-9) 0 var(--s-8); border-bottom: 1px solid var(--line); }
-    .page-head .crumbs { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-muted); font-family:var(--font-mono); letter-spacing:.02em; margin-bottom:var(--s-5); flex-wrap:wrap; }
-    .page-head .crumbs a { color:var(--ink-muted); }
-    .page-head .crumbs a:hover { color:var(--accent); }
-    .page-head .crumbs .sep { opacity:.4; }
-    .page-head h1 { font-size:clamp(26px,4.5vw,54px); font-weight:500; letter-spacing:-.03em; line-height:1.08; margin-bottom:var(--s-5); max-width:22ch; }
-    .page-head h1 em { font-style:normal; font-family:"Instrument Serif",Georgia,serif; color:var(--accent); font-weight:400; }
-    .page-head .kicker { font-size:clamp(15px,1.4vw,18px); color:var(--ink-soft); max-width:56ch; line-height:1.6; margin-bottom:var(--s-6); }
-    .meta-chips { display:flex; flex-wrap:wrap; gap:10px; }
-    .meta-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:var(--r-pill); background:var(--bg-elev); border:1px solid var(--line); font-size:13px; color:var(--ink-soft); font-family:var(--font-mono); }
-    .meta-chip .dot { width:7px; height:7px; border-radius:50%; background:var(--ink-muted); flex:0 0 auto; }
-    .meta-chip.ok .dot { background:#5ba672; box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent); }
-
-    /* ── Article layout ── */
-    .article-layout { display:grid; grid-template-columns:1fr 260px; gap:var(--s-8); align-items:start; padding:var(--s-8) 0; }
-    .article-body .prose { max-width:68ch; }
-    .article-sidebar { position:sticky; top:calc(var(--nav-h, 64px) + 16px); display:flex; flex-direction:column; gap:var(--s-4); }
-
-    /* ── Prose ── */
-    .prose { font-size:clamp(15px,1.15vw,17px); line-height:1.75; color:var(--ink-soft); word-break:break-word; overflow-wrap:break-word; }
-    .prose p { margin:0 0 var(--s-5); }
-    .prose h2 { font-size:clamp(20px,2vw,27px); font-weight:500; letter-spacing:-.025em; color:var(--ink); line-height:1.2; margin:var(--s-8) 0 var(--s-4); padding-top:var(--s-3); border-top:1px solid var(--line); }
-    .prose h3 { font-size:clamp(16px,1.5vw,20px); font-weight:500; letter-spacing:-.02em; color:var(--ink); margin:var(--s-6) 0 var(--s-3); }
-    .prose sup a { font-size:11px; color:var(--accent); text-decoration:none; font-family:var(--font-mono); }
-    .prose strong { color:var(--ink); font-weight:600; }
-
-    /* ── Verdict card ── */
-    .verdict-card { background:color-mix(in oklab,var(--accent-soft) 60%,var(--bg-elev)); border:1px solid color-mix(in oklab,var(--accent) 25%,transparent); border-radius:var(--r-xl); padding:var(--s-6); margin:var(--s-5) 0 var(--s-7); }
-    .verdict-card .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s-3); }
-    .verdict-card h3 { font-size:clamp(17px,1.6vw,22px); font-weight:500; letter-spacing:-.02em; color:var(--ink); margin-bottom:var(--s-4); line-height:1.3; }
-    .verdict-card p { font-size:15px; color:var(--ink-soft); line-height:1.65; margin:0 0 var(--s-3); }
-    .verdict-card p:last-child { margin-bottom:0; }
-
-    /* ── Callout box ── */
-    .callout { background:var(--bg-elev); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--r-md); padding:var(--s-5); margin:var(--s-5) 0; }
-    .callout .callout-label { font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s-2); }
-    .callout p { font-size:14.5px; color:var(--ink-soft); line-height:1.6; margin:0; }
-
-    /* ── TOTOX score badges ── */
-    .score-pass { display:inline-block; background:#edf7f1; color:#2e7d52; border:1px solid #9dd4b3; border-radius:var(--r-pill); font-size:11px; font-family:var(--font-mono); padding:2px 8px; font-weight:500; }
-    .score-warn { display:inline-block; background:#fef8ec; color:#a06820; border:1px solid #f5d48a; border-radius:var(--r-pill); font-size:11px; font-family:var(--font-mono); padding:2px 8px; font-weight:500; }
-    .score-fail { display:inline-block; background:#feeeec; color:#c0392b; border:1px solid #f5b8b0; border-radius:var(--r-pill); font-size:11px; font-family:var(--font-mono); padding:2px 8px; font-weight:500; }
-    .move-up   { color:#2e7d52; font-family:var(--font-mono); font-size:12px; font-weight:600; }
-    .move-down { color:#c0392b; font-family:var(--font-mono); font-size:12px; font-weight:600; }
-    .move-flat { color:var(--ink-muted); font-family:var(--font-mono); font-size:12px; }
-
-    /* ── Data table ── */
-    .data-table-wrap { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:var(--r-lg); border:1px solid var(--line); margin:var(--s-5) 0; }
-    .data-table { width:100%; border-collapse:collapse; background:var(--bg-elev); font-size:13.5px; min-width:520px; }
-    .data-table th, .data-table td { padding:12px 16px; text-align:left; border-bottom:1px solid var(--line); }
-    .data-table thead th { background:var(--bg); font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); font-weight:500; white-space:nowrap; }
-    .data-table tbody tr:last-child td { border-bottom:0; }
-    .data-table tbody tr:hover { background:var(--surface); }
-    .data-table td.num { font-family:var(--font-mono); text-align:right; font-size:13px; }
-    .data-table .brand-name { font-weight:500; color:var(--ink); }
-    .data-table .rank { font-family:var(--font-mono); font-size:12px; color:var(--ink-muted); width:28px; }
-
-    /* ── Methodology note ── */
-    .method-box { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); margin:var(--s-5) 0; }
-    .method-box .mb-label { font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-3); }
-    .method-box p { font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0; }
-
-    /* ── Brand movement cards ── */
-    .brand-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%,280px),1fr)); gap:var(--s-4); margin:var(--s-5) 0; }
-    .brand-card { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); }
-    .brand-card .bc-head { display:flex; align-items:center; gap:10px; margin-bottom:var(--s-3); }
-    .brand-card .bc-icon { width:36px; height:36px; border-radius:var(--r-md); background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:13px; font-family:var(--font-mono); font-weight:600; color:var(--ink-soft); flex:0 0 auto; }
-    .brand-card .bc-name { font-weight:500; font-size:14.5px; color:var(--ink); }
-    .brand-card .bc-delta { font-family:var(--font-mono); font-size:11px; }
-    .brand-card p { font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin:0; }
-    .bc-up   { border-top:3px solid #5ba672; }
-    .bc-down { border-top:3px solid #e05c4a; }
-
-    /* ── References ── */
-    .refs-section { border-top:1px solid var(--line); padding-top:var(--s-6); margin-top:var(--s-8); }
-    .refs-section h2 { font-size:16px; font-weight:500; font-family:var(--font-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-5); }
-    .ref-list { display:flex; flex-direction:column; gap:var(--s-3); }
-    .ref-item { display:grid; grid-template-columns:28px 1fr; gap:var(--s-3); font-size:13.5px; color:var(--ink-soft); line-height:1.55; padding:var(--s-3) var(--s-4); border-radius:var(--r-md); border:1px solid transparent; transition:border-color .15s; }
-    .ref-item:hover { border-color:color-mix(in oklab,var(--accent) 35%,transparent); }
-    .ref-item a { color:var(--accent); text-decoration:none; word-break:break-all; }
-    .ref-num { font-family:var(--font-mono); font-size:11px; color:var(--accent); font-weight:600; padding-top:2px; }
-
-    /* ── Sidebar ── */
-    .toc-card { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); }
-    .toc-card h4 { font-size:12px; font-family:var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-4); }
-    .toc-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px; }
-    .toc-list a { display:block; padding:7px 10px; border-radius:var(--r-sm); font-size:14px; color:var(--ink-soft); transition:color .15s,background .15s; line-height:1.35; }
-    .toc-list a:hover { color:var(--ink); background:color-mix(in oklab,var(--ink) 5%,transparent); }
-    .toc-list a.active { color:var(--accent); background:color-mix(in oklab,var(--accent) 8%,transparent); }
-    .sidebar-meta { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); display:flex; flex-direction:column; gap:12px; }
-    .sm-row { display:flex; justify-content:space-between; align-items:baseline; font-size:13px; gap:8px; flex-wrap:wrap; }
-    .sm-label { color:var(--ink-muted); font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
-    .sm-value { color:var(--ink); font-weight:500; text-align:right; }
-    .sm-divider { height:1px; background:var(--line); }
-
-    /* ── Responsive ── */
-    @media (max-width:900px) {
-      .article-layout { grid-template-columns:1fr; }
-      .article-sidebar { position:static; }
-    }
-    @media (max-width:600px) {
-      .brand-grid { grid-template-columns:1fr; }
-    }
-
-    /* ── Mobile overflow prevention ── */
-    html, body { overflow-x: hidden; max-width: 100%; }
-    *, *::before, *::after { box-sizing: border-box; }
-    .container { max-width: 100%; }
-    .article-body, .prose, .article-layout { min-width: 0; max-width: 100%; }
-    .verdict-card, .callout, .method-box, .brand-card,
-    .data-table-wrap, .refs-section, .toc-card, .sidebar-meta { max-width: 100%; }
-    /* Table: allow brand column to wrap cleanly */
-    .data-table { table-layout: fixed; }
-    .data-table th:nth-child(2),
-    .data-table td:nth-child(2) { min-width: 90px; word-break: break-word; }
-    .data-table td.num { white-space: nowrap; }
-    /* Sidebar meta: prevent values overflowing */
-    .sm-row { flex-wrap: wrap; }
-    .sm-value { word-break: break-word; max-width: 100%; }
+    .page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
+    .page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
+    .page-head .crumbs a{color:var(--ink-muted);}
+    .page-head .crumbs a:hover{color:var(--accent);}
+    .page-head .crumbs .sep{opacity:.4;}
+    .page-head h1{font-size:clamp(28px,4.5vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:var(--s-5);max-width:22ch;}
+    .page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
+    .page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:56ch;line-height:1.6;margin-bottom:var(--s-6);}
+    .meta-chips{display:flex;flex-wrap:wrap;gap:10px;}
+    .meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
+    .meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
+    .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
+    /* Layout */
+    .article-layout{display:grid;grid-template-columns:1fr 260px;gap:var(--s-8);align-items:start;padding:var(--s-8) 0 var(--s-10);}
+    .article-body{min-width:0;}
+    .article-sidebar{position:sticky;top:calc(var(--nav-h) + 24px);}
+    /* Prose */
+    .prose h2{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:var(--s-8) 0 var(--s-4);padding-top:var(--s-8);border-top:1px solid var(--line);scroll-margin-top:80px;}
+    .prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+    .prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
+    .prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
+    .prose p strong{color:var(--ink);font-weight:500;}
+    .prose sup{font-family:var(--font-mono);font-size:11px;color:var(--accent);}
+    .prose sup a{color:var(--accent);}
+    /* Callout */
+    .callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);}
+    .callout-icon{font-size:20px;flex:0 0 auto;margin-top:2px;}
+    .callout-body p{font-size:15px;margin:0;line-height:1.65;}
+    .callout-body strong{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+    .callout.info{background:var(--sky);border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky));}
+    .callout.info .callout-body strong{color:#2e4a6b;}
+    .callout.warn{background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+    .callout.warn .callout-body strong{color:#7a5f1a;}
+    [data-theme="dark"] .callout.info .callout-body strong{color:#9cc1e0;}
+    [data-theme="dark"] .callout.warn .callout-body strong{color:#e0c377;}
+    /* Verdict */
+    .verdict-card{background:var(--ink);color:#f0ece4;border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;position:relative;overflow:hidden;}
+    [data-theme="dark"] .verdict-card{background:var(--accent-soft);color:var(--ink);}
+    .verdict-card::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(30px);}
+    .verdict-card .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0ece4 !important;opacity:.65;margin-bottom:var(--s-3);position:relative;}
+    .verdict-card h3{font-size:clamp(18px,2vw,24px);letter-spacing:-.02em;margin-bottom:var(--s-4);color:#ffffff !important;position:relative;}
+    .verdict-card p{font-size:15px;line-height:1.65;position:relative;color:#c8c2b8 !important;margin-bottom:var(--s-3);}
+    .verdict-card p strong{color:#f0ece4 !important;}
+    [data-theme="dark"] .verdict-card h3{color:var(--ink) !important;}
+    [data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
+    [data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
+    /* Method box */
+    .method-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);margin:var(--s-5) 0;}
+    .method-box .mb-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-3);}
+    .method-box p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0;}
+    /* Badges */
+    .badge{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--line);}
+    .badge.pass{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 35%,var(--line));}
+    .badge.warn{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;}
+    .badge.fail{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border-color:color-mix(in oklab,#e05c4a 30%,var(--line));}
+    [data-theme="dark"] .badge.pass{color:#a7d2a9;}
+    [data-theme="dark"] .badge.warn{color:#e0c377;}
+    .move-up{color:#3a6b4a;font-family:var(--font-mono);font-size:12px;font-weight:600;}
+    .move-down{color:#a0342a;font-family:var(--font-mono);font-size:12px;font-weight:600;}
+    .move-flat{color:var(--ink-muted);font-family:var(--font-mono);font-size:12px;}
+    /* Brand cards */
+    .brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:var(--s-4);margin:var(--s-5) 0;}
+    .brand-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);}
+    .brand-card.bc-up{border-top:3px solid #5ba672;}
+    .brand-card.bc-down{border-top:3px solid #e05c4a;}
+    .brand-card .bc-head{display:flex;align-items:center;gap:10px;margin-bottom:var(--s-3);}
+    .brand-card .bc-icon{width:36px;height:36px;border-radius:var(--r-md);background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:13px;font-family:var(--font-mono);font-weight:600;color:var(--ink-soft);flex:0 0 auto;}
+    .brand-card .bc-name{font-weight:500;font-size:14.5px;color:var(--ink);}
+    .brand-card .bc-delta{font-family:var(--font-mono);font-size:11px;}
+    .brand-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
+    /* Table */
+    .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+    .data-table{width:100%;border-collapse:collapse;font-size:14px;}
+    .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+    .data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
+    .data-table tbody tr:last-child td{border-bottom:none;}
+    .data-table tbody tr:hover td{background:var(--bg-elev);}
+    .td-strong{color:var(--ink) !important;font-weight:500;}
+    .td-num{font-family:var(--font-mono);text-align:right;white-space:nowrap;}
+    .td-rank{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);}
+    /* References */
+    .references{margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--line);}
+    .references h2{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s-5);}
+    .ref-list{display:flex;flex-direction:column;gap:var(--s-3);}
+    .ref-item{display:grid;grid-template-columns:28px 1fr;gap:var(--s-3);font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+    .ref-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);padding-top:2px;}
+    .ref-item a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);transition:border-color .15s;}
+    .ref-item a:hover{border-color:var(--accent);}
+    /* Sidebar */
+    .toc-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);}
+    .toc-card h4{font-size:12px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-4);}
+    .toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+    .toc-list a{display:block;padding:7px 10px;border-radius:var(--r-sm);font-size:14px;color:var(--ink-soft);transition:color .15s,background .15s;line-height:1.35;}
+    .toc-list a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
+    .toc-list a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
+    .sidebar-meta{margin-top:var(--s-4);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);display:flex;flex-direction:column;gap:12px;}
+    .sm-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;gap:8px;}
+    .sm-label{color:var(--ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+    .sm-value{color:var(--ink);font-weight:500;text-align:right;}
+    .sm-divider{height:1px;background:var(--line);}
+    @media (max-width:900px){.article-layout{grid-template-columns:1fr;}.article-sidebar{position:static;}}
   </style>
+  <script>window.PAGE_KEY = 'research';</script>
 </head>
 <body>
 <div id="site-header"></div>
-
 <main>
   <section class="page-head">
     <div class="container">
-      <div class="crumbs">
-        <a href="/">Home</a><span class="sep">/</span>
-        <a href="/pages/research">Research</a><span class="sep">/</span>
-        <span>Fish oil Q1 2026</span>
-      </div>
+      <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><a href="/pages/research">Research</a><span class="sep">/</span><span>Fish oil Q1 2026</span></div>
       <h1>Fish oil freshness scores after <em>Q1 2026</em> batch testing.</h1>
       <p class="kicker">Six brands moved up, two moved down. Full peroxide and anisidine numbers in the appendix; methodology unchanged from 2024.</p>
       <div class="meta-chips">
@@ -160,12 +136,10 @@
 
   <div class="container">
     <div class="article-layout">
-
       <article class="article-body">
         <div class="prose">
 
           <h2 id="summary">What changed this quarter</h2>
-
           <div class="verdict-card">
             <div class="eyebrow">Q1 2026 update · 22 brands</div>
             <h3>Six brands moved. The methodology did not.</h3>
@@ -179,210 +153,103 @@
           </div>
 
           <h2 id="movers">The brands that moved</h2>
-          <p>The following eight brands recorded a TOTOX delta of ±5 or greater versus their 2024 score. That threshold is our editorial cut-off for a "material" change worth reporting.</p>
+          <p>The following eight brands recorded a TOTOX delta of ±5 or greater versus their 2024 score — our editorial cut-off for a material change worth reporting.</p>
 
-          <h3>Moved up (score improved)</h3>
-
+          <h3>Moved up — score improved</h3>
           <div class="brand-grid">
             <div class="brand-card bc-up">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">OmegaHeal 1000mg</div>
-                  <div class="bc-delta move-up">TOTOX: 16.2 → 9.8 &nbsp;↑ improved</div>
-                </div>
-              </div>
-              <p>The single biggest mover this cycle. The brand reformulated its nitrogen-flushed packaging in late 2025 — Q1 batches reflect that change. Peroxide value dropped from 7.4 to 3.9 meq/kg.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">OmegaHeal 1000mg</div><div class="bc-delta move-up">TOTOX: 16.2 → 9.8 ↑</div></div></div>
+              <p>The single biggest mover. Reformulated nitrogen-flushed packaging in late 2025 — Q1 batches reflect that change. Peroxide value dropped from 7.4 to 3.9 meq/kg.</p>
             </div>
             <div class="brand-card bc-up">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">HealthVit Omega-3 Fish Oil</div>
-                  <div class="bc-delta move-up">TOTOX: 19.1 → 13.4 &nbsp;↑ improved</div>
-                </div>
-              </div>
-              <p>Peroxide value fell meaningfully; anisidine held flat. Consistent with a cold-chain improvement rather than formula change — the improvement may not hold across summer batches.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">HealthVit Omega-3</div><div class="bc-delta move-up">TOTOX: 19.1 → 13.4 ↑</div></div></div>
+              <p>Peroxide fell; anisidine held flat. Consistent with a cold-chain improvement rather than formula change — may not hold across summer batches.</p>
             </div>
             <div class="brand-card bc-up">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">WOW Life Science Omega-3</div>
-                  <div class="bc-delta move-up">TOTOX: 22.0 → 15.1 &nbsp;↑ improved</div>
-                </div>
-              </div>
-              <p>Moved from our "marginal" band into "acceptable." Anisidine dropped sharply, suggesting fresher raw material sourcing. Still not a top-tier score, but no longer in the fail band.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">WOW Life Science Omega-3</div><div class="bc-delta move-up">TOTOX: 22.0 → 15.1 ↑</div></div></div>
+              <p>Moved from "marginal" into "acceptable." Anisidine dropped sharply, suggesting fresher raw material sourcing. Still not a top-tier score.</p>
             </div>
             <div class="brand-card bc-up">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">Carbamide Forte Triple Strength</div>
-                  <div class="bc-delta move-up">TOTOX: 14.8 → 10.1 &nbsp;↑ improved</div>
-                </div>
-              </div>
-              <p>Remained in the pass band and improved. Higher concentration products tend to oxidise faster per-capsule, so this result is relatively strong for the 1250mg EPA+DHA category.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">Carbamide Forte Triple</div><div class="bc-delta move-up">TOTOX: 14.8 → 10.1 ↑</div></div></div>
+              <p>Remained in the pass band and improved. A strong result for the 1250mg EPA+DHA category, where higher concentration products tend to oxidise faster.</p>
             </div>
           </div>
 
-          <h3>Moved down (score worsened)</h3>
-
+          <h3>Moved down — score worsened</h3>
           <div class="brand-grid">
             <div class="brand-card bc-down">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">MuscleBlaze Fish Oil 1000mg</div>
-                  <div class="bc-delta move-down">TOTOX: 11.3 → 18.7 &nbsp;↓ declined</div>
-                </div>
-              </div>
-              <p>The most concerning mover this cycle. Anisidine nearly doubled, indicating that rancidity is progressing in the chain — not just at source. We're retesting a second batch before updating the full review score. Recommend avoiding until confirmed.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">MuscleBlaze Fish Oil 1000mg</div><div class="bc-delta move-down">TOTOX: 11.3 → 18.7 ↓</div></div></div>
+              <p>The most concerning mover this cycle. Anisidine nearly doubled, indicating rancidity progressing in the supply chain. Retesting a second batch before updating the full review score.</p>
             </div>
             <div class="brand-card bc-down">
-              <div class="bc-head">
-                <div class="bc-icon">Ω3</div>
-                <div>
-                  <div class="bc-name">GNC Triple Strength Fish Oil</div>
-                  <div class="bc-delta move-down">TOTOX: 9.4 → 14.6 &nbsp;↓ declined</div>
-                </div>
-              </div>
-              <p>Moved from our "excellent" band to "acceptable." Peroxide rose significantly; anisidine held. Possibly a storage or transit issue rather than a formula problem. The score is still below our fail threshold — this is a flag, not a disqualification.</p>
+              <div class="bc-head"><div class="bc-icon">Ω3</div><div><div class="bc-name">GNC Triple Strength Fish Oil</div><div class="bc-delta move-down">TOTOX: 9.4 → 14.6 ↓</div></div></div>
+              <p>Moved from "excellent" to "acceptable." Peroxide rose; anisidine held. Possibly a storage or transit issue — score is still below our fail threshold.</p>
             </div>
           </div>
 
           <h2 id="leaderboard">Full leaderboard — all 22 brands</h2>
-          <p>Scores below are from Q1 2026 batches. The GOED voluntary standard sets a TOTOX ceiling of 26 meq/kg; we use a stricter internal threshold of 20 for a "pass" rating, reflecting India's ambient storage conditions.</p>
+          <p>Scores from Q1 2026 batches. The GOED voluntary standard sets a TOTOX ceiling of 26 meq/kg; we use a stricter internal threshold of 20 for a "pass" rating, reflecting India's ambient storage conditions.<sup><a href="#ref1">1</a></sup></p>
 
           <div class="data-table-wrap">
             <table class="data-table">
-              <thead>
-                <tr>
-                  <th class="rank">#</th>
-                  <th>Brand</th>
-                  <th>Strength</th>
-                  <th class="num">Peroxide</th>
-                  <th class="num">Anisidine</th>
-                  <th class="num">TOTOX</th>
-                  <th>Rating</th>
-                  <th>Change</th>
-                </tr>
-              </thead>
+              <thead><tr><th>#</th><th>Brand</th><th>Strength</th><th>PV</th><th>AV</th><th>TOTOX</th><th>Rating</th><th>Change</th></tr></thead>
               <tbody>
-                <tr>
-                  <td class="rank">1</td><td class="brand-name">Vegan Omega (Algal)</td><td>500mg DHA</td><td class="num">1.2</td><td class="num">2.1</td><td class="num">4.5</td><td><span class="score-pass">Excellent</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">2</td><td class="brand-name">OmegaHeal 1000mg</td><td>330mg EPA/DHA</td><td class="num">3.9</td><td class="num">2.0</td><td class="num">9.8</td><td><span class="score-pass">Excellent</span></td><td><span class="move-up">↑ +6.4</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">3</td><td class="brand-name">Carbamide Forte Triple</td><td>1250mg EPA/DHA</td><td class="num">4.2</td><td class="num">1.7</td><td class="num">10.1</td><td><span class="score-pass">Excellent</span></td><td><span class="move-up">↑ +4.7</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">4</td><td class="brand-name">Tata 1mg Omega-3</td><td>1000mg</td><td class="num">4.9</td><td class="num">2.3</td><td class="num">12.1</td><td><span class="score-pass">Good</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">5</td><td class="brand-name">HealthVit Omega-3</td><td>1000mg</td><td class="num">5.6</td><td class="num">2.2</td><td class="num">13.4</td><td><span class="score-pass">Good</span></td><td><span class="move-up">↑ +5.7</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">6</td><td class="brand-name">Himalayan Organics Omega</td><td>1000mg</td><td class="num">5.8</td><td class="num">2.9</td><td class="num">14.5</td><td><span class="score-pass">Good</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">7</td><td class="brand-name">WOW Life Science Omega-3</td><td>1000mg</td><td class="num">6.2</td><td class="num">2.7</td><td class="num">15.1</td><td><span class="score-pass">Acceptable</span></td><td><span class="move-up">↑ +6.9</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">8</td><td class="brand-name">GNC Triple Strength</td><td>1500mg</td><td class="num">7.1</td><td class="num">0.4</td><td class="num">14.6</td><td><span class="score-pass">Acceptable</span></td><td><span class="move-down">↓ −5.2</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">9</td><td class="brand-name">Inlife Fish Oil</td><td>1000mg</td><td class="num">7.4</td><td class="num">3.1</td><td class="num">17.9</td><td><span class="score-pass">Acceptable</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">10</td><td class="brand-name">Naturo Sciences Omega-3</td><td>1000mg</td><td class="num">7.8</td><td class="num">2.9</td><td class="num">18.5</td><td><span class="score-pass">Acceptable</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">11</td><td class="brand-name">MuscleBlaze Fish Oil</td><td>1000mg</td><td class="num">8.4</td><td class="num">1.9</td><td class="num">18.7</td><td><span class="score-warn">Marginal</span></td><td><span class="move-down">↓ −7.4</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">12</td><td class="brand-name">Zenith Nutrition Omega-3</td><td>1000mg</td><td class="num">8.1</td><td class="num">3.2</td><td class="num">19.4</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">13</td><td class="brand-name">HealthKart Omega-3</td><td>1000mg</td><td class="num">8.9</td><td class="num">3.4</td><td class="num">20.2</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">14</td><td class="brand-name">Boldfit Fish Oil</td><td>1000mg</td><td class="num">9.2</td><td class="num">3.8</td><td class="num">22.2</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">15</td><td class="brand-name">TrueBasics Omega-3</td><td>1000mg</td><td class="num">9.4</td><td class="num">4.1</td><td class="num">22.9</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">16</td><td class="brand-name">Nutrabay Omega-3</td><td>1000mg</td><td class="num">9.6</td><td class="num">4.4</td><td class="num">23.6</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">17</td><td class="brand-name">BB Nutrition Fish Oil</td><td>1000mg</td><td class="num">9.9</td><td class="num">4.8</td><td class="num">24.6</td><td><span class="score-warn">Marginal</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">18</td><td class="brand-name">AS-IT-IS Nutrition Omega</td><td>1000mg</td><td class="num">10.1</td><td class="num">5.1</td><td class="num">25.3</td><td><span class="score-fail">Fail</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">19</td><td class="brand-name">Kapiva Fish Oil</td><td>1000mg</td><td class="num">10.8</td><td class="num">5.3</td><td class="num">26.9</td><td><span class="score-fail">Fail</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">20</td><td class="brand-name">Fast & Up Omega-3</td><td>1000mg</td><td class="num">11.2</td><td class="num">5.9</td><td class="num">28.3</td><td><span class="score-fail">Fail</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">21</td><td class="brand-name">Oziva Plant-Based Omega</td><td>500mg ALA</td><td class="num">11.8</td><td class="num">6.2</td><td class="num">29.8</td><td><span class="score-fail">Fail</span></td><td><span class="move-flat">—</span></td>
-                </tr>
-                <tr>
-                  <td class="rank">22</td><td class="brand-name">Generic pharma brand (pooled)</td><td>1000mg</td><td class="num">12.6</td><td class="num">7.1</td><td class="num">32.3</td><td><span class="score-fail">Fail</span></td><td><span class="move-flat">—</span></td>
-                </tr>
+                <tr><td class="td-rank">1</td><td class="td-strong">Vegan Omega (Algal)</td><td>500mg DHA</td><td class="td-num">1.2</td><td class="td-num">2.1</td><td class="td-num">4.5</td><td><span class="badge pass">Excellent</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">2</td><td class="td-strong">OmegaHeal 1000mg</td><td>330mg EPA/DHA</td><td class="td-num">3.9</td><td class="td-num">2.0</td><td class="td-num">9.8</td><td><span class="badge pass">Excellent</span></td><td><span class="move-up">↑ +6.4</span></td></tr>
+                <tr><td class="td-rank">3</td><td class="td-strong">Carbamide Forte Triple</td><td>1250mg EPA/DHA</td><td class="td-num">4.2</td><td class="td-num">1.7</td><td class="td-num">10.1</td><td><span class="badge pass">Excellent</span></td><td><span class="move-up">↑ +4.7</span></td></tr>
+                <tr><td class="td-rank">4</td><td class="td-strong">Tata 1mg Omega-3</td><td>1000mg</td><td class="td-num">4.9</td><td class="td-num">2.3</td><td class="td-num">12.1</td><td><span class="badge pass">Good</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">5</td><td class="td-strong">HealthVit Omega-3</td><td>1000mg</td><td class="td-num">5.6</td><td class="td-num">2.2</td><td class="td-num">13.4</td><td><span class="badge pass">Good</span></td><td><span class="move-up">↑ +5.7</span></td></tr>
+                <tr><td class="td-rank">6</td><td class="td-strong">Himalayan Organics</td><td>1000mg</td><td class="td-num">5.8</td><td class="td-num">2.9</td><td class="td-num">14.5</td><td><span class="badge pass">Good</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">7</td><td class="td-strong">WOW Life Science</td><td>1000mg</td><td class="td-num">6.2</td><td class="td-num">2.7</td><td class="td-num">15.1</td><td><span class="badge pass">Acceptable</span></td><td><span class="move-up">↑ +6.9</span></td></tr>
+                <tr><td class="td-rank">8</td><td class="td-strong">GNC Triple Strength</td><td>1500mg</td><td class="td-num">7.1</td><td class="td-num">0.4</td><td class="td-num">14.6</td><td><span class="badge pass">Acceptable</span></td><td><span class="move-down">↓ −5.2</span></td></tr>
+                <tr><td class="td-rank">9</td><td class="td-strong">Inlife Fish Oil</td><td>1000mg</td><td class="td-num">7.4</td><td class="td-num">3.1</td><td class="td-num">17.9</td><td><span class="badge pass">Acceptable</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">10</td><td class="td-strong">Naturo Sciences</td><td>1000mg</td><td class="td-num">7.8</td><td class="td-num">2.9</td><td class="td-num">18.5</td><td><span class="badge pass">Acceptable</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">11</td><td class="td-strong">MuscleBlaze Fish Oil</td><td>1000mg</td><td class="td-num">8.4</td><td class="td-num">1.9</td><td class="td-num">18.7</td><td><span class="badge warn">Marginal</span></td><td><span class="move-down">↓ −7.4</span></td></tr>
+                <tr><td class="td-rank">12</td><td class="td-strong">Zenith Nutrition</td><td>1000mg</td><td class="td-num">8.1</td><td class="td-num">3.2</td><td class="td-num">19.4</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">13</td><td class="td-strong">HealthKart Omega-3</td><td>1000mg</td><td class="td-num">8.9</td><td class="td-num">3.4</td><td class="td-num">20.2</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">14</td><td class="td-strong">Boldfit Fish Oil</td><td>1000mg</td><td class="td-num">9.2</td><td class="td-num">3.8</td><td class="td-num">22.2</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">15</td><td class="td-strong">TrueBasics Omega-3</td><td>1000mg</td><td class="td-num">9.4</td><td class="td-num">4.1</td><td class="td-num">22.9</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">16</td><td class="td-strong">Nutrabay Omega-3</td><td>1000mg</td><td class="td-num">9.6</td><td class="td-num">4.4</td><td class="td-num">23.6</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">17</td><td class="td-strong">BB Nutrition Fish Oil</td><td>1000mg</td><td class="td-num">9.9</td><td class="td-num">4.8</td><td class="td-num">24.6</td><td><span class="badge warn">Marginal</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">18</td><td class="td-strong">AS-IT-IS Nutrition</td><td>1000mg</td><td class="td-num">10.1</td><td class="td-num">5.1</td><td class="td-num">25.3</td><td><span class="badge fail">Fail</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">19</td><td class="td-strong">Kapiva Fish Oil</td><td>1000mg</td><td class="td-num">10.8</td><td class="td-num">5.3</td><td class="td-num">26.9</td><td><span class="badge fail">Fail</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">20</td><td class="td-strong">Fast &amp; Up Omega-3</td><td>1000mg</td><td class="td-num">11.2</td><td class="td-num">5.9</td><td class="td-num">28.3</td><td><span class="badge fail">Fail</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">21</td><td class="td-strong">Oziva Plant-Based</td><td>500mg ALA</td><td class="td-num">11.8</td><td class="td-num">6.2</td><td class="td-num">29.8</td><td><span class="badge fail">Fail</span></td><td><span class="move-flat">—</span></td></tr>
+                <tr><td class="td-rank">22</td><td class="td-strong">Generic pharma (pooled)</td><td>1000mg</td><td class="td-num">12.6</td><td class="td-num">7.1</td><td class="td-num">32.3</td><td><span class="badge fail">Fail</span></td><td><span class="move-flat">—</span></td></tr>
               </tbody>
             </table>
           </div>
-
-          <p style="font-size:13px;color:var(--ink-muted);">Units: Peroxide value and anisidine value in meq/kg (milliequivalents per kilogram). TOTOX = (2 × PV) + AV. GOED ceiling: 26. Our pass threshold: ≤20.</p>
+          <p style="font-size:13px;color:var(--ink-muted);">PV = peroxide value, AV = anisidine value, both in meq/kg. TOTOX = (2×PV)+AV. GOED ceiling: 26. Our pass threshold: ≤20.</p>
 
           <h2 id="india-storage">Why India's climate is a structural problem</h2>
-          <p>Fish oil capsules are one of the most oxidation-sensitive supplements on the market. The oxidation rate roughly doubles with every 10°C rise in temperature — which means a bottle sitting in a Mumbai warehouse at 38°C in April will deteriorate at nearly four times the rate of the same batch sitting in a 10°C European distribution centre.</p>
-          <p>This isn't a reason to avoid fish oil in India — it's a reason to buy from brands that account for it. Nitrogen flushing, amber UV-blocking bottles, and refrigerated warehousing all matter. When a brand does none of these, a "fresh" batch at manufacture can arrive as a marginal product after two months on a shelf in Chennai.</p>
-          <p>The practical implication: check the manufacture date, not just the expiry. A 24-month-shelf-life product manufactured 18 months ago and stored warm may be worse than a product manufactured 2 months ago with a 12-month shelf life.</p>
+          <p>Fish oil is one of the most oxidation-sensitive supplements on the market. Oxidation rate roughly doubles with every 10°C rise in temperature — a bottle in a Mumbai warehouse at 38°C in April will deteriorate at nearly four times the rate of the same batch in a 10°C European distribution centre.</p>
+          <p>This isn't a reason to avoid fish oil in India — it's a reason to buy from brands that account for it. Nitrogen flushing, amber UV-blocking bottles, and refrigerated warehousing all matter. When a brand does none of these, a "fresh" batch at manufacture can arrive as marginal after two months on a shelf in Chennai.</p>
 
-          <div class="callout">
-            <div class="callout-label">Reader action</div>
-            <p>Check the manufacture date printed on the bottom or back of your bottle. If it's more than 12 months old and the product wasn't refrigerated in transit, consider switching to a fresh batch — even if the expiry date is distant. Rancidity runs on a clock that doesn't pause at the "best before" stamp.</p>
+          <div class="callout info">
+            <span class="callout-icon">ℹ</span>
+            <div class="callout-body">
+              <strong>Reader action</strong>
+              <p>Check the <strong>manufacture date</strong>, not just the expiry. A 24-month-shelf-life product manufactured 18 months ago and stored warm may be worse than a product made 2 months ago with a 12-month shelf life. Rancidity runs on a clock that doesn't pause at the "best before" stamp.</p>
+            </div>
           </div>
 
           <h2 id="what-is-totox">TOTOX explained — for new readers</h2>
-          <p>If this is your first time reading our fish oil reviews, here's the short version. Fish oil oxidises in two stages. Primary oxidation produces peroxides — measured as the <strong>peroxide value (PV)</strong>. These peroxides then break down further into aldehydes and other secondary oxidation products — measured as the <strong>anisidine value (AV)</strong>.</p>
-          <p>TOTOX combines both: <strong>TOTOX = (2 × PV) + AV</strong>. The weighting on PV reflects the fact that primary oxidation is the precursor to all downstream degradation. A product with a low PV but very high AV is one that has already passed through the worst of its oxidation — the damage is done. A product with a high PV but low AV is actively deteriorating and will get worse in your cabinet.</p>
-          <p>Neither scenario is good. TOTOX catches both.</p>
+          <p>Fish oil oxidises in two stages. Primary oxidation produces peroxides — the <strong>peroxide value (PV)</strong>. These break down further into aldehydes — the <strong>anisidine value (AV)</strong>. TOTOX combines both: <strong>TOTOX = (2 × PV) + AV</strong>. The 2× weighting on PV reflects that primary oxidation is the precursor to all downstream degradation.<sup><a href="#ref2">2</a></sup></p>
+          <p>A product with low PV but high AV has already passed through the worst of its oxidation. A product with high PV but low AV is actively deteriorating and will worsen in your cabinet. Neither is acceptable. TOTOX catches both.</p>
 
-          <div class="refs-section">
+          <div class="references">
             <h2>References</h2>
             <div class="ref-list">
-              <div class="ref-item" id="ref1">
-                <div class="ref-num">1</div>
-                <div>GOED Omega-3. <em>GOED Voluntary Monograph v7 — Quality Standards for EPA and DHA Omega-3 Ingredients.</em> 2022. Available at <a href="https://goedomega3.com" target="_blank" rel="noopener">goedomega3.com</a></div>
-              </div>
-              <div class="ref-item" id="ref2">
-                <div class="ref-num">2</div>
-                <div>Ritter JCS, et al. <em>Determination of the quality and freshness of fish oil by the totox value.</em> J AOAC Int. 2013;96(5):1100–1105. <a href="https://doi.org/10.5740/jaoacint.12-304" target="_blank" rel="noopener">doi:10.5740/jaoacint.12-304</a></div>
-              </div>
-              <div class="ref-item" id="ref3">
-                <div class="ref-num">3</div>
-                <div>Calder PC. <em>Omega-3 fatty acids and inflammatory processes: from molecules to man.</em> Biochem Soc Trans. 2017;45(5):1105–1115. <a href="https://doi.org/10.1042/BST20160474" target="_blank" rel="noopener">doi:10.1042/BST20160474</a></div>
-              </div>
-              <div class="ref-item" id="ref4">
-                <div class="ref-num">4</div>
-                <div>Dyerberg J, et al. <em>Bioavailability of marine n-3 fatty acid formulations.</em> Prostaglandins Leukot Essent Fatty Acids. 2010;83(3):137–41. <a href="https://doi.org/10.1016/j.plefa.2010.06.007" target="_blank" rel="noopener">doi:10.1016/j.plefa.2010.06.007</a></div>
-              </div>
+              <div class="ref-item" id="ref1"><div class="ref-num">1</div><div>GOED Omega-3. <em>GOED Voluntary Monograph v7 — Quality Standards for EPA and DHA Omega-3 Ingredients.</em> 2022. <a href="https://goedomega3.com" target="_blank" rel="noopener">goedomega3.com</a></div></div>
+              <div class="ref-item" id="ref2"><div class="ref-num">2</div><div>Ritter JCS, et al. <em>Determination of the quality and freshness of fish oil by the totox value.</em> J AOAC Int. 2013;96(5):1100–1105. <a href="https://doi.org/10.5740/jaoacint.12-304" target="_blank" rel="noopener">doi:10.5740/jaoacint.12-304</a></div></div>
+              <div class="ref-item" id="ref3"><div class="ref-num">3</div><div>Calder PC. <em>Omega-3 fatty acids and inflammatory processes: from molecules to man.</em> Biochem Soc Trans. 2017;45(5):1105–1115. <a href="https://doi.org/10.1042/BST20160474" target="_blank" rel="noopener">doi:10.1042/BST20160474</a></div></div>
             </div>
-            <p style="font-size:13px;color:var(--ink-muted);border-top:1px solid var(--line);padding-top:var(--s-4);margin-top:var(--s-5);"><strong>Disclosures:</strong> Naked Compound participates in the Amazon.in affiliate programme. Some links earn a small commission. No manufacturer provided samples for this review. Full policy: <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a></p>
+            <p style="font-size:13px;color:var(--ink-muted);border-top:1px solid var(--line);padding-top:var(--s-4);margin-top:var(--s-5);"><strong>Disclosures:</strong> Naked Compound participates in the Amazon.in affiliate programme. Some links earn a small commission. No manufacturer samples accepted. Full policy: <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a></p>
           </div>
 
-        </div><!-- /prose -->
+        </div>
       </article>
 
-      <!-- ── Sidebar ── -->
       <aside class="article-sidebar">
         <div class="toc-card">
           <h4>On this page</h4>
@@ -395,45 +262,25 @@
           </ul>
         </div>
         <div class="sidebar-meta">
-          <div class="sm-row">
-            <span class="sm-label">Type</span>
-            <span class="sm-value">Review update</span>
-          </div>
+          <div class="sm-row"><span class="sm-label">Type</span><span class="sm-value">Review update</span></div>
           <div class="sm-divider"></div>
-          <div class="sm-row">
-            <span class="sm-label">Brands tested</span>
-            <span class="sm-value">22</span>
-          </div>
-          <div class="sm-row">
-            <span class="sm-label">Movers</span>
-            <span class="sm-value">6 (4 up, 2 down)</span>
-          </div>
-          <div class="sm-row">
-            <span class="sm-label">Method</span>
-            <span class="sm-value">TOTOX (PV + AV)</span>
-          </div>
+          <div class="sm-row"><span class="sm-label">Brands tested</span><span class="sm-value">22</span></div>
+          <div class="sm-row"><span class="sm-label">Movers</span><span class="sm-value">6 (4↑ 2↓)</span></div>
+          <div class="sm-row"><span class="sm-label">Method</span><span class="sm-value">TOTOX</span></div>
           <div class="sm-divider"></div>
-          <div class="sm-row">
-            <span class="sm-label">Updated</span>
-            <span class="sm-value">17 Apr 2026</span>
-          </div>
-          <div class="sm-row">
-            <span class="sm-label">Read time</span>
-            <span class="sm-value">~10 min</span>
-          </div>
+          <div class="sm-row"><span class="sm-label">Updated</span><span class="sm-value">17 Apr 2026</span></div>
+          <div class="sm-row"><span class="sm-label">Read time</span><span class="sm-value">~10 min</span></div>
           <div class="sm-divider"></div>
-          <div class="sm-row" style="flex-direction:column;gap:6px;align-items:start;">
+          <div class="sm-row" style="flex-direction:column;gap:6px;align-items:flex-start;">
             <span class="sm-label">Related</span>
             <a href="/ingredients/omega-3-epa-dha" style="font-size:13.5px;color:var(--accent);">Omega-3 ingredient page →</a>
             <a href="/pages/methodology" style="font-size:13.5px;color:var(--accent);">Testing methodology →</a>
           </div>
         </div>
       </aside>
-
-    </div><!-- /article-layout -->
-  </div><!-- /container -->
+    </div>
+  </div>
 </main>
-
 <div id="site-footer"></div>
 <script src="/nc-site.js"></script>
 <script>
