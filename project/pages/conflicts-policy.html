@@ -26,23 +26,37 @@
     .meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
     .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
 
-    /* ── Document layout — grid with sticky TOC sidebar ── */
+    /* ── Kill any pages.css doc-wrap / doc-toc interference ── */
+    /* pages.css defines .doc-wrap and .doc-toc — we override them fully here */
+    .doc-wrap{all:unset;display:contents;}
+
+    /* ── Document layout ── */
+    /* Two-column on desktop: narrow TOC left, prose right.
+       Both children MUST have min-width:0 to prevent grid blowout on mobile. */
     .doc-layout{
       display:grid;
       grid-template-columns:220px 1fr;
       gap:var(--s-9);
       align-items:start;
       padding:var(--s-8) 0 var(--s-10);
+      /* Prevent the grid itself from overflowing the container */
+      max-width:100%;
+      overflow:hidden;
     }
 
     /* ── TOC sidebar ── */
     .doc-toc{
+      /* CRITICAL — prevents 220px column from blowing out on resize */
+      min-width:0;
       position:sticky;
       top:calc(var(--nav-h, 64px) + 24px);
       background:var(--bg-elev);
       border:1px solid var(--line);
       border-radius:var(--r-lg);
       padding:var(--s-5);
+      /* Ensure it never exceeds its column */
+      width:100%;
+      box-sizing:border-box;
     }
     .doc-toc h4{
       font-size:11px;
@@ -52,7 +66,10 @@
       color:var(--ink-muted);
       margin-bottom:var(--s-4);
     }
-    .doc-toc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+    .doc-toc ul{
+      list-style:none;padding:0;margin:0;
+      display:flex;flex-direction:column;gap:2px;
+    }
     .doc-toc li a{
       display:block;
       padding:7px 10px;
@@ -60,13 +77,24 @@
       font-size:14px;
       color:var(--ink-soft);
       line-height:1.35;
-      transition:color .15s, background .15s;
+      transition:color .15s,background .15s;
+      /* Prevent long link text from overflowing the sidebar column */
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
     }
     .doc-toc li a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
     .doc-toc li a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
 
     /* ── Prose area ── */
-    .doc-prose{min-width:0;}
+    /* CRITICAL — min-width:0 prevents the prose column from overflowing its grid cell */
+    .doc-prose{
+      min-width:0;
+      /* Belt-and-braces: hard cap at the grid cell width */
+      max-width:100%;
+      overflow-wrap:break-word;
+      word-break:break-word;
+    }
     .doc-prose h2{
       font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;
       line-height:1.15;margin:var(--s-8) 0 var(--s-4);
@@ -80,53 +108,90 @@
     .doc-prose ul{margin:var(--s-3) 0 var(--s-5) var(--s-5);display:flex;flex-direction:column;gap:10px;}
     .doc-prose li{font-size:16px;line-height:1.7;color:var(--ink-soft);}
     .doc-prose li strong{color:var(--ink);}
-    .doc-prose code{font-family:var(--font-mono);font-size:13px;background:var(--bg-elev);border:1px solid var(--line);padding:2px 6px;border-radius:4px;color:var(--ink);}
+    .doc-prose code{
+      font-family:var(--font-mono);font-size:13px;
+      background:var(--bg-elev);border:1px solid var(--line);
+      padding:2px 6px;border-radius:4px;color:var(--ink);
+      /* Prevent long email address overflowing on mobile */
+      word-break:break-all;
+    }
     .doc-prose a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);}
     .doc-prose a:hover{border-color:var(--accent);}
 
     /* ── Callout ── */
-    .callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+    .callout{
+      border-radius:var(--r-md);padding:var(--s-5);
+      margin:var(--s-6) 0;display:flex;gap:var(--s-4);
+      background:var(--butter);
+      border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));
+    }
     .callout .ico{font-size:18px;flex:0 0 auto;margin-top:2px;font-weight:700;color:#7a5f1a;font-family:var(--font-mono);}
     .callout h4{font-size:14px;font-weight:600;color:#7a5f1a;margin-bottom:6px;letter-spacing:.01em;}
     .callout p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:0;}
-    [data-theme="dark"] .callout .ico,.callout h4{color:#e0c377;}
+    [data-theme="dark"] .callout .ico{color:#e0c377;}
+    [data-theme="dark"] .callout h4{color:#e0c377;}
 
-    /* ── Data table ── */
-    .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+    /* ── Data table — always scroll horizontally, never overflow prose ── */
+    .data-table-wrap{
+      overflow-x:auto;
+      margin:var(--s-6) 0;
+      border-radius:var(--r-md);
+      border:1px solid var(--line);
+      /* Belt-and-braces: cap to parent width */
+      max-width:100%;
+    }
     .data-table{width:100%;border-collapse:collapse;font-size:14px;}
-    .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+    .data-table thead th{
+      background:var(--bg-elev);padding:12px 16px;text-align:left;
+      font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;
+      text-transform:uppercase;color:var(--ink-muted);
+      border-bottom:1px solid var(--line);white-space:nowrap;
+    }
     .data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
     .data-table tbody tr:last-child td{border-bottom:none;}
     .data-table tbody tr:hover td{background:var(--bg-elev);}
     .data-table td strong{color:var(--ink);font-weight:500;}
 
-    /* ── Responsive — mobile collapses TOC to top accordion ── */
+    /* ── Responsive ── */
     @media (max-width:860px){
       .doc-layout{
+        /* Single column — TOC floats to the top via order */
         grid-template-columns:1fr;
-        gap:var(--s-5);
-        padding-top:var(--s-6);
+        gap:var(--s-4);
+        padding-top:var(--s-5);
+        /* Remove the overflow:hidden so the page can scroll normally */
+        overflow:visible;
       }
+      /* Pull TOC above prose on mobile */
       .doc-toc{
+        order:-1;
         position:static;
-        /* On mobile, show as a compact strip at the top */
         border-radius:var(--r-md);
-        padding:var(--s-4);
+        padding:var(--s-3) var(--s-4);
+        width:100%;
+        box-sizing:border-box;
       }
+      /* TOC heading hidden on mobile to save space */
+      .doc-toc h4{display:none;}
+      /* Horizontal pill strip — scrollable, no page overflow */
       .doc-toc ul{
-        /* Horizontal scroll pill row on mobile */
         flex-direction:row;
         flex-wrap:nowrap;
         overflow-x:auto;
         -webkit-overflow-scrolling:touch;
-        gap:4px;
-        padding-bottom:2px;
+        gap:6px;
+        padding-bottom:4px;
+        /* Hide scrollbar visually */
+        scrollbar-width:none;
       }
       .doc-toc ul::-webkit-scrollbar{display:none;}
+      .doc-toc li{flex:0 0 auto;}
       .doc-toc li a{
         white-space:nowrap;
-        padding:6px 12px;
+        padding:6px 14px;
         font-size:13px;
+        overflow:visible;
+        text-overflow:clip;
         background:var(--bg);
         border:1px solid var(--line);
         border-radius:var(--r-pill);
@@ -136,6 +201,13 @@
         color:var(--bg);
         border-color:var(--ink);
       }
+      /* Reduce prose font sizes slightly to prevent overflow */
+      .doc-prose p{font-size:16px;}
+      .doc-prose li{font-size:15px;}
+    }
+
+    @media (max-width:480px){
+      .callout{flex-direction:column;gap:var(--s-3);}
     }
 
     /* ── Author credit strip ── */
@@ -299,21 +371,36 @@
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
 <script>
-  // Scroll-spy for section TOC
+  // Scroll-spy: highlights active TOC pill as the user reads down.
+  // IMPORTANT: on mobile the TOC is a horizontal pill strip. We scroll
+  // the STRIP (the <ul>) to bring the active pill into view — NOT the
+  // page body. Using scrollIntoView() on the <a> itself causes the
+  // page to jump back to the TOC every time a new section enters view.
   const headings = document.querySelectorAll('.doc-prose h2[id]');
-  const tocLinks = document.querySelectorAll('#docTocList a');
+  const tocList  = document.getElementById('docTocList');
+  const tocLinks = tocList ? tocList.querySelectorAll('a') : [];
+
+  function setActiveTocLink(id) {
+    tocLinks.forEach(l => l.classList.remove('active'));
+    const active = tocList.querySelector(`a[href="#${id}"]`);
+    if (!active) return;
+    active.classList.add('active');
+
+    // Scroll the pill strip horizontally without touching the page scroll.
+    // Only relevant on mobile (flex-direction:row overflow-x:auto).
+    const strip = tocList;
+    if (strip && strip.scrollWidth > strip.clientWidth) {
+      const pillLeft   = active.offsetLeft - strip.offsetLeft;
+      const pillWidth  = active.offsetWidth;
+      const stripWidth = strip.clientWidth;
+      // Centre the pill within the strip
+      strip.scrollLeft = pillLeft - (stripWidth / 2) + (pillWidth / 2);
+    }
+  }
 
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        tocLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`#docTocList a[href="#${e.target.id}"]`);
-        if (active) {
-          active.classList.add('active');
-          // On mobile, scroll the pill into view within the TOC strip
-          active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-        }
-      }
+      if (e.isIntersecting) setActiveTocLink(e.target.id);
     });
   }, { rootMargin: '-15% 0px -75% 0px' });
 
