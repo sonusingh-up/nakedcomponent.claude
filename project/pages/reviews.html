@@ -12,6 +12,168 @@
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
   <script>window.PAGE_KEY = 'reviews';</script>
+
+  <style>
+    /* ── Review card — clickable state ── */
+    .review {
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: var(--s-5);
+      transition: border-color .18s, transform .18s, box-shadow .18s;
+      color: inherit;
+    }
+    .review:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .review:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    /* Arrow indicator on hover */
+    .review .read-arrow {
+      display: none;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      letter-spacing: .04em;
+      margin-top: auto;
+      padding-top: var(--s-3);
+      border-top: 1px dashed var(--line);
+      transition: gap .15s;
+    }
+    .review:hover .read-arrow { display: flex; gap: 8px; }
+
+    /* Empty state */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: var(--s-9) 0;
+      color: var(--ink-muted);
+    }
+    .empty-state .es-icon {
+      font-size: 40px;
+      margin-bottom: var(--s-4);
+    }
+    .empty-state h3 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -.02em;
+    }
+    .empty-state p {
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+
+    /* Count badge */
+    .results-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      letter-spacing: .04em;
+      padding: var(--s-4) 0 var(--s-3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .results-count strong { color: var(--ink); }
+
+    /* Sort dropdown */
+    .sort-select {
+      appearance: none;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font: inherit;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      padding: 8px 36px 8px 14px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a736a' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color .15s;
+    }
+    .sort-select:hover { border-color: var(--line-strong); color: var(--ink); }
+    .sort-select:focus { outline: 0; border-color: var(--ink); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent); }
+
+    /* Filter group active state */
+    .filter-group button.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    /* Search highlight */
+    mark {
+      background: color-mix(in oklab, var(--accent) 22%, transparent);
+      color: var(--ink);
+      border-radius: 3px;
+      padding: 0 2px;
+    }
+
+    /* Score badge — restate for <a> reset safety */
+    .score-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      flex-shrink: 0;
+    }
+    .score-badge .big {
+      font-family: var(--font-display);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      color: var(--ink);
+    }
+    .score-badge .sml {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--ink-muted);
+      letter-spacing: .08em;
+      margin-top: 2px;
+    }
+    .score-badge.hi { background: color-mix(in oklab,#5ba672 14%,var(--surface)); border-color: color-mix(in oklab,#5ba672 30%,var(--line)); }
+    .score-badge.hi .big { color: #3a6b4a; }
+    .score-badge.md { background: color-mix(in oklab,var(--butter) 50%,var(--surface)); border-color: color-mix(in oklab,var(--butter) 60%,var(--line)); }
+    .score-badge.md .big { color: #7a5c15; }
+    .score-badge.lo { background: color-mix(in oklab,var(--accent) 14%,var(--surface)); border-color: color-mix(in oklab,var(--accent) 30%,var(--line)); }
+    .score-badge.lo .big { color: var(--accent-deep); }
+    [data-theme="dark"] .score-badge.hi .big { color: #a7d2a9; }
+    [data-theme="dark"] .score-badge.md .big { color: #d9c08a; }
+
+    /* Review internals */
+    .review-top { display: grid; grid-template-columns: 1fr auto; gap: var(--s-3); align-items: start; }
+    .review .brand-line { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
+    .review h3 { font-family: var(--font-display); font-size: 19px; letter-spacing: -.01em; font-weight: 500; line-height: 1.2; color: var(--ink); margin: 0; }
+    .review .summary { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; flex: 1; }
+    .review-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: var(--s-3); border-top: 1px dashed var(--line); }
+    .review-tags span { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface); color: var(--ink-soft); }
+
+    @media (max-width: 720px) {
+      .review-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 <body>
 <div id="site-header"></div>
@@ -19,7 +181,11 @@
 <main>
   <section class="page-head">
     <div class="container">
-      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="research.html">Research</a><span class="sep">/</span><span>Reviews</span></div>
+      <div class="crumbs">
+        <a href="../index.html">Home</a><span class="sep">/</span>
+        <a href="research.html">Research</a><span class="sep">/</span>
+        <span>Reviews</span>
+      </div>
       <h1>What we actually think — <em>287 reviews.</em></h1>
       <p class="kicker">Every product on Indian shelves, scored against the same five-question rubric. Nothing is ranked based on commission.</p>
       <div class="meta-chips">
@@ -31,94 +197,375 @@
   </section>
 
   <section class="section container" style="padding-top: var(--s-7);">
+
+    <!-- Filter bar -->
     <div class="filter-bar">
-      <label class="filter-search">
+      <label class="filter-search" id="searchLabel">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" placeholder="Search products or brands…" />
+        <input type="search" id="searchInput" placeholder="Search products or brands…" autocomplete="off" />
       </label>
-      <div class="filter-group">
-        <button class="active">All</button>
-        <button>Whey</button>
-        <button>Creatine</button>
-        <button>Multi</button>
-        <button>Omega-3</button>
+
+      <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by category">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="whey">Whey</button>
+        <button data-filter="creatine">Creatine</button>
+        <button data-filter="vitamins">Vitamins</button>
+        <button data-filter="omega">Omega-3</button>
+        <button data-filter="adaptogens">Adaptogens</button>
+        <button data-filter="herbal">Herbal</button>
       </div>
-      <button class="select-pill">
-        Sort: Highest score
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
+
+      <select class="sort-select" id="sortSelect" aria-label="Sort reviews">
+        <option value="score-desc">Sort: Highest score</option>
+        <option value="score-asc">Sort: Lowest score</option>
+        <option value="name-asc">Sort: Name A–Z</option>
+        <option value="price-asc">Sort: Price low–high</option>
+        <option value="price-desc">Sort: Price high–low</option>
+      </select>
     </div>
 
-    <div class="review-grid">
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">GNC India</div><h3>Pro Performance Creatine</h3></div><div class="score-badge hi"><span class="big">8.7</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Creapure-sourced, unflavoured, priced sanely. Boring in the best way — exactly what creatine monohydrate should be.</p>
-        <div class="review-tags"><span>Creatine · Creapure</span><span>₹1,299 / 300g</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Nakpro</div><h3>Gold Whey Isolate</h3></div><div class="score-badge hi"><span class="big">8.2</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Honest 24g protein per scoop, low-temperature processed, and unusually clean lab numbers across two batches.</p>
-        <div class="review-tags"><span>Whey isolate</span><span>₹2,799 / 1kg</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Bigmuscles</div><h3>Premium Whey</h3></div><div class="score-badge md">​<span class="big">7.5</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Solid protein-per-rupee for the concentrate-blend tier. Amino spiking flagged in 2024, clean since.</p>
-        <div class="review-tags"><span>Whey blend</span><span>₹2,449 / 1kg</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Wellbeing</div><h3>Slow Melts Vitamin D3 + K2</h3></div><div class="score-badge md"><span class="big">7.2</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Smart D3 + K2 pairing with a clean label, but the nano-shot format is more novelty than bioavailability advantage.</p>
-        <div class="review-tags"><span>Vitamin D · K2</span><span>₹699 / 30d</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">MuscleBlaze</div><h3>Biozyme Performance Whey</h3></div><div class="score-badge md"><span class="big">6.4</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Solid protein per serving, but the EAF enzyme blend is marketing more than mechanism. You're paying ₹400/kg for a story.</p>
-        <div class="review-tags"><span>Whey · Blend</span><span>₹3,199 / 1kg</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Optimum Nutrition</div><h3>Gold Standard 100% Whey</h3></div><div class="score-badge hi"><span class="big">8.0</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Still the reference whey blend on the Indian shelf. Premium price, predictable quality, no mystery ingredients.</p>
-        <div class="review-tags"><span>Whey blend</span><span>₹3,599 / 908g</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Ultimate Nutrition</div><h3>Iso Sensation 93</h3></div><div class="score-badge md"><span class="big">7.0</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">A real isolate at the claimed protein percentage, but the price-per-effective-gram is hard to justify against newer entrants.</p>
-        <div class="review-tags"><span>Whey isolate</span><span>₹4,199 / 910g</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Carbamide Forte</div><h3>Omega-3 Triple Strength</h3></div><div class="score-badge md"><span class="big">6.8</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">EPA+DHA totals match the label within tolerance. Peroxide value borderline at month 4 — buy fresh, store cold.</p>
-        <div class="review-tags"><span>Fish oil</span><span>₹999 / 60ct</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Himalayan Organics</div><h3>Plant Omega 3-6-9</h3></div><div class="score-badge lo"><span class="big">4.1</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">ALA-only sold as "omega-3" — conversion to EPA/DHA in humans is famously poor. Not what most buyers think they're getting.</p>
-        <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">HealthKart</div><h3>HK Vitals Multivitamin</h3></div><div class="score-badge md"><span class="big">6.1</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Reasonable broad coverage at the price, but B12 is cyanocobalamin and the iron form is suboptimal for vegetarian users.</p>
-        <div class="review-tags"><span>Multivitamin</span><span>₹449 / 60ct</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Pure Nutrition</div><h3>KSM-66 Ashwagandha</h3></div><div class="score-badge hi"><span class="big">8.4</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">Genuine KSM-66 at the studied 600mg/day dose, with batch-level COA published quarterly. Rare combination.</p>
-        <div class="review-tags"><span>Ashwagandha</span><span>₹699 / 60ct</span></div>
-      </article>
-      <article class="review">
-        <div class="review-top"><div><div class="brand-line">Kapiva</div><h3>Get Slim Juice</h3></div><div class="score-badge lo"><span class="big">3.2</span><span class="sml">/ 10</span></div></div>
-        <p class="summary">A herbal blend at homeopathic doses with weight-loss claims that no individual ingredient supports at the included amount.</p>
-        <div class="review-tags"><span>Herbal · Weight</span><span>₹699 / 1L</span></div>
-      </article>
+    <!-- Results count -->
+    <div class="results-count" id="resultsCount">
+      <span>Showing <strong id="countNum">12</strong> reviews</span>
+      <span id="activeFilterLabel" style="color:var(--accent);display:none;"></span>
     </div>
 
-    <div style="text-align:center; margin-top: 40px;">
-      <a href="#" class="ghost-link">Load 24 more<span class="arrow" aria-hidden="true">→</span></a>
+    <!-- Review grid -->
+    <div class="review-grid" id="reviewGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-5);">
+      <!-- Cards are rendered by JS from the data array below -->
     </div>
+
+    <div style="text-align:center; margin-top: 40px;" id="loadMoreWrap">
+      <a href="#" class="ghost-link" id="loadMoreBtn">Load more reviews<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
   </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA — each review card
+   Fields: brand, name, score, summary, tags[], filter[], href, priceNum (for sort)
+═══════════════════════════════════════════════════ */
+const REVIEWS = [
+  {
+    brand: "GNC India",
+    name: "Pro Performance Creatine",
+    score: 8.7,
+    summary: "Creapure-sourced, unflavoured, priced sanely. Boring in the best way — exactly what creatine monohydrate should be.",
+    tags: ["Creatine · Creapure", "₹1,299 / 300g"],
+    filter: ["creatine"],
+    href: "../reviews/creatine/gnc-pro-performance-creatine.html",
+    priceNum: 1299
+  },
+  {
+    brand: "Nakpro",
+    name: "Gold Whey Isolate",
+    score: 8.2,
+    summary: "Honest 24g protein per scoop, low-temperature processed, and unusually clean lab numbers across two batches.",
+    tags: ["Whey isolate", "₹2,799 / 1kg"],
+    filter: ["whey"],
+    href: "../reviews/wheyprotein/nakpro-gold-whey-review.html",
+    priceNum: 2799
+  },
+  {
+    brand: "Pure Nutrition",
+    name: "KSM-66 Ashwagandha",
+    score: 8.4,
+    summary: "Genuine KSM-66 at the studied 600mg/day dose, with batch-level COA published quarterly. Rare combination.",
+    tags: ["Ashwagandha", "₹699 / 60ct"],
+    filter: ["adaptogens"],
+    href: "#",
+    priceNum: 699
+  },
+  {
+    brand: "Optimum Nutrition",
+    name: "Gold Standard 100% Whey",
+    score: 8.0,
+    summary: "Still the reference whey blend on the Indian shelf. Premium price, predictable quality, no mystery ingredients.",
+    tags: ["Whey blend", "₹3,599 / 908g"],
+    filter: ["whey"],
+    href: "#",
+    priceNum: 3599
+  },
+  {
+    brand: "Bigmuscles",
+    name: "Premium Whey",
+    score: 7.5,
+    summary: "Solid protein-per-rupee for the concentrate-blend tier. Amino spiking flagged in 2024, clean since.",
+    tags: ["Whey blend", "₹2,449 / 1kg"],
+    filter: ["whey"],
+    href: "#",
+    priceNum: 2449
+  },
+  {
+    brand: "Wellbeing",
+    name: "Slow Melts Vitamin D3 + K2",
+    score: 7.1,
+    summary: "Smart D3 + K2 pairing with a clean label, but the nano-strip format is more novelty than bioavailability advantage.",
+    tags: ["Vitamin D · K2", "₹699 / 30d"],
+    filter: ["vitamins"],
+    href: "../reviews/vitamins/wellbeing-slow-melts-d3-k2-review.html",
+    priceNum: 699
+  },
+  {
+    brand: "Ultimate Nutrition",
+    name: "Iso Sensation 93",
+    score: 7.0,
+    summary: "A real isolate at the claimed protein percentage, but the price-per-effective-gram is hard to justify against newer entrants.",
+    tags: ["Whey isolate", "₹4,199 / 910g"],
+    filter: ["whey"],
+    href: "#",
+    priceNum: 4199
+  },
+  {
+    brand: "Carbamide Forte",
+    name: "Omega-3 Triple Strength",
+    score: 6.8,
+    summary: "EPA+DHA totals match the label within tolerance. Peroxide value borderline at month 4 — buy fresh, store cold.",
+    tags: ["Fish oil", "₹999 / 60ct"],
+    filter: ["omega"],
+    href: "#",
+    priceNum: 999
+  },
+  {
+    brand: "MuscleBlaze",
+    name: "Biozyme Performance Whey",
+    score: 6.4,
+    summary: "Solid protein per serving, but the EAF enzyme blend is marketing more than mechanism. You're paying ₹400/kg for a story.",
+    tags: ["Whey · Blend", "₹3,199 / 1kg"],
+    filter: ["whey"],
+    href: "#",
+    priceNum: 3199
+  },
+  {
+    brand: "HealthKart",
+    name: "HK Vitals Multivitamin",
+    score: 6.1,
+    summary: "Reasonable broad coverage at the price, but B12 is cyanocobalamin and the iron form is suboptimal for vegetarian users.",
+    tags: ["Multivitamin", "₹449 / 60ct"],
+    filter: ["vitamins"],
+    href: "#",
+    priceNum: 449
+  },
+  {
+    brand: "Himalayan Organics",
+    name: "Plant Omega 3-6-9",
+    score: 4.1,
+    summary: "ALA-only sold as \"omega-3\" — conversion to EPA/DHA in humans is famously poor. Not what most buyers think they're getting.",
+    tags: ["ALA · Plant-based", "₹599 / 60ct"],
+    filter: ["omega"],
+    href: "#",
+    priceNum: 599
+  },
+  {
+    brand: "Kapiva",
+    name: "Get Slim Juice",
+    score: 3.2,
+    summary: "A herbal blend at homeopathic doses with weight-loss claims that no individual ingredient supports at the included amount.",
+    tags: ["Herbal · Weight", "₹699 / 1L"],
+    filter: ["herbal"],
+    href: "#",
+    priceNum: 699
+  }
+];
+
+/* ═══════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════ */
+let activeFilter = "all";
+let searchQuery  = "";
+let sortMode     = "score-desc";
+const PAGE_SIZE  = 12;
+let visibleCount = PAGE_SIZE;
+
+/* ═══════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════ */
+function scoreBadgeClass(s) {
+  if (s >= 8.0) return "hi";
+  if (s >= 6.5) return "md";
+  return "lo";
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/* Wrap matched query text in <mark> */
+function highlight(text, query) {
+  if (!query) return escapeHtml(text);
+  const safe = escapeHtml(text);
+  const safeQ = escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return safe.replace(new RegExp(`(${safeQ})`, 'gi'), '<mark>$1</mark>');
+}
+
+/* ═══════════════════════════════════════════════════
+   FILTER + SORT
+═══════════════════════════════════════════════════ */
+function getFiltered() {
+  let list = REVIEWS.slice();
+
+  // category filter
+  if (activeFilter !== "all") {
+    list = list.filter(r => r.filter.includes(activeFilter));
+  }
+
+  // search
+  if (searchQuery.trim()) {
+    const q = searchQuery.trim().toLowerCase();
+    list = list.filter(r =>
+      r.brand.toLowerCase().includes(q) ||
+      r.name.toLowerCase().includes(q)  ||
+      r.summary.toLowerCase().includes(q) ||
+      r.tags.some(t => t.toLowerCase().includes(q))
+    );
+  }
+
+  // sort
+  list.sort((a, b) => {
+    switch (sortMode) {
+      case "score-asc":   return a.score - b.score;
+      case "score-desc":  return b.score - a.score;
+      case "name-asc":    return a.name.localeCompare(b.name);
+      case "price-asc":   return a.priceNum - b.priceNum;
+      case "price-desc":  return b.priceNum - a.priceNum;
+      default:            return b.score - a.score;
+    }
+  });
+
+  return list;
+}
+
+/* ═══════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════ */
+function render() {
+  const grid       = document.getElementById("reviewGrid");
+  const countEl    = document.getElementById("countNum");
+  const labelEl    = document.getElementById("activeFilterLabel");
+  const loadWrap   = document.getElementById("loadMoreWrap");
+  const list       = getFiltered();
+  const visible    = list.slice(0, visibleCount);
+  const q          = searchQuery.trim();
+
+  // results count
+  countEl.textContent = list.length;
+
+  // active filter label
+  if (activeFilter !== "all" || q) {
+    labelEl.style.display = "";
+    const parts = [];
+    if (activeFilter !== "all") parts.push(activeFilter);
+    if (q) parts.push(`"${q}"`);
+    labelEl.textContent = `Filtered by: ${parts.join(" + ")}`;
+  } else {
+    labelEl.style.display = "none";
+  }
+
+  // load more
+  loadWrap.style.display = list.length > visibleCount ? "" : "none";
+
+  // empty state
+  if (list.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <div class="es-icon">🔍</div>
+        <h3>No reviews match that search.</h3>
+        <p>Try a different category or clear the search field.</p>
+      </div>`;
+    return;
+  }
+
+  // build cards
+  grid.innerHTML = visible.map(r => {
+    const cls   = scoreBadgeClass(r.score);
+    const isLink = r.href && r.href !== "#";
+    const tag   = isLink ? "a" : "div";
+    const href  = isLink ? `href="${r.href}"` : "";
+    const tagsHtml = r.tags.map(t => `<span>${escapeHtml(t)}</span>`).join("");
+    const brandHL = highlight(r.brand, q);
+    const nameHL  = highlight(r.name, q);
+    const summHL  = highlight(r.summary, q);
+
+    return `
+    <${tag} class="review" ${href} role="${isLink ? 'link' : 'article'}" aria-label="${escapeHtml(r.brand)} — ${escapeHtml(r.name)}, score ${r.score}">
+      <div class="review-top">
+        <div>
+          <div class="brand-line">${brandHL}</div>
+          <h3>${nameHL}</h3>
+        </div>
+        <div class="score-badge ${cls}">
+          <span class="big">${r.score}</span>
+          <span class="sml">/ 10</span>
+        </div>
+      </div>
+      <p class="summary">${summHL}</p>
+      <div class="review-tags">${tagsHtml}</div>
+      ${isLink ? `<span class="read-arrow">Read full review →</span>` : ''}
+    </${tag}>`;
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════
+   EVENT LISTENERS
+═══════════════════════════════════════════════════ */
+
+// Filter buttons
+document.getElementById("filterGroup").addEventListener("click", e => {
+  const btn = e.target.closest("button[data-filter]");
+  if (!btn) return;
+  activeFilter = btn.dataset.filter;
+  visibleCount = PAGE_SIZE;
+  document.querySelectorAll("#filterGroup button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  render();
+});
+
+// Search — debounced
+let searchTimer;
+document.getElementById("searchInput").addEventListener("input", e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    searchQuery  = e.target.value;
+    visibleCount = PAGE_SIZE;
+    render();
+  }, 180);
+});
+
+// Clear search on Escape
+document.getElementById("searchInput").addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    e.target.value = "";
+    searchQuery = "";
+    visibleCount = PAGE_SIZE;
+    render();
+  }
+});
+
+// Sort
+document.getElementById("sortSelect").addEventListener("change", e => {
+  sortMode     = e.target.value;
+  visibleCount = PAGE_SIZE;
+  render();
+});
+
+// Load more
+document.getElementById("loadMoreBtn").addEventListener("click", e => {
+  e.preventDefault();
+  visibleCount += PAGE_SIZE;
+  render();
+  // Scroll to first new card
+  const grid = document.getElementById("reviewGrid");
+  const cards = grid.querySelectorAll(".review");
+  if (cards[PAGE_SIZE]) cards[PAGE_SIZE].scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+// Initial render
+render();
+</script>
 </body>
 </html>
