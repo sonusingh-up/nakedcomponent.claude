@@ -12,10 +12,15 @@
  *
  * What it does:
  *   1. Generates a clean SEO slug from the title
- *   2. Creates the HTML file in the correct folder
+ *   2. Creates the HTML file in the correct folder with a <meta name="published"> stamp
  *   3. Adds the URL to project/sitemap.xml
  *   4. Adds the item to project/feed.xml (content types only)
  *   5. Prints the final live URL
+ *
+ * The <meta name="published" content="YYYY-MM-DD"> tag written into every page
+ * is the authoritative publish date. update-sitemap.js reads it first, so the
+ * lastmod in the sitemap never changes for old articles even when the script
+ * re-runs — only genuinely new or modified files get today's date.
  */
 
 const fs   = require("fs");
@@ -49,18 +54,15 @@ const STOP_WORDS = new Set([
 function slugify(title) {
   const words = title
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, " ")   // non-alphanum → space
+    .replace(/[^a-z0-9\s-]/g, " ")
     .split(/\s+/)
     .filter(Boolean)
-    .filter(w => !STOP_WORDS.has(w))  // drop stop words
-    .filter(w => !/^\d{4}$/.test(w)); // drop 4-digit years (e.g. 2026)
+    .filter(w => !STOP_WORDS.has(w))
+    .filter(w => !/^\d{4}$/.test(w));
 
   let slug = words.join("-");
-
-  // Collapse multiple hyphens
   slug = slug.replace(/-{2,}/g, "-").replace(/^-|-$/g, "");
 
-  // Enforce max 50 chars — trim words from the right
   if (slug.length > 50) {
     const parts = slug.split("-");
     while (parts.join("-").length > 50 && parts.length > 1) parts.pop();
@@ -86,12 +88,11 @@ function todayRFC822() {
 
 // ── HTML template ─────────────────────────────────────────────────────────────
 
-function makeHTML(title, type, slug, config) {
+function makeHTML(title, type, slug, config, publishDate) {
   const canonicalUrl = `${BASE_URL}/${config.folder}/${slug}`;
   const category     = config.feedCategory;
-  const cssDepth     = "../"; // all content folders are 1 level below project/
+  const cssDepth     = "../";
 
-  // Keep <title> tag under 60 chars
   const suffix    = " — Naked Compound";
   const maxTitle  = 60 - suffix.length;
   const shortTitle = title.length > maxTitle ? title.slice(0, maxTitle - 1) + "…" : title;
@@ -104,6 +105,13 @@ function makeHTML(title, type, slug, config) {
   <title>${shortTitle}${suffix}</title>
   <meta name="description" content="TODO: Write a 140–160 character description for this page." />
   <link rel="canonical" href="${canonicalUrl}" />
+  <!--
+    published: authoritative publish date read by update-sitemap.js.
+    DO NOT edit this — it controls the lastmod in sitemap.xml.
+    Use the modified tag below if you update the article content.
+  -->
+  <meta name="published" content="${publishDate}" />
+  <meta name="modified"  content="${publishDate}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -157,7 +165,7 @@ function makeHTML(title, type, slug, config) {
 
 // ── Sitemap updater ───────────────────────────────────────────────────────────
 
-function updateSitemap(canonicalUrl, config) {
+function updateSitemap(canonicalUrl, config, publishDate) {
   const sitemapPath = path.join(PROJECT, "sitemap.xml");
   let xml = fs.readFileSync(sitemapPath, "utf8");
 
@@ -165,12 +173,11 @@ function updateSitemap(canonicalUrl, config) {
   <!-- ${config.feedCategory} -->
   <url>
     <loc>${canonicalUrl}</loc>
-    <lastmod>${todayISO()}</lastmod>
+    <lastmod>${publishDate}</lastmod>
     <changefreq>${config.changefreq}</changefreq>
     <priority>${config.priority}</priority>
   </url>`;
 
-  // Insert before closing </urlset>
   xml = xml.replace("</urlset>", block + "\n\n</urlset>");
   fs.writeFileSync(sitemapPath, xml, "utf8");
 }
@@ -191,10 +198,7 @@ function updateFeed(title, canonicalUrl, config) {
       <description>TODO: Write a 140–160 character description for this page.</description>
     </item>`;
 
-  // Prepend after the first <item> tag's open (i.e. before the first <item>)
   xml = xml.replace(/(<item>)/, item + "\n\n    $1");
-
-  // Update lastBuildDate
   xml = xml.replace(
     /<lastBuildDate>[^<]*<\/lastBuildDate>/,
     `<lastBuildDate>${todayRFC822()}</lastBuildDate>`
@@ -221,6 +225,7 @@ function main() {
 
   if (!args.type || !args.title) {
     console.error("Usage: node scripts/new-page.js --type <type> --title \"Page Title\"");
+    console.error("       node scripts/new-page.js --type ingredient --title \"Beta Alanine\" --date 2026-05-01");
     console.error("Types:", Object.keys(TYPE_CONFIG).join(", "));
     process.exit(1);
   }
@@ -232,44 +237,44 @@ function main() {
     process.exit(1);
   }
 
+  // --date lets you backdate or forward-date; defaults to today (IST)
+  const publishDate = args.date
+    ? ((/^\d{4}-\d{2}-\d{2}$/.test(args.date))
+        ? args.date
+        : (() => { console.error('--date must be YYYY-MM-DD'); process.exit(1); })())
+    : todayISO();
+
   const title = args.title;
   const slug  = slugify(title);
   const folder = path.join(PROJECT, config.folder);
   const filePath = path.join(folder, `${slug}.html`);
   const canonicalUrl = `${BASE_URL}/${config.folder}/${slug}`;
 
-  // Guard: don't overwrite existing files
   if (fs.existsSync(filePath)) {
     console.error(`\n⚠  File already exists: ${filePath}`);
     console.error(`   URL would be: ${canonicalUrl}`);
     process.exit(1);
   }
 
-  // Create folder if needed
   fs.mkdirSync(folder, { recursive: true });
-
-  // Write HTML
-  fs.writeFileSync(filePath, makeHTML(title, type, slug, config), "utf8");
-
-  // Update sitemap
-  updateSitemap(canonicalUrl, config);
-
-  // Update feed (all content types)
+  fs.writeFileSync(filePath, makeHTML(title, type, slug, config, publishDate), "utf8");
+  updateSitemap(canonicalUrl, config, publishDate);
   updateFeed(title, canonicalUrl, config);
 
-  // Done — print the summary
   console.log(`
 ✓ Page created
-  File:  ${path.relative(process.cwd(), filePath)}
-  URL:   ${canonicalUrl}
-  Slug:  ${slug}
+  File:     ${path.relative(process.cwd(), filePath)}
+  URL:      ${canonicalUrl}
+  Slug:     ${slug}
+  Published:${publishDate}
 
 Next steps:
   1. Edit the page content in ${path.relative(process.cwd(), filePath)}
   2. Replace the TODO meta description in <head>
   3. Replace the TODO description in feed.xml
-  4. git add -A && git commit -m "feat: add ${type} — ${slug}"
-  5. git push
+  4. When you update the article later, bump <meta name="modified"> manually
+  5. git add -A && git commit -m "feat: add ${type} — ${slug}"
+  6. git push
 `);
 }
 
