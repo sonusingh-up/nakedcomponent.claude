@@ -11,6 +11,160 @@
   <link rel="stylesheet" href="../style.css?v=3" />
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <style>
+    /* ── Page head ── */
+    .page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
+    .page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
+    .page-head .crumbs a{color:var(--ink-muted);}
+    .page-head .crumbs a:hover{color:var(--accent);}
+    .page-head .crumbs .sep{opacity:.4;}
+    .page-head h1{font-size:clamp(28px,4.5vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:var(--s-5);max-width:22ch;}
+    .page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
+    .page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:56ch;line-height:1.6;margin-bottom:var(--s-6);}
+    .meta-chips{display:flex;flex-wrap:wrap;gap:10px;}
+    .meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
+    .meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
+    .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
+
+    /* ── Document layout — grid with sticky TOC sidebar ── */
+    .doc-layout{
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:var(--s-9);
+      align-items:start;
+      padding:var(--s-8) 0 var(--s-10);
+    }
+
+    /* ── TOC sidebar ── */
+    .doc-toc{
+      position:sticky;
+      top:calc(var(--nav-h, 64px) + 24px);
+      background:var(--bg-elev);
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      padding:var(--s-5);
+    }
+    .doc-toc h4{
+      font-size:11px;
+      font-family:var(--font-mono);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--ink-muted);
+      margin-bottom:var(--s-4);
+    }
+    .doc-toc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+    .doc-toc li a{
+      display:block;
+      padding:7px 10px;
+      border-radius:var(--r-sm);
+      font-size:14px;
+      color:var(--ink-soft);
+      line-height:1.35;
+      transition:color .15s, background .15s;
+    }
+    .doc-toc li a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
+    .doc-toc li a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
+
+    /* ── Prose area ── */
+    .doc-prose{min-width:0;}
+    .doc-prose h2{
+      font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;
+      line-height:1.15;margin:var(--s-8) 0 var(--s-4);
+      padding-top:var(--s-8);border-top:1px solid var(--line);
+      scroll-margin-top:88px;
+    }
+    .doc-prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+    .doc-prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
+    .doc-prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
+    .doc-prose p strong{color:var(--ink);font-weight:500;}
+    .doc-prose ul{margin:var(--s-3) 0 var(--s-5) var(--s-5);display:flex;flex-direction:column;gap:10px;}
+    .doc-prose li{font-size:16px;line-height:1.7;color:var(--ink-soft);}
+    .doc-prose li strong{color:var(--ink);}
+    .doc-prose code{font-family:var(--font-mono);font-size:13px;background:var(--bg-elev);border:1px solid var(--line);padding:2px 6px;border-radius:4px;color:var(--ink);}
+    .doc-prose a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);}
+    .doc-prose a:hover{border-color:var(--accent);}
+
+    /* ── Callout ── */
+    .callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+    .callout .ico{font-size:18px;flex:0 0 auto;margin-top:2px;font-weight:700;color:#7a5f1a;font-family:var(--font-mono);}
+    .callout h4{font-size:14px;font-weight:600;color:#7a5f1a;margin-bottom:6px;letter-spacing:.01em;}
+    .callout p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:0;}
+    [data-theme="dark"] .callout .ico,.callout h4{color:#e0c377;}
+
+    /* ── Data table ── */
+    .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+    .data-table{width:100%;border-collapse:collapse;font-size:14px;}
+    .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+    .data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
+    .data-table tbody tr:last-child td{border-bottom:none;}
+    .data-table tbody tr:hover td{background:var(--bg-elev);}
+    .data-table td strong{color:var(--ink);font-weight:500;}
+
+    /* ── Responsive — mobile collapses TOC to top accordion ── */
+    @media (max-width:860px){
+      .doc-layout{
+        grid-template-columns:1fr;
+        gap:var(--s-5);
+        padding-top:var(--s-6);
+      }
+      .doc-toc{
+        position:static;
+        /* On mobile, show as a compact strip at the top */
+        border-radius:var(--r-md);
+        padding:var(--s-4);
+      }
+      .doc-toc ul{
+        /* Horizontal scroll pill row on mobile */
+        flex-direction:row;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+        gap:4px;
+        padding-bottom:2px;
+      }
+      .doc-toc ul::-webkit-scrollbar{display:none;}
+      .doc-toc li a{
+        white-space:nowrap;
+        padding:6px 12px;
+        font-size:13px;
+        background:var(--bg);
+        border:1px solid var(--line);
+        border-radius:var(--r-pill);
+      }
+      .doc-toc li a.active{
+        background:var(--ink);
+        color:var(--bg);
+        border-color:var(--ink);
+      }
+    }
+
+    /* ── Author credit strip ── */
+    .author-strip{
+      display:flex;align-items:center;gap:var(--s-4);
+      padding:var(--s-5) 0 var(--s-6);
+      border-bottom:1px solid var(--line);
+      flex-wrap:wrap;
+    }
+    .author-strip .as-avatar{
+      width:44px;height:44px;border-radius:var(--r-md);flex:0 0 auto;
+      background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-deep));
+      display:flex;align-items:center;justify-content:center;
+      position:relative;overflow:hidden;
+    }
+    .author-strip .as-avatar::after{
+      content:"";position:absolute;inset:0;
+      background:radial-gradient(circle at 70% 70%,rgba(255,255,255,.3),transparent 60%);
+    }
+    .author-strip .as-avatar svg{width:22px;height:22px;color:#fff;position:relative;z-index:1;}
+    .author-strip .as-meta{display:flex;flex-direction:column;gap:3px;}
+    .author-strip .as-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);}
+    .author-strip .as-name{font-size:14px;font-weight:500;color:var(--ink);}
+    .author-strip .as-name a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);transition:border-color .15s;font-size:13px;font-weight:400;margin-left:8px;}
+    .author-strip .as-name a:hover{border-color:var(--accent);}
+    .author-strip .as-divider{width:1px;height:32px;background:var(--line);flex:0 0 auto;}
+    .author-strip .as-chips{display:flex;gap:8px;flex-wrap:wrap;}
+    .author-strip .as-chip{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-muted);background:var(--bg-elev);border:1px solid var(--line);padding:4px 10px;border-radius:var(--r-pill);}
+  </style>
   <script>window.PAGE_KEY = 'about';</script>
 </head>
 <body>
@@ -25,16 +179,41 @@
       <div class="meta-chips">
         <span class="meta-chip ok"><span class="dot"></span>Version 4.3 · Published April 2026</span>
         <span class="meta-chip"><span class="dot"></span>Last material change: 25 Apr 2026</span>
-        <span class="meta-chip"><span class="dot"></span>Next scheduled review: October 2026</span>
+        <span class="meta-chip"><span class="dot"></span>Next review: October 2026</span>
       </div>
     </div>
   </section>
 
-  <section class="container">
-    <div class="doc-wrap">
-      <aside class="doc-toc">
+  <!-- ── Author credit ── -->
+  <div class="container">
+    <div class="author-strip">
+      <div class="as-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3h6M10 3v6.8L6.2 15.5a5.5 5.5 0 1 0 11.6 0L14 9.8V3"/>
+          <circle cx="9.5" cy="18.5" r="1" fill="currentColor" stroke="none"/>
+          <circle cx="14.5" cy="16.5" r="1" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <div class="as-meta">
+        <span class="as-label">Written &amp; maintained by</span>
+        <span class="as-name">Naked Compound Research Team <a href="authors.html">Meet the team →</a></span>
+      </div>
+      <div class="as-divider" aria-hidden="true"></div>
+      <div class="as-chips">
+        <span class="as-chip">Policy · v4.3</span>
+        <span class="as-chip">Updated Apr 2026</span>
+        <span class="as-chip">Reviewed every 18 months</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="doc-layout">
+
+      <!-- ── TOC sidebar ── -->
+      <aside class="doc-toc" aria-label="Page sections">
         <h4>Sections</h4>
-        <ul>
+        <ul id="docTocList">
           <li><a href="#summary">One-paragraph summary</a></li>
           <li><a href="#prohibited">What we don't accept</a></li>
           <li><a href="#allowed">What we do accept</a></li>
@@ -44,7 +223,9 @@
         </ul>
       </aside>
 
-      <article class="prose">
+      <!-- ── Prose ── -->
+      <article class="doc-prose">
+
         <h2 id="summary">One-paragraph summary</h2>
         <p>Naked Compound does not accept sponsorship, paid placements, free product, or money from any supplement brand we review or could plausibly review. We do participate in the Amazon Associates affiliate programme — some product links earn a small commission at no cost to you, and every such link is labelled. Our scores, rankings, and editorial conclusions are set before any links are placed and are never adjusted to favour products that earn us higher commissions. Staff cannot hold equity in or consult for any supplement brand, retailer, or contract manufacturer operating in India. Every outside relationship is listed in the Active disclosures section below, by name, with a date and a scope.</p>
 
@@ -79,21 +260,21 @@
         <p>The following are the only outside relationships any contributor to Naked Compound holds as of the version date above:</p>
 
         <div class="data-table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr><th>Person / Entity</th><th>Relationship</th><th>Scope</th><th>Since</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Naked Compound</strong></td><td>Amazon Associates affiliate</td><td>Commission on qualifying purchases via tagged links; does not influence scores or recommendations</td><td>Apr 2026</td></tr>
-            <tr><td>Aarav Subramanian</td><td>Speaking fee, FSSAI annual conference</td><td>One-time, ₹40,000</td><td>Feb 2026</td></tr>
-            <tr><td>Aarav Subramanian</td><td>Book contract, Penguin India</td><td>Forthcoming title, royalties only</td><td>Sep 2025</td></tr>
-            <tr><td>Dr. Meera Nair</td><td>Hospital staff position</td><td>Clinical, unrelated to supplements</td><td>Ongoing</td></tr>
-            <tr><td>Rohit Venkatesh</td><td>None</td><td>—</td><td>—</td></tr>
-            <tr><td>Priya Kothari</td><td>Adjunct teaching, Bengaluru</td><td>Nutrition coursework, no industry tie</td><td>Ongoing</td></tr>
-            <tr><td>Sanjana Kapoor</td><td>Coaching practice</td><td>Does not review or sell supplements</td><td>Ongoing</td></tr>
-            <tr><td>Prof. Vikram Rao</td><td>Advisory board, ICMR</td><td>Public-sector advisory, unpaid</td><td>2022–</td></tr>
-          </tbody>
-        </table>
+          <table class="data-table">
+            <thead>
+              <tr><th>Person / Entity</th><th>Relationship</th><th>Scope</th><th>Since</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Naked Compound</strong></td><td>Amazon Associates affiliate</td><td>Commission on qualifying purchases via tagged links; does not influence scores or recommendations</td><td>Apr 2026</td></tr>
+              <tr><td>Aarav Subramanian</td><td>Speaking fee, FSSAI annual conference</td><td>One-time, ₹40,000</td><td>Feb 2026</td></tr>
+              <tr><td>Aarav Subramanian</td><td>Book contract, Penguin India</td><td>Forthcoming title, royalties only</td><td>Sep 2025</td></tr>
+              <tr><td>Dr. Meera Nair</td><td>Hospital staff position</td><td>Clinical, unrelated to supplements</td><td>Ongoing</td></tr>
+              <tr><td>Rohit Venkatesh</td><td>None</td><td>—</td><td>—</td></tr>
+              <tr><td>Priya Kothari</td><td>Adjunct teaching, Bengaluru</td><td>Nutrition coursework, no industry tie</td><td>Ongoing</td></tr>
+              <tr><td>Sanjana Kapoor</td><td>Coaching practice</td><td>Does not review or sell supplements</td><td>Ongoing</td></tr>
+              <tr><td>Prof. Vikram Rao</td><td>Advisory board, ICMR</td><td>Public-sector advisory, unpaid</td><td>2022–</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <h2 id="enforce">Enforcement</h2>
@@ -108,12 +289,35 @@
           <li><strong>v4.0 — Mar 2025.</strong> Major rewrite. Equity and consulting prohibition extended to contributors.</li>
           <li><strong>v3.x and earlier</strong> archived in our <a href="changelog.html">database changelog</a>.</li>
         </ul>
-      </article>
-    </div>
-  </section>
+
+      </article><!-- /doc-prose -->
+    </div><!-- /doc-layout -->
+  </div><!-- /container -->
+
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+<script>
+  // Scroll-spy for section TOC
+  const headings = document.querySelectorAll('.doc-prose h2[id]');
+  const tocLinks = document.querySelectorAll('#docTocList a');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`#docTocList a[href="#${e.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          // On mobile, scroll the pill into view within the TOC strip
+          active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+        }
+      }
+    });
+  }, { rootMargin: '-15% 0px -75% 0px' });
+
+  headings.forEach(h => obs.observe(h));
+</script>
 </body>
 </html>
