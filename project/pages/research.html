@@ -106,6 +106,25 @@
     .no-results.visible{display:block;}
     .no-results p{font-size:16px;margin-bottom:var(--s-3);}
     .no-results .nr-hint{font-family:var(--font-mono);font-size:13px;}
+
+    /* ── Entry-point cards (Other ways in) ── */
+    .entry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-4);margin-bottom:var(--s-3);}
+    .entry-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;text-decoration:none;color:inherit;background:var(--bg-elev);transition:box-shadow .2s,transform .2s;}
+    .entry-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+    .entry-card .ec-visual{height:120px;display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",Georgia,serif;font-size:72px;font-style:italic;letter-spacing:-.04em;opacity:.35;flex:0 0 auto;}
+    .entry-card .ec-visual.v-p{background:linear-gradient(135deg,var(--mint),var(--sky));}
+    .entry-card .ec-visual.v-r{background:linear-gradient(135deg,var(--rose),var(--butter));}
+    .entry-card .ec-visual.v-i{background:linear-gradient(135deg,var(--sky),var(--accent-soft));}
+    .entry-card .ec-body{padding:var(--s-5);flex:1;display:flex;flex-direction:column;gap:var(--s-2);}
+    .entry-card .ec-tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-1);}
+    .entry-card .ec-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:0 0 auto;}
+    .entry-card h3{font-size:clamp(17px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;line-height:1.2;color:var(--ink);margin:0;}
+    .entry-card p{font-size:14px;line-height:1.6;color:var(--ink-soft);margin:0;flex:1;}
+    .entry-card .ec-foot{display:flex;justify-content:space-between;align-items:center;margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line);}
+    .entry-card .ec-stat{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);}
+    .entry-card .ec-cta{font-size:13px;font-weight:500;color:var(--accent);}
+    @media (max-width:720px){.entry-grid{grid-template-columns:1fr 1fr;}}
+    @media (max-width:480px){.entry-grid{grid-template-columns:1fr;}}
   </style>
   <script>window.PAGE_KEY = 'research';</script>
 </head>
@@ -392,28 +411,47 @@
       <div class="rh">
         <h2>Other ways in</h2>
       </div>
-      <div class="card-grid" style="grid-template-columns:repeat(3,1fr);">
-        <a class="card guide-card g2" href="protocols.html" style="text-decoration:none;">
-          <div class="visual"><span class="glyph">P</span></div>
-          <span class="card-tag"><span class="swatch"></span>19 protocols</span>
-          <h3>Goal-specific protocols.</h3>
-          <p>Opinionated stacks priced in INR. Foundation, lean mass, sleep, focus — each with a budget breakdown and substitution guide.</p>
-          <div class="card-meta"><span>From ₹820/month</span><span class="read-link">Browse→</span></div>
+      <div class="entry-grid">
+
+        <a class="entry-card" href="protocols.html">
+          <div class="ec-visual v-p">P</div>
+          <div class="ec-body">
+            <div class="ec-tag"><span class="dot"></span>19 protocols</div>
+            <h3>Goal-specific protocols.</h3>
+            <p>Opinionated stacks priced in INR. Foundation, lean mass, sleep, focus — each with a budget breakdown and substitution guide.</p>
+            <div class="ec-foot">
+              <span class="ec-stat">From ₹820/month</span>
+              <span class="ec-cta">Browse →</span>
+            </div>
+          </div>
         </a>
-        <a class="card guide-card g3" href="reviews.html" style="text-decoration:none;">
-          <div class="visual"><span class="glyph">R</span></div>
-          <span class="card-tag"><span class="swatch"></span>287 reviews</span>
-          <h3>Product reviews.</h3>
-          <p>Every major Indian brand scored against the same five-question rubric. No commission-based ranking.</p>
-          <div class="card-meta"><span>38 brands</span><span class="read-link">Browse→</span></div>
+
+        <a class="entry-card" href="reviews.html">
+          <div class="ec-visual v-r">R</div>
+          <div class="ec-body">
+            <div class="ec-tag"><span class="dot"></span>287 reviews</div>
+            <h3>Product reviews.</h3>
+            <p>Every major Indian brand scored against the same five-question rubric. No commission-based ranking.</p>
+            <div class="ec-foot">
+              <span class="ec-stat">38 brands</span>
+              <span class="ec-cta">Browse →</span>
+            </div>
+          </div>
         </a>
-        <a class="card guide-card g4" href="ingredients.html" style="text-decoration:none;">
-          <div class="visual"><span class="glyph">i</span></div>
-          <span class="card-tag"><span class="swatch"></span>312 ingredients</span>
-          <h3>Ingredient library.</h3>
-          <p>Mechanism, evidence tier, dose range, and red flags for every compound that appears on Indian supplement labels.</p>
-          <div class="card-meta"><span>~2,400 papers</span><span class="read-link">Browse→</span></div>
+
+        <a class="entry-card" href="ingredients.html">
+          <div class="ec-visual v-i">i</div>
+          <div class="ec-body">
+            <div class="ec-tag"><span class="dot"></span>312 ingredients</div>
+            <h3>Ingredient library.</h3>
+            <p>Mechanism, evidence tier, dose range, and red flags for every compound on Indian supplement labels.</p>
+            <div class="ec-foot">
+              <span class="ec-stat">~2,400 papers</span>
+              <span class="ec-cta">Browse →</span>
+            </div>
+          </div>
         </a>
+
       </div>
     </section>
 
