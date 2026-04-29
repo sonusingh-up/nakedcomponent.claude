@@ -303,4 +303,17 @@
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+  // ─── Vercel Speed Insights ────────────────────────────────────────────────
+  // Initialize Speed Insights for performance monitoring
+  // https://vercel.com/docs/speed-insights/quickstart
+  window.si = window.si || function () { 
+    (window.siq = window.siq || []).push(arguments); 
+  };
+  
+  // Inject the Speed Insights script from Vercel's CDN
+  const siScript = document.createElement('script');
+  siScript.src = '/_vercel/speed-insights/script.js';
+  siScript.defer = true;
+  document.head.appendChild(siScript);
+
 })();
