@@ -14,7 +14,9 @@
   <script>window.PAGE_KEY = 'reviews';</script>
 
   <style>
-    /* ── Review card — clickable state ── */
+    /* ════════════════════════════════════════════
+       REVIEW CARD — base (desktop + mobile)
+    ════════════════════════════════════════════ */
     .review {
       cursor: pointer;
       text-decoration: none;
@@ -27,22 +29,29 @@
       padding: var(--s-5);
       transition: border-color .18s, transform .18s, box-shadow .18s;
       color: inherit;
+      /* prevent text-size inflation on iOS */
+      -webkit-text-size-adjust: 100%;
     }
     .review:hover {
       border-color: var(--line-strong);
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
     }
+    /* Active / tap state — feels native on mobile */
+    .review:active {
+      transform: scale(0.985);
+      box-shadow: none;
+    }
     .review:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
 
-    /* Arrow indicator on hover */
+    /* "Read full review" arrow — shown on hover (desktop) / always on link cards (mobile) */
     .review .read-arrow {
       display: none;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       font-size: 12px;
       color: var(--accent);
       font-family: var(--font-mono);
@@ -50,82 +59,60 @@
       margin-top: auto;
       padding-top: var(--s-3);
       border-top: 1px dashed var(--line);
-      transition: gap .15s;
     }
-    .review:hover .read-arrow { display: flex; gap: 8px; }
+    .review:hover .read-arrow { display: flex; }
 
-    /* Empty state */
-    .empty-state {
-      grid-column: 1/-1;
-      text-align: center;
-      padding: var(--s-9) 0;
-      color: var(--ink-muted);
+    /* ════════════════════════════════════════════
+       REVIEW INTERNALS
+    ════════════════════════════════════════════ */
+    .review-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--s-3);
+      align-items: start;
     }
-    .empty-state .es-icon {
-      font-size: 40px;
-      margin-bottom: var(--s-4);
-    }
-    .empty-state h3 {
-      font-size: 22px;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 8px;
-      letter-spacing: -.02em;
-    }
-    .empty-state p {
-      font-size: 15px;
-      color: var(--ink-soft);
-    }
-
-    /* Count badge */
-    .results-count {
+    .review .brand-line {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
       color: var(--ink-muted);
-      letter-spacing: .04em;
-      padding: var(--s-4) 0 var(--s-3);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
+      margin-bottom: 4px;
     }
-    .results-count strong { color: var(--ink); }
-
-    /* Sort dropdown */
-    .sort-select {
-      appearance: none;
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      border-radius: var(--r-pill);
-      font: inherit;
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      padding: 8px 36px 8px 14px;
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a736a' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 12px center;
-      transition: border-color .15s;
-    }
-    .sort-select:hover { border-color: var(--line-strong); color: var(--ink); }
-    .sort-select:focus { outline: 0; border-color: var(--ink); box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent); }
-
-    /* Filter group active state */
-    .filter-group button.active {
-      background: var(--ink);
-      color: var(--bg);
-    }
-
-    /* Search highlight */
-    mark {
-      background: color-mix(in oklab, var(--accent) 22%, transparent);
+    .review h3 {
+      font-family: var(--font-display);
+      font-size: 19px;
+      letter-spacing: -.01em;
+      font-weight: 500;
+      line-height: 1.2;
       color: var(--ink);
-      border-radius: 3px;
-      padding: 0 2px;
+      margin: 0;
+    }
+    .review .summary {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      line-height: 1.55;
+      flex: 1;
+    }
+    .review-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: var(--s-3);
+      border-top: 1px dashed var(--line);
+    }
+    .review-tags span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: var(--r-pill);
+      background: var(--surface);
+      color: var(--ink-soft);
     }
 
-    /* Score badge — restate for <a> reset safety */
+    /* ════════════════════════════════════════════
+       SCORE BADGE — restate for <a> reset safety
+    ════════════════════════════════════════════ */
     .score-badge {
       width: 64px;
       height: 64px;
@@ -162,72 +149,151 @@
     [data-theme="dark"] .score-badge.hi .big { color: #a7d2a9; }
     [data-theme="dark"] .score-badge.md .big { color: #d9c08a; }
 
-    /* Review internals */
-    .review-top { display: grid; grid-template-columns: 1fr auto; gap: var(--s-3); align-items: start; }
-    .review .brand-line { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; }
-    .review h3 { font-family: var(--font-display); font-size: 19px; letter-spacing: -.01em; font-weight: 500; line-height: 1.2; color: var(--ink); margin: 0; }
-    .review .summary { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; flex: 1; }
-    .review-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: var(--s-3); border-top: 1px dashed var(--line); }
-    .review-tags span { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface); color: var(--ink-soft); }
-
-    /* Scroll wrapper — fade edge on desktop too (subtle) */
-    .filter-chips-wrap {
-      position: relative;
-      /* flex child inherits sizing from filter-bar */
+    /* ════════════════════════════════════════════
+       SEARCH HIGHLIGHT
+    ════════════════════════════════════════════ */
+    mark {
+      background: color-mix(in oklab, var(--accent) 22%, transparent);
+      color: var(--ink);
+      border-radius: 3px;
+      padding: 0 2px;
     }
 
-    /* Mobile: wrapper becomes full-width with right fade */
-    @media (max-width: 720px) {
-      .filter-chips-wrap {
-        width: 100%;
-        /* Fade-out gradient on the right edge — scroll affordance */
-        -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
-        mask-image: linear-gradient(to right, black 88%, transparent 100%);
-      }
+    /* ════════════════════════════════════════════
+       SORT DROPDOWN (desktop)
+    ════════════════════════════════════════════ */
+    .sort-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font: inherit;
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      padding: 8px 36px 8px 14px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%237a736a' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color .15s;
+      /* Prevent iOS zoom on focus (font must be ≥16px on mobile — overridden below) */
+    }
+    .sort-select:hover { border-color: var(--line-strong); color: var(--ink); }
+    .sort-select:focus {
+      outline: 0;
+      border-color: var(--ink);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent);
     }
 
-    /* ── Mobile filter layout ── */
-    @media (max-width: 720px) {
-      /* Review grid — single column */
-      .review-grid { grid-template-columns: 1fr !important; }
+    /* ════════════════════════════════════════════
+       FILTER GROUP — active chip (desktop)
+    ════════════════════════════════════════════ */
+    .filter-group button.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
 
-      /* Stack the whole filter bar vertically */
+    /* ════════════════════════════════════════════
+       RESULTS COUNT
+    ════════════════════════════════════════════ */
+    .results-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      letter-spacing: .04em;
+      padding: var(--s-4) 0 var(--s-3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .results-count strong { color: var(--ink); }
+
+    /* ════════════════════════════════════════════
+       EMPTY STATE
+    ════════════════════════════════════════════ */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: var(--s-9) 0;
+      color: var(--ink-muted);
+    }
+    .empty-state .es-icon { font-size: 40px; margin-bottom: var(--s-4); }
+    .empty-state h3 { font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 8px; letter-spacing: -.02em; }
+    .empty-state p { font-size: 15px; color: var(--ink-soft); }
+
+    /* ════════════════════════════════════════════
+       MOBILE FILTER BAR  ≤ 720 px
+       Layout: search full-width → chips row (scroll) → sort row
+    ════════════════════════════════════════════ */
+    @media (max-width: 720px) {
+
+      /* ── Review grid: single column ── */
+      .review-grid { grid-template-columns: 1fr !important; gap: var(--s-4) !important; }
+
+      /* ── Review card: slightly tighter padding ── */
+      .review { padding: 16px; gap: 10px; }
+      .review h3 { font-size: 17px; }
+      .review .summary { font-size: 14px; }
+
+      /* ── On mobile, always show "Read full review" arrow for link-cards ── */
+      a.review .read-arrow { display: flex; }
+
+      /* ── Score badge: slightly smaller ── */
+      .score-badge { width: 56px; height: 56px; border-radius: 14px; }
+      .score-badge .big { font-size: 19px; }
+
+      /* ── Filter bar: vertical stack ── */
       .filter-bar {
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
-        padding: 14px 0;
+        padding: 14px 0 10px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 0;
       }
 
-      /* Search — full width */
+      /* ── Search: full width, larger tap target ── */
       .filter-search {
         flex: 1 1 100%;
         width: 100%;
+        padding: 10px 16px;
+        min-height: 44px; /* Apple HIG minimum tap size */
+      }
+      /* Prevent iOS auto-zoom (input font ≥ 16px) */
+      .filter-search input { font-size: 16px; }
+
+      /* ── Chips row wrapper: fade right edge as scroll affordance ── */
+      .filter-chips-wrap {
+        width: 100%;
+        overflow: hidden; /* clip the fade mask */
+        -webkit-mask-image: linear-gradient(to right, black 82%, transparent 100%);
+                mask-image: linear-gradient(to right, black 82%, transparent 100%);
       }
 
-      /* Filter chips row — horizontal scroll, never wrap */
+      /* ── Chips row: horizontal scroll strip ── */
       .filter-group {
-        width: 100%;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;          /* Firefox */
-        border-radius: var(--r-pill);
-        /* Let chips breathe without a fixed pill container height */
         display: flex;
         flex-wrap: nowrap;
-        gap: 6px;
-        /* Remove the grouped pill background on mobile — individual chips look cleaner */
+        gap: 7px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Override desktop grouped-pill background */
         background: transparent;
         border: none;
-        padding: 0;
+        padding: 2px 0 10px; /* bottom padding creates space before the fade baseline */
       }
       .filter-group::-webkit-scrollbar { display: none; }
 
-      /* Each chip becomes its own standalone pill */
+      /* ── Each chip: standalone pill, tappable ── */
       .filter-group button {
         flex: 0 0 auto;
         white-space: nowrap;
-        padding: 8px 16px;
+        min-height: 36px;
+        padding: 7px 15px;
         border-radius: var(--r-pill);
         font-size: 13px;
         font-weight: 500;
@@ -236,36 +302,54 @@
         color: var(--ink-soft);
         transition: background .15s, color .15s, border-color .15s;
       }
-      .filter-group button:hover {
-        border-color: var(--line-strong);
-        color: var(--ink);
-      }
+      .filter-group button:active { opacity: .75; }
       .filter-group button.active {
         background: var(--ink);
         color: var(--bg);
         border-color: var(--ink);
       }
 
-      /* Sort — full width */
-      .sort-select {
-        width: 100%;
-        padding: 10px 36px 10px 14px;
-        font-size: 14px;
+      /* ── Sort + results row: side-by-side ── */
+      .mobile-sort-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
       }
 
-      /* Results count — tighter on mobile */
-      .results-count {
-        font-size: 11.5px;
-        padding: var(--s-3) 0 var(--s-2);
+      /* ── Sort select: fits half the row, large tap target ── */
+      .sort-select {
+        flex: 1 1 auto;
+        min-height: 44px;
+        font-size: 16px; /* ≥16 px prevents iOS auto-zoom */
+        padding: 10px 36px 10px 14px;
+        border-radius: var(--r-pill);
       }
+
+      /* ── Results count: same row as sort ── */
+      .results-count {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        font-size: 11.5px;
+        padding: 0;
+        /* Remove the separate element — moved into .mobile-sort-row via JS */
+      }
+
+      /* ── Page head: tighter vertical rhythm ── */
+      .page-head { padding: 56px 0 var(--s-6); }
+      .page-head h1 { font-size: clamp(30px, 8vw, 48px); }
+      .page-head .kicker { font-size: 15px; }
     }
 
-    /* Extra-small screens — slightly smaller chip text */
+    /* ════════════════════════════════════════════
+       EXTRA-SMALL  ≤ 380 px
+    ════════════════════════════════════════════ */
     @media (max-width: 380px) {
-      .filter-group button {
-        padding: 7px 13px;
-        font-size: 12.5px;
-      }
+      .filter-group button { padding: 6px 12px; font-size: 12.5px; }
+      .review { padding: 14px; }
+      .review h3 { font-size: 16px; }
+      .score-badge { width: 52px; height: 52px; }
+      .score-badge .big { font-size: 18px; }
     }
   </style>
 </head>
@@ -294,11 +378,14 @@
 
     <!-- Filter bar -->
     <div class="filter-bar">
-      <label class="filter-search" id="searchLabel">
+
+      <!-- Row 1: Search (full width on all breakpoints) -->
+      <label class="filter-search" id="searchLabel" style="flex:1 1 100%;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         <input type="search" id="searchInput" placeholder="Search products or brands…" autocomplete="off" />
       </label>
 
+      <!-- Row 2: Filter chips — horizontal scroll on mobile, grouped pill on desktop -->
       <div class="filter-chips-wrap">
         <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by category">
           <button class="active" data-filter="all">All</button>
@@ -311,19 +398,23 @@
         </div>
       </div>
 
-      <select class="sort-select" id="sortSelect" aria-label="Sort reviews">
-        <option value="score-desc">Sort: Highest score</option>
-        <option value="score-asc">Sort: Lowest score</option>
-        <option value="name-asc">Sort: Name A–Z</option>
-        <option value="price-asc">Sort: Price low–high</option>
-        <option value="price-desc">Sort: Price high–low</option>
-      </select>
-    </div>
+      <!-- Row 3 (desktop: inline in filter-bar / mobile: own row via mobile-sort-row) -->
+      <div class="mobile-sort-row" style="display:contents;">
+        <select class="sort-select" id="sortSelect" aria-label="Sort reviews">
+          <option value="score-desc">Sort: Highest score</option>
+          <option value="score-asc">Sort: Lowest score</option>
+          <option value="name-asc">Sort: Name A–Z</option>
+          <option value="price-asc">Sort: Price low–high</option>
+          <option value="price-desc">Sort: Price high–low</option>
+        </select>
 
-    <!-- Results count -->
-    <div class="results-count" id="resultsCount">
-      <span>Showing <strong id="countNum">12</strong> reviews</span>
-      <span id="activeFilterLabel" style="color:var(--accent);display:none;"></span>
+        <!-- Results count lives here on mobile (inline beside sort) -->
+        <div class="results-count" id="resultsCount" style="margin:0;padding:0;">
+          <span>Showing <strong id="countNum">12</strong> reviews</span>
+          <span id="activeFilterLabel" style="color:var(--accent);display:none;margin-left:6px;"></span>
+        </div>
+      </div>
+
     </div>
 
     <!-- Review grid -->
@@ -662,6 +753,48 @@ document.getElementById("loadMoreBtn").addEventListener("click", e => {
 
 // Initial render
 render();
+
+/* ═══════════════════════════════════════════════════
+   MOBILE LAYOUT — switch .mobile-sort-row display mode
+   On mobile (≤720): display:flex so sort + count sit side-by-side
+   On desktop (>720): display:contents so sort is inline in filter-bar
+═══════════════════════════════════════════════════ */
+function applyMobileLayout() {
+  const row    = document.querySelector('.mobile-sort-row');
+  const count  = document.getElementById('resultsCount');
+  const isMob  = window.innerWidth <= 720;
+
+  if (isMob) {
+    row.style.display  = 'flex';
+    row.style.alignItems = 'center';
+    row.style.justifyContent = 'space-between';
+    row.style.gap = '10px';
+    row.style.width = '100%';
+    // Move count inside the sort row if not already there
+    if (!row.contains(count)) row.appendChild(count);
+    count.style.padding = '0';
+    count.style.margin  = '0';
+    count.style.fontSize = '11.5px';
+  } else {
+    row.style.display  = 'contents';
+    // Move count back below filter-bar if it wandered
+    const section = document.querySelector('.section.container');
+    const grid    = document.getElementById('reviewGrid');
+    if (!section.contains(count) || row.contains(count)) {
+      section.insertBefore(count, grid);
+    }
+    count.style.padding = '';
+    count.style.margin  = '';
+    count.style.fontSize = '';
+  }
+}
+
+applyMobileLayout();
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(applyMobileLayout, 80);
+});
 </script>
 </body>
 </html>
