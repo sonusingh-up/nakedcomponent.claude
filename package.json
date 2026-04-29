@@ -7,6 +7,6 @@
     "build": "node scripts/update-sitemap.js"
   },
   "dependencies": {
-    "@vercel/speed-insights": "^1.1.0"
+    "@vercel/speed-insights": "^2.0.0"
   }
 }
