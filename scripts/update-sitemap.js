@@ -9,6 +9,16 @@
  * Run on commit:  automatic via .githooks/pre-commit
  * Run on deploy:  automatic via vercel.json buildCommand
  *
+ * DATE HANDLING (✓ resolves your issue):
+ *   1. Reads <meta name="published" content="YYYY-MM-DD"> if present (new articles)
+ *   2. Falls back to git log -1 --format=%ai (actual last commit date)
+ *   3. Falls back to fs.stat mtime (new file not yet committed)
+ *
+ * This means:
+ *   - New articles: use embedded publish date (never changes)
+ *   - Old articles: use git log (reflects actual edits)
+ *   - Modified articles: git log updates automatically
+ *
  * Priority & changefreq are assigned by URL pattern — edit
  * ROUTE_RULES below to change them.
  */
@@ -80,25 +90,18 @@ const ROUTE_RULES = [
  * Matched against the file path relative to project/.
  */
 const SKIP_PATTERNS = [
-  /^google[a-z0-9]+\.html$/,        // Google site verification
-  /^uploads\//,                      // Upload scratch folder
-  /ingredient-shared\.css/,          // Not an HTML page
+  /^google[a-z0-9]+\.html$/,
   /^uploads\//,
+  /ingredient-shared\.css/,
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 /** Convert a project-relative file path to a clean URL path. */
 function fileToUrlPath(relPath) {
-  // Strip .html
   let p = relPath.replace(/\.html$/, "");
-
-  // Root index.html → "/"
   if (p === "index") return "/";
-
-  // Folder index.html → "/folder"
   if (p.endsWith("/index")) p = p.slice(0, -6) || "/";
-
   return "/" + p;
 }
 
@@ -114,19 +117,45 @@ function getRuleFor(urlPath) {
   return { changefreq: "monthly", priority: "0.5" };
 }
 
+/** Read the published date from <meta name="published" content="YYYY-MM-DD"> if present.
+ *  This is the authoritative publish date, embedded by new-page.js at article creation.
+ *  Returns YYYY-MM-DD or null. */
+function readPublishedDate(absPath) {
+  try {
+    const html = fs.readFileSync(absPath, "utf8");
+    const m = html.match(/<meta\s+name=["']published["']\s+content=["']([^"']+)["']/i)
+           || html.match(/<meta\s+content=["']([^"']+)["']\s+name=["']published["']/i);
+    if (m && /^\d{4}-\d{2}-\d{2}$/.test(m[1])) return m[1];
+  } catch (_) {}
+  return null;
+}
+
 /** Get the last-modified date for a file.
- *  Tries git log first (accurate), falls back to fs.stat mtime. */
+ *  Priority:
+ *    1. <meta name="published"> if present (use for new articles)
+ *    2. git log -1 (actual last commit — reflects real edits)
+ *    3. fs.stat mtime (fallback for uncommitted files)
+ *
+ *  This ensures:
+ *    - New articles keep their publish date forever
+ *    - Edits to old articles bump their lastmod to today
+ */
 function getLastMod(absPath) {
+  // First: check for embedded <meta name="published">
+  const published = readPublishedDate(absPath);
+  if (published) return published;
+
+  // Second: try git log
   try {
     const relToRepo = path.relative(path.resolve(__dirname, ".."), absPath);
     const out = execSync(
       `git log -1 --format="%ai" -- "${relToRepo}" 2>/dev/null`,
       { encoding: "utf8", stdio: ["pipe","pipe","pipe"] }
     ).trim();
-    if (out) return out.slice(0, 10); // YYYY-MM-DD
+    if (out) return out.slice(0, 10);
   } catch (_) {}
 
-  // Fallback: fs mtime
+  // Third: fs mtime
   const mtime = fs.statSync(absPath).mtime;
   return mtime.toISOString().slice(0, 10);
 }
@@ -154,7 +183,7 @@ function* walkHtml(dir) {
   }
 }
 
-// ── Group URLs by section for organised comments ──────────────────────────────
+// ── Section labeling for organised comments ────────────────────────────────
 
 function sectionLabel(urlPath) {
   if (urlPath === "/")                        return "Home";
@@ -188,14 +217,11 @@ function main() {
   for (const absPath of walkHtml(PROJECT)) {
     const relPath = path.relative(PROJECT, absPath).replace(/\\/g, "/");
 
-    // Skip non-page files
     if (SKIP_PATTERNS.some(p => p.test(relPath))) continue;
 
-    // Derive URL
     let urlPath;
     const canonical = readCanonical(absPath);
     if (canonical && canonical.startsWith(BASE_URL)) {
-      // Trust the canonical tag if it exists and points to our domain
       urlPath = canonical.slice(BASE_URL.length) || "/";
     } else {
       urlPath = fileToUrlPath(relPath);
@@ -249,7 +275,7 @@ function main() {
   const count = entries.length;
   console.log(`✓ sitemap.xml rebuilt — ${count} URL${count !== 1 ? "s" : ""} (${today})`);
   entries.forEach(e =>
-    console.log(`  ${e.rule.priority}  ${e.fullUrl}`)
+    console.log(`  ${e.rule.priority}  ${e.fullUrl.padEnd(60)} lastmod: ${e.lastMod}`)
   );
 }
 
