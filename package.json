@@ -1,0 +1,12 @@
+{
+  "name": "nakedcomponent-claude",
+  "version": "1.0.0",
+  "description": "Independent, evidence-based supplement research for India",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/update-sitemap.js"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  }
+}
