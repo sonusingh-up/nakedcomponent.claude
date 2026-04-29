@@ -170,8 +170,102 @@
     .review-tags { display: flex; flex-wrap: wrap; gap: 6px; padding-top: var(--s-3); border-top: 1px dashed var(--line); }
     .review-tags span { font-family: var(--font-mono); font-size: 11px; padding: 3px 8px; border-radius: var(--r-pill); background: var(--surface); color: var(--ink-soft); }
 
+    /* Scroll wrapper — fade edge on desktop too (subtle) */
+    .filter-chips-wrap {
+      position: relative;
+      /* flex child inherits sizing from filter-bar */
+    }
+
+    /* Mobile: wrapper becomes full-width with right fade */
     @media (max-width: 720px) {
+      .filter-chips-wrap {
+        width: 100%;
+        /* Fade-out gradient on the right edge — scroll affordance */
+        -webkit-mask-image: linear-gradient(to right, black 88%, transparent 100%);
+        mask-image: linear-gradient(to right, black 88%, transparent 100%);
+      }
+    }
+
+    /* ── Mobile filter layout ── */
+    @media (max-width: 720px) {
+      /* Review grid — single column */
       .review-grid { grid-template-columns: 1fr !important; }
+
+      /* Stack the whole filter bar vertically */
+      .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 14px 0;
+      }
+
+      /* Search — full width */
+      .filter-search {
+        flex: 1 1 100%;
+        width: 100%;
+      }
+
+      /* Filter chips row — horizontal scroll, never wrap */
+      .filter-group {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;          /* Firefox */
+        border-radius: var(--r-pill);
+        /* Let chips breathe without a fixed pill container height */
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 6px;
+        /* Remove the grouped pill background on mobile — individual chips look cleaner */
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+      .filter-group::-webkit-scrollbar { display: none; }
+
+      /* Each chip becomes its own standalone pill */
+      .filter-group button {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 8px 16px;
+        border-radius: var(--r-pill);
+        font-size: 13px;
+        font-weight: 500;
+        border: 1px solid var(--line);
+        background: var(--bg-elev);
+        color: var(--ink-soft);
+        transition: background .15s, color .15s, border-color .15s;
+      }
+      .filter-group button:hover {
+        border-color: var(--line-strong);
+        color: var(--ink);
+      }
+      .filter-group button.active {
+        background: var(--ink);
+        color: var(--bg);
+        border-color: var(--ink);
+      }
+
+      /* Sort — full width */
+      .sort-select {
+        width: 100%;
+        padding: 10px 36px 10px 14px;
+        font-size: 14px;
+      }
+
+      /* Results count — tighter on mobile */
+      .results-count {
+        font-size: 11.5px;
+        padding: var(--s-3) 0 var(--s-2);
+      }
+    }
+
+    /* Extra-small screens — slightly smaller chip text */
+    @media (max-width: 380px) {
+      .filter-group button {
+        padding: 7px 13px;
+        font-size: 12.5px;
+      }
     }
   </style>
 </head>
@@ -205,14 +299,16 @@
         <input type="search" id="searchInput" placeholder="Search products or brands…" autocomplete="off" />
       </label>
 
-      <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by category">
-        <button class="active" data-filter="all">All</button>
-        <button data-filter="whey">Whey</button>
-        <button data-filter="creatine">Creatine</button>
-        <button data-filter="vitamins">Vitamins</button>
-        <button data-filter="omega">Omega-3</button>
-        <button data-filter="adaptogens">Adaptogens</button>
-        <button data-filter="herbal">Herbal</button>
+      <div class="filter-chips-wrap">
+        <div class="filter-group" id="filterGroup" role="group" aria-label="Filter by category">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="whey">Whey</button>
+          <button data-filter="creatine">Creatine</button>
+          <button data-filter="vitamins">Vitamins</button>
+          <button data-filter="omega">Omega-3</button>
+          <button data-filter="adaptogens">Adaptogens</button>
+          <button data-filter="herbal">Herbal</button>
+        </div>
       </div>
 
       <select class="sort-select" id="sortSelect" aria-label="Sort reviews">
@@ -298,7 +394,7 @@ const REVIEWS = [
     summary: "Solid protein-per-rupee for the concentrate-blend tier. Amino spiking flagged in 2024, clean since.",
     tags: ["Whey blend", "₹2,449 / 1kg"],
     filter: ["whey"],
-    href: "../reviews/wheyprotein/bigmuscles-premium-gold-whey-review.html",
+    href: "#",
     priceNum: 2449
   },
   {
