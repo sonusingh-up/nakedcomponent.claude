@@ -115,6 +115,17 @@ node scripts/update-sitemap.js
 
 The script scans every `.html` file in `project/`, derives the clean URL (using the same logic Vercel uses with `cleanUrls: true`), assigns the correct `<priority>` and `<changefreq>` by URL pattern, and rebuilds the file from scratch. It also reads `<link rel="canonical">` from pages that have one and uses that URL instead of deriving from the path.
 
+**Date handling (✓ NEW — solves stale lastmod problem):**
+The script uses this priority for `<lastmod>`:
+1. `<meta name="published" content="YYYY-MM-DD">` if present (authoritative publish date — never changes)
+2. `git log -1 --format=%ai` (actual last commit — reflects real edits)
+3. `fs.stat mtime` (fallback for uncommitted files)
+
+This means:
+- **New articles** get a frozen publish date (never changes even if you re-run the script)
+- **Old articles** use git log, so edits bump lastmod automatically
+- **No manual date management** needed
+
 **This also runs automatically:**
 - On every `git commit` via `.githooks/pre-commit`
 - On every Vercel deploy via `vercel.json` `buildCommand`
@@ -168,6 +179,7 @@ When the user asks you to create any new page:
 - [ ] Generate the slug from the title using rule 2a
 - [ ] Identify content type → pick the correct folder from rule 2b
 - [ ] Write the HTML file with correct `<title>`, `<meta name="description">`, `<link rel="canonical">`
+- [ ] Add `<meta name="published" content="YYYY-MM-DD">` in `<head>` (will be added by new-page.js automatically)
 - [ ] Add breadcrumb JSON-LD (rule 2e)
 - [ ] Add the entry to `project/sitemap.xml` by running `node scripts/update-sitemap.js`
 - [ ] If it's a content page: add the entry to `project/feed.xml`
@@ -184,6 +196,7 @@ When the user asks you to create any new page:
 - Never forget to update `sitemap.xml`.
 - Never place content pages under `project/pages/`.
 - Never use uppercase letters in file names or folder names.
+- Never manually edit the `<meta name="published">` tag in an article (it's authoritative for sitemap lastmod).
 
 ---
 
@@ -192,7 +205,24 @@ When the user asks you to create any new page:
 If the user asks you to scaffold a new page, you can run:
 
 ```bash
+# Default — uses today's date
 node scripts/new-page.js --type ingredient --title "Beta Alanine"
+
+# Backdate an article (optional — for old content being published)
+node scripts/new-page.js --type research --title "Old Study Deep Dive" --date 2026-04-15
 ```
 
-This creates the file at the right path, prints the final URL, and updates sitemap + feed automatically. See `scripts/new-page.js` for full usage.
+**What happens automatically:**
+1. Generates a clean slug from the title
+2. Creates the HTML file in the correct folder
+3. **Embeds `<meta name="published" content="YYYY-MM-DD">` in `<head>`** — this is the authoritative publish date
+4. Updates `project/sitemap.xml` automatically
+5. Updates `project/feed.xml` with the new entry
+6. Prints the final live URL
+
+**The publish date:**
+- Written once at article creation time — never changes
+- Controls the `<lastmod>` in sitemap.xml
+- If you edit an old article later, `git log` catches it and bumps `lastmod` to today
+
+See `scripts/new-page.js` for full usage and examples.
