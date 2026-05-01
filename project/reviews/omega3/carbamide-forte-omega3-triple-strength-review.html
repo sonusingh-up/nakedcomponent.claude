@@ -13,13 +13,13 @@
   <link rel="stylesheet" href="/pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
 
-  <!-- JSON-LD Schema -->
+  <!-- JSON-LD Schema: Review -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Review",
     "name": "Carbamide Forte Omega-3 Triple Strength Review",
-    "reviewBody": "An evidence-based review of Carbamide Forte Omega-3 Triple Strength covering EPA/DHA dose, oxidation risk, bioavailability, FSSAI status and India market value analysis.",
+    "reviewBody": "An evidence-based review of Carbamide Forte Omega-3 Triple Strength covering EPA/DHA dose, oxidation risk, bioavailability, third-party lab test status, FSSAI context and India market value analysis.",
     "author": {
       "@type": "Person",
       "name": "Naked Compound Editorial Team",
@@ -36,24 +36,99 @@
     "itemReviewed": {
       "@type": "Product",
       "name": "Carbamide Forte Omega-3 Triple Strength",
+      "description": "High-concentration fish oil supplement providing 550 mg EPA and 350 mg DHA per enteric-coated softgel. FSSAI licensed. No published TOTOX or IFOS certification as of May 2025.",
       "image": "https://m.media-amazon.com/images/I/71y9y8M7ARL._SL1500_.jpg",
-      "brand": {
-        "@type": "Brand",
-        "name": "Carbamide Forte"
+      "sku": "CF-OMEGA3-TRIPLE-60",
+      "brand": { "@type": "Brand", "name": "Carbamide Forte" },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "Carbamide Forte",
+        "address": { "@type": "PostalAddress", "addressCountry": "IN" }
       },
       "offers": {
         "@type": "Offer",
         "priceCurrency": "INR",
+        "price": "799",
+        "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
-        "url": "https://amzn.to/3QJkSi3"
-      }
+        "url": "https://amzn.to/3QJkSi3",
+        "seller": { "@type": "Organization", "name": "Amazon.in" }
+      },
+      "additionalProperty": [
+        { "@type": "PropertyValue", "name": "EPA per softgel", "value": "550 mg" },
+        { "@type": "PropertyValue", "name": "DHA per softgel", "value": "350 mg" },
+        { "@type": "PropertyValue", "name": "Total EPA+DHA per softgel", "value": "900 mg" },
+        { "@type": "PropertyValue", "name": "Delivery form", "value": "Enteric-coated softgel" },
+        { "@type": "PropertyValue", "name": "FSSAI licensed", "value": "Yes" },
+        { "@type": "PropertyValue", "name": "IFOS certified", "value": "No — not enrolled as of May 2025" },
+        { "@type": "PropertyValue", "name": "TOTOX published", "value": "No — not disclosed publicly" },
+        { "@type": "PropertyValue", "name": "Heavy metal testing", "value": "No public COA available" },
+        { "@type": "PropertyValue", "name": "Oil form (TG vs EE)", "value": "Not disclosed on label" }
+      ]
     },
     "reviewRating": {
       "@type": "Rating",
       "ratingValue": "6.4",
       "bestRating": "10",
-      "worstRating": "0"
+      "worstRating": "0",
+      "ratingExplanation": "Dose 8/10, Form 7/10, Purity 5/10 (no TOTOX published), Value 7/10, Label Honesty 7/10"
     }
+  }
+  </script>
+
+  <!-- JSON-LD Schema: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nakedcompound.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Reviews", "item": "https://nakedcompound.in/reviews" },
+      { "@type": "ListItem", "position": 3, "name": "Omega-3", "item": "https://nakedcompound.in/reviews/omega3" },
+      { "@type": "ListItem", "position": 4, "name": "Carbamide Forte Omega-3 Triple Strength Review", "item": "https://nakedcompound.in/reviews/omega3/carbamide-forte-omega3-triple-strength-review" }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD Schema: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Carbamide Forte Omega-3 Triple Strength IFOS certified?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. As of May 2025, Carbamide Forte Omega-3 is not IFOS certified. The brand holds an FSSAI manufacturing licence but has not enrolled in IFOS or any equivalent international freshness certification programme. IFOS requires independent testing for potency, purity, oxidation (TOTOX), and dioxin levels — a meaningfully higher bar than FSSAI licensing alone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Has Carbamide Forte Omega-3 been third-party lab tested?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No publicly available third-party Certificate of Analysis (COA) for TOTOX, heavy metals, PCBs, or EPA/DHA potency accuracy exists for this product as of May 2025. The brand is FSSAI licensed, which covers manufacturing quality standards but does not verify freshness markers or specific nutrient label accuracy on a per-batch basis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is TOTOX and why does it matter for fish oil?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TOTOX (Total Oxidation Value) is a composite oxidation score: TOTOX = 2 x Peroxide Value + Anisidine Value. The GOED voluntary standard requires TOTOX under 10 mEq/kg for finished fish oil products. Studies show oxidised fish oil with high TOTOX fails to deliver expected lipid improvements and may increase oxidative stress markers in users."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many softgels of Carbamide Forte Omega-3 should I take per day?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For general health, 1 softgel (900 mg EPA+DHA) per day is within the evidence range. For triglyceride reduction — the most clinically validated use — 2 softgels per day (1800 mg EPA+DHA) is more appropriate. Take with your largest meal of the day containing dietary fat to maximise absorption. Store refrigerated after opening."
+        }
+      }
+    ]
   }
   </script>
 
@@ -197,6 +272,17 @@
 .author-chip .ac-info{display:flex;flex-direction:column;gap:2px;}
 .author-chip .ac-name{font-size:13.5px;font-weight:500;color:var(--ink);}
 .author-chip .ac-role{font-size:11px;color:var(--ink-muted);font-family:var(--font-mono);}
+  /* ── Lab status card (page-specific) ── */
+  .lab-status-card{border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;margin:var(--s-6) 0;}
+  .lsc-header{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:var(--s-4) var(--s-5);background:var(--bg-elev);border-bottom:1px solid var(--line);}
+  .lsc-badge{display:inline-block;padding:3px 10px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;font-weight:600;}
+  .lsc-badge.none{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border:1px solid color-mix(in oklab,#e05c4a 30%,var(--line));}
+  .lsc-badge.partial{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;border:1px solid color-mix(in oklab,#c09030 30%,var(--line));}
+  .lsc-badge.certified{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border:1px solid color-mix(in oklab,#5ba672 35%,var(--line));}
+  .lsc-brand{font-size:14px;font-weight:500;color:var(--ink);}
+  .lsc-date{font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);margin-left:auto;}
+  .lsc-summary{font-size:15px;line-height:1.65;color:var(--ink-soft);padding:var(--s-5);margin:0;}
+
   </style>
   <script>window.PAGE_KEY = 'research';</script>
 </head>
@@ -421,6 +507,84 @@
           <h3>Cognition and mental health</h3>
           <p>DHA is the dominant structural fatty acid in neuronal membranes. Observational data linking low DHA status to depression risk is compelling. RCT evidence for EPA as an adjunct in major depression is more interesting: Sublette et al.'s meta-analysis (2011, Journal of Clinical Psychiatry) found that supplements with &gt;60% EPA showed significant antidepressant benefit while DHA-dominant formulations did not.<sup><a href="#ref14">14</a></sup> <em>(Evidence tier: meta-analysis, but heterogeneous trials — moderate)</em> The 550 mg EPA in Carbamide Forte is within range, though the DHA is useful only for structural maintenance, not acute neurological endpoints at this dose.</p>
 
+          <!-- Section 6b: Third-Party Lab Tests -->
+          <h2 id="lab-testing">Third-party lab testing — what exists and what doesn't</h2>
+
+          <div class="lab-status-card">
+            <div class="lsc-header">
+              <span class="lsc-badge none">No independent certification</span>
+              <span class="lsc-brand">Carbamide Forte Omega-3 Triple Strength</span>
+              <span class="lsc-date">Status as of May 2025</span>
+            </div>
+            <p class="lsc-summary">Carbamide Forte has not enrolled this product in any published third-party testing programme — IFOS, Labdoor, NSF, or equivalent. No batch-specific Certificate of Analysis (COA) for TOTOX, heavy metals, PCBs, or EPA/DHA label accuracy is publicly accessible on the product page, Amazon listing, or brand website as of this review's publication date.</p>
+          </div>
+
+          <h3>What third-party testing for fish oil actually measures</h3>
+          <p>Not all testing programmes are equivalent. The three that matter for fish oil are tiered by what they verify:</p>
+
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Programme</th>
+                  <th>Tests for</th>
+                  <th>TOTOX limit</th>
+                  <th>Heavy metals</th>
+                  <th>Banned substances</th>
+                  <th>Carbamide Forte status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-strong">IFOS (Nutrasource)</td>
+                  <td>EPA/DHA potency, oxidation (PV, AV, TOTOX), PCBs, dioxins, heavy metals</td>
+                  <td>TOTOX ≤26 (pass); ≤10 (5-star)</td>
+                  <td>Yes — Pb, Hg, As, Cd</td>
+                  <td>No</td>
+                  <td><span class="badge fail">Not enrolled</span></td>
+                </tr>
+                <tr>
+                  <td class="td-strong">Labdoor</td>
+                  <td>Label accuracy (EPA/DHA ±10%), oxidation, heavy metals</td>
+                  <td>Custom; uses FDA rancidity guidelines</td>
+                  <td>Yes</td>
+                  <td>No</td>
+                  <td><span class="badge fail">Not tested</span></td>
+                </tr>
+                <tr>
+                  <td class="td-strong">NSF Certified for Sport</td>
+                  <td>Label accuracy, contaminants, banned substances (WADA list)</td>
+                  <td>Not omega-3 specific</td>
+                  <td>Yes</td>
+                  <td>Yes</td>
+                  <td><span class="badge fail">Not certified</span></td>
+                </tr>
+                <tr>
+                  <td class="td-strong">FSSAI licence (India)</td>
+                  <td>Manufacturing facility compliance only</td>
+                  <td>None specified</td>
+                  <td>Regulatory only</td>
+                  <td>No</td>
+                  <td><span class="badge pass">Licensed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>What the absence of testing means in practice</h3>
+          <p>The absence of IFOS or Labdoor certification does not mean the product is adulterated or rancid. It means <strong>there is no external verification that it isn't.</strong> Most Indian fish oil brands — including competitors at similar price points — are in the same position. The ones that are independently certified (NOW Foods Ultra Omega-3 via IFOS, WHC UnoCardio via Eurofins) cost materially more for that credential.</p>
+
+          <div class="callout info">
+            <div class="callout-icon">ℹ️</div>
+            <div class="callout-body">
+              <strong>What you can do independently</strong>
+              <p>The simplest oxidation test you can perform at home: open a softgel and smell the oil directly. Fresh fish oil has a mild marine/oceanic smell. Rancid oil has a sharp, acrid, distinctly unpleasant odour — like old frying oil. If your softgels fail this basic test, discard the bottle regardless of expiry date. This does not replace TOTOX testing but catches gross oxidation reliably.</p>
+            </div>
+          </div>
+
+          <h3>Industry context: why Indian brands rarely publish TOTOX</h3>
+          <p>IFOS certification costs approximately USD 1,500–3,000 per product per year plus per-batch testing fees. For a domestic brand selling at ₹800–1,200 per 60-softgel bottle with thin margins, this represents a meaningful cost addition. The Indian regulatory framework does not require it, and consumer awareness of TOTOX as a quality signal remains low outside enthusiast communities in Bengaluru, Mumbai, and Delhi. This will change — but it hasn't yet. Until it does, the burden of evidence falls on the consumer to store correctly, buy fresh, and either accept the uncertainty or pay the premium for certified products.</p>
+
           <!-- Section 7: India Market -->
           <h2 id="india-market">India market reality</h2>
 
@@ -627,6 +791,7 @@
             <li><a href="#oxidation">The oxidation problem</a></li>
             <li><a href="#bioavailability">TG vs. ethyl ester</a></li>
             <li><a href="#evidence">Evidence by endpoint</a></li>
+            <li><a href="#lab-testing">Third-party lab tests</a></li>
             <li><a href="#india-market">India market reality</a></li>
             <li><a href="#competitors">Competition</a></li>
             <li><a href="#decision">Who should buy this</a></li>
