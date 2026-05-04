@@ -24,7 +24,7 @@
     protocols:       '/pages/protocols',
     reviews:         '/pages/reviews',
     ingredients:     '/pages/ingredients',
-    brands:          '/pages/brands',
+    brands:          '/pages/verified-brands',
     categories:      '/pages/categories',
     learn:           '/pages/learn',
     blog:            '/pages/blog',
