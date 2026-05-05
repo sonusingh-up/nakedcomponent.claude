@@ -240,6 +240,89 @@
     .ref-item{display:grid;grid-template-columns:28px 1fr;gap:var(--s-3);font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
     .ref-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);padding-top:2px;}
     .ref-item a{color:var(--accent);}
+
+    /* ── Mobile inline TOC (shown only below 700px, after before-you-buy) ── */
+    .mobile-toc-inline { display: none; margin: var(--s-6) 0; }
+    .mobile-toc-inline summary {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--ink-soft); cursor: pointer;
+      padding: 12px 16px; background: var(--bg-elev);
+      border: 1px solid var(--line); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: space-between;
+      list-style: none; user-select: none;
+    }
+    .mobile-toc-inline summary::-webkit-details-marker { display: none; }
+    .mobile-toc-inline summary::after { content: '↓'; color: var(--ink-muted); font-size: 14px; transition: transform .2s; }
+    .mobile-toc-inline[open] summary::after { transform: rotate(180deg); }
+    .mobile-toc-inline ul {
+      margin: 0; padding: 6px 0; list-style: none;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-top: 0; border-radius: 0 0 var(--r-md) var(--r-md);
+    }
+    .mobile-toc-inline ul li a {
+      display: block; padding: 9px 20px; font-size: 14px;
+      color: var(--ink-soft); text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: color .12s, border-color .12s;
+    }
+    .mobile-toc-inline ul li a:hover { color: var(--accent); border-left-color: var(--accent); }
+    @media (max-width: 700px) { .mobile-toc-inline { display: block; } }
+
+    /* ── Product buy cards ── */
+    .product-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px; margin: var(--s-5) 0;
+    }
+    .product-card {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); overflow: hidden;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit; min-width: 0;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .product-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .pc-img-wrap {
+      width: 100%; aspect-ratio: 1 / 1;
+      background: var(--surface); position: relative;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .pc-img-wrap img {
+      width: 100%; height: 100%; object-fit: contain;
+      padding: 10px; transition: transform .3s;
+    }
+    .product-card:hover .pc-img-wrap img { transform: scale(1.04); }
+    .pc-fallback {
+      display: none; position: absolute; inset: 0;
+      align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 42px; color: var(--accent); font-style: italic;
+      background: linear-gradient(135deg, var(--accent-soft), var(--butter));
+    }
+    .pc-tag-wrap { position: absolute; top: 8px; left: 8px; }
+    .pc-badge {
+      font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .08em;
+      text-transform: uppercase; padding: 3px 8px;
+      border-radius: var(--r-pill); font-weight: 600;
+    }
+    .pc-badge.best { background: color-mix(in oklab,#5ba672 20%,white); color: #2d5a3a; }
+    .pc-badge.budget { background: color-mix(in oklab,var(--sky) 80%,white); color: #2e4a6b; }
+    .pc-badge.quality { background: color-mix(in oklab,var(--butter) 80%,white); color: #7a5c15; }
+    .pc-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .pc-brand-name { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+    .pc-name { font-size: 13.5px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+    .pc-price { font-family: var(--font-display); font-size: 17px; color: var(--ink); font-weight: 500; letter-spacing: -.02em; margin-top: 2px; }
+    .pc-spec { font-size: 11.5px; color: var(--ink-muted); }
+    .pc-btn {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin: 6px 14px 14px; padding: 9px 12px;
+      background: var(--ink); color: var(--bg);
+      border-radius: var(--r-pill); font-size: 12px; font-weight: 500;
+      transition: background .15s;
+    }
+    .product-card:hover .pc-btn { background: var(--accent); }
+    .pc-btn svg { width: 12px; height: 12px; flex: 0 0 auto; }
+    @media (max-width: 700px) { .product-cards { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 420px) { .product-cards { grid-template-columns: 1fr; } }
   </style>
 
   <script>window.PAGE_KEY = 'research';</script>
@@ -295,6 +378,24 @@
             </div>
           </div>
 
+          <!-- ── Mobile TOC — visible only below 700px, sits after the intro ── -->
+          <details class="mobile-toc-inline">
+            <summary>On this page</summary>
+            <ul>
+              <li><a href="#what-this-is">What this protocol is</a></li>
+              <li><a href="#before-you-buy">Before you buy anything</a></li>
+              <li><a href="#compound-1">1. Whey protein concentrate</a></li>
+              <li><a href="#compound-2">2. Creatine monohydrate</a></li>
+              <li><a href="#compound-3">3. Vitamin D3 + K2</a></li>
+              <li><a href="#compound-4">4. Multivitamin</a></li>
+              <li><a href="#schedule">Timing &amp; daily schedule</a></li>
+              <li><a href="#cost">Monthly cost breakdown</a></li>
+              <li><a href="#upgrade-path">Month 4+ — what to add next</a></li>
+              <li><a href="#related">Related research</a></li>
+              <li><a href="#refs">References</a></li>
+            </ul>
+          </details>
+
           <!-- ===== COMPOUND 1: WHEY ===== -->
           <h2 id="compound-1" class="cmpd"><span class="cn">1.</span>Whey protein concentrate</h2>
 
@@ -321,6 +422,114 @@
           <p><strong>Vegetarian note:</strong> Whey is lacto-vegetarian — a byproduct of cheese manufacturing, no slaughter involved. Strict vegans should use a pea + rice protein blend instead (see the Pure-Veg Stack for detail). Most whey is FSSAI-registered under Food Products Standards regulations as a permitted food ingredient.</p>
 
           <h3>India brand comparison — Whey WPC-80</h3>
+
+          <!-- Product buy cards — Whey -->
+          <div class="product-cards">
+
+            <a class="product-card" href="https://www.amazon.in/s?k=nakpro+perform+whey+protein+concentrate+1kg&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71Hq7aMfOtL._AC_SX300_SY300_.jpg"
+                     alt="Nakpro Perform Whey Protein Concentrate 1kg"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Np</div>
+                <div class="pc-tag-wrap"><span class="pc-badge best">Best value</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Nakpro</div>
+                <div class="pc-name">Perform Whey Concentrate 1 kg</div>
+                <div class="pc-price">₹1,399</div>
+                <div class="pc-spec">80 g protein / 100 g · NABL COA ✓</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+concentrate+unflavoured&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61ek3rFjU1L._AC_SX300_SY300_.jpg"
+                     alt="AS-IT-IS Nutrition Whey Protein Concentrate"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Ai</div>
+                <div class="pc-tag-wrap"><span class="pc-badge budget">Best budget</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">AS-IT-IS Nutrition</div>
+                <div class="pc-name">Whey Protein Concentrate 1 kg</div>
+                <div class="pc-price">₹1,199</div>
+                <div class="pc-spec">79 g protein / 100 g · Unflavoured</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=muscleblaze+biozyme+performance+whey+protein&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71jmLLG8uqL._AC_SX300_SY300_.jpg"
+                     alt="MuscleBlaze Biozyme Performance Whey Protein"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Mb</div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">MuscleBlaze</div>
+                <div class="pc-name">Biozyme Performance Whey 1 kg</div>
+                <div class="pc-price">₹1,799</div>
+                <div class="pc-spec">75 g protein / 100 g · EAF blend</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=optimum+nutrition+gold+standard+whey+protein+india&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71qPHapuBqL._AC_SX300_SY300_.jpg"
+                     alt="Optimum Nutrition Gold Standard Whey Protein"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">ON</div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Optimum Nutrition</div>
+                <div class="pc-name">Gold Standard Whey 908 g</div>
+                <div class="pc-price">₹3,299</div>
+                <div class="pc-spec">76 g protein / 100 g · Import</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=nutrabay+whey+protein+concentrate&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71xnb4VXQBL._AC_SX300_SY300_.jpg"
+                     alt="Nutrabay Whey Protein Concentrate"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Nb</div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Nutrabay</div>
+                <div class="pc-name">Pure Whey Concentrate 1 kg</div>
+                <div class="pc-price">₹1,199</div>
+                <div class="pc-spec">80 g protein / 100 g · No COA</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+          </div><!-- /product-cards whey -->
+
           <div class="table-scroll">
             <table class="brand-table" style="border-radius:0;min-width:640px;">
               <thead>
@@ -395,6 +604,75 @@
           <p>Unlike whey, where multiple Indian brands produce genuinely equivalent product, creatine purity varies meaningfully. Creapure is patented creatine monohydrate from AlzChem (Germany), independently verified at ≥99.9% purity. The concern with generic creatine is dicyandiamide (DCD) and dihydrotriazine (DHT) — synthesis byproducts detected in lower-quality batches. The Creapure premium (~₹200–400 per 300g) provides real quality assurance. If buying generic, demand a visible batch-level COA from a NABL-accredited laboratory before committing.</p>
 
           <h3>India brand comparison — Creatine monohydrate</h3>
+
+          <!-- Product buy cards — Creatine -->
+          <div class="product-cards">
+
+            <a class="product-card" href="https://www.amazon.in/s?k=gnc+pro+performance+creatine+monohydrate+creapure&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/51vO5SVHEEL._AC_SX300_SY300_.jpg"
+                     alt="GNC Pro Performance Creatine Monohydrate Creapure"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">GN</div>
+                <div class="pc-tag-wrap"><span class="pc-badge quality">Top quality</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">GNC</div>
+                <div class="pc-name">Pro Performance Creatine Creapure 300 g</div>
+                <div class="pc-price">₹1,299</div>
+                <div class="pc-spec">Creapure ≥99.9% · Batch COA ✓</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=muscleblaze+creatine+monohydrate+creapure&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61F5eDCzVFL._AC_SX300_SY300_.jpg"
+                     alt="MuscleBlaze Creatine Monohydrate Creapure"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Mb</div>
+                <div class="pc-tag-wrap"><span class="pc-badge best">Best value</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">MuscleBlaze</div>
+                <div class="pc-name">Creatine Monohydrate Creapure 300 g</div>
+                <div class="pc-price">₹849</div>
+                <div class="pc-spec">Creapure certified · Unflavoured</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=as+it+is+creatine+monohydrate+300g&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61m3FtbXaJL._AC_SX300_SY300_.jpg"
+                     alt="AS-IT-IS Nutrition Creatine Monohydrate"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Ai</div>
+                <div class="pc-tag-wrap"><span class="pc-badge budget">Budget pick</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">AS-IT-IS Nutrition</div>
+                <div class="pc-name">Creatine Monohydrate 300 g</div>
+                <div class="pc-price">₹549</div>
+                <div class="pc-spec">Generic · Test data on request</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+          </div><!-- /product-cards creatine -->
+
           <div class="table-scroll">
             <table class="brand-table" style="border-radius:0;min-width:600px;">
               <thead>
@@ -465,6 +743,95 @@
           <p>Multiple urban cohort studies and NFHS-5 (2019–21) data place 65–75% of urban Indian adults below the 20 ng/mL sufficiency threshold. A 600-person Delhi study found 91.2% below 30 ng/mL.<sup><a href="#ref10">10</a></sup> The widely prescribed 60,000 IU weekly sachet addresses this with a pharmacological megadose — but produces a non-physiological peak-and-trough serum pattern. Daily 1,000–2,000 IU produces steadier serum levels with more consistent tissue saturation. <a href="/research/vitamin-d-60000iu-weekly-sachet">Our full analysis of the 60,000 IU sachet problem →</a></p>
 
           <h3>India brand comparison — Vitamin D3 + K2</h3>
+
+          <!-- Product buy cards — D3 + K2 -->
+          <div class="product-cards">
+
+            <a class="product-card" href="https://www.amazon.in/s?k=himalayan+organics+vitamin+d3+k2+mk7&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61OiJYJN8xL._AC_SX300_SY300_.jpg"
+                     alt="Himalayan Organics Vitamin D3 K2 MK-7"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Ho</div>
+                <div class="pc-tag-wrap"><span class="pc-badge best">Best overall</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Himalayan Organics</div>
+                <div class="pc-name">Vitamin D3 2000 IU + K2 MK-7</div>
+                <div class="pc-price">₹449</div>
+                <div class="pc-spec">K2 MK-7 45 µg · 60 caps · COA ✓</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=carbamide+forte+vitamin+d3+2000+iu+60+capsules&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71Hcw7CXqkL._AC_SX300_SY300_.jpg"
+                     alt="Carbamide Forte Vitamin D3 2000 IU"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Cf</div>
+                <div class="pc-tag-wrap"><span class="pc-badge budget">Best price</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Carbamide Forte</div>
+                <div class="pc-name">Vitamin D3 2000 IU · 60 Capsules</div>
+                <div class="pc-price">₹349</div>
+                <div class="pc-spec">2,000 IU D3 · No K2 · Verified brand</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=pure+nutrition+vitamin+d3+k2+mk7+india&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61p6DgVBiVL._AC_SX300_SY300_.jpg"
+                     alt="Pure Nutrition Vitamin D3 K2 MK-7"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Pn</div>
+                <div class="pc-tag-wrap"><span class="pc-badge quality">High MK-7</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Pure Nutrition</div>
+                <div class="pc-name">Vitamin D3 2000 IU + K2 MK-7 90 µg</div>
+                <div class="pc-price">₹549</div>
+                <div class="pc-spec">Highest MK-7 dose · Verified brand</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=wellbeing+nutrition+vitamin+d3+k2+slow+melts&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61GsLjjvN9L._AC_SX300_SY300_.jpg"
+                     alt="Wellbeing Nutrition Slow Melts Vitamin D3 K2"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Wn</div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Wellbeing Nutrition</div>
+                <div class="pc-name">Slow Melts D3 2000 IU + K2 MK-7</div>
+                <div class="pc-price">₹699</div>
+                <div class="pc-spec">45 µg MK-7 · Nano-strip format</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+          </div><!-- /product-cards d3k2 -->
+
           <div class="table-scroll">
             <table class="brand-table" style="border-radius:0;min-width:660px;">
               <thead>
@@ -546,6 +913,95 @@
           </div>
 
           <h3>India brand comparison — Multivitamin</h3>
+
+          <!-- Product buy cards — Multivitamin -->
+          <div class="product-cards">
+
+            <a class="product-card" href="https://www.amazon.in/s?k=carbamide+forte+multivitamin+methylcobalamin+zinc+bisglycinate&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61X9J5Gj0QL._AC_SX300_SY300_.jpg"
+                     alt="Carbamide Forte Multivitamin with Methylcobalamin"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Cf</div>
+                <div class="pc-tag-wrap"><span class="pc-badge best">Top pick</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Carbamide Forte</div>
+                <div class="pc-name">Multivitamin with Methylcobalamin 60 tabs</div>
+                <div class="pc-price">₹599</div>
+                <div class="pc-spec">Methylcobalamin · Zinc bisglycinate · Iron bisglycinate</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=pure+nutrition+complete+multivitamin+india&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71P8dXCpQqL._AC_SX300_SY300_.jpg"
+                     alt="Pure Nutrition Complete Multivitamin India"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Pn</div>
+                <div class="pc-tag-wrap"><span class="pc-badge quality">Premium</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">Pure Nutrition</div>
+                <div class="pc-name">Complete Multivitamin 60 caps</div>
+                <div class="pc-price">₹899</div>
+                <div class="pc-spec">All active forms · Verified brand</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=hk+vitals+active+multivitamin+men+women&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/61mIrRkFjmL._AC_SX300_SY300_.jpg"
+                     alt="HK Vitals Active Multivitamin"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Hk</div>
+                <div class="pc-tag-wrap"><span class="pc-badge budget">Mid-tier</span></div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">HK Vitals</div>
+                <div class="pc-name">Active Multivitamin 60 tabs</div>
+                <div class="pc-price">₹549</div>
+                <div class="pc-spec">Methylcobalamin B12 · Zinc oxide (caution)</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Buy on Amazon
+              </div>
+            </a>
+
+            <a class="product-card" href="https://www.amazon.in/s?k=muscleblaze+mb-vite+multivitamin&tag=nakedcompound-21" target="_blank" rel="noopener sponsored">
+              <div class="pc-img-wrap">
+                <img src="https://m.media-amazon.com/images/I/71HJj6RLBML._AC_SX300_SY300_.jpg"
+                     alt="MuscleBlaze MB-Vite Multivitamin"
+                     loading="lazy"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+                <div class="pc-fallback">Mb</div>
+              </div>
+              <div class="pc-body">
+                <div class="pc-brand-name">MuscleBlaze</div>
+                <div class="pc-name">MB-Vite Multivitamin 60 tabs</div>
+                <div class="pc-price">₹749</div>
+                <div class="pc-spec">Cyanocobalamin B12 · Zinc oxide — avoid</div>
+              </div>
+              <div class="pc-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Compare on Amazon
+              </div>
+            </a>
+
+          </div><!-- /product-cards multivitamin -->
+
           <div class="table-scroll">
             <table class="brand-table" style="border-radius:0;min-width:660px;">
               <thead>
