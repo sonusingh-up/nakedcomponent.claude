@@ -5,13 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog — Naked Compound</title>
   <meta name="description" content="Notes from the team — methodology debates, follow-ups, and field reports." />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css?v=3" />
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+
   <script>window.PAGE_KEY = 'about';</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "name": "Naked Compound Blog",
+        "description": "Methodology debates, follow-up reporting, field notes from shelf surveys, and the occasional rant.",
+        "url": "https://www.nakedcompound.in/blog",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naked Compound",
+          "url": "https://www.nakedcompound.in"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nakedcompound.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/blog" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── Filter bar enhancements ───────────────────── */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: var(--s-4);
+      align-items: center; margin-bottom: var(--s-6);
+    }
+    .filter-search {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-pill); padding: 8px 14px;
+      flex: 1; min-width: 200px;
+      transition: border-color .15s;
+    }
+    .filter-search:focus-within { border-color: var(--accent); }
+    .filter-search svg { width: 15px; height: 15px; color: var(--ink-muted); flex-shrink: 0; }
+    .filter-search input {
+      background: none; border: none; outline: none;
+      font-size: 14px; color: var(--ink); width: 100%;
+    }
+    .filter-search input::placeholder { color: var(--ink-muted); }
+    .filter-group {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .filter-group button {
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: var(--r-pill);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      color: var(--ink-muted); cursor: pointer;
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .filter-group button:hover {
+      border-color: var(--ink-soft); color: var(--ink-soft);
+    }
+    .filter-group button.active {
+      background: var(--ink); color: var(--bg); border-color: var(--ink);
+    }
+
+    /* ── Index rows — highlight on hover ───────────── */
+    .index-row { transition: background .12s; }
+    .index-row:hover { background: var(--bg-elev); }
+
+    /* ── "No results" message ───────────────────────── */
+    .no-results {
+      text-align: center; padding: var(--s-7) 0;
+      font-family: var(--font-mono); font-size: 13px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted); display: none;
+    }
+
+    /* ── Card "Read" link — full card click area ─────── */
+    .guide-card { position: relative; }
+    .guide-card .card-cover-link {
+      position: absolute; inset: 0; z-index: 0;
+      border-radius: inherit;
+    }
+    .guide-card .card-meta a.read-link { position: relative; z-index: 1; }
+  </style>
 </head>
 <body>
 <div id="site-header"></div>
@@ -26,41 +114,75 @@
   </section>
 
   <section class="container section" style="padding-top: var(--s-7);">
+
+    <!-- ── Filter bar ──────────────────────────────────────── -->
     <div class="filter-bar">
       <label class="filter-search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" placeholder="Search blog posts…" />
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+        <input type="search" id="blog-search" placeholder="Search blog posts…" aria-label="Search blog posts" />
       </label>
-      <div class="filter-group">
-        <button class="active">All</button>
-        <button>Field notes</button>
-        <button>Methodology</button>
-        <button>Reading</button>
-        <button>Behind the score</button>
+      <div class="filter-group" id="filter-btns" role="group" aria-label="Filter by category">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="field notes">Field notes</button>
+        <button data-filter="methodology">Methodology</button>
+        <button data-filter="reading">Reading</button>
+        <button data-filter="behind the score">Behind the score</button>
       </div>
     </div>
 
-    <!-- Featured -->
-    <div class="card-grid" style="margin-bottom: var(--s-7);">
-      <article class="card guide-card g1" style="grid-column: span 2;">
+    <!-- ── Featured cards ─────────────────────────────────── -->
+    <div class="card-grid" id="featured-grid" style="margin-bottom: var(--s-7);">
+
+      <!-- Post 1 — Four cities shelf survey (page live) -->
+      <article
+        class="card guide-card g1"
+        style="grid-column: span 2;"
+        data-category="field notes"
+        data-title="three days four cities one shopping list what 2026s shelf actually looks like creatine price mumbai bengaluru delhi pune"
+      >
+        <a href="/blog/shelf-survey-four-cities-2026" class="card-cover-link" aria-label="Read: Three days, four cities, one shopping list"></a>
         <div class="visual"><span class="glyph">FN</span></div>
         <span class="card-tag"><span class="swatch"></span>Field notes · 14 Apr</span>
         <h3>Three days, four cities, one shopping list — what 2026's shelf actually looks like.</h3>
         <p>We sent buyers to Mumbai, Bengaluru, Delhi and Pune with the same list of 18 SKUs. The price spread on a single jar of creatine reached ₹820 — and that's before the question of whether all eight units were the same product.</p>
-        <div class="card-meta"><span>Aarav S. · 8 min</span><a href="#" class="read-link">Read<span aria-hidden="true">→</span></a></div>
+        <div class="card-meta">
+          <span>Aarav S. · 8 min</span>
+          <a href="/blog/shelf-survey-four-cities-2026" class="read-link">Read<span aria-hidden="true">→</span></a>
+        </div>
       </article>
 
-      <article class="card guide-card g3">
+      <!-- Post 2 — Editor's Pick badge -->
+      <article
+        class="card guide-card g3"
+        data-category="methodology"
+        data-title="why we still wont run an editors pick badge quarterly vote"
+      >
+        <a href="/blog/editors-pick-badge" class="card-cover-link" aria-label="Read: Why we still won't run an Editor's Pick badge"></a>
         <div class="visual"><span class="glyph">M</span></div>
         <span class="card-tag"><span class="swatch"></span>Methodology · 9 Apr</span>
         <h3>Why we still won't run an "Editor's Pick" badge.</h3>
         <p>Every quarter someone in the team raises this. Here's why we keep voting it down — and the one form of it we'd actually consider.</p>
-        <div class="card-meta"><span>Priya K. · 6 min</span><a href="#" class="read-link">Read<span aria-hidden="true">→</span></a></div>
+        <div class="card-meta">
+          <span>Priya K. · 6 min</span>
+          <a href="/blog/editors-pick-badge" class="read-link">Read<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-    </div>
 
-    <div class="index-list">
-      <a href="#" class="index-row">
+    </div><!-- /#featured-grid -->
+
+    <!-- ── Index list ──────────────────────────────────────── -->
+    <div class="index-list" id="index-list">
+
+      <!-- Post 3 — HK Vitals iron score drop -->
+      <a
+        href="/blog/behind-score-hk-vitals-iron"
+        class="index-row"
+        data-category="behind the score"
+        data-title="behind the score how a 7.5 became a 6.1 in 14 days hk vitals iron form batch retest"
+      >
         <div class="thumb">BS</div>
         <div>
           <h3>Behind the score: how a 7.5 became a 6.1 in 14 days.</h3>
@@ -69,7 +191,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 4 — Melatonin reading list -->
+      <a
+        href="/blog/reading-list-melatonin"
+        class="index-row"
+        data-category="reading"
+        data-title="reading list five papers that changed our position on melatonin dose response 10mg gummies indian shelf"
+      >
         <div class="thumb g4">RD</div>
         <div>
           <h3>Reading list — five papers that changed our position on melatonin.</h3>
@@ -78,7 +207,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 5 — Bengaluru pharmacy bottom drawer -->
+      <a
+        href="/blog/bengaluru-pharmacy-bottom-drawer"
+        class="index-row"
+        data-category="field notes"
+        data-title="what we found in the bottom drawer of a bengaluru pharmacy expired products grey market unmarked white jar"
+      >
         <div class="thumb g2">FN</div>
         <div>
           <h3>What we found in the bottom drawer of a Bengaluru pharmacy.</h3>
@@ -87,7 +223,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 6 — Clinical dose question -->
+      <a
+        href="/blog/clinical-dose-question"
+        class="index-row"
+        data-category="methodology"
+        data-title="the clinical dose question we keep arguing about internally trials disagree rubric anchor reviewers"
+      >
         <div class="thumb g3">M</div>
         <div>
           <h3>The "clinical dose" question we keep arguing about internally.</h3>
@@ -96,7 +239,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 7 — Curcumin row -->
+      <a
+        href="/blog/behind-score-curcumin"
+        class="index-row"
+        data-category="behind the score"
+        data-title="behind the score the curcumin row we couldnt agree on bioavailability technologies reviewers rupee per effect"
+      >
         <div class="thumb g5">BS</div>
         <div>
           <h3>Behind the score: the curcumin row we couldn't agree on.</h3>
@@ -105,7 +255,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 8 — Plant proteins reading list -->
+      <a
+        href="/blog/reading-list-plant-proteins"
+        class="index-row"
+        data-category="reading"
+        data-title="reading list what we are following on plant proteins pea soy rice hemp leucine threshold quarter"
+      >
         <div class="thumb">RD</div>
         <div>
           <h3>Reading list — what we're following on plant proteins this quarter.</h3>
@@ -114,7 +271,14 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-      <a href="#" class="index-row">
+
+      <!-- Post 9 — Fish-oil bottle labels -->
+      <a
+        href="/blog/fish-oil-bottle-labels"
+        class="index-row"
+        data-category="field notes"
+        data-title="three things every fish oil bottle tells you and one it hides epa dha serving size freshness marker label"
+      >
         <div class="thumb g4">FN</div>
         <div>
           <h3>Three things every fish-oil bottle tells you, and one it hides.</h3>
@@ -123,15 +287,75 @@
         </div>
         <div class="trail"><span class="arrow">→</span></div>
       </a>
-    </div>
+
+    </div><!-- /#index-list -->
+
+    <p class="no-results" id="no-results" aria-live="polite">No posts match your search.</p>
 
     <div style="text-align:center; margin-top: 40px;">
       <a href="#" class="ghost-link">Older posts<span class="arrow" aria-hidden="true">→</span></a>
     </div>
+
   </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+
+<script>
+  /* ── Search + category filter ──────────────────────────────── */
+  (function () {
+    const searchInput   = document.getElementById('blog-search');
+    const filterBtns    = document.querySelectorAll('#filter-btns button');
+    const featuredGrid  = document.getElementById('featured-grid');
+    const indexList     = document.getElementById('index-list');
+    const noResults     = document.getElementById('no-results');
+
+    // All filterable items: featured cards + index rows
+    const allCards = [
+      ...featuredGrid.querySelectorAll('[data-category]'),
+      ...indexList.querySelectorAll('[data-category]'),
+    ];
+
+    let activeFilter = 'all';
+    let searchQuery  = '';
+
+    function applyFilters() {
+      let visible = 0;
+
+      allCards.forEach(el => {
+        const cat   = el.dataset.category || '';
+        const title = el.dataset.title    || '';
+        const matchCat    = activeFilter === 'all' || cat === activeFilter;
+        const matchSearch = !searchQuery  || title.includes(searchQuery);
+        const show  = matchCat && matchSearch;
+        el.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      // Hide featured grid heading if all featured cards hidden
+      const anyFeatured = [...featuredGrid.querySelectorAll('[data-category]')]
+        .some(el => el.style.display !== 'none');
+      featuredGrid.style.display = anyFeatured ? '' : 'none';
+
+      noResults.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilters();
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value.toLowerCase().trim();
+      applyFilters();
+    });
+  })();
+</script>
+
 </body>
 </html>
