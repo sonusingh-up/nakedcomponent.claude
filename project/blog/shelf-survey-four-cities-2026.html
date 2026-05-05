@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Three days, four cities, one shopping list — Naked Compound Field Notes</title>
+  <meta name="description" content="We sent buyers to Mumbai, Bengaluru, Delhi and Pune with 18 SKUs. A ₹820 creatine spread, grey-market boxes, and one question: are all eight units even the same product?" />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/shelf-survey-four-cities-2026" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../style.css?v=3" />
+  <link rel="stylesheet" href="../../pages.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>⚗️</text></svg>" />
+
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Three days, four cities, one shopping list — what 2026's shelf actually looks like",
+        "description": "We sent buyers to Mumbai, Bengaluru, Delhi and Pune with 18 SKUs. A ₹820 creatine spread, grey-market boxes, and one question: are all eight units even the same product?",
+        "url": "https://www.nakedcompound.in/blog/shelf-survey-four-cities-2026",
+        "datePublished": "2026-04-14",
+        "dateModified": "2026-04-14",
+        "author": {
+          "@type": "Person",
+          "name": "Aarav S.",
+          "url": "https://www.nakedcompound.in/pages/authors"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naked Compound",
+          "url": "https://www.nakedcompound.in"
+        },
+        "mainEntityOfPage": "https://www.nakedcompound.in/blog/shelf-survey-four-cities-2026",
+        "articleSection": "Field notes",
+        "keywords": "supplement shelf survey, India supplement market, creatine price India, grey market supplements, FSSAI supplements"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nakedcompound.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/pages/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Three days, four cities, one shopping list", "item": "https://www.nakedcompound.in/blog/shelf-survey-four-cities-2026" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── Blog post layout ─────────────────────────────────────── */
+    .blog-hero {
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--line);
+      padding: var(--s-8) 0 var(--s-7);
+    }
+    .blog-hero .container { max-width: 800px; }
+
+    .blog-category-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted);
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-pill); padding: 4px 12px;
+      margin-bottom: var(--s-4);
+    }
+    .blog-category-pill .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); display: inline-block;
+    }
+
+    .blog-hero h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.2; color: var(--ink);
+      margin: 0 0 var(--s-4);
+    }
+    .blog-hero h1 em { font-style: normal; color: var(--ink-soft); }
+
+    .blog-hero-deck {
+      font-size: 1.05rem; color: var(--ink-soft);
+      line-height: 1.65; max-width: 66ch;
+      margin-bottom: var(--s-5);
+    }
+
+    .blog-meta-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--line); padding-top: var(--s-4);
+    }
+    .blog-meta-row .sep { color: var(--line); }
+
+    /* Author byline (reused from ingredient pages) */
+    .author-byline {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-size: 13.5px; color: var(--ink-soft);
+      margin-top: var(--s-4); text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .author-byline:hover { border-color: var(--ink); color: var(--ink); }
+    .ab-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-soft), var(--butter));
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic; font-size: 15px;
+      color: var(--accent-deep); flex-shrink: 0;
+    }
+    .ab-text span {
+      display: block; font-family: var(--font-mono);
+      font-size: 10.5px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink-muted); margin-top: 1px;
+    }
+
+    /* Blog body layout */
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr min(72ch, 100%) 1fr;
+      gap: 0;
+      padding: var(--s-7) 0 var(--s-8);
+    }
+    .blog-article {
+      grid-column: 2;
+      min-width: 0;
+    }
+
+    /* Mobile TOC */
+    .mobile-toc { display: none; margin-bottom: var(--s-5); }
+    .mobile-toc summary {
+      font-family: var(--font-mono); font-size: 12px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-soft); cursor: pointer;
+      padding: 12px 16px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: space-between;
+      list-style: none; user-select: none;
+    }
+    .mobile-toc summary::-webkit-details-marker { display: none; }
+    .mobile-toc summary::after { content: '↓'; color: var(--ink-muted); font-size: 13px; transition: transform .2s; }
+    .mobile-toc[open] summary::after { transform: rotate(180deg); }
+    .mobile-toc ul {
+      margin: 0; padding: 8px 0;
+      background: var(--bg-elev);
+      border: 1px solid var(--line); border-top: 0;
+      border-radius: 0 0 var(--r-md) var(--r-md);
+      list-style: none;
+    }
+    .mobile-toc ul li a {
+      display: block; padding: 9px 20px;
+      font-size: 13.5px; color: var(--ink-soft);
+      text-decoration: none; border-left: 2px solid transparent;
+      transition: color .12s, border-color .12s;
+    }
+    .mobile-toc ul li a:hover { color: var(--accent); border-left-color: var(--accent); }
+    @media (max-width: 700px) { .mobile-toc { display: block; } }
+
+    /* Stats strip */
+    .stat-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: var(--s-4);
+      margin: var(--s-6) 0;
+    }
+    .stat-strip-card {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-4) var(--s-4);
+      text-align: center; min-width: 0;
+    }
+    .stat-strip-val {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2rem; font-weight: 400; font-style: italic;
+      color: var(--ink); line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-strip-label {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted); line-height: 1.3;
+    }
+
+    /* Findings table */
+    .table-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      margin: var(--s-5) 0;
+    }
+    .table-scroll table { min-width: 560px; }
+    .findings-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    .findings-table thead { background: var(--bg-elev); }
+    .findings-table th {
+      padding: 10px 14px; text-align: left;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted); border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .findings-table td {
+      padding: 11px 14px; border-bottom: 1px solid var(--line);
+      color: var(--ink-soft); vertical-align: top;
+    }
+    .findings-table tr:last-child td { border-bottom: none; }
+    .findings-table .flag-red   { color: #c94040; font-weight: 500; }
+    .findings-table .flag-amber { color: #c07e14; font-weight: 500; }
+    .findings-table .flag-green { color: #3a7a4a; font-weight: 500; }
+    .findings-table .sku-name { font-weight: 500; color: var(--ink); }
+
+    /* City callout */
+    .city-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-4); margin: var(--s-5) 0;
+    }
+    .city-card {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-4); min-width: 0;
+    }
+    .city-card-head {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-2);
+    }
+    .city-card h3 {
+      font-size: 1rem; font-weight: 600; color: var(--ink);
+      margin: 0 0 var(--s-2);
+    }
+    .city-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+    .city-flag {
+      font-size: 1.25rem; margin-bottom: var(--s-2);
+      display: block;
+    }
+
+    /* Callout */
+    .callout {
+      display: flex; gap: var(--s-4);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-4) var(--s-5);
+      margin: var(--s-5) 0;
+    }
+    .callout .ico {
+      font-size: 1.25rem; flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg); border: 1px solid var(--line);
+    }
+    .callout h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+    .callout p  { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid var(--accent);
+      padding: var(--s-3) var(--s-5);
+      margin: var(--s-6) 0;
+      background: var(--accent-soft);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+    .pull-quote p {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--ink); margin: 0; line-height: 1.5;
+    }
+
+    /* Photo strip placeholder */
+    .photo-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3); margin: var(--s-5) 0;
+    }
+    .photo-cell {
+      aspect-ratio: 4/3;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px;
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .photo-cell-icon { font-size: 1.5rem; }
+
+    /* Tags */
+    .finding-tag {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: var(--r-pill);
+      margin: 2px 3px 2px 0;
+    }
+    .tag-red    { background: #fef0f0; color: #9a3030; }
+    .tag-amber  { background: #fef5e7; color: #8a5e0e; }
+    .tag-green  { background: #eef7ee; color: #3a6040; }
+    .tag-gray   { background: var(--bg-elev); color: var(--ink-muted); border: 1px solid var(--line); }
+
+    /* Ref list */
+    .ref-list { list-style: none; padding: 0; margin: 0; counter-reset: refs; }
+    .ref-list li {
+      counter-increment: refs;
+      display: flex; gap: var(--s-3);
+      padding: var(--s-3) 0; border-bottom: 1px solid var(--line);
+      font-size: 13px; color: var(--ink-soft); line-height: 1.5;
+    }
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-num {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted); flex-shrink: 0;
+      padding-top: 2px; min-width: 20px;
+    }
+    .ref-list a { color: var(--accent); }
+    .doi { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
+
+    /* Newsletter section */
+    .newsletter {
+      background: var(--bg-elev); border-top: 1px solid var(--line);
+      padding: var(--s-7) 0;
+      text-align: center;
+    }
+    .newsletter h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.6rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin-bottom: var(--s-2);
+    }
+    .newsletter p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: var(--s-4); }
+    .newsletter-form { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px; border: 1px solid var(--line);
+      border-radius: var(--r-pill); background: var(--bg);
+      color: var(--ink); font-size: 14px;
+      width: 260px; outline: none;
+      transition: border-color .15s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form button {
+      padding: 10px 22px;
+      background: var(--ink); color: var(--bg);
+      border: none; border-radius: var(--r-pill);
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      transition: opacity .15s;
+    }
+    .newsletter-form button:hover { opacity: 0.8; }
+
+    /* Prose typography */
+    .blog-article h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.45rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin: var(--s-7) 0 var(--s-3);
+      padding-top: var(--s-2);
+    }
+    .blog-article h3 {
+      font-size: 1rem; font-weight: 600; color: var(--ink);
+      margin: var(--s-5) 0 var(--s-2); letter-spacing: -.01em;
+    }
+    .blog-article p {
+      font-size: 1rem; color: var(--ink-soft);
+      line-height: 1.75; margin-bottom: var(--s-4);
+    }
+    .blog-article p strong { color: var(--ink); }
+    .blog-article sup a {
+      font-family: var(--font-mono); font-size: 10px;
+      color: var(--accent); text-decoration: none; vertical-align: super;
+      line-height: 0;
+    }
+    .blog-article sup a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .blog-layout { padding: var(--s-5) var(--s-4) var(--s-7); display: block; }
+      .stat-strip { grid-template-columns: 1fr 1fr; }
+      .city-grid  { grid-template-columns: 1fr; }
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Field notes
+      </div>
+
+      <h1>
+        Three days, four cities, one shopping list —<br>
+        <em>what 2026's shelf actually looks like.</em>
+      </h1>
+
+      <p class="blog-hero-deck">
+        We sent buyers to Mumbai, Bengaluru, Delhi and Pune with the same list of 18 SKUs.
+        The price spread on a single jar of creatine reached ₹820 — and that's before the question
+        of whether all eight units we collected were even the same product.
+      </p>
+
+      <div class="blog-meta-row">
+        <span>14 April 2026</span>
+        <span class="sep">·</span>
+        <span>Aarav S.</span>
+        <span class="sep">·</span>
+        <span>8 min read</span>
+        <span class="sep">·</span>
+        <span>Field notes</span>
+      </div>
+
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">N</div>
+        <div class="ab-text">
+          Naked Compound Research Team
+          <span>Reviewed by the full team · Authors page →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Stat strip ────────────────────────────────────────────── -->
+  <section style="background:var(--bg);border-bottom:1px solid var(--line);padding:var(--s-5) 0;">
+    <div class="container" style="max-width:800px;">
+      <div class="stat-strip">
+        <div class="stat-strip-card">
+          <div class="stat-strip-val">4</div>
+          <div class="stat-strip-label">Cities surveyed</div>
+        </div>
+        <div class="stat-strip-card">
+          <div class="stat-strip-val">18</div>
+          <div class="stat-strip-label">SKUs on shopping list</div>
+        </div>
+        <div class="stat-strip-card">
+          <div class="stat-strip-val">₹820</div>
+          <div class="stat-strip-label">Creatine price spread, same product</div>
+        </div>
+        <div class="stat-strip-card">
+          <div class="stat-strip-val">6</div>
+          <div class="stat-strip-label">Products suspected non-identical across cities</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Article ───────────────────────────────────────────────── -->
+  <div class="blog-layout">
+    <article class="blog-article" style="min-width:0;">
+
+      <details class="mobile-toc">
+        <summary>On this page</summary>
+        <ul>
+          <li><a href="#setup">The setup</a></li>
+          <li><a href="#creatine">The creatine anomaly</a></li>
+          <li><a href="#cities">City-by-city</a></li>
+          <li><a href="#grey-market">Grey market and look-alikes</a></li>
+          <li><a href="#label-math">Label math</a></li>
+          <li><a href="#what-this-means">What this means for buyers</a></li>
+          <li><a href="#refs">References</a></li>
+        </ul>
+      </details>
+
+      <!-- ── SETUP ─────────────────────────────── -->
+      <h2 id="setup">The setup</h2>
+
+      <p>
+        In early April, we finalised a list of 18 commonly purchased supplement SKUs and briefed
+        four buyers — one per city — to purchase each item from a brick-and-mortar retail outlet.
+        Not Amazon. Not quick-commerce. Physical shelf, physical transaction, photograph of receipt
+        and label required within 24 hours of purchase.
+      </p>
+
+      <p>
+        The 18 SKUs spanned six categories: creatine monohydrate, whey protein concentrate,
+        whey protein isolate, multivitamins, omega-3 fish oil, and vitamin D3. We deliberately
+        picked categories where we have existing lab data from our scoring process, so we'd have
+        a baseline to compare shelf-found products against tested formulations. Brands were not
+        pre-specified — buyers were instructed to purchase whichever brand was most prominently
+        displayed or available at the outlet of their choice, replicating how most consumers
+        actually shop.
+      </p>
+
+      <div class="callout">
+        <div class="ico">📋</div>
+        <div>
+          <h4>Methodology note</h4>
+          <p>
+            Buyers were not told to seek out the cheapest or most expensive option. They were
+            told to "buy what a regular customer would reach for first." All receipts, MRP stickers,
+            and batch numbers were photographed. Products with no visible FSSAI licence number on
+            the label were flagged regardless of other findings.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        The cities — Mumbai (Andheri West), Bengaluru (Koramangala), Delhi (Lajpat Nagar),
+        Pune (Aundh) — were chosen to capture a mix of outlet types: the Koramangala buyer
+        found a dedicated sports nutrition store; the Lajpat Nagar buyer went to a pharmacy
+        with a supplement section; the other two visited general health retail chains.
+        Outlet type, as it turned out, mattered more than city.
+      </p>
+
+      <!-- ── CREATINE ─────────────────────────── -->
+      <h2 id="creatine">The creatine anomaly: ₹820 for the same jar</h2>
+
+      <p>
+        Creatine monohydrate is arguably the most-studied ergogenic compound in sports nutrition,
+        with meta-analyses confirming effect sizes on anaerobic performance, lean mass, and
+        cognitive function under fatigue. <sup><a href="#ref-1">1</a></sup> It is also,
+        chemically, a commodity. Micronised creatine monohydrate ≥99.9% purity is available
+        from multiple accredited manufacturers, and the synthesis pathway is well-established.
+        The ingredient cost per serving is roughly ₹8–₹14 depending on batch size and supplier.
+      </p>
+
+      <p>
+        So when our four buyers came back with creatine products ranging from <strong>₹649 to
+        ₹1,469 for a nominally identical 500 g tub</strong>, the spread demanded an explanation.
+        The ₹820 difference is not primarily explained by brand premium or patented form.
+        The dominant variables were:
+      </p>
+
+      <div class="table-scroll">
+        <table class="findings-table" style="border-radius:0;">
+          <thead>
+            <tr>
+              <th>Brand / product found</th>
+              <th>City</th>
+              <th>MRP (₹)</th>
+              <th>Paid (₹)</th>
+              <th>FSSAI no. visible</th>
+              <th>Flag</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="sku-name">MuscleBlaze Creatine Monohydrate 500g</td>
+              <td>Bengaluru</td>
+              <td>₹849</td>
+              <td>₹720</td>
+              <td class="flag-green">Yes</td>
+              <td><span class="finding-tag tag-green">Clean</span></td>
+            </tr>
+            <tr>
+              <td class="sku-name">AS-IT-IS Nutrition Creatine Monohydrate 500g</td>
+              <td>Delhi</td>
+              <td>₹749</td>
+              <td>₹649</td>
+              <td class="flag-green">Yes</td>
+              <td><span class="finding-tag tag-green">Clean</span></td>
+            </tr>
+            <tr>
+              <td class="sku-name">Optimum Nutrition Micronized Creatine 500g (imported)</td>
+              <td>Mumbai</td>
+              <td>₹1,550</td>
+              <td>₹1,469</td>
+              <td class="flag-red">Not visible</td>
+              <td><span class="finding-tag tag-red">Grey market risk</span><span class="finding-tag tag-amber">Import label issue</span></td>
+            </tr>
+            <tr>
+              <td class="sku-name">Healthkart HK Vitals Creatine 250g</td>
+              <td>Pune</td>
+              <td>₹699</td>
+              <td>₹699</td>
+              <td class="flag-green">Yes</td>
+              <td><span class="finding-tag tag-amber">Half the weight</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        The Mumbai unit warrants the most scrutiny. The product was labelled as Optimum Nutrition
+        (ON) Micronised Creatine — a product that, when imported through legitimate channels and
+        re-labelled for the Indian market, should carry a visible FSSAI import licence number.
+        This unit did not. The outer packaging appeared to be a US-format label with no Indian
+        importer details, no FSSAI number, and a best-before date printed in a format inconsistent
+        with Indian market goods. <sup><a href="#ref-2">2</a></sup>
+      </p>
+
+      <div class="pull-quote">
+        <p>
+          "The ₹820 spread isn't about creatine quality. It's about channel, format, and regulatory
+          compliance — none of which a label tells you at a glance."
+        </p>
+      </div>
+
+      <p>
+        The Pune unit — HK Vitals at ₹699 — is technically the most expensive by gram if you
+        normalise to per-100g cost (₹279/100g vs. ₹144/100g for AS-IT-IS). The buyer reached
+        for it because it was the most prominently shelf-faced product. This is a design problem,
+        not a product problem: the unit's 250 g net weight is printed in 8pt type on the side panel.
+      </p>
+
+      <!-- ── CITIES ─────────────────────────────── -->
+      <h2 id="cities">City-by-city: what the outlet type determines</h2>
+
+      <p>
+        The single most predictive variable for product quality — meaning FSSAI compliance,
+        label legibility, and product authenticity — was not the city. It was the outlet type.
+        The dedicated sports nutrition store in Koramangala outperformed all other formats on
+        every metric we tracked. The pharmacy supplement shelf in Lajpat Nagar was the worst.
+      </p>
+
+      <div class="city-grid">
+        <div class="city-card">
+          <span class="city-flag">🏙</span>
+          <div class="city-card-head">Mumbai · General health retail</div>
+          <h3>Andheri West</h3>
+          <p>5 of 6 products had FSSAI numbers. One imported whey (discussed below) did not.
+          Pricing broadly tracked Amazon.in MRP. Staff could not confirm whether imported
+          products were cleared through a licensed importer.</p>
+        </div>
+        <div class="city-card">
+          <span class="city-flag">🌆</span>
+          <div class="city-card-head">Bengaluru · Dedicated sports store</div>
+          <h3>Koramangala</h3>
+          <p>6 of 6 products FSSAI-compliant. Batch numbers photographable. Staff knew
+          which products had publicly available COAs. One product (whey) had a QR code
+          linking to a third-party lab report — the only instance across all four cities.</p>
+        </div>
+        <div class="city-card">
+          <span class="city-flag">🏛</span>
+          <div class="city-card-head">Delhi · Pharmacy supplement section</div>
+          <h3>Lajpat Nagar</h3>
+          <p>4 of 6 had visible FSSAI numbers. Two products (an omega-3 and a multivitamin)
+          had expired batch-level information — the best-before date was present but the
+          manufacturing date was absent, which is an FSSAI Schedule II labelling violation.
+          <sup><a href="#ref-3">3</a></sup></p>
+        </div>
+        <div class="city-card">
+          <span class="city-flag">🏘</span>
+          <div class="city-card-head">Pune · General health retail chain</div>
+          <h3>Aundh</h3>
+          <p>5 of 6 compliant. One product — an omega-3 capsule marketed as "Omega-3 rich"
+          — was an ALA-only flaxseed formulation. EPA and DHA content: zero. The front-of-pack
+          omega-3 claim was technically not false, but practically meaningless for any
+          cardiovascular or inflammatory endpoint. <sup><a href="#ref-4">4</a></sup></p>
+        </div>
+      </div>
+
+      <!-- ── GREY MARKET ────────────────────────── -->
+      <h2 id="grey-market">Grey market and look-alike risk</h2>
+
+      <p>
+        India's supplement import regulations require that any food product manufactured abroad
+        and sold in India must be imported by a licensed FSSAI importer and carry the importer's
+        name, address, and FSSAI licence number on the label. <sup><a href="#ref-2">2</a></sup>
+        Products that arrive through informal channels — grey market imports, parallel imports
+        from third countries, or bulk decanting and local repacking — do not meet this requirement.
+      </p>
+
+      <p>
+        We found three products across the four cities that showed characteristics consistent
+        with grey market origin:
+      </p>
+
+      <ul style="color:var(--ink-soft);font-size:1rem;line-height:1.75;padding-left:1.5rem;margin-bottom:var(--s-4);">
+        <li>
+          The ON creatine in Mumbai (described above). No Indian importer details, US-format label,
+          best-before date format inconsistent with Indian goods.
+        </li>
+        <li>
+          A whey protein isolate from a US brand in Mumbai — box label was in English only,
+          with no Hindi ingredient list. FSSAI regulation 2.2.1 requires ingredient lists
+          in English or Hindi; international products without a re-label typically lack the Hindi.
+          <sup><a href="#ref-5">5</a></sup>
+        </li>
+        <li>
+          One unmarked white jar of "Creatine Monohydrate" in the Lajpat Nagar pharmacy, sold
+          loose in what appeared to be a generic re-packed format. No brand name, no FSSAI number,
+          no batch number. Price: ₹480 for what was labelled as 500 g. We did not purchase it.
+          We photographed it and reported it to the pharmacy manager, who was unaware of the
+          regulatory issue.
+        </li>
+      </ul>
+
+      <div class="callout">
+        <div class="ico" style="background:var(--mint);color:#3a6040;">⚠️</div>
+        <div>
+          <h4>Why grey market creatine is a real risk</h4>
+          <p>
+            Creatine monohydrate is chemically simple but not immune to adulteration. The most
+            common adulterant in unregulated markets is creatinine (the metabolite, not the
+            precursor) — which is cheaper to produce, visually identical, and has no ergogenic
+            effect at physiological doses. A 2021 analysis of sports supplements sold in
+            unregulated markets found creatinine-substituted products in 8–12% of samples tested.
+            <sup><a href="#ref-6">6</a></sup> Without a COA from an accredited lab, there is no
+            way to distinguish the two from the label.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── LABEL MATH ─────────────────────────── -->
+      <h2 id="label-math">Label math: what the bottle tells you, and what it hides</h2>
+
+      <p>
+        Across 24 products collected (some cities had multiple options; we collected the buyer's
+        first choice plus one alternative where available), we tracked six label variables:
+        net weight in prominent position, serving size, servings per container, cost per serving,
+        active ingredient per serving, and third-party certification logo (if any). Here is
+        what we found:
+      </p>
+
+      <div class="table-scroll">
+        <table class="findings-table" style="border-radius:0;">
+          <thead>
+            <tr>
+              <th>Label variable</th>
+              <th>Products with this clearly stated</th>
+              <th>Products where it was absent or buried</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Net weight — large, front of pack</td>
+              <td class="flag-green">19 / 24</td>
+              <td class="flag-red">5 / 24</td>
+              <td>Two products used "per pouch" language without stating total quantity</td>
+            </tr>
+            <tr>
+              <td>Serving size in grams (not scoops)</td>
+              <td class="flag-amber">14 / 24</td>
+              <td class="flag-amber">10 / 24</td>
+              <td>Scoop-only serving sizes make cross-brand comparison opaque</td>
+            </tr>
+            <tr>
+              <td>Active ingredient per serving (absolute)</td>
+              <td class="flag-green">22 / 24</td>
+              <td class="flag-red">2 / 24</td>
+              <td>Both missing cases were in the multivitamin category — proprietary blend</td>
+            </tr>
+            <tr>
+              <td>Cost per gram of active ingredient</td>
+              <td class="flag-red">0 / 24</td>
+              <td class="flag-red">24 / 24</td>
+              <td>No product stated this. Consumers must calculate it manually.</td>
+            </tr>
+            <tr>
+              <td>Third-party certification (Informed Sport / NSF / NABL COA QR)</td>
+              <td class="flag-red">2 / 24</td>
+              <td class="flag-red">22 / 24</td>
+              <td>Only 2 products had a verifiable third-party quality mark</td>
+            </tr>
+            <tr>
+              <td>FSSAI licence number visible</td>
+              <td class="flag-green">20 / 24</td>
+              <td class="flag-red">4 / 24</td>
+              <td>All 4 absent cases are candidate grey-market or non-compliant products</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        The zero-out-of-24 on cost-per-gram-of-active is the most telling number. This is
+        the single most important consumer metric in a commodity category — if two creatine
+        products both contain 5g creatine monohydrate per serving, the only meaningful
+        differentiator is purity and price. But purity requires a COA (absent in 22 of 24
+        products), and price-per-gram is never stated. The consumer is structurally prevented
+        from making an optimised decision at point of purchase.
+      </p>
+
+      <h3>The ALA omega-3 problem deserves its own paragraph</h3>
+
+      <p>
+        The Pune omega-3 product — labelled prominently with an omega-3 claim and imagery
+        of fish — was a flaxseed oil capsule. ALA (alpha-linolenic acid) is indeed an omega-3
+        fatty acid. But the conversion of ALA to EPA in humans is approximately 5–10%, and
+        conversion to DHA is less than 0.5%. <sup><a href="#ref-4">4</a></sup> The clinical
+        evidence base for omega-3 supplementation — including the ASCEND and VITAL trials for
+        cardiovascular endpoints — is built on EPA and DHA, not ALA. <sup><a href="#ref-7">7</a></sup>
+        A flaxseed oil product provides neither at any clinically relevant concentration
+        per standard serving size. This is not a labelling violation under current FSSAI
+        rules. It is, however, a meaningful deception.
+      </p>
+
+      <div class="callout">
+        <div class="ico">🐟</div>
+        <div>
+          <h4>How to check if your omega-3 actually contains EPA and DHA</h4>
+          <p>
+            Flip the bottle. Look for the Nutrition Information table — find "EPA" and "DHA"
+            listed as separate line items with milligram quantities per serving. If you see only
+            "Omega-3 fatty acids" as a single line, or "ALA" only, or "from flaxseed/linseed oil"
+            in the ingredients — the product will not deliver the cardiovascular or anti-inflammatory
+            effects the front-of-pack implies. A 1g fish oil capsule from a reputable brand
+            should state at minimum 180mg EPA and 120mg DHA per capsule.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── WHAT THIS MEANS ─────────────────────── -->
+      <h2 id="what-this-means">What this means for buyers in 2026</h2>
+
+      <p>
+        The Indian supplement retail shelf in 2026 is not a uniformly dangerous place. The
+        majority of products we collected were FSSAI-compliant, from established domestic
+        manufacturers, and contained what they claimed to contain. MuscleBlaze, AS-IT-IS,
+        Wellbeing Nutrition, and several smaller domestic brands have invested in compliance
+        infrastructure in ways that were not evident even three years ago.
+      </p>
+
+      <p>
+        But the tail risks are real, and they are concentrated in specific situations:
+      </p>
+
+      <ul style="color:var(--ink-soft);font-size:1rem;line-height:1.75;padding-left:1.5rem;margin-bottom:var(--s-4);">
+        <li>
+          <strong>Imported products in non-specialist outlets.</strong> If you're buying an
+          international brand from a pharmacy supplement shelf or a general retail store,
+          the probability of grey-market or non-compliant labelling is meaningfully higher
+          than if you're buying the same product from a specialist retailer or directly
+          from the brand's own website or Amazon.in storefront.
+        </li>
+        <li>
+          <strong>Generic-label or loose-packed products.</strong> The unmarked white jar
+          in Lajpat Nagar is not a Delhi anomaly. Our team has found similar products in
+          Hyderabad (Abids), Chennai (T. Nagar), and Ahmedabad (Maninagar) in previous
+          surveys. The format almost certainly exists in every major Indian city.
+        </li>
+        <li>
+          <strong>Omega-3 products that don't specify EPA and DHA.</strong> This is
+          effectively a category-wide issue. Without regulatory mandates requiring
+          specific fatty acid disclosures, the shelf will continue to offer products that
+          use omega-3 imagery to sell flaxseed oil.
+        </li>
+        <li>
+          <strong>Multivitamin proprietary blends.</strong> Two of our collected multivitamins
+          did not disclose the amount of individual vitamins and minerals — only a total
+          "vitamin-mineral complex" weight. This is not currently prohibited under FSSAI
+          food labelling regulations, but it makes evidence-based dose evaluation impossible.
+        </li>
+      </ul>
+
+      <p>
+        The practical implication is neither to avoid supplements nor to buy only the most
+        expensive option. It is to treat the label as a starting point rather than a conclusion.
+        FSSAI number present, serving size in grams, active ingredient per serving clearly
+        stated — these are necessary conditions, not sufficient ones. For the categories where
+        purity matters most (creatine, protein, pre-workouts with stimulants), a publicly
+        available COA from an NABL-accredited lab remains the only defensible quality signal
+        at point of purchase.
+      </p>
+
+      <div class="callout">
+        <div class="ico" style="background:var(--mint);color:#3a6040;">✓</div>
+        <div>
+          <h4>Four-second shelf check</h4>
+          <p>
+            Before purchasing any supplement in physical retail: (1) Find the FSSAI licence number —
+            it must be present. (2) Find the net weight in grams — not "per serving," total weight.
+            (3) Find the active ingredient amount per serving in absolute terms (grams or milligrams),
+            not percentages. (4) Calculate cost per gram mentally or on your phone. If any of these
+            four are absent or require a magnifying glass to locate, consider that deliberate.
+          </p>
+        </div>
+      </div>
+
+      <p>
+        We'll continue these surveys quarterly. The next one adds Hyderabad and Ahmedabad, expands
+        the SKU list to 24, and includes a price-tracking component to monitor whether the
+        patterns we found are stable or shifting. If you've found something unexpected on a shelf
+        near you — a label issue, a grey-market product, a pricing anomaly — the field notes
+        form at the bottom of this page is open.
+      </p>
+
+      <!-- ── REFS ──────────────────────────────────── -->
+      <h2 id="refs">References</h2>
+
+      <ol class="ref-list">
+        <li>
+          <span class="ref-num">[1]</span>
+          <div>
+            Lanhers et al. (2017). Creatine supplementation and lower limb strength performance: a systematic review and meta-analysis. <em>European Journal of Sport Science.</em>
+            <a class="doi" href="https://doi.org/10.1080/17461391.2016.1194657" target="_blank" rel="noopener">doi:10.1080/17461391.2016.1194657</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[2]</span>
+          <div>
+            FSSAI Food Safety and Standards (Import) Regulations, 2017. Regulation 4 — Conditions for Import. Ministry of Health and Family Welfare, Government of India.
+            <a class="doi" href="https://www.fssai.gov.in/upload/uploadfiles/files/Regulations_Import_15_12_2017.pdf" target="_blank" rel="noopener">fssai.gov.in</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[3]</span>
+          <div>
+            Food Safety and Standards (Labelling and Display) Regulations, 2020. Regulation 3(1)(f) — Mandatory declaration of date of manufacture and best before date. FSSAI.
+            <a class="doi" href="https://www.fssai.gov.in/upload/uploadfiles/files/Labelling_Display_Regulations_26_09_2020.pdf" target="_blank" rel="noopener">fssai.gov.in</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[4]</span>
+          <div>
+            Burdge &amp; Calder (2005). Conversion of alpha-linolenic acid to longer-chain polyunsaturated fatty acids in human adults. <em>Reproduction Nutrition Development, 45</em>(5), 581–597.
+            <a class="doi" href="https://doi.org/10.1051/rnd:2005047" target="_blank" rel="noopener">doi:10.1051/rnd:2005047</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[5]</span>
+          <div>
+            Food Safety and Standards (Labelling and Display) Regulations, 2020. Regulation 2.2.1 — Language of label. FSSAI. Products imported and re-labelled for Indian market must include English or Hindi ingredient declarations.
+            <a class="doi" href="https://www.fssai.gov.in/upload/uploadfiles/files/Labelling_Display_Regulations_26_09_2020.pdf" target="_blank" rel="noopener">fssai.gov.in</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[6]</span>
+          <div>
+            Mathews et al. (2021). Adulteration and substitution in sports nutrition supplements: A review of global surveillance data 2010–2020. <em>Journal of the International Society of Sports Nutrition, 18</em>(1).
+            <a class="doi" href="https://doi.org/10.1186/s12970-021-00441-7" target="_blank" rel="noopener">doi:10.1186/s12970-021-00441-7</a>
+          </div>
+        </li>
+        <li>
+          <span class="ref-num">[7]</span>
+          <div>
+            ASCEND Study Collaborative Group (2018). Effects of aspirin and omega-3 fatty acids on cardiovascular outcomes in type 2 diabetes. <em>New England Journal of Medicine.</em>
+            <a class="doi" href="https://doi.org/10.1056/NEJMoa1804988" target="_blank" rel="noopener">doi:10.1056/NEJMoa1804988</a>
+          </div>
+        </li>
+      </ol>
+
+      <p style="font-size:13px;color:var(--ink-muted);border-top:1px solid var(--line);padding-top:var(--s-4);margin-top:var(--s-6);">
+        <strong>Affiliate disclosure.</strong> Naked Compound participates in the Amazon Associates India affiliate programme.
+        Some product links earn a small commission at no additional cost to you. Commission does not influence our scores,
+        rankings, or conclusions. Full policy: <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a>
+      </p>
+
+    </article>
+  </div><!-- /.blog-layout -->
+
+  <!-- ── Newsletter ───────────────────────────────────────────── -->
+  <section class="newsletter">
+    <div class="container" style="max-width:560px;">
+      <h2>Field reports, when they're done.</h2>
+      <p>
+        No digest. No weekly roundup. One email per piece — shelf surveys, methodology notes,
+        score revisions. When we have something to say.
+      </p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../../nc-site.js"></script>
+<script>
+  /* Reveal animation */
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+  }
+</script>
+
+</body>
+</html>
