@@ -46,7 +46,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nakedcompound.in/" },
-          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/pages/blog" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/blog" },
           { "@type": "ListItem", "position": 3, "name": "Three days, four cities, one shopping list", "item": "https://www.nakedcompound.in/blog/shelf-survey-four-cities-2026" }
         ]
       }
@@ -126,16 +126,100 @@
       text-transform: uppercase; color: var(--ink-muted); margin-top: 1px;
     }
 
-    /* Blog body layout */
+    /* Blog body layout — article + right sidebar */
+    .blog-body-wrap {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: var(--s-7) var(--s-5) var(--s-8);
+    }
     .blog-layout {
       display: grid;
-      grid-template-columns: 1fr min(72ch, 100%) 1fr;
-      gap: 0;
-      padding: var(--s-7) 0 var(--s-8);
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: var(--s-7);
+      align-items: start;
     }
-    .blog-article {
-      grid-column: 2;
-      min-width: 0;
+    .blog-article { min-width: 0; }
+
+    /* ── Sidebar ───────────────────────────────────────────── */
+    .blog-sidebar { min-width: 0; position: sticky; top: 96px; }
+    .sidebar-block {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); margin-bottom: var(--s-4); overflow: hidden;
+    }
+    .sidebar-block-head {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--line); background: var(--bg);
+    }
+    .rec-product {
+      display: block; text-decoration: none;
+      padding: var(--s-4); border-bottom: 1px solid var(--line);
+      transition: background .12s;
+    }
+    .rec-product:last-of-type { border-bottom: none; }
+    .rec-product:hover { background: var(--bg); }
+    .rec-product-img {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--s-3); overflow: hidden; position: relative;
+    }
+    .rec-product-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .rec-product-img .img-placeholder { font-size: 2rem; opacity: .35; }
+    .rec-score-badge {
+      position: absolute; top: 8px; right: 8px;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em;
+      background: var(--ink); color: var(--bg);
+      padding: 3px 7px; border-radius: var(--r-pill);
+    }
+    .rec-product-name {
+      font-size: 13.5px; font-weight: 600; color: var(--ink);
+      line-height: 1.35; margin-bottom: 4px;
+    }
+    .rec-product-sub {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-3);
+    }
+    .rec-product-price {
+      font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: var(--s-3);
+    }
+    .rec-product-price span { font-size: 12px; font-weight: 400; color: var(--ink-muted); margin-left: 4px; }
+    .rec-product-actions { display: flex; flex-direction: column; gap: 7px; }
+    .btn-buy {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 14px; background: var(--accent); color: #fff;
+      border-radius: var(--r-pill); font-size: 12.5px; font-weight: 600;
+      text-decoration: none; border: none; transition: opacity .15s;
+    }
+    .btn-buy:hover { opacity: .85; }
+    .btn-review {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 8px 14px; background: transparent; color: var(--ink-soft);
+      border: 1px solid var(--line); border-radius: var(--r-pill);
+      font-size: 12.5px; font-weight: 500; text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-review:hover { border-color: var(--ink); color: var(--ink); }
+    .sidebar-related-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      text-decoration: none; transition: background .12s;
+    }
+    .sidebar-related-item:last-child { border-bottom: none; }
+    .sidebar-related-item:hover { background: var(--bg); }
+    .sri-tag {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 3px; display: block;
+    }
+    .sri-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.35; }
+    .sri-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
     }
 
     /* Mobile TOC */
@@ -379,9 +463,9 @@
 
     /* Responsive */
     @media (max-width: 700px) {
-      .blog-layout { padding: var(--s-5) var(--s-4) var(--s-7); display: block; }
-      .stat-strip { grid-template-columns: 1fr 1fr; }
-      .city-grid  { grid-template-columns: 1fr; }
+      .blog-body-wrap { padding: var(--s-5) var(--s-4) var(--s-7); }
+      .stat-strip  { grid-template-columns: 1fr 1fr; }
+      .city-grid   { grid-template-columns: 1fr; }
       .photo-strip { grid-template-columns: 1fr 1fr; }
     }
   </style>
@@ -455,9 +539,12 @@
     </div>
   </section>
 
-  <!-- ── Article ───────────────────────────────────────────────── -->
-  <div class="blog-layout">
-    <article class="blog-article" style="min-width:0;">
+  <!-- ── Article + Sidebar ─────────────────────────────────────── -->
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <!-- Article -->
+      <article class="blog-article" style="min-width:0;">
 
       <details class="mobile-toc">
         <summary>On this page</summary>
@@ -939,8 +1026,153 @@
         rankings, or conclusions. Full policy: <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a>
       </p>
 
-    </article>
-  </div><!-- /.blog-layout -->
+    </article><!-- /article -->
+
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="blog-sidebar">
+
+        <!-- Recommended products -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Reviewed &amp; recommended</div>
+
+          <!-- Product 1: AS-IT-IS Creatine -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/61t3CabKOtL._SL500_.jpg"
+                alt="AS-IT-IS Nutrition Creatine Monohydrate 500g"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">🧪</span>
+              <span class="rec-score-badge">8.4 / 10</span>
+            </div>
+            <div class="rec-product-name">AS-IT-IS Creatine Monohydrate 500g</div>
+            <div class="rec-product-sub">Creatine · 100 servings · FSSAI ✓</div>
+            <div class="rec-product-price">₹749 <span>Amazon.in · Apr 2026</span></div>
+            <div class="rec-product-actions">
+              <a
+                href="https://www.amazon.in/s?k=AS-IT-IS+creatine+monohydrate+500g&tag=nakedcompound-21"
+                class="btn-buy"
+                target="_blank" rel="noopener sponsored"
+                aria-label="Buy AS-IT-IS Creatine on Amazon India"
+              >
+                Buy on Amazon.in →
+              </a>
+              <a href="/pages/ingredients/creatine-monohydrate" class="btn-review">
+                Read full review →
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 2: MuscleBlaze Whey Protein -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71GKf4CTOSL._SL500_.jpg"
+                alt="MuscleBlaze Whey Protein 1kg"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">💪</span>
+              <span class="rec-score-badge">7.8 / 10</span>
+            </div>
+            <div class="rec-product-name">MuscleBlaze Whey Protein 1 kg</div>
+            <div class="rec-product-sub">Whey Concentrate · 33 servings · FSSAI ✓</div>
+            <div class="rec-product-price">₹1,599 <span>Amazon.in · Apr 2026</span></div>
+            <div class="rec-product-actions">
+              <a
+                href="https://www.amazon.in/s?k=MuscleBlaze+whey+protein+1kg&tag=nakedcompound-21"
+                class="btn-buy"
+                target="_blank" rel="noopener sponsored"
+                aria-label="Buy MuscleBlaze Whey on Amazon India"
+              >
+                Buy on Amazon.in →
+              </a>
+              <a href="/pages/ingredients/whey-protein" class="btn-review">
+                Read full review →
+              </a>
+            </div>
+          </div>
+
+          <!-- Product 3: Himalayan Organics Omega-3 -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71BbDn5ZDQL._SL500_.jpg"
+                alt="Himalayan Organics Omega-3 Fish Oil"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">🐟</span>
+              <span class="rec-score-badge">7.2 / 10</span>
+            </div>
+            <div class="rec-product-name">Himalayan Organics Omega-3 Fish Oil</div>
+            <div class="rec-product-sub">EPA 180mg · DHA 120mg · FSSAI ✓</div>
+            <div class="rec-product-price">₹699 <span>Amazon.in · Apr 2026</span></div>
+            <div class="rec-product-actions">
+              <a
+                href="https://www.amazon.in/s?k=Himalayan+Organics+omega-3+fish+oil&tag=nakedcompound-21"
+                class="btn-buy"
+                target="_blank" rel="noopener sponsored"
+                aria-label="Buy Himalayan Organics Omega-3 on Amazon India"
+              >
+                Buy on Amazon.in →
+              </a>
+              <a href="/pages/ingredients/omega-3-fish-oil" class="btn-review">
+                Read full review →
+              </a>
+            </div>
+          </div>
+
+        </div><!-- /.sidebar-block recommended -->
+
+        <!-- Related blog posts -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">More field notes</div>
+
+          <a href="/blog/bengaluru-pharmacy-bottom-drawer" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 1 Apr</span>
+              <span class="sri-title">What we found in the bottom drawer of a Bengaluru pharmacy.</span>
+            </div>
+          </a>
+
+          <a href="/blog/fish-oil-bottle-labels" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 11 Mar</span>
+              <span class="sri-title">Three things every fish-oil bottle tells you, and one it hides.</span>
+            </div>
+          </a>
+
+          <a href="/blog/behind-score-hk-vitals-iron" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Behind the score · 11 Apr</span>
+              <span class="sri-title">How a 7.5 became a 6.1 in 14 days.</span>
+            </div>
+          </a>
+
+        </div><!-- /.sidebar-block related -->
+
+        <!-- Score legend note -->
+        <div class="sidebar-block" style="padding: var(--s-4);">
+          <p style="font-size:12px;color:var(--ink-muted);margin:0;line-height:1.6;">
+            <strong style="color:var(--ink-soft);">Scores explained.</strong>
+            Our 5-dimension rubric covers evidence quality, dosage confidence, India market fit,
+            safety profile, and label accuracy. Each 0–10. Unweighted average.
+            <a href="/pages/methodology" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">
+              Full methodology →
+            </a>
+          </p>
+        </div>
+
+      </aside><!-- /sidebar -->
+
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
 
   <!-- ── Newsletter ───────────────────────────────────────────── -->
   <section class="newsletter">
