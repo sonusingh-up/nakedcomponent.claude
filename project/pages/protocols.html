@@ -3,14 +3,37 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Protocols — Naked Compound</title>
-  <meta name="description" content="Goal-specific supplement protocols, priced in INR." />
+  <title>Supplement Protocols — Goal-Specific Stacks Priced in INR | Naked Compound</title>
+  <meta name="description" content="19 goal-specific supplement protocols for Indian lifters, runners, and desk workers. Evidence-backed, priced in INR, built for what's available on Amazon India. From ₹820/month." />
+  <link rel="canonical" href="https://www.nakedcompound.in/pages/protocols" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../style.css?v=3" />
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+
+  <style>
+    /* ── Live-page card indicator ── */
+    .protocol.is-live { cursor: pointer; }
+    .protocol.is-live:hover { border-color: var(--accent); }
+    .protocol.is-live:hover h3 { color: var(--accent); }
+    .live-badge {
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em;
+      text-transform: uppercase; padding: 2px 7px; border-radius: var(--r-pill);
+      font-weight: 600; background: color-mix(in oklab,#5ba672 20%,white);
+      color: #2d5a3a; display: inline-block; margin-left: 6px;
+      vertical-align: middle; position: relative; top: -1px;
+    }
+    /* ── Filter state ── */
+    .protocol.hidden { display: none; }
+    /* ── No results ── */
+    .no-protocols { display: none; text-align: center; padding: var(--s-9) 0; color: var(--ink-muted); }
+    .no-protocols.visible { display: block; }
+    .no-protocols p { font-size: 16px; margin-bottom: 6px; }
+    .no-protocols span { font-family: var(--font-mono); font-size: 13px; }
+  </style>
+
   <script>window.PAGE_KEY = 'protocols';</script>
 </head>
 <body>
@@ -19,9 +42,13 @@
 <main>
   <section class="page-head">
     <div class="container">
-      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="research.html">Research</a><span class="sep">/</span><span>Protocols</span></div>
+      <div class="crumbs">
+        <a href="../index.html">Home</a><span class="sep">/</span>
+        <a href="research.html">Research</a><span class="sep">/</span>
+        <span>Protocols</span>
+      </div>
       <h1>Goal-specific stacks, <em>priced in INR.</em></h1>
-      <p class="kicker">Each protocol is a full plan, not a shopping list. We show exactly why every item is in it, and what to drop first when budget is tight.</p>
+      <p class="kicker">Each protocol is a full plan, not a shopping list. We show exactly why every item is in it, what evidence supports each compound, and what to drop first when budget is tight.</p>
       <div class="meta-chips">
         <span class="meta-chip"><span class="dot"></span>19 protocols across 6 goals</span>
         <span class="meta-chip"><span class="dot"></span>From ₹820 / month</span>
@@ -31,106 +58,231 @@
   </section>
 
   <section class="section container" style="padding-top: var(--s-7);">
+
+    <!-- ── Filter bar ── -->
     <div class="filter-bar">
-      <label class="filter-search">
+      <label class="filter-search" aria-label="Search protocols">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" placeholder="Search protocols by goal — “sleep”, “focus”, “fat loss”…" />
+        <input type="search" id="protocolSearch" placeholder='Search — "sleep", "muscle", "budget", "vegetarian"…' autocomplete="off" />
       </label>
-      <div class="filter-group">
-        <button class="active">All goals</button>
-        <button>Beginner</button>
-        <button>Muscle</button>
-        <button>Sleep</button>
-        <button>Focus</button>
+      <div class="filter-group" id="goalFilters">
+        <button class="active" data-goal="all">All goals</button>
+        <button data-goal="beginner">Beginner</button>
+        <button data-goal="muscle">Muscle</button>
+        <button data-goal="sleep">Sleep</button>
+        <button data-goal="focus">Focus</button>
+        <button data-goal="budget">Budget</button>
       </div>
-      <button class="select-pill">
-        Sort: Lowest cost
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
-      </button>
     </div>
 
-    <div class="protocol-grid">
-      <article class="protocol">
+    <!-- ── No results ── -->
+    <div class="no-protocols" id="noProtocols">
+      <p>No protocols match your search.</p>
+      <span>Try a shorter term — goal, ingredient, or condition.</span>
+    </div>
+
+    <!-- ── Protocol grid ── -->
+    <div class="protocol-grid" id="protocolGrid">
+
+      <!-- ═══ LIVE PAGES ═══════════════════════════════════════════════ -->
+
+      <article class="protocol is-live"
+        data-goal="beginner"
+        data-search="whey creatine vitamin d multivitamin beginner foundation india nakpro carbamide forte methylcobalamin zinc bisglycinate d3 k2">
         <span class="protocol-tag">Beginner</span>
-        <h3>The Foundation Stack</h3>
-        <p>Whey, creatine, vitamin D, and a tested multivitamin. The four things most young Indian lifters should start with before anything else.</p>
-        <div class="protocol-foot"><div class="price">₹1,840<span> / month</span></div><a href="../protocols/foundation-stack.html" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <h3>The Foundation Stack <span class="live-badge">Live ↗</span></h3>
+        <p>Whey protein, creatine monohydrate, Vitamin D3+K2, and a form-verified multivitamin. The four evidence-backed compounds every Indian beginner should start with — before anything else. Full brand comparison tables and two cost tiers included.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,840<span> / month</span></div>
+          <a href="/protocols/foundation-stack" class="btn btn-secondary">Read full protocol<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol is-live"
+        data-goal="muscle"
+        data-search="muscle lean mass whey casein creatine omega-3 70kg 5kg 16 weeks protein bulking mass gainer chicken rice anabolic">
         <span class="protocol-tag">Muscle gain</span>
-        <h3>Lean Mass Builder</h3>
-        <p>For the 70kg lifter chasing 5kg in 16 weeks. Protein-forward, creatine-saturated, and built around chicken-rice realities.</p>
-        <div class="protocol-foot"><div class="price">₹3,260<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <h3>Lean Mass Builder <span class="live-badge">Live ↗</span></h3>
+        <p>For the 70kg lifter chasing 5kg of lean mass in 16 weeks. Whey post-workout, micellar casein pre-sleep (Snijders 2015), creatine, and omega-3 EPA+DHA. Built around chicken-rice realities, not California meal plans.</p>
+        <div class="protocol-foot">
+          <div class="price">₹3,260<span> / month</span></div>
+          <a href="/protocols/lean-mass-builder" class="btn btn-secondary">Read full protocol<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
-        <span class="protocol-tag">Sleep</span>
-        <h3>Wind-Down Protocol</h3>
-        <p>Magnesium glycinate, L-theanine, and a low-dose melatonin window — with a pre-bed routine matched to IST commute patterns.</p>
-        <div class="protocol-foot"><div class="price">₹1,120<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+
+      <article class="protocol is-live"
+        data-goal="sleep"
+        data-search="sleep magnesium glycinate theanine melatonin IST commute wind down recovery late night india 10pm midnight desk worker">
+        <span class="protocol-tag">Sleep &amp; Recovery</span>
+        <h3>Wind-Down Protocol <span class="live-badge">Live ↗</span></h3>
+        <p>Magnesium glycinate, L-theanine, and a low-dose melatonin window — with caffeine cutoff tables recalibrated for the 9:30pm arrival and 11:30pm sleep target of the average Indian desk worker in Delhi, Mumbai, or Bengaluru.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,120<span> / month</span></div>
+          <a href="/protocols/wind-down-protocol-ist" class="btn btn-secondary">Read full protocol<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <!-- ═══ COMING SOON ═══════════════════════════════════════════════ -->
+
+      <article class="protocol"
+        data-goal="focus"
+        data-search="focus desk work tyrosine rhodiola omega-3 caffeine energy cognition 9 hour no crash">
         <span class="protocol-tag">Focus</span>
         <h3>Desk Athlete Stack</h3>
-        <p>For the 9-hour desk day. L-tyrosine, rhodiola, omega-3, and one smart caffeine window — clarity without the 4pm crash.</p>
-        <div class="protocol-foot"><div class="price">₹2,090<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>For the 9-hour desk day. L-tyrosine, rhodiola (standardised 3% rosavins), omega-3, and one smart caffeine window — clarity without the 4pm crash or a racing pulse at 10pm.</p>
+        <div class="protocol-foot">
+          <div class="price">₹2,090<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="muscle"
+        data-search="recovery post workout tart cherry electrolytes protein timing rest day doms">
         <span class="protocol-tag">Recovery</span>
         <h3>Post-Lift Protocol</h3>
-        <p>The minimum effective set for recovery between hard sessions: protein timing, electrolytes, tart cherry, and what to drop on rest days.</p>
-        <div class="protocol-foot"><div class="price">₹1,540<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>The minimum effective set for recovery between hard sessions: protein timing, electrolytes, tart cherry (Montmorency), and what to drop entirely on rest days without losing any benefit.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,540<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="beginner"
+        data-search="vegetarian vegan b12 iron creatine plant protein pea rice leucine pure veg india dal roti">
         <span class="protocol-tag">Vegetarian</span>
         <h3>The Pure-Veg Stack</h3>
-        <p>For lifters and runners on a vegetarian diet: B12, iron, creatine, and a plant-protein blend that actually hits the leucine threshold.</p>
-        <div class="protocol-foot"><div class="price">₹2,280<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>For vegetarian lifters and runners: B12 (methylcobalamin), iron (bisglycinate), creatine, and a pea+rice protein blend that crosses the leucine threshold for maximal muscle protein synthesis.</p>
+        <div class="protocol-foot">
+          <div class="price">₹2,280<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="focus"
+        data-search="endurance running 10k half marathon iron electrolytes heat india cardio fueling beet">
         <span class="protocol-tag">Endurance</span>
         <h3>Long Run Protocol</h3>
-        <p>For 10K-to-half-marathon runners. Iron status, electrolyte balance, and the pre/intra/post fueling cadence calibrated for Indian heat.</p>
-        <div class="protocol-foot"><div class="price">₹1,960<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>For 10K-to-half-marathon runners. Iron status, electrolyte balance, and the pre/intra/post fueling cadence calibrated for Indian heat and humidity — not Scottish drizzle conditions.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,960<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="muscle"
+        data-search="fat loss cut cutting protein caloric deficit muscle retention lean supplement">
         <span class="protocol-tag">Fat loss</span>
         <h3>Cut Without Crashing</h3>
-        <p>What to add (not subtract) when calories drop. Protein retention, training-fuel salvage, and the supplements that don't survive the cut.</p>
-        <div class="protocol-foot"><div class="price">₹1,690<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>What to add — not subtract — when calories drop. Protein retention, training-fuel salvage, and the three supplements that don't survive the cut (and exactly why they're dropped).</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,690<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="focus"
+        data-search="cognitive exam study omega-3 b complex magnesium caffeine schedule brain india students JEE UPSC NEET">
         <span class="protocol-tag">Cognitive</span>
         <h3>Exam-Block Stack</h3>
-        <p>For 8–12 week study blocks. Omega-3, B-complex, magnesium, and a measured caffeine schedule — built to taper down, not up.</p>
-        <div class="protocol-foot"><div class="price">₹1,280<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>For 8–12 week study blocks. Omega-3, B-complex (P5P form), magnesium, and a measured caffeine schedule built to taper down, not escalate — for JEE, UPSC, NEET, or any high-demand exam period.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,280<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="beginner"
+        data-search="joint health collagen vitamin c fish oil curcumin boswellia knee mobility lifter 30s 40s aging">
         <span class="protocol-tag">Joint health</span>
         <h3>Knee Maintenance</h3>
-        <p>For lifters in their 30s and 40s. Collagen with vitamin C timing, fish oil, and the curcumin question — with what we'd skip.</p>
-        <div class="protocol-foot"><div class="price">₹2,610<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>For lifters in their 30s and 40s. UC-II collagen (not calcium caseinate), Boswellia 5-Loxin, fish oil, and the curcumin question — including what we'd skip and what the RCT evidence actually says.</p>
+        <div class="protocol-foot">
+          <div class="price">₹2,610<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="sleep"
+        data-search="stress cortisol ashwagandha ksm-66 theanine magnesium anxiety adaptogen calm india hpa axis">
         <span class="protocol-tag">Stress</span>
         <h3>The Cortisol-Down Stack</h3>
-        <p>Ashwagandha (KSM-66), L-theanine, magnesium, and what we'd actually swap if you can't sleep instead of just feeling "calmer".</p>
-        <div class="protocol-foot"><div class="price">₹1,820<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>KSM-66 ashwagandha, L-theanine, and magnesium glycinate — with the mechanism for why each targets cortisol at a different pathway, and what to swap if you can't sleep on it.</p>
+        <div class="protocol-foot">
+          <div class="price">₹1,820<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-      <article class="protocol">
+
+      <article class="protocol"
+        data-goal="budget"
+        data-search="budget cheap affordable minimum effective dose ₹820 floor whey creatine vitamin d india college student">
         <span class="protocol-tag">Budget</span>
         <h3>The ₹820 Floor</h3>
-        <p>The single cheapest protocol we'd still call evidence-based. Whey concentrate, creatine, and vitamin D — and what to add when you can.</p>
-        <div class="protocol-foot"><div class="price">₹820<span> / month</span></div><a href="#" class="btn btn-secondary">View<span aria-hidden="true">→</span></a></div>
+        <p>The cheapest protocol we'd still call evidence-based. Whey concentrate, creatine, and Vitamin D — the non-negotiable three at minimum effective dose. And what to add first as budget grows.</p>
+        <div class="protocol-foot">
+          <div class="price">₹820<span> / month</span></div>
+          <a href="#" class="btn btn-secondary">Coming soon<span aria-hidden="true">→</span></a>
+        </div>
       </article>
-    </div>
+
+    </div><!-- /protocol-grid -->
 
     <div style="text-align:center; margin-top: 40px;">
-      <a href="#" class="ghost-link">Show 7 more<span class="arrow" aria-hidden="true">→</span></a>
+      <p style="font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;">7 more protocols in development</p>
+      <a href="research.html" class="ghost-link">Back to research hub<span class="arrow" aria-hidden="true">→</span></a>
     </div>
   </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+<script>
+(function(){
+  'use strict';
+  const search  = document.getElementById('protocolSearch');
+  const grid    = document.getElementById('protocolGrid');
+  const noRes   = document.getElementById('noProtocols');
+  const cards   = Array.from(grid.querySelectorAll('.protocol'));
+  let activeGoal = 'all';
+
+  // Goal filter tabs
+  document.getElementById('goalFilters').addEventListener('click', e => {
+    const btn = e.target.closest('button[data-goal]');
+    if (!btn) return;
+    document.querySelectorAll('#goalFilters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeGoal = btn.dataset.goal;
+    applyFilters();
+  });
+
+  // Search
+  let debounce;
+  search.addEventListener('input', () => {
+    clearTimeout(debounce);
+    debounce = setTimeout(applyFilters, 150);
+  });
+
+  function applyFilters() {
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(c => {
+      const goalMatch  = activeGoal === 'all' || c.dataset.goal === activeGoal;
+      const searchText = (c.dataset.search || '') + ' ' + (c.querySelector('h3')?.textContent || '').toLowerCase() + ' ' + (c.querySelector('p')?.textContent || '').toLowerCase();
+      const queryMatch = !q || searchText.includes(q);
+      const show = goalMatch && queryMatch;
+      c.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    noRes.classList.toggle('visible', visible === 0);
+  }
+})();
+</script>
 </body>
 </html>
