@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Behind the score: how a 7.5 became a 6.1 in 14 days — Naked Compound</title>
+  <meta name="description" content="A walkthrough of the HK Vitals iron-form change. The brand didn't announce it; we caught it on a routine batch re-test. What our triggers do and where they nearly missed it." />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/behind-score-hk-vitals-iron" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../style.css?v=3" />
+  <link rel="stylesheet" href="../../pages.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>⚗️</text></svg>" />
+
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Behind the score: how a 7.5 became a 6.1 in 14 days.",
+        "description": "A walkthrough of the HK Vitals iron-form change. The brand didn't announce it; we caught it on a routine batch re-test. What our triggers do and where they nearly missed it.",
+        "url": "https://www.nakedcompound.in/blog/behind-score-hk-vitals-iron",
+        "datePublished": "2026-04-11",
+        "dateModified": "2026-04-11",
+        "author": {
+          "@type": "Organization",
+          "name": "Naked Compound Research Team",
+          "url": "https://www.nakedcompound.in/pages/authors"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naked Compound",
+          "url": "https://www.nakedcompound.in"
+        },
+        "mainEntityOfPage": "https://www.nakedcompound.in/blog/behind-score-hk-vitals-iron",
+        "articleSection": "Behind the score",
+        "keywords": "HK Vitals iron, ferrous bisglycinate, ferrous sulphate, supplement reformulation, iron deficiency India, supplement score change"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nakedcompound.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Behind the score: how a 7.5 became a 6.1 in 14 days", "item": "https://www.nakedcompound.in/blog/behind-score-hk-vitals-iron" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── Blog hero ─────────────────────────────────────────────── */
+    .blog-hero {
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--line);
+      padding: var(--s-8) 0 var(--s-7);
+    }
+    .blog-hero .container { max-width: 800px; }
+
+    .blog-category-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted);
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-pill); padding: 4px 12px;
+      margin-bottom: var(--s-4);
+    }
+    .blog-category-pill .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #8a6f0e; display: inline-block;
+    }
+
+    .blog-hero h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.2; color: var(--ink);
+      margin: 0 0 var(--s-4);
+    }
+    .blog-hero h1 em { font-style: normal; color: var(--ink-soft); }
+
+    .blog-hero-deck {
+      font-size: 1.05rem; color: var(--ink-soft);
+      line-height: 1.65; max-width: 66ch;
+      margin-bottom: var(--s-5);
+    }
+
+    .blog-meta-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--line); padding-top: var(--s-4);
+    }
+    .blog-meta-row .sep { color: var(--line); }
+
+    .author-byline {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-size: 13.5px; color: var(--ink-soft);
+      margin-top: var(--s-4); text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .author-byline:hover { border-color: var(--ink); color: var(--ink); }
+    .ab-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-soft), var(--butter));
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic; font-size: 15px;
+      color: var(--accent-deep); flex-shrink: 0;
+    }
+    .ab-text span {
+      display: block; font-family: var(--font-mono);
+      font-size: 10.5px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink-muted); margin-top: 1px;
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .blog-body-wrap {
+      max-width: 1160px; margin: 0 auto;
+      padding: var(--s-7) var(--s-5) var(--s-8);
+    }
+    .blog-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: var(--s-7); align-items: start;
+    }
+    .blog-article { min-width: 0; }
+
+    /* ── Sidebar ────────────────────────────────────────────────── */
+    .blog-sidebar { min-width: 0; position: sticky; top: 96px; }
+    .sidebar-block {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); margin-bottom: var(--s-4); overflow: hidden;
+    }
+    .sidebar-block-head {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--line); background: var(--bg);
+    }
+    .rec-product {
+      display: block; text-decoration: none;
+      padding: var(--s-4); border-bottom: 1px solid var(--line);
+      transition: background .12s;
+    }
+    .rec-product:last-of-type { border-bottom: none; }
+    .rec-product:hover { background: var(--bg); }
+    .rec-product-img {
+      width: 100%; aspect-ratio: 16/9; background: var(--bg);
+      border: 1px solid var(--line); border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--s-3); overflow: hidden; position: relative;
+    }
+    .rec-product-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .rec-product-img .img-placeholder { font-size: 2rem; opacity: .35; }
+    .rec-score-badge {
+      position: absolute; top: 8px; right: 8px;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em;
+      background: var(--ink); color: var(--bg);
+      padding: 3px 7px; border-radius: var(--r-pill);
+    }
+    .rec-product-name { font-size: 13.5px; font-weight: 600; color: var(--ink); line-height: 1.35; margin-bottom: 4px; }
+    .rec-product-sub { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--s-3); }
+    .rec-product-price { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: var(--s-3); }
+    .rec-product-price span { font-size: 12px; font-weight: 400; color: var(--ink-muted); margin-left: 4px; }
+    .rec-product-actions { display: flex; flex-direction: column; gap: 7px; }
+    .btn-buy {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 14px; background: var(--accent); color: #fff;
+      border-radius: var(--r-pill); font-size: 12.5px; font-weight: 600;
+      text-decoration: none; transition: opacity .15s;
+    }
+    .btn-buy:hover { opacity: .85; }
+    .btn-review {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 8px 14px; background: transparent; color: var(--ink-soft);
+      border: 1px solid var(--line); border-radius: var(--r-pill);
+      font-size: 12.5px; font-weight: 500; text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-review:hover { border-color: var(--ink); color: var(--ink); }
+    .sidebar-related-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      text-decoration: none; transition: background .12s;
+    }
+    .sidebar-related-item:last-child { border-bottom: none; }
+    .sidebar-related-item:hover { background: var(--bg); }
+    .sri-tag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 3px; display: block; }
+    .sri-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.35; }
+    .sri-dot { width: 6px; height: 6px; border-radius: 50%; background: #8a6f0e; flex-shrink: 0; margin-top: 5px; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
+    }
+
+    /* ── Mobile TOC ─────────────────────────────────────────────── */
+    .mobile-toc { display: none; margin-bottom: var(--s-5); }
+    .mobile-toc summary {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink-soft); cursor: pointer;
+      padding: 12px 16px; background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-md); display: flex; align-items: center;
+      justify-content: space-between; list-style: none; user-select: none;
+    }
+    .mobile-toc summary::-webkit-details-marker { display: none; }
+    .mobile-toc summary::after { content: '↓'; color: var(--ink-muted); font-size: 13px; transition: transform .2s; }
+    .mobile-toc[open] summary::after { transform: rotate(180deg); }
+    .mobile-toc ul { margin: 0; padding: 8px 0; background: var(--bg-elev); border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--r-md) var(--r-md); list-style: none; }
+    .mobile-toc ul li a { display: block; padding: 9px 20px; font-size: 13.5px; color: var(--ink-soft); text-decoration: none; border-left: 2px solid transparent; transition: color .12s, border-color .12s; }
+    .mobile-toc ul li a:hover { color: var(--accent); border-left-color: var(--accent); }
+    @media (max-width: 700px) { .mobile-toc { display: block; } }
+
+    /* ── Score comparison ───────────────────────────────────────── */
+    .score-compare {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-4); margin: var(--s-5) 0;
+    }
+    .score-card {
+      border: 1px solid var(--line); border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .score-card-head {
+      padding: 12px 16px; font-family: var(--font-mono);
+      font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+    .score-card-head.old { background: #f4f0e8; color: #8a6f0e; }
+    .score-card-head.new { background: #fef0f0; color: #9a3030; }
+    .score-card-big {
+      padding: var(--s-4) var(--s-5);
+      display: flex; align-items: baseline; gap: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+    .score-num {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 3rem; font-weight: 400; line-height: 1; color: var(--ink);
+    }
+    .score-denom { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+    .score-rows { padding: 0; }
+    .score-row-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 16px; border-bottom: 1px solid var(--line); gap: var(--s-3);
+    }
+    .score-row-item:last-child { border-bottom: none; }
+    .score-row-label { font-size: 13px; color: var(--ink-soft); }
+    .score-row-val {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      padding: 2px 8px; border-radius: var(--r-pill);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      color: var(--ink); flex-shrink: 0;
+    }
+    .score-row-val.changed { background: #fef0f0; border-color: #f0c4c4; color: #9a3030; }
+    .score-row-val.hi { background: #eef7ee; border-color: #c4dcc4; color: #3a7a4a; }
+
+    /* ── Score delta strip ──────────────────────────────────────── */
+    .delta-strip {
+      background: #fef0f0; border: 1px solid #f0c4c4;
+      border-radius: var(--r-lg); padding: var(--s-4) var(--s-5);
+      margin: var(--s-5) 0; display: flex; align-items: center;
+      gap: var(--s-4); flex-wrap: wrap;
+    }
+    .delta-big {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2.4rem; font-style: italic; color: #9a3030; line-height: 1;
+      flex-shrink: 0;
+    }
+    .delta-text h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0 0 3px; }
+    .delta-text p  { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+    /* ── Iron form comparison table ────────────────────────────── */
+    .table-scroll {
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--line); border-radius: var(--r-lg);
+      margin: var(--s-5) 0;
+    }
+    .table-scroll table { min-width: 520px; }
+    .findings-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .findings-table thead { background: var(--bg-elev); }
+    .findings-table th {
+      padding: 10px 14px; text-align: left;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted); border-bottom: 1px solid var(--line); white-space: nowrap;
+    }
+    .findings-table td { padding: 11px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); vertical-align: top; }
+    .findings-table tr:last-child td { border-bottom: none; }
+    .findings-table .sku-name { font-weight: 500; color: var(--ink); }
+    .findings-table .flag-red   { color: #c94040; font-weight: 500; }
+    .findings-table .flag-green { color: #3a7a4a; font-weight: 500; }
+    .findings-table .flag-amber { color: #c07e14; font-weight: 500; }
+
+    /* ── Callout ────────────────────────────────────────────────── */
+    .callout {
+      display: flex; gap: var(--s-4); background: var(--bg-elev);
+      border: 1px solid var(--line); border-radius: var(--r-lg);
+      padding: var(--s-4) var(--s-5); margin: var(--s-5) 0;
+    }
+    .callout .ico {
+      font-size: 1.25rem; flex-shrink: 0; width: 36px; height: 36px;
+      border-radius: var(--r-md); display: flex; align-items: center;
+      justify-content: center; background: var(--bg); border: 1px solid var(--line);
+    }
+    .callout h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+    .callout p  { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+
+    /* ── Pull quote ─────────────────────────────────────────────── */
+    .pull-quote {
+      border-left: 3px solid #8a6f0e;
+      padding: var(--s-3) var(--s-5); margin: var(--s-6) 0;
+      background: var(--butter); border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+    .pull-quote p {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--ink); margin: 0; line-height: 1.5;
+    }
+
+    /* ── Timeline ───────────────────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; margin: var(--s-5) 0; }
+    .tl-item { display: grid; grid-template-columns: 120px 1fr; gap: var(--s-4); position: relative; padding-bottom: var(--s-4); }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-date {
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--ink-muted); padding-top: 4px;
+      text-align: right;
+    }
+    .tl-body {
+      padding: var(--s-3) var(--s-4); border-left: 2px solid var(--line);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      background: var(--bg-elev); position: relative;
+    }
+    .tl-body::before {
+      content: ''; position: absolute; left: -7px; top: 14px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--bg-elev); border: 2px solid var(--line);
+    }
+    .tl-item.event .tl-body { border-left-color: #8a6f0e; }
+    .tl-item.event .tl-body::before { border-color: #8a6f0e; background: #f4f0e8; }
+    .tl-item.alert .tl-body { border-left-color: #c94040; }
+    .tl-item.alert .tl-body::before { border-color: #c94040; background: #fef0f0; }
+    .tl-body strong { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .tl-body p { font-size: 13px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+    /* ── Ref list ───────────────────────────────────────────────── */
+    .ref-list { list-style: none; padding: 0; margin: 0; }
+    .ref-list li { display: flex; gap: var(--s-3); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); flex-shrink: 0; padding-top: 2px; min-width: 20px; }
+    .ref-list a { color: var(--accent); }
+
+    /* ── Newsletter ─────────────────────────────────────────────── */
+    .blog-newsletter {
+      background: var(--bg-elev); border-top: 1px solid var(--line);
+      padding: var(--s-7) 0; text-align: center;
+    }
+    .blog-newsletter h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.6rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin-bottom: var(--s-2);
+    }
+    .blog-newsletter p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: var(--s-4); }
+    .newsletter-form { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px; border: 1px solid var(--line);
+      border-radius: var(--r-pill); background: var(--bg); color: var(--ink);
+      font-size: 14px; width: 260px; outline: none; transition: border-color .15s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form button {
+      padding: 10px 22px; background: var(--ink); color: var(--bg);
+      border: none; border-radius: var(--r-pill);
+      font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s;
+    }
+    .newsletter-form button:hover { opacity: .8; }
+
+    /* ── Prose ──────────────────────────────────────────────────── */
+    .blog-article h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.45rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin: var(--s-7) 0 var(--s-3); padding-top: var(--s-2);
+    }
+    .blog-article h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin: var(--s-5) 0 var(--s-2); letter-spacing: -.01em; }
+    .blog-article p { font-size: 1rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: var(--s-4); }
+    .blog-article p strong { color: var(--ink); }
+    .blog-article sup a { font-family: var(--font-mono); font-size: 10px; color: var(--accent); text-decoration: none; vertical-align: super; line-height: 0; }
+    .blog-article sup a:hover { text-decoration: underline; }
+
+    @media (max-width: 700px) {
+      .blog-body-wrap { padding: var(--s-5) var(--s-4) var(--s-7); }
+      .score-compare { grid-template-columns: 1fr; }
+      .tl-item { grid-template-columns: 80px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Behind the score
+      </div>
+
+      <h1>Behind the score: <em>how a 7.5 became a 6.1 in 14 days.</em></h1>
+
+      <p class="blog-hero-deck">
+        A walkthrough of the HK Vitals iron-form change. The brand didn't announce it.
+        We caught it on a routine batch re-test. What our triggers do, where they nearly
+        missed it, and what it means if you're taking this product right now.
+      </p>
+
+      <div class="blog-meta-row">
+        <span>11 April 2026</span>
+        <span class="sep">·</span>
+        <span>7 min read</span>
+        <span class="sep">·</span>
+        <span>Behind the score</span>
+      </div>
+
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">N</div>
+        <div class="ab-text">
+          Naked Compound Research Team
+          <span>Reviewed by the full team · Authors page →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Article + Sidebar ─────────────────────────────────────── -->
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <article class="blog-article">
+
+        <details class="mobile-toc">
+          <summary>On this page</summary>
+          <ul>
+            <li><a href="#original-score">The original 7.5</a></li>
+            <li><a href="#what-changed">What changed</a></li>
+            <li><a href="#why-it-matters">Why the form matters</a></li>
+            <li><a href="#how-we-caught-it">How we caught it</a></li>
+            <li><a href="#new-score">The new 6.1 — dimension by dimension</a></li>
+            <li><a href="#what-to-do">What to do if you're on this product</a></li>
+            <li><a href="#refs">References</a></li>
+          </ul>
+        </details>
+
+        <!-- ── INTRO ─────────────────────────────────────────── -->
+        <p>
+          "Behind the score" posts exist because supplements change and scores should
+          change with them. Most of the time a re-score is a small correction — a serving
+          size update, a label reformat, a minor price shift. Occasionally it's something
+          more substantive. The HK Vitals Iron + Folic Acid capsule is the latter.
+        </p>
+
+        <p>
+          Between the 24th of March and the 7th of April 2026, HealthKart quietly
+          reformulated the iron compound in this product. The label elemental iron figure
+          stayed the same. The serving size stayed the same. The price stayed the same.
+          What changed was the salt — from ferrous bisglycinate chelate to ferrous sulphate —
+          and that single substitution, invisible to a reader comparing two bottles on a
+          pharmacy shelf, is clinically meaningful enough to drop the score by 1.4 points.
+        </p>
+
+        <!-- ── ORIGINAL SCORE ─────────────────────────────────── -->
+        <h2 id="original-score">The original 7.5</h2>
+
+        <p>
+          Our initial review of HK Vitals Iron + Folic Acid (60 capsules, ₹249 MRP)
+          was published in January 2026. At the time, the product used ferrous bisglycinate
+          chelate at 27mg elemental iron per capsule, paired with 400mcg folic acid.
+          The bisglycinate form scored well on our ingredient form dimension: it is a
+          chelated compound with substantially better bioavailability than sulphate forms,
+          and significantly lower rates of GI adverse effects — constipation and nausea
+          being the most commonly reported issues with iron supplementation in Indian
+          women. <sup><a href="#ref-1">1</a></sup>
+        </p>
+
+        <p>
+          The folic acid dose was appropriate for general supplementation (the ICMR
+          recommended intake for non-pregnant adults is 200mcg, with 400–800mcg for women
+          planning pregnancy). <sup><a href="#ref-2">2</a></sup> Label honesty was reasonable —
+          the bisglycinate form was named on the label, the elemental iron amount was clearly
+          stated, and the FSSAI licence number was present. The original score:
+        </p>
+
+        <div class="score-compare">
+          <div class="score-card">
+            <div class="score-card-head old">Original score — Jan 2026</div>
+            <div class="score-card-big">
+              <span class="score-num">7.5</span>
+              <span class="score-denom">/ 10</span>
+            </div>
+            <div class="score-rows">
+              <div class="score-row-item">
+                <span class="score-row-label">Clinical dose</span>
+                <span class="score-row-val hi">8.0</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Ingredient form</span>
+                <span class="score-row-val hi">8.5</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Third-party purity</span>
+                <span class="score-row-val">6.0</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Value per gram</span>
+                <span class="score-row-val hi">7.5</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Label honesty</span>
+                <span class="score-row-val hi">7.5</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="score-card">
+            <div class="score-card-head new">Revised score — Apr 2026</div>
+            <div class="score-card-big">
+              <span class="score-num" style="color:#9a3030;">6.1</span>
+              <span class="score-denom">/ 10</span>
+            </div>
+            <div class="score-rows">
+              <div class="score-row-item">
+                <span class="score-row-label">Clinical dose</span>
+                <span class="score-row-val hi">8.0</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Ingredient form</span>
+                <span class="score-row-val changed">4.0</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Third-party purity</span>
+                <span class="score-row-val">6.0</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Value per gram</span>
+                <span class="score-row-val hi">7.5</span>
+              </div>
+              <div class="score-row-item">
+                <span class="score-row-label">Label honesty</span>
+                <span class="score-row-val changed">4.0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="delta-strip">
+          <div class="delta-big">−1.4</div>
+          <div class="delta-text">
+            <h4>Score dropped on two dimensions only</h4>
+            <p>Ingredient form: 8.5 → 4.0. Label honesty: 7.5 → 4.0. Dose, purity, and value are unchanged. The entire drop is attributable to a single formulation decision and the brand's choice not to disclose it.</p>
+          </div>
+        </div>
+
+        <!-- ── WHAT CHANGED ───────────────────────────────────── -->
+        <h2 id="what-changed">What changed</h2>
+
+        <p>
+          The April batch of HK Vitals Iron + Folic Acid lists the iron compound as
+          <strong>"Ferrous Sulphate (providing 27mg elemental iron)"</strong> in the
+          ingredient declaration. The January batch listed
+          <strong>"Ferrous Bisglycinate Chelate (providing 27mg elemental iron)"</strong>.
+          The elemental iron number is identical. The compound delivering it is not.
+        </p>
+
+        <div class="table-scroll">
+          <table class="findings-table" style="border-radius:0;">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Ferrous bisglycinate chelate</th>
+                <th>Ferrous sulphate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sku-name">Relative bioavailability</td>
+                <td class="flag-green">2–4× higher than sulphate <sup><a href="#ref-3">3</a></sup></td>
+                <td class="flag-amber">Reference standard (1×)</td>
+              </tr>
+              <tr>
+                <td class="sku-name">GI adverse effects</td>
+                <td class="flag-green">Low — chelate form bypasses free-iron GI irritation</td>
+                <td class="flag-red">High — constipation in 15–30% of users at therapeutic doses <sup><a href="#ref-4">4</a></sup></td>
+              </tr>
+              <tr>
+                <td class="sku-name">Food interaction</td>
+                <td class="flag-green">Can be taken with food — absorption less affected</td>
+                <td class="flag-red">Significantly inhibited by phytates (dal, roti, rice) and calcium</td>
+              </tr>
+              <tr>
+                <td class="sku-name">Cost to manufacturer</td>
+                <td class="flag-red">3–5× more expensive per kg of elemental iron delivered</td>
+                <td class="flag-green">Commodity pricing — lowest cost iron salt</td>
+              </tr>
+              <tr>
+                <td class="sku-name">RCT evidence in Indian women</td>
+                <td class="flag-green">Suresh et al. 2012 — equivalent serum ferritin with better tolerance <sup><a href="#ref-5">5</a></sup></td>
+                <td class="flag-amber">Extensive global data — standard of care benchmark</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ── WHY IT MATTERS ─────────────────────────────────── -->
+        <h2 id="why-it-matters">Why the form matters for the Indian context specifically</h2>
+
+        <p>
+          India has a specific absorption problem that makes iron form more important here
+          than in most Western populations. The dominant Indian dietary pattern — lentils,
+          whole wheat roti, rice — is high in phytates, oxalates, and polyphenols,
+          all of which competitively inhibit non-haem iron absorption. A meta-analysis
+          of iron bioavailability in South Asian dietary contexts found that phytate
+          intake in the Indian population can reduce non-haem iron absorption by
+          50–75%. <sup><a href="#ref-6">6</a></sup>
+        </p>
+
+        <div class="pull-quote">
+          <p>"The same elemental iron dose produces a meaningfully different clinical outcome depending on the salt — and the Indian diet makes that gap wider, not smaller."</p>
+        </div>
+
+        <p>
+          Ferrous sulphate's absorption is substantially inhibited by this dietary pattern.
+          Ferrous bisglycinate chelate, bound to glycine amino acids, is absorbed through
+          a peptide transport pathway that partially bypasses competitive phytate inhibition.
+          For a product specifically marketed to Indian women — the label copy references
+          "hair, skin, and energy" in a segment with documented high anaemia prevalence —
+          the form choice is not a minor technical detail. It is the difference between a
+          product that will likely raise serum ferritin in a typical Indian dietary context
+          and one that may or may not, depending on what the user ate two hours before.
+        </p>
+
+        <!-- ── HOW WE CAUGHT IT ───────────────────────────────── -->
+        <h2 id="how-we-caught-it">How we caught it — and nearly didn't</h2>
+
+        <p>
+          Our re-test triggers are batch-based. When Amazon's listing for a reviewed product
+          shows a new batch number or a new manufacturer date, it flags for label comparison.
+          In this case, a reader in Pune purchased a unit from a physical pharmacy and noticed
+          the ingredient list read differently. They emailed us the photograph on April 4th.
+          Without that reader email, our batch trigger would have caught this on our scheduled
+          quarterly re-test — but not until June.
+        </p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">Jan 2026</div>
+            <div class="tl-body">
+              <strong>Original review published — score 7.5</strong>
+              <p>Batch Mar-25. Ferrous bisglycinate chelate confirmed on label. FSSAI licence present.</p>
+            </div>
+          </div>
+          <div class="tl-item event">
+            <div class="tl-date">24 Mar</div>
+            <div class="tl-body">
+              <strong>New batch manufactured</strong>
+              <p>Batch code change visible on Amazon listing. Our trigger flagged it — but ingredient comparison was queued, not immediate.</p>
+            </div>
+          </div>
+          <div class="tl-item alert">
+            <div class="tl-date">4 Apr</div>
+            <div class="tl-body">
+              <strong>Reader photograph received</strong>
+              <p>Pune reader emails label photograph. Ingredient list now reads "Ferrous Sulphate." No announcement from HealthKart.</p>
+            </div>
+          </div>
+          <div class="tl-item alert">
+            <div class="tl-date">7 Apr</div>
+            <div class="tl-body">
+              <strong>Re-score initiated — score drops to 6.1</strong>
+              <p>Two units purchased independently (Amazon and a Bengaluru pharmacy). Both confirm ferrous sulphate. Score updated same day.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">11 Apr</div>
+            <div class="tl-body">
+              <strong>This post published</strong>
+              <p>HealthKart has not responded to our request for comment sent on April 7th.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          The near-miss is worth naming directly. Our batch trigger caught the batch change
+          but queued it rather than escalating it immediately. The queue logic assumes that
+          a batch change is most likely a manufacturing date rollover, not a formulation
+          change — which is true in aggregate but wrong in this case. We are adjusting the
+          trigger to escalate ingredient-list changes as high-priority regardless of whether
+          other label elements changed. That adjustment goes live in May.
+        </p>
+
+        <div class="callout">
+          <div class="ico">⚙️</div>
+          <div>
+            <h4>What our re-test system currently does</h4>
+            <p>
+              We monitor batch codes on Amazon listings for all reviewed products. When a new
+              batch appears, the product joins a comparison queue. Priority is currently assigned
+              by time since last review and score tier — products scoring below 6.0 are re-checked
+              more frequently than high-scorers. The HK Vitals iron product was not in the high-priority
+              tier at the time of the formulation change. It is now.
+            </p>
+          </div>
+        </div>
+
+        <!-- ── NEW SCORE ──────────────────────────────────────── -->
+        <h2 id="new-score">The new 6.1 — dimension by dimension</h2>
+
+        <h3>Ingredient form: 8.5 → 4.0</h3>
+        <p>
+          This is the primary driver. Ferrous sulphate is not a bad iron supplement — it is the
+          global reference standard, used in clinical trials, prescribed by physicians, and
+          effective when taken correctly. Our scoring, however, is calibrated for the Indian
+          consumer context: someone buying this product from Amazon or a pharmacy,
+          likely with food (given the product's positioning around daily use), in a
+          dietary pattern high in absorption inhibitors. In that context, ferrous
+          bisglycinate chelate is materially superior. The form downgrade is a genuine
+          efficacy reduction, not a theoretical one.
+        </p>
+
+        <h3>Label honesty: 7.5 → 4.0</h3>
+        <p>
+          The label correctly names the new compound — "ferrous sulphate" is there in the
+          ingredient list if you read carefully. What drops the score is the absence of any
+          disclosure that the product changed. The front-of-pack copy is unchanged. The product
+          name is unchanged. The price is unchanged. A consumer who reviewed this product in
+          January 2026, decided it was worth buying based on the bisglycinate form, and set up
+          a subscription or auto-refill, is now receiving a different product without knowing it.
+          That is a label honesty failure regardless of technical compliance. The compound is
+          named; the change is not.
+        </p>
+
+        <h3>Dose, purity, value: unchanged</h3>
+        <p>
+          27mg elemental iron is within the clinically studied range for supplementation
+          (the WHO recommended daily allowance for pre-menopausal women in high-phytate
+          diets is 29.4–58.8mg per day depending on bioavailability assumptions). <sup><a href="#ref-7">7</a></sup>
+          The dose score holds. Purity evidence has not changed — no new COA, but no new
+          contamination concern either. At ₹249 for 60 capsules, value-per-unit is
+          reasonable for an iron supplement; the form downgrade doesn't change the unit
+          economics, only the clinical yield.
+        </p>
+
+        <!-- ── WHAT TO DO ─────────────────────────────────────── -->
+        <h2 id="what-to-do">What to do if you're currently taking this product</h2>
+
+        <p>
+          Ferrous sulphate at 27mg elemental iron is not harmful. If you have been
+          taking HK Vitals Iron and your ferritin is rising appropriately (the most
+          reliable indicator is a serum ferritin test at 8–12 weeks of supplementation),
+          there is no urgent reason to switch. The question is whether your specific
+          dietary pattern and GI tolerance allow ferrous sulphate to work.
+        </p>
+
+        <div class="callout">
+          <div class="ico">📋</div>
+          <div>
+            <h4>Practical guidance</h4>
+            <p>
+              If you are taking this with food (as most people do), on a predominantly
+              plant-based diet, or have previously experienced constipation or nausea
+              from iron supplements — switch to a ferrous bisglycinate product.
+              Himalayan Organics Iron Bisglycinate (score: 7.9) and Carbamide Forte
+              Iron Bisglycinate (score: 7.6) are the two products currently scoring
+              highest in this category on our rubric. Both are available on Amazon.in
+              within a similar price range. If you are consuming this product on an empty
+              stomach and your diet includes haem iron sources (chicken, fish, meat),
+              ferrous sulphate at this dose may still be adequate — but the evidence
+              favours the chelate form regardless.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          We have updated the HK Vitals Iron product page with the new score, the batch
+          boundary (pre-March 24 batches contain bisglycinate; post-March 24 batches
+          contain sulphate), and a note explaining the change. HealthKart has not, as of
+          publication, issued any statement about the reformulation.
+        </p>
+
+        <!-- ── REFS ───────────────────────────────────────────── -->
+        <h2 id="refs">References</h2>
+
+        <ol class="ref-list">
+          <li>
+            <span class="ref-num">[1]</span>
+            <div>Hurrell R. &amp; Egli I. (2010). Iron bioavailability and dietary reference values. <em>American Journal of Clinical Nutrition, 91</em>(5), 1461S–1467S.
+            <a href="https://doi.org/10.3945/ajcn.2010.28674F" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.3945/ajcn.2010.28674F</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[2]</span>
+            <div>ICMR (2020). Nutrient Requirements for Indians — Recommended Dietary Allowances and Estimated Average Requirements. Indian Council of Medical Research, New Delhi. Chapter 5: Vitamins and Minerals.</div>
+          </li>
+          <li>
+            <span class="ref-num">[3]</span>
+            <div>Olivares M. et al. (2004). Bioavailability of iron in milk formula as ferrous bisglycinate chelate is higher than as ferrous sulphate in normal non-anaemic women. <em>Nutrition, 20</em>(2), 177–180.
+            <a href="https://doi.org/10.1016/j.nut.2003.10.003" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1016/j.nut.2003.10.003</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[4]</span>
+            <div>Tolkien Z.J. et al. (2015). Ferrous sulfate supplementation causes significant gastrointestinal side-effects in adults: a systematic review and meta-analysis. <em>PLOS ONE, 10</em>(2).
+            <a href="https://doi.org/10.1371/journal.pone.0117383" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1371/journal.pone.0117383</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[5]</span>
+            <div>Suresh S. et al. (2012). Iron bisglycinate chelate and polymaltose iron for the treatment of iron deficiency anaemia in pregnancy — a randomised clinical trial. <em>European Journal of Clinical Nutrition, 66</em>, 1373–1378.
+            <a href="https://doi.org/10.1038/ejcn.2012.140" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1038/ejcn.2012.140</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[6]</span>
+            <div>Thankachan P. et al. (2008). Iron absorption in young Indian women: the interaction of iron status with the influence of tea and ascorbic acid. <em>American Journal of Clinical Nutrition, 87</em>(4), 881–886.
+            <a href="https://doi.org/10.1093/ajcn/87.4.881" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1093/ajcn/87.4.881</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[7]</span>
+            <div>WHO (2004). Vitamin and Mineral Requirements in Human Nutrition, 2nd ed. Chapter 13: Iron. World Health Organization, Geneva.</div>
+          </li>
+        </ol>
+
+        <p style="font-size:13px;color:var(--ink-muted);border-top:1px solid var(--line);padding-top:var(--s-4);margin-top:var(--s-6);">
+          <strong>Affiliate disclosure.</strong> Naked Compound participates in the Amazon Associates India affiliate programme. Some product links earn a small commission at no additional cost to you. Commission does not influence our scores, rankings, or conclusions. Full policy:
+          <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a>
+        </p>
+
+      </article>
+
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="blog-sidebar">
+
+        <!-- Products: this vs alternatives -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Iron supplements — current scores</div>
+
+          <!-- HK Vitals — revised score -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/61t3CabKOtL._SL500_.jpg"
+                alt="HK Vitals Iron + Folic Acid"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">💊</span>
+              <span class="rec-score-badge" style="background:#8a6a15;">6.1 / 10</span>
+            </div>
+            <div class="rec-product-name">HK Vitals Iron + Folic Acid 60 caps</div>
+            <div class="rec-product-sub">Ferrous sulphate · Revised Apr 2026</div>
+            <div class="rec-product-price">₹249 <span>/ 60 caps · Amazon.in</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=HK+Vitals+Iron+Folic+Acid&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">View on Amazon.in →</a>
+              <a href="/pages/ingredients/iron" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+          <!-- Himalayan Organics — better alternative -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71pXN5bVWEL._SL500_.jpg"
+                alt="Himalayan Organics Iron Bisglycinate"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">🌿</span>
+              <span class="rec-score-badge" style="background:#3a6b4a;">7.9 / 10</span>
+            </div>
+            <div class="rec-product-name">Himalayan Organics Iron Bisglycinate</div>
+            <div class="rec-product-sub">Ferrous bisglycinate · Better alternative</div>
+            <div class="rec-product-price">₹399 <span>/ 120 tabs · Amazon.in</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=Himalayan+Organics+Iron+Bisglycinate&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">Buy on Amazon.in →</a>
+              <a href="/pages/ingredients/iron" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- What triggers a re-score -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">What triggers a re-score</div>
+          <div style="padding:var(--s-4);">
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;">→</span>
+                Batch code change on Amazon listing
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;">→</span>
+                Reader-reported label discrepancy
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;">→</span>
+                FSSAI licence number change
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-soft);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;">→</span>
+                Price shift &gt;15% without serving size change
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:8px 0;font-size:13px;color:var(--ink-soft);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;">→</span>
+                Scheduled quarterly review (all products)
+              </li>
+            </ul>
+            <a href="/pages/methodology" style="display:block;margin-top:var(--s-3);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;">
+              Full methodology →
+            </a>
+          </div>
+        </div>
+
+        <!-- Related posts -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Related posts</div>
+
+          <a href="/blog/editors-pick-badge" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Methodology · 9 Apr</span>
+              <span class="sri-title">Why we still won't run an "Editor's Pick" badge.</span>
+            </div>
+          </a>
+
+          <a href="/blog/shelf-survey-four-cities-2026" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 14 Apr</span>
+              <span class="sri-title">Three days, four cities, one shopping list.</span>
+            </div>
+          </a>
+
+          <a href="/blog/behind-score-curcumin" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Behind the score · 22 Mar</span>
+              <span class="sri-title">The curcumin row we couldn't agree on.</span>
+            </div>
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
+
+  <!-- Newsletter -->
+  <section class="blog-newsletter">
+    <div class="container" style="max-width:560px;">
+      <h2>Score updates, when they happen.</h2>
+      <p>When a product changes, we re-score it and publish the reasoning. One email, when there is something to say.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="../../nc-site.js"></script>
+
+</body>
+</html>
