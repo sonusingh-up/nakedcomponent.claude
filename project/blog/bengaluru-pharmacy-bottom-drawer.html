@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What we found in the bottom drawer of a Bengaluru pharmacy — Naked Compound</title>
+  <meta name="description" content="Six expired-but-on-sale products, two grey-market import boxes, one unmarked white jar. A short essay on what shelf surveys don't capture." />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/bengaluru-pharmacy-bottom-drawer" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../style.css?v=3" />
+  <link rel="stylesheet" href="../../pages.css" />
+  <link rel="stylesheet" href="blog-components.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>⚗️</text></svg>" />
+
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What we found in the bottom drawer of a Bengaluru pharmacy.",
+        "description": "Six expired-but-on-sale products, two grey-market import boxes, one unmarked white jar. A short essay on what shelf surveys don't capture.",
+        "url": "https://www.nakedcompound.in/blog/bengaluru-pharmacy-bottom-drawer",
+        "datePublished": "2026-04-01",
+        "dateModified": "2026-04-01",
+        "author": {
+          "@type": "Organization",
+          "name": "Naked Compound Research Team",
+          "url": "https://www.nakedcompound.in/pages/authors"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naked Compound",
+          "url": "https://www.nakedcompound.in"
+        },
+        "mainEntityOfPage": "https://www.nakedcompound.in/blog/bengaluru-pharmacy-bottom-drawer",
+        "articleSection": "Field notes",
+        "keywords": "Bengaluru pharmacy supplements, expired supplements India, grey market supplements, FSSAI compliance pharmacy, supplement shelf survey India"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nakedcompound.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.nakedcompound.in/blog" },
+          { "@type": "ListItem", "position": 3, "name": "What we found in the bottom drawer of a Bengaluru pharmacy", "item": "https://www.nakedcompound.in/blog/bengaluru-pharmacy-bottom-drawer" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Field notes — default --cat-color: var(--accent), --cat-bg: var(--accent-soft) */
+
+    /* Inventory log — the bottom drawer contents */
+    .inventory-log {
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      margin: var(--s-5) 0;
+    }
+    .inventory-head {
+      background: var(--bg-elev); padding: var(--s-3) var(--s-5);
+      border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .inventory-head-label {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted);
+    }
+    .inventory-head-count {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--accent); letter-spacing: .04em;
+    }
+    .inventory-item {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: var(--s-4); align-items: start;
+      padding: var(--s-4) var(--s-5);
+      border-bottom: 1px solid var(--line);
+    }
+    .inventory-item:last-child { border-bottom: none; }
+    .inv-num {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted); padding-top: 3px;
+      text-align: right;
+    }
+    .inv-body { min-width: 0; }
+    .inv-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+    .inv-detail { font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+    .inv-flag {
+      display: flex; flex-direction: column; gap: 4px;
+      align-items: flex-end; flex-shrink: 0;
+    }
+    .inv-tag {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: var(--r-pill);
+      white-space: nowrap;
+    }
+    .inv-tag.expired  { background: #fef0f0; color: #9a3030; border: 1px solid #f0c4c4; }
+    .inv-tag.grey     { background: #fef5e7; color: #8a5e0e; border: 1px solid #e8d4a0; }
+    .inv-tag.unlabelled { background: var(--bg-elev); color: var(--ink-muted); border: 1px solid var(--line); }
+    .inv-tag.no-fssai { background: #fef0f0; color: #9a3030; border: 1px solid #f0c4c4; }
+
+    /* Photo grid — field photo placeholders */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--s-3);
+      margin: var(--s-5) 0;
+    }
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; text-align: center; padding: var(--s-3);
+      position: relative; overflow: hidden;
+    }
+    .photo-slot-icon { font-size: 1.6rem; opacity: .5; }
+    .photo-slot-caption {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted); line-height: 1.3;
+    }
+    .photo-slot.has-flag::after {
+      content: attr(data-flag);
+      position: absolute; top: 8px; right: 8px;
+      font-family: var(--font-mono); font-size: 9px;
+      letter-spacing: .06em; text-transform: uppercase;
+      background: #c94040; color: #fff;
+      padding: 2px 6px; border-radius: var(--r-pill);
+    }
+
+    /* Essay block — narrative prose section, slightly indented */
+    .essay-block {
+      border-left: 2px solid var(--line);
+      padding-left: var(--s-5);
+      margin: var(--s-6) 0;
+    }
+    .essay-block p {
+      font-size: 1rem; color: var(--ink-soft);
+      line-height: 1.8; margin-bottom: var(--s-4);
+    }
+    .essay-block p:last-child { margin-bottom: 0; }
+    .essay-block em { font-style: italic; color: var(--ink); }
+
+    /* Observation cards — the three categories of findings */
+    .obs-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-3); margin: var(--s-5) 0;
+    }
+    .obs-card {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-4); min-width: 0;
+    }
+    .obs-count {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 2.5rem; font-weight: 400; font-style: italic;
+      color: var(--ink); line-height: 1; margin-bottom: 4px;
+    }
+    .obs-label {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-2);
+    }
+    .obs-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+    @media (max-width: 700px) {
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .obs-grid   { grid-template-columns: 1fr; }
+      .inventory-item { grid-template-columns: 20px 1fr; }
+      .inv-flag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Field notes
+      </div>
+
+      <h1>What we found in <em>the bottom drawer</em> of a Bengaluru pharmacy.</h1>
+
+      <p class="blog-hero-deck">
+        Six expired-but-on-sale products, two grey-market import boxes, one unmarked
+        white jar. This is a short essay on what shelf surveys don't capture — and
+        why the gap between a structured audit and what actually exists on an Indian
+        pharmacy shelf is larger than we'd like it to be.
+      </p>
+
+      <div class="blog-meta-row">
+        <span>1 April 2026</span>
+        <span class="sep">·</span>
+        <span>8 min read</span>
+        <span class="sep">·</span>
+        <span>Field notes</span>
+      </div>
+
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">N</div>
+        <div class="ab-text">
+          Naked Compound Research Team
+          <span>Reviewed by the full team · Authors page →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Article + Sidebar ─────────────────────────────────────── -->
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <article class="blog-article">
+
+        <details class="mobile-toc">
+          <summary>On this page</summary>
+          <ul>
+            <li><a href="#the-pharmacy">The pharmacy</a></li>
+            <li><a href="#the-shelf">The standard shelf</a></li>
+            <li><a href="#the-drawer">The bottom drawer</a></li>
+            <li><a href="#six-expired">The six expired products</a></li>
+            <li><a href="#grey-market">The grey-market boxes</a></li>
+            <li><a href="#the-jar">The unmarked white jar</a></li>
+            <li><a href="#essay">What surveys don't capture</a></li>
+          </ul>
+        </details>
+
+        <!-- ── THE PHARMACY ───────────────────────────────────── -->
+        <h2 id="the-pharmacy">The pharmacy</h2>
+
+        <p>
+          We won't name it. Not because we want to protect the outlet — the practices we found
+          are worth scrutinising — but because the point of this piece is not to single out
+          one pharmacy. It could be any of several dozen we've walked into in Bengaluru,
+          Mumbai, or Delhi over the past eighteen months. This one happened to have
+          a drawer.
+        </p>
+
+        <p>
+          The location is near a gym-dense residential neighbourhood in south Bengaluru.
+          White tiled interior, a refrigerator humming in the corner for probiotics and
+          eye drops, a glass cabinet behind the counter holding branded OTC medicines,
+          and a freestanding shelf unit near the entrance stocked with supplements.
+          The supplement section is roughly three shelves high, roughly 180cm wide.
+          It faces the door. It is the first thing you see when you walk in.
+          Everything on those three shelves is on our standard survey list.
+          We have been here three times before. The shelf looked familiar.
+        </p>
+
+        <p>
+          The bottom drawer — a pull-out tray beneath the bottom shelf, the kind used
+          to store overflow stock — was partly open. Not our business. Then the buyer
+          noticed a label on a tub in the drawer: a product we'd scored. A different
+          batch from the one on the shelf above. She photographed both, asked
+          the counter staff if the drawer stock was for sale. It was.
+        </p>
+
+        <!-- ── THE STANDARD SHELF ─────────────────────────────── -->
+        <h2 id="the-shelf">The standard shelf — what looked normal</h2>
+
+        <p>
+          The three visible shelves held 34 products across nine brands. By our standard
+          audit criteria — FSSAI licence number visible, net weight in grams stated,
+          active ingredient per serving clearly declared — 29 of 34 passed. That's an
+          83% compliance rate, which is roughly in line with what our four-city survey
+          from April found for general health retail chains: adequate for a market that
+          was largely unregulated five years ago, not adequate for one that sells products
+          with direct health implications.
+        </p>
+
+        <p>
+          What the standard shelf showed us: two domestic whey proteins, a creatine monohydrate
+          from a brand we've reviewed, three multivitamin products, a vitamin D3 sachet
+          brand we've flagged before, two omega-3 capsule products (one with EPA/DHA, one
+          without — both marketed as "omega-3"), and an assortment of single-nutrient
+          capsules. Nothing unusual. A photo essay of that shelf would tell you nothing
+          we haven't already published.
+        </p>
+
+        <div class="photo-grid">
+          <div class="photo-slot">
+            <div class="photo-slot-icon">📸</div>
+            <div class="photo-slot-caption">Visible shelf — top two rows</div>
+          </div>
+          <div class="photo-slot has-flag" data-flag="FSSAI absent">
+            <div class="photo-slot-icon">📸</div>
+            <div class="photo-slot-caption">ALA omega-3 — no EPA/DHA declared</div>
+          </div>
+          <div class="photo-slot">
+            <div class="photo-slot-icon">📸</div>
+            <div class="photo-slot-caption">Bottom shelf — facing units</div>
+          </div>
+        </div>
+
+        <p style="font-size:12.5px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.04em;">
+          ↑ Field photographs on file. Not published to avoid identifying the outlet.
+          Available on request for verified journalists and researchers.
+        </p>
+
+        <!-- ── THE DRAWER ─────────────────────────────────────── -->
+        <h2 id="the-drawer">The bottom drawer</h2>
+
+        <p>
+          The drawer held nine products. Of the nine, three were identical to products
+          visible on the shelf above — overflow stock, presumably. The remaining six were
+          not on the visible shelf at all. They were being stored in the drawer and offered
+          for sale when a customer asked for them by name, or when the facing shelf unit
+          ran low.
+        </p>
+
+        <div class="obs-grid">
+          <div class="obs-card">
+            <div class="obs-count">6</div>
+            <div class="obs-label">Expired — sold on MRP</div>
+            <div class="obs-desc">Best-before dates between September 2025 and January 2026. Survey was conducted in March 2026.</div>
+          </div>
+          <div class="obs-card">
+            <div class="obs-count">2</div>
+            <div class="obs-label">Grey-market imports</div>
+            <div class="obs-desc">No Indian importer details, no FSSAI import licence number, US-format labelling on both boxes.</div>
+          </div>
+          <div class="obs-card">
+            <div class="obs-count">1</div>
+            <div class="obs-label">Unmarked white jar</div>
+            <div class="obs-desc">No brand, no FSSAI number, no batch code, no ingredient list. Handwritten "Creatine" label. ₹420 for what appeared to be 500g.</div>
+          </div>
+        </div>
+
+        <!-- ── SIX EXPIRED ────────────────────────────────────── -->
+        <h2 id="six-expired">The six expired products</h2>
+
+        <p>
+          FSSAI Food Safety and Standards (Labelling and Display) Regulations, 2020,
+          Regulation 3(1)(e), requires that food products bear a "best before or use by"
+          date and prohibits the sale of products past that date. <sup><a href="#ref-1">1</a></sup>
+          Selling expired food products is an offence under Section 26(2)(ii) of the
+          Food Safety and Standards Act, 2006. <sup><a href="#ref-2">2</a></sup>
+          None of this is obscure law. All six products in the drawer were being offered
+          for sale at their full printed MRP.
+        </p>
+
+        <div class="inventory-log">
+          <div class="inventory-head">
+            <span class="inventory-head-label">Drawer contents — expired products</span>
+            <span class="inventory-head-count">6 items · March 2026</span>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">01</span>
+            <div class="inv-body">
+              <div class="inv-name">Whey protein concentrate, 1 kg tub — domestic brand</div>
+              <div class="inv-detail">Best before: Sep 2025. 6 months past expiry. Manufacture date not printed (labelling violation independent of expiry). MRP sticker intact: ₹1,799.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 6 mo</span>
+              <span class="inv-tag no-fssai">Mfg date absent</span>
+            </div>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">02</span>
+            <div class="inv-body">
+              <div class="inv-name">Vitamin D3 60,000 IU sachet box — 30 sachets</div>
+              <div class="inv-detail">Best before: Nov 2025. 4 months past expiry. Vitamin D3 is a fat-soluble vitamin — potency degrades more slowly than water-soluble compounds, but oxidation accelerates post-expiry, particularly for sachet formats that are opened and closed repeatedly.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 4 mo</span>
+            </div>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">03</span>
+            <div class="inv-body">
+              <div class="inv-name">Omega-3 fish oil capsules, 60 ct — domestic brand</div>
+              <div class="inv-detail">Best before: Oct 2025. 5 months past expiry. Oxidation in fish oil is a known quality concern — the TOTOX threshold for acceptable fish oil is &lt;26 (peroxide value + anisidine value). Post-expiry fish oil in non-refrigerated storage routinely exceeds this. This product's category is one where expiry matters more than most.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 5 mo</span>
+            </div>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">04</span>
+            <div class="inv-body">
+              <div class="inv-name">Multivitamin tablets, 60 ct — mid-market brand</div>
+              <div class="inv-detail">Best before: Jan 2026. 2 months past expiry. Water-soluble vitamins (B-complex, C) begin degrading meaningfully after expiry, particularly in humid storage. The drawer had no climate control.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 2 mo</span>
+            </div>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">05</span>
+            <div class="inv-body">
+              <div class="inv-name">Protein bar box, 6-bar pack — known brand</div>
+              <div class="inv-detail">Best before: Dec 2025. 3 months past expiry. The bars appeared physically intact. The concern here is microbial: protein bars in humid, non-refrigerated storage post-expiry are a food safety risk independent of label potency claims.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 3 mo</span>
+            </div>
+          </div>
+
+          <div class="inventory-item">
+            <span class="inv-num">06</span>
+            <div class="inv-body">
+              <div class="inv-name">Probiotic capsules, 30 ct — import brand</div>
+              <div class="inv-detail">Best before: Sep 2025. 6 months past expiry. Live organism products have the steepest post-expiry degradation curve. Colony-forming unit counts in probiotics drop dramatically after the stated shelf life, particularly outside refrigeration. A 6-month-expired probiotic at room temperature may contain a fraction of the declared CFU count.</div>
+            </div>
+            <div class="inv-flag">
+              <span class="inv-tag expired">Expired 6 mo</span>
+              <span class="inv-tag no-fssai">Import — check label</span>
+            </div>
+          </div>
+
+        </div>
+
+        <p>
+          We reported the expired products to the counter staff. The response was that these
+          were "old stock" being kept for "reference." When pressed on why they were visible
+          in the pull-out drawer with pricing stickers, the pharmacist on duty said he would
+          have them removed. We don't know if he did. We didn't return.
+        </p>
+
+        <!-- ── GREY MARKET ────────────────────────────────────── -->
+        <h2 id="grey-market">The two grey-market import boxes</h2>
+
+        <p>
+          Both were products from US supplement brands — one a creatine monohydrate, one
+          a multivitamin. Both had labels in English only, with no Hindi ingredient list.
+          Neither had an Indian importer's name, address, or FSSAI import licence number.
+          Both had US-format nutrition facts panels. One had a California Proposition 65
+          warning on the side panel — a US state-level labelling requirement that has no
+          relevance to Indian regulation and indicates the product had not been prepared
+          for the Indian market.
+        </p>
+
+        <div class="callout">
+          <div class="ico">⚖️</div>
+          <div>
+            <h4>What Indian law requires for imported supplements</h4>
+            <p>
+              FSSAI Food Safety and Standards (Import) Regulations, 2017, Regulation 4,
+              requires that any food product imported for sale in India must be imported
+              by a licensed FSSAI importer and carry that importer's name, address, and
+              FSSAI licence number on the label. Products arriving through informal channels
+              — grey market imports, parallel imports from the US or Singapore, or bulk
+              decanting and local repacking — do not meet this requirement. Their sale
+              is a violation of Regulation 4 regardless of product quality.
+              <sup><a href="#ref-3">3</a></sup>
+            </p>
+          </div>
+        </div>
+
+        <p>
+          The import question matters beyond legality. Products that bypass the formal import
+          channel also bypass whatever customs and import inspection exists. For supplements,
+          that inspection is minimal — but it is the only checkpoint for batch-level issues
+          including contamination, adulteration, or mis-labelling that might have been caught
+          by the exporting country's regulatory process. Grey-market products sidestep it
+          entirely.
+        </p>
+
+        <p>
+          The counter staff, when asked where the boxes came from, said they were purchased
+          from "a supplier in the city." That supplier's name was not available. The products
+          were priced at roughly 35–40% below the Amazon.in MRP for the same items when
+          purchased through legitimate import channels — the spread that typically signals
+          grey-market sourcing.
+        </p>
+
+        <!-- ── THE JAR ─────────────────────────────────────────── -->
+        <h2 id="the-jar">The unmarked white jar</h2>
+
+        <p>
+          This is the one that stays with you.
+        </p>
+
+        <p>
+          It was a plain white HDPE container, roughly 500g capacity by volume, with a
+          printed adhesive label that said: "Creatine Monohydrate" in a bold font, followed
+          by "Net Wt. 500g" and a price handwritten in marker: ₹420. No brand name.
+          No FSSAI licence number. No manufacturing date. No best-before date. No batch
+          code. No ingredient list. No allergen declaration. No address. Nothing that
+          would tell you who made it, when, from what, or where.
+        </p>
+
+        <div class="pull-quote">
+          <p>"There is no labelling violation more complete than a product that provides no information at all. This jar was in compliance with exactly none of the requirements that exist to protect the person buying it."</p>
+        </div>
+
+        <p>
+          We did not purchase it. We photographed it, photographed its label, and asked
+          the pharmacist about its provenance. He said it came from "a gym supplier"
+          and that "many customers prefer it because it's pure." He used the word "pure"
+          sincerely. We are confident he believed it.
+        </p>
+
+        <p>
+          Creatine monohydrate is chemically simple but not immune to adulteration.
+          The most common adulterant in unregulated markets — documented in multiple
+          analyses of grey-market sports nutrition from Southeast Asia and South Asia —
+          is creatinine, the metabolic byproduct of creatine, which is visually
+          indistinguishable from creatine monohydrate, cheaper to produce in unregulated
+          settings, and pharmacologically inert at typical supplementation doses.
+          <sup><a href="#ref-4">4</a></sup> There is no method available to the consumer,
+          and no information on this jar, that would allow anyone to determine whether
+          what they were paying ₹420 for was creatine or its useless metabolite.
+        </p>
+
+        <!-- ── ESSAY ───────────────────────────────────────────── -->
+        <h2 id="essay">What shelf surveys don't capture</h2>
+
+        <div class="essay-block">
+          <p>
+            Our four-city shelf survey, published two weeks after this visit, checked 24
+            products across four retail locations. Every product on our survey list was
+            photographed, every label was audited, every FSSAI number was verified. The
+            methodology is sound. The findings are real. And they are a photograph of the
+            <em>visible shelf</em> — the facing units, the products the store wants you
+            to see, the stock that's been recently rotated and is within its shelf life.
+          </p>
+
+          <p>
+            What they don't capture: the drawer. The back room. The supplier's tote bag
+            that arrived last Tuesday. The products a customer can get "if you ask."
+            Structured shelf surveys are sampling exercises, and the sample they take is
+            the best-case sample — the curated front-of-shelf presentation that the
+            retailer has reason to maintain correctly. The overflow, the old stock,
+            the informal supplier relationship — these exist in every retail environment,
+            and they are not visible to anyone who walks in with a clipboard and a
+            pre-specified list of SKUs.
+          </p>
+
+          <p>
+            We are not concluding from one pharmacy that the Indian supplement retail
+            market is broadly dangerous. That would be a different kind of methodological
+            error. What we are concluding is narrower: that the floor of the Indian retail
+            supplement market — the worst of what is available, not the average — is
+            considerably lower than structured surveys imply. A buyer who reaches past
+            the facing shelf and into what's available "if you ask" is in a different
+            risk environment than the one our audit numbers describe.
+          </p>
+
+          <p>
+            The pharmacist was not malicious. He was, by every indication, a reasonably
+            careful person running a busy retail operation who had accumulated stock he
+            hadn't fully rotated, sourced some products from informal channels because
+            the margin was better, and stocked an unlabelled product because his gym
+            customers asked for it and he trusted the supplier. None of these are
+            exceptional behaviours. They are ordinary retail behaviours in a sector
+            where the regulatory floor is low, enforcement is sparse, and the customer
+            who knows to ask what's in the jar before paying for it is rare.
+          </p>
+
+          <p>
+            The buyer paid for the omega-3, which was in date. She left everything else
+            in the drawer.
+          </p>
+        </div>
+
+        <!-- ── REFS ───────────────────────────────────────────── -->
+        <h2 id="refs">References</h2>
+
+        <ol class="ref-list">
+          <li>
+            <span class="ref-num">[1]</span>
+            <div>Food Safety and Standards (Labelling and Display) Regulations, 2020. Regulation 3(1)(e) — Mandatory declaration of best before or use by date. Food Safety and Standards Authority of India.
+            <a href="https://www.fssai.gov.in/upload/uploadfiles/files/Labelling_Display_Regulations_26_09_2020.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">fssai.gov.in</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[2]</span>
+            <div>Food Safety and Standards Act, 2006. Section 26(2)(ii) — Prohibition on manufacture, distribution, or sale of misbranded, sub-standard, or unsafe food. Ministry of Law and Justice, Government of India.</div>
+          </li>
+          <li>
+            <span class="ref-num">[3]</span>
+            <div>Food Safety and Standards (Import) Regulations, 2017. Regulation 4 — Conditions for import of food articles. Food Safety and Standards Authority of India.
+            <a href="https://www.fssai.gov.in/upload/uploadfiles/files/Regulations_Import_15_12_2017.pdf" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">fssai.gov.in</a></div>
+          </li>
+          <li>
+            <span class="ref-num">[4]</span>
+            <div>Mathews NM (2018). Prohibited contaminants in dietary supplements. <em>Sports Health, 10</em>(1):19–30. Review of adulteration patterns in sports nutrition products, including creatinine substitution in grey-market creatine.
+            <a href="https://doi.org/10.1177/1941738117727736" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1177/1941738117727736</a></div>
+          </li>
+        </ol>
+
+        <p class="affiliate-note">
+          <strong>Affiliate disclosure.</strong> Naked Compound participates in the Amazon Associates India affiliate programme. Some product links earn a small commission at no additional cost to you. Commission does not influence our scores, rankings, or conclusions. Full policy:
+          <a href="/pages/conflicts-policy">conflicts-policy</a>
+        </p>
+
+      </article>
+
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="blog-sidebar">
+
+        <!-- FSSAI quick check -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">4-second shelf check</div>
+          <div style="padding:var(--s-4);">
+            <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;margin:0 0 var(--s-3);">
+              Before purchasing any supplement in physical retail, verify these four things:
+            </p>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>
+                <span style="font-size:13px;color:var(--ink-soft);line-height:1.45;">FSSAI licence number is visible — not in 6pt type on a side flap.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>
+                <span style="font-size:13px;color:var(--ink-soft);line-height:1.45;">Manufacturing date and best-before date are both present.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>
+                <span style="font-size:13px;color:var(--ink-soft);line-height:1.45;">Net weight in grams is stated — not "per serving" only.</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:10px;padding:9px 0;">
+                <span style="color:#3a7a4a;font-weight:700;flex-shrink:0;margin-top:1px;">✓</span>
+                <span style="font-size:13px;color:var(--ink-soft);line-height:1.45;">Imported products have an Indian importer name and FSSAI import licence number.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Recommended products — verified, FSSAI-compliant -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Verified — buy with confidence</div>
+
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71YugvyYSgL._SL500_.jpg"
+                alt="AS-IT-IS Nutrition Creatine Monohydrate"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">🧪</span>
+              <span class="rec-score-badge" style="background:#3a6b4a;">8.2 / 10</span>
+            </div>
+            <div class="rec-product-name">AS-IT-IS Creatine Monohydrate 500g</div>
+            <div class="rec-product-sub">FSSAI ✓ · Mfg date ✓ · Label honest</div>
+            <div class="rec-product-price">₹749 <span>/ Amazon.in · Apr 2026</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=AS-IT-IS+creatine+monohydrate+500g&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">Buy on Amazon.in →</a>
+              <a href="/pages/ingredients/creatine-monohydrate" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71pVltc07tL._SL1500_.jpg"
+                alt="Optimum Nutrition Gold Standard Whey"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">💪</span>
+              <span class="rec-score-badge" style="background:#3a6b4a;">8.9 / 10</span>
+            </div>
+            <div class="rec-product-name">ON Gold Standard Whey 2lb</div>
+            <div class="rec-product-sub">Buy from official Amazon storefront only</div>
+            <div class="rec-product-price">₹4,999 <span>/ Amazon.in · Apr 2026</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=Optimum+Nutrition+Gold+Standard+Whey&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">Buy on Amazon.in →</a>
+              <a href="/pages/ingredients/whey-protein" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Related field notes -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">More field notes</div>
+
+          <a href="/blog/shelf-survey-four-cities-2026" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 14 Apr</span>
+              <span class="sri-title">Three days, four cities, one shopping list — what 2026's shelf actually looks like.</span>
+            </div>
+          </a>
+
+          <a href="/blog/fish-oil-bottle-labels" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 11 Mar</span>
+              <span class="sri-title">Three things every fish-oil bottle tells you, and one it hides.</span>
+            </div>
+          </a>
+
+          <a href="/blog/behind-score-hk-vitals-iron" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Behind the score · 11 Apr</span>
+              <span class="sri-title">How a 7.5 became a 6.1 in 14 days.</span>
+            </div>
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
+
+  <!-- Newsletter -->
+  <section class="blog-newsletter">
+    <div class="container" style="max-width:560px;">
+      <h2>Field reports, when they're done.</h2>
+      <p>No digest. No weekly roundup. One email per piece — shelf surveys, score revisions, field notes. When we have something to say.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="../../nc-site.js"></script>
+
+</body>
+</html>
