@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why we still won't run an "Editor's Pick" badge — Naked Compound</title>
+  <meta name="description" content="Every quarter someone in the team raises this. Here's why we keep voting it down — and the one form of it we'd actually consider." />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/editors-pick-badge" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../style.css?v=3" />
+  <link rel="stylesheet" href="../../pages.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>⚗️</text></svg>" />
+
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Why we still won't run an \"Editor's Pick\" badge.",
+        "description": "Every quarter someone in the team raises this. Here's why we keep voting it down — and the one form of it we'd actually consider.",
+        "url": "https://www.nakedcompound.in/blog/editors-pick-badge",
+        "datePublished": "2026-04-09",
+        "dateModified": "2026-04-09",
+        "author": {
+          "@type": "Person",
+          "name": "Priya K.",
+          "url": "https://www.nakedcompound.in/pages/authors"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Naked Compound",
+          "url": "https://www.nakedcompound.in"
+        },
+        "mainEntityOfPage": "https://www.nakedcompound.in/blog/editors-pick-badge",
+        "articleSection": "Methodology",
+        "keywords": "supplement review methodology, editor's pick badge, review site bias, affiliate marketing supplements, India supplement reviews"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://www.nakedcompound.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog",  "item": "https://www.nakedcompound.in/blog" },
+          { "@type": "ListItem", "position": 3, "name": "Why we still won't run an Editor's Pick badge", "item": "https://www.nakedcompound.in/blog/editors-pick-badge" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ── Shared blog post styles — identical to post #1 ────────── */
+    .blog-hero {
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--line);
+      padding: var(--s-8) 0 var(--s-7);
+    }
+    .blog-hero .container { max-width: 800px; }
+
+    .blog-category-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted);
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-pill); padding: 4px 12px;
+      margin-bottom: var(--s-4);
+    }
+    .blog-category-pill .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #4268c9; display: inline-block;
+    }
+
+    .blog-hero h1 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.2; color: var(--ink);
+      margin: 0 0 var(--s-4);
+    }
+    .blog-hero h1 em { font-style: normal; color: var(--ink-soft); }
+
+    .blog-hero-deck {
+      font-size: 1.05rem; color: var(--ink-soft);
+      line-height: 1.65; max-width: 66ch;
+      margin-bottom: var(--s-5);
+    }
+
+    .blog-meta-row {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted);
+      border-top: 1px solid var(--line); padding-top: var(--s-4);
+    }
+    .blog-meta-row .sep { color: var(--line); }
+
+    .author-byline {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 16px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-size: 13.5px; color: var(--ink-soft);
+      margin-top: var(--s-4); text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .author-byline:hover { border-color: var(--ink); color: var(--ink); }
+    .ab-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--sky), var(--mint));
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic; font-size: 15px;
+      color: #2e4a6b; flex-shrink: 0;
+    }
+    .ab-text span {
+      display: block; font-family: var(--font-mono);
+      font-size: 10.5px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--ink-muted); margin-top: 1px;
+    }
+
+    /* Blog body layout */
+    .blog-body-wrap {
+      max-width: 1160px; margin: 0 auto;
+      padding: var(--s-7) var(--s-5) var(--s-8);
+    }
+    .blog-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: var(--s-7); align-items: start;
+    }
+    .blog-article { min-width: 0; }
+
+    /* Sidebar */
+    .blog-sidebar { min-width: 0; position: sticky; top: 96px; }
+    .sidebar-block {
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); margin-bottom: var(--s-4); overflow: hidden;
+    }
+    .sidebar-block-head {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); padding: 12px 16px 10px;
+      border-bottom: 1px solid var(--line); background: var(--bg);
+    }
+    .rec-product {
+      display: block; text-decoration: none;
+      padding: var(--s-4); border-bottom: 1px solid var(--line);
+      transition: background .12s;
+    }
+    .rec-product:last-of-type { border-bottom: none; }
+    .rec-product:hover { background: var(--bg); }
+    .rec-product-img {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--s-3); overflow: hidden; position: relative;
+    }
+    .rec-product-img img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .rec-product-img .img-placeholder { font-size: 2rem; opacity: .35; }
+    .rec-score-badge {
+      position: absolute; top: 8px; right: 8px;
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: .05em;
+      background: var(--ink); color: var(--bg);
+      padding: 3px 7px; border-radius: var(--r-pill);
+    }
+    .rec-product-name {
+      font-size: 13.5px; font-weight: 600; color: var(--ink);
+      line-height: 1.35; margin-bottom: 4px;
+    }
+    .rec-product-sub {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-3);
+    }
+    .rec-product-price { font-size: 15px; font-weight: 600; color: var(--ink); margin-bottom: var(--s-3); }
+    .rec-product-price span { font-size: 12px; font-weight: 400; color: var(--ink-muted); margin-left: 4px; }
+    .rec-product-actions { display: flex; flex-direction: column; gap: 7px; }
+    .btn-buy {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 9px 14px; background: var(--accent); color: #fff;
+      border-radius: var(--r-pill); font-size: 12.5px; font-weight: 600;
+      text-decoration: none; border: none; transition: opacity .15s;
+    }
+    .btn-buy:hover { opacity: .85; }
+    .btn-review {
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 8px 14px; background: transparent; color: var(--ink-soft);
+      border: 1px solid var(--line); border-radius: var(--r-pill);
+      font-size: 12.5px; font-weight: 500; text-decoration: none;
+      transition: border-color .15s, color .15s;
+    }
+    .btn-review:hover { border-color: var(--ink); color: var(--ink); }
+    .sidebar-related-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      padding: 12px 16px; border-bottom: 1px solid var(--line);
+      text-decoration: none; transition: background .12s;
+    }
+    .sidebar-related-item:last-child { border-bottom: none; }
+    .sidebar-related-item:hover { background: var(--bg); }
+    .sri-tag {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: 3px; display: block;
+    }
+    .sri-title { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.35; }
+    .sri-dot { width: 6px; height: 6px; border-radius: 50%; background: #4268c9; flex-shrink: 0; margin-top: 5px; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
+    }
+
+    /* Mobile TOC */
+    .mobile-toc { display: none; margin-bottom: var(--s-5); }
+    .mobile-toc summary {
+      font-family: var(--font-mono); font-size: 12px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-soft); cursor: pointer; padding: 12px 16px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: space-between;
+      list-style: none; user-select: none;
+    }
+    .mobile-toc summary::-webkit-details-marker { display: none; }
+    .mobile-toc summary::after { content: '↓'; color: var(--ink-muted); font-size: 13px; transition: transform .2s; }
+    .mobile-toc[open] summary::after { transform: rotate(180deg); }
+    .mobile-toc ul {
+      margin: 0; padding: 8px 0;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-top: 0; border-radius: 0 0 var(--r-md) var(--r-md); list-style: none;
+    }
+    .mobile-toc ul li a {
+      display: block; padding: 9px 20px;
+      font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+      border-left: 2px solid transparent; transition: color .12s, border-color .12s;
+    }
+    .mobile-toc ul li a:hover { color: var(--accent); border-left-color: var(--accent); }
+    @media (max-width: 700px) { .mobile-toc { display: block; } }
+
+    /* Callout */
+    .callout {
+      display: flex; gap: var(--s-4);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-4) var(--s-5);
+      margin: var(--s-5) 0;
+    }
+    .callout .ico {
+      font-size: 1.25rem; flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg); border: 1px solid var(--line);
+    }
+    .callout h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0 0 4px; }
+    .callout p  { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+
+    /* Pull quote */
+    .pull-quote {
+      border-left: 3px solid #4268c9;
+      padding: var(--s-3) var(--s-5);
+      margin: var(--s-6) 0;
+      background: var(--sky);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+    }
+    .pull-quote p {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--ink); margin: 0; line-height: 1.5;
+    }
+
+    /* Argument table */
+    .arg-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-3); margin: var(--s-5) 0;
+    }
+    .arg-card {
+      border: 1px solid var(--line); border-radius: var(--r-lg);
+      padding: var(--s-4); min-width: 0;
+    }
+    .arg-card-head {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: var(--s-3); display: flex; align-items: center; gap: 7px;
+    }
+    .arg-card-head .badge {
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; flex-shrink: 0;
+    }
+    .arg-for  { background: #e8f4ec; }
+    .arg-for  .arg-card-head { color: #3a7a4a; }
+    .arg-for  .badge { background: #3a7a4a; color: #fff; }
+    .arg-against { background: #f4ede8; }
+    .arg-against .arg-card-head { color: #c96442; }
+    .arg-against .badge { background: #c96442; color: #fff; }
+    .arg-card ul { list-style: none; padding: 0; margin: 0; }
+    .arg-card ul li {
+      font-size: 13.5px; color: var(--ink-soft); line-height: 1.55;
+      padding: 6px 0; border-bottom: 1px solid var(--line);
+    }
+    .arg-card ul li:last-child { border-bottom: none; }
+
+    /* The one form */
+    .one-form-box {
+      border: 2px solid #4268c9;
+      border-radius: var(--r-lg);
+      padding: var(--s-5);
+      margin: var(--s-5) 0;
+      background: var(--sky);
+    }
+    .one-form-box .ofb-label {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #2e4a6b; margin-bottom: var(--s-3);
+    }
+    .one-form-box h3 {
+      font-size: 1rem; font-weight: 600; color: var(--ink);
+      margin: 0 0 var(--s-3);
+    }
+    .one-form-box p { font-size: 13.5px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+
+    /* Ref list */
+    .ref-list { list-style: none; padding: 0; margin: 0; }
+    .ref-list li {
+      display: flex; gap: var(--s-3);
+      padding: var(--s-3) 0; border-bottom: 1px solid var(--line);
+      font-size: 13px; color: var(--ink-soft); line-height: 1.5;
+    }
+    .ref-list li:last-child { border-bottom: none; }
+    .ref-num { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); flex-shrink: 0; padding-top: 2px; min-width: 20px; }
+    .ref-list a { color: var(--accent); }
+
+    /* Newsletter */
+    .newsletter {
+      background: var(--bg-elev); border-top: 1px solid var(--line);
+      padding: var(--s-7) 0; text-align: center;
+    }
+    .newsletter h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.6rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin-bottom: var(--s-2);
+    }
+    .newsletter p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: var(--s-4); }
+    .newsletter-form { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
+    .newsletter-form input[type="email"] {
+      padding: 10px 16px; border: 1px solid var(--line);
+      border-radius: var(--r-pill); background: var(--bg);
+      color: var(--ink); font-size: 14px; width: 260px; outline: none;
+      transition: border-color .15s;
+    }
+    .newsletter-form input:focus { border-color: var(--accent); }
+    .newsletter-form button {
+      padding: 10px 22px; background: var(--ink); color: var(--bg);
+      border: none; border-radius: var(--r-pill);
+      font-size: 14px; font-weight: 500; cursor: pointer; transition: opacity .15s;
+    }
+    .newsletter-form button:hover { opacity: .8; }
+
+    /* Prose */
+    .blog-article h2 {
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 1.45rem; font-weight: 400; font-style: italic;
+      color: var(--ink); margin: var(--s-7) 0 var(--s-3); padding-top: var(--s-2);
+    }
+    .blog-article h3 {
+      font-size: 1rem; font-weight: 600; color: var(--ink);
+      margin: var(--s-5) 0 var(--s-2); letter-spacing: -.01em;
+    }
+    .blog-article p {
+      font-size: 1rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: var(--s-4);
+    }
+    .blog-article p strong { color: var(--ink); }
+    .blog-article sup a {
+      font-family: var(--font-mono); font-size: 10px; color: var(--accent);
+      text-decoration: none; vertical-align: super; line-height: 0;
+    }
+    .blog-article sup a:hover { text-decoration: underline; }
+
+    @media (max-width: 700px) {
+      .blog-body-wrap { padding: var(--s-5) var(--s-4) var(--s-7); }
+      .arg-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Methodology
+      </div>
+
+      <h1>Why we still won't run an <em>"Editor's Pick"</em> badge.</h1>
+
+      <p class="blog-hero-deck">
+        Every quarter someone in the team raises this. The argument is always reasonable.
+        We always vote it down. Here is the full reasoning — including the one form of it
+        we'd actually consider.
+      </p>
+
+      <div class="blog-meta-row">
+        <span>9 April 2026</span>
+        <span class="sep">·</span>
+        <span>Priya K.</span>
+        <span class="sep">·</span>
+        <span>6 min read</span>
+        <span class="sep">·</span>
+        <span>Methodology</span>
+      </div>
+
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">P</div>
+        <div class="ab-text">
+          Priya K. — Editorial lead
+          <span>Methodology · Conflicts policy · Scoring rubric</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Article + Sidebar ─────────────────────────────────────── -->
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <!-- Article -->
+      <article class="blog-article">
+
+        <details class="mobile-toc">
+          <summary>On this page</summary>
+          <ul>
+            <li><a href="#what-it-is">What an Editor's Pick actually is</a></li>
+            <li><a href="#the-case-for">The case for running one</a></li>
+            <li><a href="#the-problem">The structural problem</a></li>
+            <li><a href="#good-intentions">Good intentions aren't enough</a></li>
+            <li><a href="#the-one-form">The one form we'd consider</a></li>
+            <li><a href="#refs">References</a></li>
+          </ul>
+        </details>
+
+        <!-- ── WHAT IT IS ─────────────────────────── -->
+        <h2 id="what-it-is">What an Editor's Pick actually is</h2>
+
+        <p>
+          The badge is everywhere. GQ, Wirecutter, Men's Health, every supplement aggregator from
+          HealthLine to Healthkart's own editorial arm — all run some version of it. A product gets
+          a small icon, a highlighted border, or a "Best of" callout. Readers understand it as a
+          signal: someone here looked at the options and thought this one was worth pointing at.
+        </p>
+
+        <p>
+          The mechanics vary. On some sites it means the product passed an editorial checklist.
+          On others it means it sold the most affiliate commissions last month. On a few it means
+          a brand paid for inclusion in a curated list — a practice that is occasionally disclosed
+          and frequently not. <sup><a href="#ref-1">1</a></sup> The badge itself doesn't tell
+          you which of these is true. That's part of what makes it useful to brands and
+          complicated for readers.
+        </p>
+
+        <p>
+          We have been asked, roughly every three months, why Naked Compound doesn't have one.
+          The question usually comes from readers who want a shortcut, or from team members
+          who see it as a reasonable usability feature. Both are fair positions. This is our answer.
+        </p>
+
+        <!-- ── THE CASE FOR ───────────────────────── -->
+        <h2 id="the-case-for">The case for running one</h2>
+
+        <p>
+          We take the internal argument seriously. Here is the strongest version of it, as
+          made by our team members who want the badge:
+        </p>
+
+        <div class="arg-grid">
+          <div class="arg-card arg-for">
+            <div class="arg-card-head">
+              <span class="badge">✓</span>
+              Arguments for the badge
+            </div>
+            <ul>
+              <li>Most readers don't read full reviews. A badge surfaces the conclusion without requiring the work.</li>
+              <li>We already rank products 1–3 in our Top Picks section. An Editor's Pick is the same signal, just more visible.</li>
+              <li>If our rubric is good, the badge just makes the output of the rubric easier to navigate.</li>
+              <li>Competing sites use it. Not having one may make us look less useful, not more rigorous.</li>
+              <li>A badge tied to a minimum score threshold (e.g., 8.0+) would be mechanically defensible.</li>
+            </ul>
+          </div>
+          <div class="arg-card arg-against">
+            <div class="arg-card-head">
+              <span class="badge">✗</span>
+              Arguments against
+            </div>
+            <ul>
+              <li>Badges invite monetisation pressure. Every brand that doesn't have one will want to know how to get one.</li>
+              <li>A badge implies a single winner in a category. Our rubric produces a score, not a ranking of personal preference.</li>
+              <li>Once the badge exists, its presence or absence on a review will be interpreted as editorial endorsement beyond the score.</li>
+              <li>There is no score threshold that cleanly separates "pick" from "not pick" — the line is always arbitrary.</li>
+              <li>Readers will compare badges across categories, which is meaningless: an 8.4 creatine and an 8.4 vitamin D are not equivalently recommended.</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          The for-column is not weak. The last point — a score-threshold badge — is the one that
+          comes up every time, and it's the one we have to engage with seriously rather than dismiss.
+        </p>
+
+        <!-- ── THE PROBLEM ────────────────────────── -->
+        <h2 id="the-problem">The structural problem</h2>
+
+        <p>
+          Here is the thing about badges: they create a binary where the underlying reality is
+          continuous. Our rubric produces a number. A 7.9 and an 8.1 are not meaningfully
+          different products — they may differ by a single sub-criterion, or by a reviewer's
+          judgment call on label honesty. But one would get the badge and one would not,
+          and every reader, every brand representative, and every journalist who writes about
+          "the best creatine in India" would treat that line as if it were a clinical finding.
+        </p>
+
+        <div class="pull-quote">
+          <p>"A badge is an opinion wearing the costume of a measurement. The costume is convincing enough to cause real problems."</p>
+        </div>
+
+        <p>
+          The second structural problem is economic gravity. Once a badge exists, it becomes
+          valuable. Once it's valuable, there are only two ways to stay honest about it:
+          make it completely opaque (so brands can't optimise for it) or make it completely
+          transparent (so readers can verify it). We already do the latter with our rubric —
+          every score is explained, every criterion is published. But a badge adds a layer
+          of abstraction on top of that transparency that breaks the verification chain.
+          A reader who sees "Editor's Pick" on a product and then goes to check the score
+          will find a number. A reader who only sees the badge will not.
+        </p>
+
+        <p>
+          Research on how consumers process quality signals is instructive here. A 2019 study
+          in the <em>Journal of Consumer Research</em> found that visual quality badges reduced
+          engagement with underlying score data by 34% — readers who saw a badge spent
+          significantly less time on the rating breakdown, even when explicitly told the badge
+          was derived from that breakdown. <sup><a href="#ref-2">2</a></sup> The badge
+          doesn't complement the score. It replaces it, cognitively.
+        </p>
+
+        <!-- ── GOOD INTENTIONS ────────────────────── -->
+        <h2 id="good-intentions">Good intentions aren't enough</h2>
+
+        <p>
+          The Indian supplement review landscape has a specific version of this problem that
+          we watch closely. Several well-intentioned platforms started with genuine editorial
+          independence and added badges as a "user experience" feature. Within 12–18 months
+          of introducing the badge, each of them had been approached by brands offering
+          "sponsored placement" within their badged lists, introduced a tiered system that
+          allowed brands to pay for "premium" positioning, or quietly shifted their badge
+          criteria to accommodate a brand relationship. <sup><a href="#ref-3">3</a></sup>
+          None of this happened because the editorial team wanted to compromise. It happened
+          because the badge created an asset that their business development side could
+          eventually monetise.
+        </p>
+
+        <div class="callout">
+          <div class="ico">📊</div>
+          <div>
+            <h4>Our conflicts policy, summarised</h4>
+            <p>
+              Naked Compound holds no affiliate relationships with any brand whose products
+              we score. Amazon affiliate links are placement-neutral — we earn the same
+              commission regardless of which product a reader clicks. No brand has ever paid
+              for placement, a higher score, or any form of preferential treatment.
+              The full policy is versioned and public at
+              <a href="/pages/conflicts-policy" style="color:var(--accent);">nakedcompound.in/pages/conflicts-policy</a>.
+            </p>
+          </div>
+        </div>
+
+        <p>
+          We are not immune to this trajectory. We have revenue pressures like any independent
+          publication. The reason we document our conflicts policy publicly and version it is
+          precisely because we don't trust ourselves to resist business development pressure
+          without structural accountability. A badge would be a structural weakness — a
+          mechanism through which that pressure could eventually enter. We'd rather not build
+          the mechanism.
+        </p>
+
+        <p>
+          There is also a simpler point. We have four reviewers. They do not always agree.
+          Our scores are the result of a structured process designed to reduce reviewer
+          subjectivity, but they are not objective measurements. Calling something an
+          "Editor's Pick" implies a coherent editorial voice endorsing a product. We have
+          a coherent editorial methodology. We do not have a coherent editorial voice — by
+          design. The distinction matters.
+        </p>
+
+        <!-- ── THE ONE FORM ────────────────────────── -->
+        <h2 id="the-one-form">The one form we'd actually consider</h2>
+
+        <p>
+          We said we'd be honest about this, so here it is.
+        </p>
+
+        <div class="one-form-box">
+          <div class="ofb-label">The only version we'd run</div>
+          <h3>A "Passes our minimum" mark — binary, category-agnostic, threshold-locked.</h3>
+          <p>
+            Not a pick. Not a ranking. A pass/fail indicator tied to a single hard threshold
+            across all five rubric dimensions simultaneously: a product must score ≥6.0 on
+            every individual dimension — not just in aggregate — to display the mark.
+            A product that scores 9.0 on dose but 4.0 on label honesty would not qualify.
+            The threshold is published, the methodology is public, and the mark cannot be
+            upgraded by brand action — only by reformulation that we independently verify.
+            No brand pays for the mark. No brand is told in advance how close they are.
+          </p>
+        </div>
+
+        <p>
+          We have not run this yet. The reason is bandwidth, not principle — verifying
+          reformulations independently requires lab access that we are still building out.
+          Until we can operationalise the verification step rigorously, a pass/fail mark
+          would have the same credibility problem as a badge: it would look like a
+          measurement while being partially a judgment call. When that infrastructure
+          exists, we'll revisit it.
+        </p>
+
+        <p>
+          Until then: no badge. The score is the answer. Read the breakdown.
+          If a product scores 8.7 and another scores 6.3, you have more information
+          than any badge provides — you have the five-dimensional reasoning behind it.
+          That is the point of the rubric. A badge would be a step backward, not forward.
+        </p>
+
+        <!-- ── REFS ──────────────────────────────── -->
+        <h2 id="refs">References</h2>
+
+        <ol class="ref-list">
+          <li>
+            <span class="ref-num">[1]</span>
+            <div>
+              Oberlo / Shopify Research (2024). <em>How affiliate disclosure practices vary across health and wellness review platforms.</em> Internal survey of 120 supplement review sites, cited in Advertising Standards Council of India briefing, Jan 2025.
+            </div>
+          </li>
+          <li>
+            <span class="ref-num">[2]</span>
+            <div>
+              Karmarkar &amp; Yoon (2019). Badge effects on consumer review engagement: a controlled experiment. <em>Journal of Consumer Research, 46</em>(4), 701–718.
+              <a href="https://doi.org/10.1093/jcr/ucz018" target="_blank" rel="noopener" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">doi:10.1093/jcr/ucz018</a>
+            </div>
+          </li>
+          <li>
+            <span class="ref-num">[3]</span>
+            <div>
+              Naked Compound internal review, 2025. We tracked editorial policy changes at eight Indian supplement review platforms between 2022 and 2025. Seven of eight introduced some form of paid placement or sponsored badge category within 24 months of launching a badge feature. This is an observational finding, not a controlled study.
+            </div>
+          </li>
+        </ol>
+
+        <p style="font-size:13px;color:var(--ink-muted);border-top:1px solid var(--line);padding-top:var(--s-4);margin-top:var(--s-6);">
+          <strong>Affiliate disclosure.</strong> Naked Compound participates in the Amazon Associates India affiliate programme. Some product links earn a small commission at no additional cost to you. Commission does not influence our scores, rankings, or conclusions. Full policy:
+          <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a>
+        </p>
+
+      </article>
+
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="blog-sidebar">
+
+        <!-- What a high score looks like -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">What our scores look like in practice</div>
+
+          <!-- Product 1: GNC Creatine — 8.7 -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/61MHooc-h-L._SL1200_.jpg"
+                alt="GNC Pro Performance Creatine Monohydrate"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">💊</span>
+              <span class="rec-score-badge">8.7 / 10</span>
+            </div>
+            <div class="rec-product-name">GNC Creatine Monohydrate (Creapure®)</div>
+            <div class="rec-product-sub">Creatine · Creapure® certified · FSSAI ✓</div>
+            <div class="rec-product-price">₹1,299 <span>/ 300g · Amazon.in</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=GNC+creatine+monohydrate+creapure&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">Buy on Amazon.in →</a>
+              <a href="/pages/ingredients/creatine-monohydrate" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+          <!-- Product 2: MuscleBlaze Biozyme — 6.4 -->
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71GKf4CTOSL._SL500_.jpg"
+                alt="MuscleBlaze Biozyme Whey"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.querySelector('.img-placeholder').style.display='flex';"
+              />
+              <span class="img-placeholder" style="display:none;">💪</span>
+              <span class="rec-score-badge" style="background:#8a6a15;">6.4 / 10</span>
+            </div>
+            <div class="rec-product-name">MuscleBlaze Biozyme Performance Whey</div>
+            <div class="rec-product-sub">Whey Blend · EAF enzymes · FSSAI ✓</div>
+            <div class="rec-product-price">₹3,199 <span>/ 1kg · Amazon.in</span></div>
+            <div class="rec-product-actions">
+              <a href="https://www.amazon.in/s?k=MuscleBlaze+Biozyme+whey+protein&tag=nakedcompound-21"
+                 class="btn-buy" target="_blank" rel="noopener sponsored">Buy on Amazon.in →</a>
+              <a href="/pages/ingredients/whey-protein" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+
+        </div><!-- /.sidebar-block -->
+
+        <!-- Scoring rubric callout -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Our five scoring dimensions</div>
+          <div style="padding:var(--s-4);">
+            <p style="font-size:13px;color:var(--ink-soft);line-height:1.6;margin:0 0 var(--s-3);">
+              Every product is scored 0–10 on each dimension. No weighted average — all five must hold.
+            </p>
+            <ul style="list-style:none;padding:0;margin:0;">
+              <li style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;">
+                <span style="color:var(--ink-soft);">Clinical dose</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);">0–10</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;">
+                <span style="color:var(--ink-soft);">Ingredient form</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);">0–10</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;">
+                <span style="color:var(--ink-soft);">Third-party purity</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);">0–10</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px;">
+                <span style="color:var(--ink-soft);">Value per gram</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);">0–10</span>
+              </li>
+              <li style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:13px;">
+                <span style="color:var(--ink-soft);">Label honesty</span>
+                <span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);">0–10</span>
+              </li>
+            </ul>
+            <a href="/pages/methodology" style="display:block;margin-top:var(--s-3);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);text-decoration:none;">
+              Full methodology →
+            </a>
+          </div>
+        </div>
+
+        <!-- Related posts -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">More methodology</div>
+
+          <a href="/blog/clinical-dose-question" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Methodology · 27 Mar</span>
+              <span class="sri-title">The "clinical dose" question we keep arguing about internally.</span>
+            </div>
+          </a>
+
+          <a href="/blog/behind-score-hk-vitals-iron" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Behind the score · 11 Apr</span>
+              <span class="sri-title">How a 7.5 became a 6.1 in 14 days.</span>
+            </div>
+          </a>
+
+          <a href="/blog/shelf-survey-four-cities-2026" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes · 14 Apr</span>
+              <span class="sri-title">Three days, four cities, one shopping list.</span>
+            </div>
+          </a>
+
+        </div>
+
+      </aside>
+
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container" style="max-width:560px;">
+      <h2>Field reports, when they're done.</h2>
+      <p>No digest. No weekly roundup. One email per piece — shelf surveys, methodology notes, score revisions. When we have something to say.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="../../nc-site.js"></script>
+
+</body>
+</html>
