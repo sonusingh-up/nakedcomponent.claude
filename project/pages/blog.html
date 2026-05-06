@@ -14,145 +14,100 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
   <script>window.PAGE_KEY = 'blog';</script>
   <style>
-    .blog-hero{background:var(--bg-elev);border-bottom:1px solid var(--line);padding:var(--s-8) 0 var(--s-6)}
-    .blog-hero .container{max-width:900px}
-    .blog-hero h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;font-style:italic;line-height:1.15;color:var(--ink);margin:var(--s-2) 0 var(--s-3)}
-    .blog-hero h1 em{font-style:normal;color:var(--ink-soft)}
-    .blog-hero .kicker{font-size:1rem;color:var(--ink-muted);line-height:1.65;max-width:60ch;margin:0}
-    .crumbs{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-3)}
-    .crumbs a{color:var(--ink-muted);text-decoration:none}.crumbs a:hover{color:var(--ink)}
-    .crumbs .sep{margin:0 6px;color:var(--line)}
+    /* Sticky filter wrap */
+    .blog-filter-wrap {
+      position: sticky; top: 0; z-index: 40;
+      background: color-mix(in oklab, var(--bg) 90%, transparent);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      transition: box-shadow .2s;
+    }
+    .blog-filter-wrap.shadowed { box-shadow: 0 2px 16px rgba(26,23,20,.07); }
+    /* pages.css .filter-bar adds border-bottom+margin — remove inside sticky wrap */
+    .blog-filter-wrap .filter-bar { border-bottom: none; margin-bottom: 0; padding: 14px 0; }
 
-    /* ── Filter bar ── */
-    .filter-bar-wrap{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:var(--s-3) 0;transition:box-shadow .2s}
-    .filter-bar-wrap.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.08)}
-    .filter-bar{display:flex;align-items:center;gap:var(--s-4);flex-wrap:nowrap;max-width:900px;margin:0 auto;padding:0 var(--s-5)}
-    .filter-search{display:flex;align-items:center;gap:8px;background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-pill);padding:8px 14px;flex:0 0 220px;transition:border-color .15s,box-shadow .15s}
-    .filter-search:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-    .filter-search svg{width:14px;height:14px;flex-shrink:0;color:var(--ink-muted);stroke:currentColor}
-    .filter-search input{border:none;background:none;outline:none;font-size:13.5px;color:var(--ink);width:100%;font-family:inherit}
-    .filter-search input::placeholder{color:var(--ink-muted)}
-    .filter-pills{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;flex:1;min-width:0;scrollbar-width:none;-ms-overflow-style:none}
-    .filter-pills::-webkit-scrollbar{display:none}
-    .filter-pill{flex-shrink:0;font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;padding:7px 14px;border-radius:var(--r-pill);border:1px solid var(--line);background:var(--bg-elev);color:var(--ink-muted);cursor:pointer;white-space:nowrap;transition:background .12s,border-color .12s,color .12s;user-select:none}
-    .filter-pill:hover{border-color:var(--ink-soft);color:var(--ink-soft)}
-    .filter-pill.active{background:var(--ink);border-color:var(--ink);color:var(--bg)}
-    .result-count{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);flex-shrink:0;white-space:nowrap}
+    /* Result count */
+    .result-badge {
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--ink-muted); flex-shrink: 0;
+      padding: 4px 10px; border: 1px solid var(--line);
+      border-radius: var(--r-pill); background: var(--bg-elev); display: none;
+    }
+    .result-badge.visible { display: inline-block; }
 
-    /* ── Blog body ── */
-    .blog-body{max-width:900px;margin:0 auto;padding:var(--s-7) var(--s-5) var(--s-9)}
+    /* Section divider */
+    .section-divider {
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--ink-muted);
+      display: flex; align-items: center; gap: var(--s-3); margin-bottom: var(--s-4);
+    }
+    .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-    /* ── Featured grid ── */
-    .featured-grid{display:grid;grid-template-columns:3fr 2fr;gap:var(--s-4);margin-bottom:var(--s-6)}
-    .feat-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;text-decoration:none;background:var(--bg-elev);transition:border-color .18s,transform .18s,box-shadow .18s;position:relative}
-    .feat-card:hover{border-color:var(--ink-soft);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.08)}
-    .feat-visual{height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .feat-card[data-cat="field-notes"] .feat-visual{background:#f4ede8}
-    .feat-card[data-cat="methodology"]  .feat-visual{background:#e8edf4}
-    .feat-card[data-cat="reading"]      .feat-visual{background:#e8f4ec}
-    .feat-card[data-cat="behind-score"] .feat-visual{background:#f4f0e8}
-    .feat-glyph{font-family:var(--font-mono);font-size:2.2rem;font-weight:500;letter-spacing:-.02em;opacity:.22}
-    .feat-card[data-cat="field-notes"] .feat-glyph{color:#c96442}
-    .feat-card[data-cat="methodology"]  .feat-glyph{color:#4268c9}
-    .feat-card[data-cat="reading"]      .feat-glyph{color:#3a7a4a}
-    .feat-card[data-cat="behind-score"] .feat-glyph{color:#8a6f0e}
-    .feat-cat-badge,.feat-read-time{position:absolute;top:12px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:var(--r-pill);background:rgba(255,255,255,.78);backdrop-filter:blur(4px);border:1px solid rgba(0,0,0,.07);color:var(--ink-soft)}
-    .feat-cat-badge{left:14px}
-    .feat-read-time{right:14px;letter-spacing:.05em;color:var(--ink-muted)}
-    .feat-body{padding:var(--s-4) var(--s-5) var(--s-5);flex:1;display:flex;flex-direction:column}
-    .feat-body h3{font-family:"Instrument Serif",Georgia,serif;font-size:1.15rem;font-weight:400;font-style:italic;color:var(--ink);line-height:1.35;margin:0 0 var(--s-3);flex:1}
-    .feat-body p{font-size:13.5px;color:var(--ink-muted);line-height:1.6;margin:0 0 var(--s-4)}
-    .feat-foot{display:flex;align-items:center;justify-content:space-between;gap:var(--s-3)}
-    .feat-author{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
-    .feat-read-btn{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:5px;text-decoration:none;transition:gap .15s}
-    .feat-card:hover .feat-read-btn{gap:9px}
+    /* Card as link */
+    a.card { display: flex; }
+    a.index-row { display: grid; }
 
-    /* ── Section label ── */
-    .section-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-4)}
-    .section-label::after{content:'';flex:1;height:1px;background:var(--line)}
+    /* Empty state */
+    .empty-state { text-align: center; padding: var(--s-9) var(--s-5); display: none; color: var(--ink-muted); }
+    .empty-state.visible { display: block; }
+    .empty-state .empty-icon { font-size: 2rem; margin-bottom: var(--s-3); opacity: .4; }
+    .empty-state p  { font-size: 15px; margin-bottom: 6px; }
+    .empty-state small { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
 
-    /* ── Index rows ── */
-    .index-list{border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden}
-    .index-row{display:grid;grid-template-columns:44px 1fr auto;gap:var(--s-4);align-items:center;padding:var(--s-4) var(--s-5);text-decoration:none;border-bottom:1px solid var(--line);transition:background .12s}
-    .index-row:last-child{border-bottom:none}
-    .index-row:hover{background:var(--bg-elev)}
-    .row-thumb{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.04em;flex-shrink:0;border:1px solid transparent}
-    .row-thumb.t-fn{background:#f4ede8;color:#c96442;border-color:#e8d8d0}
-    .row-thumb.t-m{background:#e8edf4;color:#4268c9;border-color:#d0d8e8}
-    .row-thumb.t-rd{background:#e8f4ec;color:#3a7a4a;border-color:#d0e8d8}
-    .row-thumb.t-bs{background:#f4f0e8;color:#8a6f0e;border-color:#e8e0c8}
-    .row-body{min-width:0}
-    .row-body h3{font-size:15px;font-weight:500;color:var(--ink);margin:0 0 4px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .12s}
-    .index-row:hover .row-body h3{color:var(--accent)}
-    .row-desc{font-size:13px;color:var(--ink-muted);line-height:1.5;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .row-meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
-    .row-meta .sep{color:var(--line)}
-    .row-arrow{font-size:1rem;color:var(--ink-muted);flex-shrink:0;transition:transform .15s,color .15s}
-    .index-row:hover .row-arrow{transform:translateX(4px);color:var(--accent)}
+    .js-featured-wrap[hidden],
+    .js-list-wrap[hidden]  { display: none; }
 
-    /* ── Empty state ── */
-    .empty-state{text-align:center;padding:var(--s-9) var(--s-5);display:none}
-    .empty-state.visible{display:block}
-    .empty-icon{font-size:2rem;margin-bottom:var(--s-3);opacity:.4}
-    .empty-state p{font-size:15px;color:var(--ink-muted);margin:0 0 var(--s-2)}
-    .empty-state small{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted)}
-
-    /* ── Load more ── */
-    .load-more-wrap{text-align:center;margin-top:var(--s-6)}
-    .ghost-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;border:1px solid var(--line);border-radius:var(--r-pill);padding:10px 22px;transition:border-color .15s,color .15s}
-    .ghost-link:hover{border-color:var(--ink);color:var(--ink)}
-    .ghost-link .arrow{transition:transform .15s}
-    .ghost-link:hover .arrow{transform:translateX(4px)}
-
-    /* ── Responsive ── */
-    @media(max-width:900px){.featured-grid{grid-template-columns:1fr}}
-    @media(max-width:700px){
-      .blog-body{padding:var(--s-5) var(--s-4) var(--s-7)}
-      .filter-bar{gap:var(--s-3);padding:0 var(--s-4)}
-      .filter-search{flex:1;min-width:0}
-      .result-count{display:none}
-      .feat-visual{height:100px}
-      .feat-body h3{font-size:1.05rem}
-      .index-row{grid-template-columns:36px 1fr auto;gap:var(--s-3);padding:var(--s-3) var(--s-4)}
-      .row-thumb{width:36px;height:36px;font-size:10px}
-      .row-desc{display:none}
+    @media (max-width: 480px) {
+      .filter-group { flex-wrap: wrap; }
+      .filter-group button { font-size: 12px; padding: 6px 10px; }
     }
   </style>
 </head>
 <body>
 <div id="site-header"></div>
-
 <main>
 
   <!-- Hero -->
-  <section class="blog-hero">
+  <section class="page-head">
     <div class="container">
-      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><span>Blog</span></div>
+      <div class="crumbs">
+        <a href="../index.html">Home</a><span class="sep">/</span><span>Blog</span>
+      </div>
       <h1>Notes from the team — <em>shorter, stranger, in-progress.</em></h1>
       <p class="kicker">Methodology debates, follow-up reporting, field notes from shelf surveys, and the occasional rant. Not the same as a Guide — these are working drafts of our thinking.</p>
     </div>
   </section>
 
   <!-- Sticky filter bar -->
-  <div class="filter-bar-wrap" id="filterBar">
-    <div class="filter-bar">
-      <label class="filter-search" aria-label="Search posts">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input type="search" id="searchInput" placeholder="Search posts…" autocomplete="off" aria-label="Search blog posts" />
-      </label>
-      <div class="filter-pills" role="group" aria-label="Filter by category" id="filterPills">
-        <button class="filter-pill active" data-filter="all"          aria-pressed="true">All</button>
-        <button class="filter-pill"        data-filter="field-notes"  aria-pressed="false">Field notes</button>
-        <button class="filter-pill"        data-filter="methodology"  aria-pressed="false">Methodology</button>
-        <button class="filter-pill"        data-filter="reading"      aria-pressed="false">Reading</button>
-        <button class="filter-pill"        data-filter="behind-score" aria-pressed="false">Behind the score</button>
+  <div class="blog-filter-wrap" id="blogFilterWrap">
+    <div class="container">
+      <div class="filter-bar">
+
+        <label class="filter-search" style="flex:0 0 220px;" aria-label="Search posts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+          <input type="search" id="blogSearch" placeholder="Search posts…"
+                 autocomplete="off" aria-label="Search blog posts" />
+        </label>
+
+        <div class="filter-group" role="group" aria-label="Filter by category" id="filterGroup">
+          <button class="active" data-filter="all"          aria-pressed="true" >All</button>
+          <button               data-filter="field-notes"  aria-pressed="false">Field notes</button>
+          <button               data-filter="methodology"  aria-pressed="false">Methodology</button>
+          <button               data-filter="reading"      aria-pressed="false">Reading</button>
+          <button               data-filter="behind-score" aria-pressed="false">Behind the score</button>
+        </div>
+
+        <span id="resultBadge" class="result-badge" aria-live="polite"></span>
+
       </div>
-      <span class="result-count" id="resultCount" aria-live="polite"></span>
     </div>
   </div>
 
   <!-- Blog body -->
-  <div class="blog-body">
+  <div class="container section" style="padding-top:var(--s-7);">
 
     <!-- Empty state -->
     <div class="empty-state" id="emptyState" role="status">
@@ -161,43 +116,37 @@
       <small>Try a different keyword or clear the filter.</small>
     </div>
 
-    <!-- Featured -->
-    <div id="featuredSection">
-      <div class="featured-grid" id="featuredGrid">
+    <!-- Featured cards -->
+    <div class="js-featured-wrap" id="featuredWrap">
+      <div class="card-grid" id="featuredGrid" style="margin-bottom:var(--s-7);">
 
-        <a href="/blog/shelf-survey-four-cities-2026" class="feat-card"
+        <a href="/blog/shelf-survey-four-cities-2026"
+           class="card guide-card g1"
+           style="grid-column:span 2;text-decoration:none;"
            data-cat="field-notes"
-           data-searchable="three days four cities one shopping list what 2026 shelf actually looks like mumbai bengaluru delhi pune creatine 820 grey market aarav s field notes shelf survey">
-          <div class="feat-visual">
-            <span class="feat-glyph">FN</span>
-            <span class="feat-cat-badge">Field notes · 14 Apr</span>
-            <span class="feat-read-time">8 min</span>
-          </div>
-          <div class="feat-body">
-            <h3>Three days, four cities, one shopping list — what 2026's shelf actually looks like.</h3>
-            <p>We sent buyers to Mumbai, Bengaluru, Delhi and Pune with the same list of 18 SKUs. The price spread on a single jar of creatine reached ₹820 — and that's before the question of whether all eight units were the same product.</p>
-            <div class="feat-foot">
-              <span class="feat-author">Aarav S.</span>
-              <span class="feat-read-btn">Read <span aria-hidden="true">→</span></span>
-            </div>
+           data-searchable="three days four cities one shopping list shelf 2026 mumbai bengaluru delhi pune creatine 820 grey market aarav field notes">
+          <div class="visual"><span class="glyph">FN</span></div>
+          <span class="card-tag"><span class="swatch"></span>Field notes · 14 Apr</span>
+          <h3>Three days, four cities, one shopping list — what 2026's shelf actually looks like.</h3>
+          <p>We sent buyers to Mumbai, Bengaluru, Delhi and Pune with the same list of 18 SKUs. The price spread on a single jar of creatine reached ₹820 — and that's before the question of whether all eight units were the same product.</p>
+          <div class="card-meta">
+            <span>Aarav S. · 8 min</span>
+            <span class="read-link">Read <span aria-hidden="true">→</span></span>
           </div>
         </a>
 
-        <a href="/blog/editors-pick-badge" class="feat-card"
+        <a href="/blog/editors-pick-badge"
+           class="card guide-card g3"
+           style="text-decoration:none;"
            data-cat="methodology"
-           data-searchable="why we still won't run an editor's pick badge every quarter someone team raises this priya k methodology scoring">
-          <div class="feat-visual">
-            <span class="feat-glyph">M</span>
-            <span class="feat-cat-badge">Methodology · 9 Apr</span>
-            <span class="feat-read-time">6 min</span>
-          </div>
-          <div class="feat-body">
-            <h3>Why we still won't run an "Editor's Pick" badge.</h3>
-            <p>Every quarter someone in the team raises this. Here's why we keep voting it down — and the one form of it we'd actually consider.</p>
-            <div class="feat-foot">
-              <span class="feat-author">Priya K.</span>
-              <span class="feat-read-btn">Read <span aria-hidden="true">→</span></span>
-            </div>
+           data-searchable="why we still won't run editor's pick badge every quarter team raises this priya methodology scoring">
+          <div class="visual"><span class="glyph">M</span></div>
+          <span class="card-tag"><span class="swatch"></span>Methodology · 9 Apr</span>
+          <h3>Why we still won't run an "Editor's Pick" badge.</h3>
+          <p>Every quarter someone in the team raises this. Here's why we keep voting it down — and the one form of it we'd actually consider.</p>
+          <div class="card-meta">
+            <span>Priya K. · 6 min</span>
+            <span class="read-link">Read <span aria-hidden="true">→</span></span>
           </div>
         </a>
 
@@ -205,101 +154,109 @@
     </div>
 
     <!-- Index list -->
-    <div class="section-label" id="listLabel">More posts</div>
+    <div class="js-list-wrap" id="listWrap">
+      <div class="section-divider" id="listDivider">More posts</div>
+      <div class="index-list" id="indexList">
 
-    <div class="index-list" id="indexList">
+        <a href="/blog/behind-score-hk-vitals-iron" class="index-row"
+           style="text-decoration:none;"
+           data-cat="behind-score"
+           data-searchable="behind the score how 7.5 became 6.1 in 14 days hk vitals iron form change batch re-test rohit">
+          <div class="thumb g5">BS</div>
+          <div>
+            <h3>Behind the score: how a 7.5 became a 6.1 in 14 days.</h3>
+            <div class="desc">A walkthrough of the HK Vitals iron-form change. The brand didn't announce it; we caught it on a routine batch re-test. What our triggers do and where they nearly missed it.</div>
+            <div class="meta"><span>Behind the score</span><span class="sep">·</span><span>Rohit V.</span><span class="sep">·</span><span>11 Apr 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/behind-score-hk-vitals-iron" class="index-row"
-         data-cat="behind-score"
-         data-searchable="behind the score how a 7.5 became a 6.1 in 14 days hk vitals iron form change brand batch re-test rohit v">
-        <div class="row-thumb t-bs">BS</div>
-        <div class="row-body">
-          <h3>Behind the score: how a 7.5 became a 6.1 in 14 days.</h3>
-          <p class="row-desc">A walkthrough of the HK Vitals iron-form change. The brand didn't announce it; we caught it on a routine batch re-test. What our triggers do and where they nearly missed it.</p>
-          <div class="row-meta"><span>Behind the score</span><span class="sep">·</span><span>Rohit V.</span><span class="sep">·</span><span>11 Apr 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/melatonin-papers" class="index-row"
+           style="text-decoration:none;"
+           data-cat="reading"
+           data-searchable="reading list five papers changed position on melatonin dose-response indian shelf 10mg gummies dr tarun reading">
+          <div class="thumb g4">RD</div>
+          <div>
+            <h3>Reading list — five papers that changed our position on melatonin.</h3>
+            <div class="desc">The dose-response question is more settled than the Indian shelf admits. Five papers, two methodology reviews, and one short rant about 10mg gummies.</div>
+            <div class="meta"><span>Reading</span><span class="sep">·</span><span>Dr. Tarun B.</span><span class="sep">·</span><span>5 Apr 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/melatonin-papers" class="index-row"
-         data-cat="reading"
-         data-searchable="reading list five papers that changed our position on melatonin dose-response indian shelf 10mg gummies dr tarun b">
-        <div class="row-thumb t-rd">RD</div>
-        <div class="row-body">
-          <h3>Reading list — five papers that changed our position on melatonin.</h3>
-          <p class="row-desc">The dose-response question is more settled than the Indian shelf admits. Five papers, two methodology reviews, and one short rant about 10mg gummies.</p>
-          <div class="row-meta"><span>Reading</span><span class="sep">·</span><span>Dr. Tarun B.</span><span class="sep">·</span><span>5 Apr 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/bengaluru-pharmacy-bottom-drawer" class="index-row"
+           style="text-decoration:none;"
+           data-cat="field-notes"
+           data-searchable="bottom drawer bengaluru pharmacy expired grey market import unmarked white jar shelf survey priya field notes">
+          <div class="thumb g2">FN</div>
+          <div>
+            <h3>What we found in the bottom drawer of a Bengaluru pharmacy.</h3>
+            <div class="desc">Six expired-but-on-sale products, two grey-market import boxes, one unmarked white jar. A short essay on what shelf surveys don't capture.</div>
+            <div class="meta"><span>Field notes</span><span class="sep">·</span><span>Priya K.</span><span class="sep">·</span><span>1 Apr 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/bengaluru-pharmacy-bottom-drawer" class="index-row"
-         data-cat="field-notes"
-         data-searchable="what we found in the bottom drawer of a bengaluru pharmacy expired on-sale grey-market import unmarked white jar shelf survey priya k">
-        <div class="row-thumb t-fn">FN</div>
-        <div class="row-body">
-          <h3>What we found in the bottom drawer of a Bengaluru pharmacy.</h3>
-          <p class="row-desc">Six expired-but-on-sale products, two grey-market import boxes, one unmarked white jar. A short essay on what shelf surveys don't capture.</p>
-          <div class="row-meta"><span>Field notes</span><span class="sep">·</span><span>Priya K.</span><span class="sep">·</span><span>1 Apr 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/clinical-dose-question" class="index-row"
+           style="text-decoration:none;"
+           data-cat="methodology"
+           data-searchable="clinical dose question arguing internally trials disagree rubric reviewers published rule aarav methodology">
+          <div class="thumb g3">M</div>
+          <div>
+            <h3>The "clinical dose" question we keep arguing about internally.</h3>
+            <div class="desc">When trials disagree by 2× on what the studied dose is, which one anchors our rubric? Three reviewers, three different opinions, one published rule.</div>
+            <div class="meta"><span>Methodology</span><span class="sep">·</span><span>Aarav S.</span><span class="sep">·</span><span>27 Mar 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/clinical-dose-question" class="index-row"
-         data-cat="methodology"
-         data-searchable="the clinical dose question we keep arguing about internally trials disagree rubric reviewers published rule aarav s methodology">
-        <div class="row-thumb t-m">M</div>
-        <div class="row-body">
-          <h3>The "clinical dose" question we keep arguing about internally.</h3>
-          <p class="row-desc">When trials disagree by 2× on what the studied dose is, which one anchors our rubric? Three reviewers, three different opinions, one published rule.</p>
-          <div class="row-meta"><span>Methodology</span><span class="sep">·</span><span>Aarav S.</span><span class="sep">·</span><span>27 Mar 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/behind-score-curcumin" class="index-row"
+           style="text-decoration:none;"
+           data-cat="behind-score"
+           data-searchable="behind the score curcumin row couldn't agree bioavailability technologies reviewers dr meera">
+          <div class="thumb g5">BS</div>
+          <div>
+            <h3>Behind the score: the curcumin row we couldn't agree on.</h3>
+            <div class="desc">Three reviewers, four bioavailability technologies, and one decision about how to score a product whose effect is real but tiny per rupee.</div>
+            <div class="meta"><span>Behind the score</span><span class="sep">·</span><span>Dr. Meera N.</span><span class="sep">·</span><span>22 Mar 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/behind-score-curcumin" class="index-row"
-         data-cat="behind-score"
-         data-searchable="behind the score the curcumin row we couldn't agree on bioavailability technologies score reviewers dr meera n">
-        <div class="row-thumb t-bs">BS</div>
-        <div class="row-body">
-          <h3>Behind the score: the curcumin row we couldn't agree on.</h3>
-          <p class="row-desc">Three reviewers, four bioavailability technologies, and one decision about how to score a product whose effect is real but tiny per rupee.</p>
-          <div class="row-meta"><span>Behind the score</span><span class="sep">·</span><span>Dr. Meera N.</span><span class="sep">·</span><span>22 Mar 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/plant-proteins-reading-list" class="index-row"
+           style="text-decoration:none;"
+           data-cat="reading"
+           data-searchable="reading list plant proteins pea soy rice hemp leucine threshold papers trial sanjana reading">
+          <div class="thumb g4">RD</div>
+          <div>
+            <h3>Reading list — what we're following on plant proteins this quarter.</h3>
+            <div class="desc">Pea, soy, rice, hemp, and the leucine-threshold question. Six papers and one ongoing trial we'll be checking in on.</div>
+            <div class="meta"><span>Reading</span><span class="sep">·</span><span>Sanjana K.</span><span class="sep">·</span><span>17 Mar 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/plant-proteins-reading-list" class="index-row"
-         data-cat="reading"
-         data-searchable="reading list what we're following on plant proteins pea soy rice hemp leucine-threshold papers trial sanjana k">
-        <div class="row-thumb t-rd">RD</div>
-        <div class="row-body">
-          <h3>Reading list — what we're following on plant proteins this quarter.</h3>
-          <p class="row-desc">Pea, soy, rice, hemp, and the leucine-threshold question. Six papers and one ongoing trial we'll be checking in on.</p>
-          <div class="row-meta"><span>Reading</span><span class="sep">·</span><span>Sanjana K.</span><span class="sep">·</span><span>17 Mar 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
+        <a href="/blog/fish-oil-bottle-labels" class="index-row"
+           style="text-decoration:none;"
+           data-cat="field-notes"
+           data-searchable="three things fish oil bottle tells you hides epa dha serving sizes freshness label photo essay priya omega-3 field notes">
+          <div class="thumb g2">FN</div>
+          <div>
+            <h3>Three things every fish-oil bottle tells you, and one it hides.</h3>
+            <div class="desc">A photo essay of the back-of-bottle: serving sizes, EPA/DHA totals, and the freshness-marker that's never on the label.</div>
+            <div class="meta"><span>Field notes</span><span class="sep">·</span><span>Priya K.</span><span class="sep">·</span><span>11 Mar 2026</span></div>
+          </div>
+          <div class="trail"><span class="arrow">→</span></div>
+        </a>
 
-      <a href="/blog/fish-oil-bottle-labels" class="index-row"
-         data-cat="field-notes"
-         data-searchable="three things every fish-oil bottle tells you and one it hides epa dha serving sizes freshness label photo essay priya k omega-3">
-        <div class="row-thumb t-fn">FN</div>
-        <div class="row-body">
-          <h3>Three things every fish-oil bottle tells you, and one it hides.</h3>
-          <p class="row-desc">A photo essay of the back-of-bottle: serving sizes, EPA/DHA totals, and the freshness-marker that's never on the label.</p>
-          <div class="row-meta"><span>Field notes</span><span class="sep">·</span><span>Priya K.</span><span class="sep">·</span><span>11 Mar 2026</span></div>
-        </div>
-        <span class="row-arrow" aria-hidden="true">→</span>
-      </a>
-
-    </div><!-- /.index-list -->
-
-    <div class="load-more-wrap">
-      <a href="#" class="ghost-link" id="loadMoreBtn">Older posts <span class="arrow" aria-hidden="true">→</span></a>
+      </div><!-- /.index-list -->
     </div>
 
-  </div><!-- /.blog-body -->
+    <div style="text-align:center;margin-top:var(--s-6);">
+      <a href="#" class="ghost-link">Older posts<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+
+  </div><!-- /.container -->
 </main>
 
 <div id="site-footer"></div>
@@ -307,77 +264,98 @@
 <script>
 (function(){
   'use strict';
-  var searchInput   = document.getElementById('searchInput');
-  var filterPills   = document.querySelectorAll('.filter-pill');
-  var featCards     = document.querySelectorAll('#featuredGrid .feat-card');
-  var indexRows     = document.querySelectorAll('#indexList .index-row');
-  var emptyState    = document.getElementById('emptyState');
-  var resultCount   = document.getElementById('resultCount');
-  var featSection   = document.getElementById('featuredSection');
-  var listLabel     = document.getElementById('listLabel');
-  var featGrid      = document.getElementById('featuredGrid');
-  var filterBarWrap = document.getElementById('filterBar');
-  var activeFilter  = 'all';
-  var searchQuery   = '';
-  var debounceTimer;
+  var searchInput  = document.getElementById('blogSearch');
+  var filterBtns   = document.querySelectorAll('#filterGroup button');
+  var featCards    = document.querySelectorAll('#featuredGrid [data-cat]');
+  var indexRows    = document.querySelectorAll('#indexList [data-cat]');
+  var emptyState   = document.getElementById('emptyState');
+  var resultBadge  = document.getElementById('resultBadge');
+  var featuredWrap = document.getElementById('featuredWrap');
+  var listWrap     = document.getElementById('listWrap');
+  var featuredGrid = document.getElementById('featuredGrid');
+  var filterWrap   = document.getElementById('blogFilterWrap');
+  var activeFilter = 'all';
+  var searchQuery  = '';
+  var debounce;
 
   /* Sticky shadow */
   window.addEventListener('scroll', function(){
-    filterBarWrap.classList.toggle('scrolled', window.scrollY > 80);
+    filterWrap.classList.toggle('shadowed', window.scrollY > 60);
   }, { passive: true });
 
   /* Category pills */
-  filterPills.forEach(function(btn){
+  filterBtns.forEach(function(btn){
     btn.addEventListener('click', function(){
-      filterPills.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+      filterBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
       btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
       activeFilter = btn.dataset.filter;
       applyFilters();
     });
   });
 
-  /* Search — debounced 140ms */
+  /* Search — debounced */
   searchInput.addEventListener('input', function(){
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(function(){
       searchQuery = searchInput.value.trim().toLowerCase();
       applyFilters();
     }, 140);
   });
 
-  /* ESC clears search */
   searchInput.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ searchInput.value=''; searchQuery=''; applyFilters(); }
+    if(e.key==='Escape'){ searchInput.value=''; searchQuery=''; applyFilters(); }
   });
 
   function matches(el){
-    var cat  = el.dataset.cat || '';
-    var text = (el.dataset.searchable || el.textContent).toLowerCase();
-    return (activeFilter==='all' || cat===activeFilter) && (!searchQuery || text.includes(searchQuery));
+    var cat = el.dataset.cat || '';
+    var hay = (el.dataset.searchable || el.textContent).toLowerCase();
+    return (activeFilter==='all' || cat===activeFilter) && (!searchQuery || hay.includes(searchQuery));
   }
 
   function applyFilters(){
     var vFeat=0, vRows=0;
-    featCards.forEach(function(c){ var s=matches(c); c.style.display=s?'':'none'; if(s)vFeat++; });
-    indexRows.forEach(function(r){ var s=matches(r); r.style.display=s?'':'none'; if(s)vRows++; });
-    var total = vFeat + vRows;
-    featSection.style.display = vFeat===0 ? 'none' : '';
-    listLabel.style.display   = vRows===0 ? 'none' : '';
-    /* Expand single featured card to full width */
-    if(vFeat===1) featGrid.style.gridTemplateColumns='1fr';
-    else featGrid.style.gridTemplateColumns='';
-    /* Empty state */
+    var visibleFeatCards=[];
+
+    featCards.forEach(function(el){
+      var show=matches(el);
+      el.style.display=show?'':'none';
+      if(show){ vFeat++; visibleFeatCards.push(el); }
+    });
+
+    indexRows.forEach(function(el){
+      var show=matches(el);
+      el.style.display=show?'':'none';
+      if(show) vRows++;
+    });
+
+    /* Reflow featured grid: if only 1 card, remove span; if 2, restore span */
+    if(featuredGrid){
+      if(visibleFeatCards.length===1){
+        visibleFeatCards[0].style.gridColumn='';
+        featuredGrid.style.gridTemplateColumns='1fr';
+      } else {
+        /* Restore first card span */
+        if(featCards[0]) featCards[0].style.gridColumn='span 2';
+        featuredGrid.style.gridTemplateColumns='';
+      }
+    }
+
+    var total=vFeat+vRows;
+    featuredWrap.hidden=vFeat===0;
+    listWrap.hidden=vRows===0;
     emptyState.classList.toggle('visible', total===0);
-    /* Count badge */
-    if(searchQuery || activeFilter!=='all'){
-      resultCount.textContent = total===1 ? '1 post' : total+' posts';
+
+    var isFiltered = searchQuery || activeFilter!=='all';
+    if(isFiltered){
+      resultBadge.textContent = total===1 ? '1 post' : total+' posts';
+      resultBadge.classList.add('visible');
     } else {
-      resultCount.textContent = '';
+      resultBadge.classList.remove('visible');
     }
   }
 
   applyFilters();
-})();
+}());
 </script>
 </body>
 </html>
