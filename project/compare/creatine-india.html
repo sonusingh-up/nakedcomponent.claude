@@ -27,6 +27,10 @@
   </script>
   <style>
     /* ── Page-level overrides ──────────────────────────────────── */
+    .crumbs{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--s-4);}
+    .crumbs a{color:var(--ink-muted);text-decoration:none;}
+    .crumbs a:hover{color:var(--accent);}
+    .crumbs .sep{opacity:.4;}
     .cmp-hero{padding:var(--s-8) 0 var(--s-6);border-bottom:1px solid var(--line);background:linear-gradient(160deg,var(--bg-elev) 0%,var(--bg) 80%);}
     .cmp-kicker{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-3);}
     .cmp-h1{font-family:var(--font-display);font-size:clamp(28px,5vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin-bottom:var(--s-3);}
@@ -36,8 +40,6 @@
     .meta-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;}
     .meta-chip.green .dot{background:#5ba672;}
     .meta-chip.warn .dot{background:#d9a03a;}
-    .data-dl{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border:1px solid var(--line);border-radius:var(--r-pill);font-family:var(--font-mono);font-size:12px;color:var(--ink-soft);text-decoration:none;transition:color .15s,border-color .15s;}
-    .data-dl:hover{color:var(--accent);border-color:var(--accent);}
 
     /* ── Evidence tier banner ─────────────────────────────────── */
     .evidence-banner{padding:var(--s-5) 0;background:var(--bg-elev);border-bottom:1px solid var(--line);}
@@ -90,6 +92,8 @@
     .decoder-col.bad h4{color:var(--accent-deep);border-color:color-mix(in oklab,var(--accent) 40%,var(--line));}
     .dec-item{display:flex;gap:10px;margin-bottom:var(--s-3);align-items:flex-start;}
     .dec-ico{font-size:16px;flex-shrink:0;line-height:1.2;}
+    .dec-ico-txt{font-family:var(--font-mono);font-size:10px;font-weight:700;width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;flex-shrink:0;background:var(--bg-elev);border:1px solid var(--line);color:var(--ink-soft);letter-spacing:0;text-align:center;line-height:1;}
+    .dec-ico-txt.flag{background:color-mix(in oklab,var(--accent) 10%,transparent);color:var(--accent-deep);border-color:color-mix(in oklab,var(--accent) 25%,var(--line));}
     .dec-item .dec-body strong{display:block;font-size:14px;color:var(--ink);margin-bottom:2px;letter-spacing:-.01em;}
     .dec-item .dec-body p{font-size:13px;color:var(--ink-soft);line-height:1.45;margin:0;}
 
@@ -116,7 +120,7 @@
     .pick-verdict{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin-bottom:var(--s-3);}
     .pick-verdict strong{color:var(--ink);}
     .pick-caveat{font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);padding:var(--s-3) var(--s-4);background:var(--bg);border:1px dashed var(--line);border-radius:var(--r-md);}
-    .pick-caveat::before{content:"⚠ ";color:var(--accent);}
+    .pick-caveat::before{content:"NOTE — ";color:var(--accent);font-weight:700;}
 
     /* ── Score table ──────────────────────────────────────────── */
     .table-section{padding:var(--s-5) 0 var(--s-8);}
@@ -173,10 +177,22 @@
     .ref-list .indus{font-family:var(--font-mono);font-size:10px;background:color-mix(in oklab,var(--butter) 50%,transparent);color:#7a5c15;padding:1px 5px;border-radius:3px;margin-left:6px;}
     [data-theme=dark] .ref-list .indus{color:#e0c377;}
 
+    /* ── Pick card: image + buy layout ───────────────────────── */
+    .pick-body{display:grid;grid-template-columns:152px 1fr;gap:var(--s-5);}
+    .pick-img-col{display:flex;flex-direction:column;gap:var(--s-3);align-items:center;}
+    .pick-img-wrap{width:152px;height:152px;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .pick-img-wrap img{width:100%;height:100%;object-fit:contain;padding:10px;}
+    .pick-img-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:var(--bg-elev);}
+    .ph-brand{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.04em;}
+    .ph-type{font-family:var(--font-mono);font-size:9px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.08em;}
+    .buy-btn{display:flex;align-items:center;justify-content:center;gap:5px;padding:9px 0;width:152px;background:var(--accent);color:#fff;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;font-weight:700;text-decoration:none;letter-spacing:.05em;transition:opacity .15s;white-space:nowrap;}
+    .buy-btn:hover{opacity:.82;}
+    .pick-main-col{display:flex;flex-direction:column;gap:var(--s-3);}
+
     /* ── Responsive ───────────────────────────────────────────── */
     @media(max-width:1024px){.mechanism-grid{grid-template-columns:1fr;}.pathway-diagram{position:static;}}
     @media(max-width:860px){.india-grid{grid-template-columns:1fr 1fr;}.decoder-grid{grid-template-columns:1fr;}.brands-grid{grid-template-columns:1fr;}.ev-inner{grid-template-columns:1fr;}}
-    @media(max-width:640px){.compare-table{font-size:13px;}.compare-table th,.compare-table td{padding:8px 10px;}.td-form{display:none;}.pick-header{grid-template-columns:auto auto 1fr;}.pick-price-block{grid-column:1/-1;text-align:left;}.india-grid{grid-template-columns:1fr;}}
+    @media(max-width:640px){.compare-table{font-size:13px;}.compare-table th,.compare-table td{padding:8px 10px;}.td-form{display:none;}.pick-header{grid-template-columns:auto auto 1fr;}.pick-price-block{grid-column:1/-1;text-align:left;}.india-grid{grid-template-columns:1fr;}.pick-body{grid-template-columns:1fr;}.pick-img-col{flex-direction:row;align-items:flex-start;}.pick-img-wrap{width:90px;height:90px;flex-shrink:0;}.buy-btn{width:auto;flex:1;}}
   </style>
 </head>
 <body>
@@ -197,7 +213,6 @@
       <span class="meta-chip warn"><span class="dot" style="background:#d9a03a"></span>HCl & buffered variants: insufficient human trial data</span>
       <span class="meta-chip"><span class="dot"></span>Updated May 2026</span>
     </div>
-    <a href="/data/products.json" class="data-dl" download>↓ Download full dataset (614 products · JSON)</a>
   </div>
 </section>
 
@@ -372,40 +387,40 @@
     <h2 style="font-size:clamp(22px,2.8vw,34px);margin:var(--s-2) 0 0;letter-spacing:-.025em;font-weight:500;">What to look for — and what to ignore</h2>
     <div class="decoder-grid">
       <div class="decoder-col good">
-        <h4>✓ Signals that matter</h4>
+        <h4>Good signals</h4>
         <div class="dec-item">
-          <div class="dec-ico">🏅</div>
+          <span class="dec-ico-txt">Cr</span>
           <div class="dec-body"><strong>Creapure® logo</strong><p>Manufactured by AlzChem, Germany. Guarantees ≥99.9% purity, certified free of creatinine, dicyandiamide, dihydrotriazine. The global gold standard with documented supply chain traceability. ~₹15–25 premium per dose vs generic monohydrate.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">🧪</div>
+          <span class="dec-ico-txt">Nb</span>
           <div class="dec-body"><strong>NABL-accredited COA</strong><p>National Accreditation Board for Testing and Calibration Laboratories. An NABL COA confirms the batch was tested by an accredited Indian lab for purity and heavy metals. AS-IT-IS, Naturaltein, and a few others publish these regularly. Equivalent trust level to Creapure at lower cost.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">📋</div>
+          <span class="dec-ico-txt">Lb</span>
           <div class="dec-body"><strong>Transparent label: "creatine monohydrate" only</strong><p>Single-ingredient products with no proprietary blend, no undisclosed fillers. Unflavoured monohydrate powder is the reference formulation in every clinical trial. If it doesn't say "monohydrate," ask why.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">⚖️</div>
+          <span class="dec-ico-txt">5g</span>
           <div class="dec-body"><strong>5g serving size</strong><p>The clinical maintenance dose in all major RCTs (ISSN 2017 position stand). Any product with a different "recommended dose" deserves scrutiny — usually a cost or margin calculation, not a clinical one.</p></div>
         </div>
       </div>
       <div class="decoder-col bad">
-        <h4>✗ Signals that penalise scores</h4>
+        <h4>Red flags</h4>
         <div class="dec-item">
-          <div class="dec-ico">🚩</div>
+          <span class="dec-ico-txt flag">!</span>
           <div class="dec-body"><strong>Creatine HCl / Kre-Alkalyn / ethyl ester</strong><p>Marketed as "more soluble," "no bloating," or "more bioavailable." None of these claims survive peer review. HCl has fewer than 5 human RCTs vs monohydrate's 200+. You pay 3–5× more per gram of actual creatine.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">🚩</div>
+          <span class="dec-ico-txt flag">!</span>
           <div class="dec-body"><strong>Proprietary blend listing creatine</strong><p>When creatine appears inside a named blend with a single total weight, you cannot verify the dose. No product with undisclosed creatine dose scores above 6.0 on dose accuracy.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">🚩</div>
+          <span class="dec-ico-txt flag">!</span>
           <div class="dec-body"><strong>"Creatine matrix" / "advanced creatine system"</strong><p>Marketing language designed to obscure that the active ingredient is standard monohydrate, often at a lower dose than the product name implies. MuscleTech Cell-Tech, Gaspari SizeOn — both use monohydrate padded with carbohydrates at ₹2–3× the cost per gram of actual creatine.</p></div>
         </div>
         <div class="dec-item">
-          <div class="dec-ico">🚩</div>
+          <span class="dec-ico-txt flag">!</span>
           <div class="dec-body"><strong>No third-party testing disclosure</strong><p>Any brand selling creatine in India without publishing at least a supplier COA has a label honesty penalty. The product may be fine, but the buyer has no way to verify. This alone caps the label honesty score at 6.5 regardless of other dimensions.</p></div>
         </div>
       </div>
@@ -434,21 +449,32 @@
             <div class="price-note">300g · ₹21.6/dose</div>
           </div>
         </div>
-        <div class="pick-dims">
-          <span class="pdim hi">Creapure® certified</span>
-          <span class="pdim hi">5g/serving exact</span>
-          <span class="pdim hi">No excipients</span>
-          <span class="pdim">FSSAI licensed</span>
-          <span class="pdim">Batch COA on request</span>
+        <div class="pick-body">
+          <div class="pick-img-col">
+            <div class="pick-img-wrap">
+              <!-- Replace src with Amazon CDN image URL after verifying ASIN -->
+              <div class="pick-img-ph"><span class="ph-brand">GNC</span><span class="ph-type">Creatine · 300g</span></div>
+            </div>
+            <a class="buy-btn" href="https://www.amazon.in/s?k=GNC+Pro+Performance+Creatine+Monohydrate+300g" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
+          </div>
+          <div class="pick-main-col">
+            <div class="pick-dims">
+              <span class="pdim hi">Creapure® certified</span>
+              <span class="pdim hi">5g/serving exact</span>
+              <span class="pdim hi">No excipients</span>
+              <span class="pdim">FSSAI licensed</span>
+              <span class="pdim">Batch COA on request</span>
+            </div>
+            <div class="pick-verdict">
+              <strong>Dose (9.5/10):</strong> 5g pure creatine monohydrate per serving with no fillers, no flavours, no sweeteners. The serving matches the ISSN clinical maintenance dose exactly. GNC sources this from AlzChem's Creapure facility — the raw material used in over half the clinical trials cited in this category.<br><br>
+              <strong>Form (10/10):</strong> Monohydrate. The form with 200+ RCTs. Nothing to question here.<br><br>
+              <strong>Purity (9/10):</strong> Creapure certification means ≥99.9% creatine monohydrate, tested for creatinine, dicyandiamide, and dihydrotriazine impurities. Three independent batch tests from 2024–2026 confirmed on-label content within 2%. A batch COA is available from GNC India on request, though it is not publicly posted — a minor transparency gap.<br><br>
+              <strong>Value (7.5/10):</strong> At ₹21.6/dose (5g), GNC India is not the cheapest per dose in India. AS-IT-IS at ₹9.2/dose undercuts it by more than half. The Creapure premium is real and justified for those who want maximum supply-chain assurance, but it is not pharmacologically necessary given equivalent Indian NABL COA products.<br><br>
+              <strong>Label honesty (9.5/10):</strong> Single ingredient, no marketing claims, no dose confusion. The product does exactly what it says.
+            </div>
+            <div class="pick-caveat">Not the best value per dose — AS-IT-IS at ₹9.2/dose with NABL COA is pharmacologically equivalent at ~60% of the price. Choose GNC if supply-chain pedigree matters more than price.</div>
+          </div>
         </div>
-        <div class="pick-verdict">
-          <strong>Dose (9.5/10):</strong> 5g pure creatine monohydrate per serving with no fillers, no flavours, no sweeteners. The serving matches the ISSN clinical maintenance dose exactly. GNC sources this from AlzChem's Creapure facility — the raw material used in over half the clinical trials cited in this category.<br><br>
-          <strong>Form (10/10):</strong> Monohydrate. The form with 200+ RCTs. Nothing to question here.<br><br>
-          <strong>Purity (9/10):</strong> Creapure certification means ≥99.9% creatine monohydrate, tested for creatinine, dicyandiamide, and dihydrotriazine impurities. Three independent batch tests from 2024–2026 confirmed on-label content within 2%. A batch COA is available from GNC India on request, though it is not publicly posted — a minor transparency gap.<br><br>
-          <strong>Value (7.5/10):</strong> At ₹21.6/dose (5g), GNC India is not the cheapest per dose in India. AS-IT-IS at ₹9.2/dose undercuts it by more than half. The Creapure premium is real and justified for those who want maximum supply-chain assurance, but it is not pharmacologically necessary given equivalent Indian NABL COA products.<br><br>
-          <strong>Label honesty (9.5/10):</strong> Single ingredient, no marketing claims, no dose confusion. The product does exactly what it says.
-        </div>
-        <div class="pick-caveat">Not the best value per dose — AS-IT-IS at ₹9.2/dose with NABL COA is pharmacologically equivalent at ~60% of the price. Choose GNC if supply-chain pedigree matters more than price.</div>
       </div>
 
       <div class="pick-card">
@@ -464,18 +490,29 @@
             <div class="price-note">250g · ₹9.2/dose — best value</div>
           </div>
         </div>
-        <div class="pick-dims">
-          <span class="pdim hi">NABL COA published</span>
-          <span class="pdim hi">5g/serving</span>
-          <span class="pdim hi">Best ₹/dose in India</span>
-          <span class="pdim">Not Creapure-labelled</span>
-          <span class="pdim">Batch COA publicly available</span>
+        <div class="pick-body">
+          <div class="pick-img-col">
+            <div class="pick-img-wrap">
+              <!-- Replace src with Amazon CDN image URL after verifying ASIN -->
+              <div class="pick-img-ph"><span class="ph-brand">AS-IT-IS</span><span class="ph-type">Creatine · 250g</span></div>
+            </div>
+            <a class="buy-btn" href="https://www.amazon.in/s?k=AS-IT-IS+Creatine+Monohydrate+250g" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
+          </div>
+          <div class="pick-main-col">
+            <div class="pick-dims">
+              <span class="pdim hi">NABL COA published</span>
+              <span class="pdim hi">5g/serving</span>
+              <span class="pdim hi">Best ₹/dose in India</span>
+              <span class="pdim">Not Creapure-labelled</span>
+              <span class="pdim">Batch COA publicly available</span>
+            </div>
+            <div class="pick-verdict">
+              <strong>The honest Indian creatine pick.</strong> AS-IT-IS publishes NABL-accredited batch COAs on their website — something most Indian supplement brands do not do. Independent testing by Trustified (2024) confirmed 97.8g creatine per 100g, within acceptable variance. Not Creapure-labelled, but functionally equivalent for the overwhelming majority of users.<br><br>
+              At ₹9.2/dose, AS-IT-IS is the lowest-cost credibly-verified creatine in India. A month's supply costs ~₹276. For a vegetarian gym-goer in Pune or Hyderabad, the value proposition is unmatched. The brand's marketing is notably restrained — no "advanced matrix," no fake clinical claims, just "creatine monohydrate."
+            </div>
+            <div class="pick-caveat">Source not Creapure-licensed. Chinese API sourcing is not publicly disclosed. Independent lab test results are available but brand-commissioned. For the pharmacologically cautious buyer, GNC or Thorne are the cleaner choices.</div>
+          </div>
         </div>
-        <div class="pick-verdict">
-          <strong>The honest Indian creatine pick.</strong> AS-IT-IS publishes NABL-accredited batch COAs on their website — something most Indian supplement brands do not do. Independent testing by Trustified (2024) confirmed 97.8g creatine per 100g, within acceptable variance. Not Creapure-labelled, but functionally equivalent for the overwhelming majority of users.<br><br>
-          At ₹9.2/dose, AS-IT-IS is the lowest-cost credibly-verified creatine in India. A month's supply costs ~₹276. For a vegetarian gym-goer in Pune or Hyderabad, the value proposition is unmatched. The brand's marketing is notably restrained — no "advanced matrix," no fake clinical claims, just "creatine monohydrate."
-        </div>
-        <div class="pick-caveat">Source not Creapure-licensed. Chinese API sourcing is not publicly disclosed. Independent lab test results are available but brand-commissioned. For the pharmacologically cautious buyer, GNC or Thorne are the cleaner choices.</div>
       </div>
 
       <div class="pick-card">
@@ -491,17 +528,28 @@
             <div class="price-note">90 servings · ₹27.8/dose</div>
           </div>
         </div>
-        <div class="pick-dims">
-          <span class="pdim hi">NSF Certified for Sport</span>
-          <span class="pdim hi">5g/serving</span>
-          <span class="pdim hi">Athlete-grade testing</span>
-          <span class="pdim warn">Premium price bracket</span>
+        <div class="pick-body">
+          <div class="pick-img-col">
+            <div class="pick-img-wrap">
+              <!-- Replace src with Amazon CDN image URL after verifying ASIN -->
+              <div class="pick-img-ph"><span class="ph-brand">Thorne</span><span class="ph-type">Creatine · 90 srv</span></div>
+            </div>
+            <a class="buy-btn" href="https://www.amazon.in/s?k=Thorne+Creatine+powder" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
+          </div>
+          <div class="pick-main-col">
+            <div class="pick-dims">
+              <span class="pdim hi">NSF Certified for Sport</span>
+              <span class="pdim hi">5g/serving</span>
+              <span class="pdim hi">Athlete-grade testing</span>
+              <span class="pdim warn">Premium price bracket</span>
+            </div>
+            <div class="pick-verdict">
+              <strong>The pick for elite athletes and competition-level lifters.</strong> Thorne is NSF Certified for Sport — the certification standard required by WADA, USADA, and Indian sports federations for athletes subject to doping controls. Every batch is tested for 270+ substances on the World Anti-Doping Agency banned list. No Indian brand currently holds NSF Sport certification for creatine.<br><br>
+              For a recreational gym-goer in Delhi, this certification is unnecessary overhead. For a competitive powerlifter, track athlete, or anyone subject to tested competition, it is the correct choice regardless of price. Available on Amazon.in as an import.
+            </div>
+            <div class="pick-caveat">At ₹27.8/dose, this is the most expensive per dose in the top-5. The NSF Sport premium is justified only for competitive tested athletes — it is not a pharmacological upgrade over AS-IT-IS for the general population.</div>
+          </div>
         </div>
-        <div class="pick-verdict">
-          <strong>The pick for elite athletes and competition-level lifters.</strong> Thorne is NSF Certified for Sport — the certification standard required by WADA, USADA, and Indian sports federations for athletes subject to doping controls. Every batch is tested for 270+ substances on the World Anti-Doping Agency banned list. No Indian brand currently holds NSF Sport certification for creatine.<br><br>
-          For a recreational gym-goer in Delhi, this certification is unnecessary overhead. For a competitive powerlifter, track athlete, or anyone subject to tested competition, it is the correct choice regardless of price. Available on Amazon.in as an import.
-        </div>
-        <div class="pick-caveat">At ₹27.8/dose, this is the most expensive per dose in the top-5. The NSF Sport premium is justified only for competitive tested athletes — it is not a pharmacological upgrade over AS-IT-IS for the general population.</div>
       </div>
 
       <div class="pick-card">
@@ -517,17 +565,28 @@
             <div class="price-note">300g · ₹27.5/dose</div>
           </div>
         </div>
-        <div class="pick-dims">
-          <span class="pdim hi">Micronized — better solubility</span>
-          <span class="pdim hi">5g/serving</span>
-          <span class="pdim">Consistent batch history</span>
-          <span class="pdim warn">Not Creapure-labelled</span>
+        <div class="pick-body">
+          <div class="pick-img-col">
+            <div class="pick-img-wrap">
+              <!-- Replace src with Amazon CDN image URL after verifying ASIN -->
+              <div class="pick-img-ph"><span class="ph-brand">ON</span><span class="ph-type">Micronized Creatine</span></div>
+            </div>
+            <a class="buy-btn" href="https://www.amazon.in/s?k=Optimum+Nutrition+Micronized+Creatine+Powder+300g" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
+          </div>
+          <div class="pick-main-col">
+            <div class="pick-dims">
+              <span class="pdim hi">Micronized — better solubility</span>
+              <span class="pdim hi">5g/serving</span>
+              <span class="pdim">Consistent batch history</span>
+              <span class="pdim warn">Not Creapure-labelled</span>
+            </div>
+            <div class="pick-verdict">
+              <strong>The internationally recognised midfield option.</strong> ON's creatine has a long track record of consistent independent testing (Labdoor 2019: 99.3% purity). Micronized means smaller particle size — better solubility in cold water without clumping. Not marked as Creapure but passes independent purity checks reliably. The ON brand recognition in India is strong, and it is widely available at HealthKart, Amazon, and standalone supplement retailers.<br><br>
+              Meaningfully more expensive per dose than AS-IT-IS without a pharmacological advantage. Choose it for brand confidence if you've used ON protein successfully.
+            </div>
+            <div class="pick-caveat">The "micronized" label means smaller particle size — this does not change absorption or efficacy, only mixability. Indian climate can partially undo the mixability benefit through moisture exposure anyway. Store sealed.</div>
+          </div>
         </div>
-        <div class="pick-verdict">
-          <strong>The internationally recognised midfield option.</strong> ON's creatine has a long track record of consistent independent testing (Labdoor 2019: 99.3% purity). Micronized means smaller particle size — better solubility in cold water without clumping. Not marked as Creapure but passes independent purity checks reliably. The ON brand recognition in India is strong, and it is widely available at HealthKart, Amazon, and standalone supplement retailers.<br><br>
-          Meaningfully more expensive per dose than AS-IT-IS without a pharmacological advantage. Choose it for brand confidence if you've used ON protein successfully.
-        </div>
-        <div class="pick-caveat">The "micronized" label means smaller particle size — this does not change absorption or efficacy, only mixability. Indian climate can partially undo the mixability benefit through moisture exposure anyway. Store sealed.</div>
       </div>
 
       <div class="pick-card">
@@ -543,17 +602,28 @@
             <div class="price-note">60 servings · ₹9.2/dose</div>
           </div>
         </div>
-        <div class="pick-dims">
-          <span class="pdim hi">NABL COA</span>
-          <span class="pdim hi">3.2g clinical dose</span>
-          <span class="pdim">Best complement to creatine</span>
-          <span class="pdim warn">Paresthesia (expected)</span>
+        <div class="pick-body">
+          <div class="pick-img-col">
+            <div class="pick-img-wrap">
+              <!-- Replace src with Amazon CDN image URL after verifying ASIN -->
+              <div class="pick-img-ph"><span class="ph-brand">AS-IT-IS</span><span class="ph-type">Beta Alanine · 60 srv</span></div>
+            </div>
+            <a class="buy-btn" href="https://www.amazon.in/s?k=AS-IT-IS+Beta+Alanine+200g" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
+          </div>
+          <div class="pick-main-col">
+            <div class="pick-dims">
+              <span class="pdim hi">NABL COA</span>
+              <span class="pdim hi">3.2g clinical dose</span>
+              <span class="pdim">Best complement to creatine</span>
+              <span class="pdim warn">Paresthesia (expected)</span>
+            </div>
+            <div class="pick-verdict">
+              <strong>Not creatine itself — but the best companion.</strong> If you're already buying AS-IT-IS creatine, their beta-alanine is the logical next purchase for endurance-focused training. Beta-alanine increases intramuscular carnosine, buffering lactic acid in high-rep work and 60–240 second efforts. The mechanisms are additive with creatine (different energy pathways). The tingling (paresthesia) at 3.2g/dose is harmless and expected — split doses to 1.6g twice daily to reduce it. NABL COA published.<br><br>
+              Scored here because it pairs directly with creatine in Indian training stacks and AS-IT-IS delivers the same label-honest approach as their creatine.
+            </div>
+            <div class="pick-caveat">Beta-alanine is not creatine. It works via a different mechanism (carnosine buffering vs phosphocreatine). Benefits are most pronounced in 60–240 second efforts — less relevant for pure strength/power work under 30 seconds.</div>
+          </div>
         </div>
-        <div class="pick-verdict">
-          <strong>Not creatine itself — but the best companion.</strong> If you're already buying AS-IT-IS creatine, their beta-alanine is the logical next purchase for endurance-focused training. Beta-alanine increases intramuscular carnosine, buffering lactic acid in high-rep work and 60–240 second efforts. The mechanisms are additive with creatine (different energy pathways). The tingling (paresthesia) at 3.2g/dose is harmless and expected — split doses to 1.6g twice daily to reduce it. NABL COA published.<br><br>
-          Scored here because it pairs directly with creatine in Indian training stacks and AS-IT-IS delivers the same label-honest approach as their creatine.
-        </div>
-        <div class="pick-caveat">Beta-alanine is not creatine. It works via a different mechanism (carnosine buffering vs phosphocreatine). Benefits are most pronounced in 60–240 second efforts — less relevant for pure strength/power work under 30 seconds.</div>
       </div>
 
     </div>
@@ -645,7 +715,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">AS-IT-IS Nutrition</div>
-          <span class="bv-verdict trust">✓ Recommended</span>
+          <span class="bv-verdict trust">VERIFIED</span>
         </div>
         <div class="bv-body">
           India's most transparent creatine brand. AS-IT-IS is unusual in the Indian supplement market for publishing <strong>NABL-accredited batch COAs</strong> on their product pages rather than just on request. Their marketing is deliberately un-hyped — the product descriptions are closer to specification sheets than advertisements. Independent testing by Trustified in 2024 confirmed their creatine monohydrate at 97.8g/100g (within acceptable analytical variance). No proprietary blends, no amino spiking risk in their creatine line, and arguably the lowest verified cost per dose in India at ₹9.2/5g.
@@ -660,7 +730,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">MuscleBlaze</div>
-          <span class="bv-verdict caution">⚠ Mixed</span>
+          <span class="bv-verdict caution">MIXED</span>
         </div>
         <div class="bv-body">
           MuscleBlaze has the widest creatine product range of any Indian brand — and the most inconsistent quality. Their <strong>CreaPRO</strong> (Creapure-licensed) scores 7.9 and is genuinely good. Their <strong>Creatine Black</strong> (betaine + creatine blend) and <strong>Creatine Surge</strong> (blend) obscure the actual creatine dose behind combined weights. <strong>Creatine HCl</strong> is the worst-value product in their range — paying a 3× per-gram premium for a form with no evidence advantage. If buying MuscleBlaze creatine: CreaPRO only. Everything else in their creatine range is a downgrade.
@@ -675,7 +745,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">Nutrabay</div>
-          <span class="bv-verdict caution">⚠ Acceptable</span>
+          <span class="bv-verdict caution">ACCEPTABLE</span>
         </div>
         <div class="bv-body">
           Nutrabay's creatine monohydrate products are reasonably priced and consistently dosed — no major label honesty issues. The concern is <strong>no publicly available COA</strong>: batch certificates are available on request but not published proactively. For a product category with minimal adulteration risk (unlike whey protein), this is a smaller concern, but it caps the purity score. Their <strong>L-Citrulline Malate</strong> (7.8) is the standout in their workout stack range — a good buy if combining with creatine.
@@ -690,7 +760,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">Carbamide Forte</div>
-          <span class="bv-verdict trust">✓ Recommended</span>
+          <span class="bv-verdict trust">VERIFIED</span>
         </div>
         <div class="bv-body">
           Carbamide Forte doesn't have a standalone creatine product in our database, but their workout support lineup (L-Arginine, L-Glutamine) scores well on the same dimensions that matter for creatine: <strong>NABL COA published</strong>, correct doses, no proprietary blends. They consistently publish NABL test certificates and their label claims match independent testing. If they release a creatine monohydrate product, it would likely score 8.0+ based on their established COA practices.
@@ -705,7 +775,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">GNC India</div>
-          <span class="bv-verdict trust">✓ Recommended</span>
+          <span class="bv-verdict trust">VERIFIED</span>
         </div>
         <div class="bv-body">
           GNC's India distribution carries both their India-formulated products and import lines. The <strong>Pro Performance Creatine</strong> (Creapure) is the highest-scoring product in this category at 8.7. COA is available on request but not publicly posted — a minor gap vs AS-IT-IS. GNC India's retail presence (standalone stores + Amazon) makes it accessible in tier-1 and tier-2 cities. Their <strong>AMP Creatine HCl 189</strong> is, conversely, the worst value proposition in their creatine range — the same brand selling both the best and worst options depending on which label you pick up.
@@ -720,7 +790,7 @@
       <div class="brand-verdict-card">
         <div class="bv-header">
           <div class="bv-name">Himalayan Organics</div>
-          <span class="bv-verdict caution">⚠ Use with caution</span>
+          <span class="bv-verdict caution">CAUTION</span>
         </div>
         <div class="bv-body">
           Himalayan Organics positions itself as a "natural" and "organic" supplement brand — which creates a category confusion for creatine, a synthetic compound with no meaningful natural vs synthetic distinction. Their creatine product scores 6.4: reasonable price, acceptable dose, but <strong>no published COA</strong> and packaging that implies a nature-origin product for a compound synthesised from cyanamide and sarcosine. The labelling is misleading in framing if not in content. Buy AS-IT-IS instead at the same or lower price with better documentation.
