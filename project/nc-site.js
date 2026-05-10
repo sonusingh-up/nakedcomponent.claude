@@ -48,7 +48,7 @@
       <header class="site-header" id="site-header-el">
         <div class="container nav">
           <a class="brand" href="${HOME}" aria-label="Naked Compound home">
-            <span class="mark" aria-hidden="true"></span>
+            <img class="mark" src="/favicon.png" alt="NC" />
             <span class="brand-name">Naked<em>·</em>Compound</span>
           </a>
 
@@ -470,7 +470,7 @@
           <div class="footer-grid">
             <div class="footer-brand">
               <a class="brand" href="${HOME}">
-                <span class="mark" aria-hidden="true"></span>
+                <img class="mark" src="/favicon.png" alt="NC" />
                 <span class="brand-name">Naked<em>·</em>Compound</span>
               </a>
               <p>Independent supplement research for India. Strip the label. See the science.</p>

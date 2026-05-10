@@ -167,14 +167,8 @@ p { margin: 0; }
 }
 .brand .mark {
   width: 28px; height: 28px; border-radius: 8px;
-  background:
-    radial-gradient(circle at 30% 30%, var(--accent) 0%, var(--accent) 55%, var(--accent-deep) 100%);
-  position: relative; overflow: hidden;
+  object-fit: cover;
   flex: 0 0 auto;
-}
-.brand .mark::after {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(circle at 70% 70%, rgba(255,255,255,.4), transparent 60%);
 }
 .brand-name { font-weight: 600; }
 .brand-name em { font-style: normal; color: var(--ink-muted); font-weight: 400; }
