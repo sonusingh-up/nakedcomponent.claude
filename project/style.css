@@ -144,8 +144,10 @@ p { margin: 0; }
 /* ---------------------------------------------------------------- */
 /* Header / Nav                                                      */
 /* ---------------------------------------------------------------- */
-.site-header {
+#site-header {
   position: sticky; top: 0; z-index: 50;
+}
+.site-header {
   background: color-mix(in oklab, var(--bg) 82%, transparent);
   backdrop-filter: saturate(140%) blur(14px);
   -webkit-backdrop-filter: saturate(140%) blur(14px);
