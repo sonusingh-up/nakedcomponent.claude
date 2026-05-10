@@ -906,7 +906,7 @@ p { margin: 0; }
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
   gap: var(--s-6);
   margin-bottom: var(--s-7);
 }

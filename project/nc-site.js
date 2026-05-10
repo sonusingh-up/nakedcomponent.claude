@@ -506,6 +506,12 @@
                 <li><a href="${PAGES.contact}">Contact</a></li>
               </ul>
             </div>
+            <div class="footer-col">
+              <h4>Social</h4>
+              <ul>
+                <li><a href="https://instagram.com/nakedcompound" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              </ul>
+            </div>
           </div>
 
           <div class="footer-disclaimer">
