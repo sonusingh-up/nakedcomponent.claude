@@ -159,7 +159,7 @@ p { margin: 0; }
   gap: var(--s-5);
 }
 .brand {
-  display: flex; align-items: center; gap: 10px;
+  display: flex; align-items: center; gap: 6px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 18px;
@@ -167,14 +167,8 @@ p { margin: 0; }
 }
 .brand .mark {
   width: 28px; height: 28px; border-radius: 8px;
-  background:
-    radial-gradient(circle at 30% 30%, var(--accent) 0%, var(--accent) 55%, var(--accent-deep) 100%);
-  position: relative; overflow: hidden;
+  object-fit: cover;
   flex: 0 0 auto;
-}
-.brand .mark::after {
-  content: ""; position: absolute; inset: 0;
-  background: radial-gradient(circle at 70% 70%, rgba(255,255,255,.4), transparent 60%);
 }
 .brand-name { font-weight: 600; }
 .brand-name em { font-style: normal; color: var(--ink-muted); font-weight: 400; }
@@ -930,6 +924,26 @@ p { margin: 0; }
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .footer-col a { color: var(--ink-soft); font-size: 14.5px; transition: color .15s; }
 .footer-col a:hover { color: var(--accent); }
+
+.footer-socials {
+  display: flex; justify-content: center;
+  margin-bottom: var(--s-6);
+}
+.footer-socials a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-muted);
+  transition: color .2s, background .2s, transform .2s;
+}
+.footer-socials a:hover {
+  background: var(--accent);
+  color: var(--bg);
+  transform: translateY(-2px);
+}
+.footer-socials svg { width: 22px; height: 22px; }
+
 
 .footer-bottom {
   display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;
