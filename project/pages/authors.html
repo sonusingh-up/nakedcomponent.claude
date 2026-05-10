@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Authors — Naked Compound</title>
   <meta name="description" content="Every guide, review, and ingredient breakdown on Naked Compound is produced by our in-house research team — researchers, clinicians, and data engineers working from primary sources." />
+  <link rel="canonical" href="https://nakedcompound.in/pages/authors" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -13,272 +14,187 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
 
   <style>
-    /* ── Page header ──────────────────────────────────────────────── */
-    .page-head {
-      padding: var(--s-9) 0 var(--s-8);
-      border-bottom: 1px solid var(--line);
-    }
-    .page-head .crumbs {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: var(--ink-muted);
-      font-family: var(--font-mono);
-      letter-spacing: 0.02em;
-      margin-bottom: var(--s-5);
-    }
-    .page-head .crumbs a { color: var(--ink-muted); }
-    .page-head .crumbs a:hover { color: var(--accent); }
-    .page-head .crumbs .sep { opacity: 0.4; }
+    /* ── Page header ── */
+    .page-head { padding: var(--s-9) 0 var(--s-8); border-bottom: 1px solid var(--line); }
+    .page-head .crumbs { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-muted); font-family:var(--font-mono); letter-spacing:.02em; margin-bottom:var(--s-5); }
+    .page-head .crumbs a { color:var(--ink-muted); }
+    .page-head .crumbs a:hover { color:var(--accent); }
+    .page-head .crumbs .sep { opacity:.4; }
+    .page-head h1 { font-family:var(--font-display); font-size:clamp(36px,5.5vw,68px); font-weight:500; letter-spacing:-.03em; line-height:1.0; margin-bottom:var(--s-5); max-width:18ch; }
+    .page-head h1 em { font-style:normal; font-family:"Instrument Serif",Georgia,serif; color:var(--accent); font-weight:400; letter-spacing:-.02em; }
+    .page-head .kicker { font-size:clamp(16px,1.5vw,19px); color:var(--ink-soft); max-width:52ch; line-height:1.55; }
 
-    .page-head h1 {
-      font-family: var(--font-display);
-      font-size: clamp(36px, 5.5vw, 68px);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1.0;
-      margin-bottom: var(--s-5);
-      max-width: 18ch;
+    /* ── Team card (collective) ── */
+    .author-team-card { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-xl); overflow:hidden; transition:border-color .2s,box-shadow .2s; }
+    .author-team-card:hover { border-color:var(--line-strong); box-shadow:var(--shadow-md); }
+    .author-team-body { padding:var(--s-7) var(--s-7) var(--s-6); display:flex; flex-direction:column; gap:var(--s-5); }
+    .team-avatar { width:56px; height:56px; border-radius:var(--r-md); background:radial-gradient(circle at 30% 30%,var(--accent) 0%,var(--accent-deep) 100%); display:flex; align-items:center; justify-content:center; flex:0 0 auto; position:relative; overflow:hidden; }
+    .team-avatar::after { content:""; position:absolute; inset:0; background:radial-gradient(circle at 70% 70%,rgba(255,255,255,.35),transparent 60%); }
+    .team-avatar svg { width:26px; height:26px; color:#fff; position:relative; z-index:1; }
+    .team-role { font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+    .team-name { font-family:var(--font-display); font-size:clamp(22px,3vw,30px); font-weight:500; letter-spacing:-.025em; color:var(--ink); line-height:1.1; }
+    .team-desc { font-size:16px; color:var(--ink-soft); line-height:1.65; max-width:68ch; }
+    .team-stats { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); }
+    .team-stat { padding:var(--s-5); display:flex; flex-direction:column; gap:5px; border-right:1px solid var(--line); }
+    .team-stat:last-child { border-right:none; }
+    .team-stat .ts-num { font-family:var(--font-display); font-size:clamp(30px,3.4vw,44px); font-weight:500; letter-spacing:-.03em; line-height:1; color:var(--ink); }
+    .team-stat .ts-label { font-size:13px; color:var(--ink-soft); line-height:1.3; }
+
+    /* ── Section label ── */
+    .contributors-label {
+      display:flex; align-items:center; gap:var(--s-4);
+      margin: var(--s-8) 0 var(--s-5);
     }
-    .page-head h1 em {
-      font-style: normal;
-      font-family: "Instrument Serif", Georgia, serif;
-      color: var(--accent);
-      font-weight: 400;
-      letter-spacing: -0.02em;
+    .contributors-label .cl-text {
+      font-family:var(--font-mono); font-size:11px; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--ink-muted); white-space:nowrap;
     }
-    .page-head .kicker {
-      font-size: clamp(16px, 1.5vw, 19px);
-      color: var(--ink-soft);
-      max-width: 52ch;
-      line-height: 1.55;
+    .contributors-label .cl-line {
+      flex:1; height:1px; background:var(--line);
     }
 
-    /* ── Team card ────────────────────────────────────────────────── */
-    .author-team-card {
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      transition: border-color .2s, box-shadow .2s;
+    /* ── Individual contributor card ── */
+    .contributor-card {
+      background:var(--bg-elev);
+      border:1px solid var(--line);
+      border-radius:var(--r-xl);
+      overflow:hidden;
+      transition:border-color .2s, box-shadow .2s;
     }
-    .author-team-card:hover {
-      border-color: var(--line-strong);
-      box-shadow: var(--shadow-md);
+    .contributor-card:hover { border-color:var(--line-strong); box-shadow:var(--shadow-md); }
+
+    .contributor-body {
+      padding:var(--s-6) var(--s-6) var(--s-5);
+      display:grid;
+      grid-template-columns:80px 1fr;
+      gap:var(--s-6);
+      align-items:start;
     }
 
-    .author-team-body {
-      padding: var(--s-7) var(--s-7) var(--s-6);
-      display: flex;
-      flex-direction: column;
-      gap: var(--s-5);
+    /* Avatar */
+    .c-avatar {
+      width:80px; height:80px; border-radius:var(--r-lg);
+      background:linear-gradient(135deg,var(--mint),var(--sky));
+      display:flex; align-items:center; justify-content:center;
+      font-family:"Instrument Serif",Georgia,serif;
+      font-size:34px; color:#3a5c3f; font-style:italic;
+      flex-shrink:0;
+      border:2px solid var(--surface);
+      box-shadow:var(--shadow-sm);
     }
 
-    .team-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--r-md);
-      background: radial-gradient(circle at 30% 30%, var(--accent) 0%, var(--accent-deep) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      position: relative;
-      overflow: hidden;
+    .c-meta { display:flex; flex-direction:column; gap:var(--s-2); }
+    .c-name {
+      font-family:var(--font-display);
+      font-size:clamp(20px,2.4vw,26px);
+      font-weight:500; letter-spacing:-.02em;
+      color:var(--ink); line-height:1.1;
     }
-    .team-avatar::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 70% 70%, rgba(255,255,255,.35), transparent 60%);
+    .c-title {
+      font-family:var(--font-mono); font-size:12px;
+      letter-spacing:.08em; text-transform:uppercase;
+      color:var(--accent);
     }
-    .team-avatar svg {
-      width: 26px;
-      height: 26px;
-      color: #fff;
-      position: relative;
-      z-index: 1;
+    .c-bio {
+      font-size:15.5px; color:var(--ink-soft);
+      line-height:1.65; max-width:62ch;
+      margin-top:var(--s-3);
     }
 
-    .team-role {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
+    /* Credential tags */
+    .c-credentials {
+      display:flex; flex-wrap:wrap; gap:6px;
+      margin-top:var(--s-4);
     }
-    .team-name {
-      font-family: var(--font-display);
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: 500;
-      letter-spacing: -0.025em;
-      color: var(--ink);
-      line-height: 1.1;
+    .c-cred {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 10px;
+      border-radius:var(--r-pill);
+      font-family:var(--font-mono); font-size:11px;
+      letter-spacing:.03em;
+      background:var(--surface); border:1px solid var(--line);
+      color:var(--ink-soft);
     }
-    .team-desc {
-      font-size: 16px;
-      color: var(--ink-soft);
-      line-height: 1.65;
-      max-width: 68ch;
+    .c-cred.highlight {
+      background:color-mix(in oklab,var(--mint) 60%,var(--surface));
+      border-color:color-mix(in oklab,#5ba672 30%,var(--line));
+      color:#3a6b4a;
+    }
+    [data-theme="dark"] .c-cred.highlight { color:#a7d2a9; }
+
+    /* Coverage tags */
+    .contributor-footer {
+      padding:var(--s-4) var(--s-6);
+      border-top:1px solid var(--line);
+      background:var(--bg);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:var(--s-4); flex-wrap:wrap;
+    }
+    .c-covers {
+      display:flex; flex-wrap:wrap; gap:6px;
+    }
+    .c-cover-tag {
+      font-family:var(--font-mono); font-size:11px;
+      padding:3px 9px; border-radius:var(--r-pill);
+      background:var(--bg-elev); border:1px solid var(--line);
+      color:var(--ink-soft); letter-spacing:.02em;
+    }
+    .c-since {
+      font-family:var(--font-mono); font-size:11.5px;
+      color:var(--ink-muted); white-space:nowrap;
     }
 
-    /* Stats bar */
-    .team-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--line);
-    }
-    .team-stat {
-      padding: var(--s-5) var(--s-5);
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      border-right: 1px solid var(--line);
-    }
-    .team-stat:last-child { border-right: none; }
-    .team-stat .ts-num {
-      font-family: var(--font-display);
-      font-size: clamp(30px, 3.4vw, 44px);
-      font-weight: 500;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      color: var(--ink);
-    }
-    .team-stat .ts-label {
-      font-size: 13px;
-      color: var(--ink-soft);
-      line-height: 1.3;
-    }
-
-    /* ── Disciplines ──────────────────────────────────────────────── */
-    .disciplines-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-    }
-    .discipline-item {
-      background: var(--bg-elev);
-      padding: var(--s-5);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: background .15s;
-    }
-    .discipline-item:hover { background: var(--surface); }
-
-    .di-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-    }
-    .discipline-item:nth-child(1) .di-icon { background: var(--accent-soft); color: var(--accent-deep); }
-    .discipline-item:nth-child(2) .di-icon { background: var(--mint);        color: #3a5c3f; }
-    .discipline-item:nth-child(3) .di-icon { background: var(--sky);         color: #2e4a6b; }
-    .discipline-item:nth-child(4) .di-icon { background: var(--butter);      color: #7a5f1a; }
-    .discipline-item:nth-child(5) .di-icon { background: var(--rose);        color: #7a3a30; }
-    .discipline-item:nth-child(6) .di-icon { background: var(--mint);        color: #3a5c3f; }
-    .discipline-item:nth-child(7) .di-icon { background: var(--sky);         color: #2e4a6b; }
-    .discipline-item:nth-child(8) .di-icon { background: var(--accent-soft); color: var(--accent-deep); }
+    /* ── Disciplines grid ── */
+    .disciplines-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; }
+    .discipline-item { background:var(--bg-elev); padding:var(--s-5); display:flex; flex-direction:column; gap:6px; transition:background .15s; }
+    .discipline-item:hover { background:var(--surface); }
+    .di-icon { width:36px; height:36px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; margin-bottom:4px; }
+    .discipline-item:nth-child(1) .di-icon { background:var(--accent-soft); color:var(--accent-deep); }
+    .discipline-item:nth-child(2) .di-icon { background:var(--mint); color:#3a5c3f; }
+    .discipline-item:nth-child(3) .di-icon { background:var(--sky); color:#2e4a6b; }
+    .discipline-item:nth-child(4) .di-icon { background:var(--butter); color:#7a5f1a; }
+    .discipline-item:nth-child(5) .di-icon { background:var(--rose); color:#7a3a30; }
+    .discipline-item:nth-child(6) .di-icon { background:var(--mint); color:#3a5c3f; }
+    .discipline-item:nth-child(7) .di-icon { background:var(--sky); color:#2e4a6b; }
+    .discipline-item:nth-child(8) .di-icon { background:var(--accent-soft); color:var(--accent-deep); }
     [data-theme="dark"] .discipline-item:nth-child(2) .di-icon,
-    [data-theme="dark"] .discipline-item:nth-child(6) .di-icon { color: #a7d2a9; }
+    [data-theme="dark"] .discipline-item:nth-child(6) .di-icon { color:#a7d2a9; }
     [data-theme="dark"] .discipline-item:nth-child(3) .di-icon,
-    [data-theme="dark"] .discipline-item:nth-child(7) .di-icon { color: #9cc1e0; }
+    [data-theme="dark"] .discipline-item:nth-child(7) .di-icon { color:#9cc1e0; }
+    .di-icon svg { width:18px; height:18px; }
+    .di-title { font-size:15px; font-weight:500; letter-spacing:-.01em; color:var(--ink); }
+    .di-detail { font-family:var(--font-mono); font-size:11.5px; color:var(--ink-muted); letter-spacing:.02em; line-height:1.5; }
 
-    .di-icon svg { width: 18px; height: 18px; }
+    /* ── Policy callout ── */
+    .policy-callout { background:var(--ink); color:var(--bg); border-radius:var(--r-xl); padding:var(--s-7); position:relative; overflow:hidden; }
+    [data-theme="dark"] .policy-callout { background:var(--accent-soft); color:var(--ink); }
+    .policy-callout::before { content:""; position:absolute; right:-60px; top:-60px; width:220px; height:220px; border-radius:50%; background:var(--accent); opacity:.2; filter:blur(40px); }
+    .policy-callout .eyebrow { font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; opacity:.65; margin-bottom:var(--s-3); }
+    .policy-callout h3 { font-size:clamp(20px,2.4vw,28px); letter-spacing:-.02em; line-height:1.15; margin-bottom:var(--s-4); position:relative; }
+    .policy-callout p { opacity:.75; font-size:15px; line-height:1.65; max-width:60ch; position:relative; }
+    .policy-callout p + p { margin-top:var(--s-4); }
+    .policy-callout a { color:inherit; border-bottom:1px solid rgba(255,255,255,.35); transition:border-color .15s; }
+    [data-theme="dark"] .policy-callout a { border-color:rgba(26,23,20,.35); }
+    .policy-callout a:hover { border-color:currentColor; }
 
-    .di-title {
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--ink);
+    /* ── Responsive ── */
+    @media (max-width:1024px) {
+      .team-stats { grid-template-columns:repeat(2,1fr); }
+      .disciplines-grid { grid-template-columns:repeat(2,1fr); }
+      .team-stat:nth-child(2) { border-right:none; }
+      .team-stat:nth-child(3), .team-stat:nth-child(4) { border-top:1px solid var(--line); }
     }
-    .di-detail {
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      color: var(--ink-muted);
-      letter-spacing: 0.02em;
-      line-height: 1.5;
+    @media (max-width:720px) {
+      .author-team-body { padding:var(--s-6) var(--s-5) var(--s-5); }
+      .contributor-body { grid-template-columns:1fr; gap:var(--s-4); }
+      .c-avatar { width:64px; height:64px; font-size:26px; }
+      .disciplines-grid { grid-template-columns:repeat(2,1fr); }
     }
-
-    /* ── Policy callout ───────────────────────────────────────────── */
-    .policy-callout {
-      background: var(--ink);
-      color: var(--bg);
-      border-radius: var(--r-xl);
-      padding: var(--s-7);
-      position: relative;
-      overflow: hidden;
-    }
-    [data-theme="dark"] .policy-callout {
-      background: var(--accent-soft);
-      color: var(--ink);
-    }
-    .policy-callout::before {
-      content: "";
-      position: absolute;
-      right: -60px; top: -60px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.2;
-      filter: blur(40px);
-    }
-    .policy-callout .eyebrow {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.65;
-      margin-bottom: var(--s-3);
-    }
-    .policy-callout h3 {
-      font-size: clamp(20px, 2.4vw, 28px);
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-      margin-bottom: var(--s-4);
-      position: relative;
-    }
-    .policy-callout p {
-      opacity: 0.75;
-      font-size: 15px;
-      line-height: 1.65;
-      max-width: 60ch;
-      position: relative;
-    }
-    .policy-callout p + p { margin-top: var(--s-4); }
-    .policy-callout a {
-      color: inherit;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
-      transition: border-color .15s;
-    }
-    [data-theme="dark"] .policy-callout a { border-color: rgba(26,23,20,.35); }
-    .policy-callout a:hover { border-color: currentColor; }
-
-    /* ── Responsive ───────────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .team-stats       { grid-template-columns: repeat(2, 1fr); }
-      .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
-      .team-stat:nth-child(2) { border-right: none; }
-      .team-stat:nth-child(3),
-      .team-stat:nth-child(4) { border-top: 1px solid var(--line); }
-    }
-    @media (max-width: 720px) {
-      .author-team-body { padding: var(--s-6) var(--s-5) var(--s-5); }
-      .disciplines-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .team-stat        { padding: var(--s-4); }
-      .disciplines-grid { grid-template-columns: 1fr 1fr; }
-      .policy-callout   { padding: var(--s-6) var(--s-5); }
+    @media (max-width:480px) {
+      .team-stat { padding:var(--s-4); }
+      .disciplines-grid { grid-template-columns:1fr 1fr; }
+      .policy-callout { padding:var(--s-6) var(--s-5); }
+      .contributor-footer { flex-direction:column; align-items:flex-start; }
     }
   </style>
 
@@ -290,7 +206,7 @@
 
 <main>
 
-  <!-- ── Page header ─────────────────────────────────────────────── -->
+  <!-- ── Page header ── -->
   <section class="page-head">
     <div class="container">
       <div class="crumbs">
@@ -305,14 +221,10 @@
     </div>
   </section>
 
-  <!-- ── Team card ───────────────────────────────────────────────── -->
-  <section class="container section" style="padding-bottom: 0;">
-
+  <!-- ── Collective team card ── -->
+  <section class="container section" style="padding-bottom:0;">
     <div class="author-team-card reveal">
-
       <div class="author-team-body">
-
-        <!-- Avatar mark -->
         <div class="team-avatar" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 3h6M10 3v6.8L6.2 15.5a5.5 5.5 0 1 0 11.6 0L14 9.8V3"/>
@@ -320,17 +232,12 @@
             <circle cx="14.5" cy="16.5" r="1" fill="currentColor" stroke="none"/>
           </svg>
         </div>
-
         <div class="team-role">Research &amp; Analysis</div>
         <div class="team-name">Naked Compound Research Team</div>
-
         <p class="team-desc">
           In-house researchers, clinicians, and data engineers who build and maintain Naked Compound's ingredient database, scoring engine, and long-form research library. Every piece is evidence-graded, India-contextualised, and produced against a public methodology — reviewed by more than one person before it goes live. No sponsored posts. No paid placements. No brand-side conflicts.
         </p>
-
       </div>
-
-      <!-- Stats bar -->
       <div class="team-stats">
         <div class="team-stat">
           <div class="ts-num">614</div>
@@ -349,11 +256,54 @@
           <div class="ts-label">Indian brands covered</div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ── Disciplines ─────────────────────────────────────────────── -->
+  <!-- ── Named contributors ── -->
+  <section class="container section" style="padding-top:var(--s-6); padding-bottom:0;">
+
+    <div class="contributors-label">
+      <span class="cl-text">Named contributors</span>
+      <span class="cl-line"></span>
+    </div>
+
+    <!-- Sumita Bhatti -->
+    <div class="contributor-card reveal">
+      <div class="contributor-body">
+        <div class="c-avatar" aria-hidden="true">S</div>
+        <div class="c-meta">
+          <div class="c-name">Sumita Bhatti</div>
+          <div class="c-title">Clinical Nutritionist · Vitamins &amp; Minerals</div>
+          <p class="c-bio">
+            Sumita brings 15+ years of clinical nutrition practice to Naked Compound's vitamins and minerals pipeline — including nearly nine years as Nutrition Manager at HealthifyMe, where she reviewed hundreds of supplement stacks across India's most diverse user base. Her work at Intellect and as a Clinical Dietitian informs her India-specific framing: she understands that D3 dosing for a Bengaluru software engineer is not the same problem as D3 dosing for a Stockholm office worker, and she writes accordingly.
+          </p>
+          <p class="c-bio" style="margin-top:var(--s-3);">
+            At Naked Compound, Sumita focuses on the vitamins, minerals, and women's health review pipeline — categories where her clinical depth and food safety regulatory background (Indian Institute for Food Safety certificate; FSSAI-adjacent regulatory experience) make her the right person to write the FSSAI/Schedule K sections that most supplement reviewers skip entirely.
+          </p>
+          <div class="c-credentials">
+            <span class="c-cred highlight">MPH — Dietetics &amp; Clinical Nutrition · IGNOU</span>
+            <span class="c-cred highlight">BSc Dietetics · Mount Carmel College, Bengaluru</span>
+            <span class="c-cred">Food Safety Certificate · IIFSA</span>
+            <span class="c-cred">15+ yrs clinical practice</span>
+            <span class="c-cred">HealthifyMe — Nutrition Manager (2013–2022)</span>
+          </div>
+        </div>
+      </div>
+      <div class="contributor-footer">
+        <div class="c-covers">
+          <span class="c-cover-tag">Vitamins &amp; Minerals</span>
+          <span class="c-cover-tag">Women's Health</span>
+          <span class="c-cover-tag">Iron · Folate · B12</span>
+          <span class="c-cover-tag">FSSAI Regulatory</span>
+          <span class="c-cover-tag">D3 · K2 · Magnesium</span>
+        </div>
+        <span class="c-since">Contributor since May 2026</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── Disciplines ── -->
   <section class="container section">
     <div class="section-head">
       <div class="head-left">
@@ -434,13 +384,13 @@
     </div>
   </section>
 
-  <!-- ── Editorial policy callout ────────────────────────────────── -->
-  <section class="container" style="padding-bottom: var(--s-9);">
+  <!-- ── Editorial policy callout ── -->
+  <section class="container" style="padding-bottom:var(--s-9);">
     <div class="policy-callout reveal">
       <div class="eyebrow">Editorial policy</div>
       <h3>How authorship works on Naked Compound.</h3>
       <p>
-        All published content carries the "Naked Compound Research Team" byline because every piece is reviewed by more than one person before it goes live — a researcher, a domain reviewer, and a data check against our ingredient database. No single contributor's opinion is the editorial position.
+        Named contributors write and own specific pieces. Every published piece is then reviewed by a second member of the research team against our ingredient database before it goes live — no single contributor's opinion is the editorial position.
       </p>
       <p>
         Our methodology, scoring rubric, and conflicts-of-interest policy are public and versioned. <a href="methodology.html">Read the full methodology →</a>
