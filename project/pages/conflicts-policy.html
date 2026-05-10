@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conflicts policy — Naked Compound</title>
-  <meta name="description" content="Our complete, versioned conflicts-of-interest policy." />
+  <meta name="description" content="Our complete, versioned conflicts-of-interest policy — including sponsorship terms, affiliate disclosures, and enforcement." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="../pages.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
   <style>
-    /* ── Page head ── */
     .page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
     .page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
     .page-head .crumbs a{color:var(--ink-muted);}
@@ -26,27 +25,18 @@
     .meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
     .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
 
-    /* ── Kill any pages.css doc-wrap / doc-toc interference ── */
-    /* pages.css defines .doc-wrap and .doc-toc — we override them fully here */
     .doc-wrap{all:unset;display:contents;}
 
-    /* ── Document layout ── */
-    /* Two-column on desktop: narrow TOC left, prose right.
-       Both children MUST have min-width:0 to prevent grid blowout on mobile. */
     .doc-layout{
       display:grid;
       grid-template-columns:220px 1fr;
       gap:var(--s-9);
       align-items:start;
       padding:var(--s-8) 0 var(--s-10);
-      /* Prevent the grid itself from overflowing the container */
       max-width:100%;
       overflow:hidden;
     }
-
-    /* ── TOC sidebar ── */
     .doc-toc{
-      /* CRITICAL — prevents 220px column from blowing out on resize */
       min-width:0;
       position:sticky;
       top:calc(var(--nav-h, 64px) + 24px);
@@ -54,53 +44,17 @@
       border:1px solid var(--line);
       border-radius:var(--r-lg);
       padding:var(--s-5);
-      /* Ensure it never exceeds its column */
       width:100%;
       box-sizing:border-box;
     }
-    .doc-toc h4{
-      font-size:11px;
-      font-family:var(--font-mono);
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--ink-muted);
-      margin-bottom:var(--s-4);
-    }
-    .doc-toc ul{
-      list-style:none;padding:0;margin:0;
-      display:flex;flex-direction:column;gap:2px;
-    }
-    .doc-toc li a{
-      display:block;
-      padding:7px 10px;
-      border-radius:var(--r-sm);
-      font-size:14px;
-      color:var(--ink-soft);
-      line-height:1.35;
-      transition:color .15s,background .15s;
-      /* Prevent long link text from overflowing the sidebar column */
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
+    .doc-toc h4{font-size:11px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-4);}
+    .doc-toc ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+    .doc-toc li a{display:block;padding:7px 10px;border-radius:var(--r-sm);font-size:14px;color:var(--ink-soft);line-height:1.35;transition:color .15s,background .15s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
     .doc-toc li a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
     .doc-toc li a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
 
-    /* ── Prose area ── */
-    /* CRITICAL — min-width:0 prevents the prose column from overflowing its grid cell */
-    .doc-prose{
-      min-width:0;
-      /* Belt-and-braces: hard cap at the grid cell width */
-      max-width:100%;
-      overflow-wrap:break-word;
-      word-break:break-word;
-    }
-    .doc-prose h2{
-      font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;
-      line-height:1.15;margin:var(--s-8) 0 var(--s-4);
-      padding-top:var(--s-8);border-top:1px solid var(--line);
-      scroll-margin-top:88px;
-    }
+    .doc-prose{min-width:0;max-width:100%;overflow-wrap:break-word;word-break:break-word;}
+    .doc-prose h2{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:var(--s-8) 0 var(--s-4);padding-top:var(--s-8);border-top:1px solid var(--line);scroll-margin-top:88px;}
     .doc-prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
     .doc-prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
     .doc-prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
@@ -108,125 +62,64 @@
     .doc-prose ul{margin:var(--s-3) 0 var(--s-5) var(--s-5);display:flex;flex-direction:column;gap:10px;}
     .doc-prose li{font-size:16px;line-height:1.7;color:var(--ink-soft);}
     .doc-prose li strong{color:var(--ink);}
-    .doc-prose code{
-      font-family:var(--font-mono);font-size:13px;
-      background:var(--bg-elev);border:1px solid var(--line);
-      padding:2px 6px;border-radius:4px;color:var(--ink);
-      /* Prevent long email address overflowing on mobile */
-      word-break:break-all;
-    }
+    .doc-prose code{font-family:var(--font-mono);font-size:13px;background:var(--bg-elev);border:1px solid var(--line);padding:2px 6px;border-radius:4px;color:var(--ink);word-break:break-all;}
     .doc-prose a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);}
     .doc-prose a:hover{border-color:var(--accent);}
 
-    /* ── Callout ── */
-    .callout{
-      border-radius:var(--r-md);padding:var(--s-5);
-      margin:var(--s-6) 0;display:flex;gap:var(--s-4);
-      background:var(--butter);
-      border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));
-    }
+    /* Sponsorship-specific callout — amber/warn tone */
+    .callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
     .callout .ico{font-size:18px;flex:0 0 auto;margin-top:2px;font-weight:700;color:#7a5f1a;font-family:var(--font-mono);}
     .callout h4{font-size:14px;font-weight:600;color:#7a5f1a;margin-bottom:6px;letter-spacing:.01em;}
     .callout p{font-size:14.5px;line-height:1.65;color:var(--ink-soft);margin:0;}
+    .callout.note{background:var(--sky);border-color:color-mix(in oklab,#2e4a6b 20%,var(--sky));}
+    .callout.note .ico,.callout.note h4{color:#2e4a6b;}
     [data-theme="dark"] .callout .ico{color:#e0c377;}
     [data-theme="dark"] .callout h4{color:#e0c377;}
+    [data-theme="dark"] .callout.note .ico,[data-theme="dark"] .callout.note h4{color:#9cc1e0;}
 
-    /* ── Data table — always scroll horizontally, never overflow prose ── */
-    .data-table-wrap{
-      overflow-x:auto;
+    /* Sponsorship terms box */
+    .sponsorship-terms{
+      background:var(--bg-elev);
+      border:2px solid var(--line-strong);
+      border-radius:var(--r-lg);
+      padding:var(--s-6);
       margin:var(--s-6) 0;
-      border-radius:var(--r-md);
-      border:1px solid var(--line);
-      /* Belt-and-braces: cap to parent width */
-      max-width:100%;
     }
+    .sponsorship-terms h4{
+      font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--accent);margin-bottom:var(--s-4);
+    }
+    .sponsorship-terms ul{margin:0;padding-left:var(--s-5);display:flex;flex-direction:column;gap:8px;}
+    .sponsorship-terms li{font-size:15px;line-height:1.65;color:var(--ink-soft);}
+    .sponsorship-terms li strong{color:var(--ink);}
+
+    .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);max-width:100%;}
     .data-table{width:100%;border-collapse:collapse;font-size:14px;}
-    .data-table thead th{
-      background:var(--bg-elev);padding:12px 16px;text-align:left;
-      font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;
-      text-transform:uppercase;color:var(--ink-muted);
-      border-bottom:1px solid var(--line);white-space:nowrap;
-    }
+    .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
     .data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
     .data-table tbody tr:last-child td{border-bottom:none;}
     .data-table tbody tr:hover td{background:var(--bg-elev);}
     .data-table td strong{color:var(--ink);font-weight:500;}
+    .data-table .tag-sm{display:inline-block;font-family:var(--font-mono);font-size:11px;padding:2px 8px;border-radius:var(--r-pill);background:var(--bg);border:1px solid var(--line);color:var(--ink-soft);}
+    .data-table .tag-sm.new{background:color-mix(in oklab,#5ba672 14%,var(--bg));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 30%,var(--line));}
 
-    /* ── Responsive ── */
     @media (max-width:860px){
-      .doc-layout{
-        /* Single column — TOC floats to the top via order */
-        grid-template-columns:1fr;
-        gap:var(--s-4);
-        padding-top:var(--s-5);
-        /* Remove the overflow:hidden so the page can scroll normally */
-        overflow:visible;
-      }
-      /* Pull TOC above prose on mobile */
-      .doc-toc{
-        order:-1;
-        position:static;
-        border-radius:var(--r-md);
-        padding:var(--s-3) var(--s-4);
-        width:100%;
-        box-sizing:border-box;
-      }
-      /* TOC heading hidden on mobile to save space */
+      .doc-layout{grid-template-columns:1fr;gap:var(--s-4);padding-top:var(--s-5);overflow:visible;}
+      .doc-toc{order:-1;position:static;border-radius:var(--r-md);padding:var(--s-3) var(--s-4);width:100%;box-sizing:border-box;}
       .doc-toc h4{display:none;}
-      /* Horizontal pill strip — scrollable, no page overflow */
-      .doc-toc ul{
-        flex-direction:row;
-        flex-wrap:nowrap;
-        overflow-x:auto;
-        -webkit-overflow-scrolling:touch;
-        gap:6px;
-        padding-bottom:4px;
-        /* Hide scrollbar visually */
-        scrollbar-width:none;
-      }
+      .doc-toc ul{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:6px;padding-bottom:4px;scrollbar-width:none;}
       .doc-toc ul::-webkit-scrollbar{display:none;}
       .doc-toc li{flex:0 0 auto;}
-      .doc-toc li a{
-        white-space:nowrap;
-        padding:6px 14px;
-        font-size:13px;
-        overflow:visible;
-        text-overflow:clip;
-        background:var(--bg);
-        border:1px solid var(--line);
-        border-radius:var(--r-pill);
-      }
-      .doc-toc li a.active{
-        background:var(--ink);
-        color:var(--bg);
-        border-color:var(--ink);
-      }
-      /* Reduce prose font sizes slightly to prevent overflow */
+      .doc-toc li a{white-space:nowrap;padding:6px 14px;font-size:13px;overflow:visible;text-overflow:clip;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-pill);}
+      .doc-toc li a.active{background:var(--ink);color:var(--bg);border-color:var(--ink);}
       .doc-prose p{font-size:16px;}
       .doc-prose li{font-size:15px;}
     }
+    @media (max-width:480px){.callout{flex-direction:column;gap:var(--s-3);}}
 
-    @media (max-width:480px){
-      .callout{flex-direction:column;gap:var(--s-3);}
-    }
-
-    /* ── Author credit strip ── */
-    .author-strip{
-      display:flex;align-items:center;gap:var(--s-4);
-      padding:var(--s-5) 0 var(--s-6);
-      border-bottom:1px solid var(--line);
-      flex-wrap:wrap;
-    }
-    .author-strip .as-avatar{
-      width:44px;height:44px;border-radius:var(--r-md);flex:0 0 auto;
-      background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-deep));
-      display:flex;align-items:center;justify-content:center;
-      position:relative;overflow:hidden;
-    }
-    .author-strip .as-avatar::after{
-      content:"";position:absolute;inset:0;
-      background:radial-gradient(circle at 70% 70%,rgba(255,255,255,.3),transparent 60%);
-    }
+    .author-strip{display:flex;align-items:center;gap:var(--s-4);padding:var(--s-5) 0 var(--s-6);border-bottom:1px solid var(--line);flex-wrap:wrap;}
+    .author-strip .as-avatar{width:44px;height:44px;border-radius:var(--r-md);flex:0 0 auto;background:radial-gradient(circle at 30% 30%,var(--accent),var(--accent-deep));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .author-strip .as-avatar::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 70%,rgba(255,255,255,.3),transparent 60%);}
     .author-strip .as-avatar svg{width:22px;height:22px;color:#fff;position:relative;z-index:1;}
     .author-strip .as-meta{display:flex;flex-direction:column;gap:3px;}
     .author-strip .as-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);}
@@ -247,16 +140,15 @@
     <div class="container">
       <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><a href="about.html">About</a><span class="sep">/</span><span>Conflicts policy</span></div>
       <h1>Conflicts of interest, <em>declared in full.</em></h1>
-      <p class="kicker">If we ever recommend something we have a financial relationship with, we tell you on the same line as the recommendation. This page is the master record.</p>
+      <p class="kicker">We accept brand sponsorships under strict, public conditions. If we have a financial relationship with anything we mention, it is disclosed on the same line — and catalogued here.</p>
       <div class="meta-chips">
-        <span class="meta-chip ok"><span class="dot"></span>Version 4.3 · Published April 2026</span>
-        <span class="meta-chip"><span class="dot"></span>Last material change: 25 Apr 2026</span>
-        <span class="meta-chip"><span class="dot"></span>Next review: October 2026</span>
+        <span class="meta-chip ok"><span class="dot"></span>Version 5.0 · May 2026</span>
+        <span class="meta-chip"><span class="dot"></span>Last material change: May 2026</span>
+        <span class="meta-chip"><span class="dot"></span>Next review: November 2026</span>
       </div>
     </div>
   </section>
 
-  <!-- ── Author credit ── -->
   <div class="container">
     <div class="author-strip">
       <div class="as-avatar" aria-hidden="true">
@@ -272,9 +164,9 @@
       </div>
       <div class="as-divider" aria-hidden="true"></div>
       <div class="as-chips">
-        <span class="as-chip">Policy · v4.3</span>
-        <span class="as-chip">Updated Apr 2026</span>
-        <span class="as-chip">Reviewed every 18 months</span>
+        <span class="as-chip">Policy · v5.0</span>
+        <span class="as-chip">Updated May 2026</span>
+        <span class="as-chip">Reviewed every 6 months</span>
       </div>
     </div>
   </div>
@@ -282,54 +174,80 @@
   <div class="container">
     <div class="doc-layout">
 
-      <!-- ── TOC sidebar ── -->
       <aside class="doc-toc" aria-label="Page sections">
         <h4>Sections</h4>
         <ul id="docTocList">
-          <li><a href="#summary">One-paragraph summary</a></li>
+          <li><a href="#summary">Summary</a></li>
+          <li><a href="#sponsorships">Sponsorships</a></li>
           <li><a href="#prohibited">What we don't accept</a></li>
           <li><a href="#allowed">What we do accept</a></li>
+          <li><a href="#editorial-firewall">Editorial firewall</a></li>
           <li><a href="#disclosures">Active disclosures</a></li>
           <li><a href="#enforce">Enforcement</a></li>
           <li><a href="#history">Version history</a></li>
         </ul>
       </aside>
 
-      <!-- ── Prose ── -->
       <article class="doc-prose">
 
         <h2 id="summary">One-paragraph summary</h2>
-        <p>Naked Compound does not accept sponsorship, paid placements, free product, or money from any supplement brand we review or could plausibly review. We do participate in the Amazon Associates affiliate programme — some product links earn a small commission at no cost to you, and every such link is labelled. Our scores, rankings, and editorial conclusions are set before any links are placed and are never adjusted to favour products that earn us higher commissions. Staff cannot hold equity in or consult for any supplement brand, retailer, or contract manufacturer operating in India. Every outside relationship is listed in the Active disclosures section below, by name, with a date and a scope.</p>
+        <p>As of May 2026, Naked Compound accepts brand sponsorships subject to the strict terms set out below. Every sponsorship relationship is disclosed by name, scope, and dates in the Active disclosures table on this page and on every piece of content the sponsor is associated with. Scores, rankings, and editorial conclusions remain independent — sponsored brands receive no score adjustment, no editorial veto, and no advance sight of conclusions. We also participate in the Amazon Associates affiliate programme. Our full list of outside relationships is in the Active disclosures section. Staff cannot hold equity in or consult for any supplement brand without filing a disclosure.</p>
 
-        <div class="callout">
-          <div class="ico">!</div>
+        <h2 id="sponsorships">Sponsorships — how they work</h2>
+        <p>We introduced brand sponsorships in May 2026 as a supplemental revenue stream that lets us sustain independent research at scale. The model is simple: brands can pay to be associated with specific content categories — guides, protocol pages, or the newsletter — but they cannot influence, review, or veto any editorial output.</p>
+
+        <div class="callout note">
+          <div class="ico">i</div>
           <div>
-            <h4>If you're a brand: please don't ask.</h4>
-            <p>We get a few PR pitches a week. We do not respond to requests for sponsored content, "complimentary" review units (we buy our own), or affiliate-link insertion. Your time is better spent elsewhere.</p>
+            <h4>What a sponsorship buys — and what it does not.</h4>
+            <p>A sponsorship buys category association and a clearly labelled "Sponsored by" attribution in the content header or footer. It does not buy a score, a ranking position, a product review, an inclusion in a guide, or suppression of negative findings about the sponsor's products.</p>
           </div>
         </div>
 
+        <div class="sponsorship-terms">
+          <h4>Sponsorship terms — non-negotiable conditions</h4>
+          <ul>
+            <li><strong>Every sponsorship is disclosed on every piece of associated content</strong>, immediately visible without scrolling, using the label "Sponsored by [Brand]."</li>
+            <li><strong>Sponsors have no editorial access.</strong> They do not see content before publication, cannot request changes, and have no veto over any editorial decision — including negative findings about their own products.</li>
+            <li><strong>Sponsored brands are not exempt from review.</strong> If a sponsored brand's product appears in a category guide or ranking, it is scored on the same rubric as every other product, by a reviewer who does not handle the commercial relationship.</li>
+            <li><strong>Score and ranking independence is absolute.</strong> Sponsored brands receive no score adjustment, no ranking boost, and no editorial benefit of any kind as a result of their commercial relationship.</li>
+            <li><strong>Sponsorships are category-level, not content-level.</strong> A brand may sponsor the "omega-3" guide category; they cannot sponsor a specific review, a specific ranking list, or a specific piece of editorial output.</li>
+            <li><strong>A minimum 30-day disclosure lag.</strong> A brand cannot begin sponsoring a category within 30 days of a published review of their product. This prevents the appearance of editorial-for-hire.</li>
+            <li><strong>All sponsorships are listed in the Active disclosures table below</strong>, with brand name, category scope, and contract period.</li>
+            <li><strong>We will not sponsor brands that have active label-honesty flags</strong> in our database.</li>
+          </ul>
+        </div>
+
+        <p>If any of these conditions are violated — including if a brand attempts to use a sponsorship relationship to apply editorial pressure — the sponsorship is terminated immediately and the attempt is disclosed publicly in the <a href="changelog.html">database changelog</a>.</p>
+
         <h2 id="prohibited">What we don't accept</h2>
         <ul>
-          <li><strong>Sponsorship</strong> from any supplement brand, retailer, contract manufacturer, or supplement-adjacent service (e.g. lab-test marketplaces).</li>
-          <li><strong>Paid placements</strong> in any list, comparison, ranking, or guide. We do not run "best of 2026" lists with money behind them.</li>
-          <li><strong>Direct affiliate deals with supplement brands</strong> — we do not earn commissions from brand websites or brand-operated affiliate programmes.</li>
-          <li><strong>Free product</strong> from a brand for the purpose of review. Every product we score is purchased anonymously off the shelf or via the brand's normal direct-to-consumer channel.</li>
-          <li><strong>Equity, advisory roles, or paid consulting</strong> for staff with any supplement brand, retailer, or CMO active in India.</li>
-          <li><strong>Embargoed press samples</strong> or anything else that ties favourable timing to access.</li>
+          <li><strong>Content-level sponsorships.</strong> A brand cannot sponsor a specific review, a specific "Best of" ranking, or a specific product recommendation. Sponsorships are category-level only.</li>
+          <li><strong>Score-adjacent deals.</strong> Anything that ties payment to a score outcome, a ranking position, or an editorial conclusion — explicitly or implicitly.</li>
+          <li><strong>Paid placements in review content.</strong> We do not run "promoted review" formats or insert a brand's product into a guide in exchange for payment.</li>
+          <li><strong>Direct affiliate deals with supplement brands.</strong> We do not earn per-sale commissions from brand websites or brand-operated affiliate programmes (only Amazon Associates, which is platform-level).</li>
+          <li><strong>Free product for review.</strong> Every product we score is purchased anonymously at the normal retail or D2C price. We do not accept samples, complimentary units, or discount codes offered in relation to a review.</li>
+          <li><strong>Equity, advisory roles, or paid consulting</strong> for staff with any supplement brand, retailer, or CMO active in India — without a filed disclosure.</li>
+          <li><strong>Embargoed press access</strong> tied to favourable coverage.</li>
+          <li><strong>Sponsorships from brands with active label-honesty flags</strong> in our database.</li>
         </ul>
 
         <h2 id="allowed">What we do accept</h2>
         <ul>
-          <li><strong>Amazon Associates commissions.</strong> Some product links on this site are Amazon affiliate links. When you click and buy, we earn a small percentage of the sale at no extra cost to you. Every affiliate link is marked. Our scores and rankings are finalised before links are placed — high-commission products receive no editorial advantage.</li>
-          <li><strong>Reader memberships.</strong> Currently ₹399/month or ₹3,990/year. ~73% of revenue.</li>
-          <li><strong>Independent grants</strong> from non-industry science-communication funders. Currently one active: a 2024–2026 grant from the Wellcome-funded India Science Media Centre. Letter of agreement is published on request.</li>
+          <li><strong>Category sponsorships.</strong> Brands may sponsor ingredient categories, guide sections, or newsletter editions under the terms above. Every sponsorship is disclosed on every associated content page.</li>
+          <li><strong>Amazon Associates commissions.</strong> Some product links are Amazon affiliate links. When you click and buy, we earn a percentage of the sale at no cost to you. Every affiliate link is marked. Our scores are finalised before links are placed.</li>
+          <li><strong>Reader memberships.</strong> Currently ₹399/month or ₹3,990/year. Our largest revenue line and entirely non-commercial.</li>
+          <li><strong>Independent grants</strong> from non-industry science-communication funders. One active grant: 2024–2026 from the Wellcome-funded India Science Media Centre. Letter of agreement available on request.</li>
           <li><strong>Speaking fees</strong> from non-industry conferences (academic, public health). Disclosed individually below.</li>
-          <li><strong>Book royalties</strong> for a forthcoming title by Aarav Subramanian on supplement labelling. The book is not promoted on Naked Compound and reviews of titles in the same space will note the conflict.</li>
+          <li><strong>Book royalties</strong> for a forthcoming title by Aarav Subramanian on supplement labelling. The book is not promoted on Naked Compound.</li>
         </ul>
 
+        <h2 id="editorial-firewall">The editorial firewall</h2>
+        <p>Commercial relationships are managed by a separate team from editorial. The researcher who reviews a brand's products has no visibility into whether that brand has, or is in discussions to have, a commercial relationship with Naked Compound. Scores are submitted to the database before any commercial attribution is applied to the content. This sequence is logged and auditable.</p>
+        <p>Any breach of this firewall — including a commercial team member attempting to brief or influence an editorial team member about a sponsor — is treated as grounds for terminating the sponsorship and, if appropriate, public disclosure of the breach.</p>
+
         <h2 id="disclosures">Active disclosures</h2>
-        <p>The following are the only outside relationships any contributor to Naked Compound holds as of the version date above:</p>
+        <p>The following are all outside relationships held by Naked Compound and its contributors as of the version date above. The sponsorship rows are marked <span class="tag-sm new">New · v5.0</span>.</p>
 
         <div class="data-table-wrap">
           <table class="data-table">
@@ -337,45 +255,87 @@
               <tr><th>Person / Entity</th><th>Relationship</th><th>Scope</th><th>Since</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>Naked Compound</strong></td><td>Amazon Associates affiliate</td><td>Commission on qualifying purchases via tagged links; does not influence scores or recommendations</td><td>Apr 2026</td></tr>
-              <tr><td>Aarav Subramanian</td><td>Speaking fee, FSSAI annual conference</td><td>One-time, ₹40,000</td><td>Feb 2026</td></tr>
-              <tr><td>Aarav Subramanian</td><td>Book contract, Penguin India</td><td>Forthcoming title, royalties only</td><td>Sep 2025</td></tr>
-              <tr><td>Dr. Meera Nair</td><td>Hospital staff position</td><td>Clinical, unrelated to supplements</td><td>Ongoing</td></tr>
-              <tr><td>Rohit Venkatesh</td><td>None</td><td>—</td><td>—</td></tr>
-              <tr><td>Priya Kothari</td><td>Adjunct teaching, Bengaluru</td><td>Nutrition coursework, no industry tie</td><td>Ongoing</td></tr>
-              <tr><td>Sanjana Kapoor</td><td>Coaching practice</td><td>Does not review or sell supplements</td><td>Ongoing</td></tr>
-              <tr><td>Prof. Vikram Rao</td><td>Advisory board, ICMR</td><td>Public-sector advisory, unpaid</td><td>2022–</td></tr>
+              <tr>
+                <td><strong>Naked Compound</strong></td>
+                <td>Amazon Associates affiliate</td>
+                <td>Commission on qualifying purchases via tagged links; does not influence scores or recommendations</td>
+                <td>Apr 2026</td>
+              </tr>
+              <tr>
+                <td><strong>Naked Compound</strong> <span class="tag-sm new">New · v5.0</span></td>
+                <td>Category sponsorship programme</td>
+                <td>Brands may sponsor ingredient categories and guide sections under the strict terms above. No current active brand sponsors at policy launch — table will be updated as relationships commence.</td>
+                <td>May 2026</td>
+              </tr>
+              <tr>
+                <td>Aarav Subramanian</td>
+                <td>Speaking fee, FSSAI annual conference</td>
+                <td>One-time, ₹40,000</td>
+                <td>Feb 2026</td>
+              </tr>
+              <tr>
+                <td>Aarav Subramanian</td>
+                <td>Book contract, Penguin India</td>
+                <td>Forthcoming title on supplement labelling, royalties only</td>
+                <td>Sep 2025</td>
+              </tr>
+              <tr>
+                <td>Dr. Meera Nair</td>
+                <td>Hospital staff position</td>
+                <td>Clinical, unrelated to supplements</td>
+                <td>Ongoing</td>
+              </tr>
+              <tr>
+                <td>Rohit Venkatesh</td>
+                <td>None</td>
+                <td>—</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Priya Kothari</td>
+                <td>Adjunct teaching, Bengaluru</td>
+                <td>Nutrition coursework, no industry tie</td>
+                <td>Ongoing</td>
+              </tr>
+              <tr>
+                <td>Sanjana Kapoor</td>
+                <td>Coaching practice</td>
+                <td>Does not review or sell supplements</td>
+                <td>Ongoing</td>
+              </tr>
+              <tr>
+                <td>Prof. Vikram Rao</td>
+                <td>Advisory board, ICMR</td>
+                <td>Public-sector advisory, unpaid</td>
+                <td>2022–</td>
+              </tr>
             </tbody>
           </table>
         </div>
 
         <h2 id="enforce">Enforcement</h2>
-        <p>Every staff member, contributor, and advisor signs the same conflicts agreement annually. New disclosures must be filed within 14 days. The current version is reviewed every 18 months by the advisory board, and the changelog below records every material edit.</p>
-        <p>Readers who suspect we've fallen short of this policy can email <code>conflicts@nakedcompound.in</code> — every report is reviewed by the editor-in-chief and one advisor with no editorial role on the piece in question.</p>
+        <p>Every staff member, contributor, and advisor signs the same conflicts agreement annually. New disclosures must be filed within 14 days. The current version is reviewed every six months by the advisory board, and the changelog below records every material edit.</p>
+        <p>Readers who suspect we've fallen short of this policy can email <code>conflicts@nakedcompound.in</code> — every report is reviewed by the editor-in-chief and one advisor with no editorial role on the piece in question. Confirmed breaches are disclosed publicly in the <a href="changelog.html">database changelog</a>.</p>
 
         <h2 id="history">Version history</h2>
         <ul>
-          <li><strong>v4.3 — Apr 2026.</strong> Added Amazon Associates affiliate programme to permitted income; removed blanket affiliate prohibition; updated Active disclosures table accordingly.</li>
+          <li><strong>v5.0 — May 2026.</strong> Major update. Introduced category-level brand sponsorship programme with strict editorial firewall terms. Added "Sponsorships — how they work" and "The editorial firewall" sections. Added sponsorship programme to Active disclosures table. Updated prohibited list to reflect permitted vs prohibited sponsorship types.</li>
+          <li><strong>v4.3 — Apr 2026.</strong> Added Amazon Associates affiliate programme to permitted income; removed blanket affiliate prohibition.</li>
           <li><strong>v4.2 — Apr 2026.</strong> Added explicit prohibition on supplement-adjacent services (e.g. blood-test marketplaces).</li>
-          <li><strong>v4.1 — Oct 2025.</strong> Tightened the "free product" clause; previously allowed shelf samples for ingredient analysis only.</li>
+          <li><strong>v4.1 — Oct 2025.</strong> Tightened "free product" clause.</li>
           <li><strong>v4.0 — Mar 2025.</strong> Major rewrite. Equity and consulting prohibition extended to contributors.</li>
           <li><strong>v3.x and earlier</strong> archived in our <a href="changelog.html">database changelog</a>.</li>
         </ul>
 
-      </article><!-- /doc-prose -->
-    </div><!-- /doc-layout -->
-  </div><!-- /container -->
+      </article>
+    </div>
+  </div>
 
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
 <script>
-  // Scroll-spy: highlights active TOC pill as the user reads down.
-  // IMPORTANT: on mobile the TOC is a horizontal pill strip. We scroll
-  // the STRIP (the <ul>) to bring the active pill into view — NOT the
-  // page body. Using scrollIntoView() on the <a> itself causes the
-  // page to jump back to the TOC every time a new section enters view.
   const headings = document.querySelectorAll('.doc-prose h2[id]');
   const tocList  = document.getElementById('docTocList');
   const tocLinks = tocList ? tocList.querySelectorAll('a') : [];
@@ -385,15 +345,11 @@
     const active = tocList.querySelector(`a[href="#${id}"]`);
     if (!active) return;
     active.classList.add('active');
-
-    // Scroll the pill strip horizontally without touching the page scroll.
-    // Only relevant on mobile (flex-direction:row overflow-x:auto).
     const strip = tocList;
     if (strip && strip.scrollWidth > strip.clientWidth) {
       const pillLeft   = active.offsetLeft - strip.offsetLeft;
       const pillWidth  = active.offsetWidth;
       const stripWidth = strip.clientWidth;
-      // Centre the pill within the strip
       strip.scrollLeft = pillLeft - (stripWidth / 2) + (pillWidth / 2);
     }
   }
