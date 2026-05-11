@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css?v=3" />
   <link rel="stylesheet" href="/pages.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
   <script>window.PAGE_KEY = 'reviews';</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-84Q2LMHPV0',{'anonymize_ip':true});</script>
@@ -214,17 +214,109 @@
     .method-note a { color: var(--accent); }
     .method-note strong { color: var(--ink); }
 
+    /* ── Head to Head ──────────────────────────────────────────── */
+    .h2h-section{padding:var(--s-7) 0;border-bottom:1px solid var(--line);background:var(--bg);}
+    .h2h-intro{font-size:14.5px;color:var(--ink-soft);max-width:64ch;line-height:1.6;margin-top:var(--s-2);margin-bottom:var(--s-5);}
+    .h2h-setup{display:grid;grid-template-columns:1fr 56px 1fr;gap:var(--s-4);align-items:start;}
+    .h2h-slot-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:8px;}
+    .h2h-input-wrap{position:relative;}
+    .h2h-input{width:100%;padding:11px 16px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--bg-elev);font:inherit;font-size:14.5px;color:var(--ink);outline:0;transition:border-color .15s,box-shadow .15s;box-sizing:border-box;}
+    .h2h-input:focus{border-color:var(--ink);box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 18%,transparent);}
+    .h2h-input.has-val{border-color:var(--accent);}
+    .h2h-dropdown{position:absolute;top:calc(100% + 5px);left:0;right:0;background:var(--bg-elev);border:1px solid var(--line-strong);border-radius:var(--r-md);z-index:60;max-height:280px;overflow-y:auto;box-shadow:0 8px 24px color-mix(in oklab,var(--ink) 12%,transparent);display:none;}
+    .h2h-dropdown.open{display:block;}
+    .h2h-opt{padding:9px 14px;cursor:pointer;border-bottom:1px solid var(--line);display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;}
+    .h2h-opt:last-child{border-bottom:0;}
+    .h2h-opt:hover,.h2h-opt.foc{background:var(--surface,var(--bg));}
+    .h2h-opt-score{font-family:var(--font-display);font-size:15px;font-weight:700;line-height:1;}
+    .h2h-opt-brand{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted);line-height:1.2;}
+    .h2h-opt-name{font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;}
+    .h2h-opt-price{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--ink-soft);white-space:nowrap;}
+    .h2h-vs-center{display:flex;align-items:center;justify-content:center;padding-top:26px;}
+    .h2h-vs-badge{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--ink-muted);letter-spacing:-.02em;padding:6px 10px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--bg-elev);}
+    /* Selected chip */
+    .h2h-chip{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--r-md);border:2px solid var(--accent);background:color-mix(in oklab,var(--accent) 7%,var(--bg-elev));margin-bottom:6px;}
+    .h2h-chip-score{font-family:var(--font-display);font-size:22px;font-weight:800;letter-spacing:-.04em;line-height:1;}
+    .h2h-chip-info{flex:1;min-width:0;}
+    .h2h-chip-brand{font-family:var(--font-mono);font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-muted);}
+    .h2h-chip-name{font-size:13px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .h2h-chip-meta{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-muted);margin-top:2px;}
+    .h2h-x{background:0;border:0;cursor:pointer;color:var(--ink-muted);font-size:16px;line-height:1;padding:4px 6px;border-radius:4px;flex-shrink:0;}
+    .h2h-x:hover{color:var(--accent);background:color-mix(in oklab,var(--accent) 10%,transparent);}
+    /* Result panel */
+    .h2h-result{margin-top:var(--s-5);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;animation:h2hIn .28s ease;}
+    @keyframes h2hIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .h2h-winner-bar{display:grid;grid-template-columns:1fr auto 1fr;border-bottom:1px solid var(--line);}
+    .h2h-wb-a,.h2h-wb-b{padding:8px 20px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;}
+    .h2h-wb-a{background:color-mix(in oklab,var(--accent) 10%,transparent);color:var(--accent-deep);border-right:1px solid var(--line);}
+    .h2h-wb-b{background:color-mix(in oklab,#5ba672 10%,transparent);color:#3a6b4a;text-align:right;}
+    .h2h-wb-tie{padding:8px 20px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:color-mix(in oklab,var(--butter) 30%,transparent);color:#7a5c15;text-align:center;grid-column:1/-1;}
+    [data-theme=dark] .h2h-wb-a{color:#f4a27a;}[data-theme=dark] .h2h-wb-b{color:#a7d2a9;}[data-theme=dark] .h2h-wb-tie{color:#e0c377;}
+    .h2h-cols{display:grid;grid-template-columns:1fr 1px 1fr;}
+    .h2h-col-a,.h2h-col-b{padding:var(--s-5);}
+    .h2h-col-b{background:color-mix(in oklab,#5ba672 4%,var(--bg-elev));}
+    .h2h-col-divider{background:var(--line);}
+    .h2h-col-brand{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-muted);margin-bottom:3px;}
+    .h2h-col-name{font-size:14.5px;font-weight:600;letter-spacing:-.01em;color:var(--ink);margin-bottom:var(--s-3);line-height:1.3;}
+    .h2h-big-score{font-family:var(--font-display);font-size:52px;font-weight:800;letter-spacing:-.05em;line-height:1;}
+    .h2h-grade{font-family:var(--font-mono);font-size:14px;font-weight:700;margin-left:6px;vertical-align:middle;opacity:.7;}
+    .h2h-col-price{font-family:var(--font-display);font-size:22px;font-weight:700;color:var(--accent);margin-top:var(--s-3);line-height:1;}
+    .h2h-col-qty{font-family:var(--font-mono);font-size:10px;color:var(--ink-muted);margin-top:3px;}
+    .h2h-col-cat{display:inline-block;font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:var(--r-pill);border:1px solid var(--line);color:var(--ink-soft);margin-top:var(--s-2);}
+    .h2h-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:var(--s-3);}
+    .h2h-tag{font-family:var(--font-mono);font-size:9px;padding:2px 7px;border-radius:var(--r-pill);border:1px solid var(--line);color:var(--ink-soft);letter-spacing:.04em;}
+    .h2h-tag.pos{background:color-mix(in oklab,#5ba672 12%,transparent);color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 26%,var(--line));}
+    .h2h-tag.neg{background:color-mix(in oklab,var(--accent) 10%,transparent);color:var(--accent-deep);border-color:color-mix(in oklab,var(--accent) 22%,var(--line));}
+    [data-theme=dark] .h2h-tag.pos{color:#a7d2a9;}[data-theme=dark] .h2h-tag.neg{color:#f4a27a;}
+    /* Dimension bars */
+    .h2h-dims-header{padding:10px var(--s-5);background:var(--bg-elev);border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 180px 1fr;align-items:center;}
+    .h2h-dims-hl{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);}
+    .h2h-dims-hl.r{text-align:right;}
+    .h2h-dims-title{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);text-align:center;}
+    .h2h-dim-row{display:grid;grid-template-columns:1fr 180px 1fr;gap:0;padding:11px var(--s-5);border-bottom:1px solid var(--line);align-items:center;}
+    .h2h-dim-row:last-child{border-bottom:0;}
+    .h2h-dim-a-side{display:flex;align-items:center;gap:8px;}
+    .h2h-dim-b-side{display:flex;align-items:center;gap:8px;flex-direction:row-reverse;}
+    .h2h-dim-score{font-family:var(--font-display);font-size:15px;font-weight:700;white-space:nowrap;}
+    .h2h-dim-bar-wrap{flex:1;height:5px;border-radius:3px;background:var(--line);overflow:hidden;}
+    .h2h-dim-bar{height:100%;border-radius:3px;}
+    .h2h-dim-center{display:flex;align-items:center;justify-content:center;padding:0 8px;}
+    .h2h-dim-lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-muted);text-align:center;line-height:1.3;}
+    .h2h-dim-win-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+    /* Verdict */
+    .h2h-verdict-bar{padding:var(--s-4) var(--s-5);background:var(--bg-elev);border-top:1px solid var(--line);}
+    .h2h-verdict-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px;}
+    .h2h-verdict-text{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+    .h2h-verdict-text strong{color:var(--ink);}
+    .h2h-est-note{font-family:var(--font-mono);font-size:9.5px;color:var(--ink-muted);margin-top:var(--s-3);padding-top:var(--s-3);border-top:1px dashed var(--line);line-height:1.5;}
+    /* H2H button in table rows */
+    .h2h-add-btn{font-family:var(--font-mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line);border-radius:var(--r-pill);background:var(--bg-elev);color:var(--ink-muted);cursor:pointer;transition:all .12s;white-space:nowrap;}
+    .h2h-add-btn:hover{border-color:var(--accent);color:var(--accent);}
+    .h2h-add-btn.sel-a{background:color-mix(in oklab,var(--accent) 12%,transparent);color:var(--accent-deep);border-color:var(--accent);}
+    .h2h-add-btn.sel-b{background:color-mix(in oklab,#5ba672 12%,transparent);color:#3a6b4a;border-color:#5ba672;}
+
     /* ── Responsive ─────────────────────────────────────────────── */
     @media(max-width:1100px){ .cat-grid { grid-template-columns: repeat(3,1fr); } }
     @media(max-width:860px) { .cat-grid { grid-template-columns: repeat(2,1fr); }
       .flags-grid { grid-template-columns: 1fr 1fr; }
-      .rubric-dims { grid-template-columns: 1fr 1fr; } }
+      .rubric-dims { grid-template-columns: 1fr 1fr; }
+      .h2h-setup{grid-template-columns:1fr;}
+      .h2h-vs-center{padding-top:0;padding-bottom:var(--s-2);}
+      .h2h-cols{grid-template-columns:1fr;}
+      .h2h-col-divider{display:none;}
+      .h2h-col-b{border-top:1px solid var(--line);}
+      .h2h-winner-bar{grid-template-columns:1fr 1fr;}
+      .h2h-dims-header,.h2h-dim-row{grid-template-columns:1fr 120px 1fr;}
+    }
     @media(max-width:600px) { .cat-grid { grid-template-columns: 1fr 1fr; }
       .hub-stats-bar { flex-wrap: wrap; }
       .hub-stat { border-right: 0; border-bottom: 1px solid var(--line); }
       .rubric-dims { grid-template-columns: 1fr; }
       .flags-grid { grid-template-columns: 1fr; }
-      .cat-pick { display: none; } }
+      .cat-pick { display: none; }
+      .h2h-dims-header,.h2h-dim-row{grid-template-columns:1fr 90px 1fr;}
+      .h2h-big-score{font-size:38px;}
+    }
   </style>
 </head>
 <body>
@@ -477,6 +569,45 @@
   </div>
 </section>
 
+<!-- ── Head to Head ──────────────────────────────────────────────── -->
+<section class="h2h-section" id="head-to-head">
+  <div class="container">
+    <div class="eyebrow">Head to head</div>
+    <h2 class="section-title" style="margin-top:var(--s-2);margin-bottom:0;">Compare any two products, side by side.</h2>
+    <p class="h2h-intro">Search for any product in the database. Composite scores are real data. The five dimension breakdowns are derived from form keywords, certification signals, and price-per-dose within each category — marked as estimated where applicable.</p>
+
+    <div class="h2h-setup">
+      <!-- Slot A -->
+      <div class="h2h-slot" id="h2h-slot-a">
+        <div class="h2h-slot-label">Product A</div>
+        <div class="h2h-input-wrap" id="h2h-wrap-a">
+          <input class="h2h-input" id="h2h-search-a" type="search" placeholder="Search brand or product…" autocomplete="off" />
+          <div class="h2h-dropdown" id="h2h-drop-a"></div>
+        </div>
+        <div id="h2h-chip-a" style="display:none;margin-top:8px;"></div>
+      </div>
+
+      <!-- VS -->
+      <div class="h2h-vs-center">
+        <div class="h2h-vs-badge">VS</div>
+      </div>
+
+      <!-- Slot B -->
+      <div class="h2h-slot" id="h2h-slot-b">
+        <div class="h2h-slot-label">Product B</div>
+        <div class="h2h-input-wrap" id="h2h-wrap-b">
+          <input class="h2h-input" id="h2h-search-b" type="search" placeholder="Search brand or product…" autocomplete="off" />
+          <div class="h2h-dropdown" id="h2h-drop-b"></div>
+        </div>
+        <div id="h2h-chip-b" style="display:none;margin-top:8px;"></div>
+      </div>
+    </div>
+
+    <!-- Result panel (rendered by JS) -->
+    <div id="h2h-result-panel"></div>
+  </div>
+</section>
+
 <!-- ── Full product table ─────────────────────────────────────────── -->
 <section class="table-section" id="all-products">
   <div class="container">
@@ -544,6 +675,7 @@
             <th>Price (INR)</th>
             <th>Qty</th>
             <th>Category</th>
+            <th style="width:50px;"></th>
           </tr>
         </thead>
         <tbody id="prod-tbody"></tbody>
@@ -973,17 +1105,22 @@ function renderTable(){
   const showing=Math.min(currentPage*PAGE_SIZE,total);
   const slice=filteredData.slice(0,showing);
   if(total===0){
-    tbody.innerHTML='<tr><td colspan="7" class="no-results">No products match. Try a different search term or clear the category filter.</td></tr>';
+    tbody.innerHTML='<tr><td colspan="8" class="no-results">No products match. Try a different search term or clear the category filter.</td></tr>';
     countEl.textContent='No results';
     loadWrap.style.display='none';
     return;
   }
   let html='';
-  slice.forEach(r=>{
+  slice.forEach((r,i)=>{
     const[score,brand,name,form,price,qty,cat]=r;
     const col=scoreColor(score);
     const grade=scoreGrade(score);
     const catLink=CAT_LINKS[cat]||'#';
+    const pid=P.indexOf(r);
+    const isA=h2hA&&P.indexOf(h2hA)===pid;
+    const isB=h2hB&&P.indexOf(h2hB)===pid;
+    const btnClass=isA?'h2h-add-btn sel-a':isB?'h2h-add-btn sel-b':'h2h-add-btn';
+    const btnLabel=isA?'A':isB?'B':'H2H';
     html+=`<tr>
       <td class="td-sc" style="color:${col}"><strong>${score}</strong><span class="td-grade" style="color:${col}">${grade}</span></td>
       <td class="td-brand">${brand}</td>
@@ -992,6 +1129,7 @@ function renderTable(){
       <td class="td-price">₹${price.toLocaleString('en-IN')}</td>
       <td class="td-qty">${qty}</td>
       <td><a href="${catLink}" class="td-cat tc-${cat}">${CAT_LABELS[cat]}</a></td>
+      <td><button class="${btnClass}" data-pid="${pid}" onclick="h2hAddFromTable(${pid})">${btnLabel}</button></td>
     </tr>`;
   });
   tbody.innerHTML=html;
@@ -1010,7 +1148,248 @@ document.getElementById('prod-search').addEventListener('input',e=>{
   clearTimeout(searchTimer);searchTimer=setTimeout(()=>{searchQ=e.target.value.trim();applyFiltersAndSort();},200);
 });
 document.getElementById('prod-sort').addEventListener('change',e=>{activeSort=e.target.value;applyFiltersAndSort();});
+let h2hA=null,h2hB=null;
 applyFiltersAndSort();
+
+// ── Head to Head ──────────────────────────────────────────────────
+
+function h2hDims(r){
+  const[score,brand,name,form,price,qty,cat]=r;
+  const f=(form+' '+name).toLowerCase();
+  // Dose accuracy
+  let dose=score;
+  if(f.includes('underdosed')||f.includes('proprietary blend')||f.includes('matrix')||f.includes('blend'))dose-=1.2;
+  if(f.includes('5g')||f.includes('clinical')||f.includes('exact dose'))dose+=0.3;
+  // Ingredient form quality
+  let ifq=score;
+  const hiForm=['ksm-66','sensoril','creapure','methylcobalamin','glycinate','ubiquinol','mk-7','mk7','ifos','nsf','algal','hydrolysate','isolate primary','cfm','bcm-95','patented'];
+  const loForm=['hcl','kre-alkalyn','ethyl ester','oxide','ala only','cyano','churna','generic','d2 '];
+  hiForm.forEach(k=>{if(f.includes(k))ifq+=0.6;});
+  loForm.forEach(k=>{if(f.includes(k))ifq-=0.9;});
+  // Purity
+  let purity=score;
+  const hiPur=['nabl','nsf','ifos','informed sport','labdoor','5-star','usp','third-party','transparent'];
+  const loPur=['no coa','no heavy metal','unstandardised','proprietary blend'];
+  hiPur.forEach(k=>{if(f.includes(k))purity+=0.8;});
+  loPur.forEach(k=>{if(f.includes(k))purity-=1.4;});
+  // Value: price vs category median
+  const catPrices=P.filter(p=>p[6]===cat).map(p=>p[4]).sort((a,b)=>a-b);
+  const med=catPrices[Math.floor(catPrices.length/2)]||price;
+  let value=score;
+  const ratio=price/med;
+  if(ratio<0.6)value+=1.3;else if(ratio<0.85)value+=0.6;
+  else if(ratio>2.5)value-=1.5;else if(ratio>1.6)value-=0.8;
+  // Label honesty
+  let label=score;
+  if(f.includes('proprietary blend')||f.includes('matrix')||f.includes('disease claim')||f.includes('misleading'))label-=1.8;
+  if(f.includes('transparent')||f.includes('nabl')||f.includes('clean label')||f.includes('single ingredient'))label+=0.5;
+  const clamp=v=>Math.min(10,Math.max(1,Math.round(v*10)/10));
+  return[clamp(dose),clamp(ifq),clamp(purity),clamp(value),clamp(label)];
+}
+
+function h2hTags(r){
+  const f=(r[3]+' '+r[2]).toLowerCase();
+  const tags=[];
+  const posKw=[['ksm-66','KSM-66'],['sensoril','Sensoril'],['creapure','Creapure'],['nabl','NABL COA'],['nsf','NSF Certified'],['ifos','IFOS 5-Star'],['informed sport','Informed Sport'],['methylcobalamin','Methylcobalamin'],['glycinate','Glycinate form'],['ubiquinol','Ubiquinol'],['algal','Algal DHA'],['hydrolysate','Hydrolysate'],['isolate','Whey Isolate'],['5g','5g/serving'],['labdoor','Labdoor Tested']];
+  const negKw=[['hcl','HCl variant'],['kre-alkalyn','Kre-Alkalyn'],['proprietary blend','Prop. blend'],['no coa','No COA'],['underdosed','Underdosed'],['ala only','ALA only'],['misleading','Misleading label'],['generic','Generic extract'],['matrix','Marketing matrix'],['disease claim','Disease claim']];
+  posKw.forEach(([k,l])=>{if(f.includes(k))tags.push({l,pos:true});});
+  negKw.forEach(([k,l])=>{if(f.includes(k))tags.push({l,pos:false});});
+  return tags.slice(0,5);
+}
+
+function h2hRender(){
+  const panel=document.getElementById('h2h-result-panel');
+  if(!h2hA||!h2hB){panel.innerHTML='';return;}
+  const[sa,ba,na,fa,pa,qa,ca]=h2hA;
+  const[sb,bb,nb,fb,pb,qb,cb]=h2hB;
+  const cola=scoreColor(sa),colb=scoreColor(sb);
+  const ga=scoreGrade(sa),gb=scoreGrade(sb);
+  const dimsA=h2hDims(h2hA),dimsB=h2hDims(h2hB);
+  const tagsA=h2hTags(h2hA),tagsB=h2hTags(h2hB);
+  const DIM_NAMES=['Dose accuracy','Ingredient form','Purity docs','India value','Label honesty'];
+
+  // Winner banner
+  let winnerHTML;
+  if(sa>sb+0.1) winnerHTML=`<div class="h2h-wb-a">A wins — ${sa} vs ${sb}</div><div class="h2h-wb-b">&nbsp;</div>`;
+  else if(sb>sa+0.1) winnerHTML=`<div class="h2h-wb-a">&nbsp;</div><div class="h2h-wb-b">B wins — ${sb} vs ${sa}</div>`;
+  else winnerHTML=`<div class="h2h-wb-tie">Effectively tied — ${sa} vs ${sb}</div>`;
+
+  // Tags HTML
+  const renderTags=tags=>tags.map(t=>`<span class="h2h-tag ${t.pos?'pos':'neg'}">${t.l}</span>`).join('');
+
+  // Dimension rows
+  let dimRows='';
+  dimsA.forEach((dA,i)=>{
+    const dB=dimsB[i];
+    const wA=dA>dB,wB=dB>dA;
+    const barA=Math.round((dA/10)*100),barB=Math.round((dB/10)*100);
+    const colA=wA?scoreColor(dA):'var(--line-strong)';
+    const colB=wB?scoreColor(dB):'var(--line-strong)';
+    dimRows+=`<div class="h2h-dim-row">
+      <div class="h2h-dim-a-side">
+        ${wA?`<div class="h2h-dim-win-dot" style="background:${scoreColor(dA)}"></div>`:'<div style="width:6px"></div>'}
+        <span class="h2h-dim-score" style="color:${scoreColor(dA)}">${dA}</span>
+        <div class="h2h-dim-bar-wrap"><div class="h2h-dim-bar" style="width:${barA}%;background:${colA}"></div></div>
+      </div>
+      <div class="h2h-dim-center"><div class="h2h-dim-lbl">${DIM_NAMES[i]}</div></div>
+      <div class="h2h-dim-b-side">
+        <div class="h2h-dim-bar-wrap"><div class="h2h-dim-bar" style="width:${barB}%;background:${colB}"></div></div>
+        <span class="h2h-dim-score" style="color:${scoreColor(dB)}">${dB}</span>
+        ${wB?`<div class="h2h-dim-win-dot" style="background:${scoreColor(dB)}"></div>`:'<div style="width:6px"></div>'}
+      </div>
+    </div>`;
+  });
+
+  // Verdict text
+  const aWinDims=DIM_NAMES.filter((_,i)=>dimsA[i]>dimsB[i]+0.05);
+  const bWinDims=DIM_NAMES.filter((_,i)=>dimsB[i]>dimsA[i]+0.05);
+  const ppgA=(pa/(qa.replace(/[^0-9.]/g,'')||1));
+  const ppgB=(pb/(qb.replace(/[^0-9.]/g,'')||1));
+  let verdict='';
+  if(sa>sb+0.1){
+    verdict=`<strong>${na}</strong> scores higher overall (${sa} vs ${sb}).`;
+    if(aWinDims.length) verdict+=` It leads on ${aWinDims.slice(0,2).join(' and ').toLowerCase()}.`;
+    if(bWinDims.length) verdict+=` <strong>${nb}</strong> is stronger on ${bWinDims[0].toLowerCase()}.`;
+  }else if(sb>sa+0.1){
+    verdict=`<strong>${nb}</strong> scores higher overall (${sb} vs ${sa}).`;
+    if(bWinDims.length) verdict+=` It leads on ${bWinDims.slice(0,2).join(' and ').toLowerCase()}.`;
+    if(aWinDims.length) verdict+=` <strong>${na}</strong> is stronger on ${aWinDims[0].toLowerCase()}.`;
+  }else{
+    verdict=`Both products score within ${Math.abs(sa-sb).toFixed(1)} points of each other — effectively tied at the composite level.`;
+    if(aWinDims.length||bWinDims.length) verdict+=` Check dimension scores for material differences: ${(aWinDims.concat(bWinDims)).slice(0,3).join(', ').toLowerCase()}.`;
+  }
+  verdict+=` Price: ₹${pa.toLocaleString('en-IN')} (A) vs ₹${pb.toLocaleString('en-IN')} (B).`;
+
+  panel.innerHTML=`<div class="h2h-result">
+    <div class="h2h-winner-bar">${winnerHTML}</div>
+    <div class="h2h-cols">
+      <div class="h2h-col-a">
+        <div class="h2h-col-brand">${ba}</div>
+        <div class="h2h-col-name">${na}</div>
+        <div class="h2h-big-score" style="color:${cola}">${sa}<span class="h2h-grade" style="color:${cola}">${ga}</span></div>
+        <div class="h2h-col-price">₹${pa.toLocaleString('en-IN')}</div>
+        <div class="h2h-col-qty">${qa} · ${CAT_LABELS[ca]||ca}</div>
+        <div class="h2h-tags">${renderTags(tagsA)}</div>
+      </div>
+      <div class="h2h-col-divider"></div>
+      <div class="h2h-col-b">
+        <div class="h2h-col-brand">${bb}</div>
+        <div class="h2h-col-name">${nb}</div>
+        <div class="h2h-big-score" style="color:${colb}">${sb}<span class="h2h-grade" style="color:${colb}">${gb}</span></div>
+        <div class="h2h-col-price">₹${pb.toLocaleString('en-IN')}</div>
+        <div class="h2h-col-qty">${qb} · ${CAT_LABELS[cb]||cb}</div>
+        <div class="h2h-tags">${renderTags(tagsB)}</div>
+      </div>
+    </div>
+    <div class="h2h-dims-header">
+      <div class="h2h-dims-hl">${na.split(' ').slice(0,3).join(' ')}</div>
+      <div class="h2h-dims-title">Five dimensions</div>
+      <div class="h2h-dims-hl r">${nb.split(' ').slice(0,3).join(' ')}</div>
+    </div>
+    ${dimRows}
+    <div class="h2h-verdict-bar">
+      <div class="h2h-verdict-label">Summary verdict</div>
+      <div class="h2h-verdict-text">${verdict}</div>
+      <div class="h2h-est-note">Dimension scores estimated from form keywords, certification signals, and category-relative pricing. Composite score is real scored data. Full per-dimension scores available on individual category pages.</div>
+    </div>
+  </div>`;
+}
+
+function h2hChip(slot,r){
+  const chipId='h2h-chip-'+slot;
+  const inputId='h2h-search-'+slot;
+  const el=document.getElementById(chipId);
+  const inp=document.getElementById(inputId);
+  if(!r){el.style.display='none';el.innerHTML='';inp.style.display='';inp.value='';return;}
+  const[score,brand,name,form,price,qty]=r;
+  const col=scoreColor(score);
+  el.innerHTML=`<div class="h2h-chip">
+    <div class="h2h-chip-score" style="color:${col}">${score}</div>
+    <div class="h2h-chip-info">
+      <div class="h2h-chip-brand">${brand}</div>
+      <div class="h2h-chip-name">${name}</div>
+      <div class="h2h-chip-meta">₹${price.toLocaleString('en-IN')} · ${qty}</div>
+    </div>
+    <button class="h2h-x" onclick="h2hClear('${slot}')" title="Remove">×</button>
+  </div>`;
+  el.style.display='block';
+  inp.style.display='none';
+}
+
+function h2hClear(slot){
+  if(slot==='a'){h2hA=null;h2hChip('a',null);}
+  else{h2hB=null;h2hChip('b',null);}
+  h2hRender();renderTable();
+}
+
+function h2hSet(slot,r){
+  if(slot==='a'){h2hA=r;h2hChip('a',r);}
+  else{h2hB=r;h2hChip('b',r);}
+  const drop=document.getElementById('h2h-drop-'+slot);
+  drop.classList.remove('open');
+  h2hRender();
+  if(h2hA&&h2hB){
+    setTimeout(()=>{document.getElementById('h2h-result-panel').scrollIntoView({behavior:'smooth',block:'nearest'});},100);
+  }
+  renderTable();
+}
+
+function h2hAddFromTable(pid){
+  const r=P[pid];
+  if(!r)return;
+  // If already selected, remove it
+  if(h2hA&&P.indexOf(h2hA)===pid){h2hClear('a');return;}
+  if(h2hB&&P.indexOf(h2hB)===pid){h2hClear('b');return;}
+  // Otherwise fill next available slot
+  if(!h2hA){h2hSet('a',r);}
+  else if(!h2hB){h2hSet('b',r);}
+  else{h2hSet('b',r);} // Replace B when both full
+  // Scroll H2H section into view
+  document.getElementById('head-to-head').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function h2hSearch(slot,q){
+  const drop=document.getElementById('h2h-drop-'+slot);
+  if(!q.trim()){drop.classList.remove('open');return;}
+  const ql=q.toLowerCase();
+  const matches=P.filter(r=>r[1].toLowerCase().includes(ql)||r[2].toLowerCase().includes(ql)||r[3].toLowerCase().includes(ql)).slice(0,12);
+  if(!matches.length){drop.innerHTML='<div style="padding:12px 14px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);">No results</div>';drop.classList.add('open');return;}
+  let focIdx=-1;
+  drop.innerHTML=matches.map((r,i)=>{
+    const[score,brand,name,form,price,qty,cat]=r;
+    const col=scoreColor(score);
+    return`<div class="h2h-opt" data-idx="${i}" onmousedown="event.preventDefault();h2hSet('${slot}',P[${P.indexOf(r)}])">
+      <div class="h2h-opt-score" style="color:${col}">${score}</div>
+      <div><div class="h2h-opt-brand">${brand} · ${CAT_LABELS[cat]||cat}</div><div class="h2h-opt-name">${name}</div></div>
+      <div class="h2h-opt-price">₹${price.toLocaleString('en-IN')}</div>
+    </div>`;
+  }).join('');
+  drop.classList.add('open');
+}
+
+['a','b'].forEach(slot=>{
+  const inp=document.getElementById('h2h-search-'+slot);
+  const drop=document.getElementById('h2h-drop-'+slot);
+  let t;
+  inp.addEventListener('input',e=>{clearTimeout(t);t=setTimeout(()=>h2hSearch(slot,e.target.value),150);});
+  inp.addEventListener('focus',()=>{if(inp.value.trim())h2hSearch(slot,inp.value);});
+  inp.addEventListener('blur',()=>{setTimeout(()=>drop.classList.remove('open'),180);});
+  inp.addEventListener('keydown',e=>{
+    const opts=[...drop.querySelectorAll('.h2h-opt')];
+    let fi=opts.findIndex(o=>o.classList.contains('foc'));
+    if(e.key==='ArrowDown'){e.preventDefault();if(fi<opts.length-1){if(fi>=0)opts[fi].classList.remove('foc');opts[fi+1].classList.add('foc');}}
+    else if(e.key==='ArrowUp'){e.preventDefault();if(fi>0){opts[fi].classList.remove('foc');opts[fi-1].classList.add('foc');}}
+    else if(e.key==='Enter'){e.preventDefault();const foc=drop.querySelector('.h2h-opt.foc');if(foc)foc.dispatchEvent(new MouseEvent('mousedown'));}
+    else if(e.key==='Escape'){drop.classList.remove('open');}
+  });
+});
+
+// Close dropdowns on outside click
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.h2h-input-wrap')){
+    document.querySelectorAll('.h2h-dropdown').forEach(d=>d.classList.remove('open'));
+  }
+});
 </script>
 </body>
 </html>
