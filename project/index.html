@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Naked Compound — Strip the label. See the science.</title>
   <meta name="description" content="Independent, evidence-based supplement research for India. Guides, ingredient analysis, unbiased product reviews, and ready-made protocols." />
+  <link rel="canonical" href="https://www.nakedcompound.in/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +16,6 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <script>window.PAGE_KEY = 'home';</script>
 
-  <!-- Top Picks section styles -->
   <style>
     /* ── Top India Picks section ───────────────────────────────── */
     .picks-section {
@@ -24,216 +24,264 @@
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
     }
-
     .picks-tabs {
-      display: flex;
-      gap: 4px;
+      display: flex; gap: 4px;
       margin-bottom: var(--s-6);
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--r-pill);
-      padding: 4px;
-      width: fit-content;
+      padding: 4px; width: fit-content;
     }
     .picks-tab {
-      padding: 8px 20px;
-      border-radius: var(--r-pill);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink-soft);
-      cursor: pointer;
+      padding: 8px 20px; border-radius: var(--r-pill);
+      font-size: 14px; font-weight: 500;
+      color: var(--ink-soft); cursor: pointer;
       transition: background .15s, color .15s;
-      border: 0;
-      background: transparent;
+      border: 0; background: transparent;
     }
-    .picks-tab.active {
-      background: var(--ink);
-      color: var(--bg);
-    }
-
-    .picks-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    /* hide/show panels */
+    .picks-tab.active { background: var(--ink); color: var(--bg); }
     .picks-panel { display: none; }
     .picks-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-
     .pick-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--r-lg); overflow: hidden;
+      display: flex; flex-direction: column;
       transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .pick-card:hover {
-      border-color: var(--line-strong);
+    .pick-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .pick-img {
+      position: relative; aspect-ratio: 4/3; background: var(--bg-elev);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .pick-img img { width: 100%; height: 100%; object-fit: contain; padding: 16px; }
+    .pick-rank {
+      position: absolute; top: 12px; left: 12px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: var(--r-pill); padding: 4px 10px;
+      color: var(--ink-muted);
+    }
+    .pick-score {
+      position: absolute; bottom: 12px; right: 12px;
+      font-family: var(--font-display); font-size: 22px;
+      font-weight: 600; letter-spacing: -.03em;
+      padding: 6px 12px; border-radius: var(--r-md);
+      line-height: 1;
+    }
+    .pick-score.hi { background: var(--mint); color: #2a6040; }
+    .pick-score.md { background: var(--butter); color: #7a5c15; }
+    .pick-score.lo { background: var(--rose); color: #8a3a2a; }
+    .pick-body { padding: var(--s-5); flex: 1; display: flex; flex-direction: column; gap: var(--s-2); }
+    .pick-brand { font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); }
+    .pick-name { font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+    .pick-specs { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+    .pick-spec {
+      font-family: var(--font-mono); font-size: 11px;
+      padding: 3px 8px; border-radius: var(--r-pill);
+      background: var(--bg); border: 1px solid var(--line);
+      color: var(--ink-muted);
+    }
+    .pick-spec.green { background: var(--mint); color: #3a6040; border-color: #c0d9ba; }
+    .pick-spec.warn  { background: var(--butter); color: #7a5c15; border-color: #e0cfa0; }
+    .pick-verdict { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; flex: 1; margin-top: var(--s-2); }
+    .pick-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px var(--s-5); border-top: 1px solid var(--line);
+    }
+    .pick-price { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .pick-price span { font-size: 12.5px; font-weight: 400; color: var(--ink-muted); }
+    .pick-buy {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: var(--r-pill);
+      background: var(--ink); color: var(--bg);
+      font-size: 13px; font-weight: 500;
+      transition: opacity .15s;
+    }
+    .pick-buy:hover { opacity: .8; }
+    .picks-disclaimer { margin-top: var(--s-5); font-size: 12.5px; color: var(--ink-muted); font-family: var(--font-mono); text-align: center; }
+    .picks-disclaimer a { color: var(--ink-muted); text-decoration: underline; }
+
+    /* ── Feature Spotlight (Best + Compare) ─────────────────────── */
+    .feature-spotlight {
+      padding: var(--s-9) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .feature-spotlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: var(--s-6);
+    }
+    .feature-card {
+      display: block; text-decoration: none; color: var(--ink);
+      border: 1px solid var(--line); border-radius: var(--r-xl);
+      padding: var(--s-7) var(--s-8);
+      position: relative; overflow: hidden;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover {
       transform: translateY(-3px);
       box-shadow: var(--shadow-md);
     }
+    .feature-card-best {
+      background: linear-gradient(140deg, color-mix(in oklab, var(--accent-soft) 80%, transparent) 0%, var(--butter) 100%);
+      border-color: color-mix(in oklab, var(--accent) 22%, transparent);
+    }
+    .feature-card-best:hover { border-color: color-mix(in oklab, var(--accent) 45%, transparent); }
+    .feature-card-compare {
+      background: linear-gradient(140deg, var(--sky) 0%, var(--mint) 100%);
+      border-color: color-mix(in oklab, var(--ink) 12%, transparent);
+    }
+    .feature-card-compare:hover { border-color: color-mix(in oklab, var(--ink) 28%, transparent); }
+    .fc-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-4);
+    }
+    .fc-badge {
+      background: var(--accent); color: var(--bg);
+      font-size: 9.5px; padding: 2px 9px;
+      border-radius: var(--r-pill); letter-spacing: .06em;
+    }
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(19px, 1.8vw, 25px);
+      font-weight: 500; letter-spacing: -.025em;
+      line-height: 1.2; color: var(--ink);
+      margin-bottom: var(--s-3);
+    }
+    .feature-card > p {
+      font-size: 14.5px; color: var(--ink-soft);
+      line-height: 1.6; margin-bottom: var(--s-5); max-width: 46ch;
+    }
+    .fc-checklist {
+      display: flex; flex-direction: column; gap: 7px;
+      margin-bottom: var(--s-6);
+    }
+    .fc-checklist span {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--ink-soft); letter-spacing: .01em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .fc-checklist span::before {
+      content: '✓'; font-weight: 700;
+      color: var(--accent); font-size: 11px;
+    }
+    .fc-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 12.5px;
+      font-weight: 600; letter-spacing: .04em; color: var(--accent);
+      border-bottom: 1.5px solid var(--accent); padding-bottom: 1px;
+      transition: gap .15s;
+    }
+    .feature-card:hover .fc-cta { gap: 12px; }
+    .fc-pill-row {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--s-5);
+    }
+    .fc-pill {
+      font-family: var(--font-mono); font-size: 11px;
+      padding: 4px 12px; border-radius: var(--r-pill);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
 
-    /* Product image area */
-    .pick-img {
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-elev);
+    /* ── Ingredient Library (home section) ──────────────────────── */
+    .ing-lib-section {
+      padding: var(--s-9) 0;
       border-bottom: 1px solid var(--line);
     }
-    .pick-img img {
-      height: 150px;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      transition: transform .3s;
+    .ing-lib-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: var(--s-6);
     }
-    .pick-card:hover .pick-img img { transform: scale(1.04); }
-
-    /* Score badge overlay */
-    .pick-score {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: var(--font-display);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      padding: 4px 9px;
-      border-radius: var(--r-pill);
+    .ing-lib-card {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: var(--s-5); border: 1px solid var(--line);
+      border-radius: var(--r-lg); background: var(--bg-elev);
+      text-decoration: none; color: var(--ink); min-width: 0;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
     }
-    .pick-score.hi { background: #3a6b4a; }
-    .pick-score.md { background: #8a6a15; }
-    .pick-score.lo { background: var(--accent-deep); }
-
-    /* Rank badge */
-    .pick-rank {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      color: var(--ink-muted);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: var(--r-pill);
-      letter-spacing: 0.04em;
+    .ing-lib-card:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
     }
-
-    .pick-body {
-      padding: var(--s-4) var(--s-5);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .ing-lib-card.cta-card {
+      flex-direction: column; justify-content: center;
+      align-items: center; text-align: center;
+      border-style: dashed; gap: var(--s-3);
     }
-    .pick-brand {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
+    .ing-lib-glyph {
+      flex: 0 0 46px; width: 46px; height: 46px;
+      border-radius: var(--r-md);
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-style: italic; font-size: 19px;
+      color: var(--accent); font-weight: 400;
     }
-    .pick-name {
-      font-family: var(--font-display);
-      font-size: 17px;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
-      color: var(--ink);
+    .ing-lib-card.cta-card .ing-lib-glyph {
+      background: transparent; border: 1.5px dashed var(--line-strong);
+      color: var(--ink-muted); font-style: normal; font-size: 22px;
+      width: 50px; height: 50px; flex: 0 0 50px;
     }
-
-    .pick-specs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 2px 0;
+    .ing-lib-body { min-width: 0; flex: 1; }
+    .ing-lib-name {
+      font-size: 14.5px; font-weight: 600;
+      letter-spacing: -.01em; color: var(--ink);
+      margin-bottom: 5px;
     }
-    .pick-spec {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: var(--r-pill);
-      background: var(--bg-elev);
-      border: 1px solid var(--line);
-      color: var(--ink-soft);
+    .ing-lib-meta {
+      display: flex; align-items: center; gap: 7px;
+      flex-wrap: wrap; margin-bottom: 6px;
     }
-    .pick-spec.green { background: color-mix(in oklab,#5ba672 14%,transparent); border-color: color-mix(in oklab,#5ba672 30%,var(--line)); color: #3a6b4a; }
-    .pick-spec.warn  { background: var(--butter); color: #7a5c15; }
-    .pick-spec.flag  { background: color-mix(in oklab,var(--accent) 14%,transparent); color: var(--accent-deep); }
-    [data-theme="dark"] .pick-spec.green { color: #a7d2a9; }
-    [data-theme="dark"] .pick-spec.warn  { color: #d9c08a; }
-
-    .pick-verdict {
-      font-size: 13.5px;
-      color: var(--ink-soft);
-      line-height: 1.5;
-      flex: 1;
+    .ev-pill {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: var(--r-pill);
+    }
+    .ev-pill.a { background: var(--mint); color: #3a6040; }
+    .ev-pill.b { background: var(--butter); color: #7a5c15; }
+    .ing-lib-dose {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted); letter-spacing: .03em;
+    }
+    .ing-lib-blurb { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+    .ing-lib-card.cta-card .ing-lib-name { color: var(--ink-soft); font-weight: 500; font-size: 14px; }
+    .ing-lib-all-link {
+      font-family: var(--font-mono); font-size: 12px;
+      color: var(--accent); margin-top: 4px;
     }
 
-    .pick-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--s-3) var(--s-5) var(--s-4);
-      border-top: 1px solid var(--line);
-      gap: 12px;
+    /* ── Reviews section "View all" link ────────────────────────── */
+    .review-viewall {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 12.5px;
+      color: var(--accent); letter-spacing: .03em;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px; margin-top: var(--s-4);
+      transition: gap .15s;
     }
-    .pick-price {
-      font-family: var(--font-display);
-      font-size: 19px;
-      font-weight: 500;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-    .pick-price span {
-      font-size: 11px;
-      color: var(--ink-muted);
-      font-family: var(--font-mono);
-      font-weight: 400;
-    }
-    .pick-buy {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      background: var(--ink);
-      color: var(--bg);
-      border-radius: var(--r-pill);
-      font-size: 13px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background .15s, transform .08s;
-      flex-shrink: 0;
-    }
-    .pick-buy:hover { background: var(--accent); transform: translateY(-1px); }
+    .review-viewall:hover { gap: 10px; }
 
-    /* disclaimer */
-    .picks-disclaimer {
-      margin-top: var(--s-5);
-      font-size: 12.5px;
-      color: var(--ink-muted);
-      font-family: var(--font-mono);
-      text-align: center;
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .picks-panel.active { grid-template-columns: repeat(2, 1fr); }
     }
-    .picks-disclaimer a { color: var(--ink-muted); text-decoration: underline; }
-
-    @media(max-width:1024px) {
-      .picks-panel.active { grid-template-columns: repeat(2,1fr); }
+    @media (max-width: 900px) {
+      .feature-spotlight-grid { grid-template-columns: 1fr; }
+      .ing-lib-grid { grid-template-columns: 1fr 1fr; }
     }
-    @media(max-width:600px) {
+    @media (max-width: 600px) {
       .picks-panel.active { grid-template-columns: 1fr; }
-      .picks-tabs { width:100%; }
-      .picks-tab { flex:1; text-align:center; padding:8px 10px; }
+      .picks-tabs { width: 100%; }
+      .picks-tab { flex: 1; text-align: center; padding: 8px 10px; }
+      .feature-card { padding: var(--s-6); }
+      .ing-lib-grid { grid-template-columns: 1fr; }
     }
   </style>
 
@@ -243,7 +291,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-84Q2LMHPV0');
   </script>
 </head>
@@ -262,8 +309,12 @@
           <p class="lede">Long-form research guides, dosage-aware ingredient breakdowns, and unsponsored product reviews — built for what's actually sold in India, priced in INR, and graded against a public rubric.</p>
 
           <div class="hero-ctas">
-            <a href="pages/guides.html" class="btn btn-primary">Explore guides</a>
-            <a href="pages/protocols.html" class="btn btn-secondary">View protocols<span aria-hidden="true">→</span></a>
+            <a href="/pages/best" class="btn btn-primary">Best picks in India</a>
+            <a href="/pages/compare" class="btn btn-secondary">Compare supplements<span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-ctas" style="margin-top: 10px;">
+            <a href="/pages/ingredients" class="btn btn-ghost" style="font-size:13.5px;">Ingredient library →</a>
+            <a href="/pages/guides" class="btn btn-ghost" style="font-size:13.5px;">Research guides →</a>
           </div>
 
           <div class="trust-note">
@@ -276,16 +327,16 @@
           <div class="hero-blob"></div>
           <div class="hero-blob blob-2"></div>
           <div class="hero-capsule c1">
-            <span class="cap-label">Creatine · ON</span>
+            <span class="cap-label">Creatine · AS-IT-IS</span>
             <span class="cap-value">3.0g — 5.0g / day</span>
           </div>
           <div class="hero-capsule c2">
             <span class="cap-label">Score</span>
-            <span class="cap-value">8.4 / 10</span>
+            <span class="cap-value">9.2 / 10</span>
           </div>
           <div class="hero-capsule c3">
             <span class="cap-label">Evidence</span>
-            <span class="cap-value">142 studies reviewed</span>
+            <span class="cap-value">1,000+ RCTs</span>
           </div>
         </div>
       </div>
@@ -316,6 +367,73 @@
     </section>
 
     <!-- =========================================================
+         FEATURE SPOTLIGHT — BEST & COMPARE
+         ========================================================= -->
+    <section class="feature-spotlight reveal" id="platform-features">
+      <div class="container">
+        <div class="section-head">
+          <div class="head-left">
+            <div class="eyebrow">What's new</div>
+            <h2>Two tools that cut through the noise.</h2>
+          </div>
+          <div class="head-right">
+            <p class="lede">We added two features that no Indian supplement site has done properly — evidence-ranked best picks and clinical head-to-head comparisons.</p>
+          </div>
+        </div>
+
+        <div class="feature-spotlight-grid">
+
+          <!-- Best picks card -->
+          <a href="/pages/best" class="feature-card feature-card-best">
+            <div class="fc-eyebrow">
+              <span class="fc-badge">New</span>
+              Best Picks
+            </div>
+            <h3>India's most evidence-graded supplement rankings — by category.</h3>
+            <p>Every major category. Every budget range. Ranked by clinical dose, evidence quality, and actual INR value per serving — not brand visibility or margins.</p>
+            <div class="fc-pill-row">
+              <span class="fc-pill">Whey protein</span>
+              <span class="fc-pill">Creatine</span>
+              <span class="fc-pill">Vitamin D + K2</span>
+              <span class="fc-pill">Magnesium</span>
+              <span class="fc-pill">Ashwagandha</span>
+              <span class="fc-pill">Omega-3</span>
+            </div>
+            <div class="fc-checklist">
+              <span>Scored on public 5-dimension rubric (0–10)</span>
+              <span>Amazon.in pricing verified May 2026</span>
+              <span>Affiliate links are placement-neutral</span>
+            </div>
+            <div class="fc-cta">View best picks <span aria-hidden="true">→</span></div>
+          </a>
+
+          <!-- Compare card -->
+          <a href="/pages/compare" class="feature-card feature-card-compare">
+            <div class="fc-eyebrow">
+              <span class="fc-badge">New</span>
+              Compare Hub
+            </div>
+            <h3>Side-by-side comparisons that actually explain the difference.</h3>
+            <p>Patented vs. generic. Isolate vs. concentrate. KSM-66 vs. Sensoril. Each comparison walks through mechanism, dose thresholds, and cost-per-serving in ₹ — with RCT citations.</p>
+            <div class="fc-pill-row">
+              <span class="fc-pill">Creatine brands · India</span>
+              <span class="fc-pill">KSM-66 vs Sensoril</span>
+              <span class="fc-pill">WPC vs WPI</span>
+              <span class="fc-pill">More coming</span>
+            </div>
+            <div class="fc-checklist">
+              <span>Patented extract vs. generic powder flagged</span>
+              <span>Evidence tier cited for every claim</span>
+              <span>India brand availability + FSSAI status</span>
+            </div>
+            <div class="fc-cta">Explore comparisons <span aria-hidden="true">→</span></div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
          TOP INDIA PICKS
          ========================================================= -->
     <section class="picks-section reveal" id="top-picks">
@@ -327,6 +445,7 @@
           </div>
           <div class="head-right">
             <p class="lede">Scored on our public rubric. Ranked by evidence quality, clinical dose, and INR value — not margin. Affiliate links are placement-neutral.</p>
+            <a href="/pages/best" class="review-viewall" style="display:inline-flex; margin-top: var(--s-3);">See full best picks list <span aria-hidden="true">→</span></a>
           </div>
         </div>
 
@@ -359,11 +478,11 @@
                 <span class="pick-spec green">Whey isolate primary</span>
                 <span class="pick-spec">~4g lactose / serving</span>
               </div>
-              <p class="pick-verdict">The most replicated whey protein on the market. Blend of isolate + concentrate, standardised amino acid profile, and consistent third-party testing history. Best-in-class for lactose-tolerant lifters.</p>
+              <p class="pick-verdict">The most replicated whey protein on the market. Blend of isolate + concentrate, standardised amino acid profile, and consistent third-party testing history. If you're not lactose intolerant, this is the benchmark every Indian brand is measured against.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹4,999 <span>/ 2lb · Amazon IN</span></div>
-              <a href="https://amzn.to/3PlNtJV" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <div class="pick-price">₹4,299 <span>/ 907g · Amazon IN</span></div>
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -374,26 +493,26 @@
             <div class="pick-img">
               <span class="pick-rank">#2</span>
               <img
-                src="https://m.media-amazon.com/images/I/71U-VDZJr5L._SL1500_.jpg"
-                alt="AS-IT-IS Nutrition Whey Protein Isolate"
+                src="https://m.media-amazon.com/images/I/71aV0XJJRDL._SL1500_.jpg"
+                alt="AS-IT-IS Nutrition Whey Protein Concentrate"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>AII</div>')"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:38px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>AIS</div>')"
               />
               <span class="pick-score hi">8.4</span>
             </div>
             <div class="pick-body">
               <div class="pick-brand">AS-IT-IS Nutrition</div>
-              <div class="pick-name">Whey Protein Isolate — Unflavoured</div>
+              <div class="pick-name">Whey Protein Concentrate 80% — Unflavoured</div>
               <div class="pick-specs">
-                <span class="pick-spec green">25g protein / serving</span>
-                <span class="pick-spec green">90%+ purity by label</span>
-                <span class="pick-spec green">No flavours / sweeteners</span>
+                <span class="pick-spec green">NABL COA published</span>
+                <span class="pick-spec green">23g protein / serving</span>
+                <span class="pick-spec warn">No flavouring (mixing required)</span>
               </div>
-              <p class="pick-verdict">Clean label Indian brand with unusually honest marketing. Unflavoured WPI at ₹/kg that rivals imports. FSSAI-approved, no proprietary blends. Best value isolate in the ₹3,000–4,000/kg bracket.</p>
+              <p class="pick-verdict">The only major Indian brand that publishes batch-level certificates of analysis from an accredited lab. Purity transparency that most international brands don't match. Best value-per-gram in India.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹2,499 <span>/ 1kg · Amazon IN</span></div>
-              <a href="https://amzn.to/48ITbfz" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <div class="pick-price">₹1,549 <span>/ 500g · Amazon IN</span></div>
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -404,8 +523,8 @@
             <div class="pick-img">
               <span class="pick-rank">#3</span>
               <img
-                src="https://m.media-amazon.com/images/I/71VnwikGbSL._SL1500_.jpg"
-                alt="MuscleBlaze Biozyme Whey Protein"
+                src="https://m.media-amazon.com/images/I/71pVltc07tL._SL1500_.jpg"
+                alt="MuscleBlaze Biozyme Performance Whey"
                 loading="lazy"
                 onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>MB</div>')"
               />
@@ -413,13 +532,13 @@
             </div>
             <div class="pick-body">
               <div class="pick-brand">MuscleBlaze</div>
-              <div class="pick-name">Biozyme Performance Whey — Rich Milk Chocolate</div>
+              <div class="pick-name">Biozyme Performance Whey — 1kg</div>
               <div class="pick-specs">
                 <span class="pick-spec green">25g protein / serving</span>
-                <span class="pick-spec warn">EAF enzyme blend (weak evidence)</span>
-                <span class="pick-spec">Blend (not isolate)</span>
+                <span class="pick-spec warn">EAF blend: limited RCT support</span>
+                <span class="pick-spec">₹400 premium for enzymes</span>
               </div>
-              <p class="pick-verdict">Solid protein numbers, but the "Biozyme" enzyme story is marketing-first. EAF blend adds cost without clear RCT support for digestion benefits at this dose. Pick it for availability, not the enzymes.</p>
+              <p class="pick-verdict">Solid protein per serving, but the EAF enzyme blend is marketing more than mechanism. You're paying ₹400/kg for a story. Pick it for availability, not the enzymes.</p>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹3,199 <span>/ 1kg · Amazon IN</span></div>
@@ -454,11 +573,11 @@
                 <span class="pick-spec green">5g per serving</span>
                 <span class="pick-spec green">No excipients</span>
               </div>
-              <p class="pick-verdict">Creapure-sourced monohydrate from AlzChem, Germany — the most studied raw material in sports nutrition. No loading needed. Unflavoured means it mixes into anything. Boring in the best possible way.</p>
+              <p class="pick-verdict">Creapure-sourced monohydrate from AlzChem, Germany — the most studied raw material in sports nutrition. No loading needed. Unflavoured means it mixes into anything.</p>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹1,299 <span>/ 300g · Amazon IN</span></div>
-              <a href="https://amzn.to/48KjaTU" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -469,26 +588,26 @@
             <div class="pick-img">
               <span class="pick-rank">#2</span>
               <img
-                src="https://m.media-amazon.com/images/I/71YugvyYSgL._SL1500_.jpg"
-                alt="AS-IT-IS Creatine Monohydrate Micronised"
+                src="https://m.media-amazon.com/images/I/51dHmADv3cL._SL1000_.jpg"
+                alt="AS-IT-IS Creatine Monohydrate"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>AII</div>')"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:38px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>AIS</div>')"
               />
-              <span class="pick-score hi">8.2</span>
+              <span class="pick-score hi">9.2</span>
             </div>
             <div class="pick-body">
               <div class="pick-brand">AS-IT-IS Nutrition</div>
-              <div class="pick-name">Micronised Creatine Monohydrate — 250g</div>
+              <div class="pick-name">Creatine Monohydrate — Unflavoured 300g</div>
               <div class="pick-specs">
-                <span class="pick-spec green">5g per serving</span>
-                <span class="pick-spec green">Micronised (better mixability)</span>
-                <span class="pick-spec warn">Not Creapure-verified</span>
+                <span class="pick-spec green">NABL COA published ≥99.9%</span>
+                <span class="pick-spec green">₹9.2 per 5g dose</span>
+                <span class="pick-spec green">No fillers</span>
               </div>
-              <p class="pick-verdict">Best value creatine in India at under ₹350/100g. Not Creapure-certified, but micronised monohydrate from a brand with reasonable label honesty. The budget pick that doesn't compromise the fundamentals.</p>
+              <p class="pick-verdict">Best value creatine in India. NABL-accredited lab COA published on website. At ₹9.2 per dose, there is no evidence-based reason to spend more unless you want Creapure branding specifically.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹849 <span>/ 250g · Amazon IN</span></div>
-              <a href="https://amzn.to/4tSz0nK" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <div class="pick-price">₹549 <span>/ 300g · Amazon IN</span></div>
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -499,26 +618,26 @@
             <div class="pick-img">
               <span class="pick-rank">#3</span>
               <img
-                src="https://m.media-amazon.com/images/I/61JFD-8sa-L._SL1200_.jpg"
-                alt="Optimum Nutrition Micronised Creatine Powder"
+                src="https://m.media-amazon.com/images/I/61MHooc-h-L._SL1200_.jpg"
+                alt="MuscleBlaze CreaPRO Creapure"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>ON</div>')"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>MB</div>')"
               />
-              <span class="pick-score hi">8.5</span>
+              <span class="pick-score hi">8.3</span>
             </div>
             <div class="pick-body">
-              <div class="pick-brand">Optimum Nutrition</div>
-              <div class="pick-name">Micronised Creatine Powder — Unflavoured</div>
+              <div class="pick-brand">MuscleBlaze</div>
+              <div class="pick-name">CreaPRO Creatine with Creapure — 250g</div>
               <div class="pick-specs">
-                <span class="pick-spec green">5g per serving</span>
-                <span class="pick-spec green">Unflavoured · dissolves cleanly</span>
-                <span class="pick-spec">Premium price bracket</span>
+                <span class="pick-spec green">Creapure® source verified</span>
+                <span class="pick-spec green">Micronized for solubility</span>
+                <span class="pick-spec warn">₹15 per dose (1.6× AS-IT-IS)</span>
               </div>
-              <p class="pick-verdict">ON's creatine is reliably clean and well-dosed. Not Creapure-labelled but has consistent batch testing. The premium option if you already trust the ON brand from your protein purchase.</p>
+              <p class="pick-verdict">Creapure-sourced from AlzChem Germany with micronization for better dissolution. Premium justified only if you prefer the branded purity assurance. Functionally identical to AS-IT-IS.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹1,549 <span>/ 300g · Amazon IN</span></div>
-              <a href="https://amzn.to/4tk8DG9" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <div class="pick-price">₹899 <span>/ 250g · Amazon IN</span></div>
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -534,22 +653,22 @@
             <div class="pick-img">
               <span class="pick-rank">#1</span>
               <img
-                src="https://m.media-amazon.com/images/I/71ZV-VaCgxL._SL1500_.jpg"
+                src="https://m.media-amazon.com/images/I/61pBTUiGaFL._SL1500_.jpg"
                 alt="HealthKart HK Vitals Vitamin D3 + K2"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>HK</div>')"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:38px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>HK</div>')"
               />
               <span class="pick-score hi">8.1</span>
             </div>
             <div class="pick-body">
               <div class="pick-brand">HealthKart HK Vitals</div>
-              <div class="pick-name">Vitamin D3 (2000 IU) + K2 (45mcg MK-7)</div>
+              <div class="pick-name">Vitamin D3 2000 IU + K2 MK-7 — 60 capsules</div>
               <div class="pick-specs">
-                <span class="pick-spec green">2000 IU D3 (clinical range)</span>
-                <span class="pick-spec green">MK-7 form (longer half-life)</span>
-                <span class="pick-spec green">FSSAI licensed</span>
+                <span class="pick-spec green">MK-7 form (longest half-life)</span>
+                <span class="pick-spec green">D3 + K2 combined</span>
+                <span class="pick-spec">2000 IU (ICMR range)</span>
               </div>
-              <p class="pick-verdict">Clean, correctly dosed D3+K2 pairing. MK-7 form of K2 has the longest half-life and best studied arterial benefits. At 2000 IU D3, stays within ICMR daily upper guidance. Solid label honesty score.</p>
+              <p class="pick-verdict">MK-7 form of K2 has the longest half-life and best studied arterial benefits. At 2000 IU D3, stays within ICMR daily upper guidance. Solid label honesty score.</p>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹599 <span>/ 60 caps · Amazon IN</span></div>
@@ -579,11 +698,11 @@
                 <span class="pick-spec green">200mg elemental Mg</span>
                 <span class="pick-spec warn">Slightly high price per mg</span>
               </div>
-              <p class="pick-verdict">One of the few Indian magnesium products using the glycinate form (bisglycinate chelate) rather than cheap oxide. 200mg elemental Mg per serving hits the effective range for sleep and cramp relief.</p>
+              <p class="pick-verdict">One of the few Indian magnesium products using the glycinate form (bisglycinate chelate) rather than cheap oxide. Magnesium deficiency is pervasive in urban India — this is the form worth buying.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹699 <span>/ 60 caps · Amazon IN</span></div>
-              <a href="https://amzn.to/4w9BWxN" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
+              <div class="pick-price">₹849 <span>/ 60 caps · Amazon IN</span></div>
+              <a href="https://amzn.to/3QOkVta" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
                 Buy
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
@@ -592,30 +711,28 @@
 
           <article class="pick-card">
             <div class="pick-img">
-              <span class="pick-rank">#3</span>
+              <span class="pick-rank">Avoid</span>
               <img
-                src="https://m.media-amazon.com/images/I/71B9qYW539L._SL1500_.jpg"
-                alt="Boldfit Vitamin B12 Methylcobalamin"
+                src="https://m.media-amazon.com/images/I/71pVltc07tL._SL1500_.jpg"
+                alt="Himalayan Organics Plant Omega 3-6-9"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>B12</div>')"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','<div style=\'font-size:42px;font-family:serif;font-style:italic;opacity:.25;color:var(--ink)\'>HO</div>')"
               />
-              <span class="pick-score hi">8.0</span>
+              <span class="pick-score lo">4.1</span>
             </div>
             <div class="pick-body">
-              <div class="pick-brand">Boldfit</div>
-              <div class="pick-name">Vitamin B12 — Methylcobalamin 1000mcg</div>
+              <div class="pick-brand">Himalayan Organics</div>
+              <div class="pick-name">Plant Omega 3-6-9 — "Complete EFA"</div>
               <div class="pick-specs">
-                <span class="pick-spec green">Methylcobalamin form</span>
-                <span class="pick-spec green">1000mcg · adequate for deficiency</span>
-                <span class="pick-spec green">Critical for Indian vegetarians</span>
+                <span class="pick-spec" style="color:#c94242;">ALA-only — not EPA/DHA</span>
+                <span class="pick-spec" style="color:#c94242;">Conversion rate &lt;5%</span>
               </div>
-              <p class="pick-verdict">India's widespread B12 deficiency — especially in vegetarians — makes this one of the highest-yield interventions. Methylcobalamin over cyanocobalamin. 1000mcg weekly is supported by Biesalski et al. review data.</p>
+              <p class="pick-verdict">ALA-only formulation sold as "omega-3". Conversion to EPA/DHA in humans is famously poor (&lt;5% to EPA, &lt;0.5% to DHA). Functionally useless for the cardiovascular and anti-inflammatory endpoints people buy omega-3 for.</p>
             </div>
             <div class="pick-footer">
-              <div class="pick-price">₹349 <span>/ 90 tabs · Amazon IN</span></div>
-              <a href="https://amzn.to/3OJIAu9" class="pick-buy" rel="nofollow noopener sponsored" target="_blank">
-                Buy
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              <div class="pick-price">₹799 <span>/ 60 caps · Amazon IN</span></div>
+              <a href="/pages/ingredients/omega-3-epa-dha" class="pick-buy" style="background: var(--rose); color: #8a3a2a;">
+                Read why →
               </a>
             </div>
           </article>
@@ -623,9 +740,8 @@
         </div>
 
         <p class="picks-disclaimer">
-          Scores from our <a href="pages/methodology.html">public rubric</a>.
-          Amazon affiliate links — commission earned does not affect ranking. Prices checked Apr 2026; verify before purchase.
-          Not a medical recommendation.
+          Amazon affiliate links — commission earned does not affect ranking. Prices checked May 2026; verify before purchase.
+          Not a medical recommendation. <a href="/pages/conflicts-policy">Full conflicts policy →</a>
         </p>
       </div>
     </section>
@@ -641,6 +757,7 @@
         </div>
         <div class="head-right">
           <p class="lede">Evidence-weighted, dosage-specific, and written for what's sold in Mumbai and Bengaluru — not California.</p>
+          <a href="/pages/guides" class="review-viewall" style="display:inline-flex; margin-top:var(--s-3);">All research guides →</a>
         </div>
       </div>
 
@@ -652,7 +769,7 @@
           <p>We mapped 27 RCTs to see whether the 20g/day loading phase actually beats a steady 3–5g. The honest answer is more interesting than either camp admits.</p>
           <div class="card-meta">
             <span>11 min read · Updated Apr 2026</span>
-            <a href="research/creatine-loading.html" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <a href="/research/creatine-loading" class="read-link">Read<span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -663,7 +780,7 @@
           <p>When the ₹800 price gap between isolate and concentrate matters — and when it's just brand marketing. Includes lactose thresholds and a decision flowchart.</p>
           <div class="card-meta">
             <span>14 min read · Updated Mar 2026</span>
-            <a href="research/whey-isolate-vs-concentrate-lactose.html" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <a href="/research/whey-isolate-vs-concentrate-lactose" class="read-link">Read<span aria-hidden="true">→</span></a>
           </div>
         </article>
 
@@ -671,198 +788,144 @@
           <div class="visual"><span class="glyph">Ω3</span></div>
           <span class="card-tag"><span class="swatch"></span>Omega-3</span>
           <h3>Fish oil in India: why most bottles fail a simple freshness test.</h3>
-          <p>We lab-tested 22 popular fish oil brands for peroxide and anisidine. Six passed. Here's what "TOTOX" actually means and how to check at home.</p>
+          <p>We analysed oxidation data on 22 popular Indian fish oil brands. ~30% fail at least one GOED threshold for peroxide value. Six passed cleanly.</p>
           <div class="card-meta">
-            <span>9 min read · Updated Feb 2026</span>
-            <a href="research/fish-oil-freshness-q1-2026.html" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span>16 min read · Updated Apr 2026</span>
+            <a href="/pages/ingredients/omega-3-epa-dha" class="read-link">Read<span aria-hidden="true">→</span></a>
           </div>
         </article>
-
-        <article class="card guide-card g4">
-          <div class="visual"><span class="glyph">Ash</span></div>
-          <span class="card-tag"><span class="swatch"></span>Ashwagandha</span>
-          <h3>Ashwagandha: what KSM-66 and Sensoril trials actually show.</h3>
-          <p>Everyone sells it, few cite it right. We separate the patented-extract evidence from the generic-powder evidence, with real Indian pricing.</p>
-          <div class="card-meta">
-            <span>16 min read · Updated Mar 2026</span>
-            <a href="ingredients/ashwagandha-ksm66-vs-sensoril.html" class="read-link">Read<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="card guide-card g5">
-          <div class="visual"><span class="glyph">D₃</span></div>
-          <span class="card-tag"><span class="swatch"></span>Vitamin D</span>
-          <h3>The 60,000 IU weekly sachet: a uniquely Indian problem.</h3>
-          <p>South Asian vitamin D deficiency is real, but mega-dose sachets aren't the only answer. A look at serum response curves and the 2025 ICMR revision.</p>
-          <div class="card-meta">
-            <span>12 min read · Updated Jan 2026</span>
-            <a href="research/vitamin-d-60000iu-weekly-sachet.html" class="read-link">Read<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="card guide-card g6">
-          <div class="visual"><span class="glyph">Mg</span></div>
-          <span class="card-tag"><span class="swatch"></span>Magnesium</span>
-          <h3>Magnesium glycinate vs citrate vs oxide: the form actually matters.</h3>
-          <p>Why the cheapest magnesium on Amazon India is also the least absorbed — and which form to pick depending on sleep, cramps, or bowel issues.</p>
-          <div class="card-meta">
-            <span>8 min read · Updated Apr 2026</span>
-            <a href="research/magnesium-forms-glycinate-citrate-oxide.html" class="read-link">Read<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-      </div>
-
-      <div style="text-align:center; margin-top: 40px;">
-        <a href="pages/guides.html" class="ghost-link">View all 84 guides<span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
 
     <!-- =========================================================
-         PROTOCOLS
+         WHY WE SCORE — METHODOLOGY
          ========================================================= -->
-    <section class="section container reveal" id="protocols">
-      <div class="section-head">
-        <div class="head-left">
-          <div class="eyebrow">Protocols</div>
-          <h2>Opinionated, goal-specific stacks. Supplements, training, and sleep — priced in INR.</h2>
+    <section class="section container reveal" id="methodology">
+      <div class="methodology">
+        <div>
+          <div class="eyebrow">How we score</div>
+          <h3>Five questions. Public weights. No exceptions.</h3>
+          <p>Dose, form, purity, value, and label honesty. Each scored 0–10 against a written standard. Weights haven't changed since 2024.</p>
+          <div style="margin-top: 24px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="/pages/methodology" class="ghost-link" style="color: inherit; border-color: color-mix(in oklab, currentColor 30%, transparent);">Full methodology<span class="arrow" aria-hidden="true">→</span></a>
+            <a href="/pages/scoring-rubric" class="ghost-link" style="color: inherit; border-color: color-mix(in oklab, currentColor 30%, transparent);">Scoring rubric<span class="arrow" aria-hidden="true">→</span></a>
+          </div>
         </div>
-        <div class="head-right">
-          <p class="lede">Each protocol is a full plan, not a shopping list. We show exactly why every item is in it, and what to drop first when budget is tight.</p>
+        <div class="methodology-scores">
+          <div class="score-row">
+            <span class="sr-label">Clinical dose</span>
+            <div class="sr-bar"><span data-pct="92"></span></div>
+            <span class="sr-val">9.2</span>
+          </div>
+          <div class="score-row">
+            <span class="sr-label">Ingredient form</span>
+            <div class="sr-bar"><span data-pct="84"></span></div>
+            <span class="sr-val">8.4</span>
+          </div>
+          <div class="score-row">
+            <span class="sr-label">Third-party purity</span>
+            <div class="sr-bar"><span data-pct="71"></span></div>
+            <span class="sr-val">7.1</span>
+          </div>
+          <div class="score-row">
+            <span class="sr-label">Value per gram</span>
+            <div class="sr-bar"><span data-pct="62"></span></div>
+            <span class="sr-val">6.2</span>
+          </div>
+          <div class="score-row">
+            <span class="sr-label">Label honesty</span>
+            <div class="sr-bar"><span data-pct="88"></span></div>
+            <span class="sr-val">8.8</span>
+          </div>
         </div>
-      </div>
-
-      <div class="protocol-grid">
-        <article class="protocol">
-          <span class="protocol-tag">Beginner</span>
-          <h3>The Foundation Stack</h3>
-          <p>Whey, creatine, vitamin D, and a tested multivitamin. The four things most young Indian lifters should actually start with before anything else.</p>
-          <div class="protocol-foot">
-            <div class="price">₹1,840<span> / month</span></div>
-            <a href="protocols/foundation-stack.html" class="btn btn-secondary">View<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="protocol">
-          <span class="protocol-tag">Muscle gain</span>
-          <h3>Lean Mass Builder</h3>
-          <p>For the 70kg lifter chasing 5kg in 16 weeks. Protein-forward, creatine-saturated, and built around Indian macro targets and chicken-rice realities.</p>
-          <div class="protocol-foot">
-            <div class="price">₹3,260<span> / month</span></div>
-            <a href="protocols/lean-mass-builder.html" class="btn btn-secondary">View<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="protocol">
-          <span class="protocol-tag">Sleep &amp; Recovery</span>
-          <h3>Wind-Down Protocol</h3>
-          <p>Magnesium glycinate, L-theanine, and a low-dose melatonin window — with a pre-bed routine and caffeine cutoff matched to IST commute patterns.</p>
-          <div class="protocol-foot">
-            <div class="price">₹1,120<span> / month</span></div>
-            <a href="protocols/wind-down-protocol-ist.html" class="btn btn-secondary">View<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="protocol">
-          <span class="protocol-tag">Energy &amp; Focus</span>
-          <h3>Desk Athlete Stack</h3>
-          <p>For the 9-hour desk day. L-tyrosine, rhodiola, omega-3, and one smart caffeine window — tuned for clarity without the 4pm crash or a racing pulse.</p>
-          <div class="protocol-foot">
-            <div class="price">₹2,090<span> / month</span></div>
-            <a href="protocols/desk-athlete-stack.html" class="btn btn-secondary">View<span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-      </div>
-
-      <div style="text-align:center; margin-top: 40px;">
-        <a href="pages/protocols.html" class="ghost-link">View all 19 protocols<span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
 
     <!-- =========================================================
-         WHY US + METHODOLOGY CALLOUT
+         INGREDIENT LIBRARY
          ========================================================= -->
-    <section class="section why reveal" id="why">
+    <section class="ing-lib-section reveal" id="ingredient-library">
       <div class="container">
         <div class="section-head">
           <div class="head-left">
-            <div class="eyebrow">Why Naked Compound</div>
-            <h2>Independent by design, not by accident.</h2>
+            <div class="eyebrow">Ingredient library</div>
+            <h2>The science behind what's in the tub.</h2>
           </div>
           <div class="head-right">
-            <p class="lede">We're the research layer that sits between you and the supplement industry — built on a database, a public rubric, and a strict conflicts policy.</p>
+            <p class="lede">Mechanism of action, evidence tier, clinical dose range, and India-specific brand analysis for every ingredient we've reviewed.</p>
+            <a href="/pages/ingredients" class="review-viewall" style="display:inline-flex; margin-top:var(--s-3);">Browse all 312 ingredients →</a>
           </div>
         </div>
 
-        <div class="why-grid">
-          <div class="feature">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                <path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5"/>
-                <path d="M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/>
-              </svg>
-            </div>
-            <h3>Database-powered</h3>
-            <p>Every product and ingredient lives in a structured database with dose, form, extract, and supplier. Reviews are queries, not opinions.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"/>
-                <path d="M14 2v6h6M9 13h6M9 17h4"/>
-              </svg>
-            </div>
-            <h3>Evidence-weighted</h3>
-            <p>Every claim is tied to a specific citation, a tier of evidence, and a dosage range — not a vague "studies show" wave of the hand.</p>
-          </div>
-          <div class="feature">
-            <div class="icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/>
-                <path d="m9 12 2 2 4-4"/>
-              </svg>
-            </div>
-            <h3>No paid placements</h3>
-            <p>Zero affiliate deals with reviewed brands, zero sponsored rankings. Our full conflicts-of-interest policy is versioned and public.</p>
-          </div>
-        </div>
+        <div class="ing-lib-grid">
 
-        <div class="methodology">
-          <div>
-            <div class="eyebrow">Our scoring rubric</div>
-            <h3>Every product gets the same five questions — and the math is public.</h3>
-            <p>Dose, form, purity, value, and label honesty. Each is scored 0–10 against a written standard. Weights haven't changed since 2024.</p>
-            <div style="margin-top: 24px;">
-              <a href="pages/methodology.html" class="ghost-link" style="color: inherit; border-color: color-mix(in oklab, currentColor 30%, transparent);">Read the full methodology<span class="arrow" aria-hidden="true">→</span></a>
+          <a href="/pages/ingredients/creatine-monohydrate" class="ing-lib-card">
+            <div class="ing-lib-glyph">Cr</div>
+            <div class="ing-lib-body">
+              <div class="ing-lib-name">Creatine Monohydrate</div>
+              <div class="ing-lib-meta">
+                <span class="ev-pill a">Grade A</span>
+                <span class="ing-lib-dose">3–5 g / day</span>
+              </div>
+              <p class="ing-lib-blurb">1,000+ RCTs. The most evidence-dense compound in sports nutrition. ₹6–9 per dose from India's best brands.</p>
             </div>
-          </div>
-          <div class="methodology-scores">
-            <div class="score-row">
-              <span class="sr-label">Clinical dose</span>
-              <div class="sr-bar"><span data-pct="92"></span></div>
-              <span class="sr-val">9.2</span>
+          </a>
+
+          <a href="/pages/ingredients/caffeine" class="ing-lib-card">
+            <div class="ing-lib-glyph">Ca</div>
+            <div class="ing-lib-body">
+              <div class="ing-lib-name">Caffeine</div>
+              <div class="ing-lib-meta">
+                <span class="ev-pill a">Grade A</span>
+                <span class="ing-lib-dose">3–6 mg/kg BW</span>
+              </div>
+              <p class="ing-lib-blurb">Adenosine receptor antagonism. Performance gains confirmed across 300+ trials. Tolerance builds — cycling matters.</p>
             </div>
-            <div class="score-row">
-              <span class="sr-label">Ingredient form</span>
-              <div class="sr-bar"><span data-pct="84"></span></div>
-              <span class="sr-val">8.4</span>
+          </a>
+
+          <a href="/pages/ingredients/omega-3-epa-dha" class="ing-lib-card">
+            <div class="ing-lib-glyph">Ω3</div>
+            <div class="ing-lib-body">
+              <div class="ing-lib-name">Omega-3 EPA/DHA</div>
+              <div class="ing-lib-meta">
+                <span class="ev-pill b">Grade B</span>
+                <span class="ing-lib-dose">1–4 g EPA+DHA / day</span>
+              </div>
+              <p class="ing-lib-blurb">~30% of Indian fish oil brands fail oxidation thresholds. The ALA-only "omega-3" products don't count — here's why.</p>
             </div>
-            <div class="score-row">
-              <span class="sr-label">Third-party purity</span>
-              <div class="sr-bar"><span data-pct="71"></span></div>
-              <span class="sr-val">7.1</span>
+          </a>
+
+          <a href="/pages/ingredients/whey-protein-concentrate-wpc-80" class="ing-lib-card">
+            <div class="ing-lib-glyph">Wp</div>
+            <div class="ing-lib-body">
+              <div class="ing-lib-name">Whey Protein Concentrate (WPC-80)</div>
+              <div class="ing-lib-meta">
+                <span class="ev-pill a">Grade A</span>
+                <span class="ing-lib-dose">0.8–2 g/kg BW/day</span>
+              </div>
+              <p class="ing-lib-blurb">WPC vs WPI: when the ₹800 gap matters for lactose-sensitive Indians and when it's pure marketing.</p>
             </div>
-            <div class="score-row">
-              <span class="sr-label">Value per gram</span>
-              <div class="sr-bar"><span data-pct="62"></span></div>
-              <span class="sr-val">6.2</span>
+          </a>
+
+          <a href="/ingredients/ashwagandha-ksm66-vs-sensoril" class="ing-lib-card">
+            <div class="ing-lib-glyph">As</div>
+            <div class="ing-lib-body">
+              <div class="ing-lib-name">Ashwagandha — KSM-66 vs Sensoril</div>
+              <div class="ing-lib-meta">
+                <span class="ev-pill b">Grade B</span>
+                <span class="ing-lib-dose">300–600 mg / day</span>
+              </div>
+              <p class="ing-lib-blurb">Two patented extracts standardised differently. KSM-66 for stress + performance; Sensoril for sleep + recovery. Not interchangeable.</p>
             </div>
-            <div class="score-row">
-              <span class="sr-label">Label honesty</span>
-              <div class="sr-bar"><span data-pct="88"></span></div>
-              <span class="sr-val">8.8</span>
-            </div>
-          </div>
+          </a>
+
+          <a href="/pages/ingredients" class="ing-lib-card cta-card">
+            <div class="ing-lib-glyph">+</div>
+            <div class="ing-lib-name">307 more ingredients</div>
+            <p class="ing-lib-blurb">Full mechanism breakdowns, clinical dose ranges, India brand comparisons, and FSSAI status for every compound.</p>
+            <div class="ing-lib-all-link">Browse all →</div>
+          </a>
+
         </div>
       </div>
     </section>
@@ -876,24 +939,27 @@
           <div class="eyebrow">Categories</div>
           <h2>Browse the library by what you're actually trying to fix.</h2>
         </div>
+        <div class="head-right">
+          <a href="/pages/categories" class="review-viewall" style="display:inline-flex;">Browse all categories →</a>
+        </div>
       </div>
 
       <div class="category-cloud">
-        <a href="pages/categories.html" class="chip">Adaptogens<span class="count">18</span></a>
-        <a href="pages/categories.html" class="chip">Amino acids<span class="count">22</span></a>
-        <a href="pages/categories.html" class="chip">Creatine<span class="count">9</span></a>
-        <a href="pages/categories.html" class="chip">Energy &amp; focus<span class="count">26</span></a>
-        <a href="pages/categories.html" class="chip">Gut health<span class="count">14</span></a>
-        <a href="pages/categories.html" class="chip">Joints &amp; mobility<span class="count">11</span></a>
-        <a href="pages/categories.html" class="chip">Nootropics<span class="count">31</span></a>
-        <a href="pages/categories.html" class="chip">Omega-3s<span class="count">8</span></a>
-        <a href="pages/categories.html" class="chip">Pre-workout<span class="count">24</span></a>
-        <a href="pages/categories.html" class="chip">Protein<span class="count">42</span></a>
-        <a href="pages/categories.html" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
-        <a href="pages/categories.html" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
-        <a href="pages/categories.html" class="chip wip"><span class="dot"></span>Women's health<span class="count">In&nbsp;progress</span></a>
-        <a href="pages/categories.html" class="chip wip"><span class="dot"></span>Testosterone<span class="count">In&nbsp;progress</span></a>
-        <a href="pages/categories.html" class="chip wip"><span class="dot"></span>Longevity<span class="count">Planned</span></a>
+        <a href="/pages/categories" class="chip">Adaptogens<span class="count">18</span></a>
+        <a href="/pages/categories" class="chip">Amino acids<span class="count">22</span></a>
+        <a href="/pages/ingredients/creatine-monohydrate" class="chip">Creatine<span class="count">9</span></a>
+        <a href="/pages/categories" class="chip">Energy &amp; focus<span class="count">26</span></a>
+        <a href="/pages/categories" class="chip">Gut health<span class="count">14</span></a>
+        <a href="/pages/categories" class="chip">Joints &amp; mobility<span class="count">11</span></a>
+        <a href="/pages/categories" class="chip">Nootropics<span class="count">31</span></a>
+        <a href="/pages/ingredients/omega-3-epa-dha" class="chip">Omega-3s<span class="count">8</span></a>
+        <a href="/pages/categories" class="chip">Pre-workout<span class="count">24</span></a>
+        <a href="/pages/ingredients/whey-protein-concentrate-wpc-80" class="chip">Protein<span class="count">42</span></a>
+        <a href="/pages/categories" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
+        <a href="/pages/categories" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
+        <a href="/pages/categories" class="chip wip"><span class="dot"></span>Women's health<span class="count">In&nbsp;progress</span></a>
+        <a href="/pages/categories" class="chip wip"><span class="dot"></span>Testosterone<span class="count">In&nbsp;progress</span></a>
+        <a href="/pages/categories" class="chip wip"><span class="dot"></span>Longevity<span class="count">Planned</span></a>
       </div>
     </section>
 
@@ -908,6 +974,7 @@
         </div>
         <div class="head-right">
           <p class="lede">Scored against the same five-question rubric. Nothing is ranked based on commission.</p>
+          <a href="/pages/reviews" class="review-viewall" style="display:inline-flex; margin-top:var(--s-3);">All product reviews →</a>
         </div>
       </div>
 
@@ -968,154 +1035,94 @@
               <span class="sml">/ 10</span>
             </div>
           </div>
-          <p class="summary">ALA-only formulation sold as "omega-3" — conversion to EPA/DHA in humans is famously poor. Not what most buyers think they're getting.</p>
-          <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span></div>
+          <p class="summary">ALA-only formulation sold as "omega-3" — conversion to EPA/DHA in humans is famously poor (&lt;5%). Do not buy this expecting fish oil benefits.</p>
+          <div class="review-tags"><span>Omega-3 · ALA only</span><span>₹799 / 60 caps</span></div>
         </article>
-      </div>
-
-      <div style="text-align:center; margin-top: 40px;">
-        <a href="pages/reviews.html" class="ghost-link">View all 287 reviews<span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
 
     <!-- =========================================================
-         INGREDIENTS
+         FEATURES / WHY NC
          ========================================================= -->
-    <section class="section container reveal" id="ingredients">
+    <section class="section container reveal" id="why-nc">
       <div class="section-head">
         <div class="head-left">
-          <div class="eyebrow">Ingredient library</div>
-          <h2>Plain-language summaries for the compounds that actually appear on Indian labels.</h2>
-        </div>
-        <div class="head-right">
-          <p class="lede">Mechanism, evidence tier, typical dose range, and common-sense red flags — for the stuff you keep seeing on back-of-jar ingredient lists.</p>
+          <div class="eyebrow">Why Naked Compound</div>
+          <h2>The things other supplement sites won't tell you.</h2>
         </div>
       </div>
 
-      <div class="ingredient-grid">
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Creatine monohydrate</h3>
-            <span class="evidence e-strong">Strong</span>
+      <div class="card-grid">
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+            </svg>
           </div>
-          <div class="ing-tax">Performance · Nitrogenous acid</div>
-          <p>Replenishes the phosphocreatine pool that fuels short, high-intensity efforts. One of the most replicated ergogenic aids in sports nutrition, with growing cognitive data.</p>
-          <div class="ing-foot"><span>Dose · 3–5g / day</span><span>42 studies</span></div>
-        </article>
-
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Ashwagandha (KSM-66)</h3>
-            <span class="evidence e-mod">Moderate</span>
+          <h3>India-first framing</h3>
+          <p>Prices in ₹, products on Amazon.in, FSSAI regulatory status, and context for Indian dietary patterns — phytate interference, lactose prevalence, B12 deficiency from vegetarian diets.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z"/>
+              <path d="M14 2v6h6M9 13h6M9 17h4"/>
+            </svg>
           </div>
-          <div class="ing-tax">Adaptogen · Withania somnifera</div>
-          <p>A standardised root extract with reasonable RCT evidence for lowering subjective stress and cortisol across 8–12 week windows. Effect size is meaningful but not heroic.</p>
-          <div class="ing-foot"><span>Dose · 300–600mg / day</span><span>27 studies</span></div>
-        </article>
-
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Whey protein isolate</h3>
-            <span class="evidence e-strong">Strong</span>
+          <h3>Evidence-weighted</h3>
+          <p>Every claim is tied to a specific citation, a tier of evidence (RCT → meta-analysis → observational → in vitro), and a dosage range — not a vague "studies show" wave of the hand.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
           </div>
-          <div class="ing-tax">Protein · Dairy-derived</div>
-          <p>Cross-flow filtered whey that is 90%+ protein by weight with minimal lactose. Fast-digesting and leucine-rich — worth the premium if concentrate causes GI issues.</p>
-          <div class="ing-foot"><span>Dose · 20–40g / serving</span><span>60+ studies</span></div>
-        </article>
-
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Omega-3 (EPA + DHA)</h3>
-            <span class="evidence e-strong">Strong</span>
-          </div>
-          <div class="ing-tax">Fatty acid · Marine</div>
-          <p>Long-chain polyunsaturated fats with strong cardiovascular and inflammatory-marker evidence. Potency depends on actual EPA/DHA content, not "fish oil" weight.</p>
-          <div class="ing-foot"><span>Dose · 1–2g EPA+DHA / day</span><span>100+ studies</span></div>
-        </article>
-
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Vitamin D3 (cholecalciferol)</h3>
-            <span class="evidence e-strong">Strong</span>
-          </div>
-          <div class="ing-tax">Fat-soluble vitamin · Seco-steroid</div>
-          <p>Acts as a precursor hormone regulating calcium, bone, and immune function. Supplementation matters in India given widespread deficiency, but dosing should follow serum levels.</p>
-          <div class="ing-foot"><span>Dose · 1,000–2,000 IU / day</span><span>80+ studies</span></div>
-        </article>
-
-        <article class="ingredient">
-          <div class="ing-head">
-            <h3>Melatonin</h3>
-            <span class="evidence e-mod">Moderate</span>
-          </div>
-          <div class="ing-tax">Hormone · Pineal</div>
-          <p>Chronobiotic used to shift circadian phase — useful for jet lag and shift work. Lower doses (0.3–1mg) often outperform the 3–10mg tablets commonly sold in India.</p>
-          <div class="ing-foot"><span>Dose · 0.3–1mg, 30–60 min pre-bed</span><span>34 studies</span></div>
-        </article>
-      </div>
-
-      <div style="text-align:center; margin-top: 40px;">
-        <a href="pages/ingredients.html" class="ghost-link">Browse all 312 ingredients<span class="arrow" aria-hidden="true">→</span></a>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         PRESS / TRUST STRIP
-         ========================================================= -->
-    <section class="press container reveal">
-      <p class="press-label">Brands &amp; We Reviewed</p>
-      <div class="press-row">
-        <span>MuscleBlaze</span>
-        <span><em>GNC India</em></span>
-        <span>Wellbeing Nutrition</span>
-        <span>Himalayan Organics</span>
-        <span><em>Transparentlabs</em></span>
-        <span>Optimum Nutrition</span>
-        <span>Dymatize</span>
+          <h3>No paid placements</h3>
+          <p>Zero affiliate deals with reviewed brands. Our conflicts-of-interest policy is versioned and public. Affiliate links earn commissions but ranking is determined purely by the rubric score.</p>
+        </div>
       </div>
     </section>
 
     <!-- =========================================================
          NEWSLETTER
          ========================================================= -->
-    <section class="newsletter reveal">
-      <div class="container newsletter-inner">
-        <div>
-          <h2>The Monday brief.</h2>
-          <p>One short email a week: new guides, updated reviews, and the single most interesting thing we read about supplements that week. No sponsors.</p>
+    <section class="section container reveal" id="newsletter">
+      <div class="newsletter">
+        <div class="newsletter-copy">
+          <div class="eyebrow">Stay current</div>
+          <h2>New research. New reviews. No filler.</h2>
+          <p>When we publish a new ingredient deep-dive or update a score, you'll hear about it first. No brand partnerships, no sponsored content — ever.</p>
         </div>
-        <div>
-          <form class="newsletter-form" novalidate>
-            <input type="email" placeholder="you@domain.in" aria-label="Email address" required />
-            <button type="submit" class="btn btn-accent">Subscribe</button>
-          </form>
-          <p class="newsletter-meta">~ 12,800 Indian readers. Unsubscribe from every email in one click.</p>
-        </div>
+        <form class="newsletter-form" novalidate>
+          <input type="email" placeholder="Your email address" autocomplete="email" />
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
       </div>
     </section>
 
   </main>
 
-  <div id="site-footer"></div>
-
-  <script src="nc-site.js"></script>
-
-  <!-- Picks tab switcher -->
-  <script>
-    (function() {
-      const tabs   = document.querySelectorAll('.picks-tab');
-      const panels = document.querySelectorAll('.picks-panel');
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-          panels.forEach(p => p.classList.remove('active'));
-          tab.classList.add('active');
-          tab.setAttribute('aria-selected','true');
-          const panel = document.getElementById('panel-' + tab.dataset.tab);
-          if (panel) panel.classList.add('active');
-        });
+<div id="site-footer"></div>
+<script src="nc-site.js"></script>
+<script src="script.js"></script>
+<script>
+  /* ── Tab switching for Top India Picks ─── */
+  document.querySelectorAll('.picks-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.picks-tab').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
       });
-    })();
-  </script>
+      document.querySelectorAll('.picks-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      const panel = document.getElementById('panel-' + tab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>
