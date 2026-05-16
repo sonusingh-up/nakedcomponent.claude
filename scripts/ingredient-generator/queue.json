@@ -1,0 +1,1442 @@
+[
+  {
+    "cat": "Adaptogens",
+    "name": "Ashwagandha (KSM-66)",
+    "slug": "ashwagandha-ksm66"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Rhodiola rosea",
+    "slug": "rhodiola-rosea"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Panax ginseng",
+    "slug": "panax-ginseng"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Eleuthrococcus senticosus",
+    "slug": "eleuthrococcus"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Shilajit (PrimaVie)",
+    "slug": "shilajit-primavie"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Shilajit (generic / raw)",
+    "slug": "shilajit-generic"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Maca root (Lepidium meyenii)",
+    "slug": "maca-root"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Holy basil / Tulsi (Ocimum tenuiflorum)",
+    "slug": "tulsi"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Schisandra chinensis",
+    "slug": "schisandra"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Shatavari (Asparagus racemosus)",
+    "slug": "shatavari"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Mucuna pruriens",
+    "slug": "mucuna-pruriens"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Cordyceps militaris",
+    "slug": "cordyceps-militaris"
+  },
+  {
+    "cat": "Adaptogens",
+    "name": "Reishi (Ganoderma lucidum)",
+    "slug": "reishi"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-leucine",
+    "slug": "l-leucine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-isoleucine",
+    "slug": "l-isoleucine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-valine",
+    "slug": "l-valine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "BCAA blend (2:1:1)",
+    "slug": "bcaa-2-1-1"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-glutamine",
+    "slug": "l-glutamine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-arginine",
+    "slug": "l-arginine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-citrulline",
+    "slug": "l-citrulline"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-taurine",
+    "slug": "l-taurine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-tyrosine",
+    "slug": "l-tyrosine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-theanine",
+    "slug": "l-theanine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "Beta-alanine",
+    "slug": "beta-alanine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-carnitine L-tartrate",
+    "slug": "l-carnitine-tartrate"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "Acetyl-L-carnitine (ALCAR)",
+    "slug": "alcar"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "N-Acetyl Cysteine (NAC)",
+    "slug": "nac"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "HMB (\u03b2-Hydroxy \u03b2-methylbutyrate)",
+    "slug": "hmb"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-glycine",
+    "slug": "l-glycine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-tryptophan",
+    "slug": "l-tryptophan"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "5-HTP (5-hydroxytryptophan)",
+    "slug": "5-htp"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-ornithine",
+    "slug": "l-ornithine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-carnosine",
+    "slug": "l-carnosine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-lysine",
+    "slug": "l-lysine"
+  },
+  {
+    "cat": "Amino Acids",
+    "name": "L-carnitine (base form)",
+    "slug": "l-carnitine-base"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine monohydrate",
+    "slug": "creatine-monohydrate"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creapure (AlzChem verified)",
+    "slug": "creapure"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Micronized creatine",
+    "slug": "micronized-creatine"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine HCl",
+    "slug": "creatine-hcl"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Buffered creatine (Kre-Alkalyn)",
+    "slug": "kre-alkalyn"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine ethyl ester",
+    "slug": "creatine-ethyl-ester"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine citrate",
+    "slug": "creatine-citrate"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine malate (TCM)",
+    "slug": "creatine-malate"
+  },
+  {
+    "cat": "Creatine",
+    "name": "Creatine AKG",
+    "slug": "creatine-akg"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Caffeine anhydrous",
+    "slug": "caffeine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Guarana (Paullinia cupana)",
+    "slug": "guarana"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Green tea extract (EGCG)",
+    "slug": "egcg"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Alpha-GPC (50% / 99%)",
+    "slug": "alpha-gpc"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "CDP-Choline (Citicoline)",
+    "slug": "cdp-choline"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Theacrine (TeaCrine)",
+    "slug": "theacrine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Methylliberine (Dynamine)",
+    "slug": "dynamine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "CoQ10 (ubiquinol)",
+    "slug": "coq10"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "PQQ",
+    "slug": "pqq"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Rhodiola rosea (energy)",
+    "slug": "rhodiola-energy"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Bitter orange (synephrine)",
+    "slug": "synephrine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Yohimbine HCl",
+    "slug": "yohimbine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Rauwolscine (\u03b1-yohimbine)",
+    "slug": "rauwolscine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Iron (ferrous bisglycinate)",
+    "slug": "iron-energy"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Astaxanthin",
+    "slug": "astaxanthin"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Sulbutiamine",
+    "slug": "sulbutiamine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Nicotinamide riboside (NR)",
+    "slug": "nr"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Epicatechin",
+    "slug": "epicatechin"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Panax ginseng (energy)",
+    "slug": "ginseng-energy"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Taurine (energy drink context)",
+    "slug": "taurine-energy"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Theobromine",
+    "slug": "theobromine"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Zynamite (mango leaf extract)",
+    "slug": "zynamite"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "DHEA",
+    "slug": "dhea"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "DMAA (1,3-dimethylamylamine)",
+    "slug": "dmaa"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Lactobacillus acidophilus",
+    "slug": "l-acidophilus"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Bifidobacterium longum",
+    "slug": "b-longum"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Saccharomyces boulardii",
+    "slug": "s-boulardii"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "LGG (Lactobacillus rhamnosus GG)",
+    "slug": "lgg"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Psyllium husk (Isabgol)",
+    "slug": "psyllium-husk"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Inulin / FOS",
+    "slug": "inulin-fos"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "GOS (galacto-oligosaccharides)",
+    "slug": "gos"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "L-glutamine (gut integrity)",
+    "slug": "glutamine-gut"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Zinc carnosine (Polaprezinc)",
+    "slug": "zinc-carnosine"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Berberine",
+    "slug": "berberine"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Digestive enzyme blend",
+    "slug": "digestive-enzymes"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "DGL licorice root",
+    "slug": "dgl-licorice"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Slippery elm bark",
+    "slug": "slippery-elm"
+  },
+  {
+    "cat": "Gut Health",
+    "name": "Apple cider vinegar",
+    "slug": "acv"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Glucosamine sulfate",
+    "slug": "glucosamine-sulfate"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Chondroitin sulfate",
+    "slug": "chondroitin-sulfate"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "UC-II (undenatured type II collagen)",
+    "slug": "uc2-collagen"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Collagen peptides (Type I/III)",
+    "slug": "collagen-peptides"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Hyaluronic acid (oral)",
+    "slug": "hyaluronic-acid"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Boswellia serrata (5-Loxin / Apr\u00e8sFlex)",
+    "slug": "boswellia"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Curcumin (BCM-95 / CurcuWin / Meriva)",
+    "slug": "curcumin-enhanced"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "MSM (methylsulfonylmethane)",
+    "slug": "msm"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Avocado-soybean unsaponifiables (ASU)",
+    "slug": "asu"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Cetyl myristoleate",
+    "slug": "cetyl-myristoleate"
+  },
+  {
+    "cat": "Joints & Mobility",
+    "name": "Type II collagen (generic powder)",
+    "slug": "collagen-type2-generic"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Phosphatidylserine",
+    "slug": "phosphatidylserine"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Huperzine A",
+    "slug": "huperzine-a"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Bacopa monnieri (cognitive)",
+    "slug": "bacopa-cognitive"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Alpha-GPC (nootropic)",
+    "slug": "alpha-gpc-nootropic"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Cognizin (Citicoline)",
+    "slug": "cognizin"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Inositol",
+    "slug": "inositol"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "GABA (oral)",
+    "slug": "gaba-oral"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Vinpocetine",
+    "slug": "vinpocetine"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "DMAE",
+    "slug": "dmae"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Lemon balm (Melissa officinalis)",
+    "slug": "lemon-balm"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Passionflower (Passiflora incarnata)",
+    "slug": "passionflower"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Mucuna pruriens (dopaminergic)",
+    "slug": "mucuna-nootropic"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Pterostilbene",
+    "slug": "pterostilbene"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Uridine monophosphate",
+    "slug": "uridine"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Centella asiatica (Gotu kola)",
+    "slug": "gotu-kola"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Rhodiola rosea (cognitive)",
+    "slug": "rhodiola-cognitive"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Resveratrol",
+    "slug": "resveratrol"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Phosphatidylcholine",
+    "slug": "phosphatidylcholine"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Ashwagandha (cognitive)",
+    "slug": "ashwagandha-cognitive"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Lithium orotate (low-dose)",
+    "slug": "lithium-orotate"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Noopept",
+    "slug": "noopept"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Aniracetam",
+    "slug": "aniracetam"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Pregnenolone",
+    "slug": "pregnenolone"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "PQQ (nootropic)",
+    "slug": "pqq-nootropic"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Fish oil EPA+DHA (rTG form)",
+    "slug": "fish-oil-rtg"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Fish oil EPA+DHA (ethyl ester form)",
+    "slug": "fish-oil-ee"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Krill oil",
+    "slug": "krill-oil"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Algal oil DHA",
+    "slug": "algal-oil"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Flaxseed oil (ALA)",
+    "slug": "flaxseed-oil"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Chia seed oil (ALA)",
+    "slug": "chia-seed-oil"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "Hemp seed oil (ALA + GLA)",
+    "slug": "hemp-seed-oil"
+  },
+  {
+    "cat": "Omega-3s",
+    "name": "TOTOX freshness standard",
+    "slug": "totox"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "L-citrulline (pre-workout)",
+    "slug": "citrulline-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Citrulline malate (2:1)",
+    "slug": "citrulline-malate"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Betaine anhydrous",
+    "slug": "betaine"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Beet root extract (nitrates)",
+    "slug": "beetroot-nitrate"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Beta-alanine (pre-workout)",
+    "slug": "beta-alanine-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "CarnoSyn (patented beta-alanine)",
+    "slug": "carnosyn"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Nitrosigine (arginine silicate)",
+    "slug": "nitrosigine"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "S7 blend",
+    "slug": "s7"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Agmatine sulfate",
+    "slug": "agmatine"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Taurine (pre-workout)",
+    "slug": "taurine-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "EAA blend (intraworkout)",
+    "slug": "eaa-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "ElevATP",
+    "slug": "elevatp"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Alpha-lipoic acid (pre-workout)",
+    "slug": "ala-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "CoQ10 (pre-workout)",
+    "slug": "coq10-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Caffeine (pre-workout)",
+    "slug": "caffeine-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Epicatechin (pre-workout)",
+    "slug": "epicatechin-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Peak O2",
+    "slug": "peak-o2"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "DMHA (2-amino-6-methylheptane)",
+    "slug": "dmha"
+  },
+  {
+    "cat": "Protein",
+    "name": "Whey protein concentrate (WPC 80)",
+    "slug": "whey-concentrate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Whey protein isolate (WPI 90)",
+    "slug": "whey-isolate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Whey protein hydrolysate",
+    "slug": "whey-hydrolysate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Micellar casein",
+    "slug": "micellar-casein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Calcium caseinate",
+    "slug": "calcium-caseinate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Milk protein isolate (MPI)",
+    "slug": "milk-protein-isolate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Egg white protein",
+    "slug": "egg-white-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Pea protein isolate",
+    "slug": "pea-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Brown rice protein",
+    "slug": "rice-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Soy protein isolate",
+    "slug": "soy-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Hemp protein",
+    "slug": "hemp-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Pea + Rice protein blend",
+    "slug": "pea-rice-blend"
+  },
+  {
+    "cat": "Protein",
+    "name": "Collagen peptides (Type I/III)",
+    "slug": "collagen-peptides-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "BCAA 2:1:1",
+    "slug": "bcaa-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "EAA blend (standalone)",
+    "slug": "eaa-standalone"
+  },
+  {
+    "cat": "Protein",
+    "name": "Spirulina",
+    "slug": "spirulina"
+  },
+  {
+    "cat": "Protein",
+    "name": "Whey + Casein blend",
+    "slug": "whey-casein-blend"
+  },
+  {
+    "cat": "Protein",
+    "name": "Casein hydrolysate",
+    "slug": "casein-hydrolysate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Beef protein isolate",
+    "slug": "beef-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Sacha inchi protein",
+    "slug": "sacha-inchi"
+  },
+  {
+    "cat": "Protein",
+    "name": "Lentil protein isolate",
+    "slug": "lentil-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Mung bean protein",
+    "slug": "mung-bean-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Chickpea protein",
+    "slug": "chickpea-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Moringa leaf protein",
+    "slug": "moringa-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Leucine isolate",
+    "slug": "leucine-isolate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Bone broth protein",
+    "slug": "bone-broth"
+  },
+  {
+    "cat": "Protein",
+    "name": "Pumpkin seed protein",
+    "slug": "pumpkin-seed-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Faba bean protein",
+    "slug": "faba-bean"
+  },
+  {
+    "cat": "Protein",
+    "name": "Potato protein isolate",
+    "slug": "potato-protein"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Melatonin",
+    "slug": "melatonin"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Magnesium glycinate",
+    "slug": "magnesium-glycinate-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Magnesium L-threonate (Magtein)",
+    "slug": "magnesium-threonate"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "L-theanine (sleep)",
+    "slug": "theanine-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Ashwagandha (sleep)",
+    "slug": "ashwagandha-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Valerian root",
+    "slug": "valerian-root"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Glycine (sleep)",
+    "slug": "glycine-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "5-HTP (sleep)",
+    "slug": "5-htp-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "L-tryptophan (sleep)",
+    "slug": "tryptophan-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "GABA (PharmaGABA form)",
+    "slug": "gaba-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Inositol (sleep)",
+    "slug": "inositol-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Phosphatidylserine (sleep)",
+    "slug": "ps-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Tart cherry (Montmorency)",
+    "slug": "tart-cherry"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Chamomile extract (apigenin)",
+    "slug": "chamomile"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Lemon balm (sleep)",
+    "slug": "lemon-balm-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Passionflower (sleep)",
+    "slug": "passionflower-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Reishi (sleep)",
+    "slug": "reishi-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "L-ornithine (sleep)",
+    "slug": "ornithine-sleep"
+  },
+  {
+    "cat": "Sleep & Recovery",
+    "name": "Ashwagandha + Magnesium",
+    "slug": "ashwagandha-magnesium"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin A (retinol)",
+    "slug": "vitamin-a"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B1 (thiamine HCl)",
+    "slug": "vitamin-b1"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Benfotiamine (fat-soluble B1)",
+    "slug": "benfotiamine"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B2 (riboflavin)",
+    "slug": "vitamin-b2"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B3 (niacin / niacinamide)",
+    "slug": "vitamin-b3"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B5 (pantothenic acid)",
+    "slug": "vitamin-b5"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B6 (P5P preferred)",
+    "slug": "vitamin-b6"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B7 (biotin)",
+    "slug": "biotin"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B9 (methylfolate / 5-MTHF)",
+    "slug": "methylfolate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B12 (methylcobalamin)",
+    "slug": "methylcobalamin"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B12 (cyanocobalamin)",
+    "slug": "cyanocobalamin"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin C (ascorbic acid)",
+    "slug": "vitamin-c"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin D3 (cholecalciferol)",
+    "slug": "vitamin-d3"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin D2 (ergocalciferol)",
+    "slug": "vitamin-d2"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin E (mixed tocopherols)",
+    "slug": "vitamin-e"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin K1 (phylloquinone)",
+    "slug": "vitamin-k1"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin K2 (MK-7)",
+    "slug": "vitamin-k2-mk7"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Calcium carbonate",
+    "slug": "calcium-carbonate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Calcium citrate",
+    "slug": "calcium-citrate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Magnesium oxide \u2014 avoid",
+    "slug": "magnesium-oxide"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Magnesium citrate",
+    "slug": "magnesium-citrate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Zinc picolinate / bisglycinate",
+    "slug": "zinc-bisglycinate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Zinc oxide / sulfate \u2014 inferior forms",
+    "slug": "zinc-oxide"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Iron ferrous bisglycinate",
+    "slug": "iron-bisglycinate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Iron ferrous sulfate",
+    "slug": "iron-ferrous-sulfate"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Selenium (selenomethionine)",
+    "slug": "selenium"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Iodine (potassium iodide)",
+    "slug": "iodine"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Copper bisglycinate",
+    "slug": "copper"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin D3 + K2 combination",
+    "slug": "d3-k2"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Manganese",
+    "slug": "manganese"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Chromium picolinate",
+    "slug": "chromium"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Boron glycinate",
+    "slug": "boron"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Silica (orthosilicic acid)",
+    "slug": "silica"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Ashwagandha (testosterone)",
+    "slug": "ashwagandha-testosterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Zinc (testosterone)",
+    "slug": "zinc-testosterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Vitamin D3 (testosterone)",
+    "slug": "vitamin-d3-testosterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "D-Aspartic acid (DAA)",
+    "slug": "daa"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Fenugreek extract (Testofen)",
+    "slug": "fenugreek-testofen"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Tongkat Ali (Eurycoma longifolia)",
+    "slug": "tongkat-ali"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Fadogia agrestis",
+    "slug": "fadogia"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Turkesterone",
+    "slug": "turkesterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Shilajit (PrimaVie \u2014 testosterone)",
+    "slug": "shilajit-testosterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Maca root (male libido)",
+    "slug": "maca-male"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Korean red ginseng (erectile function)",
+    "slug": "korean-red-ginseng"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "L-citrulline (erectile function)",
+    "slug": "citrulline-erectile"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Pine bark extract (Pycnogenol)",
+    "slug": "pycnogenol"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Boron (testosterone)",
+    "slug": "boron-testosterone"
+  },
+  {
+    "cat": "Testosterone & Male Health",
+    "name": "Mucuna pruriens (male fertility)",
+    "slug": "mucuna-male"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "NMN (nicotinamide mononucleotide)",
+    "slug": "nmn"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Nicotinamide riboside (NR)",
+    "slug": "nr-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Trans-resveratrol",
+    "slug": "resveratrol-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Pterostilbene",
+    "slug": "pterostilbene-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Fisetin",
+    "slug": "fisetin"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Quercetin (Quercefit)",
+    "slug": "quercetin"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Spermidine",
+    "slug": "spermidine"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Astaxanthin (longevity)",
+    "slug": "astaxanthin-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "CoQ10 / Ubiquinol (longevity)",
+    "slug": "coq10-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Alpha-lipoic acid (longevity)",
+    "slug": "ala-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Carnosine (anti-glycation)",
+    "slug": "carnosine-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "EGCG (longevity)",
+    "slug": "egcg-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Sulforaphane (broccoli sprout)",
+    "slug": "sulforaphane"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Lycopene",
+    "slug": "lycopene"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Lutein + Zeaxanthin",
+    "slug": "lutein-zeaxanthin"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Beta-glucan (oat / mushroom)",
+    "slug": "beta-glucan"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Berberine (metabolic longevity)",
+    "slug": "berberine-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Omega-3 DHA (brain ageing)",
+    "slug": "dha-brain"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Collagen + Vitamin C (skin ageing)",
+    "slug": "collagen-vitc"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Taurine (longevity)",
+    "slug": "taurine-longevity"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "NAC (longevity / antioxidant)",
+    "slug": "nac-longevity"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Ginseng + Ashwagandha combo",
+    "slug": "ginseng-ashwagandha-combo"
+  },
+  {
+    "cat": "Energy & Focus",
+    "name": "Phosphatidylserine (energy/focus)",
+    "slug": "ps-energy"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Choline bitartrate",
+    "slug": "choline-bitartrate"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Gotu kola (Centella asiatica) + Bacopa",
+    "slug": "centella-bacopa-combo"
+  },
+  {
+    "cat": "Nootropics",
+    "name": "Sage extract (Salvia officinalis)",
+    "slug": "sage-extract"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Sodium bicarbonate (baking soda)",
+    "slug": "sodium-bicarbonate"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "HMB (pre-workout)",
+    "slug": "hmb-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Arachidonic acid",
+    "slug": "arachidonic-acid"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Acetyl-L-carnitine (pre-workout)",
+    "slug": "alcar-preworkout"
+  },
+  {
+    "cat": "Pre-workout",
+    "name": "Piperine (BioPerine)",
+    "slug": "piperine-bioperine"
+  },
+  {
+    "cat": "Protein",
+    "name": "Soy protein concentrate",
+    "slug": "soy-concentrate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Casein protein (generic / WPC blend)",
+    "slug": "casein-generic"
+  },
+  {
+    "cat": "Protein",
+    "name": "Goat milk protein",
+    "slug": "goat-milk-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Tilapia/fish protein hydrolysate",
+    "slug": "fish-protein-hydrolysate"
+  },
+  {
+    "cat": "Protein",
+    "name": "Pea protein + creatine blend",
+    "slug": "pea-creatine-blend"
+  },
+  {
+    "cat": "Protein",
+    "name": "Watermelon seed protein",
+    "slug": "watermelon-seed-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Algae protein (Chlorella)",
+    "slug": "chlorella-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Whey protein (Indian brands: MuscleBlaze, ON, MuscleTech)",
+    "slug": "whey-india-market"
+  },
+  {
+    "cat": "Protein",
+    "name": "BCAA 4:1:1",
+    "slug": "bcaa-4-1-1"
+  },
+  {
+    "cat": "Protein",
+    "name": "Egg protein + collagen blend",
+    "slug": "egg-collagen-blend"
+  },
+  {
+    "cat": "Protein",
+    "name": "Adzuki bean protein",
+    "slug": "adzuki-bean-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Lupin protein",
+    "slug": "lupin-protein"
+  },
+  {
+    "cat": "Protein",
+    "name": "Quinoa protein isolate",
+    "slug": "quinoa-protein"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Methylcobalamin + Methylfolate combo",
+    "slug": "b12-folate-combo"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Phosphorus",
+    "slug": "phosphorus"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Potassium (potassium citrate)",
+    "slug": "potassium"
+  },
+  {
+    "cat": "Vitamins & Minerals",
+    "name": "Vitamin B Complex (complete)",
+    "slug": "b-complex"
+  },
+  {
+    "cat": "Longevity & Anti-Ageing",
+    "name": "Glycine + NAC combo (GlyNAC)",
+    "slug": "glynac"
+  }
+]
