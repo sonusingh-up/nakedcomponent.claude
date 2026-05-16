@@ -1,0 +1,13 @@
+{
+  "name": "nakedcompound-ingredient-generator",
+  "version": "1.0.0",
+  "description": "Auto-generates Naked Compound ingredient pages via Claude API",
+  "type": "module",
+  "scripts": {
+    "generate":   "node generate.js --count 3",
+    "generate:5": "node generate.js --count 5",
+    "dry-run":    "node generate.js --dry-run",
+    "status":     "node status.js"
+  },
+  "engines": { "node": ">=18" }
+}
