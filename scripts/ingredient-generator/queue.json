@@ -136,7 +136,7 @@
   },
   {
     "cat": "Amino Acids",
-    "name": "HMB (\u03b2-Hydroxy \u03b2-methylbutyrate)",
+    "name": "HMB (β-Hydroxy β-methylbutyrate)",
     "slug": "hmb"
   },
   {
@@ -281,7 +281,7 @@
   },
   {
     "cat": "Energy & Focus",
-    "name": "Rauwolscine (\u03b1-yohimbine)",
+    "name": "Rauwolscine (α-yohimbine)",
     "slug": "rauwolscine"
   },
   {
@@ -436,7 +436,7 @@
   },
   {
     "cat": "Joints & Mobility",
-    "name": "Boswellia serrata (5-Loxin / Apr\u00e8sFlex)",
+    "name": "Boswellia serrata (5-Loxin / AprèsFlex)",
     "slug": "boswellia"
   },
   {
@@ -1051,7 +1051,7 @@
   },
   {
     "cat": "Vitamins & Minerals",
-    "name": "Magnesium oxide \u2014 avoid",
+    "name": "Magnesium oxide — avoid",
     "slug": "magnesium-oxide"
   },
   {
@@ -1066,7 +1066,7 @@
   },
   {
     "cat": "Vitamins & Minerals",
-    "name": "Zinc oxide / sulfate \u2014 inferior forms",
+    "name": "Zinc oxide / sulfate — inferior forms",
     "slug": "zinc-oxide"
   },
   {
@@ -1161,7 +1161,7 @@
   },
   {
     "cat": "Testosterone & Male Health",
-    "name": "Shilajit (PrimaVie \u2014 testosterone)",
+    "name": "Shilajit (PrimaVie — testosterone)",
     "slug": "shilajit-testosterone"
   },
   {
