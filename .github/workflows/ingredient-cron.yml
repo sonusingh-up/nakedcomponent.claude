@@ -146,3 +146,4 @@ jobs:
               echo "New files committed and pushed. Vercel will auto-deploy." >> $GITHUB_STEP_SUMMARY
             fi
           fi
+
