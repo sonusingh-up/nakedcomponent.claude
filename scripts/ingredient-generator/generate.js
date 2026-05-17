@@ -31,9 +31,15 @@ const MODEL           = 'claude-sonnet-4-6';
 const MAX_TOKENS      = 8000;
 
 // ── ARGS ──────────────────────────────────────────────────────────────────────
-const args     = process.argv.slice(2);
-const COUNT    = parseInt(args[args.indexOf('--count')  + 1] || '3', 10);
-const SLUG_ARG = args[args.indexOf('--slug') + 1] || null;
+const args = process.argv.slice(2);
+
+function getArgValue(argName, defaultVal) {
+  const idx = args.indexOf(argName);
+  return idx !== -1 && idx + 1 < args.length ? args[idx + 1] : defaultVal;
+}
+
+const COUNT    = parseInt(getArgValue('--count', '3'), 10);
+const SLUG_ARG = getArgValue('--slug', null);
 const DRY_RUN  = args.includes('--dry-run');
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
