@@ -5,6 +5,11 @@
       "slug": "ashwagandha-ksm66",
       "error": "API error 401: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"},\"request_id\":\"req_011Cb7KDtS5jr3VEipoMY1XU\"}",
       "ts": "2026-05-17T02:00:06.368Z"
+    },
+    {
+      "slug": "ashwagandha-ksm66",
+      "error": "API error 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cb7KorFosRMqPBva6mkef\"}",
+      "ts": "2026-05-17T02:07:47.178Z"
     }
   ]
 }
