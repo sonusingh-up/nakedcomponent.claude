@@ -70,6 +70,21 @@
       "slug": "panax-ginseng",
       "error": "API error 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cb8Ui95Udyw2PGqxdMpjp\"}",
       "ts": "2026-05-17T16:45:06.683Z"
+    },
+    {
+      "slug": "ashwagandha-ksm66",
+      "error": "API error 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cb8nZJkFET4eJGRJMdZbG\"}",
+      "ts": "2026-05-17T20:39:09.704Z"
+    },
+    {
+      "slug": "rhodiola-rosea",
+      "error": "API error 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cb8nZTy8GywsDUkZCcFpA\"}",
+      "ts": "2026-05-17T20:39:11.811Z"
+    },
+    {
+      "slug": "panax-ginseng",
+      "error": "API error 400: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits.\"},\"request_id\":\"req_011Cb8nZcxcumSiiZsgAAfie\"}",
+      "ts": "2026-05-17T20:39:13.908Z"
     }
   ]
 }
