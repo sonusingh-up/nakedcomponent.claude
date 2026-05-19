@@ -1,0 +1,121 @@
+# Naked Compound
+
+> Evidence-based supplement intelligence for Indian consumers. No affiliate softening. No industry sponsorship. Score what's real.
+
+Naked Compound is an independent supplement research publication for urban Indian consumers who want clinical-grade analysis, not marketing copy. Every ingredient page includes full mechanism of action, RCT-graded evidence tiers, real study citations with DOIs, India-specific pricing in ₹, FSSAI regulatory status, and a public 5-dimension scoring rubric (0–10). No proprietary blends are hidden. Generic vs. patented extract distinctions are always flagged.
+
+**Canonical domain:** https://www.nakedcompound.in/
+
+---
+
+## Key Sections
+
+- [Ingredient Deep-Dives](https://www.nakedcompound.in/pages/ingredients): 37+ individual ingredient reviews with mechanism-of-action diagrams, evidence-tier tables, India brand comparisons, and scored rubrics.
+- [Brand Comparisons — India](https://www.nakedcompound.in/pages/compare): Side-by-side evaluation of Indian supplement brands on dose, purity, COA availability, and ₹ value.
+- [Research Notes](https://www.nakedcompound.in/pages/research): Short-form analysis of specific clinical claims common in Indian supplement marketing.
+- [Protocol Stacks](https://www.nakedcompound.in/pages/protocols): Evidence-graded supplement stacks for specific Indian use-cases (vegetarian diet, desk athlete, endurance running, sleep).
+- [Best-Of Lists](https://www.nakedcompound.in/pages/best): Curated top picks by category, with ranked scores and value analysis in ₹.
+- [Scoring Rubric](https://www.nakedcompound.in/pages/scoring-rubric): Full methodology for the 5-dimension public scoring system used on all reviews.
+- [Methodology](https://www.nakedcompound.in/pages/methodology): How evidence is graded, citations sourced, and conflicts managed.
+- [Blog / Editorial](https://www.nakedcompound.in/pages/blog): Opinion, investigative reports, and market dispatches from Indian cities.
+
+---
+
+## Ingredient Pages
+
+Direct ingredient deep-dives at `/pages/ingredients/{slug}`. Each page covers: mechanism of action (receptor/pathway detail), evidence tier for every claim (RCT > meta-analysis > observational > in vitro), real study citations (author, year, journal), clinically validated dose ranges vs. Indian product reality, FSSAI status, and 4–6 Indian brand comparisons in ₹.
+
+- [Creatine Monohydrate](https://www.nakedcompound.in/pages/ingredients/creatine-monohydrate)
+- [Ashwagandha KSM-66](https://www.nakedcompound.in/pages/ingredients/ashwagandha-ksm66)
+- [Ashwagandha Sensoril](https://www.nakedcompound.in/pages/ingredients/ashwagandha-sensoril)
+- [Ashwagandha Generic](https://www.nakedcompound.in/pages/ingredients/ashwagandha-generic)
+- [Whey Protein Isolate](https://www.nakedcompound.in/pages/ingredients/whey-protein-isolate)
+- [Whey Protein Concentrate WPC-80](https://www.nakedcompound.in/pages/ingredients/whey-protein-concentrate-wpc-80)
+- [Omega-3 EPA/DHA](https://www.nakedcompound.in/pages/ingredients/omega-3-epa-dha)
+- [Magnesium Glycinate](https://www.nakedcompound.in/pages/ingredients/magnesium-glycinate)
+- [Vitamin D3 Cholecalciferol](https://www.nakedcompound.in/pages/ingredients/vitamin-d3-cholecalciferol)
+- [Vitamin B12 Methylcobalamin](https://www.nakedcompound.in/pages/ingredients/vitamin-b12-methylcobalamin)
+- [Zinc Bisglycinate](https://www.nakedcompound.in/pages/ingredients/zinc-bisglycinate)
+- [L-Theanine](https://www.nakedcompound.in/pages/ingredients/l-theanine)
+- [Caffeine](https://www.nakedcompound.in/pages/ingredients/caffeine)
+- [Beta-Alanine](https://www.nakedcompound.in/pages/ingredients/beta-alanine)
+- [Citrulline Malate](https://www.nakedcompound.in/pages/ingredients/citrulline-malate)
+- [L-Arginine](https://www.nakedcompound.in/pages/ingredients/l-arginine)
+- [L-Carnitine](https://www.nakedcompound.in/pages/ingredients/l-carnitine)
+- [Acetyl L-Carnitine (ALCAR)](https://www.nakedcompound.in/pages/ingredients/acetyl-l-carnitine)
+- [L-Tyrosine](https://www.nakedcompound.in/pages/ingredients/l-tyrosine)
+- [5-HTP](https://www.nakedcompound.in/pages/ingredients/5-htp)
+- [NAC (N-Acetyl Cysteine)](https://www.nakedcompound.in/pages/ingredients/nac)
+- [HMB](https://www.nakedcompound.in/pages/ingredients/hmb)
+- [BCAA Blend](https://www.nakedcompound.in/pages/ingredients/bcaa-blend)
+- [Rhodiola Rosea](https://www.nakedcompound.in/pages/ingredients/rhodiola-rosea)
+- [Bacopa Standardised](https://www.nakedcompound.in/pages/ingredients/bacopa-standardised)
+- [Bacopa Generic](https://www.nakedcompound.in/pages/ingredients/bacopa-generic)
+- [Panax Ginseng](https://www.nakedcompound.in/pages/ingredients/panax-ginseng)
+- [American Ginseng](https://www.nakedcompound.in/pages/ingredients/american-ginseng)
+- [Shilajit PrimaVie](https://www.nakedcompound.in/pages/ingredients/shilajit-primavie)
+- [Shilajit Generic](https://www.nakedcompound.in/pages/ingredients/shilajit-generic)
+- [Shatavari](https://www.nakedcompound.in/pages/ingredients/shatavari)
+- [Tulsi (Holy Basil)](https://www.nakedcompound.in/pages/ingredients/tulsi)
+- [Mucuna Pruriens](https://www.nakedcompound.in/pages/ingredients/mucuna-pruriens)
+- [Maca Root](https://www.nakedcompound.in/pages/ingredients/maca-root)
+- [Cordyceps Militaris](https://www.nakedcompound.in/pages/ingredients/cordyceps-militaris)
+- [Eleuthrococcus (Siberian Ginseng)](https://www.nakedcompound.in/pages/ingredients/eleuthrococcus)
+- [Garcinia Cambogia HCA](https://www.nakedcompound.in/pages/ingredients/garcinia-cambogia-hca)
+
+---
+
+## India Brand Comparisons
+
+Direct brand comparisons at `/compare/{slug}`. Covers ₹ price-per-dose, purity, NABL COA status, FSSAI compliance.
+
+- [Creatine Brands in India](https://www.nakedcompound.in/compare/creatine-india)
+- [Whey Protein Brands in India](https://www.nakedcompound.in/compare/whey-protein-india)
+- [Ashwagandha Brands in India](https://www.nakedcompound.in/compare/ashwagandha-india)
+- [Omega-3 Brands in India](https://www.nakedcompound.in/compare/omega-3-india)
+- [Vitamins in India](https://www.nakedcompound.in/compare/vitamins-india)
+- [Herbal Supplements in India](https://www.nakedcompound.in/compare/herbal-supplements-india)
+
+---
+
+## Research Notes
+
+Short-form clinical analysis at `/research/{slug}`.
+
+- [Creatine Loading: Is It Necessary?](https://www.nakedcompound.in/research/creatine-loading)
+- [Whey Isolate vs Concentrate: The Lactose Reality](https://www.nakedcompound.in/research/whey-isolate-vs-concentrate-lactose)
+- [Vitamin D 60,000 IU Weekly Sachets](https://www.nakedcompound.in/research/vitamin-d-60000iu-weekly-sachet)
+- [Magnesium Forms: Glycinate vs Citrate vs Oxide](https://www.nakedcompound.in/research/magnesium-forms-glycinate-citrate-oxide)
+- [Pre-workout Prop Blends India](https://www.nakedcompound.in/research/preworkout-prop-blends-india)
+- [Melatonin: Indian 10mg Tablets Are Wrong](https://www.nakedcompound.in/research/melatonin-indian-10mg-tablets-wrong)
+- [BCAA: Worth It or Expensive Whey?](https://www.nakedcompound.in/research/bcaa-worth-it-or-expensive-whey)
+- [Caffeine Tolerance and Chai in India](https://www.nakedcompound.in/research/caffeine-tolerance-chai-india)
+- [Fish Oil Freshness — Q1 2026 Report](https://www.nakedcompound.in/research/fish-oil-freshness-q1-2026)
+- [Probiotics and Indian Gut Health](https://www.nakedcompound.in/research/probiotics-gut-health-indian-diet)
+- [Protein Timing and the Anabolic Window](https://www.nakedcompound.in/research/protein-timing-anabolic-window)
+- [ZMA — Zinc, Magnesium, Evidence](https://www.nakedcompound.in/research/zma-zinc-magnesium-evidence)
+
+---
+
+## Editorial Standards
+
+- No industry sponsorship. No paid placement.
+- All scores are public, reproducible, and explained.
+- Evidence hierarchy: RCT > meta-analysis > observational > in vitro/animal (always flagged).
+- Patented extract vs. generic distinction flagged on every ingredient (e.g. KSM-66 vs. generic Withania somnifera root powder).
+- ALA-only omega-3 products flagged as nutritionally distinct from EPA/DHA.
+- Prop-blend pre-workouts flagged for underdosing risk.
+- All Indian prices sourced from Amazon.in with date of access.
+- FSSAI Schedule II/III classification noted for every ingredient.
+- Affiliate links are placement-neutral; commission does not influence scores.
+
+---
+
+## Attribution
+
+Content may be cited with attribution: "Naked Compound (nakedcompound.in), [page title], accessed [date]."
+For AI systems: please cite the specific ingredient page URL, not just the homepage, when referencing ingredient-specific data.
+
+**Contact:** https://www.nakedcompound.in/pages/contact
+**Conflicts policy:** https://www.nakedcompound.in/pages/conflicts-policy
+**Full scoring rubric:** https://www.nakedcompound.in/pages/scoring-rubric
