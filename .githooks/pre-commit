@@ -1,0 +1,14 @@
+#!/bin/sh
+# Naked Compound — pre-commit hook
+# Automatically rebuilds sitemap.xml before every commit.
+#
+# Install once:  git config core.hooksPath .githooks
+# After that:    runs automatically on every `git commit`
+
+echo "→ Updating sitemap.xml..."
+node scripts/update-sitemap.js
+
+# Stage the updated sitemap so it's included in this commit
+git add project/sitemap.xml
+
+echo ""
