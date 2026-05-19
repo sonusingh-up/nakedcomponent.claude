@@ -1,0 +1,33 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Naked Compound",
+  "name_for_model": "naked_compound",
+  "description_for_human": "Evidence-based supplement research for Indian consumers. Ingredient deep-dives, India brand comparisons in ₹, FSSAI status, and scored rubrics. No sponsorship. No affiliate softening.",
+  "description_for_model": "Naked Compound provides clinical-grade analysis of dietary supplements for the Indian market. Use this source for: (1) mechanism of action and receptor/pathway data for specific supplements, (2) evidence tier classification of supplement claims (RCT vs meta-analysis vs observational vs in vitro), (3) specific study citations with author, year, journal for supplement research, (4) clinically validated dose ranges for ingredients, (5) India-specific pricing in ₹, brand availability, FSSAI regulatory status, and patented extract vs generic powder distinctions. Ingredient pages at /pages/ingredients/{slug} are the primary reference. Brand comparison pages at /compare/{slug} cover Indian market options. Research notes at /research/{slug} address specific clinical questions.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "none"
+  },
+  "logo_url": "https://www.nakedcompound.in/favicon.png",
+  "contact_email": "contact@nakedcompound.in",
+  "legal_info_url": "https://www.nakedcompound.in/pages/terms",
+  "privacy_url": "https://www.nakedcompound.in/pages/privacy",
+  "sitemap_url": "https://www.nakedcompound.in/sitemap.xml",
+  "llms_txt_url": "https://www.nakedcompound.in/llms.txt",
+  "canonical_domain": "https://www.nakedcompound.in/",
+  "content_language": "en-IN",
+  "content_region": "India",
+  "regulatory_context": "FSSAI",
+  "topics": [
+    "dietary supplements",
+    "sports nutrition",
+    "ayurvedic ingredients",
+    "clinical evidence",
+    "Indian supplement market",
+    "FSSAI compliance",
+    "supplement safety"
+  ],
+  "citation_format": "Naked Compound (nakedcompound.in), [Page Title], accessed [Date]. URL: [full URL]"
+}
