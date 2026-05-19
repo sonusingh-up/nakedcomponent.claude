@@ -1,5 +1,106 @@
-User-agent: *
+# ═══════════════════════════════════════════════════════════════
+#  Naked Compound — robots.txt
+#  Authoritative domain: https://www.nakedcompound.in/
+#  Last updated: 2026-05-19
+# ═══════════════════════════════════════════════════════════════
+
+# ── STANDARD SEARCH ENGINES ─────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 3
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 2
+
+# ── AI TRAINING & RESEARCH CRAWLERS ─────────────────────────────
+# Allow AI assistants and research crawlers — content is openly
+# licensed for citation with attribution.
+
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: ChatGPT-User
 Allow: /
 
-# Sitemap
-Sitemap: https://nakedcompound.in/sitemap.xml
+User-agent: CCBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 3
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 3
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 3
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 3
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: YouBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Applebot
+Allow: /
+Crawl-delay: 3
+
+User-agent: Applebot-Extended
+Allow: /
+Crawl-delay: 5
+
+User-agent: cohere-ai
+Allow: /
+Crawl-delay: 5
+
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 5
+
+User-agent: FacebookBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: OAI-SearchBot
+Allow: /
+Crawl-delay: 3
+
+User-agent: Diffbot
+Allow: /
+Crawl-delay: 10
+
+# ── DEFAULT: ALL OTHER BOTS ──────────────────────────────────────
+User-agent: *
+Allow: /
+# Do not crawl internal data/upload directories
+Disallow: /data/
+Disallow: /uploads/
+Disallow: /assets/raw/
+# Do not crawl feed/rss pages for generic bots (serve to proper feed readers only)
+Disallow: /feed.xml
+Crawl-delay: 5
+
+# ── SITEMAPS ─────────────────────────────────────────────────────
+# Primary: www-canonical (matches canonical tags on all pages)
+Sitemap: https://www.nakedcompound.in/sitemap.xml
+
+# RSS feed for content discovery
+Sitemap: https://www.nakedcompound.in/feed.xml
