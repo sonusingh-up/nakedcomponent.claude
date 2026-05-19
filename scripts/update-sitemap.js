@@ -1,282 +1,123 @@
 #!/usr/bin/env node
 /**
- * update-sitemap.js — Naked Compound sitemap auto-builder
+ * Naked Compound — sitemap auto-generator
+ * Run: node scripts/update-sitemap.js
+ * Called by Vercel buildCommand before each deployment.
  *
- * Scans every HTML file in project/, derives its clean URL, and
- * rebuilds project/sitemap.xml from scratch.
- *
- * Run manually:   node scripts/update-sitemap.js
- * Run on commit:  automatic via .githooks/pre-commit
- * Run on deploy:  automatic via vercel.json buildCommand
- *
- * DATE HANDLING (✓ resolves your issue):
- *   1. Reads <meta name="published" content="YYYY-MM-DD"> if present (new articles)
- *   2. Falls back to git log -1 --format=%ai (actual last commit date)
- *   3. Falls back to fs.stat mtime (new file not yet committed)
- *
- * This means:
- *   - New articles: use embedded publish date (never changes)
- *   - Old articles: use git log (reflects actual edits)
- *   - Modified articles: git log updates automatically
- *
- * Priority & changefreq are assigned by URL pattern — edit
- * ROUTE_RULES below to change them.
+ * Rules:
+ *  - Authoritative domain: https://www.nakedcompound.in  (www-canonical)
+ *  - cleanUrls: true  → strip .html from paths
+ *  - Exclude: /data/, /uploads/, /assets/, feed.xml, google*.html
  */
 
-const fs   = require("fs");
-const path = require("path");
-const { execSync } = require("child_process");
+const fs   = require('fs');
+const path = require('path');
 
-// ── Config ────────────────────────────────────────────────────────────────────
+const BASE_URL    = 'https://www.nakedcompound.in';
+const OUTPUT_DIR  = path.join(__dirname, '..', 'project');
+const SITEMAP_OUT = path.join(OUTPUT_DIR, 'sitemap.xml');
+const TODAY       = new Date().toISOString().slice(0, 10);
 
-const BASE_URL = "https://nakedcompound.in";
-const PROJECT  = path.resolve(__dirname, "../project");
-const SITEMAP  = path.resolve(__dirname, "../project/sitemap.xml");
-
-/**
- * Route rules — matched top-to-bottom, first match wins.
- * pattern: string prefix of the clean URL path (after the domain).
- */
-const ROUTE_RULES = [
-  // Root
-  { pattern: "/",                  exact: true,  changefreq: "daily",   priority: "1.0" },
-
-  // Content hubs (index pages)
-  { pattern: "/research",          exact: true,  changefreq: "daily",   priority: "0.9" },
-  { pattern: "/guides",            exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/reviews",           exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/protocols",         exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/ingredients",       exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/blog",              exact: true,  changefreq: "weekly",  priority: "0.7" },
-  { pattern: "/pages/research",    exact: true,  changefreq: "daily",   priority: "0.9" },
-  { pattern: "/pages/guides",      exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/pages/reviews",     exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/pages/protocols",   exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/pages/ingredients", exact: true,  changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/pages/blog",        exact: true,  changefreq: "weekly",  priority: "0.7" },
-  { pattern: "/pages/categories",  exact: true,  changefreq: "weekly",  priority: "0.7" },
-  { pattern: "/pages/verified-brands", exact: true, changefreq: "monthly", priority: "0.7" },
-  { pattern: "/pages/learn",       exact: true,  changefreq: "monthly", priority: "0.7" },
-  { pattern: "/pages/changelog",   exact: true,  changefreq: "daily",   priority: "0.6" },
-
-  // Content deep-dives (prefix matches — any URL starting with this)
-  { pattern: "/ingredients/",      exact: false, changefreq: "monthly", priority: "0.8" },
-  { pattern: "/research/",         exact: false, changefreq: "monthly", priority: "0.8" },
-  { pattern: "/guides/",           exact: false, changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/reviews/",          exact: false, changefreq: "weekly",  priority: "0.8" },
-  { pattern: "/protocols/",        exact: false, changefreq: "weekly",  priority: "0.7" },
-  { pattern: "/blog/",             exact: false, changefreq: "weekly",  priority: "0.7" },
-  { pattern: "/pages/ingredients/",exact: false, changefreq: "monthly", priority: "0.8" },
-
-  // Company / transparency
-  { pattern: "/pages/about",       exact: true,  changefreq: "monthly", priority: "0.6" },
-  { pattern: "/pages/authors",     exact: true,  changefreq: "monthly", priority: "0.6" },
-  { pattern: "/pages/methodology", exact: true,  changefreq: "monthly", priority: "0.6" },
-  { pattern: "/pages/scoring-rubric", exact: true, changefreq: "monthly", priority: "0.6" },
-  { pattern: "/pages/conflicts-policy", exact: true, changefreq: "monthly", priority: "0.5" },
-  { pattern: "/pages/contact",     exact: true,  changefreq: "yearly",  priority: "0.4" },
-
-  // Legal / utility
-  { pattern: "/pages/privacy",     exact: true,  changefreq: "yearly",  priority: "0.3" },
-  { pattern: "/pages/terms",       exact: true,  changefreq: "yearly",  priority: "0.3" },
-  { pattern: "/pages/rss",         exact: true,  changefreq: "monthly", priority: "0.3" },
-
-  // Fallback
-  { pattern: "/",                  exact: false, changefreq: "monthly", priority: "0.5" },
+// ── Priority / changefreq matrix ─────────────────────────────────
+const RULES = [
+  // path-prefix                       priority  changefreq
+  { prefix: '/',                       p: '1.0', cf: 'daily',   exact: true },
+  { prefix: '/pages/ingredients/',     p: '0.9', cf: 'weekly' },
+  { prefix: '/compare/',               p: '0.8', cf: 'weekly' },
+  { prefix: '/pages/best/',            p: '0.8', cf: 'weekly' },
+  { prefix: '/research/',              p: '0.8', cf: 'monthly' },
+  { prefix: '/pages/research',         p: '0.9', cf: 'weekly',  exact: true },
+  { prefix: '/pages/ingredients',      p: '0.9', cf: 'daily',   exact: true },
+  { prefix: '/pages/compare',          p: '0.9', cf: 'weekly',  exact: true },
+  { prefix: '/pages/blog',             p: '0.8', cf: 'weekly',  exact: true },
+  { prefix: '/pages/reviews',          p: '0.8', cf: 'weekly',  exact: true },
+  { prefix: '/pages/protocols',        p: '0.8', cf: 'weekly',  exact: true },
+  { prefix: '/pages/guides',           p: '0.8', cf: 'weekly',  exact: true },
+  { prefix: '/pages/best',             p: '0.8', cf: 'weekly',  exact: true },
+  { prefix: '/pages/verified-brands',  p: '0.7', cf: 'monthly', exact: true },
+  { prefix: '/pages/learn',            p: '0.7', cf: 'monthly', exact: true },
+  { prefix: '/pages/scoring-rubric',   p: '0.7', cf: 'monthly', exact: true },
+  { prefix: '/pages/categories',       p: '0.7', cf: 'weekly',  exact: true },
+  { prefix: '/protocols/',             p: '0.7', cf: 'monthly' },
+  { prefix: '/blog/',                  p: '0.7', cf: 'monthly' },
+  { prefix: '/ingredients/',           p: '0.8', cf: 'monthly' },
+  { prefix: '/pages/methodology',      p: '0.6', cf: 'monthly', exact: true },
+  { prefix: '/pages/about',            p: '0.6', cf: 'monthly', exact: true },
+  { prefix: '/pages/authors',          p: '0.6', cf: 'monthly', exact: true },
+  { prefix: '/pages/changelog',        p: '0.5', cf: 'weekly',  exact: true },
+  { prefix: '/pages/conflicts-policy', p: '0.5', cf: 'monthly', exact: true },
+  { prefix: '/pages/contact',          p: '0.4', cf: 'yearly',  exact: true },
+  { prefix: '/pages/privacy',          p: '0.2', cf: 'yearly',  exact: true },
+  { prefix: '/pages/terms',            p: '0.2', cf: 'yearly',  exact: true },
 ];
 
-/**
- * Files/folders to skip — never add these to the sitemap.
- * Matched against the file path relative to project/.
- */
-const SKIP_PATTERNS = [
-  /^google[a-z0-9]+\.html$/,
-  /^uploads\//,
-  /ingredient-shared\.css/,
-];
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-
-/** Convert a project-relative file path to a clean URL path. */
-function fileToUrlPath(relPath) {
-  let p = relPath.replace(/\.html$/, "");
-  if (p === "index") return "/";
-  if (p.endsWith("/index")) p = p.slice(0, -6) || "/";
-  return "/" + p;
-}
-
-/** Get the rule that applies to this URL path. */
-function getRuleFor(urlPath) {
-  for (const rule of ROUTE_RULES) {
-    if (rule.exact) {
-      if (urlPath === rule.pattern) return rule;
-    } else {
-      if (urlPath.startsWith(rule.pattern)) return rule;
-    }
+function getPriority(urlPath) {
+  // Exact matches first
+  for (const r of RULES) {
+    if (r.exact && urlPath === r.prefix) return { priority: r.p, changefreq: r.cf };
   }
-  return { changefreq: "monthly", priority: "0.5" };
+  // Prefix matches
+  for (const r of RULES) {
+    if (!r.exact && urlPath.startsWith(r.prefix)) return { priority: r.p, changefreq: r.cf };
+  }
+  return { priority: '0.5', changefreq: 'monthly' };
 }
 
-/** Read the published date from <meta name="published" content="YYYY-MM-DD"> if present.
- *  This is the authoritative publish date, embedded by new-page.js at article creation.
- *  Returns YYYY-MM-DD or null. */
-function readPublishedDate(absPath) {
-  try {
-    const html = fs.readFileSync(absPath, "utf8");
-    const m = html.match(/<meta\s+name=["']published["']\s+content=["']([^"']+)["']/i)
-           || html.match(/<meta\s+content=["']([^"']+)["']\s+name=["']published["']/i);
-    if (m && /^\d{4}-\d{2}-\d{2}$/.test(m[1])) return m[1];
-  } catch (_) {}
-  return null;
-}
+// ── File discovery ────────────────────────────────────────────────
+const EXCLUDE_DIRS  = ['assets', 'data', 'uploads'];
+const EXCLUDE_FILES = [/^google[a-z0-9]+\.html$/, /^feed\.xml$/];
 
-/** Get the last-modified date for a file.
- *  Priority:
- *    1. <meta name="published"> if present (use for new articles)
- *    2. git log -1 (actual last commit — reflects real edits)
- *    3. fs.stat mtime (fallback for uncommitted files)
- *
- *  This ensures:
- *    - New articles keep their publish date forever
- *    - Edits to old articles bump their lastmod to today
- */
-function getLastMod(absPath) {
-  // First: check for embedded <meta name="published">
-  const published = readPublishedDate(absPath);
-  if (published) return published;
-
-  // Second: try git log
-  try {
-    const relToRepo = path.relative(path.resolve(__dirname, ".."), absPath);
-    const out = execSync(
-      `git log -1 --format="%ai" -- "${relToRepo}" 2>/dev/null`,
-      { encoding: "utf8", stdio: ["pipe","pipe","pipe"] }
-    ).trim();
-    if (out) return out.slice(0, 10);
-  } catch (_) {}
-
-  // Third: fs mtime
-  const mtime = fs.statSync(absPath).mtime;
-  return mtime.toISOString().slice(0, 10);
-}
-
-/** Read the canonical URL from an HTML file if present. */
-function readCanonical(absPath) {
-  try {
-    const html = fs.readFileSync(absPath, "utf8");
-    const m = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i)
-           || html.match(/<link[^>]+href=["']([^"']+)["'][^>]+rel=["']canonical["']/i);
-    if (m) return m[1].trim();
-  } catch (_) {}
-  return null;
-}
-
-/** Walk a directory recursively, yielding absolute paths to .html files. */
-function* walkHtml(dir) {
+function walkDir(dir, base) {
+  const results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const abs = path.join(dir, entry.name);
+    const name = entry.name;
     if (entry.isDirectory()) {
-      yield* walkHtml(abs);
-    } else if (entry.isFile() && entry.name.endsWith(".html")) {
-      yield abs;
+      if (EXCLUDE_DIRS.includes(name)) continue;
+      results.push(...walkDir(path.join(dir, name), base));
+    } else if (entry.isFile() && name.endsWith('.html')) {
+      if (EXCLUDE_FILES.some(re => re.test(name))) continue;
+      const abs  = path.join(dir, name);
+      const rel  = abs.slice(base.length).replace(/\\/g, '/');
+      // Strip .html and /index
+      let urlPath = rel.replace(/\.html$/, '').replace(/\/index$/, '');
+      if (!urlPath) urlPath = '/';
+      results.push(urlPath);
     }
   }
+  return results;
 }
 
-// ── Section labeling for organised comments ────────────────────────────────
+// ── Build XML ─────────────────────────────────────────────────────
+const paths  = walkDir(OUTPUT_DIR, OUTPUT_DIR);
+const sorted = [...new Set(paths)].sort((a, b) => {
+  // Home first, then by depth, then alpha
+  if (a === '/') return -1;
+  if (b === '/') return 1;
+  const da = (a.match(/\//g) || []).length;
+  const db = (b.match(/\//g) || []).length;
+  return da - db || a.localeCompare(b);
+});
 
-function sectionLabel(urlPath) {
-  if (urlPath === "/")                        return "Home";
-  if (urlPath.startsWith("/ingredients"))     return "Ingredients";
-  if (urlPath.startsWith("/research"))        return "Research";
-  if (urlPath.startsWith("/guides"))          return "Guides";
-  if (urlPath.startsWith("/reviews"))         return "Reviews";
-  if (urlPath.startsWith("/protocols"))       return "Protocols";
-  if (urlPath.startsWith("/blog"))            return "Blog";
-  if (urlPath.startsWith("/pages/ingredients")) return "Ingredients (legacy)";
-  if (urlPath.startsWith("/pages/research"))  return "Research hub";
-  if (urlPath.startsWith("/pages/guides") || urlPath.startsWith("/pages/protocols") ||
-      urlPath.startsWith("/pages/reviews") || urlPath.startsWith("/pages/ingredients") ||
-      urlPath.startsWith("/pages/categories") || urlPath.startsWith("/pages/verified-brands") ||
-      urlPath.startsWith("/pages/blog") || urlPath.startsWith("/pages/learn"))
-                                              return "Content hubs";
-  if (urlPath.startsWith("/pages/about") || urlPath.startsWith("/pages/authors") ||
-      urlPath.startsWith("/pages/methodology") || urlPath.startsWith("/pages/scoring") ||
-      urlPath.startsWith("/pages/conflicts") || urlPath.startsWith("/pages/changelog") ||
-      urlPath.startsWith("/pages/contact"))   return "Company";
-  if (urlPath.startsWith("/pages/privacy") || urlPath.startsWith("/pages/terms") ||
-      urlPath.startsWith("/pages/rss"))       return "Legal / utility";
-  return "Other";
-}
+const urlEntries = sorted.map(p => {
+  const { priority, changefreq } = getPriority(p);
+  const loc = BASE_URL + p;
+  return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}).join('\n');
 
-// ── Main ──────────────────────────────────────────────────────────────────────
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Auto-generated by scripts/update-sitemap.js on ${TODAY} -->
+<!-- www-canonical: always use ${BASE_URL}/ -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-function main() {
-  const entries = [];
+${urlEntries}
 
-  for (const absPath of walkHtml(PROJECT)) {
-    const relPath = path.relative(PROJECT, absPath).replace(/\\/g, "/");
+</urlset>
+`;
 
-    if (SKIP_PATTERNS.some(p => p.test(relPath))) continue;
-
-    let urlPath;
-    const canonical = readCanonical(absPath);
-    if (canonical && canonical.startsWith(BASE_URL)) {
-      urlPath = canonical.slice(BASE_URL.length) || "/";
-    } else {
-      urlPath = fileToUrlPath(relPath);
-    }
-
-    const fullUrl  = BASE_URL + urlPath;
-    const lastMod  = getLastMod(absPath);
-    const rule     = getRuleFor(urlPath);
-    const section  = sectionLabel(urlPath);
-
-    entries.push({ urlPath, fullUrl, lastMod, rule, section, relPath });
-  }
-
-  // Sort: root first, then alphabetically within each section
-  const SECTION_ORDER = [
-    "Home","Research hub","Content hubs","Ingredients","Research",
-    "Guides","Reviews","Protocols","Blog","Ingredients (legacy)","Company",
-    "Legal / utility","Other",
-  ];
-  entries.sort((a, b) => {
-    const si = SECTION_ORDER.indexOf(a.section) - SECTION_ORDER.indexOf(b.section);
-    if (si !== 0) return si;
-    return a.urlPath.localeCompare(b.urlPath);
-  });
-
-  // Build XML
-  const today = new Date().toISOString().slice(0, 10);
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-  xml    += `<!-- Auto-generated by scripts/update-sitemap.js on ${today} -->\n`;
-  xml    += `<!-- Do not edit manually — run: node scripts/update-sitemap.js -->\n`;
-  xml    += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-
-  let currentSection = null;
-  for (const e of entries) {
-    if (e.section !== currentSection) {
-      xml += `\n  <!-- ${e.section} -->\n`;
-      currentSection = e.section;
-    }
-    xml += `  <url>\n`;
-    xml += `    <loc>${e.fullUrl}</loc>\n`;
-    xml += `    <lastmod>${e.lastMod}</lastmod>\n`;
-    xml += `    <changefreq>${e.rule.changefreq}</changefreq>\n`;
-    xml += `    <priority>${e.rule.priority}</priority>\n`;
-    xml += `  </url>\n`;
-  }
-
-  xml += `\n</urlset>\n`;
-
-  fs.writeFileSync(SITEMAP, xml, "utf8");
-
-  const count = entries.length;
-  console.log(`✓ sitemap.xml rebuilt — ${count} URL${count !== 1 ? "s" : ""} (${today})`);
-  entries.forEach(e =>
-    console.log(`  ${e.rule.priority}  ${e.fullUrl.padEnd(60)} lastmod: ${e.lastMod}`)
-  );
-}
-
-main();
+fs.writeFileSync(SITEMAP_OUT, xml, 'utf8');
+console.log(`✓ sitemap.xml written — ${sorted.length} URLs — domain: ${BASE_URL}`);
