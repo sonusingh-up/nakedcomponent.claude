@@ -8,10 +8,13 @@
  *  - Authoritative domain: https://www.nakedcompound.in  (www-canonical)
  *  - cleanUrls: true  → strip .html from paths
  *  - Exclude: /data/, /uploads/, /assets/, feed.xml, google*.html
+ *  - Reads <link rel="canonical"> for URL override
+ *  - Reads <meta name="published"> for lastmod, falls back to git log, then mtime
  */
 
-const fs   = require('fs');
-const path = require('path');
+const fs            = require('fs');
+const path          = require('path');
+const { execSync }  = require('child_process');
 
 const BASE_URL    = 'https://www.nakedcompound.in';
 const OUTPUT_DIR  = path.join(__dirname, '..', 'project');
@@ -26,6 +29,7 @@ const RULES = [
   { prefix: '/compare/',               p: '0.8', cf: 'weekly' },
   { prefix: '/pages/best/',            p: '0.8', cf: 'weekly' },
   { prefix: '/research/',              p: '0.8', cf: 'monthly' },
+  { prefix: '/reviews/',               p: '0.8', cf: 'monthly' },
   { prefix: '/pages/research',         p: '0.9', cf: 'weekly',  exact: true },
   { prefix: '/pages/ingredients',      p: '0.9', cf: 'daily',   exact: true },
   { prefix: '/pages/compare',          p: '0.9', cf: 'weekly',  exact: true },
@@ -63,9 +67,74 @@ function getPriority(urlPath) {
   return { priority: '0.5', changefreq: 'monthly' };
 }
 
+// ── Read published date and canonical URL from HTML ───────────────
+function readHtmlMeta(absPath) {
+  let content;
+  try {
+    content = fs.readFileSync(absPath, 'utf8');
+  } catch {
+    return { published: null, canonicalPath: null };
+  }
+
+  // Extract <meta name="published" content="YYYY-MM-DD">
+  const publishedMatch = content.match(/<meta\s[^>]*name=["']published["'][^>]*content=["']([0-9]{4}-[0-9]{2}-[0-9]{2})["']/i)
+    || content.match(/<meta\s[^>]*content=["']([0-9]{4}-[0-9]{2}-[0-9]{2})["'][^>]*name=["']published["']/i);
+  const published = publishedMatch ? publishedMatch[1] : null;
+
+  // Extract <link rel="canonical" href="...">
+  const canonicalMatch = content.match(/<link\s[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)
+    || content.match(/<link\s[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
+  let canonicalPath = null;
+  if (canonicalMatch) {
+    try {
+      const url = new URL(canonicalMatch[1]);
+      canonicalPath = url.pathname;
+    } catch {
+      // If it's already a path (no domain), use as-is
+      canonicalPath = canonicalMatch[1];
+    }
+  }
+
+  return { published, canonicalPath };
+}
+
+// ── Get lastmod date for a file ───────────────────────────────────
+function getLastmod(absPath, published) {
+  // 1. Use <meta name="published"> if present (authoritative, never changes)
+  if (published) return published;
+
+  // 2. Try git log for last commit date
+  try {
+    const gitDate = execSync(`git log -1 --format=%ai -- "${absPath}"`, {
+      cwd: path.join(__dirname, '..'),
+      stdio: ['pipe', 'pipe', 'pipe'],
+    }).toString().trim();
+    if (gitDate) return gitDate.slice(0, 10);
+  } catch {
+    // git not available or not a repo
+  }
+
+  // 3. Fallback to file mtime
+  try {
+    const stat = fs.statSync(absPath);
+    return stat.mtime.toISOString().slice(0, 10);
+  } catch {
+    return TODAY;
+  }
+}
+
 // ── File discovery ────────────────────────────────────────────────
 const EXCLUDE_DIRS  = ['assets', 'data', 'uploads'];
-const EXCLUDE_FILES = [/^google[a-z0-9]+\.html$/, /^feed\.xml$/];
+const EXCLUDE_FILES = [
+  /^google[a-z0-9]+\.html$/,
+  /^feed\.xml$/,
+  /^rss\.html$/,
+];
+// Absolute paths to exclude entirely
+const EXCLUDE_ABS = [
+  path.join(OUTPUT_DIR, 'uploads', 'index.html'),
+  path.join(OUTPUT_DIR, 'pages', 'rss.html'),
+];
 
 function walkDir(dir, base) {
   const results = [];
@@ -76,42 +145,60 @@ function walkDir(dir, base) {
       results.push(...walkDir(path.join(dir, name), base));
     } else if (entry.isFile() && name.endsWith('.html')) {
       if (EXCLUDE_FILES.some(re => re.test(name))) continue;
-      const abs  = path.join(dir, name);
-      const rel  = abs.slice(base.length).replace(/\\/g, '/');
-      // Strip .html and /index
-      let urlPath = rel.replace(/\.html$/, '').replace(/\/index$/, '');
-      if (!urlPath) urlPath = '/';
-      results.push(urlPath);
+      const abs = path.join(dir, name);
+      if (EXCLUDE_ABS.includes(abs)) continue;
+      results.push(abs);
     }
   }
   return results;
 }
 
-// ── Build XML ─────────────────────────────────────────────────────
-const paths  = walkDir(OUTPUT_DIR, OUTPUT_DIR);
-const sorted = [...new Set(paths)].sort((a, b) => {
-  // Home first, then by depth, then alpha
-  if (a === '/') return -1;
-  if (b === '/') return 1;
-  const da = (a.match(/\//g) || []).length;
-  const db = (b.match(/\//g) || []).length;
-  return da - db || a.localeCompare(b);
+// ── Build URL entries ─────────────────────────────────────────────
+const absPaths = walkDir(OUTPUT_DIR, OUTPUT_DIR);
+
+const entries = absPaths.map(abs => {
+  const { published, canonicalPath } = readHtmlMeta(abs);
+
+  // Derive URL path from file path as fallback
+  let urlPath = abs.slice(OUTPUT_DIR.length).replace(/\\/g, '/');
+  urlPath = urlPath.replace(/\.html$/, '').replace(/\/index$/, '');
+  if (!urlPath) urlPath = '/';
+
+  // Override with canonical if present
+  if (canonicalPath) urlPath = canonicalPath;
+
+  const lastmod = getLastmod(abs, published);
+  return { urlPath, lastmod };
 });
 
-const urlEntries = sorted.map(p => {
-  const { priority, changefreq } = getPriority(p);
-  const loc = BASE_URL + p;
+// Deduplicate by urlPath, keeping first occurrence
+const seen = new Set();
+const deduped = entries.filter(e => {
+  if (seen.has(e.urlPath)) return false;
+  seen.add(e.urlPath);
+  return true;
+});
+
+const sorted = deduped.sort((a, b) => {
+  if (a.urlPath === '/') return -1;
+  if (b.urlPath === '/') return 1;
+  const da = (a.urlPath.match(/\//g) || []).length;
+  const db = (b.urlPath.match(/\//g) || []).length;
+  return da - db || a.urlPath.localeCompare(b.urlPath);
+});
+
+const urlEntries = sorted.map(({ urlPath, lastmod }) => {
+  const { priority, changefreq } = getPriority(urlPath);
+  const loc = BASE_URL + urlPath;
   return `  <url>
     <loc>${loc}</loc>
-    <lastmod>${TODAY}</lastmod>
+    <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
 }).join('\n');
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<!-- Auto-generated by scripts/update-sitemap.js on ${TODAY} -->
-<!-- www-canonical: always use ${BASE_URL}/ -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 ${urlEntries}

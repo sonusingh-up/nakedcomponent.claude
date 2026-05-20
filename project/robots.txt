@@ -101,6 +101,3 @@ Crawl-delay: 5
 # ── SITEMAPS ─────────────────────────────────────────────────────
 # Primary: www-canonical (matches canonical tags on all pages)
 Sitemap: https://www.nakedcompound.in/sitemap.xml
-
-# RSS feed for content discovery
-Sitemap: https://www.nakedcompound.in/feed.xml
