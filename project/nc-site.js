@@ -41,6 +41,15 @@
     { key: 'about',       label: 'About',       href: PAGES.about       },
   ];
 
+  // Inline SVG brand mark — terracotta rounded square with NC monogram.
+  // Embedded so it works regardless of favicon path resolution.
+  const BRAND_MARK_SVG = `
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <rect width="32" height="32" rx="7" style="fill: var(--accent, #c96442);"/>
+      <path d="M9 23 V9 L19 23 V9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 12 a6 6 0 1 0 0 8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>`;
+
   // ─── Header ───────────────────────────────────────────────────────────────
   const header = document.getElementById('site-header');
   if (header) {
@@ -48,7 +57,7 @@
       <header class="site-header" id="site-header-el">
         <div class="container nav">
           <a class="brand" href="${HOME}" aria-label="Naked Compound home">
-            <img class="mark" src="/favicon.png" alt="NC" />
+            ${BRAND_MARK_SVG}
             <span class="brand-name">Naked<em>·</em>Compound</span>
           </a>
 
@@ -75,20 +84,43 @@
 
             <a href="${PAGES.research}" class="btn btn-primary">Explore research</a>
 
-            <button class="menu-toggle" data-menu-toggle aria-label="Open menu">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <button class="menu-toggle" data-menu-toggle aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+              <svg class="icon-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+              <svg class="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
             </button>
           </div>
         </div>
       </header>
 
-      <div class="mobile-nav" aria-hidden="true">
-        <button class="search-trigger mobile-search-trigger" aria-label="Search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <span>Search 312 ingredients…</span>
-        </button>
-        ${navItems.map(n => `<a href="${n.href}">${n.label}</a>`).join('')}
-      </div>
+      <div class="mobile-nav-backdrop" data-menu-backdrop aria-hidden="true"></div>
+      <aside class="mobile-nav" id="mobile-nav-drawer" aria-label="Mobile menu" aria-hidden="true">
+        <div class="mobile-nav-head">
+          <a class="brand" href="${HOME}" aria-label="Naked Compound home">
+            ${BRAND_MARK_SVG}
+            <span class="brand-name">Naked<em>·</em>Compound</span>
+          </a>
+          <button class="mobile-nav-close" data-menu-toggle aria-label="Close menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <nav class="mobile-nav-body" aria-label="Mobile primary">
+          <div class="mobile-nav-section-label">Browse</div>
+          ${navItems.map(n => `<a class="mn-link" href="${n.href}"${CURRENT === n.key ? ' aria-current="page"' : ''}><span>${n.label}</span><span class="mn-arrow" aria-hidden="true">→</span></a>`).join('')}
+        </nav>
+        <div class="mobile-nav-foot">
+          <button class="mobile-search-trigger search-trigger" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <span>Search ingredients, guides…</span>
+          </button>
+          <div class="mn-actions">
+            <a href="${PAGES.research}" class="btn btn-primary">Explore research</a>
+            <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+              <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+              <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+            </button>
+          </div>
+        </div>
+      </aside>
     `;
   }
 
@@ -317,16 +349,17 @@
     background: var(--bg-elev);
     border: 1px solid var(--line);
     border-radius: var(--r-pill);
-    padding: 7px 14px;
-    width:220px; cursor:pointer;
+    padding: 8px 14px;
+    width:240px; cursor:pointer;
     transition: border-color .15s, box-shadow .15s;
+    flex: 0 1 auto;
+    min-width: 0;
   }
   .search-trigger:hover { border-color:var(--line-strong); }
   .search-trigger:focus { outline:0; box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 20%,transparent); border-color:var(--ink); }
   .search-trigger svg { width:15px;height:15px;color:var(--ink-muted);flex:0 0 auto; }
-  .search-placeholder { flex:1; font-size:14px; color:var(--ink-muted); text-align:left; }
+  .search-placeholder { flex:1; font-size:14px; color:var(--ink-muted); text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .search-trigger .kbd { font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);padding:2px 6px;border:1px solid var(--line);border-radius:5px;background:var(--bg);flex-shrink:0; }
-  @media(max-width:1200px){ .search-trigger .kbd,.search-placeholder { display:none; } .search-trigger { width:auto; padding:7px; } }
 
   #search-overlay {
     position:fixed; inset:0; z-index:200;
@@ -439,7 +472,7 @@
           <div class="footer-grid">
             <div class="footer-brand">
               <a class="brand" href="${HOME}">
-                <img class="mark" src="/favicon.png" alt="NC" />
+                ${BRAND_MARK_SVG}
                 <span class="brand-name">Naked<em>·</em>Compound</span>
               </a>
               <p>Independent supplement research for India. Strip the label. See the science.</p>
@@ -534,18 +567,55 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  // ─── Mobile nav ───────────────────────────────────────────────────────────
+  // ─── Mobile nav drawer (open / close / backdrop / esc / body-lock) ────────
+  function setMenuState(open) {
+    const drawer   = document.querySelector('.mobile-nav');
+    const backdrop = document.querySelector('.mobile-nav-backdrop');
+    const toggle   = document.querySelector('.menu-toggle');
+    if (!drawer) return;
+    drawer.classList.toggle('open', open);
+    if (backdrop) backdrop.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('menu-open', open);
+    if (toggle) {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+  }
+  function toggleMenu() {
+    const drawer = document.querySelector('.mobile-nav');
+    setMenuState(!drawer?.classList.contains('open'));
+  }
+
   document.addEventListener('click', (e) => {
-    const toggleBtn = e.target.closest('[data-menu-toggle]');
-    if (toggleBtn) {
-      const mobileNav = document.querySelector('.mobile-nav');
-      if (mobileNav) mobileNav.classList.toggle('open');
+    if (e.target.closest('[data-menu-toggle]')) {
+      e.preventDefault();
+      toggleMenu();
       return;
     }
-    const mobileNav = document.querySelector('.mobile-nav');
-    if (mobileNav && e.target.closest('.mobile-nav a')) {
-      mobileNav.classList.remove('open');
+    if (e.target.closest('[data-menu-backdrop]')) {
+      setMenuState(false);
+      return;
     }
+    // Close drawer when a link inside it is tapped
+    if (e.target.closest('.mobile-nav a.mn-link')) {
+      setMenuState(false);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.querySelector('.mobile-nav.open')) {
+      setMenuState(false);
+    }
+  });
+
+  // Auto-close drawer if viewport resizes to desktop while open
+  let _resizeRaf = null;
+  window.addEventListener('resize', () => {
+    if (_resizeRaf) cancelAnimationFrame(_resizeRaf);
+    _resizeRaf = requestAnimationFrame(() => {
+      if (window.innerWidth > 980) setMenuState(false);
+    });
   });
 
   // ─── Smooth-scroll ────────────────────────────────────────────────────────
