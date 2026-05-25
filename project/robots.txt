@@ -99,5 +99,7 @@ Disallow: /feed.xml
 Crawl-delay: 5
 
 # ── SITEMAPS ─────────────────────────────────────────────────────
-# Primary: www-canonical (matches canonical tags on all pages)
+# Primary index — Google & Bing pick up all sections from here
+Sitemap: https://www.nakedcompound.in/sitemap-index.xml
+# Legacy flat sitemap kept for backwards compatibility (e.g. old GSC submissions)
 Sitemap: https://www.nakedcompound.in/sitemap.xml
