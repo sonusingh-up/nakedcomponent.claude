@@ -3,17 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Verified brands — Naked Compound</title>
+  <title>Verified Brands Database — 25 India Supplement Brands Scored | Naked Compound</title>
+  <meta name="description" content="Independent scoring of 25 Indian and imported supplement brands on label accuracy, dosing, FSSAI compliance, third-party testing, and INR value. Updated May 2026." />
   <link rel="canonical" href="https://www.nakedcompound.in/pages/verified-brands" />
-
-  <meta name="description" content="Indian supplement Verified brands that have consistently cleared our purity, dosing and label-honesty bars." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../style.css?v=3" />
-  <link rel="stylesheet" href="../pages.css" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <script>window.PAGE_KEY = 'Verified brands';</script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
@@ -21,223 +13,847 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-84Q2LMHPV0');
   </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css?v=3" />
+  <link rel="stylesheet" href="../pages.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script>window.PAGE_KEY = 'brands';</script>
+
+  <style>
+    /* ── Hero ───────────────────────────────────────────────────── */
+    .bdb-hero {
+      padding: var(--s-9) 0 var(--s-7);
+      border-bottom: 1px solid var(--line);
+    }
+    .bdb-crumbs {
+      display: flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 12.5px;
+      color: var(--ink-muted); letter-spacing: .02em;
+      margin-bottom: var(--s-5); flex-wrap: wrap;
+    }
+    .bdb-crumbs a { color: var(--ink-muted); text-decoration: none; }
+    .bdb-crumbs a:hover { color: var(--accent); }
+    .bdb-crumbs .sep { opacity: .4; }
+    .bdb-eyebrow {
+      font-family: var(--font-mono); font-size: 12px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); margin-bottom: var(--s-3);
+    }
+    .bdb-h1 {
+      font-size: clamp(30px, 4.5vw, 54px);
+      font-weight: 500; letter-spacing: -.03em;
+      line-height: 1.06; margin-bottom: var(--s-4);
+      max-width: 20ch;
+    }
+    .bdb-h1 em {
+      font-style: normal;
+      font-family: "Instrument Serif", Georgia, serif;
+      color: var(--accent); font-weight: 400;
+    }
+    .bdb-kicker {
+      font-size: clamp(15px, 1.4vw, 18px);
+      color: var(--ink-soft); max-width: 58ch;
+      line-height: 1.6; margin-bottom: var(--s-6);
+    }
+
+    /* ── DB stats ──────────────────────────────────────────────── */
+    .bdb-stat-row {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      padding-top: var(--s-5);
+      border-top: 1px solid var(--line);
+    }
+    .bdb-stat {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .bdb-stat .val {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 500; letter-spacing: -.04em;
+      line-height: 1; color: var(--ink);
+    }
+    .bdb-stat .lbl {
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .bdb-stat.s-rec .val { color: #5ba672; }
+    .bdb-stat.s-acc .val { color: #d9a03a; }
+    .bdb-stat.s-flag .val { color: var(--accent); }
+    .bdb-stat.s-bl .val { color: #b04a3a; }
+    [data-theme="dark"] .bdb-stat.s-rec .val { color: #a7d2a9; }
+    [data-theme="dark"] .bdb-stat.s-acc .val { color: #e0c377; }
+    [data-theme="dark"] .bdb-stat.s-flag .val { color: var(--accent); }
+    [data-theme="dark"] .bdb-stat.s-bl .val { color: #e09a8a; }
+
+    /* ── Filter bar ────────────────────────────────────────────── */
+    .bdb-filter-bar {
+      position: sticky;
+      top: var(--nav-h, 60px);
+      z-index: 40;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 0;
+    }
+    .bdb-filter-inner {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .bdb-search-wrap {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 0 12px;
+      flex: 1; min-width: 180px; max-width: 260px;
+      transition: border-color .15s;
+    }
+    .bdb-search-wrap:focus-within { border-color: var(--accent); }
+    .bdb-search-wrap svg { flex-shrink: 0; color: var(--ink-muted); }
+    .bdb-search {
+      background: none; border: none; outline: none;
+      font-size: 13.5px; color: var(--ink);
+      font-family: var(--font-body); width: 100%;
+      padding: 9px 0;
+    }
+    .bdb-search::placeholder { color: var(--ink-muted); }
+    .bdb-select {
+      appearance: none; -webkit-appearance: none;
+      background: var(--bg-elev) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center;
+      border: 1px solid var(--line); border-radius: var(--r-md);
+      font-size: 13px; color: var(--ink);
+      font-family: var(--font-body);
+      padding: 8px 30px 8px 12px; cursor: pointer;
+      transition: border-color .15s;
+    }
+    .bdb-select:focus { outline: none; border-color: var(--accent); }
+    .bdb-sort-label {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted); letter-spacing: .06em;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .bdb-view-btns {
+      display: flex; gap: 4px; margin-left: auto;
+    }
+    .bdb-view-btn {
+      background: none; border: 1px solid var(--line);
+      border-radius: var(--r-md); padding: 7px 10px;
+      cursor: pointer; color: var(--ink-muted);
+      transition: all .15s; display: flex; align-items: center;
+    }
+    .bdb-view-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .bdb-view-btn:not(.active):hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── Result bar ─────────────────────────────────────────────── */
+    .bdb-results-bar {
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap; padding: 12px 0 8px;
+    }
+    .bdb-count {
+      font-family: var(--font-mono); font-size: 12.5px;
+      color: var(--ink-muted); letter-spacing: .04em;
+    }
+    .bdb-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bdb-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 10px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: var(--r-pill);
+      font-size: 12px; color: var(--ink-soft);
+      font-family: var(--font-mono);
+    }
+    .bdb-pill button {
+      background: none; border: none; cursor: pointer;
+      color: var(--ink-muted); font-size: 14px;
+      padding: 0; line-height: 1; display: flex;
+    }
+    .bdb-pill button:hover { color: var(--accent); }
+    .bdb-reset-btn {
+      background: none; border: none; cursor: pointer;
+      font-size: 12.5px; color: var(--accent);
+      font-family: var(--font-mono); padding: 0;
+      text-decoration: underline; margin-left: 4px;
+    }
+
+    /* ── Grid ───────────────────────────────────────────────────── */
+    .bdb-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding-bottom: var(--s-10);
+    }
+    .bdb-grid.view-list { grid-template-columns: 1fr; }
+    .bdb-grid.view-list .bdb-card { flex-direction: row; flex-wrap: wrap; }
+    .bdb-grid.view-list .bdb-card-head { flex: 0 0 340px; }
+    .bdb-grid.view-list .bdb-dims-grid { flex: 0 0 260px; }
+    .bdb-grid.view-list .bdb-summary { flex: 1; }
+
+    /* ── Card ───────────────────────────────────────────────────── */
+    .bdb-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-left-width: 3px;
+      border-radius: var(--r-lg);
+      padding: var(--s-5);
+      display: flex; flex-direction: column; gap: 14px;
+      transition: transform .2s, box-shadow .2s, border-color .15s;
+      min-width: 0;
+    }
+    .bdb-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--line-strong);
+    }
+    .bdb-card[data-verdict="recommended"] { border-left-color: #5ba672; }
+    .bdb-card[data-verdict="acceptable"]  { border-left-color: #d9a03a; }
+    .bdb-card[data-verdict="flagged"]     { border-left-color: var(--accent); }
+    .bdb-card[data-verdict="blacklisted"] { border-left-color: #b04a3a; }
+
+    /* ── Card head ──────────────────────────────────────────────── */
+    .bdb-card-head {
+      display: flex; align-items: flex-start;
+      gap: 12px;
+    }
+    .bdb-mark {
+      width: 48px; height: 48px;
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 600; font-size: 15px;
+      letter-spacing: -.02em; flex-shrink: 0;
+    }
+    .bdb-mark.mk-green  { background: color-mix(in oklab, #5ba672 18%, var(--surface)); color: #3a6b4a; }
+    .bdb-mark.mk-blue   { background: color-mix(in oklab, #4a7abf 18%, var(--surface)); color: #2e4a6b; }
+    .bdb-mark.mk-amber  { background: color-mix(in oklab, #d9a03a 18%, var(--surface)); color: #7a5c10; }
+    .bdb-mark.mk-red    { background: color-mix(in oklab, #b04a3a 18%, var(--surface)); color: #8a2a1a; }
+    .bdb-mark.mk-neutral { background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); }
+    [data-theme="dark"] .bdb-mark.mk-green  { color: #a7d2a9; }
+    [data-theme="dark"] .bdb-mark.mk-blue   { color: #90b8e0; }
+    [data-theme="dark"] .bdb-mark.mk-amber  { color: #e0c377; }
+    [data-theme="dark"] .bdb-mark.mk-red    { color: #e09a8a; }
+
+    .bdb-head-info { flex: 1; min-width: 0; }
+    .bdb-name-row {
+      display: flex; align-items: center;
+      gap: 8px; flex-wrap: wrap; margin-bottom: 4px;
+    }
+    .bdb-name-row h3 {
+      font-size: 16px; font-weight: 500;
+      letter-spacing: -.015em; margin: 0;
+    }
+    .bdb-verdict-badge {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .09em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: var(--r-pill);
+      border: 1px solid; white-space: nowrap;
+    }
+    .bdb-verdict-badge.recommended { background: color-mix(in oklab,#5ba672 14%,var(--bg-elev)); color:#3a6b4a; border-color:color-mix(in oklab,#5ba672 35%,transparent); }
+    .bdb-verdict-badge.acceptable  { background: color-mix(in oklab,#d9a03a 14%,var(--bg-elev)); color:#7a5c10; border-color:color-mix(in oklab,#d9a03a 35%,transparent); }
+    .bdb-verdict-badge.flagged     { background: color-mix(in oklab,var(--accent) 14%,var(--bg-elev)); color:var(--accent-deep); border-color:color-mix(in oklab,var(--accent) 35%,transparent); }
+    .bdb-verdict-badge.blacklisted { background: color-mix(in oklab,#b04a3a 14%,var(--bg-elev)); color:#8a2a1a; border-color:color-mix(in oklab,#b04a3a 35%,transparent); }
+    [data-theme="dark"] .bdb-verdict-badge.recommended { color:#a7d2a9; }
+    [data-theme="dark"] .bdb-verdict-badge.acceptable  { color:#e0c377; }
+    [data-theme="dark"] .bdb-verdict-badge.flagged     { color:var(--accent); }
+    [data-theme="dark"] .bdb-verdict-badge.blacklisted { color:#e09a8a; }
+
+    .bdb-meta {
+      font-family: var(--font-mono); font-size: 11.5px;
+      color: var(--ink-muted); letter-spacing: .01em;
+      white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bdb-score-big {
+      font-family: var(--font-display); font-size: 34px;
+      font-weight: 500; letter-spacing: -.05em;
+      color: var(--ink); line-height: 1; flex-shrink: 0;
+    }
+    .bdb-score-big sub {
+      font-size: 13px; color: var(--ink-muted);
+      font-weight: 400; vertical-align: middle;
+    }
+
+    /* ── Dimension bars ─────────────────────────────────────────── */
+    .bdb-dims-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px 14px;
+    }
+    .bdb-dim { display: flex; align-items: center; gap: 7px; min-width: 0; }
+    .bdb-dim-label {
+      font-family: var(--font-mono); font-size: 9.5px;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--ink-muted); width: 72px; flex-shrink: 0;
+    }
+    .bdb-dim-bar {
+      flex: 1; height: 4px; min-width: 30px;
+      background: var(--line); border-radius: 2px; overflow: hidden;
+    }
+    .bdb-dim-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 70%, #5ba672));
+      border-radius: 2px;
+    }
+    .bdb-dim-val {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-soft); width: 14px; text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* ── Badges ─────────────────────────────────────────────────── */
+    .bdb-badges-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .bdb-badge {
+      font-family: var(--font-mono); font-size: 10.5px;
+      letter-spacing: .05em; padding: 3px 9px;
+      border-radius: var(--r-pill); border: 1px solid;
+    }
+    .bdb-badge.pass {
+      background: color-mix(in oklab,#5ba672 12%,var(--bg-elev));
+      color: #3a6b4a;
+      border-color: color-mix(in oklab,#5ba672 28%,transparent);
+    }
+    .bdb-badge.fail {
+      background: color-mix(in oklab,#b04a3a 12%,var(--bg-elev));
+      color: #8a2a1a;
+      border-color: color-mix(in oklab,#b04a3a 28%,transparent);
+    }
+    [data-theme="dark"] .bdb-badge.pass { color:#a7d2a9; }
+    [data-theme="dark"] .bdb-badge.fail { color:#e09a8a; }
+
+    .bdb-testing-note {
+      font-size: 11.5px; color: var(--ink-muted);
+      font-family: var(--font-mono); letter-spacing: .01em;
+      border-left: 2px solid var(--line); padding-left: 10px;
+      line-height: 1.5;
+    }
+
+    /* ── Products ───────────────────────────────────────────────── */
+    .bdb-products { display: flex; flex-direction: column; gap: 7px; }
+    .bdb-prod {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 8px 10px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+    }
+    .bdb-prod-line1 {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 8px;
+    }
+    .bdb-prod-name {
+      font-size: 12.5px; color: var(--ink-soft);
+      flex: 1; min-width: 0;
+      white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .bdb-prod-right {
+      display: flex; align-items: center;
+      gap: 8px; flex-shrink: 0;
+    }
+    .bdb-prod-price {
+      font-family: var(--font-mono); font-size: 13px;
+      font-weight: 500; color: var(--ink);
+    }
+    .bdb-prod-link {
+      display: inline-block;
+      padding: 3px 10px;
+      background: var(--accent); color: #fff;
+      border-radius: var(--r-pill);
+      font-size: 10.5px; font-family: var(--font-mono);
+      text-decoration: none; letter-spacing: .04em;
+      white-space: nowrap; transition: opacity .15s;
+    }
+    .bdb-prod-link:hover { opacity: .82; }
+    .bdb-prod-date {
+      font-family: var(--font-mono); font-size: 10px;
+      color: var(--ink-muted); text-align: right;
+    }
+
+    /* ── Summary ────────────────────────────────────────────────── */
+    .bdb-summary {
+      font-size: 13px; line-height: 1.58;
+      color: var(--ink-soft); margin: 0;
+    }
+
+    /* ── Card foot ──────────────────────────────────────────────── */
+    .bdb-card-foot {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 8px;
+      margin-top: auto; padding-top: 10px;
+      border-top: 1px solid var(--line);
+    }
+    .bdb-flags-row {
+      display: flex; gap: 4px; flex-wrap: wrap; flex: 1;
+    }
+    .bdb-flag {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .05em; padding: 2px 7px;
+      border-radius: var(--r-pill); border: 1px solid;
+    }
+    .bdb-flag.neutral { background: var(--surface); color: var(--ink-muted); border-color: var(--line); }
+    .bdb-flag.warn    { background: color-mix(in oklab,#d9a03a 16%,var(--bg-elev)); color:#7a5c10; border-color:color-mix(in oklab,#d9a03a 30%,transparent); }
+    .bdb-flag.danger  { background: color-mix(in oklab,var(--accent) 14%,var(--bg-elev)); color:var(--accent-deep); border-color:color-mix(in oklab,var(--accent) 30%,transparent); }
+    [data-theme="dark"] .bdb-flag.warn   { color:#e0c377; }
+    [data-theme="dark"] .bdb-flag.danger { color:var(--accent); }
+
+    .bdb-review-link {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--accent); text-decoration: none;
+      white-space: nowrap; letter-spacing: .04em;
+      flex-shrink: 0;
+    }
+    .bdb-review-link:hover { text-decoration: underline; }
+
+    /* ── Empty / methodology ────────────────────────────────────── */
+    .bdb-empty {
+      grid-column: 1 / -1;
+      text-align: center; padding: var(--s-9) 0;
+      color: var(--ink-muted); font-size: 15px;
+    }
+    .bdb-empty button {
+      background: none; border: none; cursor: pointer;
+      color: var(--accent); text-decoration: underline;
+      font-size: 15px; font-family: inherit;
+    }
+
+    .bdb-method-note {
+      margin: 0 0 var(--s-9);
+      background: var(--bg-elev); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: var(--s-5) var(--s-6);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--s-4) var(--s-7);
+    }
+    .bdb-method-note h4 {
+      font-size: 13.5px; font-weight: 500; margin-bottom: 6px;
+    }
+    .bdb-method-note p {
+      font-size: 13px; line-height: 1.6;
+      color: var(--ink-soft); margin: 0;
+    }
+    .bdb-method-title {
+      grid-column: 1 / -1;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted); border-bottom: 1px solid var(--line);
+      padding-bottom: var(--s-4); margin-bottom: var(--s-2);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .bdb-grid { grid-template-columns: repeat(2, 1fr); }
+      .bdb-grid.view-list .bdb-card { flex-direction: column; }
+    }
+    @media (max-width: 700px) {
+      .bdb-grid,
+      .bdb-grid.view-list { grid-template-columns: 1fr; }
+      .bdb-filter-inner { gap: 7px; }
+      .bdb-search-wrap { max-width: 100%; }
+      .bdb-view-btns { display: none; }
+      .bdb-dims-grid { grid-template-columns: 1fr; }
+      .bdb-method-note { grid-template-columns: 1fr; }
+      .bdb-stat-row { gap: 16px; }
+      .bdb-h1 { font-size: 28px; }
+    }
+  </style>
 </head>
 <body>
+
 <div id="site-header"></div>
 
 <main>
-  <section class="page-head">
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="bdb-hero">
     <div class="container">
-      <div class="crumbs"><a href="../index.html">Home</a><span class="sep">/</span><span></span></div>
-      <h1> that have <em>earned the bar</em>, not bought it.</h1>
-      <p class="kicker">Verified is not a sticker we sell. It's an outcome of our scoring database —  whose products have consistently cleared our purity, dosing, and label-honesty thresholds across at least three reviewed SKUs.</p>
-      <div class="meta-chips">
-        <span class="meta-chip ok"><span class="dot"></span>22 verified · Q2 2026 review</span>
-        <span class="meta-chip"><span class="dot"></span>Avg score across verified: 7.9 / 10</span>
-        <span class="meta-chip warn"><span class="dot"></span>3  lost verification last quarter</span>
+      <div class="bdb-crumbs">
+        <a href="/">Home</a><span class="sep">/</span>
+        <span>Brands Database</span>
+      </div>
+      <div class="bdb-eyebrow">Independent database · India market · May 2026</div>
+      <h1 class="bdb-h1">India Supplement<br>Brands — <em>Scored</em></h1>
+      <p class="bdb-kicker">Every brand rated on five dimensions: label accuracy, dosing, FSSAI compliance, third-party testing, and rupee value. No paid placements. No affiliate deals with reviewed brands.</p>
+
+      <div class="bdb-stat-row" id="bdb-stat-row">
+        <!-- populated by JS from BRANDS_STATS -->
       </div>
     </div>
   </section>
 
-  <section class="container section" style="padding-top: var(--s-7);">
-    <!-- The bar -->
-    <div class="callout" style="margin: 0 0 var(--s-7);">
-      <div class="ico">✓</div>
+  <!-- ── Filter bar ─────────────────────────────────────────────── -->
+  <div class="bdb-filter-bar">
+    <div class="container">
+      <div class="bdb-filter-inner">
+        <div class="bdb-search-wrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input class="bdb-search" id="bdb-search" type="search" placeholder="Search brands…" autocomplete="off" />
+        </div>
+
+        <select class="bdb-select" id="bdb-cat" aria-label="Category">
+          <option value="all">All categories</option>
+          <option value="protein">Protein</option>
+          <option value="creatine">Creatine</option>
+          <option value="preworkout">Pre-Workout</option>
+          <option value="vitamins">Vitamins</option>
+          <option value="minerals">Minerals</option>
+          <option value="omega3">Omega-3</option>
+          <option value="herbs">Herbs &amp; Adaptogens</option>
+          <option value="amino">Amino Acids</option>
+        </select>
+
+        <select class="bdb-select" id="bdb-verdict" aria-label="Verdict tier">
+          <option value="all">All tiers</option>
+          <option value="recommended">Recommended</option>
+          <option value="acceptable">Acceptable</option>
+          <option value="flagged">Flagged</option>
+          <option value="blacklisted">Blacklisted</option>
+        </select>
+
+        <select class="bdb-select" id="bdb-origin" aria-label="Country of origin">
+          <option value="all">All countries</option>
+          <option value="India">🇮🇳 India</option>
+          <option value="USA">🇺🇸 USA</option>
+          <option value="UK">🇬🇧 UK</option>
+        </select>
+
+        <select class="bdb-select" id="bdb-score" aria-label="Minimum score">
+          <option value="0">Any score</option>
+          <option value="8">8.0+ Excellent</option>
+          <option value="7">7.0+ Strong</option>
+          <option value="6">6.0+ Adequate</option>
+        </select>
+
+        <select class="bdb-select" id="bdb-sort" aria-label="Sort order">
+          <option value="score-desc">Score: High → Low</option>
+          <option value="score-asc">Score: Low → High</option>
+          <option value="name-asc">Name: A → Z</option>
+          <option value="name-desc">Name: Z → A</option>
+          <option value="recent">Recently added</option>
+        </select>
+
+        <div class="bdb-view-btns">
+          <button class="bdb-view-btn active" id="bdb-view-grid" aria-label="Grid view" title="Grid view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          </button>
+          <button class="bdb-view-btn" id="bdb-view-list" aria-label="List view" title="List view">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Results bar ────────────────────────────────────────────── -->
+  <div class="container">
+    <div class="bdb-results-bar">
+      <span class="bdb-count" id="bdb-count"></span>
+      <div class="bdb-pills" id="bdb-pills"></div>
+    </div>
+
+    <!-- ── Brand grid ─────────────────────────────────────────── -->
+    <div class="bdb-grid" id="bdb-grid">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- ── Methodology note ───────────────────────────────────── -->
+    <div class="bdb-method-note">
+      <div class="bdb-method-title">How we score — five dimensions, same rubric for every brand</div>
       <div>
-        <h4>The bar — public, fixed, and not negotiable.</h4>
-        <p>(1) At least three SKUs reviewed at Naked Compound. (2) Median score across reviewed SKUs ≥ 7.5. (3) Every reviewed SKU has scored 6.0+ for two consecutive quarters. (4) No outstanding label-honesty flag. Verified brands cannot opt in or pay to be considered — verification follows automatically from the database.</p>
+        <h4>Label Accuracy + Dosing</h4>
+        <p>Does the product deliver what the label claims? Are active ingredient doses in the clinically validated range? We weight independently-initiated blind-purchase COAs (Trustified, Unbox Health, Informed Sport) above brand-commissioned tests.</p>
+      </div>
+      <div>
+        <h4>FSSAI Compliance + 3P Testing</h4>
+        <p>FSSAI licensing is mandatory in India — absence is an immediate flag. Third-party testing score reflects both the independence and depth of testing: independent blind-purchase &gt; brand-commissioned &gt; internal QC.</p>
+      </div>
+      <div>
+        <h4>Rupee Value</h4>
+        <p>Cost per gram of active ingredient, benchmarked against the best-value equivalent in that category. A brand selling generic creatine monohydrate at 3× the market rate scores low on value regardless of other attributes.</p>
+      </div>
+      <div>
+        <h4>Flag definitions</h4>
+        <p>"Proprietary blend" = any blend where individual ingredient doses are not disclosed. "Brand-commissioned COA only" = COA exists but was initiated by the brand, not by an independent third party purchasing from retail.</p>
       </div>
     </div>
 
-    <div class="brand-grid">
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark">PN</div>
-          <div>
-            <h3>Pure Nutrition</h3>
-            <div class="brand-meta">Pune · since 2017</div>
-          </div>
-          <span class="verdict gold" style="margin-left:auto;">Gold</span>
-        </div>
-        <p class="blurb">Standout for traceable Ayurvedic standardisations — KSM-66, BCM-95, and patented extracts where the supplier is publicly named.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">8</div></div>
-          <div><div class="k">Median score</div><div class="v">8.1</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q2 '24</div></div>
-        </div>
-      </article>
+    <!-- ── Affiliate disclosure ───────────────────────────────── -->
+    <p style="font-size:12.5px;color:var(--ink-muted);font-family:var(--font-mono);border-top:1px solid var(--line);padding-top:var(--s-4);margin-bottom:var(--s-8);letter-spacing:.01em;">
+      Affiliate disclosure — some Amazon.in product links earn a small commission at no additional cost to you. Commission does not influence brand scores, tier placement, or flag decisions. Full policy: <a href="/pages/conflicts-policy" style="color:var(--accent);">conflicts-policy</a>. Prices shown are last-checked estimates; verify on Amazon before purchasing.
+    </p>
+  </div>
 
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk2">NK</div>
-          <div>
-            <h3>Nakpro</h3>
-            <div class="brand-meta">Hyderabad · since 2019</div>
-          </div>
-          <span class="verdict gold" style="margin-left:auto;">Gold</span>
-        </div>
-        <p class="blurb">India's most consistent whey protein brand on label-vs-reality. Cross-flow isolate at honest gram-per-scoop numbers.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">5</div></div>
-          <div><div class="k">Median score</div><div class="v">8.0</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q4 '24</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk3">GN</div>
-          <div>
-            <h3>GNC India</h3>
-            <div class="brand-meta">Distributor · multi-city</div>
-          </div>
-          <span class="verdict silver" style="margin-left:auto;">Silver</span>
-        </div>
-        <p class="blurb">Boring, in the best way. Predictable Creapure, Optimum Nutrition, and house-line that holds steady scores quarter to quarter.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">12</div></div>
-          <div><div class="k">Median score</div><div class="v">7.8</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q1 '24</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk4">CB</div>
-          <div>
-            <h3>Carbamide Forte</h3>
-            <div class="brand-meta">Mumbai · since 2018</div>
-          </div>
-          <span class="verdict silver" style="margin-left:auto;">Silver</span>
-        </div>
-        <p class="blurb">Strong in the vitamins-and-minerals tier. Iron and B12 forms are well-chosen; multivitamin label honesty is unusually clean.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">9</div></div>
-          <div><div class="k">Median score</div><div class="v">7.6</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q3 '24</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark">WB</div>
-          <div>
-            <h3>Wellbeing Nutrition</h3>
-            <div class="brand-meta">Mumbai · since 2018</div>
-          </div>
-          <span class="verdict silver" style="margin-left:auto;">Silver</span>
-        </div>
-        <p class="blurb">Format innovation that mostly survives scrutiny. Slow-melts D3+K2 verified at the dose claimed; iron strips and effervescents in range.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">7</div></div>
-          <div><div class="k">Median score</div><div class="v">7.5</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q1 '25</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk2">ON</div>
-          <div>
-            <h3>Optimum Nutrition</h3>
-            <div class="brand-meta">Imported · multi-city</div>
-          </div>
-          <span class="verdict silver" style="margin-left:auto;">Silver</span>
-        </div>
-        <p class="blurb">The reference whey blend on the Indian shelf. Premium pricing, predictable quality, no mystery ingredients in the proprietary blend.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">6</div></div>
-          <div><div class="k">Median score</div><div class="v">8.0</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q1 '24</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk3">UN</div>
-          <div>
-            <h3>Ultimate Nutrition</h3>
-            <div class="brand-meta">Imported · multi-city</div>
-          </div>
-          <span class="verdict silver" style="margin-left:auto;">Silver</span>
-        </div>
-        <p class="blurb">Verification holds on the back of true-to-label isolates. Value sub-score is the only thing pulling down their median.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">4</div></div>
-          <div><div class="k">Median score</div><div class="v">7.5</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q3 '24</div></div>
-        </div>
-      </article>
-
-      <article class="brand-card">
-        <div class="brand-card-head">
-          <div class="brand-mark mk4">HV</div>
-          <div>
-            <h3>HK Vitals</h3>
-            <div class="brand-meta">HealthKart house · multi-city</div>
-          </div>
-          <span class="verdict watch" style="margin-left:auto;">Watch</span>
-        </div>
-        <p class="blurb">Probationary — the recent multivitamin iron-form change cost a sub-score. Currently verified, under quarterly watch.</p>
-        <div class="brand-stats">
-          <div><div class="k">SKUs reviewed</div><div class="v">11</div></div>
-          <div><div class="k">Median score</div><div class="v">7.5</div></div>
-          <div><div class="k">Verified since</div><div class="v">Q4 '24 · watch</div></div>
-        </div>
-      </article>
-    </div>
-
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="#" class="ghost-link">View all 22 Verified brands<span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-
-    <!-- Recently de-verified -->
-    <div class="section-head" style="margin-top: var(--s-8);">
-      <div class="head-left">
-        <div class="eyebrow">Q2 2026 review</div>
-        <h2>Verified brands that lost verification this quarter.</h2>
-      </div>
-      <div class="head-right">
-        <p class="lede">We publish removals as transparently as additions. Every de-verification cites the trigger and the SKU(s) involved.</p>
-      </div>
-    </div>
-
-    <div class="index-list">
-      <a href="#" class="index-row">
-        <div class="thumb g5">!</div>
-        <div>
-          <h3>Brand redacted — pre-workout proprietary blend re-introduced.</h3>
-          <div class="desc">Their flagship pre-workout reverted from a per-component disclosed label to a 4.6g proprietary blend. Median score across SKUs fell to 6.9. Removed effective 1 April 2026.</div>
-          <div class="meta"><span>Trigger · honesty</span><span class="sep">·</span><span>SKU count: 5</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
-      <a href="#" class="index-row">
-        <div class="thumb g4">!</div>
-        <div>
-          <h3>Brand redacted — fish oil freshness drift across two batches.</h3>
-          <div class="desc">Peroxide and anisidine values trended above the studied range across two consecutive batches. Two SKUs scored under 6.0 for two quarters; verification withdrawn.</div>
-          <div class="meta"><span>Trigger · purity</span><span class="sep">·</span><span>SKU count: 3</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
-      <a href="#" class="index-row">
-        <div class="thumb">!</div>
-        <div>
-          <h3>Brand redacted — withdrew COA access for batch monitoring.</h3>
-          <div class="desc">Brand stopped providing batch-level Certificates of Analysis on request. Per our criteria, this triggers an immediate Purity sub-score floor. Removed pending re-engagement.</div>
-          <div class="meta"><span>Trigger · documentation</span><span class="sep">·</span><span>SKU count: 6</span></div>
-        </div>
-        <div class="trail"><span class="arrow">→</span></div>
-      </a>
-    </div>
-  </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="../nc-site.js"></script>
+<script src="brands-data.js"></script>
+<script>
+// ================================================================
+// Brands Database — Filter + Render Engine
+// ================================================================
+
+const CAT_LABELS = {
+  protein: 'Protein', creatine: 'Creatine', preworkout: 'Pre-Workout',
+  vitamins: 'Vitamins', minerals: 'Minerals', omega3: 'Omega-3',
+  herbs: 'Herbs', amino: 'Amino Acids', fatburner: 'Fat Burners'
+};
+
+const DIM_LABELS = {
+  labelAccuracy: 'Label acc.', dosing: 'Dosing',
+  fssai: 'FSSAI', thirdParty: '3P Test', value: 'Value ₹'
+};
+
+const FLAG_META = {
+  'prop-blend':            { label: 'Proprietary blend',          cls: 'danger' },
+  'underdosed':            { label: 'Underdosed',                  cls: 'danger' },
+  'generic-extract':       { label: 'Generic extracts',            cls: 'warn'   },
+  'no-coa':                { label: 'No public COA',               cls: 'danger' },
+  'label-inflation':       { label: 'Label inflation',             cls: 'danger' },
+  'premium-price':         { label: 'Premium-priced',              cls: 'neutral'},
+  'marketing-heavy':       { label: 'Marketing > substance',       cls: 'warn'   },
+  'legal-issues':          { label: 'Legal issues',                cls: 'danger' },
+  'brand-coa-only':        { label: 'Brand-commissioned COA',      cls: 'warn'   },
+  'misleading-claims':     { label: 'Misleading claims',           cls: 'danger' },
+  'historical-test-failure':{ label: 'Historical test failure',    cls: 'danger' },
+  'limited-india-testing': { label: 'Limited India testing',       cls: 'warn'   },
+  'no-fssai-confirmed':    { label: 'FSSAI unconfirmed',           cls: 'danger' },
+};
+
+const COUNTRY_FLAG = { India: '🇮🇳', USA: '🇺🇸', UK: '🇬🇧', Germany: '🇩🇪' };
+
+const state = {
+  search: '', category: 'all', verdict: 'all',
+  origin: 'all', minScore: 0, sort: 'score-desc', view: 'grid'
+};
+
+// ── Render ──────────────────────────────────────────────────────
+
+function formatINR(n) {
+  return '₹' + n.toLocaleString('en-IN');
+}
+
+function formatCats(cats) {
+  const shown = cats.slice(0, 2).map(c => CAT_LABELS[c] || c).join(' · ');
+  const more = cats.length > 2 ? ` +${cats.length - 2}` : '';
+  return shown + more;
+}
+
+function renderCard(b) {
+  const cf = b.country;
+  const flag = COUNTRY_FLAG[cf] || '🌐';
+
+  const dimHtml = Object.entries(b.scores).map(([k, v]) => `
+    <div class="bdb-dim">
+      <span class="bdb-dim-label">${DIM_LABELS[k]}</span>
+      <div class="bdb-dim-bar"><div class="bdb-dim-fill" style="width:${v * 10}%"></div></div>
+      <span class="bdb-dim-val">${v}</span>
+    </div>`).join('');
+
+  const prodsHtml = b.products.slice(0, 3).map(p => `
+    <div class="bdb-prod">
+      <div class="bdb-prod-line1">
+        <span class="bdb-prod-name">${p.name} · ${p.unit}</span>
+        <div class="bdb-prod-right">
+          <span class="bdb-prod-price">${formatINR(p.price)}</span>
+          <a href="${p.url}" target="_blank" rel="nofollow noopener sponsored" class="bdb-prod-link">Amazon.in ↗</a>
+        </div>
+      </div>
+      <div class="bdb-prod-date">Checked ${p.lastChecked}</div>
+    </div>`).join('');
+
+  const flagsHtml = b.flags.map(f => {
+    const m = FLAG_META[f] || { label: f, cls: 'neutral' };
+    return `<span class="bdb-flag ${m.cls}">${m.label}</span>`;
+  }).join('');
+
+  const reviewHtml = b.reviewUrl
+    ? `<a href="${b.reviewUrl}" class="bdb-review-link">NC review →</a>`
+    : '';
+
+  const verdictLabel = b.verdict.charAt(0).toUpperCase() + b.verdict.slice(1);
+
+  return `
+  <div class="bdb-card" data-verdict="${b.verdict}" data-id="${b.id}">
+    <div class="bdb-card-head">
+      <div class="bdb-mark ${b.markClass}">${b.mark}</div>
+      <div class="bdb-head-info">
+        <div class="bdb-name-row">
+          <h3>${b.name}</h3>
+          <span class="bdb-verdict-badge ${b.verdict}">${verdictLabel}</span>
+        </div>
+        <div class="bdb-meta">${flag} ${b.hq} · est. ${b.since} · ${formatCats(b.categories)}</div>
+      </div>
+      <div class="bdb-score-big">${b.trustScore}<sub>/10</sub></div>
+    </div>
+
+    <div class="bdb-dims-grid">${dimHtml}</div>
+
+    <div class="bdb-badges-row">
+      <span class="bdb-badge ${b.fssai ? 'pass' : 'fail'}">${b.fssai ? '✓' : '✗'} FSSAI</span>
+      <span class="bdb-badge ${b.thirdPartyTested ? 'pass' : 'fail'}">${b.thirdPartyTested ? '✓' : '✗'} 3P Tested</span>
+      <span class="bdb-badge ${b.coaPublic ? 'pass' : 'fail'}">${b.coaPublic ? '✓' : '✗'} COA Public</span>
+    </div>
+
+    <div class="bdb-testing-note">${b.testingBody}</div>
+
+    <div class="bdb-products">${prodsHtml}</div>
+
+    <p class="bdb-summary">${b.summary}</p>
+
+    <div class="bdb-card-foot">
+      <div class="bdb-flags-row">${flagsHtml || '<span style="font-size:11px;color:var(--ink-muted);font-family:var(--font-mono);">No flags</span>'}</div>
+      ${reviewHtml}
+    </div>
+  </div>`;
+}
+
+// ── Filter ───────────────────────────────────────────────────────
+
+function applyFilter() {
+  let brands = [...BRANDS_DB];
+
+  if (state.search) {
+    const q = state.search.toLowerCase();
+    brands = brands.filter(b =>
+      b.name.toLowerCase().includes(q) ||
+      b.hq.toLowerCase().includes(q) ||
+      b.country.toLowerCase().includes(q)
+    );
+  }
+
+  if (state.category !== 'all') brands = brands.filter(b => b.categories.includes(state.category));
+  if (state.verdict !== 'all')  brands = brands.filter(b => b.verdict === state.verdict);
+  if (state.origin !== 'all')   brands = brands.filter(b => b.country === state.origin);
+  if (state.minScore > 0)       brands = brands.filter(b => b.trustScore >= state.minScore);
+
+  if (state.sort === 'score-desc') brands.sort((a, b) => b.trustScore - a.trustScore);
+  else if (state.sort === 'score-asc') brands.sort((a, b) => a.trustScore - b.trustScore);
+  else if (state.sort === 'name-asc')  brands.sort((a, b) => a.name.localeCompare(b.name));
+  else if (state.sort === 'name-desc') brands.sort((a, b) => b.name.localeCompare(a.name));
+  else if (state.sort === 'recent')    brands.sort((a, b) => b.addedDate.localeCompare(a.addedDate));
+
+  return brands;
+}
+
+// ── Render control ───────────────────────────────────────────────
+
+function render() {
+  const filtered = applyFilter();
+  const grid = document.getElementById('bdb-grid');
+  const count = document.getElementById('bdb-count');
+
+  count.textContent = `Showing ${filtered.length} of ${BRANDS_DB.length} brands`;
+
+  grid.className = `bdb-grid view-${state.view}`;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="bdb-empty">No brands match your filters.
+      <button onclick="resetFilters()">Clear all filters</button></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(renderCard).join('');
+}
+
+// ── Pills ────────────────────────────────────────────────────────
+
+function updatePills() {
+  const pills = document.getElementById('bdb-pills');
+  const active = [];
+
+  if (state.category !== 'all') active.push({ label: CAT_LABELS[state.category] || state.category, key: 'category', selectId: 'bdb-cat', reset: 'all' });
+  if (state.verdict  !== 'all') active.push({ label: state.verdict,  key: 'verdict',  selectId: 'bdb-verdict', reset: 'all' });
+  if (state.origin   !== 'all') active.push({ label: state.origin,   key: 'origin',   selectId: 'bdb-origin',  reset: 'all' });
+  if (state.minScore  > 0)      active.push({ label: `${state.minScore}+ score`, key: 'minScore', selectId: 'bdb-score', reset: 0 });
+  if (state.search)             active.push({ label: `"${state.search}"`, key: 'search', selectId: 'bdb-search', reset: '' });
+
+  if (active.length === 0) {
+    pills.innerHTML = '';
+    return;
+  }
+
+  pills.innerHTML = active.map(p => {
+    const resetVal = JSON.stringify(p.reset);
+    return `<span class="bdb-pill">
+      ${p.label}
+      <button onclick="removePill('${p.key}', ${resetVal}, '${p.selectId}')" aria-label="Remove filter">×</button>
+    </span>`;
+  }).join('') + `<button class="bdb-reset-btn" onclick="resetFilters()">Clear all</button>`;
+}
+
+function removePill(key, reset, selectId) {
+  state[key] = reset;
+  const el = document.getElementById(selectId);
+  if (el) el.value = reset === 0 ? '0' : reset;
+  render();
+  updatePills();
+}
+
+function resetFilters() {
+  state.search = ''; state.category = 'all'; state.verdict = 'all';
+  state.origin = 'all'; state.minScore = 0; state.sort = 'score-desc';
+  ['bdb-search','bdb-cat','bdb-verdict','bdb-origin','bdb-score','bdb-sort'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = el.tagName === 'SELECT' ? (el.options[0] ? el.options[0].value : 'all') : '';
+  });
+  document.getElementById('bdb-sort').value = 'score-desc';
+  render(); updatePills();
+}
+
+function setFilter(key, value) {
+  state[key] = value;
+  render();
+  updatePills();
+}
+
+// ── Stats row ────────────────────────────────────────────────────
+
+function renderStats() {
+  const s = BRANDS_STATS;
+  document.getElementById('bdb-stat-row').innerHTML = `
+    <div class="bdb-stat"><div class="val">${s.total}</div><div class="lbl">Brands scored</div></div>
+    <div class="bdb-stat s-rec"><div class="val">${s.recommended}</div><div class="lbl">Recommended</div></div>
+    <div class="bdb-stat s-acc"><div class="val">${s.acceptable}</div><div class="lbl">Acceptable</div></div>
+    <div class="bdb-stat s-flag"><div class="val">${s.flagged}</div><div class="lbl">Flagged</div></div>
+    ${s.blacklisted > 0 ? `<div class="bdb-stat s-bl"><div class="val">${s.blacklisted}</div><div class="lbl">Blacklisted</div></div>` : ''}
+    <div class="bdb-stat"><div class="val" style="font-size:20px;letter-spacing:-.01em;">${s.lastUpdated}</div><div class="lbl">Last updated</div></div>
+  `;
+}
+
+// ── Init ─────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderStats();
+  render();
+
+  // Search (debounced)
+  let searchTimer;
+  document.getElementById('bdb-search').addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => setFilter('search', this.value.trim()), 200);
+  });
+
+  // Dropdowns
+  const selectMap = { 'bdb-cat': 'category', 'bdb-verdict': 'verdict', 'bdb-origin': 'origin', 'bdb-score': 'minScore', 'bdb-sort': 'sort' };
+  Object.entries(selectMap).forEach(([id, key]) => {
+    document.getElementById(id).addEventListener('change', function () {
+      setFilter(key, key === 'minScore' ? parseFloat(this.value) : this.value);
+    });
+  });
+
+  // View toggle
+  document.getElementById('bdb-view-grid').addEventListener('click', function () {
+    state.view = 'grid';
+    this.classList.add('active');
+    document.getElementById('bdb-view-list').classList.remove('active');
+    render();
+  });
+  document.getElementById('bdb-view-list').addEventListener('click', function () {
+    state.view = 'list';
+    this.classList.add('active');
+    document.getElementById('bdb-view-grid').classList.remove('active');
+    render();
+  });
+});
+</script>
+
 </body>
 </html>
