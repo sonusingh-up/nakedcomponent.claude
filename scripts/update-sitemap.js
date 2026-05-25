@@ -1,27 +1,29 @@
 #!/usr/bin/env node
 /**
- * Naked Compound — Sitemap Generator (v2)
+ * Naked Compound — sitemap auto-generator
  * Run: node scripts/update-sitemap.js
  * Called by Vercel buildCommand before each deployment.
  *
- * What's new vs v1:
- *  - Generates a sitemap INDEX + per-section sitemaps (reviews, research, …)
- *  - Reads datePublished from JSON-LD schema for accurate lastmod dates
- *  - Adds <image:image> tags to review pages so Google indexes product photos
- *  - Pings Google & Bing automatically after writing the files
+ * Rules:
+ *  - Authoritative domain: https://www.nakedcompound.in  (www-canonical)
+ *  - cleanUrls: true  → strip .html from paths
+ *  - Exclude: /data/, /uploads/, /assets/, feed.xml, google*.html
+ *  - Reads <link rel="canonical"> for URL override
+ *  - Reads <meta name="published"> for lastmod, falls back to git log, then mtime
  */
 
-const fs           = require('fs');
-const path         = require('path');
-const https        = require('https');
-const { execSync } = require('child_process');
+const fs            = require('fs');
+const path          = require('path');
+const { execSync }  = require('child_process');
 
-const BASE_URL   = 'https://www.nakedcompound.in';
-const OUTPUT_DIR = path.join(__dirname, '..', 'project');
-const TODAY      = new Date().toISOString().slice(0, 10);
+const BASE_URL    = 'https://www.nakedcompound.in';
+const OUTPUT_DIR  = path.join(__dirname, '..', 'project');
+const SITEMAP_OUT = path.join(OUTPUT_DIR, 'sitemap.xml');
+const TODAY       = new Date().toISOString().slice(0, 10);
 
-// ── Priority / changefreq matrix ──────────────────────────────────
+// ── Priority / changefreq matrix ─────────────────────────────────
 const RULES = [
+  // path-prefix                       priority  changefreq
   { prefix: '/',                       p: '1.0', cf: 'daily',   exact: true },
   { prefix: '/pages/ingredients/',     p: '0.9', cf: 'weekly' },
   { prefix: '/compare/',               p: '0.8', cf: 'weekly' },
@@ -54,122 +56,93 @@ const RULES = [
 ];
 
 function getPriority(urlPath) {
+  // Exact matches first
   for (const r of RULES) {
     if (r.exact && urlPath === r.prefix) return { priority: r.p, changefreq: r.cf };
   }
+  // Prefix matches
   for (const r of RULES) {
     if (!r.exact && urlPath.startsWith(r.prefix)) return { priority: r.p, changefreq: r.cf };
   }
   return { priority: '0.5', changefreq: 'monthly' };
 }
 
-// ── Which sub-sitemap does this URL belong to? ────────────────────
-function getSitemapSection(urlPath) {
-  if (urlPath.startsWith('/reviews/'))    return 'reviews';
-  if (urlPath.startsWith('/research/'))   return 'research';
-  if (urlPath.startsWith('/protocols/'))  return 'protocols';
-  if (urlPath.startsWith('/compare/'))    return 'compare';
-  if (urlPath.startsWith('/blog/'))       return 'blog';
-  if (urlPath.startsWith('/ingredients/')) return 'ingredients';
-  return 'core'; // homepage, /pages/*, everything else
-}
-
-// ── Read meta from HTML ───────────────────────────────────────────
+// ── Read published date and canonical URL from HTML ───────────────
 function readHtmlMeta(absPath) {
   let content;
-  try { content = fs.readFileSync(absPath, 'utf8'); }
-  catch { return { published: null, canonicalPath: null, image: null, imageTitle: null }; }
+  try {
+    content = fs.readFileSync(absPath, 'utf8');
+  } catch {
+    return { published: null, canonicalPath: null };
+  }
 
-  // 1. <meta name="published"> (explicit override)
-  const pubMatch = content.match(/<meta\s[^>]*name=["']published["'][^>]*content=["']([0-9]{4}-[0-9]{2}-[0-9]{2})["']/i)
+  // Extract <meta name="published" content="YYYY-MM-DD">
+  const publishedMatch = content.match(/<meta\s[^>]*name=["']published["'][^>]*content=["']([0-9]{4}-[0-9]{2}-[0-9]{2})["']/i)
     || content.match(/<meta\s[^>]*content=["']([0-9]{4}-[0-9]{2}-[0-9]{2})["'][^>]*name=["']published["']/i);
-  let published = pubMatch ? pubMatch[1] : null;
+  const published = publishedMatch ? publishedMatch[1] : null;
 
-  // 2. datePublished in JSON-LD (already in all review/research/blog pages)
-  if (!published) {
-    const ldMatch = content.match(/"datePublished"\s*:\s*"([0-9]{4}-[0-9]{2}-[0-9]{2})"/);
-    if (ldMatch) published = ldMatch[1];
-  }
-
-  // 3. dateModified in JSON-LD (use as fallback if no datePublished)
-  if (!published) {
-    const modMatch = content.match(/"dateModified"\s*:\s*"([0-9]{4}-[0-9]{2}-[0-9]{2})"/);
-    if (modMatch) published = modMatch[1];
-  }
-
-  // Canonical URL
-  const canonMatch = content.match(/<link\s[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)
+  // Extract <link rel="canonical" href="...">
+  const canonicalMatch = content.match(/<link\s[^>]*rel=["']canonical["'][^>]*href=["']([^"']+)["']/i)
     || content.match(/<link\s[^>]*href=["']([^"']+)["'][^>]*rel=["']canonical["']/i);
   let canonicalPath = null;
-  if (canonMatch) {
+  if (canonicalMatch) {
     try {
-      const url = new URL(canonMatch[1]);
+      const url = new URL(canonicalMatch[1]);
       canonicalPath = url.pathname;
     } catch {
-      canonicalPath = canonMatch[1];
+      // If it's already a path (no domain), use as-is
+      canonicalPath = canonicalMatch[1];
     }
   }
 
-  // Product image — look for the .product-hero img first (reviews),
-  // then fall back to og:image (compare, blog, protocols)
-  let image = null;
-  let imageTitle = null;
-
-  // product-hero img (reviews)
-  const heroImgMatch = content.match(/class="product-hero"[\s\S]{0,400}?<img\s[^>]*src="([^"]+)"[^>]*alt="([^"]*)"/);
-  if (heroImgMatch) {
-    image = heroImgMatch[1];
-    imageTitle = heroImgMatch[2] || null;
-  }
-
-  // og:image fallback (compare, blog)
-  if (!image) {
-    const ogMatch = content.match(/<meta\s[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i)
-      || content.match(/<meta\s[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i);
-    if (ogMatch) image = ogMatch[1];
-  }
-
-  // og:image:alt
-  if (image && !imageTitle) {
-    const altMatch = content.match(/<meta\s[^>]*property=["']og:image:alt["'][^>]*content=["']([^"']+)["']/i);
-    if (altMatch) imageTitle = altMatch[1];
-  }
-
-  return { published, canonicalPath, image, imageTitle };
+  return { published, canonicalPath };
 }
 
-// ── Get lastmod ───────────────────────────────────────────────────
+// ── Get lastmod date for a file ───────────────────────────────────
 function getLastmod(absPath, published) {
+  // 1. Use <meta name="published"> if present (authoritative, never changes)
   if (published) return published;
+
+  // 2. Try git log for last commit date
   try {
     const gitDate = execSync(`git log -1 --format=%ai -- "${absPath}"`, {
       cwd: path.join(__dirname, '..'),
       stdio: ['pipe', 'pipe', 'pipe'],
     }).toString().trim();
     if (gitDate) return gitDate.slice(0, 10);
-  } catch {}
+  } catch {
+    // git not available or not a repo
+  }
+
+  // 3. Fallback to file mtime
   try {
-    return fs.statSync(absPath).mtime.toISOString().slice(0, 10);
+    const stat = fs.statSync(absPath);
+    return stat.mtime.toISOString().slice(0, 10);
   } catch {
     return TODAY;
   }
 }
 
 // ── File discovery ────────────────────────────────────────────────
-const EXCLUDE_DIRS  = ['assets', 'data', 'uploads', 'pagefind'];
-const EXCLUDE_FILES = [/^google[a-z0-9]+\.html$/, /^feed\.xml$/, /^rss\.html$/];
-const EXCLUDE_ABS   = [
+const EXCLUDE_DIRS  = ['assets', 'data', 'uploads'];
+const EXCLUDE_FILES = [
+  /^google[a-z0-9]+\.html$/,
+  /^feed\.xml$/,
+  /^rss\.html$/,
+];
+// Absolute paths to exclude entirely
+const EXCLUDE_ABS = [
   path.join(OUTPUT_DIR, 'uploads', 'index.html'),
   path.join(OUTPUT_DIR, 'pages', 'rss.html'),
 ];
 
-function walkDir(dir) {
+function walkDir(dir, base) {
   const results = [];
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const name = entry.name;
     if (entry.isDirectory()) {
       if (EXCLUDE_DIRS.includes(name)) continue;
-      results.push(...walkDir(path.join(dir, name)));
+      results.push(...walkDir(path.join(dir, name), base));
     } else if (entry.isFile() && name.endsWith('.html')) {
       if (EXCLUDE_FILES.some(re => re.test(name))) continue;
       const abs = path.join(dir, name);
@@ -181,30 +154,32 @@ function walkDir(dir) {
 }
 
 // ── Build URL entries ─────────────────────────────────────────────
-const absPaths = walkDir(OUTPUT_DIR);
+const absPaths = walkDir(OUTPUT_DIR, OUTPUT_DIR);
 
-const allEntries = absPaths.map(abs => {
-  const { published, canonicalPath, image, imageTitle } = readHtmlMeta(abs);
+const entries = absPaths.map(abs => {
+  const { published, canonicalPath } = readHtmlMeta(abs);
 
+  // Derive URL path from file path as fallback
   let urlPath = abs.slice(OUTPUT_DIR.length).replace(/\\/g, '/');
   urlPath = urlPath.replace(/\.html$/, '').replace(/\/index$/, '');
   if (!urlPath) urlPath = '/';
+
+  // Override with canonical if present
   if (canonicalPath) urlPath = canonicalPath;
 
   const lastmod = getLastmod(abs, published);
-  return { urlPath, lastmod, image, imageTitle };
+  return { urlPath, lastmod };
 });
 
-// Deduplicate
+// Deduplicate by urlPath, keeping first occurrence
 const seen = new Set();
-const entries = allEntries.filter(e => {
+const deduped = entries.filter(e => {
   if (seen.has(e.urlPath)) return false;
   seen.add(e.urlPath);
   return true;
 });
 
-// Sort: homepage first, then by depth, then alphabetically
-entries.sort((a, b) => {
+const sorted = deduped.sort((a, b) => {
   if (a.urlPath === '/') return -1;
   if (b.urlPath === '/') return 1;
   const da = (a.urlPath.match(/\//g) || []).length;
@@ -212,21 +187,7 @@ entries.sort((a, b) => {
   return da - db || a.urlPath.localeCompare(b.urlPath);
 });
 
-// ── Group into sections ───────────────────────────────────────────
-const sections = { core: [], reviews: [], research: [], protocols: [], compare: [], blog: [], ingredients: [] };
-for (const entry of entries) {
-  sections[getSitemapSection(entry.urlPath)].push(entry);
-}
-
-// ── XML helpers ───────────────────────────────────────────────────
-const IMAGE_NS = 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"';
-
-function escXml(s) {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-function buildUrlEntry(entry) {
-  const { urlPath, lastmod } = entry;
+const urlEntries = sorted.map(({ urlPath, lastmod }) => {
   const { priority, changefreq } = getPriority(urlPath);
   const loc = BASE_URL + urlPath;
   return `  <url>
@@ -235,114 +196,15 @@ function buildUrlEntry(entry) {
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`;
-}
+}).join('\n');
 
-function buildImageSitemapXml(imageEntries) {
-  const rows = imageEntries.map(({ urlPath, image, imageTitle }) => {
-    const loc = BASE_URL + urlPath;
-    const titleTag = imageTitle ? `\n      <image:title>${escXml(imageTitle)}</image:title>` : '';
-    return `  <url>
-    <loc>${loc}</loc>
-    <image:image>
-      <image:loc>${escXml(image)}</image:loc>${titleTag}
-    </image:image>
-  </url>`;
-  }).join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
-${rows}
-
-</urlset>`;
-}
-
-function buildSitemapXml(sectionEntries) {
-  const body = sectionEntries.map(buildUrlEntry).join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>
+const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-${body}
+${urlEntries}
 
-</urlset>`;
-}
+</urlset>
+`;
 
-// ── Write per-section sitemaps ────────────────────────────────────
-const writtenSitemaps = [];
-
-for (const [section, sectionEntries] of Object.entries(sections)) {
-  if (sectionEntries.length === 0) continue;
-
-  const filename   = `sitemap-${section}.xml`;
-  const outputPath = path.join(OUTPUT_DIR, filename);
-  const xml        = buildSitemapXml(sectionEntries);
-
-  fs.writeFileSync(outputPath, xml, 'utf8');
-
-  // Sitemap index needs the lastmod of the most-recently-updated entry
-  const latestLastmod = sectionEntries.reduce((max, e) => e.lastmod > max ? e.lastmod : max, '1970-01-01');
-
-  writtenSitemaps.push({ filename, count: sectionEntries.length, lastmod: latestLastmod });
-  console.log(`  ✓ ${filename} — ${sectionEntries.length} URLs — latest: ${latestLastmod}`);
-}
-
-// ── Write sitemap index ───────────────────────────────────────────
-const indexEntries = writtenSitemaps.map(({ filename, lastmod }) => `  <sitemap>
-    <loc>${BASE_URL}/${filename}</loc>
-    <lastmod>${lastmod}</lastmod>
-  </sitemap>`).join('\n');
-
-const indexXml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-${indexEntries}
-
-</sitemapindex>`;
-
-const indexPath = path.join(OUTPUT_DIR, 'sitemap-index.xml');
-fs.writeFileSync(indexPath, indexXml, 'utf8');
-console.log(`  ✓ sitemap-index.xml — ${writtenSitemaps.length} sections — ${entries.length} total URLs`);
-
-// ── Also keep a flat sitemap.xml for compatibility ────────────────
-// (Google Search Console may already have sitemap.xml submitted)
-const flatXml = buildSitemapXml(entries);
-fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), flatXml, 'utf8');
-console.log(`  ✓ sitemap.xml (flat, for backwards compat) — ${entries.length} URLs`);
-
-// ── Write sitemap-images.xml ──────────────────────────────────────
-const imageEntries = entries.filter(e => e.image);
-if (imageEntries.length > 0) {
-  const imageXml = buildImageSitemapXml(imageEntries);
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap-images.xml'), imageXml, 'utf8');
-  // Add to index
-  const imgLastmod = imageEntries.reduce((max, e) => e.lastmod > max ? e.lastmod : max, '1970-01-01');
-  const imgIndexEntry = `  <sitemap>\n    <loc>${BASE_URL}/sitemap-images.xml</loc>\n    <lastmod>${imgLastmod}</lastmod>\n  </sitemap>`;
-  // Insert into sitemap-index.xml before closing tag
-  const currentIndex = fs.readFileSync(indexPath, 'utf8');
-  const updatedIndex = currentIndex.replace('\n</sitemapindex>', `\n${imgIndexEntry}\n</sitemapindex>`);
-  fs.writeFileSync(indexPath, updatedIndex, 'utf8');
-  console.log(`  ✓ sitemap-images.xml — ${imageEntries.length} URLs with product images`);
-  console.log(`  ✓ sitemap-index.xml updated — added sitemap-images.xml`);
-}
-
-// ── Ping Google & Bing ────────────────────────────────────────────
-const sitemapIndexUrl = encodeURIComponent(`${BASE_URL}/sitemap-index.xml`);
-
-function ping(label, urlStr) {
-  return new Promise(resolve => {
-    https.get(urlStr, res => {
-      console.log(`  ✓ Pinged ${label} — HTTP ${res.statusCode}`);
-      resolve();
-    }).on('error', err => {
-      console.warn(`  ⚠ Ping to ${label} failed: ${err.message}`);
-      resolve();
-    });
-  });
-}
-
-Promise.all([
-  ping('Google', `https://www.google.com/ping?sitemap=${sitemapIndexUrl}`),
-  ping('Bing',   `https://www.bing.com/ping?sitemap=${sitemapIndexUrl}`),
-]).then(() => {
-  console.log(`\n✓ Sitemap build complete — ${entries.length} URLs across ${writtenSitemaps.length} sections`);
-});
+fs.writeFileSync(SITEMAP_OUT, xml, 'utf8');
+console.log(`✓ sitemap.xml written — ${sorted.length} URLs — domain: ${BASE_URL}`);
