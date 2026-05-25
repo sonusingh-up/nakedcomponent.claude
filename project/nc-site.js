@@ -122,125 +122,107 @@
   `;
   document.body.appendChild(searchOverlay);
 
-  // ─── Search Index ─────────────────────────────────────────────────────────
-  const SEARCH_INDEX = [
-    // Guides
-    { type:'guide', title:'Should you really "load" creatine? 27 trials reviewed', tags:'creatine loading dose rct muscleblaze gnc', href:'/research/creatine-loading', meta:'11 min · Apr 2026' },
-    { type:'guide', title:'The 60,000 IU vitamin D sachet: a uniquely Indian problem', tags:'vitamin d cholecalciferol deficiency icmr 60000 iu sachet south asian', href:'/research/vitamin-d-60000iu-weekly-sachet', meta:'12 min · Jan 2026' },
-    { type:'guide', title:'Whey isolate vs concentrate for the Indian lactose-sensitive lifter', tags:'whey protein isolate concentrate lactose dairy mbblaze on gnc', href:'/pages/guides', meta:'14 min · Mar 2026' },
-    { type:'guide', title:'Fish oil in India: why most bottles fail a freshness test', tags:'omega 3 fish oil epa dha peroxide totox freshness rancid', href:'/pages/guides', meta:'9 min · Feb 2026' },
-    { type:'guide', title:'Ashwagandha: what KSM-66 and Sensoril trials actually show', tags:'ashwagandha ksm-66 sensoril withania stress cortisol adaptogen', href:'/pages/guides', meta:'16 min · Mar 2026' },
-    { type:'guide', title:'Magnesium glycinate vs citrate vs oxide: the form actually matters', tags:'magnesium glycinate citrate oxide sleep cramps absorption', href:'/pages/guides', meta:'8 min · Apr 2026' },
-    { type:'guide', title:'Caffeine and L-theanine: the stack behind every clean pre-workout', tags:'caffeine theanine pre workout focus energy stimulant', href:'/pages/guides', meta:'7 min · Mar 2026' },
-    { type:'guide', title:'Beta-alanine: what the tingling actually means for Indian gym-goers', tags:'beta alanine carnosine paresthesia tingling pre workout endurance', href:'/pages/guides', meta:'10 min · Feb 2026' },
-    { type:'guide', title:'Iron deficiency in Indian women: supplementation vs diet', tags:'iron ferritin anaemia women india diet vegetarian deficiency', href:'/pages/guides', meta:'13 min · Jan 2026' },
-    { type:'guide', title:'Melatonin: why less is more (0.3mg vs 10mg)', tags:'melatonin sleep circadian dose chronobiotic low dose', href:'/pages/guides', meta:'6 min · Mar 2026' },
+  // ─── Pagefind Search ─────────────────────────────────────────────────────────────
+  // Pagefind index is generated at build time by `npx pagefind --site project`.
+  // The /pagefind/ directory is produced automatically and served by Vercel.
 
-    // Ingredients
-    { type:'ingredient', title:'Creatine monohydrate', tags:'creatine phosphocreatine atp strength muscle power creapure', href:'/pages/ingredients', meta:'Strong evidence · 3–5g/day' },
-    { type:'ingredient', title:'Ashwagandha (KSM-66 / Sensoril)', tags:'ashwagandha ksm 66 sensoril withanolides stress cortisol adaptogen withania somnifera', href:'/pages/ingredients', meta:'Moderate evidence · 300–600mg/day' },
-    { type:'ingredient', title:'Whey protein isolate', tags:'whey protein isolate wpi leucine dairy fast digesting muscle', href:'/pages/ingredients', meta:'Strong evidence · 20–40g/serving' },
-    { type:'ingredient', title:'Omega-3 (EPA + DHA)', tags:'omega 3 epa dha fish oil fatty acid cardiovascular inflammation marine', href:'/pages/ingredients', meta:'Strong evidence · 1–2g EPA+DHA/day' },
-    { type:'ingredient', title:'Vitamin D3 (cholecalciferol)', tags:'vitamin d3 cholecalciferol bone immune calcium deficiency south asian', href:'/pages/ingredients', meta:'Strong evidence · 1,000–2,000 IU/day' },
-    { type:'ingredient', title:'Melatonin', tags:'melatonin sleep circadian hormone pineal shift work jet lag', href:'/pages/ingredients', meta:'Moderate evidence · 0.3–1mg pre-bed' },
-    { type:'ingredient', title:'Magnesium glycinate', tags:'magnesium glycinate bisglycinate sleep anxiety cramps absorption chelate', href:'/pages/ingredients', meta:'Moderate evidence · 200–400mg/day' },
-    { type:'ingredient', title:'L-theanine', tags:'theanine tea focus calm gaba relaxation caffeine synergy', href:'/pages/ingredients', meta:'Moderate evidence · 100–200mg/day' },
-    { type:'ingredient', title:'Caffeine anhydrous', tags:'caffeine stimulant alertness pre workout endurance ergogenic', href:'/pages/ingredients', meta:'Strong evidence · 3–6mg/kg body weight' },
-    { type:'ingredient', title:'Beta-alanine', tags:'beta alanine carnosine buffering paresthesia endurance lactic acid', href:'/pages/ingredients', meta:'Moderate evidence · 3.2–6.4g/day' },
-    { type:'ingredient', title:'Coenzyme Q10 (ubiquinol)', tags:'coq10 ubiquinol mitochondria energy antioxidant statin heart', href:'/pages/ingredients', meta:'Moderate evidence · 100–300mg/day' },
-    { type:'ingredient', title:'Zinc bisglycinate', tags:'zinc bisglycinate testosterone immune absorption chelate oyster', href:'/pages/ingredients', meta:'Moderate evidence · 15–30mg/day' },
-    { type:'ingredient', title:'Vitamin B12 (methylcobalamin)', tags:'vitamin b12 methylcobalamin vegetarian vegan deficiency india neurological', href:'/pages/ingredients', meta:'Strong evidence · 500–1000mcg/day' },
-    { type:'ingredient', title:'Rhodiola rosea', tags:'rhodiola adaptogen fatigue stress mental performance cortisol', href:'/pages/ingredients', meta:'Moderate evidence · 200–600mg/day' },
-    { type:'ingredient', title:'Berberine', tags:'berberine glucose insulin resistance blood sugar ayurveda hba1c', href:'/pages/ingredients', meta:'Moderate evidence · 500mg 3×/day' },
-    { type:'ingredient', title:'Turmeric (curcumin + piperine)', tags:'turmeric curcumin piperine inflammation bioavailability india traditional', href:'/pages/ingredients', meta:'Limited RCT evidence · 500–1000mg/day' },
-    { type:'ingredient', title:'Collagen peptides (hydrolysed)', tags:'collagen peptides skin joint hydrolysed bovine marine gelatin', href:'/pages/ingredients', meta:'Limited evidence · 10–20g/day' },
-    { type:'ingredient', title:'Vitamin K2 (MK-7)', tags:'vitamin k2 mk7 menaquinone bone calcium arterial d3 pairing', href:'/pages/ingredients', meta:'Moderate evidence · 90–180mcg/day' },
-    { type:'ingredient', title:'L-tyrosine', tags:'tyrosine dopamine catecholamine focus stress cognitive', href:'/pages/ingredients', meta:'Limited evidence · 500–2000mg/day' },
-    { type:'ingredient', title:'Probiotics (Lactobacillus + Bifidobacterium)', tags:'probiotic gut health lactobacillus bifidobacterium microbiome ibs', href:'/pages/ingredients', meta:'Moderate evidence · strain-dependent' },
-
-    // Protocols
-    { type:'protocol', title:'The Foundation Stack', tags:'beginner whey creatine vitamin d multivitamin starter basic', href:'/pages/protocols', meta:'₹1,840/month · Beginner' },
-    { type:'protocol', title:'Lean Mass Builder', tags:'muscle gain lean mass creatine whey protein calories hypertrophy', href:'/pages/protocols', meta:'₹3,260/month · Muscle gain' },
-    { type:'protocol', title:'Wind-Down Protocol', tags:'sleep recovery magnesium theanine melatonin wind down insomnia', href:'/pages/protocols', meta:'₹1,120/month · Sleep & recovery' },
-    { type:'protocol', title:'Desk Athlete Stack', tags:'energy focus desk work tyrosine rhodiola caffeine omega brain fog', href:'/pages/protocols', meta:'₹2,090/month · Energy & focus' },
-    { type:'protocol', title:'Bone & Joint Support', tags:'bone joint vitamin d k2 calcium collagen glucosamine arthritis', href:'/pages/protocols', meta:'₹980/month · Joints' },
-    { type:'protocol', title:'Gut Reset Protocol', tags:'gut microbiome probiotic prebiotic fibre digestive health ibs', href:'/pages/protocols', meta:'₹1,350/month · Gut health' },
-
-    // Reviews
-    { type:'review', title:'MuscleBlaze Biozyme Performance Whey', tags:'muscleblaze biozyme whey protein blend india', href:'/pages/reviews', meta:'6.4/10 · ₹3,199/kg' },
-    { type:'review', title:'GNC Pro Performance Creatine (Creapure)', tags:'gnc creatine creapure monohydrate pure unflavoured', href:'/pages/reviews', meta:'8.7/10 · ₹1,299/300g' },
-    { type:'review', title:'Wellbeing Nutrition D3 + K2', tags:'wellbeing vitamin d3 k2 mk7 slow melt nano', href:'/pages/reviews', meta:'7.2/10 · ₹699/30d' },
-    { type:'review', title:'Himalayan Organics Plant Omega 3-6-9', tags:'himalayan organics omega ala plant based flaxseed misleading', href:'/pages/reviews', meta:'4.1/10 · ₹599/60ct' },
-    { type:'review', title:'Optimum Nutrition Gold Standard Whey', tags:'on gold standard whey isolate concentrate blend chocolate', href:'/pages/reviews', meta:'8.9/10 · ₹4,999/2lb' },
-    { type:'review', title:'AS-IT-IS Creatine Monohydrate', tags:'as it is creatine monohydrate unflavoured budget value', href:'/pages/reviews', meta:'8.2/10 · ₹849/250g' },
-    { type:'review', title:'Fast&Up Reload Electrolytes', tags:'fastup reload electrolyte hydration sodium potassium tablet effervescent', href:'/pages/reviews', meta:'6.8/10 · ₹349/20ct' },
-    { type:'review', title:'Oziva Protein & Herbs for Women', tags:'oziva protein women plant based herbs fenugreek shatavari', href:'/pages/reviews', meta:'5.9/10 · ₹1,799/500g' },
-  ];
-
-  // Type icons + colors
   const TYPE_META = {
-    guide:      { label:'Guide',      icon:'📖', cls:'st-guide'      },
-    ingredient: { label:'Ingredient', icon:'⚗️', cls:'st-ingredient' },
-    protocol:   { label:'Protocol',   icon:'📋', cls:'st-protocol'   },
-    review:     { label:'Review',     icon:'⭐', cls:'st-review'     },
+    guide:      { label:'Guide',      icon:'\u{1F4D6}', cls:'st-guide'      },
+    ingredient: { label:'Ingredient', icon:'\u2697\uFE0F', cls:'st-ingredient' },
+    protocol:   { label:'Protocol',   icon:'\u{1F4CB}', cls:'st-protocol'   },
+    review:     { label:'Review',     icon:'\u2B50', cls:'st-review'     },
+    compare:    { label:'Compare',    icon:'\u2696\uFE0F', cls:'st-guide'      },
+    blog:       { label:'Blog',       icon:'\u270D\uFE0F', cls:'st-guide'      },
   };
 
-  function searchQuery(q) {
-    if (!q || q.length < 2) return [];
-    const terms = q.toLowerCase().trim().split(/\s+/);
-    return SEARCH_INDEX.filter(item => {
-      const haystack = (item.title + ' ' + item.tags).toLowerCase();
-      return terms.every(t => haystack.includes(t));
-    }).slice(0, 12);
+  // Infer content type from URL path
+  function typeFromUrl(url) {
+    if (url.includes('/reviews/'))    return 'review';
+    if (url.includes('/protocols/'))  return 'protocol';
+    if (url.includes('/compare/'))    return 'compare';
+    if (url.includes('/blog/'))       return 'blog';
+    if (url.includes('/ingredients/') || url.includes('/pages/ingredients')) return 'ingredient';
+    return 'guide';
   }
 
-  function renderResults(q) {
-    const hitsEl   = document.getElementById('search-hits');
-    const emptyEl  = document.getElementById('search-empty');
-    const noResEl  = document.getElementById('search-no-results');
-    const qDisp    = document.getElementById('search-query-display');
+  // Lazy-load Pagefind once, reuse after
+  let _pf = null;
+  async function getPagefind() {
+    if (_pf) return _pf;
+    try {
+      _pf = await import('/pagefind/pagefind.js');
+      await _pf.init();
+    } catch (e) {
+      console.warn('[NC Search] Pagefind not ready. Push to Vercel (or run `npx pagefind --site project` locally) to generate the index.', e);
+      _pf = null;
+    }
+    return _pf;
+  }
+
+  async function renderResults(q) {
+    const hitsEl  = document.getElementById('search-hits');
+    const emptyEl = document.getElementById('search-empty');
+    const noResEl = document.getElementById('search-no-results');
+    const qDisp   = document.getElementById('search-query-display');
     if (!hitsEl) return;
 
     if (!q || q.length < 2) {
-      hitsEl.hidden   = true;
-      noResEl.hidden  = true;
+      hitsEl.hidden  = true;
+      noResEl.hidden = true;
       emptyEl.style.display = '';
       return;
     }
 
-    const results = searchQuery(q);
     emptyEl.style.display = 'none';
 
-    if (results.length === 0) {
+    const pf = await getPagefind();
+    if (!pf) {
+      hitsEl.hidden  = true;
+      noResEl.hidden = false;
+      if (qDisp) qDisp.textContent = '"search index not built yet"';
+      return;
+    }
+
+    const search = await pf.search(q);
+
+    if (!search.results.length) {
       hitsEl.hidden  = true;
       noResEl.hidden = false;
       if (qDisp) qDisp.textContent = `"${q}"`;
       return;
     }
 
+    // Fetch full data for top 12 results
+    const data = await Promise.all(search.results.slice(0, 12).map(r => r.data()));
+
     noResEl.hidden = true;
     hitsEl.hidden  = false;
 
-    // Group by type
+    // Group by content type inferred from URL
     const grouped = {};
-    results.forEach(r => {
-      if (!grouped[r.type]) grouped[r.type] = [];
-      grouped[r.type].push(r);
+    data.forEach(r => {
+      const type = typeFromUrl(r.url);
+      if (!grouped[type]) grouped[type] = [];
+      grouped[type].push(r);
     });
 
     let html = '';
-    const typeOrder = ['guide', 'ingredient', 'protocol', 'review'];
+    const typeOrder = ['guide', 'ingredient', 'protocol', 'review', 'compare', 'blog'];
     typeOrder.forEach(type => {
       if (!grouped[type]) return;
       const tm = TYPE_META[type];
-      html += `<div class="sr-group">
-        <div class="sr-group-label">${tm.label}s</div>`;
-      grouped[type].forEach((item, idx) => {
-        html += `<a href="${item.href}" class="sr-item" data-idx="${idx}" tabindex="0">
+      html += `<div class="sr-group"><div class="sr-group-label">${tm.label}s</div>`;
+      grouped[type].forEach((r, idx) => {
+        // Strip .html so Vercel cleanUrls works correctly
+        const href  = r.url.replace(/\.html$/, '');
+        const title = r.meta.title || href;
+        // Pagefind provides an HTML excerpt with <mark> tags already applied
+        const excerpt = r.excerpt || '';
+        html += `<a href="${href}" class="sr-item" data-idx="${idx}" tabindex="0">
           <span class="sr-type ${tm.cls}">${tm.icon}</span>
           <span class="sr-body">
-            <span class="sr-title">${highlight(item.title, q)}</span>
-            <span class="sr-meta">${item.meta}</span>
+            <span class="sr-title">${title}</span>
+            <span class="sr-meta">${excerpt}</span>
           </span>
           <span class="sr-arrow">→</span>
         </a>`;
@@ -252,21 +234,7 @@
     attachItemKeyboard(hitsEl);
   }
 
-  function highlight(text, q) {
-    const terms = q.toLowerCase().trim().split(/\s+/);
-    let result = text;
-    terms.forEach(t => {
-      if (t.length < 2) return;
-      result = result.replace(new RegExp(`(${escRe(t)})`, 'gi'), '<mark>$1</mark>');
-    });
-    return result;
-  }
-
-  function escRe(s) {
-    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  }
-
-  function attachItemKeyboard(container) {
+    function attachItemKeyboard(container) {
     const items = container.querySelectorAll('.sr-item');
     items.forEach((item, i) => {
       item.addEventListener('keydown', e => {
@@ -288,6 +256,7 @@
     overlay.classList.add('open');
     document.body.classList.add('search-open');
     document.getElementById('search-trigger')?.setAttribute('aria-expanded', 'true');
+    getPagefind(); // preload index in background
     setTimeout(() => input?.focus(), 60);
   }
 
