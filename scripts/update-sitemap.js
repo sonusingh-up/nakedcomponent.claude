@@ -226,30 +226,41 @@ function escXml(s) {
 }
 
 function buildUrlEntry(entry) {
-  const { urlPath, lastmod, image, imageTitle } = entry;
+  const { urlPath, lastmod } = entry;
   const { priority, changefreq } = getPriority(urlPath);
   const loc = BASE_URL + urlPath;
-
-  let imageTag = '';
-  if (image) {
-    imageTag = `\n    <image:image>
-      <image:loc>${escXml(image)}</image:loc>${imageTitle ? `\n      <image:title>${escXml(imageTitle)}</image:title>` : ''}
-    </image:image>`;
-  }
-
   return `  <url>
     <loc>${loc}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>${imageTag}
+    <priority>${priority}</priority>
   </url>`;
 }
 
-function buildSitemapXml(sectionEntries, includeImageNs = false) {
-  const ns = includeImageNs ? ` ${IMAGE_NS}` : '';
+function buildImageSitemapXml(imageEntries) {
+  const rows = imageEntries.map(({ urlPath, image, imageTitle }) => {
+    const loc = BASE_URL + urlPath;
+    const titleTag = imageTitle ? `\n      <image:title>${escXml(imageTitle)}</image:title>` : '';
+    return `  <url>
+    <loc>${loc}</loc>
+    <image:image>
+      <image:loc>${escXml(image)}</image:loc>${titleTag}
+    </image:image>
+  </url>`;
+  }).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+${rows}
+
+</urlset>`;
+}
+
+function buildSitemapXml(sectionEntries) {
   const body = sectionEntries.map(buildUrlEntry).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"${ns}>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 ${body}
 
@@ -264,8 +275,7 @@ for (const [section, sectionEntries] of Object.entries(sections)) {
 
   const filename   = `sitemap-${section}.xml`;
   const outputPath = path.join(OUTPUT_DIR, filename);
-  const hasImages  = sectionEntries.some(e => e.image);
-  const xml        = buildSitemapXml(sectionEntries, hasImages);
+  const xml        = buildSitemapXml(sectionEntries);
 
   fs.writeFileSync(outputPath, xml, 'utf8');
 
@@ -295,10 +305,25 @@ console.log(`  ✓ sitemap-index.xml — ${writtenSitemaps.length} sections — 
 
 // ── Also keep a flat sitemap.xml for compatibility ────────────────
 // (Google Search Console may already have sitemap.xml submitted)
-const flatHasImages = entries.some(e => e.image);
-const flatXml = buildSitemapXml(entries, flatHasImages);
+const flatXml = buildSitemapXml(entries);
 fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap.xml'), flatXml, 'utf8');
 console.log(`  ✓ sitemap.xml (flat, for backwards compat) — ${entries.length} URLs`);
+
+// ── Write sitemap-images.xml ──────────────────────────────────────
+const imageEntries = entries.filter(e => e.image);
+if (imageEntries.length > 0) {
+  const imageXml = buildImageSitemapXml(imageEntries);
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'sitemap-images.xml'), imageXml, 'utf8');
+  // Add to index
+  const imgLastmod = imageEntries.reduce((max, e) => e.lastmod > max ? e.lastmod : max, '1970-01-01');
+  const imgIndexEntry = `  <sitemap>\n    <loc>${BASE_URL}/sitemap-images.xml</loc>\n    <lastmod>${imgLastmod}</lastmod>\n  </sitemap>`;
+  // Insert into sitemap-index.xml before closing tag
+  const currentIndex = fs.readFileSync(indexPath, 'utf8');
+  const updatedIndex = currentIndex.replace('\n</sitemapindex>', `\n${imgIndexEntry}\n</sitemapindex>`);
+  fs.writeFileSync(indexPath, updatedIndex, 'utf8');
+  console.log(`  ✓ sitemap-images.xml — ${imageEntries.length} URLs with product images`);
+  console.log(`  ✓ sitemap-index.xml updated — added sitemap-images.xml`);
+}
 
 // ── Ping Google & Bing ────────────────────────────────────────────
 const sitemapIndexUrl = encodeURIComponent(`${BASE_URL}/sitemap-index.xml`);
