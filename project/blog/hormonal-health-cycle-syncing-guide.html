@@ -1,0 +1,1034 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hormonal Health & Cycle Syncing: A Practical Guide for Modern Women — Naked Compound</title>
+  <meta name="description" content="A clinical nutritionist's evidence-based guide to the four phases of the menstrual cycle — what your hormones are doing, what your body needs in each phase, and how to actually use this information in India." />
+  <link rel="canonical" href="https://nakedcompound.in/blog/hormonal-health-cycle-syncing-guide" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css?v=3" />
+  <link rel="stylesheet" href="/pages.css" />
+  <link rel="stylesheet" href="/blog-components.css" />
+  <link rel="icon" href="/favicon.png" />
+
+  <style>
+    /* Category accent — Women's Health */
+    :root {
+      --cat-color: #7a3a5a;
+      --cat-bg: #f5e8ef;
+    }
+    [data-theme="dark"] {
+      --cat-color: #d4a0be;
+      --cat-bg: #3a2030;
+    }
+
+    /* ── Phase cards ── */
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--s-4);
+      margin: var(--s-6) 0;
+    }
+    .phase-card {
+      border-radius: var(--r-lg);
+      padding: var(--s-5);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-3);
+    }
+    .phase-card.menstrual  { background: color-mix(in oklab, #c96442 8%, var(--bg-elev)); border-color: color-mix(in oklab, #c96442 25%, var(--line)); }
+    .phase-card.follicular { background: color-mix(in oklab, #5ba672 7%, var(--bg-elev)); border-color: color-mix(in oklab, #5ba672 22%, var(--line)); }
+    .phase-card.ovulatory  { background: color-mix(in oklab, #4268c9 7%, var(--bg-elev)); border-color: color-mix(in oklab, #4268c9 22%, var(--line)); }
+    .phase-card.luteal     { background: color-mix(in oklab, #8a6020 7%, var(--bg-elev)); border-color: color-mix(in oklab, #8a6020 22%, var(--line)); }
+    .pc-phase { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+    .menstrual  .pc-phase { color: #a64d2e; }
+    .follicular .pc-phase { color: #3a6b4a; }
+    .ovulatory  .pc-phase { color: #2e4a8a; }
+    .luteal     .pc-phase { color: #7a5010; }
+    [data-theme="dark"] .menstrual  .pc-phase { color: #e09a7a; }
+    [data-theme="dark"] .follicular .pc-phase { color: #a7d2a9; }
+    [data-theme="dark"] .ovulatory  .pc-phase { color: #9cc1e0; }
+    [data-theme="dark"] .luteal     .pc-phase { color: #e0c377; }
+    .pc-days { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
+    .pc-name { font-family: var(--font-display); font-size: 18px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); }
+    .pc-hormone { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+    .pc-feel { font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding-top: var(--s-2); border-top: 1px dashed var(--line); }
+    @media (max-width: 800px) { .phase-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .phase-grid { grid-template-columns: 1fr; } }
+
+    /* ── Hormone curve SVG ── */
+    .diagram-wrap {
+      margin: var(--s-6) 0;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      padding: var(--s-5);
+      overflow: hidden;
+    }
+    .diagram-wrap figcaption {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-top: var(--s-3);
+      letter-spacing: .03em;
+    }
+    .diagram-wrap svg { width: 100%; height: auto; display: block; }
+
+    /* ── Image placeholder ── */
+    .article-image {
+      margin: var(--s-6) 0;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .article-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .article-image.placeholder {
+      background: var(--bg-elev);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--s-4);
+      padding: var(--s-6);
+    }
+    .placeholder-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--cat-color);
+      border: 1px dashed color-mix(in oklab, var(--cat-color) 40%, var(--line));
+      padding: 4px 12px;
+      border-radius: var(--r-pill);
+    }
+    .placeholder-prompt {
+      font-size: 14px;
+      color: var(--ink-soft);
+      text-align: center;
+      max-width: 52ch;
+      line-height: 1.6;
+      font-family: var(--font-mono);
+      letter-spacing: .02em;
+    }
+    .placeholder-prompt strong {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+      margin-bottom: 8px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .image-caption {
+      padding: var(--s-3) var(--s-5);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-muted);
+      background: var(--bg-elev);
+      border-top: 1px solid var(--line);
+      letter-spacing: .02em;
+    }
+
+    /* ── Per-phase deep-dive section ── */
+    .phase-section {
+      border-radius: var(--r-xl);
+      padding: var(--s-6);
+      margin: var(--s-7) 0;
+      border: 1px solid var(--line);
+    }
+    .phase-section.menstrual  { background: color-mix(in oklab, #c96442 5%, var(--bg-elev)); }
+    .phase-section.follicular { background: color-mix(in oklab, #5ba672 5%, var(--bg-elev)); }
+    .phase-section.ovulatory  { background: color-mix(in oklab, #4268c9 5%, var(--bg-elev)); }
+    .phase-section.luteal     { background: color-mix(in oklab, #8a6020 5%, var(--bg-elev)); }
+    .ps-header {
+      display: flex;
+      align-items: center;
+      gap: var(--s-4);
+      margin-bottom: var(--s-5);
+      flex-wrap: wrap;
+    }
+    .ps-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--r-pill);
+      font-weight: 600;
+    }
+    .menstrual  .ps-badge { background: color-mix(in oklab, #c96442 18%, transparent); color: #a64d2e; }
+    .follicular .ps-badge { background: color-mix(in oklab, #5ba672 18%, transparent); color: #3a6b4a; }
+    .ovulatory  .ps-badge { background: color-mix(in oklab, #4268c9 18%, transparent); color: #2e4a8a; }
+    .luteal     .ps-badge { background: color-mix(in oklab, #8a6020 18%, transparent); color: #7a5010; }
+    [data-theme="dark"] .menstrual  .ps-badge { color: #e09a7a; }
+    [data-theme="dark"] .follicular .ps-badge { color: #a7d2a9; }
+    [data-theme="dark"] .ovulatory  .ps-badge { color: #9cc1e0; }
+    [data-theme="dark"] .luteal     .ps-badge { color: #e0c377; }
+    .ps-title { font-family: var(--font-display); font-size: clamp(20px, 2.4vw, 26px); font-weight: 500; letter-spacing: -.02em; color: var(--ink); }
+    .ps-days  { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); }
+
+    /* Phase 3-col grid inside each phase section */
+    .ps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--s-4);
+      margin-top: var(--s-4);
+    }
+    .ps-col { display: flex; flex-direction: column; gap: var(--s-2); }
+    .ps-col-head {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 4px;
+    }
+    .ps-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .ps-col li {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+    .ps-col li::before { content: "→"; position: absolute; left: 0; font-size: 12px; color: var(--ink-muted); top: 2px; }
+    .ps-col li strong { color: var(--ink); }
+    @media (max-width: 680px) { .ps-grid { grid-template-columns: 1fr; } }
+
+    /* ── Supplement table ── */
+    .supp-table-wrap {
+      overflow-x: auto;
+      margin: var(--s-6) 0;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--line);
+    }
+    .supp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      min-width: 580px;
+    }
+    .supp-table thead th {
+      background: var(--bg-elev);
+      padding: 12px 16px;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border-bottom: 1px solid var(--line);
+    }
+    .supp-table tbody td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .supp-table tbody tr:last-child td { border-bottom: none; }
+    .supp-table tbody tr:hover td { background: var(--bg-elev); }
+    .td-name { color: var(--ink) !important; font-weight: 500; }
+    .ev-badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: var(--r-pill);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: .04em;
+      border: 1px solid var(--line);
+    }
+    .ev-rct  { background: color-mix(in oklab,#5ba672 14%,var(--bg-elev)); color: #3a6b4a; border-color: color-mix(in oklab,#5ba672 30%,var(--line)); }
+    .ev-mod  { background: color-mix(in oklab,var(--butter) 50%,var(--bg-elev)); color: #7a5010; }
+    .ev-lim  { background: var(--bg-elev); color: var(--ink-muted); }
+    [data-theme="dark"] .ev-rct { color: #a7d2a9; }
+    [data-theme="dark"] .ev-mod { color: #e0c377; }
+
+    /* ── Red flags / when to see a doctor ── */
+    .red-flags {
+      background: color-mix(in oklab, #c96442 6%, var(--bg-elev));
+      border: 1px solid color-mix(in oklab, #c96442 25%, var(--line));
+      border-radius: var(--r-xl);
+      padding: var(--s-6);
+      margin: var(--s-7) 0;
+    }
+    .rf-head {
+      display: flex;
+      align-items: center;
+      gap: var(--s-3);
+      margin-bottom: var(--s-4);
+    }
+    .rf-icon { font-size: 22px; }
+    .rf-title { font-family: var(--font-display); font-size: 20px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); }
+    .rf-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s-4);
+    }
+    .rf-item { display: flex; gap: var(--s-3); align-items: start; }
+    .rf-dot { width: 8px; height: 8px; border-radius: 50%; background: #c96442; flex-shrink: 0; margin-top: 6px; }
+    .rf-text { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+    .rf-text strong { color: var(--ink); display: block; }
+    @media (max-width: 600px) { .rf-grid { grid-template-columns: 1fr; } }
+
+    /* ── Author bio (clickable) ── */
+    .author-bio-card {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: var(--s-5);
+      padding: var(--s-5) var(--s-6);
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: var(--r-xl);
+      text-decoration: none;
+      transition: border-color .15s, box-shadow .15s;
+      margin-top: var(--s-7);
+    }
+    .author-bio-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-sm); }
+    .abc-av {
+      width: 72px; height: 72px; border-radius: var(--r-lg);
+      background: linear-gradient(135deg, var(--mint), var(--sky));
+      display: flex; align-items: center; justify-content: center;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: 30px; color: #3a5c3f; font-style: italic; flex-shrink: 0;
+    }
+    .abc-role { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--cat-color); margin-bottom: 4px; }
+    .abc-name { font-family: var(--font-display); font-size: 20px; font-weight: 500; letter-spacing: -.02em; color: var(--ink); margin-bottom: var(--s-2); }
+    .abc-bio  { font-size: 14px; color: var(--ink-soft); line-height: 1.65; margin-bottom: var(--s-3); }
+    .abc-creds { display: flex; flex-wrap: wrap; gap: 6px; }
+    .abc-cred { font-family: var(--font-mono); font-size: 11px; padding: 3px 9px; border-radius: var(--r-pill); background: var(--surface); border: 1px solid var(--line); color: var(--ink-soft); }
+    .abc-arrow { font-size: 12.5px; color: var(--accent); font-family: var(--font-mono); margin-top: var(--s-2); display: inline-block; }
+    @media (max-width: 500px) { .author-bio-card { grid-template-columns: 1fr; } .abc-av { width: 56px; height: 56px; font-size: 22px; } }
+
+    /* Prose links */
+    .prose a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--accent) 35%, transparent); text-underline-offset: 3px; transition: text-decoration-color .15s; }
+    .prose a:hover { text-decoration-color: var(--accent); }
+    .prose sup { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+  </style>
+
+  <script>window.PAGE_KEY = 'blog';</script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+
+  <!-- ── Blog hero ── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>Women's Health · Hormonal Guide
+      </div>
+      <h1>Hormonal health &amp; cycle syncing: <em>a practical guide</em> for modern Indian women.</h1>
+      <p class="blog-hero-deck">Your energy, appetite, sleep, skin, and mood all change across the month — not because something is wrong with you, but because your hormones are doing exactly what they are supposed to do. This guide explains what is happening in each phase of your cycle, what your body actually needs, and how to use this information practically. Not as a rigid protocol. As a framework for working with your biology instead of against it.</p>
+      <div class="blog-meta-row">
+        <span>By Sumita Bhatti</span>
+        <span class="sep">·</span>
+        <span>May 2026</span>
+        <span class="sep">·</span>
+        <span>18 min read</span>
+        <span class="sep">·</span>
+        <span>Clinically reviewed by NC Research Team</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <!-- ── Article ── -->
+      <article class="blog-article">
+
+        <!-- Mobile TOC -->
+        <details class="mobile-toc">
+          <summary>On this page</summary>
+          <ul>
+            <li><a href="#what-is-cycle-syncing">What cycle syncing actually is</a></li>
+            <li><a href="#hormone-basics">The hormones — a non-textbook explanation</a></li>
+            <li><a href="#four-phases">The four phases, in full</a></li>
+            <li><a href="#phase-menstrual">Phase 1: Menstrual</a></li>
+            <li><a href="#phase-follicular">Phase 2: Follicular</a></li>
+            <li><a href="#phase-ovulatory">Phase 3: Ovulatory</a></li>
+            <li><a href="#phase-luteal">Phase 4: Luteal</a></li>
+            <li><a href="#supplements">Supplements — what the evidence actually supports</a></li>
+            <li><a href="#india-context">The India-specific layer</a></li>
+            <li><a href="#red-flags">When to stop self-managing and see a doctor</a></li>
+          </ul>
+        </details>
+
+        <!-- ── Intro image ── -->
+        <div class="article-image placeholder">
+          <span class="placeholder-label">Image · Hero</span>
+          <p class="placeholder-prompt">
+            <strong>AI Image Prompt</strong>
+            A calm, editorial flat-lay photograph on a warm cream linen surface. Four small glass bowls, each containing foods representing the four menstrual cycle phases: red pomegranate seeds (menstrual), fresh green spinach leaves (follicular), bright orange slices (ovulatory), and dark chocolate squares with walnuts (luteal). Soft natural morning light from the left. Minimal, clinical-wellness aesthetic. No text. Shot from directly above.
+          </p>
+        </div>
+
+        <!-- ── 1. What is cycle syncing ── -->
+        <h2 id="what-is-cycle-syncing">What cycle syncing actually is — and what it isn't</h2>
+
+        <p>Let me start with what cycle syncing is not. It is not a rigid protocol that tells you to eat only flaxseeds on Day 3, or that you cannot do strength training during your period, or that your worth as a productive person peaks at ovulation. Most of what circulates on Instagram under the #cyclesyncing tag is wellness content dressed up as biology, and it does more harm than good by making women feel they are failing their cycle.</p>
+
+        <p>What cycle syncing <em>is</em> is much simpler: the practice of <strong>noticing that your hormones change across the month, and making small, flexible adjustments to nutrition, movement, sleep, and supplementation to support what your body is doing at each stage.</strong> Not fighting the fatigue of your menstrual phase with the same expectations you bring to ovulation week. Not eating identically across a four-phase hormonal cycle. Not scheduling your most demanding presentations on Day 26 when progesterone is declining and cortisol sensitivity is highest — unless you have no other choice.</p>
+
+        <p>The science supporting cycle syncing as a formal structured intervention is still limited. A 2024 study published in <em>Neuropsychopharmacology</em> (Pritschet et al.) found that brain network connectivity and complexity measurably peak in the late follicular phase — which is consistent with the experiential pattern many women describe of feeling sharper and more motivated in the first half of their cycle. But translating this into a rigid prescription is still beyond what the evidence supports. <sup>(observational)</sup></p>
+
+        <p>What the evidence does support — strongly, across multiple metabolomics and physiology studies — is that <strong>the hormonal shifts of the menstrual cycle produce real, measurable changes in energy metabolism, insulin sensitivity, amino acid turnover, neurotransmitter precursor availability, and sleep architecture.</strong> <sup>(observational)</sup> Acknowledging this is not pseudoscience. Ignoring it is wilful blindness to how the female body works.</p>
+
+        <!-- ── 2. Hormone basics ── -->
+        <h2 id="hormone-basics">The hormones — a non-textbook explanation</h2>
+
+        <p>You do not need to memorise hormone levels to use this guide. But you do need to understand roughly what the four main players are doing, because the entire framework of cycle syncing rests on their pattern across the month.</p>
+
+        <div class="phase-grid">
+          <div class="phase-card menstrual">
+            <div class="pc-phase">Oestrogen (E2)</div>
+            <p class="pc-hormone">Rises through the follicular phase, peaks just before ovulation, rises again in the luteal phase, then falls before menstruation. Drives energy, insulin sensitivity, and mood elevation. Acts on serotonin receptors — which is why low oestrogen correlates with low mood.</p>
+          </div>
+          <div class="phase-card follicular">
+            <div class="pc-phase">Progesterone</div>
+            <p class="pc-hormone">Produced by the corpus luteum after ovulation. Rises through the luteal phase, falls sharply before menstruation. Has a calming, slightly sedating effect via GABA modulation. Raises body temperature, increases appetite, and is the primary driver of PMS symptoms when it drops.</p>
+          </div>
+          <div class="phase-card ovulatory">
+            <div class="pc-phase">LH &amp; FSH</div>
+            <p class="pc-hormone">Luteinising hormone and follicle-stimulating hormone — released by the pituitary. FSH drives follicle development in the early cycle; LH spikes sharply to trigger ovulation (the LH surge). This is what ovulation predictor kits (OPKs) detect.</p>
+          </div>
+          <div class="phase-card luteal">
+            <div class="pc-phase">Testosterone</div>
+            <p class="pc-hormone">Women produce testosterone — typically 1/10th of male levels — in the ovaries and adrenal glands. Peaks around ovulation, contributing to libido and assertiveness. Drops in the luteal phase along with oestrogen as PMS sets in.</p>
+          </div>
+        </div>
+
+        <!-- Hormone curve diagram SVG -->
+        <figure class="diagram-wrap">
+          <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg" aria-label="Oestrogen and progesterone curve across the 28-day menstrual cycle" role="img">
+            <defs>
+              <linearGradient id="eg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#c96442" stop-opacity=".15"/>
+                <stop offset="100%" stop-color="#c96442" stop-opacity=".05"/>
+              </linearGradient>
+              <linearGradient id="pg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#4268c9" stop-opacity=".12"/>
+                <stop offset="100%" stop-color="#4268c9" stop-opacity=".04"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Phase bands -->
+            <rect x="40"  y="20" width="90"  height="160" fill="#c96442" opacity=".05"/>
+            <rect x="130" y="20" width="155" height="160" fill="#5ba672" opacity=".05"/>
+            <rect x="285" y="20" width="60"  height="160" fill="#4268c9" opacity=".07"/>
+            <rect x="345" y="20" width="315" height="160" fill="#8a6020" opacity=".04"/>
+
+            <!-- Phase labels -->
+            <text x="85"  y="16" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#a64d2e" letter-spacing="1">MENSTRUAL</text>
+            <text x="208" y="16" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#3a6b4a" letter-spacing="1">FOLLICULAR</text>
+            <text x="315" y="16" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#2e4a8a" letter-spacing="1">OVU.</text>
+            <text x="503" y="16" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a5010" letter-spacing="1">LUTEAL</text>
+
+            <!-- Day markers -->
+            <text x="40"  y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">1</text>
+            <text x="130" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">5</text>
+            <text x="210" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">10</text>
+            <text x="285" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">14</text>
+            <text x="345" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">17</text>
+            <text x="490" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">25</text>
+            <text x="655" y="198" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a736a">28</text>
+            <text x="347" y="210" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#7a736a">Days →</text>
+
+            <!-- Baseline -->
+            <line x1="40" y1="175" x2="660" y2="175" stroke="#e6ddcf" stroke-width="1"/>
+
+            <!-- Oestrogen curve: low → rises → peak at ovulation → secondary rise → fall -->
+            <polyline
+              points="40,170 85,168 130,158 175,130 210,95 260,75 285,42 310,75 345,130 390,115 430,108 460,115 510,140 560,160 610,168 660,170"
+              fill="none" stroke="#c96442" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Progesterone curve: flat → rises post-ovulation → peaks luteal → falls sharply -->
+            <polyline
+              points="40,172 130,172 210,171 285,168 310,162 345,155 390,120 430,95 460,88 490,95 530,115 570,140 610,162 640,170 660,172"
+              fill="none" stroke="#4268c9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 3"/>
+
+            <!-- Legend -->
+            <line x1="400" y1="36" x2="430" y2="36" stroke="#c96442" stroke-width="2.5"/>
+            <text x="435" y="40" font-family="Inter Tight,sans-serif" font-size="11" fill="#4a453e">Oestrogen (E2)</text>
+            <line x1="400" y1="52" x2="430" y2="52" stroke="#4268c9" stroke-width="2.5" stroke-dasharray="5 3"/>
+            <text x="435" y="56" font-family="Inter Tight,sans-serif" font-size="11" fill="#4a453e">Progesterone</text>
+
+            <!-- Ovulation marker -->
+            <line x1="285" y1="42" x2="285" y2="175" stroke="#4268c9" stroke-width="1" stroke-dasharray="3 3" opacity=".5"/>
+            <text x="285" y="190" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#2e4a8a">Ovulation</text>
+          </svg>
+          <figcaption>Schematic oestrogen and progesterone pattern across a 28-day cycle. Individual cycles vary — use this as orientation, not prescription.</figcaption>
+        </figure>
+
+        <!-- ── 3. The four phases overview ── -->
+        <h2 id="four-phases">The four phases — a quick orientation before we go deep</h2>
+
+        <p>A typical menstrual cycle runs 24–38 days, with 28 days being the textbook average. The four phases do not divide neatly into 7-day blocks in most women — your follicular phase may be longer or shorter depending on when you ovulate, which itself varies cycle to cycle. Stress, illness, travel, and sleep disruption all affect timing. The day numbers below are approximate and based on a 28-day reference cycle.</p>
+
+        <!-- ── Phase 1: Menstrual ── -->
+        <div class="phase-section menstrual" id="phase-menstrual">
+          <div class="ps-header">
+            <span class="ps-badge">Phase 1</span>
+            <span class="ps-title">Menstrual phase</span>
+            <span class="ps-days">Days 1–5 (approximately)</span>
+          </div>
+
+          <div class="article-image placeholder">
+            <span class="placeholder-label">Image · Menstrual Phase</span>
+            <p class="placeholder-prompt">
+              <strong>AI Image Prompt</strong>
+              Editorial wellness photograph. A woman sitting cross-legged on a yoga mat near a large window with soft grey daylight. She holds a ceramic mug with both hands, eyes gently closed, expression calm and introspective. Warm neutral clothing. A heating pad visible beside her. Mood: rest, stillness, inward energy. No text. Shot from slightly above-left angle. Soft, muted tones — terracotta, cream, sage.
+            </p>
+          </div>
+
+          <p style="font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:var(--s-4);">Day 1 is the first day of full menstrual flow — not spotting. Both oestrogen and progesterone are at their lowest. Prostaglandins cause uterine contractions (cramps) as the lining sheds. Energy is typically at its monthly low. This is a legitimate physiological rest signal, not a character flaw.</p>
+
+          <div class="ps-grid">
+            <div class="ps-col">
+              <div class="ps-col-head">What your body is doing</div>
+              <ul>
+                <li>Uterine lining shedding; prostaglandin-driven contractions</li>
+                <li>Oestrogen and progesterone at monthly nadir</li>
+                <li>Core body temperature drops slightly</li>
+                <li>Serotonin levels reduced (oestrogen drives serotonin synthesis)</li>
+                <li>Iron losses from blood — typically 30–80mL per cycle</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Nutrition focus</div>
+              <ul>
+                <li><strong>Iron-rich foods</strong> — lentils, spinach, sesame, jaggery; pair with vitamin C source</li>
+                <li><strong>Anti-inflammatory foods</strong> — turmeric with black pepper, ginger, omega-3 rich foods (walnuts, flaxseed)</li>
+                <li><strong>Magnesium-rich foods</strong> — dark chocolate, pumpkin seeds, banana, almonds; magnesium reduces prostaglandin-driven cramping <sup>(RCT)</sup></li>
+                <li>Warm, cooked foods — easier on digestion when motility is irregular</li>
+                <li>Reduce caffeine — worsens cramping and disrupts already-poor sleep</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Movement &amp; recovery</div>
+              <ul>
+                <li>Restorative yoga, slow walking, light stretching — on heavy flow days</li>
+                <li>Listen to actual energy — if it's there, use it; if not, rest</li>
+                <li>Heat on lower abdomen reduces prostaglandin cramping meaningfully <sup>(RCT)</sup></li>
+                <li>Avoid cold-exposure exercises on days with severe cramping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Phase 2: Follicular ── -->
+        <div class="phase-section follicular" id="phase-follicular">
+          <div class="ps-header">
+            <span class="ps-badge">Phase 2</span>
+            <span class="ps-title">Follicular phase</span>
+            <span class="ps-days">Days 6–13 (approximately)</span>
+          </div>
+
+          <div class="article-image placeholder">
+            <span class="placeholder-label">Image · Follicular Phase</span>
+            <p class="placeholder-prompt">
+              <strong>AI Image Prompt</strong>
+              Bright, energetic editorial photograph. A woman stretching confidently at sunrise in a park, arms raised, expression open and energised. She wears activewear in fresh green and white tones. Morning golden light. Shot from a low angle with a shallow depth of field on the surrounding greenery. Mood: momentum, rising energy, new beginning. No text overlay.
+            </p>
+          </div>
+
+          <p style="font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:var(--s-4);">After menstruation ends, FSH triggers follicle development in the ovaries, and oestrogen begins its rise. This is typically the "good week" — energy rises, mood improves, insulin sensitivity is at its best. The brain's prefrontal cortex is more active, working memory is sharper, and many women report feeling more creative and socially engaged. A 2024 neuroimaging study (Pritschet et al., <em>Neuropsychopharmacology</em>) confirmed that brain network complexity peaks in the late follicular phase. <sup>(observational)</sup></p>
+
+          <div class="ps-grid">
+            <div class="ps-col">
+              <div class="ps-col-head">What your body is doing</div>
+              <ul>
+                <li>Oestrogen rising — improving serotonin synthesis and mood</li>
+                <li>Insulin sensitivity at its best — cells respond well to glucose</li>
+                <li>Follicle maturing in the ovary; FSH declining as E2 takes over</li>
+                <li>Cervical mucus becoming more fertile-type (clearer, stretchy)</li>
+                <li>Appetite naturally lower — oestrogen suppresses appetite slightly</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Nutrition focus</div>
+              <ul>
+                <li><strong>Lean proteins</strong> — good insulin sensitivity means protein is well-utilised for muscle repair</li>
+                <li><strong>Fermented foods</strong> — curd, idli, dosa, kanji; oestrogen metabolism requires a healthy gut microbiome</li>
+                <li><strong>Cruciferous vegetables</strong> — broccoli, cauliflower, cabbage; contain indole-3-carbinol which supports healthy oestrogen detoxification via the liver</li>
+                <li>Complex carbohydrates are fine — insulin sensitivity is optimal</li>
+                <li>Lighter meals generally feel natural given reduced appetite</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Movement focus</div>
+              <ul>
+                <li>Best phase for high-intensity training — energy and recovery are both high</li>
+                <li>Strength training responds well; oestrogen supports muscle protein synthesis</li>
+                <li>HIIT, running, cycling — all appropriate</li>
+                <li>Social exercise feels more motivating during this phase for most women</li>
+                <li>Good phase for learning new physical skills — neuroplasticity is elevated</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Phase 3: Ovulatory ── -->
+        <div class="phase-section ovulatory" id="phase-ovulatory">
+          <div class="ps-header">
+            <span class="ps-badge">Phase 3</span>
+            <span class="ps-title">Ovulatory window</span>
+            <span class="ps-days">Days 13–17 (approximately) — 24–36 hours at peak</span>
+          </div>
+
+          <div class="article-image placeholder">
+            <span class="placeholder-label">Image · Ovulatory Phase</span>
+            <p class="placeholder-prompt">
+              <strong>AI Image Prompt</strong>
+              Editorial photograph of a confident Indian woman in a professional setting — at a whiteboard or in a meeting room, presenting with clarity and composure. Bright, clean office lighting. She is mid-sentence, expressive, engaged. Clothing in warm amber and white. Mood: confidence, peak communication, social energy. Shot from eye level, slightly to the side. No text.
+            </p>
+          </div>
+
+          <p style="font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:var(--s-4);">Oestrogen peaks, triggering the LH surge from the pituitary — which causes the mature follicle to rupture and release an egg. Testosterone also peaks around ovulation, contributing to confidence, assertiveness, and libido. This is the shortest phase but typically the energetically highest. Many women feel at their most socially capable and verbally articulate during this window.</p>
+
+          <div class="ps-grid">
+            <div class="ps-col">
+              <div class="ps-col-head">What your body is doing</div>
+              <ul>
+                <li>LH surge triggers ovulation — detectable with OPK strips</li>
+                <li>Oestrogen at monthly peak — serotonin and dopamine elevated</li>
+                <li>Testosterone peak — libido and confidence elevated</li>
+                <li>Core temperature rises slightly post-ovulation (BBT tracking)</li>
+                <li>Cervical mucus at peak fertility — egg-white consistency</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Nutrition focus</div>
+              <ul>
+                <li><strong>Anti-inflammatory foods</strong> — the ovulatory process involves a controlled inflammatory response; omega-3s support it</li>
+                <li><strong>Zinc-rich foods</strong> — pumpkin seeds, chickpeas; zinc supports follicle maturation and egg quality</li>
+                <li>Fibre for oestrogen clearance — excess oestrogen is cleared via the gut; fibre ensures it doesn't recirculate</li>
+                <li>Light, clean meals — appetite remains moderate</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Movement focus</div>
+              <ul>
+                <li>Peak performance window for most women — schedule demanding workouts here</li>
+                <li>High-intensity intervals, heavy lifting, competitive sport all appropriate</li>
+                <li>Note: ligament laxity increases around ovulation (oestrogen effect) — warm up thoroughly; ACL injury risk is slightly elevated <sup>(observational)</sup></li>
+                <li>Socially energising exercise works well — team sport, group classes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Phase 4: Luteal ── -->
+        <div class="phase-section luteal" id="phase-luteal">
+          <div class="ps-header">
+            <span class="ps-badge">Phase 4</span>
+            <span class="ps-title">Luteal phase</span>
+            <span class="ps-days">Days 17–28 (approximately)</span>
+          </div>
+
+          <div class="article-image placeholder">
+            <span class="placeholder-label">Image · Luteal Phase</span>
+            <p class="placeholder-prompt">
+              <strong>AI Image Prompt</strong>
+              Warm, cosy editorial photograph. An Indian woman sitting at a wooden desk in soft amber evening light, writing in a journal or reading a book. She has a mug of tea beside her, a small candle, and a warm throw blanket over her lap. Expression: thoughtful, inward, calm. Mood: slow productivity, self-awareness, comfort. No text. Shot from slightly above at a 45-degree angle. Tones: amber, ochre, dark green, cream.
+            </p>
+          </div>
+
+          <p style="font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:var(--s-4);">After ovulation, the ruptured follicle becomes the corpus luteum and begins secreting progesterone. Progesterone is calming (via GABA modulation) in the early luteal phase, but as it falls in the late luteal phase — and especially as oestrogen also declines — PMS symptoms emerge. Body temperature is elevated, appetite increases (particularly for carbohydrates, which drive serotonin synthesis), and sleep quality typically worsens. A 2019 metabolomics study in <em>Scientific Reports</em> found that 39 amino acids and derivatives decreased in the luteal phase, indicating an anabolic state driven by elevated progesterone. <sup>(observational)</sup></p>
+
+          <div class="ps-grid">
+            <div class="ps-col">
+              <div class="ps-col-head">What your body is doing</div>
+              <ul>
+                <li>Corpus luteum producing progesterone — peaks around Day 21</li>
+                <li>Progesterone raises metabolic rate by ~2.5–10% — real, measurable increase</li>
+                <li>Insulin sensitivity declines slightly — glucose uptake less efficient</li>
+                <li>Progesterone and oestrogen falling in late luteal — PMS territory</li>
+                <li>Serotonin synthesis decreases as oestrogen falls</li>
+                <li>Amino acid catabolism increases — protein needs are higher</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Nutrition focus</div>
+              <ul>
+                <li><strong>Increase protein</strong> — amino acid catabolism is elevated; 1.6–2g/kg supports this phase better than earlier phases</li>
+                <li><strong>Complex carbohydrates</strong> — support serotonin synthesis; sweet potatoes, oats, brown rice help with carb cravings</li>
+                <li><strong>Magnesium</strong> — reduces PMS symptoms including cramping, bloating, and mood disruption <sup>(RCT)</sup></li>
+                <li><strong>B6</strong> — pyridoxal-5-phosphate supports serotonin and dopamine synthesis; effective for PMS mood symptoms <sup>(RCT)</sup></li>
+                <li>Reduce salt — sodium worsens water retention and bloating</li>
+                <li>Reduce alcohol — worsens oestrogen imbalance and sleep disruption</li>
+              </ul>
+            </div>
+            <div class="ps-col">
+              <div class="ps-col-head">Movement focus</div>
+              <ul>
+                <li>Early luteal: maintain intensity — progesterone supports muscle retention</li>
+                <li>Late luteal (Days 24–28): reduce intensity if fatigue or pain is present; this is physiologically appropriate, not weakness</li>
+                <li>Strength training remains beneficial throughout luteal phase</li>
+                <li>Yoga and pilates manage PMS symptoms; good RCT evidence for yoga reducing dysmenorrhea <sup>(RCT)</sup></li>
+                <li>Cardio can worsen bloating in late luteal — reduce session length if uncomfortable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── 5. Supplements ── -->
+        <h2 id="supplements">Supplements — what the evidence actually supports, phase by phase</h2>
+
+        <p>This is the section most cycle syncing content gets wrong. The market is full of "phase-specific supplement packs" that contain 12 ingredients per phase, most at sub-clinical doses, at prices that reflect the packaging more than the evidence. I am going to give you what the actual clinical literature says, what doses are supported, and what is available at reasonable prices in India.</p>
+
+        <div class="callout warn">
+          <div class="ico">⚠</div>
+          <div>
+            <h4>Supplements do not override lifestyle — they support it</h4>
+            <p>The most effective interventions for hormonal health are not supplements. They are: adequate sleep (7–9 hours), stable blood sugar through regular meals, movement appropriate to your phase, and stress management. Supplements address specific deficiencies or provide targeted support — they cannot compensate for chronic sleep deprivation or a diet of ultra-processed food. Always test before you supplement. Get serum ferritin, B12, folate, and vitamin D before adding anything to your routine.</p>
+          </div>
+        </div>
+
+        <div class="supp-table-wrap">
+          <table class="supp-table">
+            <thead>
+              <tr>
+                <th>Supplement</th>
+                <th>Phase / Timing</th>
+                <th>Clinical dose</th>
+                <th>Evidence</th>
+                <th>India option</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-name">Magnesium glycinate</td>
+                <td>Luteal phase (Days 17–28); continuous if deficient</td>
+                <td>300–400mg elemental Mg/day</td>
+                <td><span class="ev-rct">RCT</span> — reduces PMS cramping, mood disruption, and water retention (Walker et al. 1998; Facchinetti et al. 1991)</td>
+                <td>Carbamide Forte Magnesium Glycinate 400mg — NABL COA, ₹549/90ct</td>
+              </tr>
+              <tr>
+                <td class="td-name">Vitamin B6 (P5P form)</td>
+                <td>Luteal phase — last 10 days of cycle</td>
+                <td>50–100mg/day as pyridoxal-5-phosphate</td>
+                <td><span class="ev-rct">RCT</span> — meta-analysis (Wyatt et al. 1999, <em>BMJ</em>) found B6 significantly better than placebo for PMS mood symptoms at 50–100mg/day</td>
+                <td>Available in B-complex or standalone P5P capsules; most Indian B6 products use pyridoxine HCl — less bioavailable than P5P</td>
+              </tr>
+              <tr>
+                <td class="td-name">Iron (ferrous bisglycinate)</td>
+                <td>Menstrual and early follicular phase — alternate days</td>
+                <td>25–30mg elemental iron, alternate day dosing</td>
+                <td><span class="ev-rct">RCT</span> — alternate-day dosing outperforms daily for absorption (Moretti et al. 2020, <em>Haematologica</em>); bisglycinate form survives phytate-rich Indian diet</td>
+                <td>Carbamide Forte Iron Bisglycinate 25mg — ₹449/90ct</td>
+              </tr>
+              <tr>
+                <td class="td-name">Omega-3 (EPA + DHA)</td>
+                <td>Continuous; most relevant during menstrual and luteal phases</td>
+                <td>1–2g EPA+DHA/day from rTG or triglyceride-form fish oil</td>
+                <td><span class="ev-rct">RCT</span> — reduces prostaglandin-driven cramping (Harel et al. 1996); reduces inflammatory markers in luteal phase; PCOS-specific evidence for lipid improvement (Frontiers Nutrition 2023)</td>
+                <td>TrueBasics Ultra Omega-3, Carbamide Forte Omega-3 — NABL COA options available</td>
+              </tr>
+              <tr>
+                <td class="td-name">Myo-inositol</td>
+                <td>Continuous — particularly for PCOS or irregular cycles</td>
+                <td>2g twice daily (4g/day); 40:1 myo:D-chiro ratio</td>
+                <td><span class="ev-rct">RCT</span> — improves insulin sensitivity, cycle regularity, and ovulation in PCOS (J Clin Endocrinol Metab 2024); not a general-population supplement</td>
+                <td>Carbamide Forte Myo-Inositol 2000mg — NABL COA, ₹549/60ct</td>
+              </tr>
+              <tr>
+                <td class="td-name">Vitamin D3</td>
+                <td>Continuous — ubiquitous deficiency in India</td>
+                <td>1,000–2,000 IU/day maintenance after correction; test first</td>
+                <td><span class="ev-rct">RCT</span> — D3 supplementation improves menstrual regularity, follicular development, and insulin sensitivity in PCOS (systematic review, J Health Population Nutrition 2025)</td>
+                <td>HealthKart HK Vitals D3+K2 — ₹599/60ct; FSSAI licensed</td>
+              </tr>
+              <tr>
+                <td class="td-name">Zinc (bisglycinate or picolinate)</td>
+                <td>Follicular and ovulatory phases; or continuous if deficient</td>
+                <td>15–25mg elemental zinc/day</td>
+                <td><span class="ev-mod">Moderate</span> — supports follicle maturation, egg quality, and thyroid function; vegetarian Indian diets commonly zinc-insufficient</td>
+                <td>Carbamide Forte Zinc Picolinate; or included in women's multivitamins</td>
+              </tr>
+              <tr>
+                <td class="td-name">Shatavari (Asparagus racemosus)</td>
+                <td>Continuous — particularly follicular and luteal phases</td>
+                <td>500–1000mg standardised extract/day</td>
+                <td><span class="ev-lim">Limited RCT</span> — traditional use for cycle regularity and uterine health; emerging evidence for hormone support; saponin standardisation required — most Indian products lack it</td>
+                <td>Require saponin-standardised extract — not widely available at this standard; most products are unstandardised root powder</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ── 6. India context ── -->
+        <h2 id="india-context">The India-specific layer — because your cycle doesn't exist in a vacuum</h2>
+
+        <p>Most cycle syncing content is written for women in the West with access to a broad, year-round variety of fresh produce, standard work hours, and no significant cultural pressure around menstruation. The Indian context differs in ways that matter.</p>
+
+        <p><strong>Iron deficiency is the default, not the exception.</strong> As covered in our <a href="/blog/iron-deficiency-indian-women-supplement-guide">iron deficiency guide</a>, 59% of Indian women aged 15–49 are anaemic. Running on depleted iron stores makes every phase of the cycle harder — energy is lower in the follicular phase, cognitive function suffers, and PMS is worse in the luteal phase. Iron is not a menstrual phase supplement. It is a baseline correction for most Indian women who have not tested and corrected their ferritin.</p>
+
+        <p><strong>Vitamin D deficiency is structural.</strong> Despite living in a subtropical country, most urban Indian women are significantly vitamin D deficient — covered at length in our <a href="/reviews/vitamins/thorne-vitamin-d-k2-review">Thorne D/K2 review</a> and the iron guide. Vitamin D receptors are present in ovarian tissue. Deficiency is associated with cycle irregularity, PCOS severity, and impaired progesterone production. Supplementing D3 is not a luxury — it is a physiological necessity for most Indian women.</p>
+
+        <p><strong>Phytate-heavy vegetarian diets suppress zinc and iron absorption.</strong> The same plant-based diet that is culturally and ethically appropriate for millions of Indian women is also rich in phytates that inhibit iron and zinc absorption. The cycle syncing nutrition recommendations above — which include zinc-rich seeds and iron-rich lentils — need to be paired with vitamin C and timed away from chai for them to work. <sup>(observational)</sup></p>
+
+        <p><strong>Menstruation is still stigmatised in many contexts.</strong> Resting during your menstrual phase, declining to do strenuous physical work when you are cramping, or discussing your cycle health with a physician are all appropriate behaviours that face unnecessary social friction in many Indian work and household environments. Cycle syncing is not an excuse for avoidance — it is a framework for appropriate self-awareness, and the societal pressure to pretend no hormonal variation exists across the month is itself a health risk.</p>
+
+        <div class="article-image placeholder">
+          <span class="placeholder-label">Image · India Context</span>
+          <p class="placeholder-prompt">
+            <strong>AI Image Prompt</strong>
+            A simple, warm flat-lay photograph on a dark wooden surface. Items: a small brass diya (unlit), a handful of iron-rich foods (sesame seeds, jaggery, spinach leaves), a small glass of orange juice, and a single capsule supplement beside a glass of water. Morning soft natural light from a window. Mood: practical, grounded, Indian domestic. No text. Shot from directly above with clean composition.
+          </p>
+        </div>
+
+        <!-- ── 7. Red flags ── -->
+        <h2 id="red-flags">When to stop self-managing and see a doctor</h2>
+
+        <div class="red-flags">
+          <div class="rf-head">
+            <span class="rf-icon">🚩</span>
+            <span class="rf-title">Symptoms that require clinical evaluation, not cycle syncing</span>
+          </div>
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.65;margin-bottom:var(--s-5);">Cycle syncing is a self-care framework for women with broadly typical cycles. The following symptoms indicate potential underlying conditions — PCOS, endometriosis, thyroid dysfunction, premature ovarian insufficiency, or fibroids — that require diagnosis and treatment, not just lifestyle adjustment.</p>
+          <div class="rf-grid">
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Cycles shorter than 21 days or longer than 38 days</strong> consistently, over more than 3 months</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Skipping periods</strong> for 3+ consecutive months without pregnancy or known cause</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Bleeding so heavy</strong> that you soak through a pad or tampon every hour for 2+ consecutive hours</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Severe pelvic pain</strong> at any point in the cycle, especially mid-cycle or outside menstruation</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>PMDD</strong> (premenstrual dysphoric disorder) — PMS so severe it interferes with work, relationships, or daily function; this is a diagnosable condition requiring medical treatment</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Significant unexplained hair loss</strong>, facial hair growth, or acne across the cycle — potential signs of hyperandrogenaemia or PCOS</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Fatigue so profound</strong> it doesn't match the phase — especially if present throughout the follicular phase when energy should be rising</div>
+            </div>
+            <div class="rf-item">
+              <div class="rf-dot"></div>
+              <div class="rf-text"><strong>Intermenstrual bleeding</strong> — any bleeding between periods needs investigation</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- References -->
+        <hr style="border:none;border-top:1px solid var(--line);margin:var(--s-8) 0 var(--s-6);" />
+        <h3 style="font-size:16px;font-weight:600;color:var(--ink);margin-bottom:var(--s-4);">References</h3>
+        <ul class="ref-list">
+          <li>
+            <span class="ref-num">1</span>
+            <span>Pritschet L et al. (2024). Functional reorganization of brain networks across the human menstrual cycle. <em>Neuropsychopharmacology</em>. Brain network complexity peaks in the late follicular phase. <span class="finding-tag tag-green">Observational / Neuroimaging</span></span>
+          </li>
+          <li>
+            <span class="ref-num">2</span>
+            <span>Souza LR et al. (2019). Menstrual cycle rhythmicity: metabolic patterns in healthy women. <em>Scientific Reports</em>, 9, 14568. 208 metabolites significantly changed across the cycle; 39 amino acids decreased in luteal phase. <span class="finding-tag tag-green">Observational / Metabolomics</span></span>
+          </li>
+          <li>
+            <span class="ref-num">3</span>
+            <span>Walker AF et al. (1998). Magnesium supplementation alleviates premenstrual symptoms of fluid retention. <em>Journal of Women's Health</em>, 7(9), 1157–1165. 360mg magnesium reduces PMS fluid retention and mood symptoms. <span class="finding-tag tag-green">RCT</span></span>
+          </li>
+          <li>
+            <span class="ref-num">4</span>
+            <span>Wyatt KM et al. (1999). Efficacy of vitamin B-6 in the treatment of premenstrual syndrome: systematic review. <em>BMJ</em>, 318(7195), 1375–1381. Meta-analysis — B6 at 50–100mg/day significantly reduces PMS mood symptoms. <span class="finding-tag tag-green">Meta-analysis</span></span>
+          </li>
+          <li>
+            <span class="ref-num">5</span>
+            <span>Harel Z et al. (1996). Supplementation with omega-3 polyunsaturated fatty acids in the management of dysmenorrhea in adolescents. <em>American Journal of Obstetrics and Gynecology</em>, 174(4), 1335–1338. Omega-3 reduces menstrual cramping via prostaglandin modulation. <span class="finding-tag tag-green">RCT</span></span>
+          </li>
+          <li>
+            <span class="ref-num">6</span>
+            <span>Moretti D et al. (2020). Iron absorption from supplements is greater with alternate day than with consecutive day dosing in iron-deficient anemic women. <em>Haematologica</em>, 105(5), 1173–1181. <span class="finding-tag tag-green">RCT</span></span>
+          </li>
+          <li>
+            <span class="ref-num">7</span>
+            <span>Sun et al. (2024). The effectiveness of nutritional supplements in improving PCOS. <em>PMC / NMA</em>. 79 RCTs, 5,501 participants — inositol, omega-3, vitamin D among highest-evidence interventions. <span class="finding-tag tag-green">Network Meta-analysis</span></span>
+          </li>
+          <li>
+            <span class="ref-num">8</span>
+            <span>Rees M et al. (2025). Nutritional and herbal interventions for PCOS. <em>Journal of Health, Population and Nutrition</em>. Calcium + vitamin D co-supplementation — 6 RCTs, 480 participants — improved menstrual regularity, insulin resistance, follicular maturation. <span class="finding-tag tag-green">Systematic review</span></span>
+          </li>
+          <li>
+            <span class="ref-num">9</span>
+            <span>Smith C et al. (2011). A randomised comparative trial of yoga and relaxation to reduce stress and anxiety in women. <em>Complementary Therapies in Medicine</em>. Yoga reduces dysmenorrhea severity and PMS symptoms. <span class="finding-tag tag-green">RCT</span></span>
+          </li>
+        </ul>
+
+        <p class="affiliate-note">
+          <strong>Disclosures:</strong> Naked Compound participates in the Amazon.in affiliate programme. Some product links earn a small commission. No manufacturer provided samples or funding for this content. All product mentions are editorially independent. This article is for educational purposes only and is not a substitute for individualised clinical advice. Full policy: <a href="/pages/conflicts-policy">conflicts-policy</a>
+        </p>
+
+        <!-- Author bio — CLICKABLE -->
+        <a class="author-bio-card" href="/pages/authors#sumita-bhatti" aria-label="View Sumita Bhatti's full author profile on Naked Compound">
+          <div class="abc-av" aria-hidden="true">S</div>
+          <div>
+            <div class="abc-role">Written by</div>
+            <div class="abc-name">Sumita Bhatti</div>
+            <p class="abc-bio">Clinical Nutritionist with 15+ years of practice across clinical dietitian and nutrition manager roles, including nearly nine years at HealthifyMe. Sumita covers vitamins, minerals, hormonal health, and women's clinical nutrition at Naked Compound. Her food safety certification and India-specific clinical framing inform the regulatory and dietary-pattern analysis in all her pieces.</p>
+            <div class="abc-creds">
+              <span class="abc-cred">MPH Dietetics &amp; Clinical Nutrition · IGNOU</span>
+              <span class="abc-cred">BSc Dietetics · Mount Carmel College, Bengaluru</span>
+              <span class="abc-cred">Food Safety · IIFSA</span>
+            </div>
+            <div class="abc-arrow">View full profile → /pages/authors#sumita-bhatti</div>
+          </div>
+        </a>
+
+      </article>
+
+      <!-- ── Sidebar ── -->
+      <aside class="blog-sidebar">
+
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">On this page</div>
+          <nav style="padding:8px 0;">
+            <a class="sidebar-related-item" href="#what-is-cycle-syncing">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Intro</span><span class="sri-title">What cycle syncing actually is</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#hormone-basics">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Science</span><span class="sri-title">The four hormones</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#phase-menstrual">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Phase 1</span><span class="sri-title">Menstrual — rest &amp; replenish</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#phase-follicular">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Phase 2</span><span class="sri-title">Follicular — rising energy</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#phase-ovulatory">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Phase 3</span><span class="sri-title">Ovulatory — peak performance</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#phase-luteal">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Phase 4</span><span class="sri-title">Luteal — support &amp; manage PMS</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#supplements">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Supplements</span><span class="sri-title">What the evidence supports</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#india-context">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">India</span><span class="sri-title">The India-specific layer</span></span>
+            </a>
+            <a class="sidebar-related-item" href="#red-flags">
+              <span class="sri-dot"></span>
+              <span><span class="sri-tag">Clinical</span><span class="sri-title">When to see a doctor</span></span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Key supplements sidebar -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Key supplements by phase</div>
+
+          <a class="rec-product" href="/pages/ingredients/magnesium-glycinate">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/61wZEepTjaL._SL500_.jpg"
+                alt="Carbamide Forte Magnesium Glycinate"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span class=\'img-placeholder\'>💊</span>')"
+              />
+              <span class="rec-score-badge">Phase 4</span>
+            </div>
+            <div class="rec-product-name">Carbamide Forte Magnesium Glycinate</div>
+            <div class="rec-product-sub">300–400mg elemental Mg · NABL COA · Luteal phase PMS</div>
+            <div class="rec-product-price">₹549 <span>/ 90 caps</span></div>
+            <div class="rec-product-actions">
+              <a href="https://amzn.to/carbamide-magnesium" class="btn-buy" rel="nofollow noopener sponsored" target="_blank">Buy on Amazon.in ↗</a>
+            </div>
+          </a>
+
+          <a class="rec-product" href="/blog/iron-deficiency-indian-women-supplement-guide">
+            <div class="rec-product-img">
+              <img
+                src="https://m.media-amazon.com/images/I/71uE0-EH8NL._SL500_.jpg"
+                alt="Purayati Iron + Folic Acid + B12"
+                loading="lazy"
+                onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<span class=\'img-placeholder\'>💊</span>')"
+              />
+              <span class="rec-score-badge">Phase 1–2</span>
+            </div>
+            <div class="rec-product-name">Purayati Iron + Folic Acid + B12</div>
+            <div class="rec-product-sub">Bisglycinate + Methylfolate + Methylcobalamin · All active forms</div>
+            <div class="rec-product-price">₹549 <span>/ 60 caps</span></div>
+            <div class="rec-product-actions">
+              <a href="https://amzn.to/purayati-iron-b12" class="btn-buy" rel="nofollow noopener sponsored" target="_blank">Buy on Amazon.in ↗</a>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Related reading -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Related from NC</div>
+          <a class="sidebar-related-item" href="/blog/iron-deficiency-indian-women-supplement-guide">
+            <span class="sri-dot"></span>
+            <span><span class="sri-tag">Guide</span><span class="sri-title">Iron deficiency in Indian women — what your label isn't telling you</span></span>
+          </a>
+          <a class="sidebar-related-item" href="/reviews/vitamins/thorne-vitamin-d-k2-review">
+            <span class="sri-dot"></span>
+            <span><span class="sri-tag">Review</span><span class="sri-title">Thorne Vitamin D/K2 — technically excellent, practically overpriced</span></span>
+          </a>
+          <a class="sidebar-related-item" href="/pages/scoring-rubric">
+            <span class="sri-dot"></span>
+            <span><span class="sri-tag">Methodology</span><span class="sri-title">How we score supplements — the public rubric</span></span>
+          </a>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <section class="blog-newsletter">
+    <div class="container" style="max-width:600px;">
+      <h2>Research for Indian women, in your inbox.</h2>
+      <p>One email a week. New guides like this, updated product scores, and the most important thing we read about hormonal and nutritional health for Indian women that week. No sponsors. No fluff.</p>
+      <form class="newsletter-form" novalidate>
+        <input type="email" placeholder="you@domain.in" aria-label="Email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="/nc-site.js"></script>
+</body>
+</html>
