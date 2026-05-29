@@ -91,6 +91,11 @@
           </div>
         </div>
       </header>
+      <div class="pricing-notice-bar">
+        <div class="container">
+          (<strong>Pricing Notice:</strong> Prices displayed for all products and brands are subject to change. Please click the "Buy" button to verify the most up-to-date pricing.)
+        </div>
+      </div>
 
       <div class="mobile-nav-backdrop" data-menu-backdrop aria-hidden="true"></div>
       <aside class="mobile-nav" id="mobile-nav-drawer" aria-label="Mobile menu" aria-hidden="true">
