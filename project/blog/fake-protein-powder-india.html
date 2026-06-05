@@ -28,7 +28,7 @@
 .meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
 .meta-chip.price .dot{background:var(--accent);}
 
-/* ── Layout — THE CRITICAL RULES ── */
+/* ── Layout ── */
 .article-layout{display:grid;grid-template-columns:1fr 260px;gap:var(--s-8);align-items:start;padding:var(--s-8) 0 var(--s-10);}
 .article-body{min-width:0;}
 .article-sidebar{position:sticky;top:calc(var(--nav-h) + 24px);}
@@ -69,7 +69,7 @@
 [data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
 [data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
 
-/* ── Data table — always wrapped in .data-table-wrap ── */
+/* ── Data table ── */
 .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
 .data-table{width:100%;border-collapse:collapse;font-size:14px;}
 .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
@@ -137,13 +137,71 @@
 .how-body .how-title{font-weight:500;font-size:16px;color:var(--ink);margin-bottom:4px;}
 .how-body p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;margin:0;}
 
-/* ── Brand verdict row (for comparison table) ── */
+/* ── Brand verdict row ── */
 .verdict-red{color:#a0342a;}
 .verdict-amber{color:#7a5f1a;}
 .verdict-green{color:#3a6b4a;}
 [data-theme="dark"] .verdict-red{color:#e09a8a;}
 [data-theme="dark"] .verdict-amber{color:#e0c377;}
 [data-theme="dark"] .verdict-green{color:#a7d2a9;}
+
+/* ════════════════════════════════════════════════
+   ARTICLE FIGURE  — reusable image block
+   ─────────────────────────────────────────────
+   Basic usage (full-width):
+     <figure class="article-figure">
+       <img src="/assets/your-image.png" alt="…" loading="lazy" />
+       <figcaption><strong>Title.</strong> Description.</figcaption>
+     </figure>
+
+   Variants:
+     .article-figure          → full prose width (default)
+     .article-figure.inset    → capped at 480px, centred (portrait images)
+     .article-figure.bleed    → edge-to-edge on mobile
+   ════════════════════════════════════════════════ */
+.article-figure {
+  margin: var(--s-7) 0;
+  padding: 0;
+}
+.article-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 16px color-mix(in oklab, var(--ink) 8%, transparent);
+}
+.article-figure figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  color: var(--ink-muted);
+  letter-spacing: .02em;
+  line-height: 1.55;
+  padding: 0 4px;
+}
+.article-figure figcaption strong {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+/* Inset variant */
+.article-figure.inset {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Bleed variant — edge-to-edge on small screens */
+@media(max-width:720px) {
+  .article-figure.bleed {
+    margin-left: calc(-1 * var(--container-px, 20px));
+    margin-right: calc(-1 * var(--container-px, 20px));
+  }
+  .article-figure.bleed img {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
   </style>
   <script>window.PAGE_KEY = 'blog';</script>
 
@@ -463,6 +521,34 @@
 
           <h3>Compare scoop size to claimed density</h3>
           <p>A 30g protein scoop should actually weigh 30g. Scales are cheap. Weigh your scoop. If the included scoop delivers 36g of powder but the label says 30g serving, the protein-per-gram ratio is lower than the label implies. Some brands use deliberately oversized scoops to reduce effective serving count.</p>
+
+          <!--
+          ════════════════════════════════════════════════════
+          IMAGE ADDED HERE — ON authentication infographic
+          Placement: after physical checks, before the NABL callout.
+
+          To add more images elsewhere in this file:
+            1. Copy this <figure> block to your desired location
+            2. Change src="/assets/your-filename.png"
+            3. Update alt text and figcaption
+            4. Use class="article-figure inset" for tall/portrait images
+               Use class="article-figure bleed" for edge-to-edge on mobile
+          ════════════════════════════════════════════════════
+          -->
+          <figure class="article-figure">
+            <img
+              src="/assets/auto_on_whey.png"
+              alt="Optimum Nutrition Gold Standard 100% Whey — four authentication checks: gold hologram seal on neck band, TRU Seal scratch sticker, induction wad under the cap, and a transparent scoop inside the tub"
+              loading="lazy"
+              decoding="async"
+              width="900"
+              height="1260"
+            />
+            <figcaption>
+              <strong>How to authenticate Optimum Nutrition Gold Standard 100% Whey.</strong>
+              Genuine tubs carry four markers: a gold hologram on the neck band, a TRU Seal sticker (scratch for a 6-digit code — verify at authenticateon.in or SMS "ON &lt;code&gt;" to 57575), an induction wad behind or under the cap, and a transparent scoop — not a golden one. If any marker is missing, the product may not be authentic. Source: Optimum Nutrition India.
+            </figcaption>
+          </figure>
 
           <div class="callout good">
             <div class="callout-icon">✓</div>
