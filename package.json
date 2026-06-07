@@ -4,10 +4,8 @@
   "description": "Independent, evidence-based supplement research for India",
   "private": true,
   "scripts": {
-    "inject": "node scripts/inject-partials.js",
-    "inject:dry": "node scripts/inject-partials.js --dry-run",
     "sitemap": "node scripts/update-sitemap.js",
-    "build": "node scripts/inject-partials.js && node scripts/update-sitemap.js"
+    "build": "node scripts/update-sitemap.js"
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.1.0"
