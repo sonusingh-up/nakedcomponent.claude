@@ -209,10 +209,53 @@
     .ref-list .indus{font-family:var(--font-mono);font-size:10px;background:color-mix(in oklab,var(--butter) 50%,transparent);color:#7a5c15;padding:1px 5px;border-radius:3px;margin-left:6px;}
     [data-theme=dark] .ref-list .indus{color:#e0c377;}
 
+    
+    .table-scroll::after,.table-wrap::after{content:"← scroll →";display:none;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--ink-muted);padding:6px 0;letter-spacing:.08em;}
     /* ── Responsive ──────────────────────────────────────────────── */
     @media(max-width:1024px){.mechanism-grid{grid-template-columns:1fr;}.pathway-diagram{position:static;}}
     @media(max-width:860px){.india-grid{grid-template-columns:1fr 1fr;}.decoder-grid{grid-template-columns:1fr;}.brands-grid{grid-template-columns:1fr;}.ev-inner{grid-template-columns:1fr;}}
-    @media(max-width:640px){.compare-table{font-size:13px;}.compare-table th,.compare-table td{padding:8px 10px;}.compare-table th:nth-child(4),.compare-table td:nth-child(4),.compare-table th:nth-child(5),.compare-table td:nth-child(5),.compare-table th:nth-child(7),.compare-table td:nth-child(7){display:none;}.pick-header{grid-template-columns:auto auto 1fr;}.pick-price-block{grid-column:1/-1;text-align:left;}.india-grid{grid-template-columns:1fr;}.pick-body{grid-template-columns:1fr;}.pick-img-col{flex-direction:row;align-items:flex-start;}.pick-img-wrap{width:90px;height:90px;flex-shrink:0;}.buy-btn{width:auto;flex:1;}}
+    @media(max-width:640px){.compare-table{font-size:13px;}.compare-table th,.compare-table td{padding:8px 10px;}.compare-table th:nth-child(4),.compare-table td:nth-child(4),.compare-table th:nth-child(5),.compare-table td:nth-child(5),.compare-table th:nth-child(7),.compare-table td:nth-child(7){display:none;}.pick-header{grid-template-columns:auto auto 1fr;}.pick-price-block{grid-column:1/-1;text-align:left;}.india-grid{grid-template-columns:1fr;}.pick-body{grid-template-columns:1fr;}.pick-img-col{flex-direction:row;align-items:flex-start;}.pick-img-wrap{width:90px;height:90px;flex-shrink:0;}.buy-btn{width:auto;flex:1;}.table-scroll::after,.table-wrap::after{display:block;}}
+
+    /* ── Enhanced mobile: 480px ───────────────────────────────── */
+    @media(max-width:480px){
+      .cmp-hero{padding:var(--s-6) 0 var(--s-5);}
+      .cmp-h1{font-size:clamp(22px,7vw,32px);letter-spacing:-.02em;}
+      .cmp-sub{font-size:15px;line-height:1.55;}
+      .cmp-kicker{font-size:10px;letter-spacing:.1em;}
+      .meta-strip{gap:6px;}
+      .meta-chip{font-size:10px;padding:4px 9px;gap:5px;}
+      .ev-stat{font-size:26px;}
+      .ev-box h4{font-size:13px;}
+      .ev-box p{font-size:12px;}
+      .ev-box{padding:var(--s-3) var(--s-4);}
+      .mech-prose{font-size:15px;}
+      .mech-prose h3{font-size:18px;}
+      .stat-val{font-size:22px;}
+      .stat-label{font-size:12px;}
+      .india-stat{padding:var(--s-3);}
+      .pick-score-num{font-size:24px;}
+      .pick-name{font-size:14px;}
+      .pick-rank{font-size:10px;}
+      .price{font-size:18px;}
+      .pick-verdict{font-size:13.5px;line-height:1.55;}
+      .pick-caveat{font-size:12px;padding:var(--s-2) var(--s-3);}
+      .pick-dims{gap:4px;}
+      .pdim{font-size:9px;padding:2px 7px;}
+      .pick-card{padding:var(--s-4);}
+      .pick-header{gap:var(--s-2);margin-bottom:var(--s-3);}
+      .decoder-col h4{font-size:15px;}
+      .dec-body strong{font-size:13px;}
+      .dec-body p{font-size:12px;}
+      .bv-name{font-size:15px;}
+      .bv-body{font-size:12.5px;}
+      .bv-header{flex-wrap:wrap;}
+      .bv-stats{gap:var(--s-3);}
+      .faq-q{font-size:16px;}
+      .faq-a{font-size:14px;}
+      .section-head{flex-direction:column;align-items:flex-start;gap:var(--s-3);}
+      .ref-list li{font-size:12px;padding-left:var(--s-4);}
+      .buy-btn{font-size:10px;padding:8px 0;}
+    }
   </style>
 </head>
 <body>
@@ -442,7 +485,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71Mp6iWO7BL._SL1500_.jpg" alt="NOW Supplements Ultra Omega-3 Fish Oil 500 EPA / 250 DHA" style="width:100%;height:100%;object-fit:contain;padding:10px;" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71Mp6iWO7BL._SL1500_.jpg" alt="NOW Supplements Ultra Omega-3 Fish Oil 500 EPA / 250 DHA" loading="lazy" /></div>
             </div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=NOW+Ultra+Omega-3+Fish+Oil+500+EPA+250+DHA" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
@@ -482,7 +525,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/61kjM-ArBVL._SL1500_.jpg" alt="Nordic Naturals Algae Omega (Vegan DHA+EPA from algae)" style="width:100%;height:100%;object-fit:contain;padding:10px;" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/61kjM-ArBVL._SL1500_.jpg" alt="Nordic Naturals Algae Omega (Vegan DHA+EPA from algae)" loading="lazy" /></div>
             </div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Nordic+Naturals+Algae+Omega+vegan+DHA+EPA" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
@@ -520,7 +563,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/61kjM-ArBVL._SL1500_.jpg" alt="Nordic Naturals ProOmega 2000 (High-Dose Fish Oil)" style="width:100%;height:100%;object-fit:contain;padding:10px;" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/61kjM-ArBVL._SL1500_.jpg" alt="Nordic Naturals ProOmega 2000 (High-Dose Fish Oil)" loading="lazy" /></div>
             </div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Nordic+Naturals+ProOmega+2000+fish+oil" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
@@ -557,7 +600,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71y9y8M7ARL._SL1500_.jpg" alt="Carbamide Forte Triple Strength Omega-3 (Enteric Coated)" style="width:100%;height:100%;object-fit:contain;padding:10px;" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71y9y8M7ARL._SL1500_.jpg" alt="Carbamide Forte Triple Strength Omega-3 (Enteric Coated)" loading="lazy" /></div>
             </div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Carbamide+Forte+Triple+Strength+Omega-3" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
@@ -594,7 +637,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71gjdo2L2ML._SL1500_.jpg" alt="TrueBasics Triple Strength Omega-3 Fish Oil" style="width:100%;height:100%;object-fit:contain;padding:10px;" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71gjdo2L2ML._SL1500_.jpg" alt="TrueBasics Triple Strength Omega-3 Fish Oil" loading="lazy" /></div>
             </div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=TrueBasics+Triple+Strength+Omega-3+Fish+Oil" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
