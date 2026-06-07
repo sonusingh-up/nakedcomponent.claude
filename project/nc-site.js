@@ -356,11 +356,14 @@
     border-radius: var(--r-pill);
     padding: 8px 14px;
     width:240px; cursor:pointer;
-    transition: border-color .15s, box-shadow .15s;
+    transition: transform 120ms var(--ease-out), border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
     flex: 0 1 auto;
     min-width: 0;
   }
-  .search-trigger:hover { border-color:var(--line-strong); }
+  @media (hover: hover) and (pointer: fine) {
+    .search-trigger:hover { border-color:var(--line-strong); }
+  }
+  .search-trigger:active { transform: scale(0.97); }
   .search-trigger:focus { outline:0; box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 20%,transparent); border-color:var(--ink); }
   .search-trigger svg { width:15px;height:15px;color:var(--ink-muted);flex:0 0 auto; }
   .search-placeholder { flex:1; font-size:14px; color:var(--ink-muted); text-align:left; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -371,7 +374,7 @@
     display:flex; align-items:flex-start; justify-content:center;
     padding-top:80px; padding-left:16px; padding-right:16px;
     pointer-events:none; opacity:0;
-    transition:opacity .2s;
+    transition:opacity 200ms var(--ease-out);
   }
   #search-overlay.open { pointer-events:auto; opacity:1; }
 
@@ -390,7 +393,7 @@
     box-shadow:var(--shadow-lg);
     overflow:hidden;
     transform:translateY(-12px);
-    transition:transform .2s cubic-bezier(.2,.7,.3,1);
+    transition:transform 250ms var(--ease-out);
   }
   #search-overlay.open .search-modal { transform:translateY(0); }
 
@@ -410,9 +413,12 @@
     display:flex;align-items:center;justify-content:center;
     border:1px solid var(--line); background:var(--surface);
     color:var(--ink-soft); cursor:pointer; flex-shrink:0;
-    transition:background .15s,color .15s;
+    transition:transform 120ms var(--ease-out), background 160ms var(--ease-out), color 160ms var(--ease-out);
   }
-  .search-close:hover { background:var(--ink);color:var(--bg); }
+  @media (hover: hover) and (pointer: fine) {
+    .search-close:hover { background:var(--ink);color:var(--bg); }
+  }
+  .search-close:active { transform: scale(0.94); }
   .search-close svg { width:14px;height:14px; }
 
   .search-results { max-height:420px; overflow-y:auto; }
@@ -424,9 +430,12 @@
     padding:2px 10px; border-radius:var(--r-pill);
     background:var(--surface); border:1px solid var(--line);
     color:var(--ink); font-size:13px; cursor:pointer;
-    transition:border-color .15s,background .15s;
+    transition:transform 120ms var(--ease-out), border-color 160ms var(--ease-out), background 160ms var(--ease-out), color 160ms var(--ease-out);
   }
-  .sh-ex:hover { border-color:var(--accent);background:var(--accent-soft);color:var(--accent-deep); }
+  @media (hover: hover) and (pointer: fine) {
+    .sh-ex:hover { border-color:var(--accent);background:var(--accent-soft);color:var(--accent-deep); }
+  }
+  .sh-ex:active { transform: scale(0.95); }
 
   .search-hits { padding:8px; }
   .sr-group-label {
@@ -439,10 +448,13 @@
     display:flex; align-items:center; gap:12px;
     padding:10px 12px; border-radius:var(--r-md);
     text-decoration:none; color:inherit;
-    transition:background .1s;
+    transition:transform 120ms var(--ease-out), background 160ms var(--ease-out);
     cursor:pointer;
   }
-  .sr-item:hover, .sr-item:focus { background:var(--surface); outline:0; }
+  @media (hover: hover) and (pointer: fine) {
+    .sr-item:hover, .sr-item:focus { background:var(--surface); outline:0; }
+  }
+  .sr-item:active { transform: scale(0.98); }
   .sr-type {
     width:34px;height:34px; border-radius:var(--r-sm);
     display:flex;align-items:center;justify-content:center;
@@ -662,6 +674,31 @@
     for (const en of entries) {
       if (!en.isIntersecting) continue;
       en.target.classList.add('in');
+      
+      // Dynamic Stagger Reveal for child cards, protocols, chips, etc.
+      const staggerItems = en.target.querySelectorAll('.card, .protocol, .stat, .pick-card, .chip, .review, .ingredient, .brand-card, .alt-pick-card, .step, .hub-link-card, .faq-item, .picks-summary-grid > *, .evid-tier-box');
+      if (staggerItems.length > 0) {
+        staggerItems.forEach((item, idx) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(12px)';
+          item.style.transition = 'opacity 280ms var(--ease-out), transform 280ms var(--ease-out)';
+          item.style.transitionDelay = `${idx * 40}ms`;
+          
+          requestAnimationFrame(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          });
+          
+          // Clean up styles to restore default CSS hover/active state transitions instantly
+          setTimeout(() => {
+            item.style.opacity = '';
+            item.style.transform = '';
+            item.style.transition = '';
+            item.style.transitionDelay = '';
+          }, (idx * 40) + 300);
+        });
+      }
+
       en.target.querySelectorAll('.sr-bar > span').forEach((bar) => {
         const pct = bar.dataset.pct || '80';
         requestAnimationFrame(() => { bar.style.width = pct + '%'; });

@@ -70,9 +70,11 @@
 .meta-chip.ok .dot { background: #5ba672; }
 .meta-chip.warn .dot { background: #d9a03a; }
 
-/* ---------------------------------------------------------------- */
-/* Generic two-column prose / side layout                             */
-/* ---------------------------------------------------------------- */
+.page-head .crumbs a { color: var(--ink-muted); transition: transform 120ms var(--ease-out), color 160ms var(--ease-out); display: inline-block; }
+@media (hover: hover) and (pointer: fine) {
+  .page-head .crumbs a:hover { color: var(--accent); }
+}
+.page-head .crumbs a:active { transform: scale(0.97); }
 .doc-wrap {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -100,10 +102,12 @@
   border-left: 2px solid transparent;
   color: var(--ink-soft);
   font-size: 13.5px;
-  transition: color .15s, border-color .15s, background .15s;
+  transition: transform 120ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out), background 160ms var(--ease-out);
   border-radius: 0 6px 6px 0;
 }
-.doc-toc a:hover { color: var(--ink); border-color: var(--line-strong); background: var(--bg-elev); }
+@media (hover: hover) and (pointer: fine) {
+  .doc-toc a:hover { color: var(--ink); border-color: var(--line-strong); background: var(--bg-elev); }
+}
 .doc-toc a.active { color: var(--accent); border-color: var(--accent); }
 
 .prose {
@@ -137,9 +141,13 @@
   text-decoration: underline;
   text-decoration-color: color-mix(in oklab, var(--accent) 40%, transparent);
   text-underline-offset: 3px;
-  transition: text-decoration-color .15s;
+  transition: transform 120ms var(--ease-out), text-decoration-color 160ms var(--ease-out);
+  display: inline-block;
 }
-.prose a:hover { text-decoration-color: var(--accent); }
+@media (hover: hover) and (pointer: fine) {
+  .prose a:hover { text-decoration-color: var(--accent); }
+}
+.prose a:active { transform: scale(0.98); }
 .prose ul, .prose ol { padding-left: 1.3em; }
 .prose li + li { margin-top: 0.5em; }
 .prose blockquote {
@@ -232,9 +240,12 @@
   font-size: 13px;
   color: var(--ink-soft);
   font-weight: 500;
-  transition: background .15s, color .15s;
+  transition: transform 120ms var(--ease-out), background 160ms var(--ease-out), color 160ms var(--ease-out);
 }
-.filter-group button:hover { color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .filter-group button:hover { color: var(--ink); }
+}
+.filter-group button:active { transform: scale(0.95); }
 .filter-group button.active {
   background: var(--ink);
   color: var(--bg);
@@ -249,8 +260,12 @@
   font-size: 13.5px;
   color: var(--ink-soft);
   font-family: inherit;
+  transition: transform 120ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
 }
-.select-pill:hover { border-color: var(--line-strong); color: var(--ink); }
+@media (hover: hover) and (pointer: fine) {
+  .select-pill:hover { border-color: var(--line-strong); color: var(--ink); }
+}
+.select-pill:active { transform: scale(0.96); }
 .select-pill svg { width: 14px; height: 14px; }
 
 /* ---------------------------------------------------------------- */
@@ -270,11 +285,14 @@
   padding: var(--s-5);
   border-bottom: 1px solid var(--line);
   align-items: center;
-  transition: background .15s;
+  transition: transform 120ms var(--ease-out), background 160ms var(--ease-out);
   cursor: pointer;
 }
 .index-row:last-child { border-bottom: 0; }
-.index-row:hover { background: var(--surface); }
+@media (hover: hover) and (pointer: fine) {
+  .index-row:hover { background: var(--surface); }
+}
+.index-row:active { transform: scale(0.99); }
 .index-row .thumb {
   width: 80px; height: 80px;
   border-radius: var(--r-md);
@@ -316,11 +334,13 @@
   display: flex; align-items: center; justify-content: center;
   border: 1px solid var(--line);
   color: var(--ink-soft);
-  transition: all .15s;
+  transition: transform 120ms var(--ease-out), background 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
 }
-.index-row:hover .trail .arrow {
-  background: var(--ink); color: var(--bg); border-color: var(--ink);
-  transform: translateX(2px);
+@media (hover: hover) and (pointer: fine) {
+  .index-row:hover .trail .arrow {
+    background: var(--ink); color: var(--bg); border-color: var(--ink);
+    transform: translateX(2px);
+  }
 }
 
 /* ---------------------------------------------------------------- */
@@ -337,9 +357,12 @@
   border-radius: var(--r-lg);
   padding: var(--s-5);
   display: flex; flex-direction: column; gap: var(--s-3);
-  transition: all .2s;
+  transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
-.author-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+@media (hover: hover) and (pointer: fine) {
+  .author-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+}
+.author-card:active { transform: scale(0.99); }
 .author-card .avatar {
   width: 72px; height: 72px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-soft), var(--butter));
@@ -412,7 +435,10 @@
   font-weight: 500;
 }
 .data-table tbody tr:last-child td { border-bottom: 0; }
-.data-table tbody tr:hover { background: var(--surface); }
+.data-table tbody tr { transition: background 160ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .data-table tbody tr:hover { background: var(--surface); }
+}
 .data-table td.num { font-family: var(--font-mono); text-align: right; }
 .data-table .tag-sm {
   display: inline-block;
@@ -466,7 +492,7 @@
   background: var(--bg-elev);
   border-radius: var(--r-md);
   font: inherit; font-size: 15px; color: var(--ink);
-  transition: border-color .15s, box-shadow .15s;
+  transition: border-color 160ms var(--ease-out), box-shadow 160ms var(--ease-out);
 }
 .field input:focus, .field textarea:focus, .field select:focus {
   outline: 0;
@@ -610,9 +636,12 @@
   border-radius: var(--r-lg);
   padding: var(--s-5);
   display: flex; flex-direction: column; gap: var(--s-3);
-  transition: all .2s;
+  transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
-.brand-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+@media (hover: hover) and (pointer: fine) {
+  .brand-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+}
+.brand-card:active { transform: scale(0.99); }
 .brand-card .brand-top {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; margin-bottom: var(--s-2);
