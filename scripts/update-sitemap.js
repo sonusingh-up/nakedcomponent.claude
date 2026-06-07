@@ -208,3 +208,87 @@ ${urlEntries}
 
 fs.writeFileSync(SITEMAP_OUT, xml, 'utf8');
 console.log(`✓ sitemap.xml written — ${sorted.length} URLs — domain: ${BASE_URL}`);
+
+// ── RSS sub-feed generator ────────────────────────────────────────
+function generateSubFeeds() {
+  const feedInPath = path.join(OUTPUT_DIR, 'feed.xml');
+  const guidesOutPath = path.join(OUTPUT_DIR, 'feed-guides.xml');
+  const reviewsOutPath = path.join(OUTPUT_DIR, 'feed-reviews.xml');
+
+  if (!fs.existsSync(feedInPath)) {
+    console.warn('⚠ feed.xml not found, skipping sub-feed generation');
+    return;
+  }
+
+  const feedContent = fs.readFileSync(feedInPath, 'utf8');
+
+  // Extract items
+  const itemRegex = /<item>[\s\S]*?<\/item>/g;
+  const items = feedContent.match(itemRegex) || [];
+
+  const headerIndex = feedContent.indexOf('<item>');
+  const footerIndex = feedContent.lastIndexOf('</item>');
+
+  if (headerIndex === -1 || footerIndex === -1) {
+    console.warn('⚠ No items found in feed.xml, skipping sub-feed generation');
+    return;
+  }
+
+  const header = feedContent.slice(0, headerIndex);
+  const footer = feedContent.slice(footerIndex + '</item>'.length);
+
+  // Filter items
+  const guidesAndProtocolsItems = [];
+  const reviewsItems = [];
+
+  items.forEach(item => {
+    const catMatch = item.match(/<category>([^<]+)<\/category>/);
+    const category = catMatch ? catMatch[1].trim() : '';
+
+    if (category === 'Guides' || category === 'Protocols' || category === 'Research') {
+      guidesAndProtocolsItems.push(item);
+    } else if (category === 'Reviews') {
+      reviewsItems.push(item);
+    }
+  });
+
+  // Helper to format/build sub-feed file content
+  function buildFeedContent(subItems, selfUrl, subTitle) {
+    const joinedItems = subItems.join('\n\n    ');
+    
+    let subHeader = header
+      // Update self link
+      .replace(
+        /<atom:link\s+href="[^"]+"\s+rel="self"\s+type="application\/rss\+xml"\s*\/?>/,
+        `<atom:link href="${selfUrl}" rel="self" type="application/rss+xml"/>`
+      )
+      // Update title
+      .replace(
+        /<title>Naked Compound<\/title>/,
+        `<title>${subTitle}</title>`
+      );
+
+    return subHeader + joinedItems + '\n\n  ' + footer.trim() + '\n';
+  }
+
+  // Generate feed-guides.xml
+  const guidesFeed = buildFeedContent(
+    guidesAndProtocolsItems,
+    'https://nakedcompound.in/feed-guides.xml',
+    'Naked Compound — Guides &amp; Protocols'
+  );
+  fs.writeFileSync(guidesOutPath, guidesFeed, 'utf8');
+  console.log(`✓ feed-guides.xml written — ${guidesAndProtocolsItems.length} items`);
+
+  // Generate feed-reviews.xml
+  const reviewsFeed = buildFeedContent(
+    reviewsItems,
+    'https://nakedcompound.in/feed-reviews.xml',
+    'Naked Compound — Reviews'
+  );
+  fs.writeFileSync(reviewsOutPath, reviewsFeed, 'utf8');
+  console.log(`✓ feed-reviews.xml written — ${reviewsItems.length} items`);
+}
+
+generateSubFeeds();
+
