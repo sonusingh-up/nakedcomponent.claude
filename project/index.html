@@ -34,9 +34,10 @@
     .picks-tab {
       padding: 8px 20px; border-radius: var(--r-pill);
       font-size: 14px; font-weight: 500; color: var(--ink-soft);
-      cursor: pointer; transition: background .15s, color .15s;
+      cursor: pointer; transition: transform 120ms var(--ease-out), background 160ms var(--ease-out), color 160ms var(--ease-out);
       border: 0; background: transparent;
     }
+    .picks-tab:active { transform: scale(0.96); }
     .picks-tab.active { background: var(--ink); color: var(--bg); }
     .picks-panel { display: none; }
     .picks-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -45,16 +46,21 @@
       background: var(--surface); border: 1px solid var(--line);
       border-radius: var(--r-lg); overflow: hidden;
       display: flex; flex-direction: column;
-      transition: border-color .2s, transform .2s, box-shadow .2s;
+      transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
-    .pick-card:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    @media (hover: hover) and (pointer: fine) {
+      .pick-card:hover { border-color: var(--line-strong); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    }
+    .pick-card:active { transform: scale(0.99); }
     .pick-img {
       height: 180px; display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
       background: var(--bg-elev); border-bottom: 1px solid var(--line);
     }
-    .pick-img img { height: 150px; width: auto; max-width: 100%; object-fit: contain; transition: transform .3s; }
-    .pick-card:hover .pick-img img { transform: scale(1.04); }
+    .pick-img img { height: 150px; width: auto; max-width: 100%; object-fit: contain; transition: transform 250ms var(--ease-out); }
+    @media (hover: hover) and (pointer: fine) {
+      .pick-card:hover .pick-img img { transform: scale(1.04); }
+    }
     .pick-score {
       position: absolute; top: 12px; right: 12px;
       background: var(--ink); color: var(--bg);
@@ -88,9 +94,12 @@
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 14px; background: var(--ink); color: var(--bg);
       border-radius: var(--r-pill); font-size: 13px; font-weight: 500;
-      text-decoration: none; transition: background .15s, transform .08s; flex-shrink: 0;
+      text-decoration: none; transition: transform 120ms var(--ease-out), background 160ms var(--ease-out); flex-shrink: 0;
     }
-    .pick-buy:hover { background: var(--accent); transform: translateY(-1px); }
+    @media (hover: hover) and (pointer: fine) {
+      .pick-buy:hover { background: var(--accent); }
+    }
+    .pick-buy:active { transform: scale(0.95); }
     .picks-disclaimer { margin-top: var(--s-5); font-size: 12.5px; color: var(--ink-muted); font-family: var(--font-mono); text-align: center; }
     .picks-disclaimer a { color: var(--ink-muted); text-decoration: underline; }
 
@@ -106,9 +115,13 @@
     .hero-secondary-links a {
       color: var(--ink-soft); padding-bottom: 1px;
       border-bottom: 1px solid transparent;
-      transition: color .15s, border-color .15s;
+      transition: transform 120ms var(--ease-out), color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+      display: inline-block;
     }
-    .hero-secondary-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    @media (hover: hover) and (pointer: fine) {
+      .hero-secondary-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    }
+    .hero-secondary-links a:active { transform: scale(0.97); }
     .hero-secondary-links .sep { color: var(--line-strong); user-select: none; }
 
     /* ===================================================
@@ -119,9 +132,12 @@
       font-family: var(--font-mono); font-size: 12.5px; font-weight: 500;
       letter-spacing: .04em; color: var(--accent);
       border-bottom: 1px solid color-mix(in oklab, var(--accent) 38%, transparent);
-      padding-bottom: 1px; transition: gap .15s, border-color .15s;
+      padding-bottom: 1px; transition: transform 120ms var(--ease-out), gap 160ms var(--ease-out), border-color 160ms var(--ease-out);
     }
-    .section-viewall:hover { gap: 10px; border-color: var(--accent); }
+    @media (hover: hover) and (pointer: fine) {
+      .section-viewall:hover { gap: 10px; border-color: var(--accent); }
+    }
+    .section-viewall:active { transform: scale(0.97); }
 
     /* ===================================================
        FEATURE SPOTLIGHT  (/pages/best · /pages/compare)
@@ -142,9 +158,12 @@
       padding: var(--s-6) var(--s-7);
       display: flex; flex-direction: column; gap: var(--s-4);
       text-decoration: none; color: var(--ink);
-      transition: border-color .22s, transform .22s, box-shadow .22s;
+      transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
-    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    @media (hover: hover) and (pointer: fine) {
+      .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    }
+    .feature-card:active { transform: scale(0.99); }
     .feature-card::before {
       content: ''; position: absolute; right: -40px; top: -40px;
       width: 200px; height: 200px; border-radius: 50%;
@@ -157,7 +176,9 @@
       border-color: color-mix(in oklab, var(--accent) 20%, var(--line));
     }
     .feature-card-best::before { background: var(--accent); }
-    .feature-card-best:hover { border-color: color-mix(in oklab, var(--accent) 42%, var(--line)); }
+    @media (hover: hover) and (pointer: fine) {
+      .feature-card-best:hover { border-color: color-mix(in oklab, var(--accent) 42%, var(--line)); }
+    }
     .feature-card-compare {
       background: linear-gradient(140deg,
         color-mix(in oklab, var(--sky) 65%, var(--bg-elev)) 0%,
@@ -165,7 +186,9 @@
       border-color: color-mix(in oklab, var(--ink) 9%, var(--line));
     }
     .feature-card-compare::before { background: var(--sky); }
-    .feature-card-compare:hover { border-color: color-mix(in oklab, var(--ink) 22%, var(--line)); }
+    @media (hover: hover) and (pointer: fine) {
+      .feature-card-compare:hover { border-color: color-mix(in oklab, var(--ink) 22%, var(--line)); }
+    }
 
     .fc-eyebrow {
       display: flex; align-items: center; gap: 9px;
@@ -208,9 +231,11 @@
       font-family: var(--font-mono); font-size: 12.5px; font-weight: 600;
       letter-spacing: .04em; color: var(--accent);
       border-bottom: 1.5px solid var(--accent); padding-bottom: 1px;
-      width: fit-content; transition: gap .18s;
+      width: fit-content; transition: gap 160ms var(--ease-out);
     }
-    .feature-card:hover .fc-cta-link { gap: 13px; }
+    @media (hover: hover) and (pointer: fine) {
+      .feature-card:hover .fc-cta-link { gap: 13px; }
+    }
 
     /* ===================================================
        INGREDIENT CARDS — linked variants
@@ -227,9 +252,11 @@
     .ing-foot-link .read-arrow {
       display: flex; align-items: center; gap: 4px;
       color: var(--accent); opacity: 0; white-space: nowrap;
-      transition: opacity .15s, transform .15s;
+      transition: opacity 160ms var(--ease-out), transform 160ms var(--ease-out);
     }
-    a.ingredient:hover .ing-foot-link .read-arrow { opacity: 1; transform: translateX(3px); }
+    @media (hover: hover) and (pointer: fine) {
+      a.ingredient:hover .ing-foot-link .read-arrow { opacity: 1; transform: translateX(3px); }
+    }
 
     /* ===================================================
        RESPONSIVE

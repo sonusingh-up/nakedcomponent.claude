@@ -78,6 +78,31 @@
     for (const en of entries) {
       if (!en.isIntersecting) continue;
       en.target.classList.add('in');
+      
+      // Dynamic Stagger Reveal for child cards, protocols, chips, etc.
+      const staggerItems = en.target.querySelectorAll('.card, .protocol, .stat, .pick-card, .chip, .review, .ingredient, .brand-card, .alt-pick-card, .step, .hub-link-card, .faq-item, .picks-summary-grid > *, .evid-tier-box');
+      if (staggerItems.length > 0) {
+        staggerItems.forEach((item, idx) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(12px)';
+          item.style.transition = 'opacity 280ms var(--ease-out), transform 280ms var(--ease-out)';
+          item.style.transitionDelay = `${idx * 40}ms`;
+          
+          requestAnimationFrame(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          });
+          
+          // Clean up styles to restore default CSS hover/active state transitions instantly
+          setTimeout(() => {
+            item.style.opacity = '';
+            item.style.transform = '';
+            item.style.transition = '';
+            item.style.transitionDelay = '';
+          }, (idx * 40) + 300);
+        });
+      }
+
       // Number counters
       en.target.querySelectorAll('[data-num]').forEach(animateNumber);
       // Methodology bars
