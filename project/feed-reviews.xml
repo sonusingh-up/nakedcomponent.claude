@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Naked Compound — Reviews</title>
+    <link>https://nakedcompound.in</link>
+    <description>Independent supplement research for India. Strip the label. See the science.</description>
+    <language>en-IN</language>
+    <copyright>© 2026 Naked Compound</copyright>
+    <managingEditor>hello@nakedcompound.in (Naked Compound)</managingEditor>
+    <webMaster>tech@nakedcompound.in (Naked Compound)</webMaster>
+    <lastBuildDate>Fri, 25 Apr 2026 00:00:00 +0530</lastBuildDate>
+    <atom:link href="https://nakedcompound.in/feed-reviews.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://nakedcompound.in/og-image.png</url>
+      <title>Naked Compound</title>
+      <link>https://nakedcompound.in</link>
+    </image>
+
+    <item>
+      <title>MuscleBlaze Biozyme Whey — Re-review (Formulation Updated March 2026)</title>
+      <link>https://nakedcompound.in/pages/reviews</link>
+      <guid isPermaLink="true">https://nakedcompound.in/pages/reviews</guid>
+      <pubDate>Mon, 21 Apr 2026 08:00:00 +0530</pubDate>
+      <category>Reviews</category>
+      <description>MuscleBlaze updated their Biozyme formula in March 2026. We re-ran the full rubric. Score moved from 7.1 to 7.6 — here's what changed and why.</description>
+    </item>
+
+  </channel>
+</rss>
