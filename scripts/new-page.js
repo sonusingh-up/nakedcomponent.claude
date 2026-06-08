@@ -100,6 +100,8 @@ function makeHTML(title, type, slug, config, publishDate) {
   return `<!doctype html>
 <html lang="en" data-theme="light">
 <head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1911119578672689"
+     crossorigin="anonymous"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${shortTitle}${suffix}</title>
