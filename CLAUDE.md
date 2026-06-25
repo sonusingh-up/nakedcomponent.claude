@@ -9,7 +9,7 @@ Follow every rule here without being asked. Never skip them.
 
 - **Static HTML/CSS/JS site** — no framework, no build step.
 - Deployed on **Vercel** with `cleanUrls: true` and `trailingSlash: false`.
-- This means the file path = the URL. `project/ingredients/creatine-monohydrate.html` → `https://nakedcompound.in/ingredients/creatine-monohydrate`
+- This means the file path = the URL. `project/ingredients/creatine-monohydrate.html` → `https://www.nakedcompound.in/ingredients/creatine-monohydrate`
 - Output directory is `project/`. All content lives there.
 
 ---
@@ -63,12 +63,12 @@ When the user gives you a page title, generate the slug yourself using these rul
 Every HTML `<head>` must include a self-referencing canonical:
 
 ```html
-<link rel="canonical" href="https://nakedcompound.in/FULL-PATH-HERE" />
+<link rel="canonical" href="https://www.nakedcompound.in/FULL-PATH-HERE" />
 ```
 
 Use the clean URL (no `.html`, no trailing slash). Example:
 ```html
-<link rel="canonical" href="https://nakedcompound.in/ingredients/creatine-monohydrate" />
+<link rel="canonical" href="https://www.nakedcompound.in/ingredients/creatine-monohydrate" />
 ```
 
 ### 2d. `<title>` tag format
@@ -89,9 +89,9 @@ Every ingredient, research, guide, review, protocol, and blog page must include:
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://nakedcompound.in/" },
-    { "@type": "ListItem", "position": 2, "name": "{Category}",  "item": "https://nakedcompound.in/{category}/" },
-    { "@type": "ListItem", "position": 3, "name": "{Page Title}","item": "https://nakedcompound.in/{category}/{slug}" }
+    { "@type": "ListItem", "position": 1, "name": "Home",        "item": "https://www.nakedcompound.in/" },
+    { "@type": "ListItem", "position": 2, "name": "{Category}",  "item": "https://www.nakedcompound.in/{category}/" },
+    { "@type": "ListItem", "position": 3, "name": "{Page Title}","item": "https://www.nakedcompound.in/{category}/{slug}" }
   ]
 }
 </script>
@@ -145,8 +145,8 @@ When creating any ingredient, research, guide, review, protocol, or blog page, *
 ```xml
 <item>
   <title>{Page Title}</title>
-  <link>https://nakedcompound.in/{type}/{slug}</link>
-  <guid isPermaLink="true">https://nakedcompound.in/{type}/{slug}</guid>
+  <link>https://www.nakedcompound.in/{type}/{slug}</link>
+  <guid isPermaLink="true">https://www.nakedcompound.in/{type}/{slug}</guid>
   <pubDate>Mon, 27 Apr 2026 08:00:00 +0530</pubDate>
   <category>{Category}</category>
   <description>{Meta description — 1–2 sentences, under 160 chars}</description>
@@ -183,7 +183,7 @@ When the user asks you to create any new page:
 - [ ] Add breadcrumb JSON-LD (rule 2e)
 - [ ] Add the entry to `project/sitemap.xml` by running `node scripts/update-sitemap.js`
 - [ ] If it's a content page: add the entry to `project/feed.xml`
-- [ ] Confirm the final URL to the user in the format: `✓ URL: https://nakedcompound.in/{type}/{slug}`
+- [ ] Confirm the final URL to the user in the format: `✓ URL: https://www.nakedcompound.in/{type}/{slug}`
 
 ---
 

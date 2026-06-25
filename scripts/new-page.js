@@ -28,7 +28,7 @@ const path = require("path");
 
 // ── Config ────────────────────────────────────────────────────────────────────
 
-const BASE_URL = "https://nakedcompound.in";
+const BASE_URL = "https://www.nakedcompound.in";
 const PROJECT  = path.resolve(__dirname, "../project");
 
 const TYPE_CONFIG = {

@@ -15,7 +15,7 @@
     "currency": "INR",
     "market": "India",
     "regulatory": "FSSAI",
-    "schema_url": "https://nakedcompound.in/pages/methodology"
+    "schema_url": "https://www.nakedcompound.in/pages/methodology"
   },
   "products": [
     {
@@ -32,7 +32,7 @@
       "categories": [
         "creatine"
       ],
-      "url": "https://nakedcompound.in/reviews/creatine/gnc-pro-performance-creatine",
+      "url": "https://www.nakedcompound.in/reviews/creatine/gnc-pro-performance-creatine",
       "has_review": true
     },
     {
@@ -848,7 +848,7 @@
       "categories": [
         "whey"
       ],
-      "url": "https://nakedcompound.in/reviews/wheyprotein/nakpro-gold-whey-review",
+      "url": "https://www.nakedcompound.in/reviews/wheyprotein/nakpro-gold-whey-review",
       "has_review": true
     },
     {

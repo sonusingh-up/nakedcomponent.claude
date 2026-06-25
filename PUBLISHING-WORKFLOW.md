@@ -69,7 +69,7 @@ git push
 Sitemap will show:
 ```xml
 <url>
-  <loc>https://nakedcompound.in/ingredients/creatine-monohydrate</loc>
+  <loc>https://www.nakedcompound.in/ingredients/creatine-monohydrate</loc>
   <lastmod>2026-04-29</lastmod>
   ...
 </url>
@@ -93,7 +93,7 @@ git commit -m "fix: update creatine article with new study"
 Sitemap will show:
 ```xml
 <url>
-  <loc>https://nakedcompound.in/ingredients/creatine-monohydrate</loc>
+  <loc>https://www.nakedcompound.in/ingredients/creatine-monohydrate</loc>
   <lastmod>2026-04-29</lastmod>
   ...
 </url>
@@ -103,7 +103,7 @@ But if the article was edited **after** the original publish date:
 
 ```xml
 <url>
-  <loc>https://nakedcompound.in/ingredients/creatine-monohydrate</loc>
+  <loc>https://www.nakedcompound.in/ingredients/creatine-monohydrate</loc>
   <lastmod>2026-05-15</lastmod>  <!-- Updated to git log commit date -->
   ...
 </url>
