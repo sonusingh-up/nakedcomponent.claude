@@ -42,6 +42,7 @@ const RULES = [
   { prefix: '/pages/learn',            p: '0.7', cf: 'monthly', exact: true },
   { prefix: '/pages/scoring-rubric',   p: '0.7', cf: 'monthly', exact: true },
   { prefix: '/pages/categories',       p: '0.7', cf: 'weekly',  exact: true },
+  { prefix: '/brands/',                 p: '0.7', cf: 'monthly' },
   { prefix: '/protocols/',             p: '0.7', cf: 'monthly' },
   { prefix: '/blog/',                  p: '0.7', cf: 'monthly' },
   { prefix: '/ingredients/',           p: '0.8', cf: 'monthly' },
