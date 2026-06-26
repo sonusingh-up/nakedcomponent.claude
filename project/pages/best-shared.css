@@ -635,7 +635,7 @@
 
 /* ── Hub links ─────────────────────────────────────────────────── */
 .bestof-hub-section { padding: var(--s-8) 0; }
-.hub-links-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-4); margin-top: var(--s-6); }
+.hub-links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--s-4); margin-top: var(--s-6); margin-bottom: var(--s-6); }
 .hub-link-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); display: flex; flex-direction: column; gap: var(--s-2); text-decoration: none; color: inherit; transition: border-color 200ms var(--ease-out), transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out); min-width: 0; }
 @media (hover: hover) and (pointer: fine) {
   .hub-link-card:hover { border-color: var(--line-strong); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
@@ -646,6 +646,10 @@
 .hub-link-card p { font-size: 13px; color: var(--ink-soft); line-height: 1.45; flex-grow: 1; }
 .hub-card-arrow { color: var(--accent); font-size: 13px; transition: transform 0.15s; margin-top: var(--s-2); }
 .hub-link-card:hover .hub-card-arrow { transform: translateX(3px); }
+
+/* ── Product image in brand cards ────────────────────────────── */
+.bdc-product-img { float: right; margin: 0 0 var(--s-3) var(--s-4); }
+.bdc-product-img img { width: 120px; height: 120px; object-fit: contain; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); padding: 4px; display: block; }
 
 /* ── FAQ ────────────────────────────────────────────────────────  */
 .bestof-faq { padding: var(--s-8) 0; border-top: 1px solid var(--line); }
@@ -674,7 +678,6 @@
 .reveal.in { opacity: 1; transform: none; }
 
 /* ── Breakpoints ───────────────────────────────────────────────── */
-@media (max-width: 1024px) { .hub-links-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 900px) {
   .bestof-picks-grid { grid-template-columns: 1fr; }
   .lab-tier-grid { grid-template-columns: 1fr; }
@@ -682,22 +685,26 @@
   .bestof-section-head { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
-  /* "Full breakdown" button full-width on mobile */
   .bestof-section-head .btn { width: 100%; text-align: center; justify-content: center; }
   .score-block { grid-template-columns: auto 1fr; }
   .ing-panel-body { grid-template-columns: 1fr 1fr; }
-  .hub-links-grid { grid-template-columns: 1fr 1fr; }
   .key-stat-num { font-size: 40px; }
+  .bdc-product-img { width: 100px; }
+  .bdc-product-img img { width: 100px; height: 100px; }
 }
 @media (max-width: 520px) {
   .bestof-main-pick { grid-template-columns: 1fr; }
   .cat-icon-wrap { width: 56px; height: 56px; font-size: 24px; }
   .ing-panel-body { grid-template-columns: 1fr; }
-  .hub-links-grid { grid-template-columns: 1fr; }
   .alt-pick-card { grid-template-columns: 1fr; }
   .alt-icon { display: none; }
   .key-stat-banner { grid-template-columns: 1fr; gap: var(--s-3); }
   .score-block { grid-template-columns: 1fr; }
+  .bdc-product-img { float: none; margin: 0 0 var(--s-4) 0; text-align: center; }
+  .bdc-product-img img { width: 96px; height: 96px; display: inline-block; }
+  .brand-detail-card { padding: var(--s-4); }
+  .pick-badges { gap: 4px; }
+  .pbadge { font-size: 9px; padding: 2px 6px; }
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -856,7 +863,8 @@
   .bdc-body{grid-template-columns:1fr;}
   .evid-tier-row{grid-template-columns:1fr 1fr;}
   .dosing-grid{grid-template-columns:1fr 1fr;}
-  .overall-score-card{grid-template-columns:1fr;}
+  .overall-score-card{grid-template-columns:1fr;text-align:center;}
+  .osc-dims{justify-content:center;}
 }
 @media(max-width:700px){
   .page-hero-stats{grid-template-columns:repeat(2,1fr);gap:var(--s-4);}
@@ -864,8 +872,24 @@
   .section-head-row{flex-direction:column;gap:var(--s-2);}
   .evid-tier-row{grid-template-columns:1fr;}
   .dosing-grid{grid-template-columns:1fr;}
+  .bdc-meta{flex-direction:column;align-items:flex-start;gap:var(--s-2);}
+  .overall-score-card{padding:var(--s-5);}
+  .osc-score{font-size:56px;}
 }
 @media(max-width:480px){
   .picks-summary-grid{grid-template-columns:1fr;}
   .page-hero-stats{grid-template-columns:1fr 1fr;}
+  .phs-num{font-size:clamp(18px,5vw,24px);}
+  .psm-card{padding:var(--s-3);}
+  .bdc-header{margin-bottom:var(--s-3);}
+  .bdc-name{font-size:15px;}
+  .bdc-price{font-size:18px;}
+  .rubric-item{padding:var(--s-4);}
+  .rubric-score-big{font-size:24px;}
+  .dosing-box{padding:var(--s-3);}
+  .db-dose{font-size:22px;}
+  .callout{grid-template-columns:1fr;text-align:center;}
+  .callout .ico{margin:0 auto;}
+  .evid-tier-box{padding:var(--s-3);}
+  .etb-num{font-size:28px;}
 }
