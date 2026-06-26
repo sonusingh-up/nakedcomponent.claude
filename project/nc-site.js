@@ -765,12 +765,12 @@
         <span class="share-copied" hidden>Copied!</span>
       </button>
     `;
-    const metaChips = document.querySelector('.page-head .meta-chips');
-    if (metaChips) {
-      metaChips.parentNode.insertBefore(shareBar, metaChips.nextSibling);
-    } else {
-      const pageHead = document.querySelector('.page-head .container, .page-head');
-      if (pageHead) pageHead.appendChild(shareBar);
+    const hero = document.querySelector('.product-hero');
+    const articleBody = document.querySelector('.article-body, .review-prose, .prose, .doc-wrap');
+    if (hero && hero.parentNode) {
+      hero.parentNode.insertBefore(shareBar, hero.nextSibling);
+    } else if (articleBody) {
+      articleBody.insertBefore(shareBar, articleBody.firstChild);
     }
   }
 
