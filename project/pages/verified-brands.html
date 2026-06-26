@@ -532,6 +532,14 @@
     }
     [data-theme="dark"] .bdb-no-flags { color: #a7d2a9; }
 
+    .bdb-brand-link {
+      color: inherit; text-decoration: none;
+      transition: color .15s;
+    }
+    .bdb-brand-link:hover { color: var(--accent); }
+    .bdb-foot-links {
+      display: flex; gap: 12px; flex-shrink: 0;
+    }
     .bdb-review-link {
       font-family: var(--font-mono); font-size: 11px;
       color: var(--accent); text-decoration: none;
@@ -814,6 +822,10 @@ function renderCard(b) {
     ? `<a href="${b.reviewUrl}" class="bdb-review-link">NC review →</a>`
     : '';
 
+  const brandProfileHtml = b.brandPageUrl
+    ? `<a href="${b.brandPageUrl}" class="bdb-review-link">Brand profile →</a>`
+    : '';
+
   const verdictLabel = b.verdict.charAt(0).toUpperCase() + b.verdict.slice(1);
 
   // Logo
@@ -836,7 +848,7 @@ function renderCard(b) {
         ${logoHtml}
         <div class="bdb-name-block">
           <div class="bdb-name-row">
-            <h3>${b.name}</h3>
+            <h3>${b.brandPageUrl ? `<a href="${b.brandPageUrl}" class="bdb-brand-link">${b.name}</a>` : b.name}</h3>
             <span class="bdb-verdict-badge">${verdictLabel}</span>
           </div>
           <div class="bdb-meta">${flag} ${b.hq} · est. ${b.since}</div>
@@ -885,7 +897,7 @@ function renderCard(b) {
 
     <div class="bdb-card-foot">
       <div class="bdb-flags-row">${flagsHtml || '<span class="bdb-no-flags">No flags</span>'}</div>
-      ${reviewHtml}
+      <div class="bdb-foot-links">${brandProfileHtml}${reviewHtml}</div>
     </div>
   </div>`;
 }

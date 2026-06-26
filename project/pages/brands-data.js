@@ -87,6 +87,7 @@ const BRANDS_DB = [
     ],
     summary: "Eurofins-verified via Trustified for protein content and full amino acid profile. Consistently hits label claims. Note: 'Gold' is a concentrate blend — not a whey isolate, despite the name.",
     reviewUrl: '/reviews/wheyprotein/nakpro-gold-whey-review',
+    brandPageUrl: '/brands/nakpro',
     addedDate: '2026-03',
   },
 
@@ -115,6 +116,7 @@ const BRANDS_DB = [
     ],
     summary: 'Category-defining product with the strongest 3P certification stack on the India market. Counterfeit risk is real — buy only via Flipkart or ON India authorized channel. Premium pricing is the only objection.',
     reviewUrl: '/reviews/wheyprotein/on-gold-standard-whey-review',
+    brandPageUrl: '/brands/optimum-nutrition',
     addedDate: '2026-03',
   },
 
@@ -314,6 +316,7 @@ const BRANDS_DB = [
     ],
     summary: 'Best rupee-per-dose value in the vitamins segment. KSM-66 ashwagandha is correctly labelled — rare in this price range. No public COA is the primary concern; buy for price-sensitive contexts where testing is secondary.',
     reviewUrl: null,
+    brandPageUrl: '/brands/carbamide-forte',
     addedDate: '2026-04',
   },
 
@@ -394,6 +397,7 @@ const BRANDS_DB = [
     ],
     summary: 'Oral strip delivery is genuinely differentiated for iron and B12 (bypasses GI absorption step). D3+K2 product uses correct forms at adequate doses. Significantly overpriced vs capsule equivalents; marketing language overreaches clinical evidence.',
     reviewUrl: '/reviews/vitamins/wellbeing-slow-melts-d3-k2-review',
+    brandPageUrl: '/brands/wellbeing-nutrition',
     addedDate: '2026-04',
   },
 
@@ -475,6 +479,7 @@ const BRANDS_DB = [
     ],
     summary: "Base multivitamin uses D2 (ergocalciferol) — a significant form downgrade vs D3. Biotin 10,000 mcg is appropriately dosed. Generic extracts throughout; no patented standardised ingredient use.",
     reviewUrl: '/reviews/multivitamins/hk-vitals-multivitamin-review',
+    brandPageUrl: '/brands/hk-vitals',
     addedDate: '2026-04',
   },
 
@@ -502,6 +507,7 @@ const BRANDS_DB = [
     ],
     summary: 'Brand legacy exceeds current product quality. Price premium is not justified by India-market testing evidence. Omega-3 is correctly dosed; creatine monohydrate is generic at 3× the going domestic rate.',
     reviewUrl: null,
+    brandPageUrl: '/brands/gnc-india',
     addedDate: '2026-04',
   },
 
