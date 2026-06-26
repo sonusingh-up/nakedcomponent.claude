@@ -73,20 +73,25 @@
           <h4 style="font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--ink); font-family: var(--font-display); font-weight: 500;">Send us something</h4>
           <p style="margin-bottom: var(--s-5);">Tips, corrections, requests for new guides, or feedback on a piece. Replies usually within 3–5 working days.</p>
 
-          <form class="contact-form" novalidate onsubmit="event.preventDefault(); const b=this.querySelector('button[type=submit]'); b.textContent='Sent ✓'; b.disabled=true;">
+          <form id="contact-form" class="contact-form" action="https://formsubmit.co/hello@nakedcompound.in" method="POST">
+            <input type="hidden" name="_subject" value="New contact from Naked Compound" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://www.nakedcompound.in/pages/contact?sent=true" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_captcha" value="true" />
             <div class="field-row">
               <div class="field">
                 <label for="cn">Name</label>
-                <input id="cn" type="text" placeholder="Your name" required />
+                <input id="cn" name="name" type="text" placeholder="Your name" required />
               </div>
               <div class="field">
                 <label for="ce">Email</label>
-                <input id="ce" type="email" placeholder="you@domain.in" required />
+                <input id="ce" name="email" type="email" placeholder="you@domain.in" required />
               </div>
             </div>
             <div class="field">
               <label for="cr">Reason for getting in touch</label>
-              <select id="cr">
+              <select id="cr" name="reason">
                 <option>Tip — labelling, claim, ingredient</option>
                 <option>Correction on a published piece</option>
                 <option>Request a new guide or review</option>
@@ -98,7 +103,7 @@
             </div>
             <div class="field">
               <label for="cm">Your message</label>
-              <textarea id="cm" placeholder="Be as specific as possible — batch numbers, jar photos, or paper DOIs are gold." required></textarea>
+              <textarea id="cm" name="message" placeholder="Be as specific as possible — batch numbers, jar photos, or paper DOIs are gold." required></textarea>
             </div>
             <div style="display:flex; align-items:center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
               <p style="font-size: 12.5px; color: var(--ink-muted); margin: 0; max-width: 36ch;">By sending, you confirm you've read our editorial policies. We do not share your email.</p>
@@ -113,5 +118,30 @@
 
 <div id="site-footer"></div>
 <script src="../nc-site.js?v=999"></script>
+<style>
+.form-success {
+  padding: 20px 24px;
+  background: color-mix(in oklab, var(--accent) 10%, var(--bg));
+  border: 1px solid var(--accent);
+  border-radius: var(--r-md);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+</style>
+<script>
+if (window.location.search.includes('sent=true')) {
+  const form = document.getElementById('contact-form');
+  if (form) {
+    const msg = document.createElement('div');
+    msg.className = 'form-success';
+    msg.innerHTML = '<strong>Message sent.</strong> We typically respond within 3–5 working days.';
+    form.parentNode.insertBefore(msg, form);
+    form.style.display = 'none';
+    history.replaceState(null, '', window.location.pathname);
+  }
+}
+</script>
 </body>
 </html>
