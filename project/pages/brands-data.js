@@ -86,9 +86,7 @@ const BRANDS_DB = [
       { name: 'Platinum WPI 90%', unit: '1 kg', price: 2799, url: 'https://www.amazon.in/s?k=nakpro+platinum+whey+protein', lastChecked: 'May 2026' },
     ],
     summary: "Eurofins-verified via Trustified for protein content and full amino acid profile. Consistently hits label claims. Note: 'Gold' is a concentrate blend — not a whey isolate, despite the name.",
-    reviewUrl: '/reviews/wheyprotein/nakpro-gold-whey-review',
-    brandPageUrl: '/brands/nakpro',
-    addedDate: '2026-03',
+    reviewUrl: '/reviews/wheyprotein/nakpro-gold-whey-review',    addedDate: '2026-03',
   },
 
   {
@@ -115,9 +113,7 @@ const BRANDS_DB = [
       { name: 'Micronized Creatine Powder', unit: '317 g', price: 1399, url: 'https://www.amazon.in/s?k=on+optimum+nutrition+creatine', lastChecked: 'May 2026' },
     ],
     summary: 'Category-defining product with the strongest 3P certification stack on the India market. Counterfeit risk is real — buy only via Flipkart or ON India authorized channel. Premium pricing is the only objection.',
-    reviewUrl: '/reviews/wheyprotein/on-gold-standard-whey-review',
-    brandPageUrl: '/brands/optimum-nutrition',
-    addedDate: '2026-03',
+    reviewUrl: '/reviews/wheyprotein/on-gold-standard-whey-review',    addedDate: '2026-03',
   },
 
   {
@@ -315,9 +311,7 @@ const BRANDS_DB = [
       { name: 'Ashwagandha KSM-66 600 mg', unit: '60 caps', price: 449, url: 'https://www.amazon.in/s?k=carbamide+forte+ashwagandha+ksm+66', lastChecked: 'May 2026' },
     ],
     summary: 'Best rupee-per-dose value in the vitamins segment. KSM-66 ashwagandha is correctly labelled — rare in this price range. No public COA is the primary concern; buy for price-sensitive contexts where testing is secondary.',
-    reviewUrl: null,
-    brandPageUrl: '/brands/carbamide-forte',
-    addedDate: '2026-04',
+    reviewUrl: null,    addedDate: '2026-04',
   },
 
   {
@@ -396,9 +390,7 @@ const BRANDS_DB = [
       { name: 'Melts Nano Iron', unit: '30 strips', price: 649, url: 'https://www.amazon.in/s?k=wellbeing+nutrition+iron+melts', lastChecked: 'May 2026' },
     ],
     summary: 'Oral strip delivery is genuinely differentiated for iron and B12 (bypasses GI absorption step). D3+K2 product uses correct forms at adequate doses. Significantly overpriced vs capsule equivalents; marketing language overreaches clinical evidence.',
-    reviewUrl: '/reviews/vitamins/wellbeing-slow-melts-d3-k2-review',
-    brandPageUrl: '/brands/wellbeing-nutrition',
-    addedDate: '2026-04',
+    reviewUrl: '/reviews/vitamins/wellbeing-slow-melts-d3-k2-review',    addedDate: '2026-04',
   },
 
   {
@@ -478,9 +470,7 @@ const BRANDS_DB = [
       { name: 'Biotin 10,000 mcg', unit: '60 tabs', price: 399, url: 'https://www.amazon.in/s?k=hk+vitals+biotin+10000', lastChecked: 'May 2026' },
     ],
     summary: "Base multivitamin uses D2 (ergocalciferol) — a significant form downgrade vs D3. Biotin 10,000 mcg is appropriately dosed. Generic extracts throughout; no patented standardised ingredient use.",
-    reviewUrl: '/reviews/multivitamins/hk-vitals-multivitamin-review',
-    brandPageUrl: '/brands/hk-vitals',
-    addedDate: '2026-04',
+    reviewUrl: '/reviews/multivitamins/hk-vitals-multivitamin-review',    addedDate: '2026-04',
   },
 
   {
@@ -506,9 +496,7 @@ const BRANDS_DB = [
       { name: 'Pro Performance Creatine', unit: '317 g', price: 1299, url: 'https://amzn.to/4tBlvIY', lastChecked: 'May 2026' },
     ],
     summary: 'Brand legacy exceeds current product quality. Price premium is not justified by India-market testing evidence. Omega-3 is correctly dosed; creatine monohydrate is generic at 3× the going domestic rate.',
-    reviewUrl: null,
-    brandPageUrl: '/brands/gnc-india',
-    addedDate: '2026-04',
+    reviewUrl: null,    addedDate: '2026-04',
   },
 
   {

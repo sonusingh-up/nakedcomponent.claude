@@ -195,6 +195,7 @@
     /* ============================================================== */
     .bdb-card {
       position: relative;
+      isolation: isolate;
       background: var(--bg-elev);
       border: 1px solid var(--line);
       border-radius: 18px;
@@ -469,6 +470,7 @@
       gap: 10px; flex-shrink: 0;
     }
     .bdb-prod-link {
+      position: relative; z-index: 2;
       display: inline-flex; align-items: center; gap: 4px;
       padding: 6px 11px;
       background: var(--ink); color: var(--bg);
@@ -532,15 +534,25 @@
     }
     [data-theme="dark"] .bdb-no-flags { color: #a7d2a9; }
 
-    .bdb-brand-link {
-      color: inherit; text-decoration: none;
+    /* Whole-card click target → brand profile (stretched-link pattern).
+       Sits above static card content; real links below are raised above it. */
+    .bdb-card-overlay {
+      position: absolute; inset: 0;
+      z-index: 1;
+      border-radius: inherit;
+    }
+    .bdb-foot-links {
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    .bdb-profile-link {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--ink-muted); white-space: nowrap;
+      letter-spacing: .04em; font-weight: 500;
       transition: color .15s;
     }
-    .bdb-brand-link:hover { color: var(--accent); }
-    .bdb-foot-links {
-      display: flex; gap: 12px; flex-shrink: 0;
-    }
+    .bdb-card:hover .bdb-profile-link { color: var(--accent); }
     .bdb-review-link {
+      position: relative; z-index: 2;
       font-family: var(--font-mono); font-size: 11px;
       color: var(--accent); text-decoration: none;
       white-space: nowrap; letter-spacing: .04em;
@@ -766,6 +778,11 @@ const FLAG_META = {
 
 const COUNTRY_FLAG = { India: '🇮🇳', USA: '🇺🇸', UK: '🇬🇧', Germany: '🇩🇪' };
 
+// Each brand has an individual profile page at /brands/<slug>.
+// Slug = brand id, except where the page filename differs.
+const BRAND_SLUG_OVERRIDE = { gnc: 'gnc-india' };
+function brandHref(b) { return '/brands/' + (BRAND_SLUG_OVERRIDE[b.id] || b.id); }
+
 const state = {
   search: '', category: 'all', verdict: 'all',
   origin: 'all', minScore: 0, sort: 'score-desc', view: 'grid'
@@ -822,10 +839,6 @@ function renderCard(b) {
     ? `<a href="${b.reviewUrl}" class="bdb-review-link">NC review →</a>`
     : '';
 
-  const brandProfileHtml = b.brandPageUrl
-    ? `<a href="${b.brandPageUrl}" class="bdb-review-link">Brand profile →</a>`
-    : '';
-
   const verdictLabel = b.verdict.charAt(0).toUpperCase() + b.verdict.slice(1);
 
   // Logo
@@ -842,13 +855,14 @@ function renderCard(b) {
 
   return `
   <div class="bdb-card" data-verdict="${b.verdict}" data-id="${b.id}">
+    <a class="bdb-card-overlay" href="${brandHref(b)}" aria-label="View ${b.name} brand profile"></a>
 
     <div class="bdb-card-head">
       <div class="bdb-head-left">
         ${logoHtml}
         <div class="bdb-name-block">
           <div class="bdb-name-row">
-            <h3>${b.brandPageUrl ? `<a href="${b.brandPageUrl}" class="bdb-brand-link">${b.name}</a>` : b.name}</h3>
+            <h3>${b.name}</h3>
             <span class="bdb-verdict-badge">${verdictLabel}</span>
           </div>
           <div class="bdb-meta">${flag} ${b.hq} · est. ${b.since}</div>
@@ -897,7 +911,7 @@ function renderCard(b) {
 
     <div class="bdb-card-foot">
       <div class="bdb-flags-row">${flagsHtml || '<span class="bdb-no-flags">No flags</span>'}</div>
-      <div class="bdb-foot-links">${brandProfileHtml}${reviewHtml}</div>
+      <div class="bdb-foot-links">${reviewHtml}<span class="bdb-profile-link">View profile →</span></div>
     </div>
   </div>`;
 }
