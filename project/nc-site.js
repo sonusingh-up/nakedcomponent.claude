@@ -750,4 +750,113 @@
   siScript.defer = true;
   document.head.appendChild(siScript);
 
+  // ─── Cookie Consent Banner ────────────────────────────────────────────────
+  const CONSENT_KEY = 'nc-cookie-consent';
+  if (!localStorage.getItem(CONSENT_KEY)) {
+    const banner = document.createElement('div');
+    banner.id = 'cookie-consent';
+    banner.innerHTML = `
+      <div class="cc-inner">
+        <p>We use cookies for analytics (Google Analytics) and advertising (Google AdSense) to improve your experience. No tracking cookies are set by us directly. <a href="/pages/privacy">Privacy policy</a></p>
+        <div class="cc-actions">
+          <button class="cc-btn cc-accept">Accept all</button>
+          <button class="cc-btn cc-decline">Decline optional</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(banner);
+
+    banner.querySelector('.cc-accept').addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      banner.classList.add('cc-hide');
+      setTimeout(() => banner.remove(), 400);
+    });
+    banner.querySelector('.cc-decline').addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'declined');
+      banner.classList.add('cc-hide');
+      setTimeout(() => banner.remove(), 400);
+    });
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => banner.classList.add('cc-show'));
+    });
+  }
+
+  const ccStyles = document.createElement('style');
+  ccStyles.textContent = `
+  #cookie-consent {
+    position:fixed; bottom:0; left:0; right:0; z-index:190;
+    padding:16px;
+    transform:translateY(100%);
+    transition:transform 400ms var(--ease-out), opacity 400ms var(--ease-out);
+    opacity:0;
+    pointer-events:none;
+  }
+  #cookie-consent.cc-show {
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  #cookie-consent.cc-hide {
+    transform:translateY(100%);
+    opacity:0;
+    pointer-events:none;
+  }
+  .cc-inner {
+    max-width:720px;
+    margin:0 auto;
+    background:var(--bg-elev);
+    border:1px solid var(--line-strong);
+    border-radius:var(--r-xl);
+    padding:20px 24px;
+    box-shadow:var(--shadow-lg);
+    display:flex;
+    align-items:center;
+    gap:20px;
+  }
+  .cc-inner p {
+    flex:1;
+    font-size:13.5px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    margin:0;
+  }
+  .cc-inner a {
+    color:var(--accent);
+    text-decoration:underline;
+    text-underline-offset:2px;
+  }
+  .cc-actions {
+    display:flex;
+    gap:8px;
+    flex-shrink:0;
+  }
+  .cc-btn {
+    padding:8px 16px;
+    border-radius:var(--r-pill);
+    font-size:13px;
+    font-weight:500;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform 120ms var(--ease-out), background 160ms var(--ease-out);
+  }
+  .cc-btn:active { transform:scale(0.97); }
+  .cc-accept {
+    background:var(--accent);
+    color:#fff;
+  }
+  .cc-accept:hover { background:var(--accent-deep); }
+  .cc-decline {
+    background:var(--surface);
+    border-color:var(--line);
+    color:var(--ink-soft);
+  }
+  .cc-decline:hover { border-color:var(--line-strong); }
+  @media (max-width:640px) {
+    .cc-inner { flex-direction:column; gap:14px; text-align:center; padding:18px 20px; }
+    .cc-actions { width:100%; justify-content:center; }
+  }
+  `;
+  document.head.appendChild(ccStyles);
+
 })();
