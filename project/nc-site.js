@@ -767,7 +767,7 @@
     `;
     const articleBody = document.querySelector('.article-body, .prose, .doc-wrap');
     if (articleBody) {
-      articleBody.parentNode.insertBefore(shareBar, articleBody);
+      articleBody.insertBefore(shareBar, articleBody.firstChild);
     }
   }
 
