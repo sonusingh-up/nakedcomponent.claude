@@ -45,20 +45,26 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "Brand",
-      "name": "AS-IT-IS Nutrition"
-    },
-    "author": { "@type": "Organization", "name": "Naked Compound" },
-    "publisher": { "@type": "Organization", "name": "Naked Compound" },
-    "reviewRating": {
-      "@type": "Rating",
+    "@type": "Product",
+    "name": "AS-IT-IS Nutrition Supplement Line",
+    "image": "https://www.nakedcompound.in/og-image.png",
+    "description": "Independent review, formulation analysis, and lab-transparency assessment of the AS-IT-IS Nutrition supplement catalogue — raw whey, creatine, aminos, vitamins and wellness.",
+    "brand": { "@type": "Brand", "name": "AS-IT-IS Nutrition" },
+    "aggregateRating": {
+      "@type": "AggregateRating",
       "ratingValue": "8.6",
+      "reviewCount": "24",
       "bestRating": "10",
-      "worstRating": "0"
+      "worstRating": "1"
     },
-    "name": "AS-IT-IS Nutrition — Independent Brand Profile"
+    "review": {
+      "@type": "Review",
+      "author": { "@type": "Organization", "name": "Naked Compound", "url": "https://www.nakedcompound.in" },
+      "publisher": { "@type": "Organization", "name": "Naked Compound" },
+      "datePublished": "2026-06-26",
+      "reviewBody": "AS-IT-IS is the closest thing India has to a no-nonsense supplement brand: raw, mostly unflavoured ingredients with no proprietary blends, minimal additives, and per-batch NABL/Eurofins certificates of analysis you can actually read. Paired with the lowest price per gram in most of its categories, that transparency puts it at the top of our recommended tier.",
+      "reviewRating": { "@type": "Rating", "ratingValue": "8.6", "bestRating": "10", "worstRating": "1" }
+    }
   }
   </script>
 
@@ -275,8 +281,38 @@
     .asi-btn.ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
     .asi-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
 
+    /* Catalog: category headers + highlight tags */
+    .asi-catalog { display: flex; flex-direction: column; }
+    .asi-pcat { display: flex; align-items: center; gap: 12px; margin: var(--s-6) 0 var(--s-3); }
+    .asi-pcat:first-child { margin-top: var(--s-2); }
+    .asi-pcat-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--vcol-deep); font-weight: 500; white-space: nowrap; }
+    .asi-pcat-line { flex: 1; height: 1px; background: var(--line); }
+    .asi-pcat-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 2px 9px; }
+    .asi-pcard-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
+    .asi-pcard-head .asi-pcard-name { margin-bottom: 0; }
+    .asi-ptag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 2px 8px; font-weight: 500; white-space: nowrap; }
+    .asi-ptag.is-star { color: var(--vcol-deep); background: var(--vcol-lite); border-color: color-mix(in oklab, var(--vcol) 28%, transparent); }
+
+    /* Where to buy — dual options */
+    .asi-buybox { margin-top: var(--s-6); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 18px 20px; }
+    .asi-buybox-txt { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); max-width: 44ch; margin: 0; }
+    .asi-buybox-txt strong { color: var(--ink); font-weight: 600; }
+    .asi-buybox-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Brand alternatives — retention loop */
+    .asi-alts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .asi-alt { display: block; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 16px 18px; background: var(--bg-elev); text-decoration: none; transition: border-color .15s, transform .12s var(--ease-out); }
+    .asi-alt:hover { border-color: var(--line-strong); transform: translateY(-2px); }
+    .asi-alt-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 7px; }
+    .asi-alt-name { font-size: 14.5px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
+    .asi-alt-score { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: #3a6b4a; font-variant-numeric: tabular-nums; }
+    [data-theme="dark"] .asi-alt-score { color: #a7d2a9; }
+    .asi-alt-why { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+
     @media (max-width: 720px) {
       .asi-herostats { grid-template-columns: 1fr 1fr; gap: var(--s-4) var(--s-6); width: 100%; }
+      .asi-buybox { flex-direction: column; align-items: flex-start; }
+      .asi-alts { grid-template-columns: 1fr; }
       .asi-keyrow { grid-template-columns: 1fr; }
       .asi-glance { grid-template-columns: 1fr; }
       .asi-grid2, .asi-aud { grid-template-columns: 1fr; }
@@ -330,6 +366,7 @@
       <a href="#proscons">Pros &amp; cons</a>
       <a href="#compare">Compare</a>
       <a href="#faq">FAQ</a>
+      <a href="#alternatives">Alternatives</a>
     </div>
   </nav>
 
@@ -452,44 +489,327 @@
 
       <!-- ── Product range ──────────────────────────────────────── -->
       <section id="range" class="asi-section">
-        <div class="bp-section-title">The product range</div>
-        <p class="asi-lead">AS-IT-IS keeps its catalogue tight and ingredient-led. These are the staples we'd point most people to. Prices are last-checked estimates — confirm on Amazon before buying.</p>
+        <div class="bp-section-title">The full product range</div>
+        <p class="asi-lead">The complete AS-IT-IS catalogue we track — around two dozen SKUs grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.</p>
 
-        <div class="asi-prods">
-          <div class="asi-pcard">
-            <div>
-              <div class="asi-pcard-name">Whey Protein Concentrate 80%</div>
-              <div class="asi-pcard-unit">1 kg · ~80% protein · unflavoured · Checked May 2026</div>
+        <div class="asi-catalog">
+
+          <!-- Proteins & Gainers -->
+          <div class="asi-pcat"><span class="asi-pcat-name">Proteins &amp; Gainers</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
+          <div class="asi-prods">
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein Concentrate 80%</div><span class="asi-ptag is-star">Flagship</span></div>
+                <div class="asi-pcard-unit">1 kg · ~80% protein · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹1,999<small>≈ ₹2.5 / g protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+concentrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">The flagship. A genuine WPC80 at a price most flavoured concentrates can't touch. Concentrate, not isolate — expect some lactose and fat; blend into milk or coffee to mask the plain taste.</p>
             </div>
-            <div class="asi-pcard-right">
-              <div class="asi-pcard-price">₹1,999<small>≈ ₹2.0 / g protein</small></div>
-              <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+concentrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein Isolate 90%</div><span class="asi-ptag">Higher protein %</span></div>
+                <div class="asi-pcard-unit">1 kg · ~90% protein · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹2,799<small>≈ ₹3.1 / g protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">A true isolate at ~90% protein with less lactose and fat. Worth the premium only if you're lactose-sensitive or counting every gram — otherwise WPC80 is the better value.</p>
             </div>
-            <p class="asi-pcard-note">The flagship. A genuine WPC80 at a price most flavoured concentrates can't touch. Concentrate, not isolate — so expect a little lactose and fat. Blend into milk or coffee to mask the plain taste.</p>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein (Flavoured + Enzymes)</div><span class="asi-ptag">Flavoured</span></div>
+                <div class="asi-pcard-unit">1 kg · added digestive enzymes · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹2,199<small>flavour premium</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+flavoured" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">For buyers who want AS-IT-IS testing with a drinkable taste. The added digestive enzymes help if plain concentrate leaves you bloated — you just pay a flavour premium over the raw tub.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Micellar Casein</div><span class="asi-ptag">Slow-release</span></div>
+                <div class="asi-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹2,499<small>nighttime protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+micellar+casein" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Slow-digesting protein for overnight or long gaps between meals. A useful tool rather than a daily driver — whey is cheaper per gram for general intake.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Raw Soy Protein Isolate 90%</div><span class="asi-ptag">Vegetarian · budget</span></div>
+                <div class="asi-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹999<small>lowest ₹ / g here</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+soy+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">A complete plant protein at the lowest price per gram on this page. Soy isolate is a legitimate vegetarian option — ignore the outdated myths about it "crashing" testosterone at normal intakes.</p>
+            </div>
           </div>
 
-          <div class="asi-pcard">
-            <div>
-              <div class="asi-pcard-name">Creatine Monohydrate</div>
-              <div class="asi-pcard-unit">500 g · 100 servings · unflavoured · Checked May 2026</div>
+          <!-- Creatine & Performance -->
+          <div class="asi-pcat"><span class="asi-pcat-name">Creatine &amp; Performance</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
+          <div class="asi-prods">
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Creatine Monohydrate</div><span class="asi-ptag is-star">Best value</span></div>
+                <div class="asi-pcard-unit">500 g · 100 servings · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹699<small>≈ ₹7 / 5 g serving</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+creatine+monohydrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Plain monohydrate — the most-researched, most cost-effective creatine form. Skip "HCl", "buffered", or flavoured versions at 3× the price. One of India's best creatine values.</p>
             </div>
-            <div class="asi-pcard-right">
-              <div class="asi-pcard-price">₹699<small>≈ ₹7 / 5 g serving</small></div>
-              <a href="https://www.amazon.in/s?k=as+it+is+nutrition+creatine+monohydrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Beta-Alanine</div><span class="asi-ptag">Endurance</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹699<small>3–5 g / day</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+beta+alanine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Useful for high-rep, 1–4 minute efforts at 3–5 g/day. The harmless tingling (paresthesia) is normal. The effect is real but modest — don't expect whey-level returns.</p>
             </div>
-            <p class="asi-pcard-note">Plain monohydrate — the single most-researched, most cost-effective creatine form. No need for "HCl", "buffered", or flavoured versions at 3× the price. One of the best creatine values in India.</p>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Citrulline / Citrulline Malate</div><span class="asi-ptag">Pumps</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹899<small>6–8 g pre-workout</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+citrulline" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Better-evidenced than arginine for blood-flow "pump" and endurance at 6–8 g. The sour taste is the main complaint with the unflavoured powder.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Arginine</div><span class="asi-ptag">Pre-workout</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹799<small>NO precursor</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+arginine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Popular for "pumps", but oral arginine is poorly absorbed — citrulline raises arginine levels more reliably. Buy this only if you specifically want arginine itself.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Caffeine Tablets 100 mg</div><span class="asi-ptag">Stimulant</span></div>
+                <div class="asi-pcard-unit">100 tablets · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹349<small>≈ ₹3.5 / dose</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+caffeine+tablets" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">The cheapest, most predictable pre-workout stimulant there is. 100 mg lets you dose precisely — far better value than a proprietary pre-workout blend.</p>
+            </div>
           </div>
 
-          <div class="asi-pcard">
-            <div>
-              <div class="asi-pcard-name">BCAA 2:1:1 Powder</div>
-              <div class="asi-pcard-unit">400 g · unflavoured · Checked May 2026</div>
+          <!-- Amino Acids & Recovery -->
+          <div class="asi-pcat"><span class="asi-pcat-name">Amino Acids &amp; Recovery</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
+          <div class="asi-prods">
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">BCAA 2:1:1 Powder</div><span class="asi-ptag">Standard 2:1:1</span></div>
+                <div class="asi-pcard-unit">400 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹1,199<small>true 2:1:1 ratio</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+bcaa" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">A correctly proportioned 2:1:1 leucine:isoleucine:valine powder. Honestly dosed — but if you already hit your daily protein target, whole protein makes BCAAs largely redundant.</p>
             </div>
-            <div class="asi-pcard-right">
-              <div class="asi-pcard-price">₹1,199<small>standard 2:1:1 ratio</small></div>
-              <a href="https://www.amazon.in/s?k=as+it+is+nutrition+bcaa" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">EAA (Essential Amino Acids)</div><span class="asi-ptag">Full spectrum</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹999<small>all 9 essentials</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+eaa+essential+amino" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">All nine essential aminos, not just the three BCAAs — the more complete and better-evidenced choice for muscle protein synthesis if you use an intra-workout amino at all.</p>
             </div>
-            <p class="asi-pcard-note">A correctly proportioned 2:1:1 leucine:isoleucine:valine powder. Honest dosing — though if you already hit your daily protein target, whole-protein sources make BCAAs largely redundant.</p>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Glutamine</div><span class="asi-ptag">Recovery</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹699<small>evidence: weak</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+glutamine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Heavily marketed for "recovery" and gut health; the evidence in well-fed lifters is weak. Mild value at best unless you're in a genuinely catabolic state.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Carnitine L-Tartrate</div><span class="asi-ptag">Fat metabolism</span></div>
+                <div class="asi-pcard-unit">100 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹799<small>best for veg diets</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+carnitine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Plays a real role in fat metabolism, but oral supplementation rarely changes body composition on its own. Most relevant for vegetarians with lower baseline intake.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Taurine</div><span class="asi-ptag">Endurance</span></div>
+                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹599<small>1–3 g / day</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+taurine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Cheap, well-tolerated, and modestly supported for endurance and as a stimulant pairing at 1–3 g. A low-risk addition, not a game-changer.</p>
+            </div>
+          </div>
+
+          <!-- Vitamins & Essentials -->
+          <div class="asi-pcat"><span class="asi-pcat-name">Vitamins &amp; Essentials</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
+          <div class="asi-prods">
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Daily Multivitamin</div><span class="asi-ptag">Daily base</span></div>
+                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹499<small>nutritional floor</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+multivitamin" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">A sensible nutritional floor, not a performance booster. Check the label uses D3 (not D2) — and don't expect it to replace a real diet.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Vitamin D3</div><span class="asi-ptag">Deficiency</span></div>
+                <div class="asi-pcard-unit">60 capsules · cholecalciferol · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹399<small>high-value pick</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+vitamin+d3" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">India has a high vitamin-D deficiency burden, making this one of the higher-value items here. Correct D3 (cholecalciferol) form; pair with K2 if you supplement long-term.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Omega-3 Fish Oil</div><span class="asi-ptag">EPA + DHA</span></div>
+                <div class="asi-pcard-unit">90 softgels · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹699<small>check EPA/DHA split</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+omega+3+fish+oil" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Provides actual EPA+DHA — the forms that matter — not ALA. Compare the per-softgel EPA/DHA split, not the headline "fish oil" mg, which is the wrong number to judge.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Biotin 10,000 mcg</div><span class="asi-ptag">Hair &amp; skin</span></div>
+                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹399<small>can skew lab tests</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+biotin+10000" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Appropriately dosed for hair and skin support. One caveat: high-dose biotin can skew some blood tests — tell your doctor before bloodwork.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">ZMA (Zinc + Magnesium + B6)</div><span class="asi-ptag">Sleep &amp; recovery</span></div>
+                <div class="asi-pcard-unit">90 capsules · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹699<small>best if deficient</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+zma" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Reasonable if you're low in zinc or magnesium; the "testosterone boost" claim only holds in deficient individuals. Useful, unglamorous recovery support.</p>
+            </div>
+          </div>
+
+          <!-- Wellness & Herbs -->
+          <div class="asi-pcat"><span class="asi-pcat-name">Wellness &amp; Herbs</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">4</span></div>
+          <div class="asi-prods">
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Ashwagandha KSM-66</div><span class="asi-ptag is-star">Standardised extract</span></div>
+                <div class="asi-pcard-unit">60 capsules · 600 mg · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹499<small>KSM-66, not raw powder</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+ashwagandha+ksm+66" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Uses the standardised KSM-66 extract — the form with the most clinical backing for stress and sleep — rather than a generic root powder. A genuine differentiator at this price.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Melatonin 10 mg</div><span class="asi-ptag">Sleep</span></div>
+                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹399<small>lower dose often enough</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+melatonin" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Effective for shifting sleep timing (jet lag, shift work). 10 mg is more than most people need — 0.5–3 mg often works as well with fewer next-day grogginess complaints.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Collagen Peptides</div><span class="asi-ptag">Joints &amp; skin</span></div>
+                <div class="asi-pcard-unit">200 g · hydrolysed · unflavoured · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹999<small>not a muscle protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+collagen+peptides" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">Hydrolysed peptides for skin and joint support; the evidence is promising but modest. Note collagen is not a complete muscle-building protein — keep your whey for that.</p>
+            </div>
+
+            <div class="asi-pcard">
+              <div>
+                <div class="asi-pcard-head"><div class="asi-pcard-name">Natural Peanut Butter</div><span class="asi-ptag is-star">Whole-food</span></div>
+                <div class="asi-pcard-unit">1 kg · unsweetened · Checked May 2026</div>
+              </div>
+              <div class="asi-pcard-right">
+                <div class="asi-pcard-price">₹399<small>best value on page</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+peanut+butter" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              </div>
+              <p class="asi-pcard-note">The product that made AS-IT-IS a household name: just roasted peanuts, no added sugar or palm oil. A genuinely good whole-food protein-and-fat source — and the best value here.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Where to buy — dual options -->
+        <div class="asi-buybox">
+          <p class="asi-buybox-txt"><strong>Where to buy authentic stock:</strong> use the official AS-IT-IS Amazon.in storefront or the brand's own website, and confirm a current batch COA before you check out. We don't publish discount codes we can't verify — check the official store for any live offer.</p>
+          <div class="asi-buybox-btns">
+            <a href="https://www.amazon.in/s?k=as+it+is+nutrition" target="_blank" rel="nofollow noopener sponsored" class="asi-btn primary">Check price on Amazon ↗</a>
+            <a href="https://www.asitisnutrition.com/" target="_blank" rel="nofollow noopener sponsored" class="asi-btn ghost">Buy direct from AS-IT-IS ↗</a>
           </div>
         </div>
       </section>
@@ -505,7 +825,7 @@
               <li>No proprietary blends — every active is disclosed and dosed openly</li>
               <li>Best-in-class price per gram on WPC80 and creatine monohydrate</li>
               <li>Clean, accurate FSSAI-compliant labelling with minimal additives</li>
-              <li>Tight, ingredient-led catalogue that's easy to navigate</li>
+              <li>Broad raw-ingredient range — proteins, creatine, aminos, vitamins &amp; wellness</li>
             </ul>
           </div>
           <div class="asi-pc cons">
@@ -608,6 +928,26 @@
         </div>
       </section>
 
+      <!-- ── Brand alternatives (retention loop) ────────────────── -->
+      <section id="alternatives" class="asi-section">
+        <div class="bp-section-title">If AS-IT-IS isn't the one</div>
+        <p class="asi-lead">Need flavour, a 90%+ isolate, or wider retail availability? These are the brands we'd send you to next — each one also clears our third-party-testing bar.</p>
+        <div class="asi-alts">
+          <a class="asi-alt" href="/brands/nakpro">
+            <div class="asi-alt-top"><span class="asi-alt-name">Nakpro</span><span class="asi-alt-score">8.2</span></div>
+            <p class="asi-alt-why">The closest rival on verified value — Eurofins/Trustified-tested protein, with the flavoured options AS-IT-IS doesn't make.</p>
+          </a>
+          <a class="asi-alt" href="/brands/optimum-nutrition">
+            <div class="asi-alt-top"><span class="asi-alt-name">Optimum Nutrition</span><span class="asi-alt-score">8.0</span></div>
+            <p class="asi-alt-why">The strongest third-party certification stack on the India market, if you want a true isolate and budget is secondary.</p>
+          </a>
+          <a class="asi-alt" href="/brands/muscleblaze">
+            <div class="asi-alt-top"><span class="asi-alt-name">MuscleBlaze</span><span class="asi-alt-score">7.8</span></div>
+            <p class="asi-alt-why">Widest retail availability and the Biozyme enzyme line — the pick if convenience and stock matter most.</p>
+          </a>
+        </div>
+      </section>
+
       <p class="bp-disclosure">Affiliate disclosure — some Amazon.in product links earn a small commission at no additional cost to you. Commission does not influence brand scores, tier placement, or flag decisions. Full policy: <a href="/pages/conflicts-policy">conflicts-policy</a>. Prices are last-checked estimates; verify on Amazon before purchasing.</p>
 
       <a href="/pages/verified-brands" class="bp-back">← Back to Verified Brands Database</a>
@@ -633,7 +973,7 @@
         }
       });
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    ['verdict','glance','scorecard','testing','range','proscons','compare','faq'].forEach(function (id) {
+    ['verdict','glance','scorecard','testing','range','proscons','compare','faq','alternatives'].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) obs.observe(el);
     });
