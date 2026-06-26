@@ -728,6 +728,19 @@
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
+  // ─── Reading progress bar (review pages only) ────────────────────────────
+  if (location.pathname.startsWith('/reviews/')) {
+    const bar = document.createElement('div');
+    bar.className = 'reading-progress';
+    document.body.prepend(bar);
+    const update = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = h > 0 ? (window.scrollY / h * 100) + '%' : '0';
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
   // ─── Vercel Speed Insights ────────────────────────────────────────────────
   window.si = window.si || function () {
     (window.siq = window.siq || []).push(arguments);
