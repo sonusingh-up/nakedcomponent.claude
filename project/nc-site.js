@@ -765,9 +765,12 @@
         <span class="share-copied" hidden>Copied!</span>
       </button>
     `;
-    const articleBody = document.querySelector('.article-body, .prose, .doc-wrap');
-    if (articleBody) {
-      articleBody.insertBefore(shareBar, articleBody.firstChild);
+    const metaChips = document.querySelector('.page-head .meta-chips');
+    if (metaChips) {
+      metaChips.parentNode.insertBefore(shareBar, metaChips.nextSibling);
+    } else {
+      const pageHead = document.querySelector('.page-head .container, .page-head');
+      if (pageHead) pageHead.appendChild(shareBar);
     }
   }
 
