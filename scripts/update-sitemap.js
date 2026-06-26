@@ -130,6 +130,7 @@ const EXCLUDE_FILES = [
   /^google[a-z0-9]+\.html$/,
   /^feed\.xml$/,
   /^rss\.html$/,
+  /^404\.html$/,
 ];
 // Absolute paths to exclude entirely
 const EXCLUDE_ABS = [
