@@ -122,6 +122,13 @@ function certChips(c) {
   return c.testing.chips.map(ch => `<span class="bf-cert">${CHECK}${t(ch)}</span>`).join('\n          ');
 }
 
+function certsBlock(c) {
+  if (!c.testing.chips || !c.testing.chips.length) return '';
+  return `\n        <div class="bf-certs">
+          ${certChips(c)}
+        </div>\n`;
+}
+
 function catalog(b, c) {
   return c.cats.map(cat => {
     const cards = cat.items.map(p => {
@@ -366,11 +373,7 @@ ${scoreRows(b, c)}
       <section id="testing" class="bf-section bf-prose">
         <div class="bp-section-title">Testing &amp; certification</div>
 ${testParas.split('\n\n')[0]}
-
-        <div class="bf-certs">
-          ${certChips(c)}
-        </div>
-
+${certsBlock(c)}
         <div class="bp-testing-note">${t(c.testing.note || b.testingBody)}</div>${flagsBlock(b)}
 
 ${testParas.split('\n\n').slice(1).join('\n\n')}
