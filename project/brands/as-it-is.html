@@ -107,220 +107,7 @@
   }
   </script>
 
-  <style>
-    /* ===== AS-IT-IS bespoke brand page (flagship layout) ===== */
-    .asi-wrap { max-width: 760px; margin: 0 auto; }
-
-    /* Hero — site-standard page-head + brand mark (matches the rest of the site) */
-    .brand-hero-strip {
-      display: flex; align-items: center; gap: var(--s-5);
-      padding: var(--s-5) 0 0; flex-wrap: wrap;
-    }
-    .brand-mark-lg {
-      width: 72px; height: 72px; border-radius: var(--r-lg);
-      background: color-mix(in oklab, #5ba672 18%, var(--surface));
-      border: 1px solid var(--line);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display); font-weight: 600;
-      font-size: 22px; letter-spacing: -.02em;
-      color: #3a6b4a; flex-shrink: 0;
-    }
-    [data-theme="dark"] .brand-mark-lg { color: #a7d2a9; }
-    .brand-hero-info { min-width: 0; }
-    .brand-hero-info h1 { margin-bottom: var(--s-2); }
-    .brand-hero-info h1 em {
-      font-style: normal; font-family: "Instrument Serif", Georgia, serif;
-      color: var(--accent); font-weight: 400;
-    }
-    .brand-verdict-hero {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 14px; border-radius: var(--r-pill);
-      background: color-mix(in oklab,#5ba672 12%,var(--bg-elev));
-      border: 1px solid color-mix(in oklab,#5ba672 30%,transparent);
-      font-family: var(--font-mono); font-size: 11px;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: #3a6b4a; font-weight: 500;
-    }
-    .brand-verdict-hero .dot { width:7px; height:7px; border-radius:50%; background:#5ba672; }
-    [data-theme="dark"] .brand-verdict-hero { color:#a7d2a9; }
-
-    /* Sticky in-page subnav */
-    .asi-subnav {
-      position: sticky; top: var(--nav-h, 60px); z-index: 30;
-      background: color-mix(in oklab, var(--bg) 88%, transparent);
-      backdrop-filter: saturate(140%) blur(8px);
-      border-bottom: 1px solid var(--line);
-    }
-    .asi-subnav-inner { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
-    .asi-subnav-inner::-webkit-scrollbar { display: none; }
-    .asi-subnav a {
-      font-family: var(--font-mono); font-size: 12px; letter-spacing: .04em;
-      color: var(--ink-muted); text-decoration: none; white-space: nowrap;
-      padding: 14px 14px; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s;
-    }
-    .asi-subnav a:hover { color: var(--ink); }
-    .asi-subnav a.active { color: var(--vcol-deep); border-bottom-color: var(--vcol); }
-
-    .asi-section { padding-top: var(--s-7); }
-    .asi-h2 {
-      font-size: clamp(20px, 2.6vw, 26px); font-weight: 600;
-      letter-spacing: -.025em; line-height: 1.2; margin: 0 0 var(--s-3);
-    }
-    .asi-lead { font-size: 15.5px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 var(--s-5); max-width: 64ch; }
-    .asi-prose p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 0 0 var(--s-4); max-width: 66ch; }
-    .asi-prose strong { color: var(--ink); font-weight: 600; }
-
-    /* TL;DR callout */
-    .asi-tldr {
-      background: var(--vcol-lite);
-      border: 1px solid color-mix(in oklab, var(--vcol) 30%, transparent);
-      border-radius: var(--r-lg); padding: var(--s-6);
-      margin-top: var(--s-6);
-    }
-    .asi-tldr-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: var(--vcol-deep); margin-bottom: var(--s-3);
-    }
-    .asi-tldr-badge::before { content:""; width: 8px; height: 8px; border-radius: 50%; background: var(--vcol); }
-    .asi-tldr h2 { font-size: 20px; font-weight: 600; letter-spacing: -.02em; margin: 0 0 var(--s-3); }
-    .asi-tldr p { font-size: 15px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 var(--s-4); }
-    .asi-keyrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-3); }
-    .asi-key {
-      background: var(--bg-elev); border: 1px solid var(--line);
-      border-radius: var(--r-md); padding: 12px 14px;
-    }
-    .asi-key .k { display:block; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 5px; }
-    .asi-key .v { font-size: 13.5px; color: var(--ink); line-height: 1.4; font-weight: 500; }
-
-    /* At a glance facts */
-    .asi-glance { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
-    .asi-fact { background: var(--bg-elev); padding: 16px 18px; }
-    .asi-fact .k { display:block; font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
-    .asi-fact .v { font-size: 14.5px; color: var(--ink); line-height: 1.45; }
-
-    /* Scorecard explanation rows */
-    .asi-score-rows { display: flex; flex-direction: column; gap: 2px; margin-top: var(--s-5); border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
-    .asi-score-row { display: grid; grid-template-columns: 120px 44px 1fr; gap: 14px; align-items: center; padding: 14px 16px; background: var(--bg-elev); border-bottom: 1px solid var(--line); }
-    .asi-score-row:last-child { border-bottom: none; }
-    .asi-score-row .dim { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); font-weight: 500; }
-    .asi-score-chip { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--vcol-deep); background: var(--vcol-lite); border-radius: var(--r-sm); text-align: center; padding: 4px 0; font-variant-numeric: tabular-nums; }
-    .asi-score-row .why { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
-
-    /* Certification chips */
-    .asi-certs { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--s-5) 0; }
-    .asi-cert { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .03em; color: var(--vcol-deep); background: var(--vcol-lite); border: 1px solid color-mix(in oklab, var(--vcol) 28%, transparent); border-radius: var(--r-pill); padding: 6px 12px; font-weight: 500; }
-    .asi-cert svg { flex-shrink: 0; }
-
-    /* Product cards (richer) */
-    .asi-prods { display: flex; flex-direction: column; gap: 12px; }
-    .asi-pcard { display: grid; grid-template-columns: 1fr auto; gap: 12px 18px; align-items: start; background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 18px 20px; transition: border-color .15s, transform .12s var(--ease-out); }
-    .asi-pcard:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-    .asi-pcard-name { font-size: 16px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); margin-bottom: 3px; }
-    .asi-pcard-unit { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .03em; color: var(--ink-muted); }
-    .asi-pcard-note { grid-column: 1 / -1; font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; padding-top: 10px; border-top: 1px dashed var(--line); }
-    .asi-pcard-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-    .asi-pcard-price { font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: -.02em; color: var(--ink); }
-    .asi-pcard-price small { display:block; text-align: right; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .04em; color: var(--ink-muted); font-weight: 400; margin-top: 2px; }
-    .asi-buy { display: inline-flex; align-items: center; gap: 5px; padding: 8px 14px; background: var(--ink); color: var(--bg); border-radius: var(--r-pill); font-size: 11px; font-family: var(--font-mono); text-decoration: none; letter-spacing: .04em; font-weight: 500; white-space: nowrap; transition: background .15s, transform .08s; }
-    .asi-buy:hover { background: var(--accent); }
-    .asi-buy:active { transform: translateY(1px); }
-
-    /* Pros & cons */
-    .asi-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-    .asi-pc { border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5); background: var(--bg-elev); }
-    .asi-pc h3 { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; margin: 0 0 var(--s-3); font-family: var(--font-mono); letter-spacing: .04em; text-transform: uppercase; }
-    .asi-pc.pros h3 { color: #3a6b4a; }
-    [data-theme="dark"] .asi-pc.pros h3 { color: #a7d2a9; }
-    .asi-pc.cons h3 { color: var(--accent-deep); }
-    .asi-pc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-    .asi-pc li { position: relative; padding-left: 22px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
-    .asi-pc li::before { position: absolute; left: 0; top: 0; font-family: var(--font-mono); font-weight: 700; }
-    .asi-pc.pros li::before { content: "+"; color: #5ba672; }
-    .asi-pc.cons li::before { content: "–"; color: var(--accent); }
-
-    /* Audience */
-    .asi-aud { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
-    .asi-aud-card { border-radius: var(--r-lg); padding: var(--s-5); border: 1px solid var(--line); }
-    .asi-aud-card.good { background: var(--vcol-lite); border-color: color-mix(in oklab, var(--vcol) 25%, transparent); }
-    .asi-aud-card.bad { background: var(--surface); }
-    .asi-aud-card h3 { font-size: 14px; font-weight: 600; margin: 0 0 var(--s-3); letter-spacing: -.01em; }
-    .asi-aud-card p { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
-
-    /* Compare table */
-    .asi-compare { width: 100%; border-collapse: collapse; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; font-size: 13.5px; }
-    .asi-compare th, .asi-compare td { text-align: left; padding: 13px 14px; border-bottom: 1px solid var(--line); }
-    .asi-compare thead th { font-family: var(--font-mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); font-weight: 500; background: var(--surface); }
-    .asi-compare tbody tr:last-child td { border-bottom: none; }
-    .asi-compare .brand { font-weight: 600; color: var(--ink); }
-    .asi-compare tr.is-self { background: var(--vcol-lite); }
-    .asi-compare .scorecell { font-family: var(--font-display); font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
-    .asi-compare a { color: var(--accent); text-decoration: none; }
-    .asi-compare a:hover { text-decoration: underline; }
-
-    /* FAQ */
-    .asi-faq { display: flex; flex-direction: column; gap: 8px; }
-    .asi-faq details { border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg-elev); overflow: hidden; }
-    .asi-faq summary { list-style: none; cursor: pointer; padding: 15px 18px; font-size: 14.5px; font-weight: 500; color: var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-    .asi-faq summary::-webkit-details-marker { display: none; }
-    .asi-faq summary::after { content: "+"; font-family: var(--font-mono); font-size: 18px; color: var(--ink-muted); transition: transform .2s; flex-shrink: 0; }
-    .asi-faq details[open] summary::after { transform: rotate(45deg); }
-    .asi-faq details[open] summary { color: var(--vcol-deep); }
-    .asi-faq-body { padding: 0 18px 16px; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
-
-    /* CTA */
-    .asi-cta { margin-top: var(--s-7); background: var(--vcol-lite); border: 1px solid color-mix(in oklab, var(--vcol) 28%, transparent); border-radius: var(--r-xl); padding: var(--s-7) var(--s-6); text-align: center; }
-    .asi-cta h2 { font-size: clamp(20px, 2.6vw, 26px); font-weight: 600; letter-spacing: -.025em; margin: 0 0 var(--s-3); }
-    .asi-cta p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); max-width: 52ch; margin: 0 auto var(--s-5); }
-    .asi-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .asi-btn { display: inline-flex; align-items: center; gap: 6px; padding: 12px 22px; border-radius: var(--r-pill); font-size: 14px; font-weight: 500; text-decoration: none; transition: transform .1s, background .15s, border-color .15s; }
-    .asi-btn:active { transform: scale(.97); }
-    .asi-btn.primary { background: var(--accent); color: #fff; }
-    .asi-btn.primary:hover { background: var(--accent-deep); }
-    .asi-btn.ghost { background: transparent; border: 1px solid var(--line-strong); color: var(--ink); }
-    .asi-btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Catalog: category headers + highlight tags */
-    .asi-catalog { display: flex; flex-direction: column; }
-    .asi-pcat { display: flex; align-items: center; gap: 12px; margin: var(--s-6) 0 var(--s-3); }
-    .asi-pcat:first-child { margin-top: var(--s-2); }
-    .asi-pcat-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--vcol-deep); font-weight: 500; white-space: nowrap; }
-    .asi-pcat-line { flex: 1; height: 1px; background: var(--line); }
-    .asi-pcat-count { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 2px 9px; }
-    .asi-pcard-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 4px; }
-    .asi-pcard-head .asi-pcard-name { margin-bottom: 0; }
-    .asi-ptag { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-pill); padding: 2px 8px; font-weight: 500; white-space: nowrap; }
-    .asi-ptag.is-star { color: var(--vcol-deep); background: var(--vcol-lite); border-color: color-mix(in oklab, var(--vcol) 28%, transparent); }
-
-    /* Where to buy — dual options */
-    .asi-buybox { margin-top: var(--s-6); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 18px 20px; }
-    .asi-buybox-txt { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); max-width: 44ch; margin: 0; }
-    .asi-buybox-txt strong { color: var(--ink); font-weight: 600; }
-    .asi-buybox-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-
-    /* Brand alternatives — retention loop */
-    .asi-alts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .asi-alt { display: block; border: 1px solid var(--line); border-radius: var(--r-lg); padding: 16px 18px; background: var(--bg-elev); text-decoration: none; transition: border-color .15s, transform .12s var(--ease-out); }
-    .asi-alt:hover { border-color: var(--line-strong); transform: translateY(-2px); }
-    .asi-alt-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 7px; }
-    .asi-alt-name { font-size: 14.5px; font-weight: 600; color: var(--ink); letter-spacing: -.01em; }
-    .asi-alt-score { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: #3a6b4a; font-variant-numeric: tabular-nums; }
-    [data-theme="dark"] .asi-alt-score { color: #a7d2a9; }
-    .asi-alt-why { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
-
-    @media (max-width: 720px) {
-      .asi-herostats { grid-template-columns: 1fr 1fr; gap: var(--s-4) var(--s-6); width: 100%; }
-      .asi-buybox { flex-direction: column; align-items: flex-start; }
-      .asi-alts { grid-template-columns: 1fr; }
-      .asi-keyrow { grid-template-columns: 1fr; }
-      .asi-glance { grid-template-columns: 1fr; }
-      .asi-grid2, .asi-aud { grid-template-columns: 1fr; }
-      .asi-score-row { grid-template-columns: 90px 40px 1fr; gap: 10px; }
-      .asi-compare { font-size: 12.5px; }
-      .asi-compare th, .asi-compare td { padding: 10px 10px; }
-    }
-  </style>
+  <link rel="stylesheet" href="/brands/flagship.css?v=1" />
 </head>
 <body>
 <div id="site-header"></div>
@@ -356,8 +143,8 @@
   </section>
 
   <!-- ── In-page nav ──────────────────────────────────────────── -->
-  <nav class="asi-subnav" aria-label="On this page">
-    <div class="container asi-subnav-inner">
+  <nav class="bf-subnav" aria-label="On this page">
+    <div class="container bf-subnav-inner">
       <a href="#verdict">Verdict</a>
       <a href="#glance">At a glance</a>
       <a href="#scorecard">Scorecard</a>
@@ -371,37 +158,37 @@
   </nav>
 
   <div class="container">
-    <div class="asi-wrap">
+    <div class="bf-wrap">
 
       <!-- ── Verdict / TL;DR ────────────────────────────────────── -->
-      <section id="verdict" class="asi-tldr">
-        <div class="asi-tldr-badge">Recommended · 8.6 / 10</div>
+      <section id="verdict" class="bf-tldr">
+        <div class="bf-tldr-badge">Recommended · 8.6 / 10</div>
         <h2>The bottom line</h2>
         <p>AS-IT-IS is the closest thing India has to a "no-nonsense" supplement brand. It sells raw, mostly unflavoured ingredients — whey concentrate, creatine monohydrate, BCAAs — with no proprietary blends, minimal additives, and batch COAs you can actually read. That transparency, paired with the lowest price per gram in most of its categories, is why it sits at the top of our recommended tier.</p>
-        <div class="asi-keyrow">
-          <div class="asi-key"><span class="k">Buy it for</span><span class="v">Verified, affordable raw whey &amp; creatine</span></div>
-          <div class="asi-key"><span class="k">Standout</span><span class="v">Public NABL / Eurofins batch COAs</span></div>
-          <div class="asi-key"><span class="k">Keep in mind</span><span class="v">Unflavoured; WPC80 is concentrate, not isolate</span></div>
+        <div class="bf-keyrow">
+          <div class="bf-key"><span class="k">Buy it for</span><span class="v">Verified, affordable raw whey &amp; creatine</span></div>
+          <div class="bf-key"><span class="k">Standout</span><span class="v">Public NABL / Eurofins batch COAs</span></div>
+          <div class="bf-key"><span class="k">Keep in mind</span><span class="v">Unflavoured; WPC80 is concentrate, not isolate</span></div>
         </div>
       </section>
 
       <!-- ── At a glance ────────────────────────────────────────── -->
-      <section id="glance" class="asi-section">
+      <section id="glance" class="bf-section">
         <div class="bp-section-title">At a glance</div>
-        <div class="asi-glance">
-          <div class="asi-fact"><span class="k">Founded</span><span class="v">2016 · Bengaluru, India</span></div>
-          <div class="asi-fact"><span class="k">Category focus</span><span class="v">Raw whey, creatine, BCAAs, vitamins &amp; minerals</span></div>
-          <div class="asi-fact"><span class="k">Best for</span><span class="v">Value-focused lifters who read labels</span></div>
-          <div class="asi-fact"><span class="k">Watch for</span><span class="v">Mostly unflavoured; mixability takes effort</span></div>
-          <div class="asi-fact"><span class="k">Testing</span><span class="v">NABL / Eurofins · Trustified · public batch COAs</span></div>
-          <div class="asi-fact"><span class="k">Where to buy</span><span class="v">Official Amazon.in store &amp; brand website</span></div>
+        <div class="bf-glance">
+          <div class="bf-fact"><span class="k">Founded</span><span class="v">2016 · Bengaluru, India</span></div>
+          <div class="bf-fact"><span class="k">Category focus</span><span class="v">Raw whey, creatine, BCAAs, vitamins &amp; minerals</span></div>
+          <div class="bf-fact"><span class="k">Best for</span><span class="v">Value-focused lifters who read labels</span></div>
+          <div class="bf-fact"><span class="k">Watch for</span><span class="v">Mostly unflavoured; mixability takes effort</span></div>
+          <div class="bf-fact"><span class="k">Testing</span><span class="v">NABL / Eurofins · Trustified · public batch COAs</span></div>
+          <div class="bf-fact"><span class="k">Where to buy</span><span class="v">Official Amazon.in store &amp; brand website</span></div>
         </div>
       </section>
 
       <!-- ── Scorecard ──────────────────────────────────────────── -->
-      <section id="scorecard" class="asi-section">
+      <section id="scorecard" class="bf-section">
         <div class="bp-section-title">Scorecard — how AS-IT-IS earns 8.6</div>
-        <p class="asi-lead">Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. AS-IT-IS posts near-top marks on all five.</p>
+        <p class="bf-lead">Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. AS-IT-IS posts near-top marks on all five.</p>
 
         <div class="bp-dims">
           <div class="bp-dim">
@@ -446,40 +233,40 @@
           </div>
         </div>
 
-        <div class="asi-score-rows">
-          <div class="asi-score-row">
-            <span class="dim">Label accuracy</span><span class="asi-score-chip">9</span>
+        <div class="bf-score-rows">
+          <div class="bf-score-row">
+            <span class="dim">Label accuracy</span><span class="bf-score-chip">9</span>
             <span class="why">What's printed matches what independent testing finds. No proprietary blends to hide behind.</span>
           </div>
-          <div class="asi-score-row">
-            <span class="dim">Dosing</span><span class="asi-score-chip">8</span>
+          <div class="bf-score-row">
+            <span class="dim">Dosing</span><span class="bf-score-chip">8</span>
             <span class="why">Actives sit in clinically meaningful ranges — 5 g creatine, a true 2:1:1 BCAA, ~80% protein WPC.</span>
           </div>
-          <div class="asi-score-row">
-            <span class="dim">FSSAI</span><span class="asi-score-chip">9</span>
+          <div class="bf-score-row">
+            <span class="dim">FSSAI</span><span class="bf-score-chip">9</span>
             <span class="why">Licensed and compliant, with clean, accurate labelling and minimal additive declarations.</span>
           </div>
-          <div class="asi-score-row">
-            <span class="dim">3P testing</span><span class="asi-score-chip">9</span>
+          <div class="bf-score-row">
+            <span class="dim">3P testing</span><span class="bf-score-chip">9</span>
             <span class="why">NABL-accredited Eurofins India COAs published per batch, and an independent Trustified listing.</span>
           </div>
-          <div class="asi-score-row">
-            <span class="dim">Value (₹)</span><span class="asi-score-chip">9</span>
+          <div class="bf-score-row">
+            <span class="dim">Value (₹)</span><span class="bf-score-chip">9</span>
             <span class="why">Best price per gram of active in most categories — you pay for protein, not packaging.</span>
           </div>
         </div>
       </section>
 
       <!-- ── Testing & certification ────────────────────────────── -->
-      <section id="testing" class="asi-section asi-prose">
+      <section id="testing" class="bf-section bf-prose">
         <div class="bp-section-title">Testing &amp; certification</div>
         <p>This is where AS-IT-IS separates itself from most of the Indian market. Rather than relying on a single brand-commissioned report, it publishes <strong>per-batch certificates of analysis tested at NABL-accredited Eurofins India</strong> — the same lab infrastructure used by the more credible imported brands — and carries an independent <strong>Trustified</strong> listing on top of that.</p>
 
-        <div class="asi-certs">
-          <span class="asi-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>FSSAI licensed</span>
-          <span class="asi-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>NABL / Eurofins tested</span>
-          <span class="asi-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trustified listed</span>
-          <span class="asi-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Public batch COAs</span>
+        <div class="bf-certs">
+          <span class="bf-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>FSSAI licensed</span>
+          <span class="bf-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>NABL / Eurofins tested</span>
+          <span class="bf-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Trustified listed</span>
+          <span class="bf-cert"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Public batch COAs</span>
         </div>
 
         <div class="bp-testing-note">NABL-accredited (Eurofins India). Trustified-listed. Batch COAs published. FSSAI licensed. Raw ingredient positioning — minimal additives, unflavoured.</div>
@@ -488,337 +275,361 @@
       </section>
 
       <!-- ── Product range ──────────────────────────────────────── -->
-      <section id="range" class="asi-section">
+      <section id="range" class="bf-section">
         <div class="bp-section-title">The full product range</div>
-        <p class="asi-lead">The complete AS-IT-IS catalogue we track — around two dozen SKUs grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.</p>
+        <p class="bf-lead">The complete AS-IT-IS catalogue we track — around two dozen SKUs grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.</p>
 
-        <div class="asi-catalog">
+        <div class="bf-catalog">
 
           <!-- Proteins & Gainers -->
-          <div class="asi-pcat"><span class="asi-pcat-name">Proteins &amp; Gainers</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
-          <div class="asi-prods">
-            <div class="asi-pcard">
+          <div class="bf-pcat"><span class="bf-pcat-name">Proteins &amp; Gainers</span><span class="bf-pcat-line"></span><span class="bf-pcat-count">5</span></div>
+          <div class="bf-prods">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Whey Protein Concentrate 80%" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein Concentrate 80%</div><span class="asi-ptag is-star">Flagship</span></div>
-                <div class="asi-pcard-unit">1 kg · ~80% protein · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Whey Protein Concentrate 80%</div><span class="bf-ptag is-star">Flagship</span></div>
+                <div class="bf-pcard-unit">1 kg · ~80% protein · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹1,999<small>≈ ₹2.5 / g protein</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+concentrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹1,999<small>≈ ₹2.5 / g protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+concentrate" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">The flagship. A genuine WPC80 at a price most flavoured concentrates can't touch. Concentrate, not isolate — expect some lactose and fat; blend into milk or coffee to mask the plain taste.</p>
+              <p class="bf-pcard-note">The flagship. A genuine WPC80 at a price most flavoured concentrates can't touch. Concentrate, not isolate — expect some lactose and fat; blend into milk or coffee to mask the plain taste.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Whey Protein Isolate 90%" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein Isolate 90%</div><span class="asi-ptag">Higher protein %</span></div>
-                <div class="asi-pcard-unit">1 kg · ~90% protein · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Whey Protein Isolate 90%</div><span class="bf-ptag">Higher protein %</span></div>
+                <div class="bf-pcard-unit">1 kg · ~90% protein · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹2,799<small>≈ ₹3.1 / g protein</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹2,799<small>≈ ₹3.1 / g protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">A true isolate at ~90% protein with less lactose and fat. Worth the premium only if you're lactose-sensitive or counting every gram — otherwise WPC80 is the better value.</p>
+              <p class="bf-pcard-note">A true isolate at ~90% protein with less lactose and fat. Worth the premium only if you're lactose-sensitive or counting every gram — otherwise WPC80 is the better value.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Whey Protein (Flavoured + Enzymes)" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Whey Protein (Flavoured + Enzymes)</div><span class="asi-ptag">Flavoured</span></div>
-                <div class="asi-pcard-unit">1 kg · added digestive enzymes · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Whey Protein (Flavoured + Enzymes)</div><span class="bf-ptag">Flavoured</span></div>
+                <div class="bf-pcard-unit">1 kg · added digestive enzymes · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹2,199<small>flavour premium</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+flavoured" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹2,199<small>flavour premium</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+whey+protein+flavoured" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">For buyers who want AS-IT-IS testing with a drinkable taste. The added digestive enzymes help if plain concentrate leaves you bloated — you just pay a flavour premium over the raw tub.</p>
+              <p class="bf-pcard-note">For buyers who want AS-IT-IS testing with a drinkable taste. The added digestive enzymes help if plain concentrate leaves you bloated — you just pay a flavour premium over the raw tub.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Micellar Casein" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Micellar Casein</div><span class="asi-ptag">Slow-release</span></div>
-                <div class="asi-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Micellar Casein</div><span class="bf-ptag">Slow-release</span></div>
+                <div class="bf-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹2,499<small>nighttime protein</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+micellar+casein" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹2,499<small>nighttime protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+micellar+casein" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Slow-digesting protein for overnight or long gaps between meals. A useful tool rather than a daily driver — whey is cheaper per gram for general intake.</p>
+              <p class="bf-pcard-note">Slow-digesting protein for overnight or long gaps between meals. A useful tool rather than a daily driver — whey is cheaper per gram for general intake.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Raw Soy Protein Isolate 90%" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Raw Soy Protein Isolate 90%</div><span class="asi-ptag">Vegetarian · budget</span></div>
-                <div class="asi-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Raw Soy Protein Isolate 90%</div><span class="bf-ptag">Vegetarian · budget</span></div>
+                <div class="bf-pcard-unit">1 kg · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹999<small>lowest ₹ / g here</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+soy+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹999<small>lowest ₹ / g here</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+soy+protein+isolate" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">A complete plant protein at the lowest price per gram on this page. Soy isolate is a legitimate vegetarian option — ignore the outdated myths about it "crashing" testosterone at normal intakes.</p>
+              <p class="bf-pcard-note">A complete plant protein at the lowest price per gram on this page. Soy isolate is a legitimate vegetarian option — ignore the outdated myths about it "crashing" testosterone at normal intakes.</p>
             </div>
           </div>
 
           <!-- Creatine & Performance -->
-          <div class="asi-pcat"><span class="asi-pcat-name">Creatine &amp; Performance</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
-          <div class="asi-prods">
-            <div class="asi-pcard">
+          <div class="bf-pcat"><span class="bf-pcat-name">Creatine &amp; Performance</span><span class="bf-pcat-line"></span><span class="bf-pcat-count">5</span></div>
+          <div class="bf-prods">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Creatine Monohydrate" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Creatine Monohydrate</div><span class="asi-ptag is-star">Best value</span></div>
-                <div class="asi-pcard-unit">500 g · 100 servings · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Creatine Monohydrate</div><span class="bf-ptag is-star">Best value</span></div>
+                <div class="bf-pcard-unit">500 g · 100 servings · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹699<small>≈ ₹7 / 5 g serving</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+creatine+monohydrate" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹699<small>≈ ₹7 / 5 g serving</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+creatine+monohydrate" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Plain monohydrate — the most-researched, most cost-effective creatine form. Skip "HCl", "buffered", or flavoured versions at 3× the price. One of India's best creatine values.</p>
+              <p class="bf-pcard-note">Plain monohydrate — the most-researched, most cost-effective creatine form. Skip "HCl", "buffered", or flavoured versions at 3× the price. One of India's best creatine values.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Beta-Alanine" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Beta-Alanine</div><span class="asi-ptag">Endurance</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Beta-Alanine</div><span class="bf-ptag">Endurance</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹699<small>3–5 g / day</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+beta+alanine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹699<small>3–5 g / day</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+beta+alanine" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Useful for high-rep, 1–4 minute efforts at 3–5 g/day. The harmless tingling (paresthesia) is normal. The effect is real but modest — don't expect whey-level returns.</p>
+              <p class="bf-pcard-note">Useful for high-rep, 1–4 minute efforts at 3–5 g/day. The harmless tingling (paresthesia) is normal. The effect is real but modest — don't expect whey-level returns.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS L-Citrulline / Citrulline Malate" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Citrulline / Citrulline Malate</div><span class="asi-ptag">Pumps</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">L-Citrulline / Citrulline Malate</div><span class="bf-ptag">Pumps</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹899<small>6–8 g pre-workout</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+citrulline" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹899<small>6–8 g pre-workout</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+citrulline" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Better-evidenced than arginine for blood-flow "pump" and endurance at 6–8 g. The sour taste is the main complaint with the unflavoured powder.</p>
+              <p class="bf-pcard-note">Better-evidenced than arginine for blood-flow "pump" and endurance at 6–8 g. The sour taste is the main complaint with the unflavoured powder.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS L-Arginine" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Arginine</div><span class="asi-ptag">Pre-workout</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">L-Arginine</div><span class="bf-ptag">Pre-workout</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹799<small>NO precursor</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+arginine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹799<small>NO precursor</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+arginine" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Popular for "pumps", but oral arginine is poorly absorbed — citrulline raises arginine levels more reliably. Buy this only if you specifically want arginine itself.</p>
+              <p class="bf-pcard-note">Popular for "pumps", but oral arginine is poorly absorbed — citrulline raises arginine levels more reliably. Buy this only if you specifically want arginine itself.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Caffeine Tablets 100 mg" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Caffeine Tablets 100 mg</div><span class="asi-ptag">Stimulant</span></div>
-                <div class="asi-pcard-unit">100 tablets · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Caffeine Tablets 100 mg</div><span class="bf-ptag">Stimulant</span></div>
+                <div class="bf-pcard-unit">100 tablets · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹349<small>≈ ₹3.5 / dose</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+caffeine+tablets" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹349<small>≈ ₹3.5 / dose</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+caffeine+tablets" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">The cheapest, most predictable pre-workout stimulant there is. 100 mg lets you dose precisely — far better value than a proprietary pre-workout blend.</p>
+              <p class="bf-pcard-note">The cheapest, most predictable pre-workout stimulant there is. 100 mg lets you dose precisely — far better value than a proprietary pre-workout blend.</p>
             </div>
           </div>
 
           <!-- Amino Acids & Recovery -->
-          <div class="asi-pcat"><span class="asi-pcat-name">Amino Acids &amp; Recovery</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
-          <div class="asi-prods">
-            <div class="asi-pcard">
+          <div class="bf-pcat"><span class="bf-pcat-name">Amino Acids &amp; Recovery</span><span class="bf-pcat-line"></span><span class="bf-pcat-count">5</span></div>
+          <div class="bf-prods">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS BCAA 2:1:1 Powder" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">BCAA 2:1:1 Powder</div><span class="asi-ptag">Standard 2:1:1</span></div>
-                <div class="asi-pcard-unit">400 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">BCAA 2:1:1 Powder</div><span class="bf-ptag">Standard 2:1:1</span></div>
+                <div class="bf-pcard-unit">400 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹1,199<small>true 2:1:1 ratio</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+bcaa" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹1,199<small>true 2:1:1 ratio</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+bcaa" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">A correctly proportioned 2:1:1 leucine:isoleucine:valine powder. Honestly dosed — but if you already hit your daily protein target, whole protein makes BCAAs largely redundant.</p>
+              <p class="bf-pcard-note">A correctly proportioned 2:1:1 leucine:isoleucine:valine powder. Honestly dosed — but if you already hit your daily protein target, whole protein makes BCAAs largely redundant.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS EAA (Essential Amino Acids)" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">EAA (Essential Amino Acids)</div><span class="asi-ptag">Full spectrum</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">EAA (Essential Amino Acids)</div><span class="bf-ptag">Full spectrum</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹999<small>all 9 essentials</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+eaa+essential+amino" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹999<small>all 9 essentials</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+eaa+essential+amino" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">All nine essential aminos, not just the three BCAAs — the more complete and better-evidenced choice for muscle protein synthesis if you use an intra-workout amino at all.</p>
+              <p class="bf-pcard-note">All nine essential aminos, not just the three BCAAs — the more complete and better-evidenced choice for muscle protein synthesis if you use an intra-workout amino at all.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS L-Glutamine" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Glutamine</div><span class="asi-ptag">Recovery</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">L-Glutamine</div><span class="bf-ptag">Recovery</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹699<small>evidence: weak</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+glutamine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹699<small>evidence: weak</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+glutamine" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Heavily marketed for "recovery" and gut health; the evidence in well-fed lifters is weak. Mild value at best unless you're in a genuinely catabolic state.</p>
+              <p class="bf-pcard-note">Heavily marketed for "recovery" and gut health; the evidence in well-fed lifters is weak. Mild value at best unless you're in a genuinely catabolic state.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS L-Carnitine L-Tartrate" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">L-Carnitine L-Tartrate</div><span class="asi-ptag">Fat metabolism</span></div>
-                <div class="asi-pcard-unit">100 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">L-Carnitine L-Tartrate</div><span class="bf-ptag">Fat metabolism</span></div>
+                <div class="bf-pcard-unit">100 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹799<small>best for veg diets</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+carnitine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹799<small>best for veg diets</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+l+carnitine" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Plays a real role in fat metabolism, but oral supplementation rarely changes body composition on its own. Most relevant for vegetarians with lower baseline intake.</p>
+              <p class="bf-pcard-note">Plays a real role in fat metabolism, but oral supplementation rarely changes body composition on its own. Most relevant for vegetarians with lower baseline intake.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Taurine" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Taurine</div><span class="asi-ptag">Endurance</span></div>
-                <div class="asi-pcard-unit">250 g · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Taurine</div><span class="bf-ptag">Endurance</span></div>
+                <div class="bf-pcard-unit">250 g · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹599<small>1–3 g / day</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+taurine" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹599<small>1–3 g / day</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+taurine" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Cheap, well-tolerated, and modestly supported for endurance and as a stimulant pairing at 1–3 g. A low-risk addition, not a game-changer.</p>
+              <p class="bf-pcard-note">Cheap, well-tolerated, and modestly supported for endurance and as a stimulant pairing at 1–3 g. A low-risk addition, not a game-changer.</p>
             </div>
           </div>
 
           <!-- Vitamins & Essentials -->
-          <div class="asi-pcat"><span class="asi-pcat-name">Vitamins &amp; Essentials</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">5</span></div>
-          <div class="asi-prods">
-            <div class="asi-pcard">
+          <div class="bf-pcat"><span class="bf-pcat-name">Vitamins &amp; Essentials</span><span class="bf-pcat-line"></span><span class="bf-pcat-count">5</span></div>
+          <div class="bf-prods">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Daily Multivitamin" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Daily Multivitamin</div><span class="asi-ptag">Daily base</span></div>
-                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Daily Multivitamin</div><span class="bf-ptag">Daily base</span></div>
+                <div class="bf-pcard-unit">60 tablets · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹499<small>nutritional floor</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+multivitamin" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹499<small>nutritional floor</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+multivitamin" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">A sensible nutritional floor, not a performance booster. Check the label uses D3 (not D2) — and don't expect it to replace a real diet.</p>
+              <p class="bf-pcard-note">A sensible nutritional floor, not a performance booster. Check the label uses D3 (not D2) — and don't expect it to replace a real diet.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Vitamin D3" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Vitamin D3</div><span class="asi-ptag">Deficiency</span></div>
-                <div class="asi-pcard-unit">60 capsules · cholecalciferol · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Vitamin D3</div><span class="bf-ptag">Deficiency</span></div>
+                <div class="bf-pcard-unit">60 capsules · cholecalciferol · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹399<small>high-value pick</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+vitamin+d3" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹399<small>high-value pick</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+vitamin+d3" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">India has a high vitamin-D deficiency burden, making this one of the higher-value items here. Correct D3 (cholecalciferol) form; pair with K2 if you supplement long-term.</p>
+              <p class="bf-pcard-note">India has a high vitamin-D deficiency burden, making this one of the higher-value items here. Correct D3 (cholecalciferol) form; pair with K2 if you supplement long-term.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Omega-3 Fish Oil" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Omega-3 Fish Oil</div><span class="asi-ptag">EPA + DHA</span></div>
-                <div class="asi-pcard-unit">90 softgels · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Omega-3 Fish Oil</div><span class="bf-ptag">EPA + DHA</span></div>
+                <div class="bf-pcard-unit">90 softgels · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹699<small>check EPA/DHA split</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+omega+3+fish+oil" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹699<small>check EPA/DHA split</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+omega+3+fish+oil" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Provides actual EPA+DHA — the forms that matter — not ALA. Compare the per-softgel EPA/DHA split, not the headline "fish oil" mg, which is the wrong number to judge.</p>
+              <p class="bf-pcard-note">Provides actual EPA+DHA — the forms that matter — not ALA. Compare the per-softgel EPA/DHA split, not the headline "fish oil" mg, which is the wrong number to judge.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Biotin 10,000 mcg" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Biotin 10,000 mcg</div><span class="asi-ptag">Hair &amp; skin</span></div>
-                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Biotin 10,000 mcg</div><span class="bf-ptag">Hair &amp; skin</span></div>
+                <div class="bf-pcard-unit">60 tablets · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹399<small>can skew lab tests</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+biotin+10000" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹399<small>can skew lab tests</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+biotin+10000" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Appropriately dosed for hair and skin support. One caveat: high-dose biotin can skew some blood tests — tell your doctor before bloodwork.</p>
+              <p class="bf-pcard-note">Appropriately dosed for hair and skin support. One caveat: high-dose biotin can skew some blood tests — tell your doctor before bloodwork.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS ZMA (Zinc + Magnesium + B6)" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">ZMA (Zinc + Magnesium + B6)</div><span class="asi-ptag">Sleep &amp; recovery</span></div>
-                <div class="asi-pcard-unit">90 capsules · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">ZMA (Zinc + Magnesium + B6)</div><span class="bf-ptag">Sleep &amp; recovery</span></div>
+                <div class="bf-pcard-unit">90 capsules · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹699<small>best if deficient</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+zma" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹699<small>best if deficient</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+zma" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Reasonable if you're low in zinc or magnesium; the "testosterone boost" claim only holds in deficient individuals. Useful, unglamorous recovery support.</p>
+              <p class="bf-pcard-note">Reasonable if you're low in zinc or magnesium; the "testosterone boost" claim only holds in deficient individuals. Useful, unglamorous recovery support.</p>
             </div>
           </div>
 
           <!-- Wellness & Herbs -->
-          <div class="asi-pcat"><span class="asi-pcat-name">Wellness &amp; Herbs</span><span class="asi-pcat-line"></span><span class="asi-pcat-count">4</span></div>
-          <div class="asi-prods">
-            <div class="asi-pcard">
+          <div class="bf-pcat"><span class="bf-pcat-name">Wellness &amp; Herbs</span><span class="bf-pcat-line"></span><span class="bf-pcat-count">4</span></div>
+          <div class="bf-prods">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Ashwagandha KSM-66" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Ashwagandha KSM-66</div><span class="asi-ptag is-star">Standardised extract</span></div>
-                <div class="asi-pcard-unit">60 capsules · 600 mg · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Ashwagandha KSM-66</div><span class="bf-ptag is-star">Standardised extract</span></div>
+                <div class="bf-pcard-unit">60 capsules · 600 mg · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹499<small>KSM-66, not raw powder</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+ashwagandha+ksm+66" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹499<small>KSM-66, not raw powder</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+ashwagandha+ksm+66" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Uses the standardised KSM-66 extract — the form with the most clinical backing for stress and sleep — rather than a generic root powder. A genuine differentiator at this price.</p>
+              <p class="bf-pcard-note">Uses the standardised KSM-66 extract — the form with the most clinical backing for stress and sleep — rather than a generic root powder. A genuine differentiator at this price.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Melatonin 10 mg" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Melatonin 10 mg</div><span class="asi-ptag">Sleep</span></div>
-                <div class="asi-pcard-unit">60 tablets · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Melatonin 10 mg</div><span class="bf-ptag">Sleep</span></div>
+                <div class="bf-pcard-unit">60 tablets · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹399<small>lower dose often enough</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+melatonin" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹399<small>lower dose often enough</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+melatonin" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Effective for shifting sleep timing (jet lag, shift work). 10 mg is more than most people need — 0.5–3 mg often works as well with fewer next-day grogginess complaints.</p>
+              <p class="bf-pcard-note">Effective for shifting sleep timing (jet lag, shift work). 10 mg is more than most people need — 0.5–3 mg often works as well with fewer next-day grogginess complaints.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Collagen Peptides" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Collagen Peptides</div><span class="asi-ptag">Joints &amp; skin</span></div>
-                <div class="asi-pcard-unit">200 g · hydrolysed · unflavoured · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Collagen Peptides</div><span class="bf-ptag">Joints &amp; skin</span></div>
+                <div class="bf-pcard-unit">200 g · hydrolysed · unflavoured · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹999<small>not a muscle protein</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+collagen+peptides" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹999<small>not a muscle protein</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+collagen+peptides" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">Hydrolysed peptides for skin and joint support; the evidence is promising but modest. Note collagen is not a complete muscle-building protein — keep your whey for that.</p>
+              <p class="bf-pcard-note">Hydrolysed peptides for skin and joint support; the evidence is promising but modest. Note collagen is not a complete muscle-building protein — keep your whey for that.</p>
             </div>
 
-            <div class="asi-pcard">
+            <div class="bf-pcard">
+              <div class="bf-pthumb"><img src="#" alt="AS-IT-IS Natural Peanut Butter" loading="lazy" onerror="this.style.display='none'"></div>
               <div>
-                <div class="asi-pcard-head"><div class="asi-pcard-name">Natural Peanut Butter</div><span class="asi-ptag is-star">Whole-food</span></div>
-                <div class="asi-pcard-unit">1 kg · unsweetened · Checked May 2026</div>
+                <div class="bf-pcard-head"><div class="bf-pcard-name">Natural Peanut Butter</div><span class="bf-ptag is-star">Whole-food</span></div>
+                <div class="bf-pcard-unit">1 kg · unsweetened · Checked May 2026</div>
               </div>
-              <div class="asi-pcard-right">
-                <div class="asi-pcard-price">₹399<small>best value on page</small></div>
-                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+peanut+butter" target="_blank" rel="nofollow noopener sponsored" class="asi-buy">Amazon.in ↗</a>
+              <div class="bf-pcard-right">
+                <div class="bf-pcard-price">₹399<small>best value on page</small></div>
+                <a href="https://www.amazon.in/s?k=as+it+is+nutrition+peanut+butter" target="_blank" rel="nofollow noopener sponsored" class="bf-buy">Amazon.in ↗</a>
               </div>
-              <p class="asi-pcard-note">The product that made AS-IT-IS a household name: just roasted peanuts, no added sugar or palm oil. A genuinely good whole-food protein-and-fat source — and the best value here.</p>
+              <p class="bf-pcard-note">The product that made AS-IT-IS a household name: just roasted peanuts, no added sugar or palm oil. A genuinely good whole-food protein-and-fat source — and the best value here.</p>
             </div>
           </div>
 
         </div>
 
         <!-- Where to buy — dual options -->
-        <div class="asi-buybox">
-          <p class="asi-buybox-txt"><strong>Where to buy authentic stock:</strong> use the official AS-IT-IS Amazon.in storefront or the brand's own website, and confirm a current batch COA before you check out. We don't publish discount codes we can't verify — check the official store for any live offer.</p>
-          <div class="asi-buybox-btns">
-            <a href="https://www.amazon.in/s?k=as+it+is+nutrition" target="_blank" rel="nofollow noopener sponsored" class="asi-btn primary">Check price on Amazon ↗</a>
-            <a href="https://www.asitisnutrition.com/" target="_blank" rel="nofollow noopener sponsored" class="asi-btn ghost">Buy direct from AS-IT-IS ↗</a>
+        <div class="bf-buybox">
+          <p class="bf-buybox-txt"><strong>Where to buy authentic stock:</strong> use the official AS-IT-IS Amazon.in storefront or the brand's own website, and confirm a current batch COA before you check out. We don't publish discount codes we can't verify — check the official store for any live offer.</p>
+          <div class="bf-buybox-btns">
+            <a href="https://www.amazon.in/s?k=as+it+is+nutrition" target="_blank" rel="nofollow noopener sponsored" class="bf-btn primary">Check price on Amazon ↗</a>
+            <a href="https://www.asitisnutrition.com/" target="_blank" rel="nofollow noopener sponsored" class="bf-btn ghost">Buy direct from AS-IT-IS ↗</a>
           </div>
         </div>
       </section>
 
       <!-- ── Pros & cons ────────────────────────────────────────── -->
-      <section id="proscons" class="asi-section">
+      <section id="proscons" class="bf-section">
         <div class="bp-section-title">Strengths &amp; limitations</div>
-        <div class="asi-grid2">
-          <div class="asi-pc pros">
+        <div class="bf-grid2">
+          <div class="bf-pc pros">
             <h3>Strengths</h3>
             <ul>
               <li>Per-batch COAs from NABL-accredited Eurofins, plus a Trustified listing</li>
@@ -828,7 +639,7 @@
               <li>Broad raw-ingredient range — proteins, creatine, aminos, vitamins &amp; wellness</li>
             </ul>
           </div>
-          <div class="asi-pc cons">
+          <div class="bf-pc cons">
             <h3>Limitations</h3>
             <ul>
               <li>Mostly unflavoured — taste and mixability take some effort</li>
@@ -841,14 +652,14 @@
       </section>
 
       <!-- ── Audience ───────────────────────────────────────────── -->
-      <section class="asi-section">
+      <section class="bf-section">
         <div class="bp-section-title">Is it right for you?</div>
-        <div class="asi-aud">
-          <div class="asi-aud-card good">
+        <div class="bf-aud">
+          <div class="bf-aud-card good">
             <h3>Good fit if you…</h3>
             <p>Want verified protein and creatine at the lowest honest price, don't mind unflavoured powder (or like controlling your own taste), and value a published COA over marketing claims.</p>
           </div>
-          <div class="asi-aud-card bad">
+          <div class="bf-aud-card bad">
             <h3>Look elsewhere if you…</h3>
             <p>Prioritise great-tasting, ready-to-shake flavours, specifically need a 90%+ whey isolate, or prefer the convenience formats and retail availability of a larger mainstream brand.</p>
           </div>
@@ -856,94 +667,94 @@
       </section>
 
       <!-- ── Compare ────────────────────────────────────────────── -->
-      <section id="compare" class="asi-section">
+      <section id="compare" class="bf-section">
         <div class="bp-section-title">How AS-IT-IS compares</div>
-        <p class="asi-lead">Against the other Indian brands in our recommended tier, AS-IT-IS leads on transparency and value. Nakpro is its closest rival on verified protein.</p>
-        <table class="asi-compare">
+        <p class="bf-lead">Against the other Indian brands in our recommended tier, AS-IT-IS leads on transparency and value. Nakpro is its closest rival on verified protein.</p>
+        <table class="bf-compare">
           <thead>
             <tr><th>Brand</th><th>NC score</th><th>Tier</th><th>Why</th></tr>
           </thead>
           <tbody>
             <tr class="is-self">
-              <td class="brand">AS-IT-IS Nutrition</td>
-              <td class="scorecell">8.6</td>
-              <td>Recommended</td>
-              <td>Best transparency &amp; price per gram; raw, unflavoured range</td>
+              <td class="brand" data-label="Brand">AS-IT-IS Nutrition</td>
+              <td class="scorecell" data-label="NC score">8.6</td>
+              <td data-label="Tier">Recommended</td>
+              <td data-label="Why">Best transparency &amp; price per gram; raw, unflavoured range</td>
             </tr>
             <tr>
-              <td class="brand"><a href="/brands/nakpro">Nakpro</a></td>
-              <td class="scorecell">8.2</td>
-              <td>Recommended</td>
-              <td>Eurofins/Trustified-verified protein; flavoured options</td>
+              <td class="brand" data-label="Brand"><a href="/brands/nakpro">Nakpro</a></td>
+              <td class="scorecell" data-label="NC score">8.2</td>
+              <td data-label="Tier">Recommended</td>
+              <td data-label="Why">Eurofins/Trustified-verified protein; flavoured options</td>
             </tr>
             <tr>
-              <td class="brand"><a href="/brands/muscleblaze">MuscleBlaze</a></td>
-              <td class="scorecell">7.8</td>
-              <td>Recommended</td>
-              <td>Widest availability; Biozyme line; mostly brand-commissioned testing</td>
+              <td class="brand" data-label="Brand"><a href="/brands/muscleblaze">MuscleBlaze</a></td>
+              <td class="scorecell" data-label="NC score">7.8</td>
+              <td data-label="Tier">Recommended</td>
+              <td data-label="Why">Widest availability; Biozyme line; mostly brand-commissioned testing</td>
             </tr>
           </tbody>
         </table>
-        <p class="asi-lead" style="margin-top:var(--s-4);">See the full ranking in the <a href="/pages/verified-brands" style="color:var(--accent);">Verified Brands database →</a></p>
+        <p class="bf-lead" style="margin-top:var(--s-4);">See the full ranking in the <a href="/pages/verified-brands" style="color:var(--accent);">Verified Brands database →</a></p>
       </section>
 
       <!-- ── FAQ ────────────────────────────────────────────────── -->
-      <section id="faq" class="asi-section">
+      <section id="faq" class="bf-section">
         <div class="bp-section-title">Frequently asked questions</div>
-        <div class="asi-faq">
+        <div class="bf-faq">
           <details>
             <summary>Is AS-IT-IS Nutrition a legit and safe brand?</summary>
-            <div class="asi-faq-body">Yes. AS-IT-IS is FSSAI licensed and publishes batch certificates of analysis tested at NABL-accredited Eurofins India. It's also listed by independent verifier Trustified. On our rubric it scores 8.6/10 with no flags — among the most transparent supplement brands sold in India.</div>
+            <div class="bf-faq-body">Yes. AS-IT-IS is FSSAI licensed and publishes batch certificates of analysis tested at NABL-accredited Eurofins India. It's also listed by independent verifier Trustified. On our rubric it scores 8.6/10 with no flags — among the most transparent supplement brands sold in India.</div>
           </details>
           <details>
             <summary>Is AS-IT-IS whey an isolate or a concentrate?</summary>
-            <div class="asi-faq-body">The flagship is Whey Protein Concentrate 80% (WPC80) — a concentrate at roughly 80% protein by weight, not an isolate. If you specifically need a 90%+ isolate, choose a dedicated WPI. For most goals, a well-tested WPC80 is the better value.</div>
+            <div class="bf-faq-body">The flagship is Whey Protein Concentrate 80% (WPC80) — a concentrate at roughly 80% protein by weight, not an isolate. If you specifically need a 90%+ isolate, choose a dedicated WPI. For most goals, a well-tested WPC80 is the better value.</div>
           </details>
           <details>
             <summary>Why is AS-IT-IS cheaper than most whey and creatine brands?</summary>
-            <div class="asi-faq-body">It sells raw, unflavoured ingredients with minimal additives and very little marketing spend. You're paying for protein and creatine rather than flavouring systems, proprietary blends, and influencer campaigns — which is why its price per gram of active is among the lowest in India.</div>
+            <div class="bf-faq-body">It sells raw, unflavoured ingredients with minimal additives and very little marketing spend. You're paying for protein and creatine rather than flavouring systems, proprietary blends, and influencer campaigns — which is why its price per gram of active is among the lowest in India.</div>
           </details>
           <details>
             <summary>Where can I buy authentic AS-IT-IS products?</summary>
-            <div class="asi-faq-body">Buy from the official AS-IT-IS storefront on Amazon.in or the brand's own website, and confirm a current batch COA is available for the product. Avoid unfamiliar third-party sellers to reduce the risk of expired or counterfeit stock.</div>
+            <div class="bf-faq-body">Buy from the official AS-IT-IS storefront on Amazon.in or the brand's own website, and confirm a current batch COA is available for the product. Avoid unfamiliar third-party sellers to reduce the risk of expired or counterfeit stock.</div>
           </details>
           <details>
             <summary>Does AS-IT-IS test for heavy metals and banned substances?</summary>
-            <div class="asi-faq-body">AS-IT-IS publishes batch COAs from NABL-accredited Eurofins India and is listed by Trustified. Testing scope varies by product and batch, so check the specific COA for the SKU you're buying to confirm exactly what was tested.</div>
+            <div class="bf-faq-body">AS-IT-IS publishes batch COAs from NABL-accredited Eurofins India and is listed by Trustified. Testing scope varies by product and batch, so check the specific COA for the SKU you're buying to confirm exactly what was tested.</div>
           </details>
           <details>
             <summary>Is unflavoured whey protein worth it?</summary>
-            <div class="asi-faq-body">It's a trade-off. Unflavoured whey mixes less pleasantly on its own but contains no sweeteners, flavours, or fillers, costs less per gram of protein, and lets you control taste by blending it into milk, coffee, or smoothies. If taste is your priority, a flavoured product may suit you better.</div>
+            <div class="bf-faq-body">It's a trade-off. Unflavoured whey mixes less pleasantly on its own but contains no sweeteners, flavours, or fillers, costs less per gram of protein, and lets you control taste by blending it into milk, coffee, or smoothies. If taste is your priority, a flavoured product may suit you better.</div>
           </details>
         </div>
       </section>
 
       <!-- ── Final verdict / CTA ────────────────────────────────── -->
-      <section class="asi-cta">
+      <section class="bf-cta">
         <h2>Our verdict</h2>
         <p>If you want verified, no-frills nutrition at the best honest price in India, AS-IT-IS is the default recommendation. You trade flavour and convenience for transparency and value — a trade most evidence-minded buyers will happily make.</p>
-        <div class="asi-cta-btns">
-          <a href="https://www.amazon.in/s?k=as+it+is+nutrition" target="_blank" rel="nofollow noopener sponsored" class="asi-btn primary">Shop AS-IT-IS on Amazon ↗</a>
-          <a href="/pages/verified-brands" class="asi-btn ghost">Compare all brands</a>
+        <div class="bf-cta-btns">
+          <a href="https://www.amazon.in/s?k=as+it+is+nutrition" target="_blank" rel="nofollow noopener sponsored" class="bf-btn primary">Shop AS-IT-IS on Amazon ↗</a>
+          <a href="/pages/verified-brands" class="bf-btn ghost">Compare all brands</a>
         </div>
       </section>
 
       <!-- ── Brand alternatives (retention loop) ────────────────── -->
-      <section id="alternatives" class="asi-section">
+      <section id="alternatives" class="bf-section">
         <div class="bp-section-title">If AS-IT-IS isn't the one</div>
-        <p class="asi-lead">Need flavour, a 90%+ isolate, or wider retail availability? These are the brands we'd send you to next — each one also clears our third-party-testing bar.</p>
-        <div class="asi-alts">
-          <a class="asi-alt" href="/brands/nakpro">
-            <div class="asi-alt-top"><span class="asi-alt-name">Nakpro</span><span class="asi-alt-score">8.2</span></div>
-            <p class="asi-alt-why">The closest rival on verified value — Eurofins/Trustified-tested protein, with the flavoured options AS-IT-IS doesn't make.</p>
+        <p class="bf-lead">Need flavour, a 90%+ isolate, or wider retail availability? These are the brands we'd send you to next — each one also clears our third-party-testing bar.</p>
+        <div class="bf-alts">
+          <a class="bf-alt" href="/brands/nakpro">
+            <div class="bf-alt-top"><span class="bf-alt-name">Nakpro</span><span class="bf-alt-score">8.2</span></div>
+            <p class="bf-alt-why">The closest rival on verified value — Eurofins/Trustified-tested protein, with the flavoured options AS-IT-IS doesn't make.</p>
           </a>
-          <a class="asi-alt" href="/brands/optimum-nutrition">
-            <div class="asi-alt-top"><span class="asi-alt-name">Optimum Nutrition</span><span class="asi-alt-score">8.0</span></div>
-            <p class="asi-alt-why">The strongest third-party certification stack on the India market, if you want a true isolate and budget is secondary.</p>
+          <a class="bf-alt" href="/brands/optimum-nutrition">
+            <div class="bf-alt-top"><span class="bf-alt-name">Optimum Nutrition</span><span class="bf-alt-score">8.0</span></div>
+            <p class="bf-alt-why">The strongest third-party certification stack on the India market, if you want a true isolate and budget is secondary.</p>
           </a>
-          <a class="asi-alt" href="/brands/muscleblaze">
-            <div class="asi-alt-top"><span class="asi-alt-name">MuscleBlaze</span><span class="asi-alt-score">7.8</span></div>
-            <p class="asi-alt-why">Widest retail availability and the Biozyme enzyme line — the pick if convenience and stock matter most.</p>
+          <a class="bf-alt" href="/brands/muscleblaze">
+            <div class="bf-alt-top"><span class="bf-alt-name">MuscleBlaze</span><span class="bf-alt-score">7.8</span></div>
+            <p class="bf-alt-why">Widest retail availability and the Biozyme enzyme line — the pick if convenience and stock matter most.</p>
           </a>
         </div>
       </section>
@@ -961,7 +772,7 @@
 <script>
   // Highlight the in-page subnav link for the section in view.
   (function () {
-    var links = Array.prototype.slice.call(document.querySelectorAll('.asi-subnav a'));
+    var links = Array.prototype.slice.call(document.querySelectorAll('.bf-subnav a'));
     if (!links.length || !('IntersectionObserver' in window)) return;
     var map = {};
     links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
