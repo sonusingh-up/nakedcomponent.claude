@@ -1131,4 +1131,498 @@ module.exports = {
     ],
   },
 
+  // ───────────────────────── HK Vitals ─────────────────────────
+  'hk-vitals': {
+    metaDesc: "Independent HK Vitals brand profile. NC Trust Score 6.4/10, Acceptable. Cheap and widely available via HealthKart, with a well-dosed biotin and a decent collagen — but the base multivitamin uses D2 (not D3), extracts are generic, and there's no public COA.",
+    ogDesc: "NC Trust Score 6.4/10. HK Vitals is cheap and everywhere via HealthKart, but the base multivitamin uses D2 not D3, extracts are generic, and there's no public COA.",
+    kicker: "Cheap and widely available, with a couple of genuinely fine products. The catches: the base multivitamin uses D2 (not D3), the herbal extracts are generic, and there's no public COA.",
+    thesis: "HK Vitals is HealthKart's in-house vitamin and wellness brand: affordable, widely available, and competent on a few products. But it's a value-not-quality play. The base multivitamin uses D2 (ergocalciferol) — a clear downgrade from D3 — the herbal extracts are generic and unstandardised, and there's no published independent COA. Some items (biotin, collagen) are fine; just don't expect premium formulation behind the friendly branding.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Affordable & available", ok: true },
+      { label: "India · Gurgaon · est. 2019", ok: false },
+      { label: "D2 multi · no public COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Cheap, widely-available basics" },
+      { k: "Standout", v: "Appropriately-dosed biotin & collagen" },
+      { k: "Keep in mind", v: "Base multi uses D2; generic extracts" },
+    ],
+    glance: [
+      { k: "Founded", v: "2019 · Gurgaon, India (HealthKart)" },
+      { k: "Category focus", v: "Multivitamins, biotin, collagen, fish oil" },
+      { k: "Best for", v: "Budget buyers wanting easy availability" },
+      { k: "Watch for", v: "Base multivitamin uses D2, not D3" },
+      { k: "Testing", v: "No independent COA; internal testing claimed" },
+      { k: "Where to buy", v: "HealthKart, Amazon.in" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. HK Vitals scores on value and availability; formulation choices (D2) and testing keep it acceptable.",
+    scoreWhys: {
+      labelAccuracy: "Labels are clear, but the formulation choices (D2 over D3) and generic extracts undercut quality.",
+      dosing: "Mixed: biotin is well-dosed, but the multivitamin's D2 form and generic herbs are downgrades.",
+      fssai: "Fully licensed HealthKart sub-brand.",
+      thirdParty: "No independent COA; internal testing claimed without public documentation.",
+      value: "Cheap and widely available, though you compromise on form and standardisation.",
+    },
+    testing: {
+      paras: [
+        "HK Vitals trades on <strong>HealthKart's reach</strong> — it's cheap, ubiquitous and clearly labelled. For a few products, like its appropriately-dosed biotin and a decent marine collagen, that's enough to be useful.",
+        "But the <strong>formulation and testing</strong> reveal its budget positioning. The base multivitamin uses <strong>D2 (ergocalciferol)</strong> — a meaningful downgrade from D3 — its herbal extracts are generic and unstandardised, and there's no published independent COA. Buy the few products it does well; don't assume premium quality across the range.",
+      ],
+      chips: ["FSSAI licensed", "HealthKart distribution", "India-manufactured"],
+    },
+    rangeLead: "The HK Vitals range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Vitamins", items: [
+        { name: "Multivitamin for Men", unit: "60 tablets", price: 399, pn: "uses D2", tag: "Uses D2", note: "A cheap daily multi — but it uses D2 (ergocalciferol), a downgrade from D3, and generic extracts. A basic floor, not an optimised formula.", q: "hk+vitals+multivitamin+men" },
+        { name: "Multivitamin for Women", unit: "60 tablets", price: 399, pn: "with iron", tag: "Daily base", note: "The women's version, tuned with iron. Same D2 and generic-extract caveats apply — adequate, not optimised.", q: "hk+vitals+multivitamin+women" },
+        { name: "Biotin 10,000 mcg", unit: "60 tablets", price: 399, pn: "appropriate", tag: "Well dosed", star: true, note: "Appropriately-dosed biotin for hair and skin — one of the better products. Note high-dose biotin can skew some blood tests.", q: "hk+vitals+biotin+10000" },
+        { name: "Vitamin C", unit: "60 tablets", price: 349, pn: "check the dose", tag: "Immune", note: "A reasonable vitamin C. Check the per-tablet dose against the ~1,000 mg mark.", q: "hk+vitals+vitamin+c" },
+      ]},
+      { name: "Wellness", items: [
+        { name: "Skin Radiance Marine Collagen", unit: "200 g", price: 999, pn: "modest evidence", tag: "Popular", star: true, note: "A popular marine collagen with vitamin C and biotin. Evidence is promising-but-modest; reasonably priced for the category.", q: "hk+vitals+skin+radiance+collagen" },
+        { name: "Fish Oil Omega-3", unit: "60 capsules", price: 499, pn: "check EPA/DHA", tag: "EPA + DHA", note: "Provides EPA+DHA; check the per-softgel split rather than the total fish-oil mg.", q: "hk+vitals+fish+oil" },
+        { name: "Ashwagandha", unit: "60 capsules", price: 399, pn: "not KSM-66", tag: "Generic extract", note: "A generic ashwagandha — not a named patented extract like KSM-66. A cheap baseline at best.", q: "hk+vitals+ashwagandha" },
+        { name: "Apple Cider Vinegar", unit: "60 capsules", price: 399, pn: "low evidence", tag: "Overhyped", note: "Low-evidence for weight or metabolism. Buy only if you specifically want it.", q: "hk+vitals+apple+cider+vinegar" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> HK Vitals is sold via HealthKart and Amazon.in. Note the base multivitamin uses D2 and there's no public COA — pick the products it does well (biotin, collagen). We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=hk+vitals",
+      directUrl: "https://www.healthkart.com/hk-vitals",
+      directLabel: "Buy from HealthKart",
+    },
+    pros: [
+      "Cheap and widely available via HealthKart",
+      "Appropriately-dosed biotin",
+      "Reasonably-priced marine collagen",
+      "Clear, easy-to-read labels",
+    ],
+    cons: [
+      "Base multivitamin uses D2 (ergocalciferol), not D3",
+      "Generic, unstandardised herbal extracts (e.g. ashwagandha)",
+      "No published independent COA",
+      "Some low-evidence products (ACV) in the range",
+    ],
+    audience: {
+      good: "Want cheap, easily-available basics and are happy to cherry-pick the products it does well (biotin, collagen, fish oil).",
+      bad: "Want optimised forms (D3 not D2), standardised herbal extracts, or independent testing.",
+    },
+    compareLead: "Among budget vitamin brands, HK Vitals is available but compromised on form; better-value rivals get the basics right.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, correct forms, broad range" },
+      { name: "Carbamide Forte", slug: "carbamide-forte", score: 6.8, tier: "Acceptable", why: "Better value; real 1,000 mg C and KSM-66" },
+      { name: "HK Vitals", score: 6.4, tier: "Acceptable", why: "Cheap and available; base multi uses D2, no public COA", self: true },
+      { name: "TrueBasics", slug: "truebasics", score: 6.0, tier: "Acceptable", why: "Sister brand; correct D3 but no public COA" },
+    ],
+    faq: [
+      { q: "Is HK Vitals multivitamin good?", a: "It's cheap and widely available, but the base multivitamin uses D2 (ergocalciferol), a downgrade from D3, with generic extracts. Adequate as a floor; not an optimised formula. The biotin and collagen are the brand's better products." },
+      { q: "Does HK Vitals use D2 or D3?", a: "Its base multivitamin uses D2 (ergocalciferol), which is less effective at raising vitamin D levels than D3. If vitamin D is your priority, choose a dedicated D3 product instead." },
+      { q: "Is HK Vitals third-party tested?", a: "No independent COA is published; HealthKart claims internal testing without public documentation. That's the main reason it sits in the acceptable tier." },
+      { q: "HK Vitals or Carbamide Forte?", a: "Carbamide Forte, for value-conscious buyers — its key products are correctly dosed (real 1,000 mg C, KSM-66 ashwagandha, D3), whereas HK Vitals' base multi uses D2 and generic extracts. Neither publishes an independent COA." },
+    ],
+    verdict: "HK Vitals is a budget, availability-led brand with a few genuinely fine products (biotin, collagen) wrapped around compromised basics — a D2 multivitamin, generic extracts, and no published COA. Cherry-pick what it does well; for a correctly-formed multivitamin or standardised herbs, Carbamide Forte or NOW gives you more for not much more.",
+    altsLead: "Want correct forms or independent testing? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Better value with real 1,000 mg C, KSM-66 and correct D3." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested, correctly-formed vitamins with a long track record." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified correct forms with NABL testing." },
+    ],
+  },
+
+  // ───────────────────────── GNC ─────────────────────────
+  'gnc': {
+    metaDesc: "Independent GNC brand profile. NC Trust Score 6.3/10, Acceptable. The legacy name outshines the current India value — a couple of competent staples (Triple Strength Omega-3) amid generic products at premium prices, proprietary blends, and no India-specific certification.",
+    ogDesc: "NC Trust Score 6.3/10. GNC's legacy exceeds its current India value: a few competent staples, but premium prices, prop blends and no India certification.",
+    kicker: "A legacy name whose current India proposition doesn't justify the premium. A couple of staples (Triple Strength Omega-3) are competent; much of the rest is generic at inflated prices.",
+    thesis: "GNC trades on a legacy name, but the current India proposition doesn't justify the premium. A few products are competent — its Triple Strength Omega-3 is correctly dosed — but much of the range is generic at inflated prices (creatine at roughly 3× the domestic rate), some formulas use proprietary blends, and the India SKUs aren't independently certified. You're paying for the brand, not for testing or value.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Triple Strength Omega-3", ok: true },
+      { label: "USA · est. 1935", ok: false },
+      { label: "Premium · prop blends", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "A couple of competent staples (omega-3)" },
+      { k: "Standout", v: "Triple Strength Omega-3 is well dosed" },
+      { k: "Keep in mind", v: "Premium price; prop blends; uncertified" },
+    ],
+    glance: [
+      { k: "Founded", v: "1935 · Pittsburgh, PA, USA" },
+      { k: "Category focus", v: "Multivitamins, omega-3, whey, pre-workout" },
+      { k: "Best for", v: "Buyers who want a couple of specific GNC staples" },
+      { k: "Watch for", v: "Premium pricing and proprietary blends" },
+      { k: "Testing", v: "Some US products NSF/BSCG; India SKUs uncertified" },
+      { k: "Where to buy", v: "GNC India stores, Amazon.in" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. GNC scores adequately on compliance; value is poor and proprietary blends drag the rest.",
+    scoreWhys: {
+      labelAccuracy: "Mixed — some clean labels, but proprietary blends elsewhere obscure doses.",
+      dosing: "A few products are well-dosed (omega-3); others are generic at premium prices.",
+      fssai: "Import/franchise-compliant with stores and online presence in India.",
+      thirdParty: "Some US-market products are NSF/BSCG certified; India SKUs aren't independently certified for the domestic market.",
+      value: "Poor — the brand premium isn't justified by India-market testing; creatine costs ~3× the domestic rate.",
+    },
+    testing: {
+      paras: [
+        "GNC's name carries weight, and a handful of products live up to it — its <strong>Triple Strength Omega-3</strong> is correctly dosed, and some US-market GNC products carry NSF or BSCG certification.",
+        "But for India, the picture is weaker: the <strong>India-market SKUs aren't independently certified</strong>, several formulas use <strong>proprietary blends</strong> that hide doses, and the pricing carries a steep brand premium — generic creatine, for instance, sells at roughly three times the domestic rate. The legacy exceeds the current value proposition.",
+      ],
+      chips: ["FSSAI compliant", "Triple Strength Omega-3 well-dosed", "GNC India stores"],
+    },
+    rangeLead: "The GNC range sold in India, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Vitamins & Omega", items: [
+        { name: "Mega Men Multivitamin", unit: "90 tablets", price: 1799, pn: "prop blends", tag: "Premium multi", note: "A comprehensive men's multi — but premium-priced, and parts of the formula are proprietary blends. Adequate, overpriced.", q: "gnc+mega+men+multivitamin" },
+        { name: "Women's Ultra Mega", unit: "90 tablets", price: 1799, pn: "with iron", tag: "Premium multi", note: "The women's equivalent with iron. Same premium-and-prop-blend caveats.", q: "gnc+womens+ultra+mega" },
+        { name: "Triple Strength Omega-3", unit: "60 softgels", price: 1399, pn: "well dosed", tag: "Best pick", star: true, note: "Correctly-dosed high-EPA/DHA fish oil — genuinely the standout product. Compare the EPA/DHA per softgel to cheaper rivals before paying the GNC premium.", q: "gnc+triple+strength+omega+3" },
+      ]},
+      { name: "Proteins", items: [
+        { name: "Pro Performance 100% Whey", unit: "2 lb", price: 2999, pn: "uncertified for India", tag: "Whey blend", note: "A competent whey blend, but uncertified for India and priced above domestic verified options.", q: "gnc+pro+performance+whey" },
+        { name: "AMP Gold Series Whey", unit: "2 lb", price: 3499, pn: "premium branding", tag: "Premium whey", note: "The premium AMP line. Decent protein; you pay heavily for the branding.", q: "gnc+amp+gold+whey" },
+      ]},
+      { name: "Performance & Aminos", items: [
+        { name: "Pro Performance Creatine", unit: "317 g", price: 1299, pn: "~3× domestic", tag: "Overpriced", note: "Generic monohydrate at roughly 3× the domestic rate. The molecule is identical to far cheaper Indian creatine — poor value.", q: "gnc+pro+performance+creatine" },
+        { name: "AMP Pre-Workout", unit: "30 servings", price: 2499, pn: "read the doses", tag: "Stimulant", note: "A stimulant pre-workout; read the disclosed doses and watch for proprietary blends.", q: "gnc+amp+pre+workout" },
+        { name: "Pro Performance BCAA", unit: "30 servings", price: 1799, pn: "redundant if fed", tag: "BCAA", note: "A standard BCAA; redundant once daily protein is covered, and premium-priced.", q: "gnc+pro+performance+bcaa" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Buy authorised — and compare per-unit value.</strong> GNC India sells via its own stores and Amazon.in. Some US products are NSF/BSCG certified, but India SKUs aren't — and the brand premium is steep. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=gnc",
+      directUrl: "https://www.gnc.com/",
+      directLabel: "Buy from GNC",
+    },
+    pros: [
+      "Triple Strength Omega-3 is correctly dosed and genuinely good",
+      "Established stores and wide online availability in India",
+      "Some US-market products carry NSF/BSCG certification",
+      "Broad range across vitamins, protein and performance",
+    ],
+    cons: [
+      "Steep brand premium not justified by India-market value",
+      "Several formulas use proprietary blends that hide doses",
+      "India-market SKUs aren't independently certified",
+      "Commodities like creatine cost ~3× the domestic rate",
+    ],
+    audience: {
+      good: "Specifically want a GNC staple like its Triple Strength Omega-3 and value the store availability, accepting the premium.",
+      bad: "Care about value or independent testing — most of the range is generic at inflated prices, and domestic brands do it cheaper.",
+    },
+    compareLead: "GNC's legacy outshines its current value; verified brands deliver the same nutrients for far less.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested omega-3 and vitamins at a fraction of the price" },
+      { name: "Optimum Nutrition", slug: "optimum-nutrition", score: 8.0, tier: "Recommended", why: "Stronger certification on protein; better value" },
+      { name: "GNC", score: 6.3, tier: "Acceptable", why: "Legacy brand; premium prices, prop blends, uncertified for India", self: true },
+      { name: "MusclePharm", slug: "musclepharm", score: 4.5, tier: "Flagged", why: "US legacy too; prop blends and lapsed certification" },
+    ],
+    faq: [
+      { q: "Is GNC worth the price in India?", a: "For most products, no — the brand premium isn't justified by India-market testing, and items like creatine cost roughly 3× the domestic rate. The exception is a few competent staples like its Triple Strength Omega-3." },
+      { q: "Is GNC third-party tested for India?", a: "Some US-market GNC products carry NSF or BSCG certification, but the India-market SKUs aren't independently certified for the domestic market. Don't assume the US certification applies here." },
+      { q: "What's the best GNC product?", a: "Its Triple Strength Omega-3 is the standout — correctly dosed with high EPA/DHA. Even then, compare the per-softgel EPA/DHA against cheaper rivals before paying the premium." },
+      { q: "GNC or NOW Foods?", a: "NOW Foods, for value and breadth — it's GMP-tested and delivers the same nutrients at a fraction of GNC's price. GNC only makes sense if you specifically want one of its staples from a physical store." },
+    ],
+    verdict: "GNC is coasting on a legacy name. A couple of products — notably its Triple Strength Omega-3 — are genuinely good, but the range is mostly generic at premium prices, dotted with proprietary blends, and uncertified for India. Buy the specific staples if you must; for value and verification, NOW or a domestic brand wins comfortably.",
+    altsLead: "Want value or independent testing? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested omega-3 and vitamins at a fraction of the price." },
+      { slug: "optimum-nutrition", name: "Optimum Nutrition", score: 8.0, why: "Stronger certification on protein, bought authorised." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Best rupee-per-dose value on domestic vitamins." },
+    ],
+  },
+
+  // ───────────────────────── TrueBasics ─────────────────────────
+  'truebasics': {
+    metaDesc: "Independent TrueBasics brand profile. NC Trust Score 6.0/10, Acceptable. Gets the fundamentals right — a correct-D3 multivitamin and an adequately-dosed omega-3 — but shares the family weakness: no published COA, no independent testing, and some underdosed extras.",
+    ogDesc: "NC Trust Score 6.0/10. TrueBasics uses correct forms (D3 multi, real EPA+DHA omega-3) but publishes no COA and no independent testing — competent on trust.",
+    kicker: "Gets a couple of fundamentals right — a correct-D3 multivitamin and an adequately-dosed omega-3. The catch: no published COA, no independent testing, and some underdosed extras.",
+    thesis: "TrueBasics is HealthKart's more premium wellness label, and it gets a couple of fundamentals right — its omega-3 is adequately dosed and its multivitamin uses the correct D3 form. But it shares the family weakness: no published COA, no independent testing, and some products that are underdosed or built on generic extracts. Competent on paper, unverified in practice, and priced above its evidence.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Correct D3 multivitamin", ok: true },
+      { label: "India · Gurgaon · est. 2016", ok: false },
+      { label: "No public COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Correct-D3 multi & adequate omega-3" },
+      { k: "Standout", v: "Gets the fundamental forms right" },
+      { k: "Keep in mind", v: "No public COA; some underdosed extras" },
+    ],
+    glance: [
+      { k: "Founded", v: "2016 · Gurgaon, India (HealthKart)" },
+      { k: "Category focus", v: "Multivitamins, omega-3, joint & sleep" },
+      { k: "Best for", v: "Buyers wanting correct-form basics, easy availability" },
+      { k: "Watch for", v: "No independent COA; some underdosed products" },
+      { k: "Testing", v: "No published COA; no Trustified listing" },
+      { k: "Where to buy", v: "HealthKart, Amazon.in" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. TrueBasics scores on getting key forms right; testing and some underdosed products keep it acceptable.",
+    scoreWhys: {
+      labelAccuracy: "Correct forms on the core products (D3, EPA/DHA), but unverified by any independent COA.",
+      dosing: "Omega-3 and multivitamin are adequately dosed; some peripheral products are underdosed.",
+      fssai: "Fully licensed HealthKart sister brand.",
+      thirdParty: "No published COA and no Trustified listing; internal QC claimed.",
+      value: "Priced above the evidence — correct forms, but no testing premium justification.",
+    },
+    testing: {
+      paras: [
+        "TrueBasics gets the <strong>fundamentals right where it matters</strong>: its omega-3 delivers adequate EPA+DHA, and its multivitamin uses the correct <strong>D3</strong> form rather than the D2 you'll find on cheaper shelves. For the core products, the formulation is sound.",
+        "The weakness is <strong>verification</strong>: there's no published COA and no independent (Trustified-style) listing, and some peripheral products are underdosed or built on generic extracts. You're getting correct forms on trust, at a price that assumes more rigour than the brand publicly demonstrates.",
+      ],
+      chips: ["FSSAI licensed", "Correct D3 multivitamin", "Adequate EPA/DHA omega-3"],
+    },
+    rangeLead: "The TrueBasics range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Vitamins & Omega", items: [
+        { name: "Advanced Multivitamin", unit: "60 tablets", price: 699, pn: "right form", tag: "Correct D3", star: true, note: "A multivitamin that uses the correct D3 form — a real plus over D2-based budget multis. Sensible, if unremarkable and unverified.", q: "truebasics+multivitamin" },
+        { name: "Omega-3 Fish Oil", unit: "60 capsules", price: 849, pn: "180/120 split", tag: "Adequate EPA/DHA", star: true, note: "Adequately dosed EPA+DHA (around 180/120 per cap). One of the brand's better products.", q: "truebasics+omega+3+fish+oil" },
+        { name: "Vitamin D3", unit: "60 capsules", price: 499, pn: "cholecalciferol", tag: "Deficiency", note: "Correct cholecalciferol for India's deficiency burden. Fine; a generic D3 costs less.", q: "truebasics+vitamin+d3" },
+      ]},
+      { name: "Wellness", items: [
+        { name: "Glucosamine + Chondroitin", unit: "90 tablets", price: 999, pn: "mixed evidence", tag: "Joints", note: "A standard joint-support combo. Evidence is mixed-to-modest; reasonable to try for joint discomfort.", q: "truebasics+glucosamine+chondroitin" },
+        { name: "Sleep", unit: "30 tablets", price: 699, pn: "check the dose", tag: "Sleep", note: "A melatonin-based sleep aid; melatonin works for sleep timing — check the dose and the herbal extras.", q: "truebasics+sleep" },
+        { name: "Apple Cider Vinegar", unit: "60 capsules", price: 599, pn: "low evidence", tag: "Overhyped", note: "Low-evidence for weight or metabolism. Buy only if you specifically want it.", q: "truebasics+apple+cider+vinegar" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> TrueBasics via HealthKart and Amazon.in. The core products use correct forms, but there's no published COA — judge by the label. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=truebasics",
+      directUrl: "https://www.healthkart.com/truebasics",
+      directLabel: "Buy from HealthKart",
+    },
+    pros: [
+      "Multivitamin uses the correct D3 form (not D2)",
+      "Omega-3 is adequately dosed with real EPA+DHA",
+      "Widely available via HealthKart",
+      "Clear labelling on the core products",
+    ],
+    cons: [
+      "No published COA and no independent testing",
+      "Some peripheral products are underdosed",
+      "Generic extracts on parts of the range",
+      "Priced above what the (unverified) formulation justifies",
+    ],
+    audience: {
+      good: "Want correct-form basics — a D3 multivitamin and adequate omega-3 — with easy availability, and don't require an independent COA.",
+      bad: "Want independent testing, the lowest price, or fully clinically-dosed peripherals.",
+    },
+    compareLead: "TrueBasics gets the forms right but skips the testing; verified brands close that gap for similar money.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, correct forms, broad range" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Vegan-certified correct forms, NABL-tested" },
+      { name: "TrueBasics", score: 6.0, tier: "Acceptable", why: "Correct D3 and omega-3; no public COA, some underdosed", self: true },
+      { name: "HK Vitals", slug: "hk-vitals", score: 6.4, tier: "Acceptable", why: "Sister brand; cheaper but base multi uses D2" },
+    ],
+    faq: [
+      { q: "Is TrueBasics a good brand?", a: "It gets the core forms right — a correct-D3 multivitamin and an adequately-dosed omega-3 — which beats many budget rivals. The weaknesses are no published COA, no independent testing, and some underdosed peripheral products." },
+      { q: "Does TrueBasics multivitamin use D3?", a: "Yes — unlike its cheaper sister brand HK Vitals, TrueBasics' multivitamin uses the correct D3 form, which is more effective at raising vitamin D levels than D2." },
+      { q: "Is TrueBasics third-party tested?", a: "No. There's no published COA and no Trustified listing; the brand claims internal QC. That's the main reason it sits in the acceptable tier despite sound core formulations." },
+      { q: "TrueBasics or HK Vitals?", a: "TrueBasics for formulation — its multivitamin uses correct D3 and its omega-3 is well dosed. HK Vitals is cheaper but uses D2 in its base multi. Neither publishes an independent COA." },
+    ],
+    verdict: "TrueBasics is the better-formulated of HealthKart's wellness brands — correct D3, adequate omega-3 — but it stops short of the recommended tier on the thing that matters most: verification. With no published COA and some underdosed extras, it's competent-on-trust at a slight premium. Fine for correct-form basics; for tested transparency, look to NOW or Unived.",
+    altsLead: "Want independent testing or better value? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested, correctly-formed vitamins and omega-3." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified correct forms with NABL testing." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Best rupee-per-dose value on the basics." },
+    ],
+  },
+
+  // ───────────────────────── Neuherbs ─────────────────────────
+  'neuherbs': {
+    metaDesc: "Independent Neuherbs brand profile. NC Trust Score 5.8/10, Acceptable. A marketing-led brand with a couple of passable-value commodities (raw whey, omega-3), but generic Withania ashwagandha, low-evidence weight-loss trend products, and no independent testing.",
+    ogDesc: "NC Trust Score 5.8/10. Neuherbs is marketing-led: cheap raw whey and omega-3 are passable, but the ashwagandha is generic Withania and there's no independent testing.",
+    kicker: "A marketing-led wellness brand. A couple of commodities (raw whey, omega-3) are passable value, but the herbal core is generic and there's no independent testing.",
+    thesis: "Neuherbs is a marketing-led wellness brand that leans heavily on weight-management and 'natural' positioning. A few products are passable value — its raw whey and omega-3 — but the herbal core is generic (its ashwagandha is unstandardised Withania, not KSM-66 or Sensoril, with no withanolide disclosure), there's no independent testing, and several products (green coffee, ACV) chase low-evidence weight-loss trends. Acceptable only if price is your primary driver.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "A few passable-value items", ok: true },
+      { label: "India · Bengaluru · est. 2016", ok: false },
+      { label: "Marketing-led · no COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Cheap raw whey & omega-3, if price-led" },
+      { k: "Standout", v: "Occasional value on basics" },
+      { k: "Keep in mind", v: "Generic herbs, trend products, no COA" },
+    ],
+    glance: [
+      { k: "Founded", v: "2016 · Bengaluru, India" },
+      { k: "Category focus", v: "Weight-management herbs, whey, omega-3" },
+      { k: "Best for", v: "Strictly price-led buyers" },
+      { k: "Watch for", v: "Generic Withania, trend products, no testing" },
+      { k: "Testing", v: "No independent COA or third-party listing" },
+      { k: "Where to buy", v: "Amazon.in, brand site" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Neuherbs scores only on value; weak dosing, generic extracts and no testing hold it near the bottom of the acceptable tier.",
+    scoreWhys: {
+      labelAccuracy: "Labels are clear but the actives are generic and unstandardised, with no external verification.",
+      dosing: "Weak — generic extracts at undisclosed standardisation, and trend products with little active rationale.",
+      fssai: "Fully licensed domestic brand.",
+      thirdParty: "No independent COA and no third-party listing; a marketing-first operation.",
+      value: "Cheap, which is the main reason to consider it — quality is the trade-off.",
+    },
+    testing: {
+      paras: [
+        "Neuherbs is a <strong>marketing-led</strong> brand built around weight-management and 'natural' positioning. A couple of its commodity products — raw whey, omega-3 — are passable value if price is all you care about.",
+        "But the substance is thin: its <strong>ashwagandha is generic Withania</strong>, unstandardised and with no withanolide disclosure (not KSM-66 or Sensoril), several products chase <strong>low-evidence weight-loss trends</strong> (green coffee, ACV), and there's <strong>no independent COA or third-party listing</strong>. It clears the acceptable bar on price alone.",
+      ],
+      chips: ["FSSAI licensed", "India-manufactured"],
+    },
+    rangeLead: "The Neuherbs range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Herbs & Weight", items: [
+        { name: "True Ashwagandha", unit: "60 capsules", price: 349, pn: "not KSM-66", tag: "Generic extract", note: "Generic Withania — withanolide content isn't disclosed, and it's not KSM-66 or Sensoril. A cheap baseline, nothing more.", q: "neuherbs+true+ashwagandha" },
+        { name: "Green Coffee Beans", unit: "60 capsules", price: 399, pn: "weak evidence", tag: "Low evidence", note: "Marketed for weight loss; the evidence is weak and effects small. A trend product.", q: "neuherbs+green+coffee" },
+        { name: "Apple Cider Vinegar", unit: "60 capsules", price: 399, pn: "low evidence", tag: "Overhyped", note: "Low-evidence for weight or metabolism. Buy only if you specifically want it.", q: "neuherbs+apple+cider+vinegar" },
+      ]},
+      { name: "Protein & Omega", items: [
+        { name: "Raw Whey Protein", unit: "1 kg", price: 1699, pn: "unflavoured", tag: "Value pick", star: true, note: "Unflavoured raw whey — the most defensible product in the range on price. Verify the protein percentage; testing is internal only.", q: "neuherbs+raw+whey+protein" },
+        { name: "Deep Sea Omega-3", unit: "60 capsules", price: 699, pn: "check EPA/DHA", tag: "EPA + DHA", note: "Provides EPA+DHA; check the per-softgel split against dedicated omega-3 brands.", q: "neuherbs+omega+3" },
+      ]},
+      { name: "Vitamins", items: [
+        { name: "Multivitamin", unit: "60 tablets", price: 399, pn: "check the D form", tag: "Daily base", note: "A cheap daily multi; check the D form and treat the label at face value.", q: "neuherbs+multivitamin" },
+        { name: "Biotin", unit: "60 tablets", price: 349, pn: "unverified", tag: "Hair & skin", note: "A budget biotin; appropriately dosed but, like the rest, unverified.", q: "neuherbs+biotin" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Neuherbs via Amazon.in and its brand site. Note the herbal extracts are generic and there's no independent COA — the draw is price. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=neuherbs",
+      directUrl: "https://neuherbs.com/",
+      directLabel: "Buy from Neuherbs",
+    },
+    pros: [
+      "Low prices across the range",
+      "Raw whey and omega-3 are passable value",
+      "FSSAI licensed and widely available on marketplaces",
+      "Clear, simple labels",
+    ],
+    cons: [
+      "Ashwagandha is generic Withania — no withanolide disclosure",
+      "Several low-evidence weight-loss trend products",
+      "No independent COA or third-party listing",
+      "Marketing leans harder than the formulations justify",
+    ],
+    audience: {
+      good: "Are strictly price-led, want cheap raw whey or omega-3, and don't rely on standardised herbal doses or independent testing.",
+      bad: "Want standardised extracts, evidence-based formulations, or any independent verification.",
+    },
+    compareLead: "Near the floor of the acceptable tier, Neuherbs competes only on price; better brands cost a little more and verify far more.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Verified raw whey at the best price per gram" },
+      { name: "Carbamide Forte", slug: "carbamide-forte", score: 6.8, tier: "Acceptable", why: "Correctly-labelled KSM-66 and 1,000 mg C" },
+      { name: "Neuherbs", score: 5.8, tier: "Acceptable", why: "Cheap; generic Withania, trend products, no COA", self: true },
+      { name: "Himalaya Wellness", slug: "himalaya", score: 6.5, tier: "Acceptable", why: "Also generic extracts, but stronger heritage" },
+    ],
+    faq: [
+      { q: "Is Neuherbs ashwagandha real KSM-66?", a: "No — it's a generic Withania somnifera with no withanolide disclosure, not the patented KSM-66 or Sensoril extracts. A cheap baseline, not a clinically-standardised dose." },
+      { q: "Is Neuherbs third-party tested?", a: "No independent COA or third-party listing is published; it's a marketing-first brand. You're trusting the label entirely." },
+      { q: "Are Neuherbs weight-loss products effective?", a: "Products like green coffee and ACV are low-evidence for weight loss, with small effects at best. Treat them as trend products, not solutions." },
+      { q: "What's the best Neuherbs product?", a: "Its unflavoured raw whey is the most defensible on price, and the omega-3 is passable. The herbal and weight-loss lines are where the value falls away." },
+    ],
+    verdict: "Neuherbs is a price-led, marketing-heavy brand whose few defensible products (raw whey, omega-3) sit alongside generic herbs and low-evidence weight-loss trends, with no independent testing anywhere. It clears the acceptable bar on cheapness alone. If price is everything and you stick to the commodities, fine — otherwise spend a little more for a verified brand.",
+    altsLead: "Want verification or standardised doses for not much more? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Verified raw whey at the best price per gram, with per-batch COAs." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Correctly-labelled KSM-66 and real 1,000 mg vitamin C." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested standardised herbs and vitamins." },
+    ],
+  },
+
+  // ───────────────────────── Bold Care ─────────────────────────
+  'bold-care': {
+    metaDesc: "Independent Bold Care brand profile. NC Trust Score 5.8/10, Acceptable. A slickly-marketed men's-wellness D2C brand built more on celebrity endorsement than formulation — most doses are sub-clinical, pricing is premium, and there's no independent testing.",
+    ogDesc: "NC Trust Score 5.8/10. Bold Care nails men's-wellness branding, but most doses are sub-clinical, pricing is premium, and there's no independent testing.",
+    kicker: "A slickly-marketed men's-wellness brand built more on celebrity endorsement than formulation. The catches: sub-clinical doses, premium pricing, and no independent testing.",
+    thesis: "Bold Care is a slickly-marketed men's-wellness D2C brand built more on celebrity endorsement than formulation. The branding is polished and the category (men's sexual and general health) is underserved, but the substance is thin: most ingredient doses are sub-clinical, the products carry a clear premium, and there's no independent testing. A marketing-first brand priced above what its formulations support.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "FSSAI licensed", ok: true },
+      { label: "India · Mumbai · est. 2020", ok: false },
+      { label: "Sub-clinical doses · premium", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Polished men's-wellness branding" },
+      { k: "Standout", v: "Approachable, well-marketed category" },
+      { k: "Keep in mind", v: "Sub-clinical doses, premium, no COA" },
+    ],
+    glance: [
+      { k: "Founded", v: "2020 · Mumbai, India" },
+      { k: "Category focus", v: "Men's wellness, multivitamins, herbs" },
+      { k: "Best for", v: "Buyers drawn to the men's-health branding" },
+      { k: "Watch for", v: "Sub-clinical doses and premium pricing" },
+      { k: "Testing", v: "No independent COA published" },
+      { k: "Where to buy", v: "Brand site, Amazon.in" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Bold Care scores only on compliance; sub-clinical dosing, premium pricing and no testing hold it near the floor.",
+    scoreWhys: {
+      labelAccuracy: "Labels are clear, but several actives are present at sub-clinical doses, and nothing is independently verified.",
+      dosing: "Weak — many ingredients are below clinically-meaningful amounts, leaning on the marketing narrative.",
+      fssai: "Licensed men's-health D2C brand.",
+      thirdParty: "No independent COA published; marketing-led positioning.",
+      value: "Premium pricing that the (sub-clinical, unverified) formulations don't support.",
+    },
+    testing: {
+      paras: [
+        "Bold Care has done the <strong>marketing</strong> well — polished branding, celebrity endorsement, and an approachable take on a men's-health category that many buyers find awkward to navigate. As a brand experience, it's slick.",
+        "As a <strong>supplement</strong>, it's thin. Many ingredient doses sit <strong>below clinically-meaningful thresholds</strong>, the products carry a clear premium, and there's <strong>no independent COA</strong>. You're paying for branding and convenience more than for formulation rigour — judge the actual per-serving doses, not the positioning.",
+      ],
+      chips: ["FSSAI licensed", "India-manufactured"],
+    },
+    rangeLead: "The Bold Care supplement range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Men's Wellness", items: [
+        { name: "Daily Men's Multivitamin", unit: "60 tablets", price: 699, pn: "premium branding", tag: "Premium multi", note: "A men's daily multi at a premium price. Doses are unremarkable; you're paying for the branding more than the formula.", q: "bold+care+mens+multivitamin" },
+        { name: "Testosterone Booster", unit: "60 capsules", price: 899, pn: "sub-clinical", tag: "Overpromised", note: "A herbal 'T-booster' — the category is largely ineffective in non-deficient men, and the doses here are sub-clinical. Manage expectations.", q: "bold+care+testosterone+booster" },
+        { name: "Performance Capsules", unit: "60 capsules", price: 999, pn: "under-dosed", tag: "Marketing-led", note: "Marketed for stamina/performance; the actives are under-dosed relative to any evidence. Branding over substance.", q: "bold+care+performance" },
+        { name: "Shilajit", unit: "30 capsules", price: 899, pn: "limited disclosure", tag: "Prop blend", note: "A shilajit product; purity and dose disclosure are limited, and it's premium-priced.", q: "bold+care+shilajit" },
+      ]},
+      { name: "Herbs", items: [
+        { name: "Ashwagandha", unit: "60 capsules", price: 599, pn: "check standardisation", tag: "Generic extract", note: "A generic ashwagandha — check whether it names a standardised extract; the dose is modest.", q: "bold+care+ashwagandha" },
+        { name: "Biotin", unit: "60 tablets", price: 499, pn: "overpriced", tag: "Hair & skin", note: "A budget biotin in premium packaging; appropriately dosed but overpriced for what it is.", q: "bold+care+biotin" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Bold Care via its website and Amazon.in. Note doses are often sub-clinical and there's no independent COA — judge the per-serving amounts against the price. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=bold+care+supplement",
+      directUrl: "https://bold.care/",
+      directLabel: "Buy from Bold Care",
+    },
+    pros: [
+      "Polished, approachable men's-wellness branding",
+      "Makes an awkward category easy to shop",
+      "FSSAI licensed",
+      "Convenient D2C purchasing",
+    ],
+    cons: [
+      "Many ingredient doses are sub-clinical",
+      "Premium pricing the formulations don't support",
+      "No independent COA or testing",
+      "'Testosterone' and 'performance' claims outrun the evidence",
+    ],
+    audience: {
+      good: "Are drawn to the men's-wellness branding and want a convenient, approachable entry point — and you'll check the actual doses.",
+      bad: "Want clinically-meaningful doses, evidence-based formulations, independent testing, or value for money.",
+    },
+    compareLead: "Bold Care competes on branding, not formulation; for the same goals, correctly-dosed brands cost less and deliver more.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, correctly-dosed vitamins and herbs" },
+      { name: "Carbamide Forte", slug: "carbamide-forte", score: 6.8, tier: "Acceptable", why: "Correctly-dosed KSM-66 and vitamins at a fraction of the price" },
+      { name: "Bold Care", score: 5.8, tier: "Acceptable", why: "Slick men's branding; sub-clinical doses, premium, no COA", self: true },
+      { name: "Neuherbs", slug: "neuherbs", score: 5.8, tier: "Acceptable", why: "Also marketing-led with generic extracts" },
+    ],
+    faq: [
+      { q: "Do Bold Care testosterone boosters work?", a: "Herbal 'T-boosters' are largely ineffective in men who aren't deficient, and Bold Care's doses are sub-clinical on top of that. Manage expectations — the branding promises more than the formulation delivers." },
+      { q: "Is Bold Care third-party tested?", a: "No independent COA is published. It's a marketing-led D2C brand, so you're trusting the label and the branding rather than external verification." },
+      { q: "Is Bold Care worth the price?", a: "Generally no — the premium isn't supported by the (often sub-clinical) doses or any independent testing. A correctly-dosed brand like Carbamide Forte delivers more for less." },
+      { q: "What does Bold Care do well?", a: "Mainly branding and accessibility — it makes a men's-health category approachable. On formulation and value, correctly-dosed alternatives are a better buy." },
+    ],
+    verdict: "Bold Care is a marketing success more than a formulation one: polished branding around a useful category, undercut by sub-clinical doses, premium pricing and no independent testing. If the approachable men's-wellness angle gets you to take a basic multivitamin, fine — but check the doses, and know that a correctly-dosed, cheaper brand will serve you better.",
+    altsLead: "Want clinically-meaningful doses and better value? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Correctly-dosed KSM-66 and vitamins at a fraction of the price." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested, correctly-dosed vitamins and herbs." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified correct forms with NABL testing." },
+    ],
+  },
+
 };
