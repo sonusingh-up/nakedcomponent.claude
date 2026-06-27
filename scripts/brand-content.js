@@ -733,4 +733,402 @@ module.exports = {
     ],
   },
 
+  // ───────────────────────── Himalaya Wellness ─────────────────────────
+  'himalaya': {
+    metaDesc: "Independent Himalaya Wellness brand profile. NC Trust Score 6.5/10, Acceptable. A trusted, cheap Ayurvedic baseline — but the ashwagandha is generic, unstandardised Withania (not KSM-66/Sensoril), several products are proprietary blends, and there's no independent COA.",
+    ogDesc: "NC Trust Score 6.5/10. Himalaya is a trusted, inexpensive Ayurvedic baseline — but expect generic low-dose extracts, proprietary blends and no independent testing.",
+    kicker: "One of India's most trusted names, and a cheap, everywhere-available baseline. Judged on modern standards, though: generic low-dose extracts, proprietary blends and no independent COA.",
+    thesis: "Himalaya is one of India's most trusted names, and for good reason on heritage and regulatory compliance. But as a supplement brand judged on modern standards it underwhelms: its ashwagandha is generic Withania somnifera at low, unstandardised doses — not KSM-66 or Sensoril — and the withanolide content isn't disclosed. Several products are proprietary Ayurvedic blends that hide individual doses. It's a cheap, widely-available baseline, not a clinically-dosed intervention.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "FSSAI + AYUSH", ok: true },
+      { label: "India · Bengaluru · est. 1930", ok: false },
+      { label: "Low-dose generic extracts", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "A trusted, cheap Ayurvedic baseline" },
+      { k: "Standout", v: "Heritage brand, everywhere available" },
+      { k: "Keep in mind", v: "Low, unstandardised doses; prop blends" },
+    ],
+    glance: [
+      { k: "Founded", v: "1930 · Bengaluru, India" },
+      { k: "Category focus", v: "Ayurvedic herbs, wellness, some protein" },
+      { k: "Best for", v: "A trusted, inexpensive everyday baseline" },
+      { k: "Watch for", v: "Generic extracts; undisclosed withanolide %" },
+      { k: "Testing", v: "Internal QC only; no independent COA" },
+      { k: "Where to buy", v: "Pharmacies, Amazon.in, near-universal" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Himalaya scores on compliance and value; dosing and testing transparency are where it lags modern brands.",
+    scoreWhys: {
+      labelAccuracy: "Labels are compliant but vague — proprietary blends and undisclosed standardisation limit what you can verify.",
+      dosing: "Doses tend to be low and unstandardised; the active content of herbal extracts isn't disclosed.",
+      fssai: "Long-standing manufacturer with strong FSSAI and AYUSH regulatory compliance.",
+      thirdParty: "Internal QC only; no independent COA published for the supplement line.",
+      value: "Very cheap and everywhere — value is genuine, if you accept the low doses.",
+    },
+    testing: {
+      paras: [
+        "Himalaya's strength is <strong>regulatory heritage</strong>: a manufacturer since 1930 with strong FSSAI and AYUSH compliance and near-universal availability. As a household name, it clears the basics of legitimacy comfortably.",
+        "By modern supplement standards, though, the <strong>transparency is thin</strong>. The supplement line relies on internal QC with no independent COA, several products are proprietary Ayurvedic blends that obscure individual doses, and the herbal extracts are generic — its ashwagandha is unstandardised Withania, not KSM-66 or Sensoril, with no withanolide percentage on the label. Treat it as a low-dose baseline, not a clinical product.",
+      ],
+      chips: ["FSSAI licensed", "AYUSH compliant", "India-manufactured"],
+    },
+    rangeLead: "The Himalaya supplement and wellness range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Herbs & Ayurveda", items: [
+        { name: "Ashvagandha", unit: "60 tablets", price: 219, pn: "generic extract", tag: "Generic extract", note: "Generic Withania somnifera at a low dose — not standardised KSM-66 or Sensoril, and withanolide content isn't disclosed. A baseline, not a clinical dose.", q: "himalaya+ashwagandha+tablets" },
+        { name: "Shilajit Gold", unit: "20 capsules", price: 499, pn: "doses undisclosed", tag: "Prop blend", note: "A proprietary blend with shilajit and herbs — individual doses aren't disclosed. Buy for tradition, not transparency.", q: "himalaya+shilajit+gold" },
+        { name: "Tulsi", unit: "60 capsules", price: 150, pn: "unstandardised", tag: "Adaptogen", note: "Holy basil for stress and immunity — a reasonable traditional herb at a low price, with the usual unstandardised caveat.", q: "himalaya+tulsi" },
+        { name: "Triphala", unit: "60 tablets", price: 150, pn: "mild effect", tag: "Digestive", note: "A classic three-fruit Ayurvedic digestive. Inexpensive and traditional; effects are mild and not clinically dosed.", q: "himalaya+triphala" },
+        { name: "Brahmi", unit: "60 tablets", price: 160, pn: "modest dose", tag: "Cognitive", note: "Bacopa for memory support. Traditional use is real; the dose and standardisation here are modest.", q: "himalaya+brahmi" },
+      ]},
+      { name: "Wellness", items: [
+        { name: "Liv.52", unit: "100 tablets", price: 140, pn: "iconic", tag: "Heritage", star: true, note: "Himalaya's iconic liver-support blend, used for decades. A proprietary herbal mix — popular and cheap, though rigorous modern evidence is limited.", q: "himalaya+liv+52" },
+        { name: "Quista Pro Whey", unit: "1 kg", price: 1999, pn: "outside core", tag: "Protein", note: "Himalaya's whey protein. A reasonable entry, but it's outside the brand's herbal core and undercut by dedicated, better-tested protein brands.", q: "himalaya+quista+pro+whey" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Himalaya is sold in virtually every pharmacy and on Amazon.in. Note the supplement line publishes no independent COA and uses generic, unstandardised extracts — judge by the (limited) label detail. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=himalaya+wellness",
+      directUrl: "https://himalayawellness.in/",
+      directLabel: "Buy from Himalaya",
+    },
+    pros: [
+      "Trusted heritage brand with strong FSSAI/AYUSH compliance",
+      "Extremely cheap and available almost everywhere",
+      "A reasonable low-cost baseline for common Ayurvedic herbs",
+      "Liv.52 has a long, popular track record",
+    ],
+    cons: [
+      "Ashwagandha and other extracts are generic and unstandardised",
+      "Withanolide and active percentages not disclosed",
+      "Several proprietary blends hide individual ingredient doses",
+      "No independent COA for the supplement line",
+    ],
+    audience: {
+      good: "Want an inexpensive, widely-trusted Ayurvedic baseline and aren't relying on a standardised clinical dose.",
+      bad: "Want a clinically-dosed, standardised extract (KSM-66/Sensoril ashwagandha) or independently-tested transparency.",
+    },
+    compareLead: "For standardised herbal extracts, Himalaya's generic, low-dose approach trails brands that name and dose their actives.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested standardised extracts and vitamins" },
+      { name: "Carbamide Forte", slug: "carbamide-forte", score: 6.8, tier: "Acceptable", why: "Correctly-labelled KSM-66 at a budget price" },
+      { name: "Himalaya Wellness", score: 6.5, tier: "Acceptable", why: "Trusted heritage; generic low-dose extracts, prop blends", self: true },
+      { name: "Neuherbs", slug: "neuherbs", score: 5.8, tier: "Acceptable", why: "Also generic Withania; no independent testing" },
+    ],
+    faq: [
+      { q: "Is Himalaya ashwagandha good?", a: "It's a generic, unstandardised Withania somnifera at a low dose — not KSM-66 or Sensoril, and the withanolide content isn't disclosed. Fine as a cheap traditional baseline, but not a clinically-dosed extract." },
+      { q: "Is Himalaya third-party tested?", a: "The supplement line relies on internal QC and publishes no independent COA. Himalaya's strength is regulatory heritage (FSSAI/AYUSH), not independent verification." },
+      { q: "Is Liv.52 effective?", a: "Liv.52 is a decades-old, widely-used herbal liver-support blend. It's popular and inexpensive, but it's a proprietary mix and rigorous modern clinical evidence is limited — use it with realistic expectations." },
+      { q: "Himalaya or Carbamide Forte for ashwagandha?", a: "Carbamide Forte, if you want a clinically-relevant dose — it correctly labels KSM-66 at 600 mg. Himalaya's is a cheaper generic extract at a lower, undisclosed standardisation." },
+    ],
+    verdict: "Himalaya is a trusted, cheap, everywhere-available baseline — and that's exactly how to treat it. Its herbal extracts are generic and low-dose, its blends proprietary, and its supplement line unverified by independent testing. For tradition and price it's fine; for a standardised, clinically-dosed extract, a brand like Carbamide Forte or NOW gives you far more certainty.",
+    altsLead: "Want standardised doses or independent testing? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Correctly-labelled KSM-66 ashwagandha at a budget price." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested standardised herbs and vitamins with a long track record." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified, correctly-formed essentials with NABL testing." },
+    ],
+  },
+
+  // ───────────────────────── Wellbeing Nutrition ─────────────────────────
+  'wellbeing-nutrition': {
+    metaDesc: "Independent Wellbeing Nutrition brand profile. NC Trust Score 6.5/10, Acceptable. The oral-strip 'Melts' format is genuinely useful for iron and B12, and D3+K2 uses correct forms — but it's premium-priced, marketing-heavy, and publishes no independent COA.",
+    ogDesc: "NC Trust Score 6.5/10. Wellbeing's oral-strip 'Melts' are a real differentiator for iron and B12, but the range is premium-priced and marketing outruns the evidence.",
+    kicker: "The oral-strip 'Melts' format is genuinely useful for iron and B12, and the D3+K2 uses correct forms. The catches: premium pricing, no public COA, and marketing that outruns the evidence.",
+    thesis: "Wellbeing Nutrition is a slick D2C brand whose oral-strip 'Melts' format is genuinely differentiated — for nutrients like iron and B12, a dissolvable strip can sidestep some GI absorption issues, and its D3+K2 melt uses correct forms. The problems are price and marketing: the products cost far more than capsule equivalents, and the wellness claims routinely overreach the evidence. Pay for the format where it actually helps; ignore the hype.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "D3+K2 correct forms", ok: true },
+      { label: "India · Mumbai · est. 2019", ok: false },
+      { label: "Premium · marketing-heavy", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Differentiated oral-strip iron & B12" },
+      { k: "Standout", v: "Melts format that aids absorption" },
+      { k: "Keep in mind", v: "Premium price; marketing overreaches" },
+    ],
+    glance: [
+      { k: "Founded", v: "2019 · Mumbai, India" },
+      { k: "Category focus", v: "Oral-strip melts, collagen, effervescents" },
+      { k: "Best for", v: "Buyers who value the strip format for iron/B12" },
+      { k: "Watch for", v: "Premium pricing and overreaching claims" },
+      { k: "Testing", v: "No published independent COA" },
+      { k: "Where to buy", v: "Brand site, Amazon.in" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Wellbeing scores on format and FSSAI compliance; value and testing are where it slips.",
+    scoreWhys: {
+      labelAccuracy: "Labels use correct forms (D3+K2, methyl-B12), but there's no independent COA to confirm them.",
+      dosing: "Doses are reasonable for the format, though some products prioritise novelty over potency.",
+      fssai: "Fully licensed D2C brand with a distinctive oral-strip delivery system.",
+      thirdParty: "No published independent COA; brand-commissioned testing claimed without disclosure.",
+      value: "Significantly more expensive than capsule equivalents for the same nutrients.",
+    },
+    testing: {
+      paras: [
+        "Wellbeing Nutrition's genuine innovation is <strong>delivery format</strong>: its 'Melts' oral strips dissolve in the mouth, which for nutrients like <strong>iron and vitamin B12</strong> can be a real advantage, sidestepping part of the GI absorption step. Its D3+K2 melt also uses the correct forms. The format is a legitimate differentiator.",
+        "Where it slips is <strong>value and verification</strong>. The brand publishes no independent COA, the products cost considerably more than capsule equivalents, and the marketing language routinely overreaches the clinical evidence. Buy it for the format where it genuinely helps; don't pay the premium for the claims.",
+      ],
+      chips: ["FSSAI licensed", "Correct forms (D3+K2, methyl-B12)", "Oral-strip delivery"],
+    },
+    rangeLead: "The Wellbeing Nutrition range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Melts & Strips", items: [
+        { name: "Slow Melts D3 + K2", unit: "60 melts", price: 699, pn: "correct forms", tag: "Correct forms", note: "Correct D3 + K2 (MK-7) in a slow-dissolving melt. Genuinely convenient, though a capsule D3+K2 costs far less.", url: "https://amzn.to/4tDCMkX" },
+        { name: "Melts Nano Iron", unit: "30 strips", price: 649, pn: "absorption aid", tag: "Best format use", star: true, note: "An oral-strip iron — one of the better uses of the format, easier on the gut than many iron tablets. Only supplement iron if a blood test indicates a need.", q: "wellbeing+nutrition+iron+melts" },
+        { name: "Melts Vitamin B12", unit: "30 strips", price: 599, pn: "methyl-B12", tag: "Vegan essential", note: "Methyl-B12 in a strip — a sensible delivery for a nutrient vegans and older adults often under-absorb.", q: "wellbeing+nutrition+b12+melts" },
+        { name: "Melts Sleep", unit: "30 strips", price: 599, pn: "check the dose", tag: "Sleep", note: "A melatonin + herbs sleep strip. Melatonin works for sleep timing; check the dose and don't over-rely on the herbal extras.", q: "wellbeing+nutrition+sleep+melts" },
+      ]},
+      { name: "Wellness", items: [
+        { name: "Marine Collagen", unit: "250 g", price: 1499, pn: "modest evidence", tag: "Joints & skin", note: "Hydrolysed marine collagen with vitamin C. Promising-but-modest evidence; premium-priced for what it is.", q: "wellbeing+nutrition+marine+collagen" },
+        { name: "Good Greens", unit: "effervescent", price: 999, pn: "not a veg substitute", tag: "Superfood", note: "An effervescent 'greens' blend. Pleasant, but a proprietary superfood mix is no substitute for eating vegetables.", q: "wellbeing+nutrition+good+greens" },
+        { name: "Apple Cider Vinegar Effervescent", unit: "20 tablets", price: 599, pn: "low evidence", tag: "Overhyped", note: "Effervescent ACV — convenient, but the weight/metabolism claims are low-evidence. Buy only if you specifically want it.", q: "wellbeing+nutrition+apple+cider+vinegar" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Wellbeing Nutrition's official website or Amazon.in storefront. Note there's no published independent COA, and the format carries a premium — pay for it where it genuinely helps (iron, B12). We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=wellbeing+nutrition",
+      directUrl: "https://wellbeingnutrition.com/",
+      directLabel: "Buy from Wellbeing",
+    },
+    pros: [
+      "Oral-strip 'Melts' format is genuinely useful for iron and B12 absorption",
+      "D3+K2 and B12 use the correct, well-absorbed forms",
+      "Slick, convenient products that are easy to take",
+      "FSSAI licensed with a distinctive delivery system",
+    ],
+    cons: [
+      "Significantly more expensive than capsule equivalents",
+      "Marketing claims routinely overreach the evidence",
+      "No published independent COA",
+      "Some low-evidence wellness products (ACV, greens)",
+    ],
+    audience: {
+      good: "Value the oral-strip format specifically for iron or B12, want convenient correct-form D3+K2, and don't mind paying a premium for delivery.",
+      bad: "Want the lowest cost per dose, require independent testing, or are swayed more by formulation than format.",
+    },
+    compareLead: "In D2C wellness, Wellbeing's format is a real differentiator, but value and testing trail the verified brands.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, correctly-dosed, far cheaper per dose" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Vegan-certified correct forms, NABL-tested" },
+      { name: "Wellbeing Nutrition", score: 6.5, tier: "Acceptable", why: "Differentiated oral-strip format; premium, no public COA", self: true },
+      { name: "HK Vitals", slug: "hk-vitals", score: 6.4, tier: "Acceptable", why: "Cheaper D2C range; base multi uses D2" },
+    ],
+    faq: [
+      { q: "Are Wellbeing Nutrition Melts worth it?", a: "For iron and B12, the oral-strip format genuinely helps absorption and is convenient. For D3+K2 and most else, a capsule does the same job for far less. Worth it where the format matters; overpriced where it doesn't." },
+      { q: "Is Wellbeing Nutrition third-party tested?", a: "No independent COA is published; the brand claims its own testing without public disclosure. The formulations use correct forms, but you're trusting the label." },
+      { q: "Is the oral-strip format actually better?", a: "For specific nutrients like iron and B12 it can be, by partly bypassing the GI absorption step. For most vitamins the benefit is marginal — it's mainly convenience." },
+      { q: "Why is Wellbeing Nutrition so expensive?", a: "You're paying for the novel delivery format, premium D2C branding and marketing. The same nutrients in capsule form are usually a fraction of the price." },
+    ],
+    verdict: "Wellbeing Nutrition gets one big thing genuinely right — the oral-strip format is a real advantage for iron and B12 — and pairs it with correct nutrient forms. But premium pricing, no published COA, and marketing that outruns the evidence keep it in the acceptable tier. Buy the Melts where the format actually helps; skip the hype and the overpriced wellness extras.",
+    altsLead: "Want lower prices or independent testing? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested, correctly-dosed vitamins and minerals at a fraction of the per-dose cost." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified, correctly-formed essentials with NABL testing." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Best rupee-per-dose value on the basics, if you'll accept no public COA." },
+    ],
+  },
+
+  // ───────────────────────── MyProtein ─────────────────────────
+  'myprotein': {
+    metaDesc: "Independent MyProtein brand profile. NC Trust Score 6.5/10, Acceptable. Strong headline price-to-protein on Impact Whey, but UK Informed Sport certification doesn't cover India-sold batches and grey-market risk is real — buy only from the official MyProtein.in channel.",
+    ogDesc: "NC Trust Score 6.5/10. MyProtein offers strong price-to-protein, but UK certification doesn't cover India batches — the value only holds if you buy from the official MyProtein.in channel.",
+    kicker: "Some of the best headline price-to-protein in the import segment. The catch: UK Informed Sport doesn't cover India batches, and grey-market risk is real — buy official only.",
+    thesis: "MyProtein offers some of the best headline price-to-protein in the import segment, and its Impact Whey is a perfectly decent everyday concentrate. The catch is verification: while UK-market products carry Informed Sport, that certification doesn't automatically apply to the batches sold in India, and grey-market units carry adulteration risk. Good value if — and only if — you buy from the official MyProtein.in channel.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Good price-to-protein", ok: true },
+      { label: "UK · est. 2004", ok: false },
+      { label: "India batches uncertified", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Cheap, decent everyday whey" },
+      { k: "Standout", v: "Strong headline price-to-protein" },
+      { k: "Keep in mind", v: "UK cert ≠ India batches; buy official" },
+    ],
+    glance: [
+      { k: "Founded", v: "2004 · Manchester, UK" },
+      { k: "Category focus", v: "Whey, isolate, creatine, aminos, vitamins" },
+      { k: "Best for", v: "Value buyers who'll use the official India channel" },
+      { k: "Watch for", v: "UK Informed Sport doesn't cover India batches" },
+      { k: "Testing", v: "Informed Sport (UK only); India batches uncertified" },
+      { k: "Where to buy", v: "Official MyProtein.in only" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. MyProtein scores on value and decent labelling; the India-specific testing gap caps it.",
+    scoreWhys: {
+      labelAccuracy: "Labels are generally accurate, but India-market batches aren't independently certified.",
+      dosing: "Sensible protein and creatine dosing across the core range.",
+      fssai: "Import-compliant, but sold partly via cross-border channels — verify the source.",
+      thirdParty: "Informed Sport applies to UK-market products; India batches aren't independently certified.",
+      value: "Strong headline value — frequent discounts — though shipping and authenticity caveats apply.",
+    },
+    testing: {
+      paras: [
+        "MyProtein's pitch is <strong>value</strong>, and on headline price-to-protein it delivers, especially during its frequent sales. Its UK-market products carry <strong>Informed Sport</strong> certification, a strong banned-substance programme.",
+        "The crucial caveat for Indian buyers: <strong>that certification doesn't automatically extend to the batches sold in India</strong>, and grey-market units (common for this brand) carry real adulteration and authenticity risk. The value only holds if you buy from the official MyProtein.in channel and treat unbranded marketplace listings with suspicion.",
+      ],
+      chips: ["FSSAI import compliant", "Informed Sport (UK market)", "Frequent verified discounts"],
+    },
+    rangeLead: "The MyProtein range sold in India, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on the official channel before buying.",
+    cats: [
+      { name: "Proteins & Gainers", items: [
+        { name: "Impact Whey Protein", unit: "1 kg", price: 1999, pn: "buy official", tag: "Value pick", star: true, note: "A decent everyday whey concentrate at a strong price — but only via MyProtein.in. UK Informed Sport doesn't cover India batches, so authenticity is on you.", q: "myprotein+impact+whey+protein" },
+        { name: "Impact Whey Isolate", unit: "1 kg", price: 2799, pn: "~90% protein", tag: "Isolate", note: "A solid isolate at ~90% protein. Same caveat — buy from the official channel for an authentic, traceable batch.", q: "myprotein+impact+whey+isolate" },
+        { name: "Weight Gainer Blend", unit: "2.5 kg", price: 2499, pn: "high-calorie", tag: "Mass gainer", note: "A carb-and-protein gainer. As ever, most people get cleaner calories from food plus whey.", q: "myprotein+weight+gainer" },
+      ]},
+      { name: "Creatine & Performance", items: [
+        { name: "Creatine Monohydrate", unit: "500 g", price: 799, pn: "Creapure option", tag: "Best value", star: true, note: "Plain monohydrate, often Creapure, at a genuinely good price. One of the better-value creatines if bought officially.", q: "myprotein+creatine+monohydrate" },
+        { name: "THE Pre-Workout", unit: "30 servings", price: 1999, pn: "disclosed doses", tag: "Stimulant", note: "A fully-dosed pre-workout with disclosed actives. Effective; judge by the per-serving doses.", q: "myprotein+the+pre+workout" },
+      ]},
+      { name: "Amino Acids", items: [
+        { name: "Essential BCAA 2:1:1", unit: "250 g", price: 999, pn: "redundant if fed", tag: "BCAA", note: "A standard 2:1:1; redundant once daily protein is covered.", q: "myprotein+bcaa" },
+      ]},
+      { name: "Vitamins", items: [
+        { name: "Alpha Men Multivitamin", unit: "120 tablets", price: 1199, pn: "sensible base", tag: "Sports multi", note: "A high-ingredient sports multivitamin. Comprehensive on paper; a sensible base rather than a performance aid.", q: "myprotein+alpha+men+multivitamin" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Buy official — MyProtein.in only.</strong> UK Informed Sport certification doesn't cover India-sold batches, and grey-market units carry real risk. Buy from the official India channel for an authentic, traceable product. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=myprotein+impact+whey",
+      directUrl: "https://www.myprotein.co.in/",
+      directLabel: "Buy from MyProtein India",
+    },
+    pros: [
+      "Strong headline price-to-protein, with frequent sales",
+      "UK-market products carry Informed Sport certification",
+      "Sensible dosing and disclosed pre-workout actives",
+      "Broad range covering protein, creatine, aminos and vitamins",
+    ],
+    cons: [
+      "UK certification doesn't apply to India-sold batches",
+      "Grey-market and authenticity risk is real for this brand",
+      "India-market batches aren't independently certified",
+      "Shipping and import variables can erode the headline value",
+    ],
+    audience: {
+      good: "Want strong value on everyday whey and creatine and will commit to buying only from the official MyProtein.in channel.",
+      bad: "Require India-specific certification, can't reliably source official stock, or want per-batch COAs.",
+    },
+    compareLead: "On price, MyProtein competes with the value leaders; on India-specific verification, it trails them.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Better value with per-batch COAs and no import risk" },
+      { name: "Nakpro", slug: "nakpro", score: 8.2, tier: "Recommended", why: "Independently verified domestic protein" },
+      { name: "Labrada", slug: "labrada", score: 6.8, tier: "Acceptable", why: "Label-honest import; also uncertified for India" },
+      { name: "MyProtein", score: 6.5, tier: "Acceptable", why: "Good price-to-protein; UK cert doesn't cover India batches", self: true },
+    ],
+    faq: [
+      { q: "Is MyProtein Impact Whey good value?", a: "On headline price it's strong, especially during sales. But the value only holds if you buy from the official MyProtein.in channel — UK certification doesn't cover India batches, and grey-market units carry authenticity risk." },
+      { q: "Is MyProtein certified for India?", a: "UK-market products carry Informed Sport, but that doesn't automatically apply to batches sold in India, which aren't independently certified. Buy official and treat marketplace listings with caution." },
+      { q: "Where should I buy MyProtein in India?", a: "Only from the official MyProtein.in channel. This brand is widely grey-marketed, so unfamiliar third-party listings carry real adulteration and authenticity risk." },
+      { q: "MyProtein or AS-IT-IS?", a: "AS-IT-IS gives you better value with per-batch COAs and no import risk. MyProtein can match it on headline price during sales, but only if you buy official — and you lose the independent COA. AS-IT-IS is the safer value pick." },
+    ],
+    verdict: "MyProtein is genuinely good value on paper, and its core whey and creatine are decent — but the India story is all about sourcing. With UK certification that doesn't cover India batches and a real grey-market problem, the value only survives if you buy strictly from MyProtein.in. For most buyers, a verified domestic brand delivers comparable value with far less authenticity risk.",
+    altsLead: "Want India-verified value without the import caveats? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Better value with per-batch COAs and zero import-authenticity risk." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Independently Trustified/Eurofins-verified protein at domestic prices." },
+      { slug: "optimum-nutrition", name: "Optimum Nutrition", score: 8.0, why: "If you want an import, the strongest certification stack — bought authorised." },
+    ],
+  },
+
+  // ───────────────────────── Scitron ─────────────────────────
+  'scitron': {
+    metaDesc: "Independent Scitron brand profile. NC Trust Score 6.5/10, Acceptable. A competent, fairly-priced domestic whey with reasonably honest labels — held back by brand-commissioned-only testing (no independent COA) and a pre-workout line that needs scrutiny.",
+    ogDesc: "NC Trust Score 6.5/10. Scitron is a competent, fairly-priced domestic whey with honest-ish labels — the gap is no independent COA, only brand-commissioned testing.",
+    kicker: "A competent, fairly-priced domestic whey with reasonably honest labels. The catches: no independent blind-purchase COA, and a pre-workout line that needs a careful read.",
+    thesis: "Scitron is a competent mid-table Indian protein brand: its labels are reasonably honest and its whey is acceptable for the price. The two things keeping it in the middle are testing and scrutiny — there's no independent blind-purchase COA on record (only brand-commissioned NABL), and the pre-workout line in particular needs a careful read of the actual disclosed doses. Decent, unremarkable, and best judged product-by-product.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Reasonable label honesty", ok: true },
+      { label: "India · Delhi · est. 2014", ok: false },
+      { label: "No independent COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Acceptable, fairly-priced domestic whey" },
+      { k: "Standout", v: "Reasonable label honesty" },
+      { k: "Keep in mind", v: "No independent COA; scrutinise pre-workouts" },
+    ],
+    glance: [
+      { k: "Founded", v: "2014 · Delhi, India" },
+      { k: "Category focus", v: "Whey, mass gainers, pre-workout, aminos" },
+      { k: "Best for", v: "Value buyers who'll check the specific product" },
+      { k: "Watch for", v: "Pre-workout doses; no independent COA" },
+      { k: "Testing", v: "Brand-commissioned NABL only; no blind-purchase COA" },
+      { k: "Where to buy", v: "Amazon.in, brand site" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Scitron scores on compliance and reasonable labelling; independent testing is the clear gap.",
+    scoreWhys: {
+      labelAccuracy: "Reasonably honest labels on the whey line, though unverified by independent testing.",
+      dosing: "Protein dosing is acceptable; pre-workouts need a careful read of disclosed actives.",
+      fssai: "Fully licensed India-manufactured protein brand.",
+      thirdParty: "Brand-commissioned NABL testing only; no independent blind-purchase COA on record.",
+      value: "Fairly priced for the category, undercut by raw-focused brands on pure ₹/g.",
+    },
+    testing: {
+      paras: [
+        "Scitron is a <strong>competent middle-of-the-table</strong> Indian protein brand. Its labels are reasonably honest, its whey is acceptable for the money, and it's fully FSSAI-licensed and India-manufactured.",
+        "What holds it back is <strong>independent verification</strong>: testing is brand-commissioned NABL, with no independently-initiated blind-purchase COA on record. The pre-workout line also warrants extra scrutiny — read the disclosed per-scoop doses rather than the marketing. Judge Scitron product-by-product, not as a blanket-verified range.",
+      ],
+      chips: ["FSSAI licensed", "Reasonably honest labels", "India-manufactured"],
+    },
+    rangeLead: "The Scitron range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Proteins & Gainers", items: [
+        { name: "Nitro Series Whey", unit: "1 kg", price: 2199, pn: "flavoured blend", tag: "Flagship", star: true, note: "Scitron's headline flavoured whey blend. Reasonable label honesty and taste; verify protein-per-serving, and note testing is brand-commissioned.", q: "scitron+nitro+series+whey" },
+        { name: "Advance Whey", unit: "1 kg", price: 1799, pn: "budget", tag: "Budget", note: "A cheaper whey for the price-conscious. Acceptable; check the protein percentage against raw-whey rivals.", q: "scitron+advance+whey+protein" },
+        { name: "Raw Whey Concentrate", unit: "1 kg", price: 1599, pn: "unflavoured", tag: "Best ₹ / g", star: true, note: "Unflavoured concentrate — the best value in Scitron's range, closest to the raw-whey model.", q: "scitron+raw+whey+concentrate" },
+        { name: "Mass Gainer", unit: "1 kg", price: 1399, pn: "carbs + protein", tag: "Mass gainer", note: "A carb-and-protein gainer. Most people get cleaner calories from food plus whey.", q: "scitron+mass+gainer" },
+      ]},
+      { name: "Creatine & Performance", items: [
+        { name: "Creatine Monohydrate", unit: "250 g", price: 699, pn: "correct form", tag: "Monohydrate", note: "Plain monohydrate, the correct form. Fairly priced; raw-focused brands undercut it per serving.", q: "scitron+creatine+monohydrate" },
+        { name: "Volcano Pre-Workout", unit: "250 g", price: 1299, pn: "read the doses", tag: "Scrutinise", note: "A stimulant pre-workout — read the disclosed per-scoop doses carefully and watch for proprietary-blend labelling.", q: "scitron+volcano+pre+workout" },
+      ]},
+      { name: "Amino Acids", items: [
+        { name: "BCAA", unit: "250 g", price: 999, pn: "redundant if fed", tag: "BCAA", note: "A flavoured 2:1:1; redundant once daily protein is covered.", q: "scitron+bcaa" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Scitron's official Amazon.in storefront or brand website. Testing is brand-commissioned with no independent COA — judge each product on its label. We don't publish discount codes we can't verify.",
+      amazon: "https://www.amazon.in/s?k=scitron",
+      directUrl: "https://www.scitron.com/",
+      directLabel: "Buy from Scitron",
+    },
+    pros: [
+      "Reasonably honest labels on the whey line",
+      "Acceptable, fairly-priced protein for the category",
+      "FSSAI licensed and India-manufactured",
+      "Raw Whey option offers genuine value",
+    ],
+    cons: [
+      "No independent blind-purchase COA — only brand-commissioned NABL",
+      "Pre-workout line needs careful dose scrutiny",
+      "Undercut on pure ₹/g by raw-focused brands",
+      "Little to distinguish it from many mid-table rivals",
+    ],
+    audience: {
+      good: "Want an acceptable, fairly-priced domestic whey, will check the specific product, and don't require independent blind-purchase testing.",
+      bad: "Want independently verified protein, or the absolute best price per gram — verified raw-whey brands serve you better.",
+    },
+    compareLead: "Among domestic proteins, Scitron is acceptable but unremarkable; the recommended brands add the independent testing it lacks.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Best value with per-batch COAs" },
+      { name: "Nakpro", slug: "nakpro", score: 8.2, tier: "Recommended", why: "Independently verified protein + amino profile" },
+      { name: "Steadfast Nutrition", slug: "steadfast", score: 7.6, tier: "Recommended", why: "Clean-label sports brand with batch COAs" },
+      { name: "Scitron", score: 6.5, tier: "Acceptable", why: "Acceptable protein, reasonable labels; no independent COA", self: true },
+    ],
+    faq: [
+      { q: "Is Scitron a good protein brand?", a: "It's an acceptable, fairly-priced domestic whey with reasonably honest labels. The main limitation is testing — brand-commissioned NABL only, no independent COA — so judge each product individually." },
+      { q: "Is Scitron third-party tested?", a: "Only by brand-commissioned NABL labs; there's no independently-initiated blind-purchase COA on record. That's the main reason it sits in the acceptable rather than recommended tier." },
+      { q: "Which Scitron protein is best value?", a: "The unflavoured Raw Whey Concentrate — it's the closest to the raw-whey model and the best price per gram in Scitron's range." },
+      { q: "Scitron or AS-IT-IS?", a: "AS-IT-IS, for most buyers — it offers better value with independent per-batch COAs. Scitron is a reasonable alternative if you want flavoured options, but you give up the independent testing." },
+    ],
+    verdict: "Scitron is a competent, fairly-priced domestic protein brand that does little wrong and little to stand out. With only brand-commissioned testing and a pre-workout line that needs scrutiny, it sits comfortably in the acceptable tier. Buy the Raw Whey for value if you like the brand — but a verified brand like AS-IT-IS or Nakpro gives you more certainty for similar money.",
+    altsLead: "Want independent testing or better value? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Best value with independent per-batch COAs." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Independently Trustified/Eurofins-verified protein with flavoured options." },
+      { slug: "steadfast", name: "Steadfast Nutrition", score: 7.6, why: "Clean-label sports brand with per-batch COAs." },
+    ],
+  },
+
 };
