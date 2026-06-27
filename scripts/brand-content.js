@@ -1625,4 +1625,490 @@ module.exports = {
     ],
   },
 
+  // ───────────────────────── OZiva ─────────────────────────
+  'oziva': {
+    metaDesc: "Independent OZiva brand profile. NC Trust Score 5.2/10, Flagged. A polished, heavily-marketed D2C wellness brand whose proprietary blends mask individual doses, with apparent underdosing, clinical-sounding claims and no published COA — flagged until it discloses doses and publishes independent testing.",
+    ogDesc: "NC Trust Score 5.2/10, Flagged. OZiva's polish outruns its transparency: proprietary blends hide doses, claims imply clinical evidence, and there's no published COA.",
+    kicker: "A polished, heavily-marketed D2C wellness brand — and that polish is the problem: proprietary blends hide individual doses, claims imply clinical evidence, and there's no published COA.",
+    thesis: "OZiva is a polished, heavily-marketed D2C wellness brand — and that polish is exactly the problem. Its formulas lean on proprietary blends that mask individual doses, the marketing implies clinical-grade evidence ('bioavailable', 'clean label') it doesn't publish a COA to back, and several actives appear underdosed. Its plant protein also costs more per gram than better, more transparent rivals. We flag it until it discloses doses and publishes independent testing — not because it's dangerous, but because you can't verify what you're paying a premium for.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Prop blends · no COA", ok: false },
+      { label: "India · Mumbai · est. 2016", ok: false },
+      { label: "Flagged — verify before buying", ok: false },
+    ],
+    keyrow: [
+      { k: "Markets itself as", v: "Clean-label plant nutrition for women" },
+      { k: "The problem", v: "Proprietary blends, underdosing, no COA" },
+      { k: "Do instead", v: "Buy a verified, transparent plant protein" },
+    ],
+    glance: [
+      { k: "Founded", v: "2016 · Mumbai, India" },
+      { k: "Category focus", v: "Plant protein, collagen, women's wellness" },
+      { k: "Best for", v: "Hard to recommend over verified rivals" },
+      { k: "Watch for", v: "Proprietary blends mask individual doses" },
+      { k: "Testing", v: "No independent COA published; no Trustified listing" },
+      { k: "Where to buy", v: "Brand site, Amazon.in (with the caveats)" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. OZiva's only strong dimension is FSSAI compliance; dosing, testing and verifiable value are where it's flagged.",
+    scoreWhys: {
+      labelAccuracy: "Proprietary blends prevent you from verifying individual ingredient doses against the claims.",
+      dosing: "Several actives appear underdosed, hidden inside blends that disclose only a combined weight.",
+      fssai: "Fully licensed — regulatory compliance is the one clear strength.",
+      thirdParty: "No independent COA; marketing implies clinical evidence the brand doesn't publish.",
+      value: "Plant protein costs more per gram than transparent rivals like AS-IT-IS or Nakpro.",
+    },
+    testing: {
+      paras: [
+        "OZiva's challenge isn't legality — it's <strong>verifiability</strong>. It's FSSAI-licensed and slickly produced, but its formulas lean heavily on <strong>proprietary blends</strong> that disclose only a combined weight, so you cannot confirm the dose of any single active. The marketing leans on terms like 'bioavailable' and 'clean label' that imply clinical-grade rigour.",
+        "What's missing is the evidence to match: <strong>no published independent COA</strong>, several actives that appear <strong>underdosed</strong>, and generic extracts behind premium positioning. We flag OZiva until it discloses per-ingredient doses and publishes independent testing. It isn't dangerous — you simply can't verify what you're paying a premium for.",
+      ],
+      chips: ["FSSAI licensed"],
+    },
+    rangeLead: "The OZiva range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Proteins & Blends", items: [
+        { name: "Plant Protein", unit: "500 g", price: 1399, pn: "blend obscures herbs", tag: "Prop blend", note: "A pea-protein-plus-herbs blend — but the herbal 'actives' are inside a proprietary blend, and the cost per gram of actual protein is higher than transparent rivals. You pay more, verify less.", q: "oziva+plant+protein+powder" },
+        { name: "Protein & Herbs for Women", unit: "500 g", price: 1499, pn: "underdosed herbs", tag: "Marketing-led", note: "Plant protein with a women's-wellness herbal blend. The protein is fine; the added herbs are underdosed inside a proprietary mix with no COA.", q: "oziva+protein+herbs+women" },
+      ]},
+      { name: "Beauty & Wellness", items: [
+        { name: "Plant-based Collagen Builder", unit: "250 g", price: 999, pn: "not collagen", tag: "Not collagen", note: "A 'collagen builder' (vitamin C + amino precursors), not collagen itself — a reasonable concept, but marketed in a way that implies more than it delivers.", q: "oziva+collagen+builder" },
+        { name: "Hair Vitamins", unit: "60 tablets", price: 699, pn: "below meaningful doses", tag: "Underdosed", note: "A hair-and-skin blend; several actives sit below meaningful doses inside the blend. Biotin aside, manage expectations.", q: "oziva+hair+vitamins" },
+        { name: "HerBalance for PCOS", unit: "60 capsules", price: 999, pn: "doses undisclosed", tag: "Overpromised", note: "Marketed for PCOS support with inositol and herbs. Inositol has some evidence, but the dose and the rest of the blend aren't transparently disclosed — discuss PCOS management with a doctor, not a label.", q: "oziva+herbalance" },
+      ]},
+      { name: "Vitamins", items: [
+        { name: "Daily Multivitamin", unit: "60 tablets", price: 699, pn: "unremarkable", tag: "Premium", note: "A premium-priced daily multi; check the forms and doses, which are unremarkable for the price.", q: "oziva+multivitamin" },
+        { name: "Men's Multivitamin", unit: "60 tablets", price: 699, pn: "premium", tag: "Premium", note: "The men's version; same premium-for-unremarkable caveat. A verified, cheaper multi does the job for less.", q: "oziva+mens+multivitamin" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Flagged — verify before you buy.</strong> If you choose OZiva despite the proprietary blends and absence of a published COA, buy from the official store and read the per-serving doses critically. We'd point most buyers to a transparent alternative below.",
+      amazon: "https://www.amazon.in/s?k=oziva",
+      directUrl: "https://oziva.in/",
+      directLabel: "OZiva official",
+    },
+    pros: [
+      "FSSAI licensed with polished, accessible branding",
+      "Plant-based and vegetarian-friendly across the range",
+      "Addresses genuinely underserved categories (women's wellness, PCOS)",
+      "Wide D2C availability and easy purchasing",
+    ],
+    cons: [
+      "Proprietary blends hide individual ingredient doses",
+      "Several actives appear underdosed for their claims",
+      "No published independent COA to back clinical-sounding marketing",
+      "Plant protein costs more per gram than transparent rivals",
+    ],
+    audience: {
+      good: "Specifically want OZiva's women's-wellness positioning and convenience, and aren't relying on verifiable doses or independent testing.",
+      bad: "Want to know exactly what you're taking and at what dose, want independent testing, or want the best price per gram on plant protein — all of which transparent rivals deliver.",
+    },
+    compareLead: "On transparency and value, OZiva trails the verified plant and protein brands by a wide margin.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Verified protein at the best price per gram, with per-batch COAs" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Vegan-certified, correct forms, NABL-tested" },
+      { name: "Bold Care", slug: "bold-care", score: 5.8, tier: "Acceptable", why: "Also marketing-led, but not blend-obscured" },
+      { name: "OZiva", score: 5.2, tier: "Flagged", why: "Prop blends, underdosing, no COA", self: true },
+    ],
+    faq: [
+      { q: "Is OZiva a good brand?", a: "It's well-marketed and FSSAI-licensed, but we flag it: its formulas use proprietary blends that hide individual doses, several actives look underdosed, and it publishes no independent COA to back its clinical-sounding claims. You can't verify what you're paying a premium for." },
+      { q: "Is OZiva plant protein good value?", a: "Not relative to transparent rivals. Its plant protein costs more per gram of actual protein than brands like Unived or AS-IT-IS, and the herbal extras are inside a proprietary blend you can't dose-check." },
+      { q: "Is OZiva third-party tested?", a: "No independent COA is published, and there's no Trustified listing. The marketing implies clinical-grade rigour the brand doesn't publicly substantiate." },
+      { q: "What should I buy instead of OZiva?", a: "For plant protein, Unived (vegan-certified, NABL-tested) or AS-IT-IS for value. For women's wellness, talk to a doctor about specific, dosed ingredients rather than a proprietary blend." },
+    ],
+    verdict: "OZiva is a marketing-first brand whose polish outruns its transparency. Proprietary blends, apparent underdosing, premium pricing and no published COA mean you can't verify what you're buying — so we flag it. It isn't dangerous, and the categories it targets are real; but until it discloses doses and publishes independent testing, a transparent, verified alternative is the smarter buy.",
+    altsLead: "We'd point you to a transparent, verified alternative:",
+    alternatives: [
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified plant nutrition with correct forms and NABL testing — everything OZiva implies but doesn't verify." },
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Verified protein at the best price per gram, with per-batch COAs." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested, correctly-dosed vitamins and herbs if you want disclosed ingredients." },
+    ],
+  },
+
+  // ───────────────────────── Bigmuscles Nutrition ─────────────────────────
+  'bigmuscles': {
+    metaDesc: "Independent Bigmuscles Nutrition brand profile. NC Trust Score 5.2/10, Flagged. Brand-commissioned Eurofins reports pass, but an independently-initiated blind-purchase Trustified test failed on protein content in 2023 — flagged until a fresh independent blind-purchase COA confirms the protein.",
+    ogDesc: "NC Trust Score 5.2/10, Flagged. Bigmuscles' brand-commissioned tests pass, but a 2023 independent blind-purchase failed on protein content — that discrepancy is unresolved.",
+    kicker: "Our most nuanced flag: brand-commissioned Eurofins reports pass, but an independently-initiated blind-purchase test failed on protein content in 2023. The discrepancy is unresolved.",
+    thesis: "Bigmuscles is the most nuanced flag in our database. It is FSSAI-licensed, carries Informed Choice (a banned-substance programme), and publishes brand-commissioned Eurofins reports showing it passes on protein content. The reason we flag it: an independently-initiated, blind-purchase Trustified test returned a fail on protein content in 2023. Brand-commissioned 'pass' and independently-initiated 'fail' are materially different signals — the brand chooses what to send for the former. We flag it until an independently-initiated blind-purchase COA confirms the protein, not because today's labels are necessarily wrong, but because the strongest available evidence is unresolved.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "2023 independent test: fail", ok: false },
+      { label: "India · Delhi · est. 2011", ok: false },
+      { label: "Flagged — testing unresolved", ok: false },
+    ],
+    keyrow: [
+      { k: "The claim", v: "Brand-commissioned Eurofins: passes" },
+      { k: "The problem", v: "2023 independent blind-purchase: failed" },
+      { k: "What we need", v: "A fresh independent blind-purchase COA" },
+    ],
+    glance: [
+      { k: "Founded", v: "2011 · Delhi, India" },
+      { k: "Category focus", v: "Whey protein, isolate, creatine" },
+      { k: "Best for", v: "Hard to recommend until testing resolves" },
+      { k: "Watch for", v: "Brand-commissioned vs independent testing gap" },
+      { k: "Testing", v: "Brand Eurofins (Pass); Informed Choice; 2023 independent fail" },
+      { k: "Where to buy", v: "Amazon.in, brand site (with caveats)" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Bigmuscles' scores reflect the unresolved testing: compliance is fine, but the independent-vs-brand-commissioned gap caps label accuracy and trust.",
+    scoreWhys: {
+      labelAccuracy: "Brand-commissioned reports pass, but a 2023 independent blind-purchase failed on protein — the discrepancy is unresolved.",
+      dosing: "Dosing on paper is reasonable; the question is whether the protein content matches the label independently.",
+      fssai: "FSSAI-licensed and compliant.",
+      thirdParty: "Informed Choice covers banned substances, not protein quantity; the protein-content testing is brand-commissioned, and an independent test failed in 2023.",
+      value: "Pricing is competitive — but value is moot until the protein content is independently confirmed.",
+    },
+    testing: {
+      paras: [
+        "Bigmuscles presents a real testing paradox. It's FSSAI-licensed, carries <strong>Informed Choice</strong> (which screens for banned substances, not protein quantity), and publishes <strong>brand-commissioned Eurofins reports</strong> that show it passing on protein content. On paper, that looks reassuring.",
+        "The catch is the strongest independent signal points the other way: an <strong>independently-initiated, blind-purchase Trustified test returned a fail on protein content in 2023</strong>. Brand-commissioned testing — where the brand chooses the sample and timing — is materially weaker than a blind purchase off the shelf. We flag Bigmuscles until a fresh <strong>independently-initiated blind-purchase COA</strong> confirms the protein. This is about the quality of evidence, not a claim that every current tub is wrong.",
+      ],
+      chips: ["FSSAI licensed", "Informed Choice (banned substances)", "Brand-commissioned Eurofins"],
+    },
+    rangeLead: "The Bigmuscles range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Proteins", items: [
+        { name: "Premium Gold Whey", unit: "1 kg", price: 1999, pn: "2023 independent fail", tag: "Unresolved", star: true, note: "The product at the centre of the flag: brand-commissioned reports pass, but a 2023 independent blind-purchase failed on protein content. Until that's re-resolved independently, treat the protein claim as unverified.", q: "bigmuscles+premium+gold+whey" },
+        { name: "Real Isolate 90 WPI", unit: "1 kg", price: 2799, pn: "verify independently", tag: "Isolate", note: "Marketed as a 90% isolate. The brand-commissioned testing passes; we'd want an independent blind-purchase confirmation before trusting the isolate claim.", q: "bigmuscles+real+isolate+90" },
+        { name: "Raw Whey Concentrate", unit: "1 kg", price: 1599, pn: "same question", tag: "Unflavoured", note: "An unflavoured concentrate. Cheaper, but the same independent-testing question hangs over the brand's protein content.", q: "bigmuscles+raw+whey" },
+      ]},
+      { name: "Creatine & Performance", items: [
+        { name: "Creatine Monohydrate", unit: "250 g", price: 699, pn: "lower label risk", tag: "Monohydrate", note: "Plain monohydrate — a simpler product where label risk is lower. Still, verified brands give more confidence for similar money.", q: "bigmuscles+creatine" },
+        { name: "Pre-Workout", unit: "250 g", price: 1299, pn: "read the doses", tag: "Stimulant", note: "A stimulant pre-workout; read the disclosed doses. The brand-level testing concerns apply.", q: "bigmuscles+pre+workout" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Flagged — protein content is independently unverified.</strong> If you buy Bigmuscles despite the 2023 independent fail, do so knowing the strongest independent test is unresolved. We'd point most buyers to a verified protein below.",
+      amazon: "https://www.amazon.in/s?k=bigmuscles",
+      directUrl: "https://www.bigmuscles.in/",
+      directLabel: "Bigmuscles official",
+    },
+    pros: [
+      "FSSAI-licensed and compliant",
+      "Carries Informed Choice for banned substances",
+      "Publishes brand-commissioned Eurofins reports (more than many rivals)",
+      "Competitive pricing",
+    ],
+    cons: [
+      "A 2023 independent blind-purchase test failed on protein content",
+      "Protein-content testing is brand-commissioned, not independently initiated",
+      "Informed Choice covers banned substances, not protein quantity",
+      "The discrepancy remains unresolved by a fresh independent test",
+    ],
+    audience: {
+      good: "Follow the brand's published testing closely and are willing to bet on the brand-commissioned 'pass' over the 2023 independent fail.",
+      bad: "Want your protein content confirmed by independent, blind-purchase testing — the single most important thing a protein brand can demonstrate.",
+    },
+    compareLead: "On the one metric that matters most for whey — independently-verified protein content — Bigmuscles is unresolved, while the recommended brands are confirmed.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Independently verified, per-batch COAs" },
+      { name: "Nakpro", slug: "nakpro", score: 8.2, tier: "Recommended", why: "Trustified/Eurofins-verified protein + amino profile" },
+      { name: "MuscleBlaze", slug: "muscleblaze", score: 7.8, tier: "Recommended", why: "Trustified on select SKUs" },
+      { name: "Bigmuscles Nutrition", score: 5.2, tier: "Flagged", why: "2023 independent fail; protein content unresolved", self: true },
+    ],
+    faq: [
+      { q: "Why is Bigmuscles flagged if its tests pass?", a: "Because the tests that pass are brand-commissioned — the brand chooses the sample and timing — while an independently-initiated blind-purchase test failed on protein content in 2023. A blind purchase off the shelf is a stronger signal than a brand-selected sample, and that discrepancy is unresolved." },
+      { q: "Is Bigmuscles whey safe?", a: "It carries Informed Choice for banned substances, so the concern isn't contamination — it's whether the protein content matches the label. That's what the 2023 independent fail called into question and what we want re-tested independently." },
+      { q: "What's the difference between brand-commissioned and independent testing?", a: "Brand-commissioned testing lets the brand pick which sample to send and when. Independently-initiated blind-purchase testing buys the product off the shelf anonymously — much harder to game, and the gold standard for verifying protein content." },
+      { q: "What should I buy instead?", a: "A brand with independently-verified protein: AS-IT-IS (per-batch COAs), Nakpro (Trustified/Eurofins), or MuscleBlaze's Trustified-certified SKUs." },
+    ],
+    verdict: "Bigmuscles is our most nuanced flag: it's compliant, carries Informed Choice, and publishes brand-commissioned reports that pass — but an independent blind-purchase test failed on protein content in 2023, and that's the stronger signal. Until a fresh independently-initiated COA confirms the protein, we can't move it up. It may well be fine now; 'may well be' isn't good enough when independent verification is available elsewhere.",
+    altsLead: "For independently-verified protein, we'd point you to:",
+    alternatives: [
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Independently verified protein with per-batch COAs — exactly the evidence Bigmuscles lacks." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Trustified/Eurofins-verified protein content and amino profile." },
+      { slug: "muscleblaze", name: "MuscleBlaze", score: 7.8, why: "Trustified certification on select Biozyme SKUs, widely available." },
+    ],
+  },
+
+  // ───────────────────────── Genetic Nutrition ─────────────────────────
+  'genetic-nutrition': {
+    metaDesc: "Independent Genetic Nutrition brand profile. NC Trust Score 4.8/10, Flagged. No published COA, no independent testing, FSSAI licensing unconfirmed across the range, and signs of label inflation — protein claims can't be verified. Avoid until verifiable third-party batch testing is published.",
+    ogDesc: "NC Trust Score 4.8/10, Flagged. Genetic Nutrition publishes no COA and no independent testing, so its protein claims can't be verified. Avoid until tested.",
+    kicker: "A straightforward avoid-until-proven case: no COA, no independent testing, FSSAI licensing unconfirmed across the range, and signs of label inflation. The protein claims can't be verified.",
+    thesis: "Genetic Nutrition is a straightforward avoid-until-proven case. It publishes no certificate of analysis, has no independent or Trustified testing on record, and its protein-per-serving claims therefore can't be verified at all. There are also questions over whether FSSAI licensing covers the complete SKU range. With nothing external to confirm what's in the tub, and signs of label inflation, the protein claims have to be treated as unverified. Avoid until the brand publishes verifiable third-party batch testing.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "No COA · no 3P testing", ok: false },
+      { label: "India · Mumbai · est. 2012", ok: false },
+      { label: "Avoid until tested", ok: false },
+    ],
+    keyrow: [
+      { k: "The claim", v: "High protein-per-serving whey" },
+      { k: "The problem", v: "No COA, no independent testing at all" },
+      { k: "Our call", v: "Avoid until verifiable testing exists" },
+    ],
+    glance: [
+      { k: "Founded", v: "2012 · Mumbai, India" },
+      { k: "Category focus", v: "Whey protein, pre-workout" },
+      { k: "Best for", v: "Not recommended — unverifiable" },
+      { k: "Watch for", v: "No COA; possible label inflation" },
+      { k: "Testing", v: "No published COA, no Trustified listing" },
+      { k: "Where to buy", v: "Marketplaces (not recommended)" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Genetic Nutrition scores poorly across the board — with no testing at all, its protein claims are simply unverifiable.",
+    scoreWhys: {
+      labelAccuracy: "Protein-per-serving claims can't be verified — no COA, no independent testing — and there are signs of label inflation.",
+      dosing: "Doses on paper are ordinary; whether the tub matches the label is unknown.",
+      fssai: "FSSAI licensing isn't fully confirmed across the complete SKU range.",
+      thirdParty: "No published COA, no Trustified or equivalent independent listing on record.",
+      value: "Low headline prices mean nothing if the protein content can't be verified.",
+    },
+    testing: {
+      paras: [
+        "There is very little to test against. Genetic Nutrition publishes <strong>no certificate of analysis</strong>, has <strong>no independent or Trustified testing</strong> on record, and its FSSAI licensing isn't fully confirmed across its complete SKU range. The brand asks you to take its protein-per-serving claims entirely on trust.",
+        "With <strong>label inflation</strong> a known risk in unverified Indian whey and nothing external to confirm what's in the tub, the protein claims can't be accepted at face value. Our position is simple: <strong>avoid until the brand publishes verifiable third-party batch testing</strong>. This is a transparency floor, and Genetic Nutrition is below it.",
+      ],
+      chips: [],
+    },
+    rangeLead: "The Genetic Nutrition range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — though, as below, the headline price isn't the issue.",
+    cats: [
+      { name: "Proteins & Gainers", items: [
+        { name: "Iso-Pro Whey Protein", unit: "1 kg", price: 1899, pn: "unverifiable", tag: "Unverifiable", note: "Marketed as a high-protein whey, but with no COA and no independent testing, the protein-per-serving claim can't be verified at all. Avoid until tested.", q: "genetic+nutrition+iso+pro+whey" },
+        { name: "Raw Whey Concentrate", unit: "1 kg", price: 1499, pn: "unverifiable", tag: "Unverifiable", note: "A cheaper concentrate; same problem — no external evidence of what's actually in the tub.", q: "genetic+nutrition+raw+whey" },
+        { name: "Mass Gainer", unit: "1 kg", price: 1299, pn: "no verification", tag: "Mass gainer", note: "A carb-heavy gainer; the same lack of verification applies, on top of the usual gainer caveats.", q: "genetic+nutrition+mass+gainer" },
+      ]},
+      { name: "Performance", items: [
+        { name: "Pre-Workout", unit: "250 g", price: 1199, pn: "claims unverified", tag: "Scrutinise", note: "A stimulant pre-workout; with no testing and possible label inflation, treat all claims sceptically.", q: "genetic+nutrition+pre+workout" },
+        { name: "BCAA", unit: "250 g", price: 999, pn: "unverified", tag: "BCAA", note: "A flavoured BCAA; redundant if protein is covered, and unverified like the rest of the range.", q: "genetic+nutrition+bcaa" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Avoid until tested.</strong> Genetic Nutrition publishes no COA and no independent testing, so its protein claims can't be verified. We don't recommend buying it; the alternatives below are verified.",
+      amazon: "https://www.amazon.in/s?k=genetic+nutrition+iso+pro",
+      directUrl: "https://www.geneticnutrition.in/",
+      directLabel: "Genetic Nutrition site",
+    },
+    pros: [
+      "Low headline prices",
+      "Simple, no-frills product range",
+      "Available on major Indian marketplaces",
+    ],
+    cons: [
+      "No certificate of analysis published at all",
+      "No independent or Trustified testing on record",
+      "FSSAI licensing not fully confirmed across the SKU range",
+      "Signs of label inflation; protein content unverifiable",
+    ],
+    audience: {
+      good: "Are buying purely on lowest headline price and accept that nothing about the contents is verified.",
+      bad: "Want any independent assurance that the protein matches the label — which independent testing, absent here, is the only way to get.",
+    },
+    compareLead: "Against any verified brand, Genetic Nutrition can't compete on the only thing that matters — proof of what's in the tub.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Independently verified, per-batch COAs" },
+      { name: "Nakpro", slug: "nakpro", score: 8.2, tier: "Recommended", why: "Trustified/Eurofins-verified protein" },
+      { name: "Scitron", slug: "scitron", score: 6.5, tier: "Acceptable", why: "At least brand-commissioned NABL testing" },
+      { name: "Genetic Nutrition", score: 4.8, tier: "Flagged", why: "No COA, no testing; protein unverifiable", self: true },
+    ],
+    faq: [
+      { q: "Is Genetic Nutrition safe to buy?", a: "We can't say, and that's the problem. With no COA and no independent testing, there's no way to verify the protein content or purity. We recommend avoiding it until the brand publishes verifiable third-party batch testing." },
+      { q: "Is Genetic Nutrition third-party tested?", a: "No. There's no published COA and no Trustified or equivalent independent listing. The protein-per-serving claims rest entirely on trust." },
+      { q: "Why is Genetic Nutrition flagged?", a: "No certificate of analysis, no independent testing, FSSAI licensing unconfirmed across the range, and signs of label inflation. It falls below the basic transparency floor we expect of any protein brand." },
+      { q: "What should I buy instead?", a: "Any independently-verified brand: AS-IT-IS or Nakpro for verified protein, or even an acceptable-tier brand like Scitron that at least publishes brand-commissioned testing." },
+    ],
+    verdict: "Genetic Nutrition sits below the transparency floor: no COA, no independent testing, unconfirmed licensing across its range, and protein claims that can't be checked. We're not alleging a specific harm — we're saying there's no evidence either way, and with verified options widely available, that's reason enough to avoid it. Come back when there's a real third-party batch COA.",
+    altsLead: "Buy something you can actually verify:",
+    alternatives: [
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "Independently verified protein with per-batch COAs." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Trustified/Eurofins-verified protein content and amino profile." },
+      { slug: "scitron", name: "Scitron", score: 6.5, why: "If you want budget, at least it publishes brand-commissioned NABL testing." },
+    ],
+  },
+
+  // ───────────────────────── MusclePharm ─────────────────────────
+  'musclepharm': {
+    metaDesc: "Independent MusclePharm brand profile. NC Trust Score 4.5/10, Flagged. A documented history of proprietary blends concealing underdosed ingredients, lapsed NSF Certified for Sport status, and FTC/SEC regulatory actions on file — don't purchase until certification is reinstated and independently verified.",
+    ogDesc: "NC Trust Score 4.5/10, Flagged. MusclePharm's NSF certification has lapsed, its formulation history includes prop blends that underdosed ingredients, and it carries US regulatory baggage.",
+    kicker: "Baggage that's hard to ignore: a history of proprietary blends that underdosed key ingredients, lapsed NSF certification, and FTC/SEC regulatory actions. Don't buy until certification returns.",
+    thesis: "MusclePharm carries baggage that's hard to ignore. It has a documented history of proprietary blends that concealed underdosed key ingredients, its previous NSF Certified for Sport status has lapsed (current status unverified), and the company has faced FTC and SEC regulatory actions in the US. The products may have changed hands and reformulated, but the combination of a poor formulation track record and lapsed independent certification means we don't recommend purchasing until certification is reinstated and independently verified.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "NSF status lapsed", ok: false },
+      { label: "USA · est. 2006", ok: false },
+      { label: "Regulatory history", ok: false },
+    ],
+    keyrow: [
+      { k: "Track record", v: "Prop blends hid underdosed actives" },
+      { k: "The problem", v: "NSF lapsed; FTC/SEC actions on file" },
+      { k: "Our call", v: "Don't buy until NSF is reinstated" },
+    ],
+    glance: [
+      { k: "Founded", v: "2006 · Denver, CO, USA" },
+      { k: "Category focus", v: "Whey, aminos, pre-workout" },
+      { k: "Best for", v: "Not recommended — certification lapsed" },
+      { k: "Watch for", v: "Proprietary blends; lapsed certification" },
+      { k: "Testing", v: "Previous NSF Certified for Sport lapsed; current status unverified" },
+      { k: "Where to buy", v: "Imports (not recommended)" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. MusclePharm's scores reflect a poor formulation history and lapsed certification — compliance is the only thing keeping it off the floor.",
+    scoreWhys: {
+      labelAccuracy: "A documented history of proprietary blends that concealed underdosed key ingredients.",
+      dosing: "Past formulas underdosed marquee ingredients inside proprietary blends; current formulas aren't independently verified.",
+      fssai: "Import-compliant on paper.",
+      thirdParty: "Previous NSF Certified for Sport status has lapsed; current certification is unverified.",
+      value: "Price is beside the point while certification is lapsed and the formulation history is poor.",
+    },
+    testing: {
+      paras: [
+        "MusclePharm's problem is <strong>track record plus lapsed verification</strong>. The brand has a documented history of <strong>proprietary blends that concealed underdosed key ingredients</strong>, and its previous <strong>NSF Certified for Sport</strong> status — once a genuine strength — has lapsed, with current certification unverified.",
+        "Layered on top are <strong>FTC and SEC regulatory actions</strong> on file in the US and a turbulent corporate history. Products may have reformulated, but with no current independent certification to confirm what's in them and a poor formulation past, we don't recommend purchasing <strong>until NSF (or equivalent) certification is reinstated and independently verified</strong>.",
+      ],
+      chips: ["FSSAI import compliant"],
+    },
+    rangeLead: "The MusclePharm range sold via import, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — though certification, not price, is the issue.",
+    cats: [
+      { name: "Proteins", items: [
+        { name: "Combat 100% Whey", unit: "2 lb", price: 2799, pn: "formula unverified", tag: "Verify formula", star: true, note: "The flagship whey. The brand's history of proprietary blends and lapsed NSF certification mean the current formula isn't independently verified — buy only if certification returns.", q: "musclepharm+combat+whey+protein" },
+        { name: "Combat Protein Powder Blend", unit: "4 lb", price: 2999, pn: "blend obscures doses", tag: "Prop blend", note: "A multi-source protein blend; historically the brand's blends obscured individual doses. Treat the marketing claims sceptically.", q: "musclepharm+combat+protein+powder" },
+      ]},
+      { name: "Amino Acids", items: [
+        { name: "Combat BCAA", unit: "30 servings", price: 1799, pn: "lapsed cert", tag: "BCAA", note: "A standard BCAA; redundant once protein is covered, and from a brand with lapsed certification.", q: "musclepharm+combat+bcaa" },
+      ]},
+      { name: "Performance", items: [
+        { name: "Assault Pre-Workout", unit: "30 servings", price: 2499, pn: "read the doses", tag: "Scrutinise", note: "A stimulant pre-workout historically sold as a proprietary blend. Read the disclosed doses very carefully.", q: "musclepharm+assault+pre+workout" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Do not buy until certification is reinstated.</strong> MusclePharm's NSF status has lapsed and its formulation history is poor. We don't recommend it; the verified alternatives below are safer choices.",
+      amazon: "https://www.amazon.in/s?k=musclepharm+combat+whey",
+      directUrl: "https://www.musclepharm.com/",
+      directLabel: "MusclePharm site",
+    },
+    pros: [
+      "Combat Whey has a long-standing market presence",
+      "Import-compliant for the India market",
+      "Widely recognised brand name",
+    ],
+    cons: [
+      "Documented history of proprietary blends hiding underdosed ingredients",
+      "Previous NSF Certified for Sport status has lapsed",
+      "FTC and SEC regulatory actions on file in the US",
+      "Current formulas aren't independently certified",
+    ],
+    audience: {
+      good: "Specifically trust the current ownership's reformulation and accept the lapsed certification — a narrow case.",
+      bad: "Want a brand with current, independently-verified certification and a clean formulation record.",
+    },
+    compareLead: "Against verified proteins, MusclePharm's lapsed certification and formulation history make it an easy pass.",
+    compare: [
+      { name: "Optimum Nutrition", slug: "optimum-nutrition", score: 8.0, tier: "Recommended", why: "Current NSF Certified for Sport on select SKUs; strong stack" },
+      { name: "Dymatize", slug: "dymatize", score: 7.0, tier: "Acceptable", why: "ISO100 is current NSF Certified for Sport" },
+      { name: "GNC", slug: "gnc", score: 6.3, tier: "Acceptable", why: "Legacy US brand; premium but not flagged" },
+      { name: "MusclePharm", score: 4.5, tier: "Flagged", why: "Prop blends, lapsed NSF, regulatory history", self: true },
+    ],
+    faq: [
+      { q: "Is MusclePharm safe to buy?", a: "We don't recommend it currently. Its NSF Certified for Sport status has lapsed, its formulation history includes proprietary blends that underdosed key ingredients, and there are FTC/SEC regulatory actions on file. Without current independent certification, there's no way to verify what's in the products." },
+      { q: "Does MusclePharm still have NSF certification?", a: "Its previous NSF Certified for Sport status has lapsed, and current certification is unverified. That loss of independent verification is central to why we flag it." },
+      { q: "Why is MusclePharm flagged?", a: "A documented history of proprietary blends concealing underdosed ingredients, lapsed NSF certification, and FTC/SEC regulatory actions in the US. The combination means we can't recommend it until certification is reinstated and independently verified." },
+      { q: "What should I buy instead?", a: "For a certified isolate, Dymatize ISO100 (current NSF Certified for Sport) or Optimum Nutrition, which holds NSF Certified for Sport on select SKUs and a strong overall certification stack." },
+    ],
+    verdict: "MusclePharm is a brand to wait out. Its formulation history is poor, its NSF certification has lapsed, and it carries documented US regulatory baggage. The current products may be better than the brand's past — but 'may be' isn't enough without independent certification, and verified alternatives are readily available. Don't buy until NSF (or equivalent) is reinstated and confirmed.",
+    altsLead: "Buy a brand with current, verified certification:",
+    alternatives: [
+      { slug: "optimum-nutrition", name: "Optimum Nutrition", score: 8.0, why: "NSF Certified for Sport on select SKUs and the strongest certification stack in India." },
+      { slug: "dymatize", name: "Dymatize", score: 7.0, why: "ISO100 is currently NSF Certified for Sport — a genuinely verified isolate." },
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "If you want value, independently verified protein with per-batch COAs." },
+    ],
+  },
+
+  // ───────────────────────── Himalayan Organics ─────────────────────────
+  'himalayan-organics': {
+    metaDesc: "Independent Himalayan Organics brand profile. NC Trust Score 4.8/10, Flagged. ALA-only 'omega-3' marketed as if equivalent to EPA+DHA fish oil, 'organic' labelling without accredited backing, generic extracts, and no independent COA — flagged for misleading claims.",
+    ogDesc: "NC Trust Score 4.8/10, Flagged. Himalayan Organics markets ALA as if it were fish-oil omega-3, uses unaccredited 'organic' labelling, and publishes no independent COA.",
+    kicker: "Flagged for misleading positioning: ALA-only 'omega-3' marketed as if it equals fish oil, 'organic' labelling without accredited backing, generic extracts, and no independent COA.",
+    thesis: "Himalayan Organics is flagged primarily for misleading positioning. Its plant-based 'omega-3' is ALA-only — marketed with language that implies equivalence to EPA+DHA fish oil, which it is not, since ALA→EPA conversion in humans is below ~10%. Its 'organic' labelling isn't consistently backed by accredited certification, its herbal extracts are generic and unstandardised, and it publishes no independent COA. The products aren't necessarily harmful, but the claims overstate what they deliver — buy on accurate information, which the brand doesn't provide.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "'Organic' not accredited", ok: false },
+      { label: "India · Delhi · est. 2017", ok: false },
+      { label: "Misleading claims", ok: false },
+    ],
+    keyrow: [
+      { k: "Markets itself as", v: "Organic, plant-based omega-3 & herbs" },
+      { k: "The problem", v: "ALA sold like fish oil; no COA" },
+      { k: "Do instead", v: "Buy real EPA+DHA or algae omega-3" },
+    ],
+    glance: [
+      { k: "Founded", v: "2017 · Delhi, India" },
+      { k: "Category focus", v: "'Organic' herbs, ALA omega-3, vitamins" },
+      { k: "Best for", v: "Not recommended — misleading claims" },
+      { k: "Watch for", v: "ALA marketed as omega-3 equivalent" },
+      { k: "Testing", v: "No independent COA; 'organic' not accredited" },
+      { k: "Where to buy", v: "Marketplaces (not recommended)" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Himalayan Organics is flagged on claims and testing — the formulations are generic and the marketing overstates what they deliver.",
+    scoreWhys: {
+      labelAccuracy: "Marketing overstates the products — ALA presented like EPA+DHA fish oil, 'organic' without accredited backing.",
+      dosing: "Generic, unstandardised extracts; the ALA 'omega-3' delivers little usable EPA/DHA.",
+      fssai: "FSSAI-licensed.",
+      thirdParty: "No independent COA and no third-party listing.",
+      value: "Cheap, but you're paying for products that don't do what the label implies.",
+    },
+    testing: {
+      paras: [
+        "The core issue with Himalayan Organics is <strong>misleading claims</strong>, not legality. Its plant-based 'omega-3' is <strong>ALA-only</strong>, marketed with language implying equivalence to EPA+DHA fish oil — but ALA converts to EPA at <strong>under ~10%</strong> in most people, so it isn't a substitute. Its 'organic' labelling isn't consistently backed by accredited certification.",
+        "Behind the positioning, the substance is thin: <strong>generic, unstandardised herbal extracts</strong> (its ashwagandha doesn't disclose withanolide content), and <strong>no independent COA</strong>. The products may be harmless, but the claims overstate what they deliver. We flag it until the marketing matches the formulation and independent testing is published.",
+      ],
+      chips: ["FSSAI licensed"],
+    },
+    rangeLead: "The Himalayan Organics range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Omega & 'Organic'", items: [
+        { name: "Plant-Based Omega-3 ALA", unit: "60 capsules", price: 799, pn: "not fish oil", tag: "Not fish oil", star: true, note: "ALA-only, from flax/plant sources — marketed like fish oil, but ALA converts to EPA at under ~10%. It is not a substitute for EPA+DHA. Misleading by implication.", q: "himalayan+organics+omega+3+plant+based" },
+        { name: "Organic Multivitamin", unit: "60 tablets", price: 599, pn: "'organic' unverified", tag: "Unverified", note: "An 'organic' multi whose organic claim isn't consistently backed by accredited certification. Check the actual forms and doses.", q: "himalayan+organics+multivitamin" },
+      ]},
+      { name: "Herbs", items: [
+        { name: "Ashwagandha 1,000 mg", unit: "60 capsules", price: 399, pn: "big number, generic", tag: "Generic extract", note: "A high-milligram but generic Withania — withanolide content and standardisation aren't disclosed. Big number, little verified active.", q: "himalayan+organics+ashwagandha" },
+        { name: "Shilajit", unit: "60 capsules", price: 499, pn: "limited disclosure", tag: "Prop blend", note: "A shilajit product with limited purity and dose disclosure; 'organic' positioning is unverified.", q: "himalayan+organics+shilajit" },
+        { name: "Plant-based Collagen", unit: "200 g", price: 599, pn: "not collagen", tag: "Not collagen", note: "A 'collagen' support blend, not collagen itself; marketed in a way that implies more than it delivers.", q: "himalayan+organics+collagen" },
+      ]},
+      { name: "Vitamins", items: [
+        { name: "Vitamin D3", unit: "60 capsules", price: 399, pn: "verify the form", tag: "Check source", note: "A D3 product; verify it's genuinely cholecalciferol and check the dose, given the brand's loose labelling elsewhere.", q: "himalayan+organics+vitamin+d3" },
+        { name: "Biotin", unit: "60 tablets", price: 349, pn: "unverified", tag: "Hair & skin", note: "A budget biotin; appropriately dosed but, like the rest, unverified.", q: "himalayan+organics+biotin" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Flagged for misleading claims.</strong> Himalayan Organics markets ALA as if it were fish-oil omega-3 and uses unaccredited 'organic' labelling, with no independent COA. We don't recommend it — see the accurate alternatives below.",
+      amazon: "https://www.amazon.in/s?k=himalayan+organics",
+      directUrl: "https://himalayanorganics.in/",
+      directLabel: "Himalayan Organics site",
+    },
+    pros: [
+      "FSSAI-licensed and widely available",
+      "Low prices across the range",
+      "Broad range across herbs, vitamins and omega",
+    ],
+    cons: [
+      "ALA 'omega-3' marketed as if equivalent to EPA+DHA fish oil",
+      "'Organic' labelling not consistently backed by accredited certification",
+      "Generic, unstandardised extracts (undisclosed withanolide content)",
+      "No independent COA; claims outrun the formulations",
+    ],
+    audience: {
+      good: "Are buying purely on price and 'natural' branding, and understand that ALA is not fish-oil omega-3 and the 'organic' claim isn't accredited.",
+      bad: "Want accurate labelling — real EPA+DHA when you buy 'omega-3', accredited 'organic', and standardised, tested extracts.",
+    },
+    compareLead: "On accuracy — the most basic thing a label should get right — Himalayan Organics falls short of every verified alternative.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "True EPA+DHA fish oil and standardised herbs" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Real algae EPA+DHA — the correct vegan omega-3" },
+      { name: "Neuherbs", slug: "neuherbs", score: 5.8, tier: "Acceptable", why: "Also generic, but less misleading on omega-3" },
+      { name: "Himalayan Organics", score: 4.8, tier: "Flagged", why: "ALA sold as fish oil; 'organic' unaccredited; no COA", self: true },
+    ],
+    faq: [
+      { q: "Is Himalayan Organics omega-3 real omega-3?", a: "It's ALA-only (from plant sources), not the EPA+DHA your body actually uses. ALA converts to EPA at under ~10% in most people, so despite the 'omega-3' marketing it isn't a substitute for fish oil or algae EPA+DHA." },
+      { q: "Is Himalayan Organics actually organic?", a: "Its 'organic' labelling isn't consistently backed by accredited organic certification. Treat the organic claim with scepticism unless an accredited certification is shown." },
+      { q: "Is Himalayan Organics third-party tested?", a: "No independent COA or third-party listing is published. Combined with misleading claims and generic extracts, that's why we flag it." },
+      { q: "What should I buy for vegan omega-3 instead?", a: "Unived's algae-sourced omega-3 provides real EPA+DHA — the correct vegan choice. For fish oil, NOW Foods gives you genuine EPA+DHA with GMP testing." },
+    ],
+    verdict: "Himalayan Organics is flagged for claims that outrun the products: ALA marketed like fish oil, 'organic' without accredited backing, generic extracts, and no independent testing. The items may be harmless, but you can't make an informed choice on inaccurate information. For omega-3 that's actually omega-3, or herbs that are actually standardised, buy a brand whose label means what it says.",
+    altsLead: "Buy accurately-labelled, verified alternatives:",
+    alternatives: [
+      { slug: "unived", name: "Unived", score: 7.6, why: "Real algae EPA+DHA — the correct vegan omega-3, NABL-tested." },
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "True EPA+DHA fish oil and GMP-tested standardised herbs." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Correctly-labelled KSM-66 ashwagandha at a budget price." },
+    ],
+  },
+
 };
