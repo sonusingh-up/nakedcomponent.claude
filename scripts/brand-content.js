@@ -335,4 +335,402 @@ module.exports = {
     ],
   },
 
+  // ───────────────────────── Dymatize ─────────────────────────
+  'dymatize': {
+    metaDesc: "Independent Dymatize brand profile. NC Trust Score 7.0/10, Acceptable. ISO100 is a genuinely excellent NSF-certified hydrolysed isolate — but it's among the priciest protein per gram in India, and the rest of the range isn't independently certified here.",
+    ogDesc: "NC Trust Score 7.0/10. Dymatize ISO100 is a top-tier NSF-certified hydrolysed isolate; the catch is price — among the highest per gram in India.",
+    kicker: "ISO100 is one of the best hydrolysed isolates you can buy — NSF Certified for Sport, clean, fast-digesting. The catch is the price, among the highest per gram in India.",
+    thesis: "Dymatize sits in the acceptable tier on the strength of one outstanding product: ISO100, an NSF Certified for Sport hydrolysed whey isolate that's genuinely top-class. The problem is value — ISO100's price per gram is among the highest in the Indian market, and the rest of the range isn't independently certified here. Buy it if a premium, fast-digesting isolate is worth paying up for; most goals don't require it.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "ISO100 NSF Certified", ok: true },
+      { label: "USA · est. 1994", ok: false },
+      { label: "Premium price", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "A premium NSF-certified hydrolysed isolate" },
+      { k: "Standout", v: "ISO100 — clean, fast, NSF-tested" },
+      { k: "Keep in mind", v: "Among the priciest protein per gram" },
+    ],
+    glance: [
+      { k: "Founded", v: "1994 · Dallas, TX, USA" },
+      { k: "Category focus", v: "Whey isolate, whey, casein, gainers" },
+      { k: "Best for", v: "Buyers who want a certified premium isolate" },
+      { k: "Watch for", v: "Only ISO100 is NSF-certified for India" },
+      { k: "Testing", v: "NSF Certified for Sport (ISO100); others uncertified" },
+      { k: "Where to buy", v: "Authorised Amazon.in & importers" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Dymatize's ISO100 lifts label accuracy and testing; value is the clear weak point.",
+    scoreWhys: {
+      labelAccuracy: "ISO100's label is independently verified by NSF; the broader range relies on the brand.",
+      dosing: "Sensible protein dosing; the hydrolysed isolate digests fast and clean.",
+      fssai: "Import-compliant via authorised distributors.",
+      thirdParty: "NSF Certified for Sport on ISO100 — strong — but other SKUs aren't independently certified for India.",
+      value: "ISO100's price per gram is among the highest in the category; you pay a clear premium.",
+    },
+    testing: {
+      paras: [
+        "Dymatize's testing story begins and ends with <strong>ISO100</strong>, which carries <strong>NSF Certified for Sport</strong> — one of the most rigorous banned-substance and quality certifications available. For that single product, verification is excellent and among the best on the India market.",
+        "The honest caveat: that certification <strong>doesn't extend across the range</strong>. Elite Whey, the gainers and the aminos are not independently certified for India, and Dymatize doesn't publish per-batch COAs. Buy ISO100 for the certification; treat the rest as a normal, uncertified branded range.",
+      ],
+      chips: ["FSSAI import compliant", "NSF Certified for Sport (ISO100)", "Hydrolysed isolate", "Authorised import"],
+    },
+    rangeLead: "The Dymatize range sold in India, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Proteins & Gainers", items: [
+        { name: "ISO100 Hydrolyzed Isolate", unit: "1.6 lb", price: 4499, pn: "premium ₹ / g", tag: "NSF certified", star: true, note: "The reason to consider Dymatize: a fast-digesting hydrolysed isolate, NSF Certified for Sport and very low in lactose. Excellent — and among the most expensive protein per gram in India.", q: "dymatize+iso100+hydrolyzed+whey" },
+        { name: "Elite 100% Whey", unit: "2 lb", price: 3499, pn: "uncertified for India", tag: "Whey blend", note: "A solid everyday whey blend, but not independently certified for India and priced above domestic verified options.", q: "dymatize+elite+100+whey" },
+        { name: "Elite Casein", unit: "2 lb", price: 3999, pn: "nighttime protein", tag: "Slow-release", note: "Micellar casein for overnight protein. Fine product, premium price; a tool rather than a daily essential.", q: "dymatize+elite+casein" },
+        { name: "Super Mass Gainer", unit: "6 lb", price: 4999, pn: "high-calorie", tag: "Mass gainer", note: "A high-calorie gainer. As with all gainers, most people get cleaner calories from food plus whey.", q: "dymatize+super+mass+gainer" },
+      ]},
+      { name: "Creatine & Performance", items: [
+        { name: "Micronized Creatine", unit: "500 g", price: 1499, pn: "commodity", tag: "Monohydrate", note: "Plain micronized monohydrate — good quality, but creatine is a commodity that domestic brands sell for far less.", q: "dymatize+creatine" },
+        { name: "Pre W.O. Pre-Workout", unit: "20 servings", price: 2999, pn: "disclosed doses", tag: "Stimulant", note: "A fully-dosed pre-workout with disclosed actives. Effective, but priced at a premium over equivalent Indian options.", q: "dymatize+pre+workout" },
+      ]},
+      { name: "Amino Acids", items: [
+        { name: "All9 Amino", unit: "30 servings", price: 2499, pn: "all 9 EAAs", tag: "EAA", note: "All nine essential aminos with electrolytes for intra-workout use. Competent; redundant if your daily protein is already covered.", q: "dymatize+all9+amino" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Buy authorised — and look for ISO100's NSF seal.</strong> Imported Dymatize should come from an authorised distributor or reputable importer; check the import sticker and expiry. We don't publish discount codes we can't verify — check the official store for any live offer.",
+      amazon: "https://www.amazon.in/s?k=dymatize",
+      directUrl: "https://www.dymatize.com/",
+      directLabel: "Buy from Dymatize",
+    },
+    pros: [
+      "ISO100 is an excellent NSF Certified for Sport hydrolysed isolate",
+      "Very low lactose and fat — easy digestion, fast absorption",
+      "Clean, accurate labelling on the certified flagship",
+      "Fully-disclosed pre-workout doses (no proprietary blend)",
+    ],
+    cons: [
+      "Among the highest price per gram of protein in India",
+      "Only ISO100 is NSF-certified — the rest of the range isn't, for India",
+      "No published per-batch COAs",
+      "Commodities like creatine cost far more than domestic equivalents",
+    ],
+    audience: {
+      good: "Specifically want a premium, fast-digesting, NSF-certified hydrolysed isolate and are willing to pay a clear premium for that certification and digestibility.",
+      bad: "Are price-sensitive, or just need everyday protein — a domestic verified whey gives you far more per rupee with comparable label accuracy.",
+    },
+    compareLead: "Among imported proteins, ISO100 is genuinely premium; value is where Dymatize falls behind the recommended tier.",
+    compare: [
+      { name: "AS-IT-IS Nutrition", slug: "as-it-is", score: 8.6, tier: "Recommended", why: "Best price per gram with per-batch COAs" },
+      { name: "Optimum Nutrition", slug: "optimum-nutrition", score: 8.0, tier: "Recommended", why: "Strongest 3P cert stack across the range; better value than ISO100" },
+      { name: "MuscleBlaze", slug: "muscleblaze", score: 7.8, tier: "Recommended", why: "Widest availability; Biozyme enzyme line" },
+      { name: "Dymatize", score: 7.0, tier: "Acceptable", why: "ISO100 is NSF-certified and excellent; among priciest per gram", self: true },
+    ],
+    faq: [
+      { q: "Is Dymatize ISO100 worth the price?", a: "ISO100 is a genuinely top-tier hydrolysed isolate — NSF Certified for Sport, very low lactose, fast-digesting. Whether it's 'worth it' depends on budget: it's excellent, but among the priciest protein per gram in India, and most goals don't require a hydrolysed isolate." },
+      { q: "Is all of Dymatize third-party tested?", a: "No. ISO100 carries NSF Certified for Sport, but the rest of the range (Elite Whey, gainers, aminos) isn't independently certified for India, and Dymatize doesn't publish per-batch COAs." },
+      { q: "Is ISO100 good for lactose intolerance?", a: "It's one of the better choices — a hydrolysed whey isolate with very little lactose. Most lactose-sensitive users tolerate it well, though individual responses vary." },
+      { q: "Dymatize or Optimum Nutrition?", a: "Both are premium imports. ON has the stronger certification stack across its whole range and better value; Dymatize's ISO100 is the better single product if you specifically want a certified hydrolysed isolate. ON edges it overall." },
+    ],
+    verdict: "Dymatize is a one-product recommendation: ISO100 is an excellent, NSF-certified hydrolysed isolate worth considering if a premium, fast-digesting protein justifies the price. The rest of the range is competent but uncertified for India and expensive. For value or breadth, look to the recommended tier; for a certified isolate splurge, ISO100 delivers.",
+    altsLead: "Want better value or a fully certified range? These are the brands we'd point you to next.",
+    alternatives: [
+      { slug: "optimum-nutrition", name: "Optimum Nutrition", score: 8.0, why: "Stronger certification across the whole range, and better value than ISO100 per gram." },
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "The value benchmark — per-batch COAs and the lowest price per gram on raw whey." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Independently verified domestic protein with flavoured options at a fraction of the import premium." },
+    ],
+  },
+
+  // ───────────────────────── Fast&Up ─────────────────────────
+  'fastanup': {
+    metaDesc: "Independent Fast&Up brand profile. NC Trust Score 6.8/10, Acceptable. Effervescent vitamin C and electrolytes are genuinely convenient, but doses often sit below therapeutic thresholds, pricing is high vs capsules, and no independent testing is published.",
+    ogDesc: "NC Trust Score 6.8/10. Fast&Up's effervescent format is convenient for vitamin C and electrolytes, but doses can be light and prices high — and there's no published independent testing.",
+    kicker: "Effervescent delivery makes vitamin C and electrolytes genuinely convenient. The catches: doses often sit below therapeutic thresholds, prices run high vs capsules, and there's no published independent testing.",
+    thesis: "Fast&Up's effervescent tablets are a legitimately convenient format for vitamin C, electrolytes and hydration — easy to take and pleasant to drink. But convenience is doing a lot of the work: per-tablet doses frequently fall below the thresholds that matter, the price per dose is high next to plain capsules, and the brand publishes no independent third-party testing. A handy lifestyle range, not a clinical one.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Effervescent format", ok: true },
+      { label: "India · Mumbai · est. 2015", ok: false },
+      { label: "No public COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Convenient effervescent hydration & vitamin C" },
+      { k: "Standout", v: "Genuinely pleasant, easy-to-take format" },
+      { k: "Keep in mind", v: "Light doses, premium price, no public testing" },
+    ],
+    glance: [
+      { k: "Founded", v: "2015 · Mumbai, India" },
+      { k: "Category focus", v: "Effervescent vitamins, electrolytes, aminos" },
+      { k: "Best for", v: "Convenience-led buyers who like effervescent tabs" },
+      { k: "Watch for", v: "Doses often below therapeutic thresholds" },
+      { k: "Testing", v: "No independent COA published; internal QC claimed" },
+      { k: "Where to buy", v: "Amazon.in, pharmacies, brand site" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Fast&Up scores on compliance and a useful format; testing and value drag it into the acceptable tier.",
+    scoreWhys: {
+      labelAccuracy: "Labels appear accurate, but without published independent testing you're trusting the brand.",
+      dosing: "Electrolyte ratios are sensible; vitamin C and some actives sit below therapeutic doses per tablet.",
+      fssai: "Fully licensed; effervescent (Taiyo) delivery system.",
+      thirdParty: "No independent third-party certification published — internal QC only.",
+      value: "Effervescent tablets cost noticeably more per dose than equivalent capsules.",
+    },
+    testing: {
+      paras: [
+        "Fast&Up's appeal is its <strong>effervescent delivery</strong> — a genuinely pleasant, convenient way to take vitamin C, electrolytes and B-vitamins. The format is legitimate and well-executed.",
+        "What's missing is <strong>independent verification</strong>: the brand publishes no third-party COA and relies on internal QC. Combined with per-tablet doses that often fall below therapeutic thresholds (vitamin C frequently under the 1,000 mg mark), it's best treated as a convenient lifestyle product rather than a clinically-dosed one.",
+      ],
+      chips: ["FSSAI licensed", "Effervescent (Taiyo) format", "India-manufactured"],
+    },
+    rangeLead: "The Fast&Up range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Vitamins & Minerals", items: [
+        { name: "Charge Vitamin C + Zinc", unit: "20 tablets", price: 549, pn: "check the C dose", tag: "Effervescent", note: "Convenient effervescent C + zinc, but the vitamin C dose often sits below the ~1,000 mg therapeutic mark — check the label.", q: "fast+up+charge+vitamin+c+effervescent" },
+        { name: "Reload Electrolytes", unit: "20 tablets", price: 499, pn: "sensible ratios", tag: "Hydration", star: true, note: "Sensibly-ratioed electrolytes in a convenient tab — the most useful product in the range for training and heat.", q: "fast+up+reload+electrolytes" },
+        { name: "Fortify Calcium + D3 + K2", unit: "60 tablets", price: 699, pn: "correct forms", tag: "Bone", note: "Correct D3+K2 pairing with calcium. Reasonable, though capsule equivalents cost less.", q: "fast+up+fortify+calcium" },
+        { name: "Vitalize Multivitamin", unit: "20 tablets", price: 599, pn: "convenience multi", tag: "Effervescent multi", note: "A pleasant daily effervescent multi — a convenience product, not a high-potency formula.", q: "fast+up+vitalize+multivitamin" },
+      ]},
+      { name: "Performance", items: [
+        { name: "Intra-Workout BCAA", unit: "250 g", price: 699, pn: "redundant if fed", tag: "BCAA", note: "A flavoured BCAA; fine, but redundant once daily protein is covered.", q: "fast+up+bcaa" },
+        { name: "Pre-Workout", unit: "250 g", price: 899, pn: "read the doses", tag: "Stimulant", note: "A caffeine-led pre-workout — judge it on the disclosed per-scoop doses, not the name.", q: "fast+up+pre+workout" },
+        { name: "Magnesium", unit: "60 tablets", price: 599, pn: "check the form", tag: "Sleep / cramps", note: "Magnesium for sleep and cramps; check the form and elemental dose against cheaper glycinate options.", q: "fast+up+magnesium" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Fast&Up's official Amazon.in storefront, pharmacies or brand website. Note the brand publishes no independent COA — judge products on their label doses. We don't publish discount codes we can't verify — check the official store for any live offer.",
+      amazon: "https://www.amazon.in/s?k=fast+up",
+      directUrl: "https://www.fastandup.in/",
+      directLabel: "Buy from Fast&Up",
+    },
+    pros: [
+      "Effervescent format is genuinely convenient and pleasant to take",
+      "Electrolyte products are sensibly ratioed for hydration",
+      "FSSAI licensed with a well-executed delivery system",
+      "Useful for people who struggle with capsules",
+    ],
+    cons: [
+      "Per-tablet doses often below therapeutic thresholds (e.g. vitamin C)",
+      "Significantly more expensive per dose than capsules",
+      "No independent third-party testing published",
+      "Marketing leans on the format more than the formulation",
+    ],
+    audience: {
+      good: "Like the effervescent format, want convenient hydration and vitamin C, and value taste and ease over maximum dose per rupee.",
+      bad: "Want therapeutic doses at the lowest cost, or require independently tested products — plain capsules deliver more for less.",
+    },
+    compareLead: "In the vitamins-and-hydration space, Fast&Up wins on format but trails verified brands on testing and value.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, correctly-dosed vitamins and omega-3" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Vegan-certified, correct forms, NABL-tested" },
+      { name: "Fast&Up", score: 6.8, tier: "Acceptable", why: "Convenient effervescent format; light doses, no public COA", self: true },
+      { name: "Carbamide Forte", slug: "carbamide-forte", score: 6.8, tier: "Acceptable", why: "Better rupee-per-dose value; also no public COA" },
+    ],
+    faq: [
+      { q: "Are Fast&Up effervescent tablets effective?", a: "The format is convenient and the electrolytes are sensibly dosed. The weakness is that vitamins like C often sit below therapeutic thresholds per tablet, so check the label dose against what you actually need." },
+      { q: "Is Fast&Up third-party tested?", a: "No independent third-party COA is published; the brand relies on internal QC. You're trusting the label rather than an external assay." },
+      { q: "Why is Fast&Up more expensive than capsules?", a: "You're paying for the effervescent delivery and convenience. For the same nutrients, plain capsules or tablets are usually cheaper per dose." },
+      { q: "Is Fast&Up Reload good for hydration?", a: "Yes — Reload is the standout, with sensible electrolyte ratios in a convenient tablet, useful for training and Indian heat. Just watch the added sugar and total sodium for your needs." },
+    ],
+    verdict: "Fast&Up is a convenience play: the effervescent format is genuinely nice, and the electrolytes are useful. But light doses, premium pricing and no published independent testing keep it in the acceptable tier. Buy it for hydration and ease of use, not for clinical potency — and a plain capsule will usually give you more for less.",
+    altsLead: "Want therapeutic doses, lower prices or independent testing? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested vitamins at proper doses, including a true high-dose vitamin C and D3." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified, correctly-formed essentials with NABL testing." },
+      { slug: "carbamide-forte", name: "Carbamide Forte", score: 6.8, why: "Better rupee-per-dose value on vitamin C and ashwagandha, if you'll accept no public COA." },
+    ],
+  },
+
+  // ───────────────────────── Carbamide Forte ─────────────────────────
+  'carbamide-forte': {
+    metaDesc: "Independent Carbamide Forte brand profile. NC Trust Score 6.8/10, Acceptable. The best rupee-per-dose value in domestic vitamins, with correctly-labelled KSM-66 ashwagandha — held back only by the lack of any published independent COA.",
+    ogDesc: "NC Trust Score 6.8/10. Carbamide Forte offers the best rupee-per-dose value in domestic vitamins and correctly-labelled KSM-66 — the one gap is no public COA.",
+    kicker: "The best rupee-per-dose value in domestic vitamins, and it labels KSM-66 ashwagandha correctly — rare at this price. The one real gap: no published independent COA.",
+    thesis: "Carbamide Forte punches above its price: it's the best rupee-per-dose value in the domestic vitamin space, and unlike many budget brands it labels patented ingredients like KSM-66 ashwagandha correctly. The single thing keeping it out of the recommended tier is verification — there's no published independent COA, so you're trusting accurate-looking labels rather than an external assay. For price-sensitive buyers, it's a strong-value pick with that caveat.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Best value · domestic", ok: true },
+      { label: "India · Delhi · est. 2017", ok: false },
+      { label: "No public COA", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Best rupee-per-dose value in vitamins" },
+      { k: "Standout", v: "Correctly-labelled KSM-66 at a budget price" },
+      { k: "Keep in mind", v: "No independent COA published" },
+    ],
+    glance: [
+      { k: "Founded", v: "2017 · Delhi, India" },
+      { k: "Category focus", v: "Vitamins, minerals, herbal extracts" },
+      { k: "Best for", v: "Price-sensitive buyers who read labels" },
+      { k: "Watch for", v: "No published independent COA" },
+      { k: "Testing", v: "In-house testing; no public third-party COA" },
+      { k: "Where to buy", v: "Amazon.in & brand website" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Carbamide Forte's value and honest labelling carry it; the missing independent COA is what caps the score.",
+    scoreWhys: {
+      labelAccuracy: "Labels are honest for the price — patented extracts like KSM-66 are named correctly — but unverified by an external COA.",
+      dosing: "Sensible, clinically-relevant doses on the key products (1,000 mg C, KSM-66 600 mg).",
+      fssai: "Fully licensed, budget-positioned domestic brand.",
+      thirdParty: "No published independent COA; in-house testing without public disclosure.",
+      value: "The best rupee-per-dose value in the domestic vitamins segment.",
+    },
+    testing: {
+      paras: [
+        "Carbamide Forte's strength is unusual for a budget brand: <strong>honest labelling</strong>. Where cheap competitors hide behind generic 'ashwagandha extract', Carbamide Forte correctly names <strong>patented KSM-66</strong> and gives sensible, clinically-relevant doses — at the lowest prices in the segment.",
+        "The gap is <strong>verification</strong>. The brand relies on in-house testing and publishes no independent third-party COA, so the accurate-looking labels aren't externally confirmed. That's the single reason it sits in the acceptable rather than recommended tier — buy it for value, with eyes open on testing.",
+      ],
+      chips: ["FSSAI licensed", "Names patented extracts (KSM-66)", "India-manufactured"],
+    },
+    rangeLead: "The Carbamide Forte range, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Vitamins", items: [
+        { name: "Vitamin C 1,000 mg + Zinc", unit: "120 tablets", price: 479, pn: "≈ ₹4 / tab", tag: "Best value", star: true, note: "A genuine 1,000 mg vitamin C with zinc at a category-best price. Honest dose, honest cost — the flagship value pick.", q: "carbamide+forte+vitamin+c+1000mg" },
+        { name: "Vitamin D3 + K2", unit: "60 capsules", price: 399, pn: "correct forms", tag: "Deficiency", note: "Correct D3+K2 forms at a budget price. Good value for India's deficiency burden.", q: "carbamide+forte+vitamin+d3+k2" },
+        { name: "Biotin 10,000 mcg", unit: "120 tablets", price: 399, pn: "can skew lab tests", tag: "Hair & skin", note: "Appropriately dosed biotin. Note high-dose biotin can skew some blood tests — tell your doctor before bloodwork.", q: "carbamide+forte+biotin" },
+        { name: "Multivitamin", unit: "60 tablets", price: 449, pn: "check it uses D3", tag: "Daily base", note: "A budget daily multi. Check it uses D3, not D2; a sensible floor for the price.", q: "carbamide+forte+multivitamin" },
+      ]},
+      { name: "Minerals", items: [
+        { name: "Magnesium Glycinate", unit: "120 tablets", price: 449, pn: "well absorbed", tag: "Sleep / cramps", note: "Well-absorbed glycinate form at a low price. A good-value evening magnesium.", q: "carbamide+forte+magnesium+glycinate" },
+      ]},
+      { name: "Herbs & Wellness", items: [
+        { name: "Ashwagandha KSM-66 600 mg", unit: "60 capsules", price: 449, pn: "patented extract", tag: "Correctly labelled", star: true, note: "Correctly-labelled, clinically-dosed KSM-66 — rare at this price. The product that earns the brand its reputation.", q: "carbamide+forte+ashwagandha+ksm+66" },
+        { name: "Collagen Builder", unit: "200 g", price: 599, pn: "modest evidence", tag: "Skin", note: "A collagen-support blend (vitamin C + amino precursors). Modest evidence; fine as an inexpensive add-on.", q: "carbamide+forte+collagen" },
+        { name: "Apple Cider Vinegar", unit: "60 capsules", price: 399, pn: "low evidence", tag: "Overhyped", note: "Popular but low-evidence for weight or metabolism. Buy only if you specifically want it.", q: "carbamide+forte+apple+cider+vinegar" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Where to buy:</strong> Carbamide Forte's official Amazon.in storefront or brand website. Note the brand publishes no independent COA — its value and honest labelling are the draw. We don't publish discount codes we can't verify — check the official store for any live offer.",
+      amazon: "https://www.amazon.in/s?k=carbamide+forte",
+      directUrl: "https://www.carbamideforte.com/",
+      directLabel: "Buy from Carbamide Forte",
+    },
+    pros: [
+      "Best rupee-per-dose value in the domestic vitamins segment",
+      "Correctly labels patented extracts like KSM-66 — rare at this price",
+      "Sensible, clinically-relevant doses on the key products",
+      "FSSAI licensed and widely available",
+    ],
+    cons: [
+      "No published independent COA — labels are unverified externally",
+      "Some cheaper SKUs still use generic, unstandardised extracts",
+      "A few low-evidence products (ACV) in the range",
+      "Budget positioning means little formulation innovation",
+    ],
+    audience: {
+      good: "Are price-sensitive, read labels, and want correctly-dosed basics — especially vitamin C, D3+K2 and KSM-66 ashwagandha — at the lowest domestic prices.",
+      bad: "Require a published independent COA before buying, or want premium, innovative formulations.",
+    },
+    compareLead: "Among budget domestic vitamins, Carbamide Forte is the value leader; the recommended brands above it add the independent testing it lacks.",
+    compare: [
+      { name: "NOW Foods", slug: "now-foods", score: 7.8, tier: "Recommended", why: "GMP-tested, broadest verified range" },
+      { name: "Unived", slug: "unived", score: 7.6, tier: "Recommended", why: "Vegan-certified, correct forms, NABL-tested" },
+      { name: "Carbamide Forte", score: 6.8, tier: "Acceptable", why: "Best rupee-per-dose value; correctly-labelled KSM-66; no public COA", self: true },
+      { name: "HK Vitals", slug: "hk-vitals", score: 6.4, tier: "Acceptable", why: "Budget range; base multi uses D2, not D3" },
+    ],
+    faq: [
+      { q: "Is Carbamide Forte a good brand?", a: "For value, yes — it's the best rupee-per-dose pick in domestic vitamins and labels patented extracts like KSM-66 correctly. The one caveat is that it publishes no independent COA, so you're trusting accurate-looking labels." },
+      { q: "Is Carbamide Forte ashwagandha real KSM-66?", a: "Yes — it correctly names patented KSM-66 at a clinically-relevant 600 mg dose, which is rare in this price bracket. That honest labelling is a key reason it scores well on value." },
+      { q: "Is Carbamide Forte third-party tested?", a: "Not publicly. It relies on in-house testing and doesn't publish an independent COA. That's the main thing holding it in the acceptable tier despite strong value and labelling." },
+      { q: "Carbamide Forte or HK Vitals?", a: "Carbamide Forte is the better pick — its key products are correctly dosed (real 1,000 mg C, KSM-66), whereas HK Vitals' base multivitamin uses the inferior D2 form. Neither publishes an independent COA." },
+    ],
+    verdict: "Carbamide Forte is the value champion of domestic vitamins: correctly-dosed, honestly-labelled basics at the lowest prices, with KSM-66 ashwagandha as a standout. The missing independent COA is the only real knock, and it's why it sits just below the recommended tier. For price-sensitive, label-literate buyers, it's an easy recommendation with that one caveat.",
+    altsLead: "Want independent testing or a broader verified range? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "now-foods", name: "NOW Foods", score: 7.8, why: "GMP-tested vitamins and omega-3 with a long track record, if you'll pay import prices." },
+      { slug: "unived", name: "Unived", score: 7.6, why: "Vegan-certified, correctly-formed essentials with NABL testing." },
+      { slug: "steadfast", name: "Steadfast Nutrition", score: 7.6, why: "Clean-label brand with per-batch COAs if published testing matters to you." },
+    ],
+  },
+
+  // ───────────────────────── Labrada ─────────────────────────
+  'labrada': {
+    metaDesc: "Independent Labrada brand profile. NC Trust Score 6.8/10, Acceptable. Lean Body whey has decent transparency and label accuracy, but India-market SKUs carry no current independent certification — and some scoop sizes are inflated.",
+    ogDesc: "NC Trust Score 6.8/10. Labrada's Lean Body whey is decent and label-honest, but India SKUs aren't independently certified — and watch the scoop-size arithmetic.",
+    kicker: "Lean Body whey has decent transparency and reasonable label accuracy. The catches: no current independent certification for India, and some inflated scoop sizes that quietly cut value.",
+    thesis: "Labrada is a long-standing US brand with reasonable transparency and label accuracy on its Lean Body whey line. The qualifiers are real, though: its India-market SKUs carry no current independent certification, and some products use inflated scoop sizes that reduce the effective protein per rupee. A competent mid-tier import — just check the serving-size arithmetic before assuming it's good value.",
+    metaChips: [
+      { label: "Updated May 2026", ok: true },
+      { label: "Label-honest range", ok: true },
+      { label: "USA · est. 1987", ok: false },
+      { label: "India SKUs uncertified", ok: false },
+    ],
+    keyrow: [
+      { k: "Buy it for", v: "Decent, label-honest imported whey" },
+      { k: "Standout", v: "Lean Body line's transparency" },
+      { k: "Keep in mind", v: "No India cert; check scoop sizes" },
+    ],
+    glance: [
+      { k: "Founded", v: "1987 · Houston, TX, USA" },
+      { k: "Category focus", v: "Whey, mass gainers, aminos, bars" },
+      { k: "Best for", v: "Buyers who like the Lean Body line and read labels" },
+      { k: "Watch for", v: "Inflated scoop sizes on some SKUs" },
+      { k: "Testing", v: "Some US products had Informed Sport; India SKUs uncertified" },
+      { k: "Where to buy", v: "Authorised Amazon.in & importers" },
+    ],
+    scorecardLead: "Every brand in our database is scored on the same five dimensions, each out of 10, using the same rubric. Labrada's label honesty carries it; the lack of current India certification and value caveats keep it acceptable.",
+    scoreWhys: {
+      labelAccuracy: "Reasonable label accuracy and ingredient transparency on the Lean Body line.",
+      dosing: "Sensible protein dosing — but check scoop size, as some are inflated.",
+      fssai: "Import-compliant via Indian e-commerce.",
+      thirdParty: "Some US products previously held Informed Sport; India SKUs aren't currently independently certified.",
+      value: "Mid-tier value, eroded on SKUs that use larger scoops to flatter the serving.",
+    },
+    testing: {
+      paras: [
+        "Labrada earns reasonable marks for <strong>transparency and label accuracy</strong> on its Lean Body whey — it's an established brand that doesn't hide behind proprietary blends, and its labels are generally honest about what's inside.",
+        "Two caveats keep it in the acceptable tier. First, <strong>certification</strong>: while some US-market products have historically carried Informed Sport, the India-market SKUs aren't currently independently certified, and no per-batch COAs are published. Second, <strong>scoop-size arithmetic</strong> — some products use larger scoops that inflate the apparent serving, so compare protein per 100 g, not just per scoop.",
+      ],
+      chips: ["FSSAI import compliant", "Transparent Lean Body labels", "Authorised import"],
+    },
+    rangeLead: "The Labrada range sold in India, grouped by use-case. Each tag is a positioning note, not a separate score, and the one-line take flags both the use and the catch. Prices are last-checked estimates — confirm on Amazon before buying.",
+    cats: [
+      { name: "Proteins & Gainers", items: [
+        { name: "Lean Body 100% Whey", unit: "2 lb", price: 2999, pn: "check the scoop", tag: "Flagship", star: true, note: "The Lean Body flagship: a decent, label-honest whey blend. Verify the scoop size and protein-per-serving before judging value — some run larger than expected.", q: "labrada+lean+body+whey+protein" },
+        { name: "Muscle Mass Gainer", unit: "6 lb", price: 3499, pn: "high-calorie", tag: "Mass gainer", note: "A high-calorie gainer. As ever, most people get cleaner calories from food plus whey.", q: "labrada+muscle+mass+gainer" },
+        { name: "Lean Body Protein Bar", unit: "box of 12", price: 1499, pn: "on-the-go", tag: "Protein snack", note: "A convenient ~20 g protein bar. Useful on the go; check the sugar and sugar-alcohol content.", q: "labrada+lean+body+protein+bar" },
+      ]},
+      { name: "Creatine & Performance", items: [
+        { name: "Micronized Creatine", unit: "300 g", price: 1199, pn: "commodity", tag: "Monohydrate", note: "Plain micronized monohydrate — fine quality, but domestic creatine costs far less per serving.", q: "labrada+creatine" },
+        { name: "BCAA", unit: "250 g", price: 1399, pn: "redundant if fed", tag: "BCAA", note: "A flavoured 2:1:1; redundant once daily protein is covered.", q: "labrada+bcaa" },
+      ]},
+      { name: "Wellness", items: [
+        { name: "Glutamine", unit: "300 g", price: 1099, pn: "evidence weak", tag: "Recovery", note: "Pure glutamine; recovery evidence in well-fed lifters is thin. A low priority.", q: "labrada+glutamine" },
+      ]},
+    ],
+    buybox: {
+      text: "<strong>Buy authorised — and check the scoop.</strong> Imported Labrada should come from an authorised distributor or reputable importer; verify the protein-per-100 g, not just per scoop. We don't publish discount codes we can't verify — check the official store for any live offer.",
+      amazon: "https://www.amazon.in/s?k=labrada+lean+body",
+      directUrl: "https://www.labrada.com/",
+      directLabel: "Buy from Labrada",
+    },
+    pros: [
+      "Decent transparency and label accuracy on the Lean Body line",
+      "No proprietary blends hiding ingredient doses",
+      "Established brand with a broad protein and snack range",
+      "Widely available via Indian e-commerce",
+    ],
+    cons: [
+      "No current independent certification for India-market SKUs",
+      "Some products use inflated scoop sizes that reduce real value",
+      "No published per-batch COAs",
+      "Imported pricing above domestic verified whey",
+    ],
+    audience: {
+      good: "Like the Lean Body range, read labels carefully (including scoop sizes), and want a transparent imported whey without needing a certification stamp.",
+      bad: "Require independent certification or per-batch COAs, or want the best protein per rupee — domestic verified whey wins there.",
+    },
+    compareLead: "Among imported proteins, Labrada is label-honest but uncertified for India; the recommended brands offer either certification or better value.",
+    compare: [
+      { name: "Nakpro", slug: "nakpro", score: 8.2, tier: "Recommended", why: "Independently verified protein at domestic prices" },
+      { name: "Optimum Nutrition", slug: "optimum-nutrition", score: 8.0, tier: "Recommended", why: "Strongest 3P cert stack; better verified value" },
+      { name: "Labrada", score: 6.8, tier: "Acceptable", why: "Decent, label-honest whey; uncertified for India, check scoops", self: true },
+      { name: "MyProtein", slug: "myprotein", score: 6.5, tier: "Acceptable", why: "Good price-to-protein; UK cert doesn't cover India batches" },
+    ],
+    faq: [
+      { q: "Is Labrada Lean Body whey good?", a: "It's a decent, label-honest whey blend. The caveats: India-market SKUs aren't independently certified, and some scoop sizes are inflated, so check the protein-per-100 g before deciding it's good value." },
+      { q: "Is Labrada third-party tested for India?", a: "Not currently. Some US-market products have historically carried Informed Sport, but the India SKUs aren't independently certified and no per-batch COAs are published." },
+      { q: "What does 'inflated scoop size' mean?", a: "Some products use a larger scoop so each 'serving' looks bigger, which can make the protein-per-rupee look better than it is. Compare protein per 100 g across brands to judge true value." },
+      { q: "Labrada or MyProtein?", a: "Both are mid-tier imports without India-specific certification. MyProtein's Impact Whey is often better value per gram; Labrada's Lean Body labels are transparent. Buy whichever is genuinely cheaper per gram of protein from an official channel." },
+    ],
+    verdict: "Labrada is a competent, label-honest import that just doesn't clear the bar for the recommended tier: no current India certification, no published COAs, and value that depends on watching the scoop size. If you like the Lean Body range and check the arithmetic, it's fine — but a verified domestic whey or a certified import gives you more confidence per rupee.",
+    altsLead: "Want certification or better value? These brands are where we'd point you next.",
+    alternatives: [
+      { slug: "optimum-nutrition", name: "Optimum Nutrition", score: 8.0, why: "The strongest certification stack on the India market, if you'll pay a premium and buy authorised." },
+      { slug: "nakpro", name: "Nakpro", score: 8.2, why: "Independently Trustified/Eurofins-verified protein at domestic prices." },
+      { slug: "as-it-is", name: "AS-IT-IS Nutrition", score: 8.6, why: "The value benchmark — per-batch COAs and the lowest price per gram." },
+    ],
+  },
+
 };
