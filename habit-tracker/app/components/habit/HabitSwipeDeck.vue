@@ -64,12 +64,12 @@ const intent = computed<'accept' | 'reject' | null>(() =>
       <!-- Deck exhausted -->
       <div
         v-else
-        class="absolute inset-0 flex flex-col items-center justify-center rounded-[24px] border border-dashed border-white/10 bg-white/[0.02] text-center"
+        class="absolute inset-0 flex flex-col items-center justify-center rounded-[24px] border border-dashed border-stone-200 bg-stone-50 text-center dark:border-white/10 dark:bg-white/[0.02]"
       >
-        <div class="flex size-14 items-center justify-center rounded-full bg-white/[0.04]">
-          <UIcon name="i-lucide-party-popper" class="size-6 text-stone-400" />
+        <div class="flex size-14 items-center justify-center rounded-full bg-stone-200 dark:bg-white/[0.04]">
+          <UIcon name="i-lucide-party-popper" class="size-6 text-stone-500 dark:text-stone-400" />
         </div>
-        <p class="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-stone-200">You're all caught up</p>
+        <p class="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-stone-800 dark:text-stone-200">You're all caught up</p>
         <p class="mt-1.5 text-[13px] text-stone-500">No more habits in this category.</p>
       </div>
     </div>
@@ -77,7 +77,7 @@ const intent = computed<'accept' | 'reject' | null>(() =>
     <!-- Action buttons -->
     <div v-if="current" class="mt-8 flex items-center justify-center gap-5">
       <button
-        class="flex size-14 items-center justify-center rounded-[20px] bg-white/[0.03] text-stone-400 ring-1 ring-inset ring-white/[0.05] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-white/[0.06] hover:text-stone-300 active:scale-95 disabled:opacity-50"
+        class="flex size-14 items-center justify-center rounded-[20px] bg-stone-100 text-stone-500 ring-1 ring-inset ring-stone-200 shadow-sm transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-stone-200 hover:text-stone-700 active:scale-95 disabled:opacity-50 dark:bg-white/[0.03] dark:text-stone-400 dark:ring-white/[0.05] dark:shadow-none dark:hover:bg-white/[0.06] dark:hover:text-stone-300"
         aria-label="Skip"
         :disabled="!!leaving"
         @click="fly('left')"

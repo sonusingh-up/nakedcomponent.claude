@@ -38,8 +38,8 @@ async function onUpdate(id: string, updates: { title?: string | null; body?: str
 <template>
   <div>
     <header class="mb-6 mt-4">
-      <h1 class="text-3xl font-semibold tracking-[-0.02em] text-stone-100">Journal</h1>
-      <p class="mt-1 text-[13px] font-medium text-stone-400">Notes & audio for your habits</p>
+      <h1 class="text-3xl font-semibold tracking-[-0.02em] text-stone-900 dark:text-stone-100">Journal</h1>
+      <p class="mt-1 text-[13px] font-medium text-stone-500 dark:text-stone-400">Notes & audio for your habits</p>
     </header>
 
     <UInput
@@ -48,7 +48,7 @@ async function onUpdate(id: string, updates: { title?: string | null; body?: str
       icon="i-lucide-search"
       size="lg"
       variant="none"
-      class="mb-6 w-full rounded-[16px] bg-white/[0.03] ring-1 ring-inset ring-white/[0.08]"
+      class="mb-6 w-full rounded-[16px] bg-black/5 ring-1 ring-inset ring-black/10 dark:bg-white/[0.03] dark:ring-white/[0.08]"
     />
 
     <div v-if="pending" class="columns-2 gap-3">

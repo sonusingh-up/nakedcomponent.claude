@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="app-shell relative flex min-h-[100dvh] flex-col overflow-x-hidden bg-[var(--color-coal-1000)]">
+  <div class="app-shell relative flex min-h-[100dvh] flex-col overflow-x-hidden bg-[var(--bg-body)]">
     <!-- Ambient ember glow behind the top of every screen -->
     <div class="ember-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-80" />
 

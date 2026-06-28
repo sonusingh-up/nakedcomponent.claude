@@ -2,6 +2,7 @@
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const toast = useToast()
+const colorMode = useColorMode()
 
 const displayName = computed(
   () =>
@@ -102,7 +103,7 @@ async function signOut() {
 <template>
   <div>
     <header class="mb-6 mt-2">
-      <h1 class="text-4xl font-semibold tracking-tight text-stone-100">Settings</h1>
+      <h1 class="text-4xl font-semibold tracking-tight text-stone-900 dark:text-stone-100">Settings</h1>
     </header>
 
     <!-- Profile card -->
@@ -117,8 +118,8 @@ async function signOut() {
             {{ displayName.charAt(0) }}
           </div>
           <div class="min-w-0">
-            <p class="truncate font-semibold text-stone-100">{{ displayName }}</p>
-            <p class="truncate text-sm text-stone-400">
+            <p class="truncate font-semibold text-stone-900 dark:text-stone-100">{{ displayName }}</p>
+            <p class="truncate text-sm text-stone-500 dark:text-stone-400">
               {{ user?.email ?? 'Not signed in' }}
             </p>
           </div>
@@ -132,7 +133,7 @@ async function signOut() {
       </div>
       
       <form v-else class="flex flex-col gap-3" @submit.prevent="saveName">
-        <label class="text-sm font-medium text-stone-300">Display name</label>
+        <label class="text-sm font-medium text-stone-700 dark:text-stone-300">Display name</label>
         <UInput
           v-model="newName"
           auto-focus
@@ -166,28 +167,44 @@ async function signOut() {
       <div
         class="glass flex items-center justify-between rounded-full px-6 py-4"
       >
-        <span class="flex items-center gap-3 text-stone-200">
-          <UIcon name="i-lucide-bell" class="size-5 text-stone-400" />
+        <span class="flex items-center gap-3 text-stone-800 dark:text-stone-200">
+          <UIcon name="i-lucide-palette" class="size-5 text-stone-500 dark:text-stone-400" />
+          Appearance
+        </span>
+        <USelect
+          v-model="colorMode.preference"
+          :options="['system', 'light', 'dark']"
+          variant="ghost"
+          color="neutral"
+          size="sm"
+          class="w-24 capitalize"
+        />
+      </div>
+      <div
+        class="glass flex items-center justify-between rounded-full px-6 py-4"
+      >
+        <span class="flex items-center gap-3 text-stone-800 dark:text-stone-200">
+          <UIcon name="i-lucide-bell" class="size-5 text-stone-500 dark:text-stone-400" />
           Reminders
         </span>
-        <span class="text-xs text-stone-400">Coming soon</span>
+        <span class="text-xs text-stone-500 dark:text-stone-400">Coming soon</span>
       </div>
       <button
-        class="glass flex w-full items-center justify-between rounded-full px-6 py-4 transition-colors hover:bg-white/8"
+        class="glass flex w-full items-center justify-between rounded-full px-6 py-4 transition-colors hover:bg-black/5 dark:hover:bg-white/8"
         :disabled="exporting"
         @click="exportData"
       >
-        <span class="flex items-center gap-3 text-stone-200">
-          <UIcon name="i-lucide-download" class="size-5 text-stone-400" />
+        <span class="flex items-center gap-3 text-stone-800 dark:text-stone-200">
+          <UIcon name="i-lucide-download" class="size-5 text-stone-500 dark:text-stone-400" />
           Export my data
         </span>
-        <UIcon v-if="exporting" name="i-lucide-loader-2" class="size-4 animate-spin text-stone-400" />
-        <UIcon v-else name="i-lucide-chevron-right" class="size-4 text-stone-500" />
+        <UIcon v-if="exporting" name="i-lucide-loader-2" class="size-4 animate-spin text-stone-500 dark:text-stone-400" />
+        <UIcon v-else name="i-lucide-chevron-right" class="size-4 text-stone-400 dark:text-stone-500" />
       </button>
     </section>
 
     <UButton
-      class="mt-6 rounded-full px-6 py-3.5 text-base font-medium shadow-sm bg-white/5 text-stone-100 ring-1 ring-white/10 hover:bg-white/10"
+      class="mt-6 rounded-full px-6 py-3.5 text-base font-medium shadow-sm bg-black/5 text-stone-800 ring-1 ring-black/10 hover:bg-black/10 dark:bg-white/5 dark:text-stone-100 dark:ring-white/10 dark:hover:bg-white/10"
       block
       color="neutral"
       size="xl"
@@ -199,7 +216,7 @@ async function signOut() {
       Sign out
     </UButton>
 
-    <p class="mt-8 text-center text-xs text-stone-400">
+    <p class="mt-8 text-center text-xs text-stone-500 dark:text-stone-400">
       Habit Tracker by Naked Compound · v0.1
     </p>
   </div>

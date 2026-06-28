@@ -20,7 +20,7 @@ function isActive(to: string) {
     aria-label="Primary"
   >
     <ul
-      class="glass pointer-events-auto flex items-center gap-1 rounded-full p-1.5 shadow-2xl shadow-black/40"
+      class="glass pointer-events-auto flex items-center gap-1 rounded-full p-1.5 shadow-2xl shadow-black/10 dark:shadow-black/40"
     >
       <li v-for="link in links" :key="link.to" class="relative">
         <NuxtLink
@@ -31,7 +31,7 @@ function isActive(to: string) {
           :class="
             isActive(link.to)
               ? 'bg-[#f97316] text-white shadow-lg shadow-[#f97316]/30'
-              : 'text-[#555] hover:bg-white/5 hover:text-[#bbb]'
+              : 'text-stone-400 hover:bg-black/5 hover:text-stone-600 dark:text-[#555] dark:hover:bg-white/5 dark:hover:text-[#bbb]'
           "
         >
           <UIcon

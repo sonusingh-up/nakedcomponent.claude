@@ -8,10 +8,9 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
-  // SPARK is a dark-only experience — force dark mode (no system flash).
   colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
+    preference: 'system',
+    fallback: 'light',
   },
 
   // Supabase auth: protect every route except the public ones below.

@@ -99,8 +99,8 @@ onMounted(() => {
     
     <!-- Header -->
     <header class="mb-6 mt-4">
-      <h1 class="text-3xl font-semibold tracking-[-0.02em] text-white">Stats</h1>
-      <p class="mt-1 text-[13px] font-medium text-[#bbb]">Your all-time progress and history</p>
+      <h1 class="text-3xl font-semibold tracking-[-0.02em] text-stone-900 dark:text-white">Stats</h1>
+      <p class="mt-1 text-[13px] font-medium text-stone-500 dark:text-[#bbb]">Your all-time progress and history</p>
     </header>
 
     <div v-if="pending" class="space-y-4">
@@ -112,11 +112,11 @@ onMounted(() => {
       
       <!-- Global Summary Cards -->
       <div class="mb-6 grid grid-cols-2 gap-3">
-        <div class="rounded-[20px] border-[0.5px] border-[#282828] bg-[#111] p-5 text-center shadow-sm">
-          <div class="text-[32px] font-bold tracking-tight text-white">{{ totalCompletions }}</div>
-          <div class="mt-1 text-[10px] font-bold tracking-[0.08em] text-[#777] uppercase">Total Logs</div>
+        <div class="rounded-[20px] border border-stone-200 bg-white p-5 text-center shadow-sm dark:border-[#282828] dark:bg-[#111] dark:shadow-none">
+          <div class="text-[32px] font-bold tracking-tight text-stone-900 dark:text-white">{{ totalCompletions }}</div>
+          <div class="mt-1 text-[10px] font-bold tracking-[0.08em] text-stone-500 uppercase dark:text-[#777]">Total Logs</div>
         </div>
-        <div class="relative overflow-hidden rounded-[20px] border-[0.5px] border-[#f97316]/30 bg-[#111] p-5 text-center shadow-[0_0_15px_rgba(249,115,22,0.1)]">
+        <div class="relative overflow-hidden rounded-[20px] border border-[#f97316]/30 bg-orange-50/50 p-5 text-center shadow-[0_0_15px_rgba(249,115,22,0.1)] dark:bg-[#111]">
           <div class="absolute inset-0 bg-gradient-to-b from-[#f97316]/10 to-transparent pointer-events-none" />
           <div class="flex items-center justify-center gap-1.5 text-[32px] font-bold tracking-tight text-[#f97316]">
             <UIcon name="i-lucide-flame" class="size-6 drop-shadow-md" />{{ bestGlobalStreak }}
@@ -126,10 +126,10 @@ onMounted(() => {
       </div>
 
       <!-- Activity Heatmap -->
-      <section class="mb-8 overflow-hidden rounded-[24px] border-[0.5px] border-[#282828] bg-[#111] p-5 shadow-sm">
+      <section class="mb-8 overflow-hidden rounded-[24px] border border-stone-200 bg-white p-5 shadow-sm dark:border-[#282828] dark:bg-[#111] dark:shadow-none">
         <div class="mb-5 flex items-center justify-between">
-          <h2 class="text-[12px] font-bold tracking-[0.08em] text-white uppercase">Activity Heatmap</h2>
-          <span class="rounded-full bg-[#1c1c1c] px-2.5 py-1 text-[10px] font-semibold text-[#888]">{{ activeDaysCount }} Days Active</span>
+          <h2 class="text-[12px] font-bold tracking-[0.08em] text-stone-800 uppercase dark:text-white">Activity Heatmap</h2>
+          <span class="rounded-full bg-stone-100 px-2.5 py-1 text-[10px] font-semibold text-stone-500 dark:bg-[#1c1c1c] dark:text-[#888]">{{ activeDaysCount }} Days Active</span>
         </div>
         
         <!-- Horizontally Scrollable Area -->
@@ -144,7 +144,7 @@ onMounted(() => {
               :key="day.date"
               class="size-3 rounded-[2px] transition-colors hover:ring-1 hover:ring-white/50"
               :class="[
-                day.intensity === 0 ? 'bg-[#1c1c1c]' : '',
+                day.intensity === 0 ? 'bg-stone-100 dark:bg-[#1c1c1c]' : '',
                 day.intensity === 1 ? 'bg-[#f97316]/30' : '',
                 day.intensity === 2 ? 'bg-[#f97316]/70' : '',
                 day.intensity === 3 ? 'bg-[#f97316] shadow-[0_0_8px_rgba(249,115,22,0.4)]' : '',
@@ -153,10 +153,10 @@ onMounted(() => {
             />
           </div>
         </ClientOnly>
-        <div class="mt-3 flex items-center justify-end gap-2 text-[10px] font-medium text-[#666]">
+        <div class="mt-3 flex items-center justify-end gap-2 text-[10px] font-medium text-stone-400 dark:text-[#666]">
           <span>Less</span>
           <div class="flex gap-[3px]">
-            <div class="size-2.5 rounded-[2px] bg-[#1a1a1a]" />
+            <div class="size-2.5 rounded-[2px] bg-stone-100 dark:bg-[#1a1a1a]" />
             <div class="size-2.5 rounded-[2px] bg-[#f97316]/30" />
             <div class="size-2.5 rounded-[2px] bg-[#f97316]/70" />
             <div class="size-2.5 rounded-[2px] bg-[#f97316]" />
@@ -167,29 +167,29 @@ onMounted(() => {
 
       <!-- Per-Habit Breakdown -->
       <section>
-        <h2 class="mb-4 ml-1 text-[12px] font-bold tracking-[0.08em] text-[#666] uppercase">Per-Habit Breakdown</h2>
+        <h2 class="mb-4 ml-1 text-[12px] font-bold tracking-[0.08em] text-stone-500 uppercase dark:text-[#666]">Per-Habit Breakdown</h2>
         <div class="flex flex-col gap-2.5">
           <NuxtLink
             v-for="habit in habits" 
             :key="habit.id"
             :to="`/track/${habit.id}`"
-            class="group flex items-center gap-4 rounded-[20px] bg-[#111] border-[0.5px] border-[#282828] p-4 transition-all hover:border-[#444] hover:bg-[#151515]"
+            class="group flex items-center gap-4 rounded-[20px] bg-white border border-stone-200 p-4 shadow-sm transition-all hover:border-stone-300 hover:bg-stone-50 dark:border-[#282828] dark:bg-[#111] dark:shadow-none dark:hover:border-[#444] dark:hover:bg-[#151515]"
           >
             <!-- Icon -->
-            <div class="flex size-12 shrink-0 items-center justify-center rounded-[12px] bg-[#1c1c1c] transition-colors group-hover:bg-[#252525]">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-[12px] bg-stone-100 transition-colors group-hover:bg-stone-200 dark:bg-[#1c1c1c] dark:group-hover:bg-[#252525]">
               <UIcon :name="habit.icon || 'i-lucide-activity'" class="size-5 text-[#f97316]" />
             </div>
             
             <!-- Details -->
             <div class="min-w-0 flex-1">
-              <div class="truncate text-[15px] font-semibold text-white">{{ habit.title }}</div>
-              <div class="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-[#888]">
-                <span class="flex items-center gap-1 rounded-md bg-[#1c1c1c] px-2 py-0.5"><UIcon name="i-lucide-check-circle-2" class="size-3 text-[#aaa]" /> {{ history[habit.id]?.size ?? 0 }} total</span>
+              <div class="truncate text-[15px] font-semibold text-stone-800 dark:text-white">{{ habit.title }}</div>
+              <div class="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-stone-500 dark:text-[#888]">
+                <span class="flex items-center gap-1 rounded-md bg-stone-100 px-2 py-0.5 dark:bg-[#1c1c1c]"><UIcon name="i-lucide-check-circle-2" class="size-3 text-stone-400 dark:text-[#aaa]" /> {{ history[habit.id]?.size ?? 0 }} total</span>
                 <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ habit.streak?.current_streak ?? 0 }} streak</span>
               </div>
             </div>
             
-            <UIcon name="i-lucide-chevron-right" class="size-5 text-[#444] transition-transform group-hover:translate-x-1 group-hover:text-[#888]" />
+            <UIcon name="i-lucide-chevron-right" class="size-5 text-stone-300 transition-transform group-hover:translate-x-1 group-hover:text-stone-500 dark:text-[#444] dark:group-hover:text-[#888]" />
           </NuxtLink>
         </div>
       </section>

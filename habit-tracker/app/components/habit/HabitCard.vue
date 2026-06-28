@@ -41,7 +41,7 @@ const completionPct = computed(() =>
 
 <template>
   <div
-    class="flex items-center justify-between rounded-[13px] bg-[#1c1c1c] p-2.5 transition-transform hover:scale-[1.01] cursor-pointer"
+    class="flex items-center justify-between rounded-[13px] bg-white border border-stone-200 p-2.5 shadow-sm transition-transform hover:scale-[1.01] cursor-pointer dark:border-transparent dark:bg-[#1c1c1c] dark:shadow-none"
     @click="emit('open')"
   >
     <!-- Left: Icon + Info -->
@@ -53,8 +53,8 @@ const completionPct = computed(() =>
 
       <!-- Text Info -->
       <div>
-        <div class="mb-[2px] text-[13px] font-medium text-white">{{ name }}</div>
-        <div class="flex items-center gap-[3px] text-[11px] text-[#555]">
+        <div class="mb-[2px] text-[13px] font-medium text-stone-800 dark:text-white">{{ name }}</div>
+        <div class="flex items-center gap-[3px] text-[11px] text-stone-400 dark:text-[#555]">
           <UIcon name="i-lucide-flame" class="size-[10px]" :class="streak > 0 ? 'text-[#f97316]' : ''" />
           {{ streak }}d · {{ doneCount }}/{{ WINDOW }} · {{ completionPct }}%
         </div>
@@ -64,7 +64,7 @@ const completionPct = computed(() =>
     <!-- Right: Toggle Check -->
     <button
       class="flex size-[26px] shrink-0 items-center justify-center rounded-full transition-all outline-none"
-      :class="completed ? 'bg-[#f97316]' : 'border-[1.5px] border-[#f97316]/30 hover:bg-[#f97316]/15'"
+      :class="completed ? 'bg-[#f97316]' : 'border-[1.5px] border-[#f97316]/40 hover:bg-[#f97316]/10 dark:border-[#f97316]/30 dark:hover:bg-[#f97316]/15'"
       :aria-label="completed ? 'Mark incomplete' : 'Mark complete'"
       @click.stop="emit('toggle')"
     >

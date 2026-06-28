@@ -44,7 +44,7 @@ async function saveEdit() {
 
 <template>
   <div
-    class="relative mb-4 break-inside-avoid overflow-hidden rounded-[24px] bg-white/[0.03] p-5 shadow-lg shadow-black/20 ring-1 ring-inset ring-white/[0.06] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-white/[0.04] hover:ring-white/[0.1]"
+    class="relative mb-4 break-inside-avoid overflow-hidden rounded-[24px] bg-stone-50 p-5 shadow-md shadow-stone-200/50 ring-1 ring-inset ring-stone-200 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-stone-100 hover:ring-stone-300 dark:bg-white/[0.03] dark:shadow-lg dark:shadow-black/20 dark:ring-white/[0.06] dark:hover:bg-white/[0.04] dark:hover:ring-white/[0.1]"
   >
     <!-- Header: Date and Actions -->
     <div class="mb-3 flex items-center justify-between">
@@ -52,14 +52,14 @@ async function saveEdit() {
       <div class="flex items-center gap-1 opacity-60 transition-opacity hover:opacity-100">
         <button
           v-if="!isEditing"
-          class="flex size-7 items-center justify-center rounded-full bg-white/[0.05] text-stone-400 transition-colors hover:bg-white/[0.1] hover:text-stone-200"
+          class="flex size-7 items-center justify-center rounded-full bg-stone-200 text-stone-500 transition-colors hover:bg-stone-300 hover:text-stone-700 dark:bg-white/[0.05] dark:text-stone-400 dark:hover:bg-white/[0.1] dark:hover:text-stone-200"
           aria-label="Edit entry"
           @click="isEditing = true"
         >
           <UIcon name="i-lucide-pencil" class="size-3.5" />
         </button>
         <button
-          class="flex size-7 items-center justify-center rounded-full bg-white/[0.05] text-stone-400 transition-colors hover:bg-rose-500/20 hover:text-rose-400"
+          class="flex size-7 items-center justify-center rounded-full bg-stone-200 text-stone-500 transition-colors hover:bg-rose-100 hover:text-rose-600 dark:bg-white/[0.05] dark:text-stone-400 dark:hover:bg-rose-500/20 dark:hover:text-rose-400"
           aria-label="Delete entry"
           @click="emit('delete')"
         >
@@ -74,7 +74,7 @@ async function saveEdit() {
         v-model="editTitle"
         placeholder="Title"
         variant="none"
-        class="w-full bg-white/[0.05] ring-1 ring-white/[0.1] rounded-[10px]"
+        class="w-full bg-stone-100 ring-1 ring-stone-300 rounded-[10px] dark:bg-white/[0.05] dark:ring-white/[0.1]"
       />
       <UTextarea
         v-if="entry.entry_type === 'text'"
@@ -82,7 +82,7 @@ async function saveEdit() {
         placeholder="Note body..."
         variant="none"
         autoresize
-        class="w-full bg-white/[0.05] ring-1 ring-white/[0.1] rounded-[12px]"
+        class="w-full bg-stone-100 ring-1 ring-stone-300 rounded-[12px] dark:bg-white/[0.05] dark:ring-white/[0.1]"
       />
       <div class="flex justify-end gap-2 pt-2">
         <UButton color="gray" variant="ghost" size="xs" @click="isEditing = false">Cancel</UButton>
@@ -92,11 +92,11 @@ async function saveEdit() {
 
     <!-- View Mode -->
     <template v-else>
-      <h3 v-if="entry.title" class="text-[17px] font-semibold tracking-[-0.01em] text-stone-100">{{ entry.title }}</h3>
+      <h3 v-if="entry.title" class="text-[17px] font-semibold tracking-[-0.01em] text-stone-900 dark:text-stone-100">{{ entry.title }}</h3>
 
       <p
         v-if="entry.entry_type === 'text' && entry.body"
-        class="mt-1.5 whitespace-pre-wrap text-[14px] leading-relaxed text-stone-300"
+        class="mt-1.5 whitespace-pre-wrap text-[14px] leading-relaxed text-stone-600 dark:text-stone-300"
       >
         {{ entry.body }}
       </p>
@@ -108,7 +108,7 @@ async function saveEdit() {
         :duration="entry.audio_duration"
       />
 
-      <div v-if="entry.image_url" class="mt-4 overflow-hidden rounded-[16px] ring-1 ring-white/10">
+      <div v-if="entry.image_url" class="mt-4 overflow-hidden rounded-[16px] ring-1 ring-black/10 dark:ring-white/10">
         <img 
           :src="entry.image_url" 
           class="max-h-64 w-full object-cover transition-transform duration-700 hover:scale-105"
@@ -120,7 +120,7 @@ async function saveEdit() {
         <span v-if="entry.mood" class="text-base drop-shadow-sm">{{ MOOD_EMOJI[entry.mood] }}</span>
         <span
           v-if="habitName"
-          class="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-medium tracking-wide text-stone-300 ring-1 ring-white/[0.05]"
+          class="rounded-full bg-stone-200 px-2.5 py-1 text-[11px] font-medium tracking-wide text-stone-600 ring-1 ring-stone-300 dark:bg-white/10 dark:text-stone-300 dark:ring-white/[0.05]"
         >
           {{ habitName }}
         </span>

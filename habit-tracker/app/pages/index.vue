@@ -310,7 +310,7 @@ const dynamicInsight = computed(() => {
         
         <!-- Section Header -->
         <div class="mb-3 flex items-center justify-between pl-1">
-          <span class="text-[12px] font-bold tracking-[0.08em] text-[#666]">
+          <span class="text-[12px] font-bold tracking-[0.08em] text-stone-500 dark:text-[#666]">
             YOUR HABITS
           </span>
         </div>
@@ -331,25 +331,25 @@ const dynamicInsight = computed(() => {
         <!-- Expand Toggle -->
         <button 
           v-if="habits.length > 3"
-          class="mb-4 w-full rounded-[16px] bg-[#111] border-[0.5px] border-[#282828] py-3 text-center text-[12px] font-medium text-[#888] transition-colors hover:bg-[#151515] hover:text-[#aaa]"
+          class="mb-4 w-full rounded-[16px] bg-white border border-stone-200 py-3 text-center text-[12px] font-medium text-stone-500 shadow-sm transition-colors hover:bg-stone-50 hover:text-stone-700 dark:border-[#282828] dark:bg-[#111] dark:text-[#888] dark:shadow-none dark:hover:bg-[#151515] dark:hover:text-[#aaa]"
           @click="isExpanded = !isExpanded"
         >
           {{ isExpanded ? 'Show less' : `Show ${habits.length - 3} more` }}
         </button>
 
         <!-- Insight Card -->
-        <div class="mb-4 rounded-[16px] border-[0.5px] border-[#f97316]/22 bg-[#15100a] p-3.5">
+        <div class="mb-4 rounded-[16px] border border-[#f97316]/20 bg-orange-50/60 p-3.5 dark:border-[#f97316]/22 dark:bg-[#15100a]">
           <div class="mb-2 flex items-center gap-1.5">
             <UIcon name="i-lucide-lightbulb" class="size-4 text-[#f97316]" />
             <span class="text-[11px] font-bold tracking-[0.08em] text-[#f97316]">INSIGHT</span>
           </div>
-          <div class="text-[13px] leading-[1.6] text-[#bbb]" v-html="dynamicInsight"></div>
+          <div class="text-[13px] leading-[1.6] text-stone-600 dark:text-[#bbb]" v-html="dynamicInsight"></div>
         </div>
 
         <!-- Weekly Trend Chart -->
-        <div class="rounded-[16px] border-[0.5px] border-[#282828] bg-[#111] p-4">
+        <div class="rounded-[16px] border border-stone-200 bg-white p-4 shadow-sm dark:border-[#282828] dark:bg-[#111] dark:shadow-none">
           <div class="mb-3 flex items-center justify-between">
-            <span class="text-[11px] font-bold tracking-[0.08em] text-[#666]">WEEKLY TREND</span>
+            <span class="text-[11px] font-bold tracking-[0.08em] text-stone-500 dark:text-[#666]">WEEKLY TREND</span>
           </div>
           
           <div class="mb-2 flex h-10 items-end gap-1.5">
@@ -357,7 +357,7 @@ const dynamicInsight = computed(() => {
               v-for="day in last7Days" 
               :key="'bar-'+day.date" 
               class="flex-1 rounded-[3px] bg-[#f97316] transition-all duration-300 outline-none hover:opacity-100"
-              :class="day.isSelected ? 'ring-1 ring-white ring-offset-[1.5px] ring-offset-[#111]' : ''"
+              :class="day.isSelected ? 'ring-1 ring-[#111] ring-offset-[1.5px] ring-offset-white dark:ring-white dark:ring-offset-[#111]' : ''"
               :style="{ 
                 height: Math.max(day.percentage, 15) + '%',
                 opacity: day.isSelected ? 1 : (day.percentage === 0 ? 0.15 : (day.percentage / 100) * 0.7 + 0.3)
@@ -372,7 +372,7 @@ const dynamicInsight = computed(() => {
               v-for="day in last7Days" 
               :key="'lbl-'+day.date" 
               class="text-[11px]"
-              :class="day.isSelected ? 'font-bold text-[#f97316]' : 'font-medium text-[#555]'"
+              :class="day.isSelected ? 'font-bold text-[#f97316]' : 'font-medium text-stone-400 dark:text-[#555]'"
             >
               {{ day.label }}
             </span>
@@ -395,7 +395,7 @@ const dynamicInsight = computed(() => {
 
   <!-- Milestone Celebration Modal -->
   <UModal :model-value="!!milestoneEvent" @update:model-value="milestoneEvent = null" :ui="{ width: 'w-full max-w-sm', rounded: 'rounded-[24px]' }">
-    <div v-if="milestoneEvent" class="relative overflow-hidden bg-[#1c1c1c] p-8 text-center shadow-2xl">
+    <div v-if="milestoneEvent" class="relative overflow-hidden bg-white p-8 text-center shadow-2xl dark:bg-[#1c1c1c]">
       
       <!-- Glowing background effect -->
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
@@ -404,8 +404,8 @@ const dynamicInsight = computed(() => {
         <UIcon :name="milestoneEvent.icon" class="size-8 text-[#f97316]" />
       </div>
       
-      <h2 class="mb-1 text-[22px] font-bold tracking-tight text-white">Milestone Unlocked!</h2>
-      <p class="mb-6 text-[14px] leading-relaxed text-[#bbb]">
+      <h2 class="mb-1 text-[22px] font-bold tracking-tight text-stone-900 dark:text-white">Milestone Unlocked!</h2>
+      <p class="mb-6 text-[14px] leading-relaxed text-stone-600 dark:text-[#bbb]">
         Incredible work! You've hit a <span class="font-bold text-[#f97316]">{{ milestoneEvent.streak }}-day</span> streak for <strong>{{ milestoneEvent.title }}</strong>.
       </p>
       

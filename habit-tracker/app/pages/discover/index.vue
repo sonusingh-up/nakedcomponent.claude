@@ -86,17 +86,17 @@ function onMouseMove(e: MouseEvent) {
   <div class="px-2">
     <header class="mb-6 mt-4 flex items-start justify-between">
       <div>
-        <h1 class="text-3xl font-semibold tracking-[-0.02em] text-stone-100">Discover</h1>
-        <p class="mt-1 text-[13px] font-medium text-stone-400">
+        <h1 class="text-3xl font-semibold tracking-[-0.02em] text-stone-900 dark:text-stone-100">Discover</h1>
+        <p class="mt-1 text-[13px] font-medium text-stone-500 dark:text-stone-400">
           Swipe right to add, left to skip
         </p>
       </div>
       <NuxtLink
         to="/discover/new"
-        class="flex size-10 items-center justify-center rounded-[10px] bg-white/[0.04] ring-1 ring-white/10 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-white/[0.08]"
+        class="flex size-10 items-center justify-center rounded-[10px] bg-black/5 ring-1 ring-black/10 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-black/10 dark:bg-white/[0.04] dark:ring-white/10 dark:hover:bg-white/[0.08]"
         aria-label="Create custom habit"
       >
-        <UIcon name="i-lucide-plus" class="size-[18px] text-stone-300" />
+        <UIcon name="i-lucide-plus" class="size-[18px] text-stone-600 dark:text-stone-300" />
       </NuxtLink>
     </header>
 
@@ -114,7 +114,7 @@ function onMouseMove(e: MouseEvent) {
         :class="
           activeCategory === 'all'
             ? 'spark-gradient text-white shadow-[0_2px_12px_rgba(255,106,24,0.3)] hover:shadow-[0_4px_16px_rgba(255,106,24,0.4)]'
-            : 'bg-white/[0.04] text-stone-300 ring-1 ring-white/[0.08] hover:bg-white/[0.08] hover:text-white hover:ring-white/[0.12]'
+            : 'bg-stone-100 text-stone-500 ring-1 ring-stone-200 hover:bg-stone-200 hover:text-stone-700 hover:ring-stone-300 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.08] dark:hover:bg-white/[0.08] dark:hover:text-white dark:hover:ring-white/[0.12]'
         "
         @click="activeCategory = 'all'"
       >
@@ -127,7 +127,7 @@ function onMouseMove(e: MouseEvent) {
         :class="
           activeCategory === cat
             ? 'spark-gradient text-white shadow-[0_2px_12px_rgba(255,106,24,0.3)] hover:shadow-[0_4px_16px_rgba(255,106,24,0.4)]'
-            : 'bg-white/[0.04] text-stone-300 ring-1 ring-white/[0.08] hover:bg-white/[0.08] hover:text-white hover:ring-white/[0.12]'
+            : 'bg-stone-100 text-stone-500 ring-1 ring-stone-200 hover:bg-stone-200 hover:text-stone-700 hover:ring-stone-300 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.08] dark:hover:bg-white/[0.08] dark:hover:text-white dark:hover:ring-white/[0.12]'
         "
         @click="activeCategory = cat"
       >
@@ -137,7 +137,7 @@ function onMouseMove(e: MouseEvent) {
     </div>
 
     <div v-if="pending" class="mx-auto h-[60vh] max-h-[520px] w-full max-w-sm">
-      <USkeleton class="h-full w-full rounded-[24px] bg-white/[0.02] ring-1 ring-white/[0.05]" />
+      <USkeleton class="h-full w-full rounded-[24px] bg-black/[0.03] ring-1 ring-black/[0.05] dark:bg-white/[0.02] dark:ring-white/[0.05]" />
     </div>
 
     <HabitSwipeDeck
