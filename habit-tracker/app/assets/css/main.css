@@ -1,0 +1,95 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* ------------------------------------------------------------------ */
+/* Naked Compound brand theme                                          */
+/* Fonts are auto-resolved & self-hosted by @nuxt/fonts (bundled with  */
+/* @nuxt/ui) just by being referenced here.                            */
+/* ------------------------------------------------------------------ */
+@theme static {
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Terracotta — the brand accent (#c96442) expanded into a full scale */
+  --color-terracotta-50: #fbf3ef;
+  --color-terracotta-100: #f4e2d8;
+  --color-terracotta-200: #e8c4b1;
+  --color-terracotta-300: #dba189;
+  --color-terracotta-400: #d17e60;
+  --color-terracotta-500: #c96442;
+  --color-terracotta-600: #a64d2e;
+  --color-terracotta-700: #8a3f26;
+  --color-terracotta-800: #6f331f;
+  --color-terracotta-900: #5c2c1c;
+  --color-terracotta-950: #321509;
+
+  /* Warm cream surfaces */
+  --color-cream-50: #fdfbf6;
+  --color-cream-100: #f7f3ec;
+  --color-cream-200: #e6ddcf;
+
+  /* Category accent tints (from the main site palette) */
+  --color-mint: #d8e6d5;
+  --color-sky: #d7e3ec;
+  --color-butter: #f4e5b8;
+  --color-rose: #f0d4cb;
+}
+
+/* Light theme — map Nuxt UI surface tokens onto warm cream values */
+:root {
+  --ui-bg: var(--color-cream-100);
+  --ui-bg-elevated: var(--color-cream-50);
+  --ui-bg-muted: #f1eadd;
+  --ui-border: var(--color-cream-200);
+  --ui-radius: 0.875rem;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html,
+body {
+  background-color: var(--ui-bg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect device safe areas (notch / home indicator) for the app shell */
+.app-shell {
+  min-height: 100dvh;
+  padding-top: env(safe-area-inset-top);
+}
+
+.display-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* Hide scrollbars on horizontal swipe rows while keeping scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

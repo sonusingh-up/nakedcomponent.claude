@@ -1,0 +1,27 @@
+{
+  "name": "habit-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Habit Tracker by Naked Compound — build habits, track streaks, journal your progress",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@nuxt/ui": "^4.9.0",
+    "@nuxtjs/supabase": "^2.0.9",
+    "@supabase/supabase-js": "^2.108.2",
+    "nuxt": "^4.4.8",
+    "vue": "^3.5.18",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vite-pwa/nuxt": "^1.1.1",
+    "typescript": "^5.7.3"
+  }
+}
