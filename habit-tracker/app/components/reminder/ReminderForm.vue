@@ -78,9 +78,9 @@ async function save() {
 </script>
 
 <template>
-  <section class="rounded-[3rem] border border-[var(--color-cream-200)] bg-white p-6 shadow-sm">
+  <section class="glass rounded-[3rem] p-6">
     <div class="flex items-center justify-between">
-      <h2 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
+      <h2 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-400">
         <UIcon name="i-lucide-bell" class="size-4" /> REMINDER
       </h2>
       <USwitch v-model="enabled" color="primary" />
@@ -92,16 +92,16 @@ async function save() {
 
     <div v-else-if="enabled" class="mt-5 space-y-5">
       <div class="flex items-center justify-between">
-        <label class="text-sm font-medium text-stone-600">Time</label>
+        <label class="text-sm font-medium text-stone-300">Time</label>
         <input
           v-model="time"
           type="time"
-          class="rounded-full border border-[var(--color-cream-200)] bg-[var(--color-cream-50)] px-4 py-2 text-sm tabular focus:border-terracotta-400 focus:outline-none"
+          class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm tabular text-stone-200 focus:border-ember-400 focus:outline-none"
         />
       </div>
 
       <div>
-        <label class="mb-3 block text-sm font-medium text-stone-600">Repeat on</label>
+        <label class="mb-3 block text-sm font-medium text-stone-300">Repeat on</label>
         <div class="flex justify-between gap-1">
           <button
             v-for="d in WEEKDAYS"
@@ -110,8 +110,8 @@ async function save() {
             class="flex size-10 items-center justify-center rounded-full text-sm font-medium transition-colors"
             :class="
               days.includes(d.key)
-                ? 'bg-terracotta-500 text-white shadow-sm'
-                : 'bg-[var(--color-cream-100)] text-stone-500'
+                ? 'spark-gradient text-white shadow-sm'
+                : 'bg-white/5 text-stone-400'
             "
             @click="toggleDay(d.key)"
           >
@@ -122,7 +122,7 @@ async function save() {
 
       <p
         v-if="perm === 'denied'"
-        class="rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-700"
+        class="rounded-2xl bg-amber-500/10 px-4 py-3 text-sm text-amber-300"
       >
         Notifications are blocked in your browser. Reminders are saved but won't
         show until you re-enable them in site settings.

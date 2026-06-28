@@ -7,6 +7,12 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  // SPARK is a dark-only experience — force dark mode (no system flash).
+  colorMode: {
+    preference: 'dark',
+    fallback: 'dark',
+  },
+
   // Supabase auth: protect every route except the public ones below.
   // The module auto-redirects unauthenticated users to /login.
   supabase: {
@@ -33,7 +39,7 @@ export default defineNuxtConfig({
           content:
             'Build daily habits, track streaks, set reminders and journal your progress.',
         },
-        { name: 'theme-color', content: '#c96442' },
+        { name: 'theme-color', content: '#0b0807' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         {
           name: 'apple-mobile-web-app-status-bar-style',
@@ -54,8 +60,8 @@ export default defineNuxtConfig({
       name: 'Habit Tracker — Naked Compound',
       short_name: 'Habits',
       description: 'Build daily habits, track streaks and journal your progress.',
-      theme_color: '#c96442',
-      background_color: '#f7f3ec',
+      theme_color: '#0b0807',
+      background_color: '#0b0807',
       display: 'standalone',
       orientation: 'portrait',
       start_url: '/',

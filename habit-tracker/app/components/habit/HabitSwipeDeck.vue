@@ -64,18 +64,18 @@ const intent = computed<'accept' | 'reject' | null>(() =>
       <!-- Deck exhausted -->
       <div
         v-else
-        class="absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] border-2 border-dashed border-[var(--color-cream-200)] text-center"
+        class="absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] border-2 border-dashed border-white/15 text-center"
       >
-        <UIcon name="i-lucide-party-popper" class="size-12 text-terracotta-500" />
-        <p class="display-serif mt-3 text-2xl text-stone-800">You're all caught up</p>
-        <p class="mt-1 text-sm text-stone-500">No more habits in this category.</p>
+        <UIcon name="i-lucide-party-popper" class="size-12 text-ember-400" />
+        <p class="mt-3 text-2xl font-semibold text-stone-100">You're all caught up</p>
+        <p class="mt-1 text-sm text-stone-400">No more habits in this category.</p>
       </div>
     </div>
 
     <!-- Action buttons -->
     <div v-if="current" class="mt-6 flex items-center justify-center gap-6">
       <button
-        class="flex size-16 items-center justify-center rounded-full border border-[var(--color-cream-200)] bg-white text-rose-500 shadow-md transition-transform active:scale-90"
+        class="glass flex size-16 items-center justify-center rounded-full text-rose-400 shadow-lg shadow-black/30 transition-transform active:scale-90"
         aria-label="Skip"
         :disabled="!!leaving"
         @click="fly('left')"
@@ -83,7 +83,7 @@ const intent = computed<'accept' | 'reject' | null>(() =>
         <UIcon name="i-lucide-x" class="size-7" />
       </button>
       <button
-        class="flex size-20 items-center justify-center rounded-full bg-terracotta-500 text-white shadow-lg transition-transform active:scale-90"
+        class="spark-gradient flex size-20 items-center justify-center rounded-full text-white shadow-lg shadow-ember-500/30 transition-transform active:scale-90"
         aria-label="Add habit"
         :disabled="!!leaving"
         @click="fly('right')"

@@ -28,12 +28,12 @@ const date = computed(() =>
 
 <template>
   <div
-    class="mb-3 break-inside-avoid rounded-2xl border border-[var(--color-cream-200)] bg-white p-4 shadow-sm"
+    class="glass mb-3 break-inside-avoid rounded-2xl p-4"
   >
     <div class="mb-1 flex items-center justify-between">
       <span class="text-xs text-stone-400">{{ date }}</span>
       <button
-        class="text-stone-300 transition-colors hover:text-rose-500"
+        class="text-stone-500 transition-colors hover:text-rose-400"
         aria-label="Delete entry"
         @click="emit('delete')"
       >
@@ -41,11 +41,11 @@ const date = computed(() =>
       </button>
     </div>
 
-    <h3 v-if="entry.title" class="font-medium text-stone-800">{{ entry.title }}</h3>
+    <h3 v-if="entry.title" class="font-medium text-stone-100">{{ entry.title }}</h3>
 
     <p
       v-if="entry.entry_type === 'text' && entry.body"
-      class="mt-1 whitespace-pre-wrap text-sm/relaxed text-stone-600"
+      class="mt-1 whitespace-pre-wrap text-sm/relaxed text-stone-300"
     >
       {{ entry.body }}
     </p>
@@ -60,7 +60,7 @@ const date = computed(() =>
     <img 
       v-if="entry.image_url" 
       :src="entry.image_url" 
-      class="mt-3 max-h-64 w-full rounded-xl border border-[var(--color-cream-200)] object-cover shadow-sm"
+      class="mt-3 max-h-64 w-full rounded-xl border border-white/10 object-cover"
       loading="lazy"
     />
 
@@ -68,7 +68,7 @@ const date = computed(() =>
       <span v-if="entry.mood" class="text-base">{{ MOOD_EMOJI[entry.mood] }}</span>
       <span
         v-if="habitName"
-        class="rounded-full bg-[var(--color-cream-100)] px-2 py-0.5 text-xs text-stone-500"
+        class="rounded-full bg-white/8 px-2 py-0.5 text-xs text-stone-300"
       >
         {{ habitName }}
       </span>

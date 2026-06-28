@@ -27,8 +27,8 @@ async function onDelete(id: string) {
 <template>
   <div>
     <header class="mb-4 mt-2">
-      <h1 class="display-serif text-4xl text-stone-900">Journal</h1>
-      <p class="mt-1 text-sm text-stone-500">Notes & audio for your habits</p>
+      <h1 class="text-4xl font-semibold tracking-tight text-stone-100">Journal</h1>
+      <p class="mt-1 text-sm text-stone-400">Notes & audio for your habits</p>
     </header>
 
     <UInput
@@ -69,7 +69,7 @@ async function onDelete(id: string) {
     <!-- Floating add button -->
     <NuxtLink
       to="/journal/new"
-      class="fixed bottom-24 right-5 z-30 flex size-14 items-center justify-center rounded-full bg-terracotta-500 text-white shadow-lg transition-transform active:scale-90"
+      class="spark-gradient fixed bottom-28 right-5 z-30 flex size-14 items-center justify-center rounded-full text-white shadow-lg shadow-ember-500/30 transition-transform active:scale-90"
       aria-label="New entry"
     >
       <UIcon name="i-lucide-plus" class="size-7" />
