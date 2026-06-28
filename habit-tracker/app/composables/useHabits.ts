@@ -2,7 +2,7 @@ import type { Habit, UserHabit } from '~/types'
 
 /** CRUD + queries for the habit catalog and a user's adopted habits. */
 export function useHabits() {
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient<any>()
 
   /** Public catalog of predefined habits, optionally filtered by category. */
   async function fetchCatalog(category?: string): Promise<Habit[]> {
@@ -69,11 +69,45 @@ export function useHabits() {
     if (error) throw error
   }
 
+  async function createCustomHabit(payload: {
+    name: string
+    description: string | null
+    category: any
+    icon: string
+    color: string
+  }): Promise<void> {
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) throw new Error('Not authenticated')
+
+    // 1. Insert into public.habits (relies on RLS to set owner_id if we passed it, or we pass it directly)
+    const { data: newHabit, error: createError } = await supabase
+      .from('habits')
+      .insert({
+        ...payload,
+        owner_id: userId,
+        frequency_type: 'daily',
+        social_proof_count: 0,
+      })
+      .select()
+      .single()
+
+    if (createError) throw createError
+
+    // 2. Adopt it
+    const { error: adoptError } = await supabase.rpc('adopt_habit', {
+      p_habit_id: newHabit.id,
+    })
+    
+    if (adoptError) throw adoptError
+  }
+
   return {
     fetchCatalog,
     fetchUserHabits,
     fetchUserHabit,
     adoptHabit,
     archiveHabit,
+    createCustomHabit,
   }
 }

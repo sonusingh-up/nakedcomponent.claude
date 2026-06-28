@@ -131,33 +131,39 @@ async function stopTracking() {
       </div>
 
       <!-- 28-day grid -->
-      <section class="mb-6 rounded-3xl border border-[var(--color-cream-200)] bg-white p-5">
-        <h2 class="mb-3 text-sm font-semibold uppercase tracking-wide text-stone-500">
-          Last 4 weeks
-        </h2>
-        <div class="grid grid-cols-7 gap-1.5">
-          <div
-            v-for="day in grid"
-            :key="day.date"
-            class="flex aspect-square items-center justify-center rounded-md text-[10px] font-medium"
-            :style="
-              day.done
-                ? { backgroundColor: color, color: '#fff' }
-                : { backgroundColor: 'var(--color-cream-100)', color: '#a8a29e' }
-            "
-            :title="day.date"
-          >
-            {{ day.label }}
+      <ClientOnly>
+        <section class="mb-6 rounded-[3rem] border border-[var(--color-cream-200)] bg-white p-6 shadow-sm">
+          <h2 class="mb-4 text-sm font-semibold tracking-wide text-stone-500">
+            LAST 4 WEEKS
+          </h2>
+          <div class="grid grid-cols-7 gap-2">
+            <div
+              v-for="day in grid"
+              :key="day.date"
+              class="flex aspect-square items-center justify-center rounded-full text-[11px] font-medium transition-colors"
+              :style="
+                day.done
+                  ? { backgroundColor: '#5c8b51', color: '#fff' }
+                  : { backgroundColor: 'var(--color-cream-100)', color: '#9a948e' }
+              "
+              :title="day.date"
+            >
+              {{ day.label }}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+        <template #fallback>
+          <USkeleton class="mb-6 h-48 rounded-[3rem]" />
+        </template>
+      </ClientOnly>
 
-      <!-- Today toggle -->
       <UButton
+        class="rounded-full px-6 py-3.5 text-lg font-medium shadow-sm"
+        :class="completedToday ? 'bg-white text-stone-800 hover:bg-stone-50' : ''"
         block
         size="xl"
         :color="completedToday ? 'neutral' : 'primary'"
-        :variant="completedToday ? 'soft' : 'solid'"
+        :variant="completedToday ? 'solid' : 'solid'"
         :loading="busy"
         :icon="completedToday ? 'i-lucide-rotate-ccw' : 'i-lucide-check'"
         @click="toggleToday"

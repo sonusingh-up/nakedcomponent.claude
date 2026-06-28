@@ -47,11 +47,20 @@ function onReject(_habit: Habit) {
 
 <template>
   <div>
-    <header class="mb-4 mt-2">
-      <h1 class="display-serif text-4xl text-stone-900">Discover</h1>
-      <p class="mt-1 text-sm text-stone-500">
-        Swipe right to add, left to skip
-      </p>
+    <header class="mb-4 mt-2 flex items-start justify-between">
+      <div>
+        <h1 class="display-serif text-4xl text-stone-900">Discover</h1>
+        <p class="mt-1 text-sm text-stone-500">
+          Swipe right to add, left to skip
+        </p>
+      </div>
+      <UButton
+        to="/discover/new"
+        icon="i-lucide-plus"
+        color="neutral"
+        variant="ghost"
+        class="mt-1"
+      />
     </header>
 
     <!-- Category filter -->

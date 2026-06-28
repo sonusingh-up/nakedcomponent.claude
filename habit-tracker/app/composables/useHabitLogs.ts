@@ -9,18 +9,21 @@ export function localDate(d = new Date()): string {
 
 /** Logging daily completions and reading today's progress. */
 export function useHabitLogs() {
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient<any>()
   const user = useSupabaseUser()
 
   /** Mark a habit complete for today (idempotent per day). */
   async function logToday(userHabitId: string, count = 1): Promise<HabitLog> {
-    if (!user.value) throw new Error('Not authenticated')
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) throw new Error('Not authenticated')
+
     const { data, error } = await supabase
       .from('habit_logs')
       .upsert(
         {
           user_habit_id: userHabitId,
-          user_id: user.value.id,
+          user_id: userId,
           log_date: localDate(),
           count,
         },

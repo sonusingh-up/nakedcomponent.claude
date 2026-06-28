@@ -12,7 +12,7 @@ export const WEEKDAYS: { key: WeekDay; label: string }[] = [
 
 /** CRUD for reminders plus browser Notification permission handling. */
 export function useReminders() {
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient<any>()
   const user = useSupabaseUser()
 
   async function fetchForHabit(userHabitId: string): Promise<Reminder | null> {

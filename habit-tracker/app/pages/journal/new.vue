@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { EntryType, Mood } from '~/types'
 
-const { create, uploadAudio } = useJournal()
+const { create, uploadAudio, uploadImage } = useJournal()
 const { fetchUserHabits } = useHabits()
 const recorder = useAudioRecorder({ maxSeconds: 180 })
 const toast = useToast()
@@ -12,6 +12,26 @@ const body = ref('')
 const mood = ref<Mood | null>(null)
 const habitId = ref<string>('')
 const saving = ref(false)
+
+const imageFile = ref<File | null>(null)
+const imagePreview = ref<string | null>(null)
+const fileInput = ref<HTMLInputElement | null>(null)
+
+function onImageSelect(e: Event) {
+  const target = e.target as HTMLInputElement
+  if (target.files && target.files[0]) {
+    imageFile.value = target.files[0]
+    imagePreview.value = URL.createObjectURL(target.files[0])
+  }
+}
+function removeImage() {
+  imageFile.value = null
+  if (imagePreview.value) {
+    URL.revokeObjectURL(imagePreview.value)
+    imagePreview.value = null
+  }
+  if (fileInput.value) fileInput.value.value = ''
+}
 
 const { data: habits } = await useAsyncData(
   'journal-habits',
@@ -46,18 +66,36 @@ async function save() {
         return
       }
       const audio_url = await uploadAudio(recorder.blob.value)
+      
+      let image_url = null
+      if (imageFile.value) {
+        image_url = await uploadImage(imageFile.value)
+      }
+
       await create({
         ...common,
         entry_type: 'audio',
         audio_url,
         audio_duration: recorder.seconds.value,
+        image_url
       })
     } else {
-      if (!body.value.trim() && !title.value.trim()) {
-        toast.add({ title: 'Write something first', color: 'warning' })
+      if (!body.value.trim() && !title.value.trim() && !imageFile.value) {
+        toast.add({ title: 'Write something or attach an image first', color: 'warning' })
         return
       }
-      await create({ ...common, entry_type: 'text', body: body.value.trim() || null })
+      
+      let image_url = null
+      if (imageFile.value) {
+        image_url = await uploadImage(imageFile.value)
+      }
+
+      await create({ 
+        ...common, 
+        entry_type: 'text', 
+        body: body.value.trim() || null,
+        image_url
+      })
     }
     toast.add({ title: 'Saved', icon: 'i-lucide-check', color: 'primary' })
     await navigateTo('/journal')
@@ -155,6 +193,40 @@ async function save() {
           Record again
         </UButton>
       </template>
+    </div>
+
+    <!-- Image Attachment -->
+    <div class="mb-4">
+      <label class="mb-2 block text-sm text-stone-600">Attachment (optional)</label>
+      
+      <div v-if="imagePreview" class="relative mb-2 inline-block">
+        <img :src="imagePreview" class="h-32 w-auto rounded-xl border border-[var(--color-cream-200)] object-cover shadow-sm" />
+        <button
+          class="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-rose-500 text-white shadow-md transition-transform hover:scale-105"
+          @click="removeImage"
+        >
+          <UIcon name="i-lucide-x" class="size-4" />
+        </button>
+      </div>
+
+      <div v-else>
+        <UButton
+          color="neutral"
+          variant="outline"
+          icon="i-lucide-image"
+          class="rounded-xl border-[var(--color-cream-200)] bg-white px-4 py-2 text-stone-600 hover:bg-stone-50"
+          @click="fileInput?.click()"
+        >
+          Add Photo
+        </UButton>
+        <input 
+          ref="fileInput" 
+          type="file" 
+          accept="image/*" 
+          class="hidden" 
+          @change="onImageSelect" 
+        />
+      </div>
     </div>
 
     <!-- Mood -->
