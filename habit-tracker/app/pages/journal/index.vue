@@ -19,6 +19,7 @@ const entries = computed(() => {
 })
 
 async function onDelete(id: string) {
+  if (!confirm('Are you sure you want to delete this journal entry?')) return
   await remove(id)
   await refresh()
 }
