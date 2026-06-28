@@ -171,14 +171,17 @@ async function signOut() {
           <UIcon name="i-lucide-palette" class="size-5 text-stone-500 dark:text-stone-400" />
           Appearance
         </span>
-        <USelect
-          v-model="colorMode.preference"
-          :options="['system', 'light', 'dark']"
-          variant="ghost"
-          color="neutral"
-          size="sm"
-          class="w-24 capitalize"
-        />
+        <div class="flex items-center gap-1 rounded-full bg-black/5 p-1 dark:bg-white/5">
+          <button 
+            v-for="theme in ['system', 'light', 'dark']" 
+            :key="theme"
+            class="rounded-full px-3 py-1 text-[11px] font-semibold capitalize transition-all"
+            :class="colorMode.preference === theme ? 'bg-white shadow-sm text-stone-900 dark:bg-[#282828] dark:text-white' : 'text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200'"
+            @click="colorMode.preference = theme"
+          >
+            {{ theme }}
+          </button>
+        </div>
       </div>
       <div
         class="glass flex items-center justify-between rounded-full px-6 py-4"
