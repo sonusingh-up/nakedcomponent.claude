@@ -528,6 +528,7 @@
             <div class="footer-col">
               <h4>Library</h4>
               <ul>
+                <li><a href="https://app.nakedcompound.in">Habit Tracker app ↗</a></li>
                 <li><a href="${PAGES.categories}">Categories</a></li>
                 <li><a href="${PAGES.blog}">Blog</a></li>
                 <li><a href="${PAGES.learn}">Learn</a></li>
