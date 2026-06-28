@@ -17,7 +17,7 @@ const selectedDateLabel = computed(() => {
 })
 
 // Client-side fetch
-const { data, pending, refresh } = await useAsyncData(
+const { data, pending, refresh } = useAsyncData(
   'dashboard',
   async () => {
     const supabase = useSupabaseClient()

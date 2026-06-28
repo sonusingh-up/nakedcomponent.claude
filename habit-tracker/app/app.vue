@@ -4,6 +4,7 @@
 
 <template>
   <UApp>
+    <NuxtLoadingIndicator color="#f97316" :height="3" />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

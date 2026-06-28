@@ -2,7 +2,7 @@
 const { list, remove, update } = useJournal()
 const toast = useToast()
 
-const { data, pending, refresh } = await useAsyncData('journal', () => list(), {
+const { data, pending, refresh } = useAsyncData('journal', () => list(), {
   server: false,
   default: () => [],
 })

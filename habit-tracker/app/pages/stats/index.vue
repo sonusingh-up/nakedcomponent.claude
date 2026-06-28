@@ -4,7 +4,7 @@ import { localDate } from '~/composables/useHabitLogs'
 const { fetchUserHabits } = useHabits()
 const { fetchHistoryAll } = useHabitLogs()
 
-const { data, pending } = await useAsyncData(
+const { data, pending } = useAsyncData(
   'stats',
   async () => {
     const [habits, history] = await Promise.all([
