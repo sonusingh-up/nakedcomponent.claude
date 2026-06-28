@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-06-01',
   devtools: { enabled: true },
 
-  modules: ['@nuxt/ui', '@nuxtjs/supabase'],
+  modules: ['@nuxt/ui', '@nuxtjs/supabase', '@vite-pwa/nuxt'],
 
   css: ['~/assets/css/main.css'],
 
@@ -40,6 +40,43 @@ export default defineNuxtConfig({
           content: 'default',
         },
       ],
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
     },
+    pageTransition: { name: 'page', mode: 'out-in' },
+  },
+
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Habit Tracker — Naked Compound',
+      short_name: 'Habits',
+      description: 'Build daily habits, track streaks and journal your progress.',
+      theme_color: '#c96442',
+      background_color: '#f7f3ec',
+      display: 'standalone',
+      orientation: 'portrait',
+      start_url: '/',
+      icons: [
+        {
+          src: '/icon-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+        {
+          src: '/icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,png,svg,ico,woff2}'],
+    },
+    devOptions: { enabled: false },
   },
 })

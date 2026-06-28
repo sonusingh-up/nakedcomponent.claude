@@ -7,6 +7,7 @@
     <main class="mx-auto w-full max-w-lg flex-1 px-4 pb-28 pt-4">
       <slot />
     </main>
+    <AppInstallBanner />
     <AppBottomNav />
   </div>
 </template>

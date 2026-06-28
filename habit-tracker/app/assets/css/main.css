@@ -71,6 +71,20 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.18s var(--ease-out), transform 0.18s var(--ease-out);
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
 /* Hide scrollbars on horizontal swipe rows while keeping scroll */
 .no-scrollbar {
   -ms-overflow-style: none;

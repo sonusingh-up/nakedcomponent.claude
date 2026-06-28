@@ -56,11 +56,16 @@ supabase/
 
 - [x] Phase 1 — Scaffold, theme, layouts, navigation
 - [x] Phase 2 — Supabase schema + auth (email/password + magic link)
-- [ ] Phase 3 — Swipe-based habit discovery
-- [ ] Phase 4 — Tracking + streaks (single-habit view, history)
-- [ ] Phase 5 — Reminders
-- [ ] Phase 6 — Journal + audio notes
-- [ ] Phase 7 — PWA + deploy
+- [x] Phase 3 — Swipe-based habit discovery
+- [x] Phase 4 — Tracking + streaks (single-habit view, 28-day history)
+- [x] Phase 5 — Reminders (client + PWA notifications)
+- [x] Phase 6 — Journal + audio notes
+- [x] Phase 7 — PWA (installable, offline asset cache) + deploy config
+
+### Future
+- Web Push reminders (Supabase Edge Function + VAPID) for delivery when closed
+- Generated TypeScript DB types (`supabase gen types`) for end-to-end typing
+- Data export / account deletion in Settings
 
 ## Deploy
 
