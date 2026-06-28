@@ -5,6 +5,11 @@ const { fetchUserHabits } = useHabits()
 const { logDate, removeDateLog, fetchHistoryAll } = useHabitLogs()
 const user = useSupabaseUser()
 
+// Set theme color to orange for the dashboard so the mobile status bar blends seamlessly
+useHead({
+  meta: [{ name: 'theme-color', content: '#f97316' }]
+})
+
 // Selected date for the dashboard view
 const selectedDate = ref(localDate())
 const isTodaySelected = computed(() => selectedDate.value === localDate())
@@ -198,8 +203,11 @@ const dynamicInsight = computed(() => {
 
 <template>
   <div class="mx-auto max-w-md pb-24">
-    <!-- ORANGE HERO SECTION (EDGE-TO-EDGE HEADER) -->
-    <section class="-mx-4 -mt-5 mb-6 overflow-hidden rounded-b-[32px] bg-[#f97316] px-5 pb-6 pt-7 text-white shadow-[0_8px_30px_rgba(249,115,22,0.15)]">
+    <!-- ORANGE HERO SECTION (EDGE-TO-EDGE HEADER WITH NOTCH SUPPORT) -->
+    <section 
+      class="-mx-4 mb-6 overflow-hidden rounded-b-[32px] bg-[#f97316] px-5 pb-6 text-white shadow-[0_8px_30px_rgba(249,115,22,0.15)]"
+      style="margin-top: calc(-1 * (env(safe-area-inset-top) + 1.25rem)); padding-top: calc(env(safe-area-inset-top) + 1.75rem);"
+    >
       
       <!-- Top Nav -->
       <div class="mb-4 flex items-center justify-between">
