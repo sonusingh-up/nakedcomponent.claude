@@ -165,6 +165,8 @@ async function stopTracking() {
         {{ completedToday ? 'Completed today — undo' : 'Mark complete for today' }}
       </UButton>
 
+      <ReminderForm class="mt-6 block" :user-habit-id="id" />
+
       <button
         class="mx-auto mt-6 flex items-center gap-1.5 text-sm text-stone-400 hover:text-rose-500"
         @click="stopTracking"
