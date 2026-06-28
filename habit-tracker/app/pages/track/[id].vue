@@ -75,17 +75,17 @@ async function stopTracking() {
 </script>
 
 <template>
-  <div>
+  <div class="px-2">
     <button
-      class="mb-3 mt-1 flex items-center gap-1 text-sm font-medium text-stone-500"
+      class="mb-6 mt-2 flex items-center gap-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:text-stone-300"
       @click="navigateTo('/')"
     >
-      <UIcon name="i-lucide-chevron-left" class="size-5" /> Back
+      <UIcon name="i-lucide-chevron-left" class="size-4" /> Back
     </button>
 
     <div v-if="pending" class="space-y-4">
-      <USkeleton class="h-24 rounded-3xl" />
-      <USkeleton class="h-32 rounded-3xl" />
+      <USkeleton class="h-24 rounded-[24px] bg-white/[0.02]" />
+      <USkeleton class="h-32 rounded-[24px] bg-white/[0.02]" />
     </div>
 
     <AppEmptyState
@@ -99,53 +99,54 @@ async function stopTracking() {
 
     <template v-else>
       <!-- Header -->
-      <header class="mb-5 flex items-center gap-4">
+      <header class="mb-8 flex items-center gap-5">
         <div
-          class="flex size-14 items-center justify-center rounded-2xl"
-          :style="{ backgroundColor: color + '1f', color }"
+          class="flex size-16 items-center justify-center rounded-[20px] ring-1 ring-white/[0.08]"
+          :style="{ backgroundColor: color + '14', color }"
         >
-          <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-7" />
+          <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-8 drop-shadow-md" />
         </div>
         <div>
-          <h1 class="text-3xl font-semibold tracking-tight text-stone-100">{{ name }}</h1>
-          <p class="text-sm text-stone-400">{{ category?.label }}</p>
+          <h1 class="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-50">{{ name }}</h1>
+          <p class="mt-0.5 flex items-center gap-1.5 text-[13px] text-stone-400">
+            <UIcon :name="category?.icon" class="size-3.5" />
+            {{ category?.label }}
+          </p>
         </div>
       </header>
 
       <!-- Stats -->
-      <div class="mb-5 grid grid-cols-3 gap-3">
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-ember-400">
+      <div class="mb-6 grid grid-cols-3 gap-3">
+        <div class="relative overflow-hidden rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
+          <!-- Glow if streak is active -->
+          <div v-if="currentStreak > 0" class="absolute -bottom-4 left-1/2 h-16 w-16 -translate-x-1/2 rounded-full bg-ember-500/20 blur-xl"></div>
+          <p class="relative z-10 tabular text-[32px] font-semibold tracking-tight text-ember-400">
             {{ currentStreak }}
           </p>
-          <p class="mt-1 text-xs text-stone-400">Current 🔥</p>
+          <p class="relative z-10 mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Current 🔥</p>
         </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-100">{{ longestStreak }}</p>
-          <p class="mt-1 text-xs text-stone-400">Longest</p>
+        <div class="rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-100">{{ longestStreak }}</p>
+          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Longest</p>
         </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-100">{{ totalDays }}</p>
-          <p class="mt-1 text-xs text-stone-400">Total days</p>
+        <div class="rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-100">{{ totalDays }}</p>
+          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Total days</p>
         </div>
       </div>
 
       <!-- 28-day grid -->
       <ClientOnly>
-        <section class="glass mb-6 rounded-[3rem] p-6">
-          <h2 class="mb-4 text-sm font-semibold tracking-wide text-stone-400">
-            LAST 4 WEEKS
+        <section class="mb-8 rounded-[24px] bg-white/[0.02] p-6 ring-1 ring-white/[0.05]">
+          <h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500">
+            Last 4 Weeks
           </h2>
-          <div class="grid grid-cols-7 gap-2">
+          <div class="grid grid-cols-7 gap-2.5">
             <div
               v-for="day in grid"
               :key="day.date"
-              class="flex aspect-square items-center justify-center rounded-full text-[11px] font-medium transition-colors"
-              :style="
-                day.done
-                  ? { backgroundColor: '#ff6a18', color: '#fff' }
-                  : { backgroundColor: 'rgba(255,255,255,0.06)', color: '#78716c' }
-              "
+              class="flex aspect-square items-center justify-center rounded-[8px] text-[11px] font-semibold transition-all duration-300"
+              :class="day.done ? 'bg-ember-500/20 text-ember-400 ring-1 ring-ember-500/30' : 'bg-white/[0.03] text-stone-600'"
               :title="day.date"
             >
               {{ day.label }}
@@ -153,31 +154,39 @@ async function stopTracking() {
           </div>
         </section>
         <template #fallback>
-          <USkeleton class="mb-6 h-48 rounded-[3rem]" />
+          <USkeleton class="mb-8 h-48 rounded-[24px] bg-white/[0.02]" />
         </template>
       </ClientOnly>
 
-      <UButton
-        class="rounded-full px-6 py-3.5 text-lg font-medium shadow-sm"
-        :class="completedToday ? 'bg-white/5 text-stone-100 ring-1 ring-white/10 hover:bg-white/10' : ''"
-        block
-        size="xl"
-        :color="completedToday ? 'neutral' : 'primary'"
-        :variant="completedToday ? 'solid' : 'solid'"
-        :loading="busy"
-        :icon="completedToday ? 'i-lucide-rotate-ccw' : 'i-lucide-check'"
+      <!-- Action Button -->
+      <button
+        class="group relative flex w-full items-center justify-center gap-2 rounded-[20px] py-4 text-[15px] font-semibold transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] disabled:opacity-50"
+        :class="
+          completedToday
+            ? 'bg-white/[0.04] text-stone-300 ring-1 ring-inset ring-white/[0.1] hover:bg-white/[0.06]'
+            : 'spark-gradient text-white shadow-[0_2px_16px_rgba(255,106,24,0.25)] hover:shadow-[0_4px_24px_rgba(255,106,24,0.4)]'
+        "
+        :disabled="busy"
         @click="toggleToday"
       >
-        {{ completedToday ? 'Completed today — undo' : 'Mark complete for today' }}
-      </UButton>
+        <!-- Inner hover highlight for active button -->
+        <div v-if="!completedToday" class="absolute inset-0 rounded-[20px] bg-white/0 transition-colors group-hover:bg-white/10" />
+        
+        <UIcon 
+          :name="busy ? 'i-lucide-loader-2' : completedToday ? 'i-lucide-rotate-ccw' : 'i-lucide-check'" 
+          class="relative z-10 size-[18px]" 
+          :class="{ 'animate-spin': busy }"
+        />
+        <span class="relative z-10">{{ completedToday ? 'Completed today — undo' : 'Mark complete for today' }}</span>
+      </button>
 
       <ReminderForm class="mt-6 block" :user-habit-id="id" />
 
       <button
-        class="mx-auto mt-6 flex items-center gap-1.5 text-sm text-stone-400 hover:text-rose-500"
+        class="mx-auto mt-8 flex items-center gap-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:text-rose-400"
         @click="stopTracking"
       >
-        <UIcon name="i-lucide-archive" class="size-4" /> Stop tracking
+        <UIcon name="i-lucide-archive" class="size-[14px]" /> Stop tracking
       </button>
     </template>
   </div>

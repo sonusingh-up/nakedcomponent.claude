@@ -12,8 +12,8 @@ export function useHabitLogs() {
   const supabase = useSupabaseClient<any>()
   const user = useSupabaseUser()
 
-  /** Mark a habit complete for today (idempotent per day). */
-  async function logToday(userHabitId: string, count = 1): Promise<HabitLog> {
+  /** Mark a habit complete for a specific date (idempotent per day). */
+  async function logDate(userHabitId: string, date: string, count = 1): Promise<HabitLog> {
     const { data: sessionData } = await supabase.auth.getSession()
     const userId = sessionData.session?.user?.id
     if (!userId) throw new Error('Not authenticated')
@@ -24,7 +24,7 @@ export function useHabitLogs() {
         {
           user_habit_id: userHabitId,
           user_id: userId,
-          log_date: localDate(),
+          log_date: date,
           count,
         },
         { onConflict: 'user_habit_id,log_date' },
@@ -35,14 +35,24 @@ export function useHabitLogs() {
     return data as unknown as HabitLog
   }
 
-  /** Undo today's completion. */
-  async function removeTodayLog(userHabitId: string): Promise<void> {
+  /** Undo completion for a specific date. */
+  async function removeDateLog(userHabitId: string, date: string): Promise<void> {
     const { error } = await supabase
       .from('habit_logs')
       .delete()
       .eq('user_habit_id', userHabitId)
-      .eq('log_date', localDate())
+      .eq('log_date', date)
     if (error) throw error
+  }
+
+  /** Mark a habit complete for today (idempotent per day). */
+  async function logToday(userHabitId: string, count = 1): Promise<HabitLog> {
+    return logDate(userHabitId, localDate(), count)
+  }
+
+  /** Undo today's completion. */
+  async function removeTodayLog(userHabitId: string): Promise<void> {
+    return removeDateLog(userHabitId, localDate())
   }
 
   /** All of today's logs for the current user, keyed by user_habit_id. */
@@ -97,5 +107,5 @@ export function useHabitLogs() {
     return map
   }
 
-  return { logToday, removeTodayLog, fetchTodayLogs, fetchHistory, fetchHistoryAll }
+  return { logToday, removeTodayLog, logDate, removeDateLog, fetchTodayLogs, fetchHistory, fetchHistoryAll }
 }

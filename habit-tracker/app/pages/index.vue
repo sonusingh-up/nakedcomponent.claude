@@ -1,36 +1,62 @@
 <script setup lang="ts">
+import { localDate } from '~/composables/useHabitLogs'
+
 const { fetchUserHabits } = useHabits()
-const { fetchTodayLogs, logToday, removeTodayLog, fetchHistoryAll } = useHabitLogs()
+const { logDate, removeDateLog, fetchHistoryAll } = useHabitLogs()
 const user = useSupabaseUser()
 
-// Client-side fetch (data is per-user and auth-gated).
+// Selected date for the dashboard view
+const selectedDate = ref(localDate())
+const isTodaySelected = computed(() => selectedDate.value === localDate())
+
+const selectedDateLabel = computed(() => {
+  if (isTodaySelected.value) return 'today'
+  // parse local date string properly to avoid timezone shifts
+  const [y, m, d] = selectedDate.value.split('-').map(Number)
+  return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short' })
+})
+
+// Client-side fetch
 const { data, pending, refresh } = await useAsyncData(
   'dashboard',
   async () => {
-    const [habits, logs, history] = await Promise.all([
+    const supabase = useSupabaseClient()
+    const userId = user.value?.id
+    let freezes = 0
+    
+    if (userId) {
+      const { data: profile } = await supabase.from('profiles').select('streak_freezes').eq('id', userId).single()
+      freezes = profile?.streak_freezes ?? 0
+    }
+
+    const [habits, history] = await Promise.all([
       fetchUserHabits(),
-      fetchTodayLogs(),
       fetchHistoryAll(70),
     ])
-    return { habits, logs, history }
+    return { habits, history, freezes }
   },
   {
     server: false,
     default: () => ({
       habits: [],
-      logs: {} as Record<string, any>,
       history: {} as Record<string, Set<string>>,
+      freezes: 0
     }),
-  },
+  }
 )
 
 const habits = computed(() => data.value?.habits ?? [])
-const logs = computed(() => data.value?.logs ?? {})
 const history = computed(() => data.value?.history ?? {})
+const streakFreezes = computed(() => data.value?.freezes ?? 0)
 
-const completedCount = computed(
-  () => habits.value.filter((h) => logs.value[h.id]).length,
-)
+const completedCount = computed(() => {
+  let count = 0
+  for (const h of habits.value) {
+    if (history.value[h.id]?.has(selectedDate.value)) count++
+  }
+  return count
+})
+
 const progress = computed(() =>
   habits.value.length
     ? Math.round((completedCount.value / habits.value.length) * 100)
@@ -57,118 +83,334 @@ onMounted(() => {
 })
 
 const toggling = ref<string | null>(null)
+const milestoneEvent = ref<{ title: string; icon: string; streak: number } | null>(null)
+
 async function toggle(userHabitId: string) {
   toggling.value = userHabitId
+  const d = selectedDate.value
+  
+  const oldHabit = habits.value.find(h => h.id === userHabitId)
+  const oldStreak = oldHabit?.streak?.current_streak ?? 0
+
   try {
-    if (logs.value[userHabitId]) {
-      await removeTodayLog(userHabitId)
+    if (history.value[userHabitId]?.has(d)) {
+      history.value[userHabitId].delete(d)
+      await removeDateLog(userHabitId, d)
     } else {
-      await logToday(userHabitId)
+      if (!history.value[userHabitId]) history.value[userHabitId] = new Set()
+      history.value[userHabitId].add(d)
+      await logDate(userHabitId, d)
       if (import.meta.client && navigator.vibrate) navigator.vibrate(15)
     }
+    
+    // Refresh to ensure streaks are up to date
+    await refresh()
+
+    const newHabit = habits.value.find(h => h.id === userHabitId)
+    const newStreak = newHabit?.streak?.current_streak ?? 0
+    
+    if (newStreak > oldStreak && [7, 21, 100].includes(newStreak)) {
+      milestoneEvent.value = {
+        title: newHabit?.habit?.title || 'Habit',
+        icon: newHabit?.habit?.icon || 'i-lucide-activity',
+        streak: newStreak
+      }
+      if (import.meta.client && navigator.vibrate) navigator.vibrate([30, 50, 30])
+    }
+  } catch (e) {
     await refresh()
   } finally {
     toggling.value = null
   }
 }
+
+// --- NEW ADVANCED DASHBOARD STATS --- //
+
+// Generate the last 7 days for the top strip and bottom chart
+const last7Days = computed(() => {
+  const days = []
+  const today = new Date()
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date()
+    d.setDate(today.getDate() - i)
+    const ds = localDate(d)
+    const label = d.toLocaleDateString('en-US', { weekday: 'narrow' })
+    
+    // Calculate how many habits were done on this day across ALL active habits
+    let doneCount = 0
+    let totalActive = habits.value.length
+    habits.value.forEach(h => {
+      if (history.value[h.id]?.has(ds)) doneCount++
+    })
+    
+    const percentage = totalActive > 0 ? (doneCount / totalActive) * 100 : 0
+    
+    days.push({ 
+      date: ds, 
+      label, 
+      isToday: i === 0,
+      isSelected: ds === selectedDate.value,
+      doneCount,
+      percentage,
+      isActiveDay: doneCount > 0 // did they do anything at all?
+    })
+  }
+  return days
+})
+
+const activeDaysThisWeek = computed(() => last7Days.value.filter(d => d.isActiveDay).length)
+const avgCompletionThisWeek = computed(() => {
+  if (last7Days.value.length === 0) return 0
+  const sum = last7Days.value.reduce((acc, curr) => acc + curr.percentage, 0)
+  return Math.round(sum / 7)
+})
+
+// Find highest active streak across all habits
+const maxStreak = computed(() => {
+  if (!habits.value.length) return 0
+  return Math.max(...habits.value.map(h => h.streak?.current_streak ?? 0))
+})
+
+const isExpanded = ref(false)
+const visibleHabits = computed(() => {
+  if (isExpanded.value) return habits.value
+  return habits.value.slice(0, 3)
+})
+
+const dynamicInsight = computed(() => {
+  const activeCount = last7Days.value.filter(d => d.isActiveDay).length
+  const highDays = last7Days.value.filter(d => d.percentage >= 80).length
+  const totalCompleted = last7Days.value.reduce((acc, d) => acc + d.doneCount, 0)
+  
+  if (activeCount === 0) {
+    return 'You haven\'t tracked any habits this week. <span class="font-medium text-[#f97316]">Start small today!</span>'
+  }
+  if (highDays === 7) {
+    return 'Incredible! You hit <span class="font-medium text-[#f97316]">over 80%</span> every day this week. Flawless execution.'
+  }
+  if (highDays > 0) {
+    return `You crushed it on <span class="font-medium text-[#f97316]">${highDays} day${highDays > 1 ? 's' : ''}</span> this week. Keep building that momentum!`
+  }
+  return `You completed <span class="font-medium text-[#f97316]">${totalCompleted} habit${totalCompleted > 1 ? 's' : ''}</span> this week. Consistency is key!`
+})
+
 </script>
 
 <template>
-  <div>
-    <!-- Gradient hero -->
-    <section
-      class="spark-gradient relative mt-1 overflow-hidden rounded-[28px] p-5 text-white shadow-xl shadow-ember-900/30"
-    >
-      <div class="flex items-center justify-between">
-        <NuxtLink to="/settings" class="flex items-center gap-3">
-          <span
-            class="tabular flex size-11 items-center justify-center rounded-full bg-white/20 text-sm font-bold ring-1 ring-white/30 backdrop-blur"
-          >
+  <div class="mx-auto max-w-md pb-24">
+    <!-- EXACT MOCKUP HEADER -->
+    <section class="overflow-hidden rounded-[24px] border-[0.5px] border-[#282828] bg-[#111]">
+      
+      <!-- ORANGE HERO SECTION -->
+      <div class="bg-[#f97316] p-3.5 text-white">
+        
+        <!-- Top Nav -->
+        <div class="mb-2.5 flex items-center justify-between">
+          <NuxtLink to="/settings" class="flex size-8 items-center justify-center rounded-lg bg-black/[0.18] text-[11px] font-medium transition-transform hover:scale-105">
             {{ initials }}
+          </NuxtLink>
+          <div class="flex gap-1.5">
+            <div 
+              class="flex items-center gap-1 rounded-[7px] bg-black/[0.12] px-2 py-1 transition-transform hover:scale-105 hover:bg-black/20"
+              title="Streak Freezes Available"
+            >
+              <UIcon name="i-lucide-snowflake" class="size-3.5 text-sky-400" />
+              <span class="text-[11px] font-semibold text-sky-50">{{ streakFreezes }}</span>
+            </div>
+            <NuxtLink to="/discover" class="flex size-7 items-center justify-center rounded-[7px] bg-black/[0.12] transition-transform hover:scale-105 hover:bg-black/20">
+              <UIcon name="i-lucide-plus" class="size-3.5 text-white" />
+            </NuxtLink>
+            <NuxtLink to="/settings" class="flex size-7 items-center justify-center rounded-[7px] bg-black/[0.12] transition-transform hover:scale-105 hover:bg-black/20">
+              <UIcon name="i-lucide-menu" class="size-3.5 text-white" />
+            </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Greeting -->
+        <div class="mb-0.5 text-[11px] font-medium tracking-[0.06em] text-white/75 uppercase">
+          {{ greeting }} {{ displayName }}
+        </div>
+        <h1 class="mb-3 text-[14px] font-medium leading-[1.35]">
+          Keep the streak alive,<br />spark your daily motivation.
+        </h1>
+
+        <!-- 7-Day Week Strip -->
+        <div class="mb-2 rounded-[10px] bg-black/[0.15] px-1.5 pb-1.5 pt-2">
+          <div class="flex justify-around">
+            <button 
+              v-for="day in last7Days" :key="day.date" 
+              class="text-center outline-none transition-transform hover:scale-105"
+              @click="selectedDate = day.date"
+            >
+              <div 
+                class="mx-auto mb-[3px] size-[22px] rounded-full transition-all"
+                :class="[
+                  day.isSelected && !day.isActiveDay ? 'flex items-center justify-center border-[1.5px] border-white' : '',
+                  day.isActiveDay && !day.isSelected ? 'bg-white/32' : 'bg-white/[0.07]',
+                  day.isActiveDay && day.isSelected ? 'flex items-center justify-center border-[1.5px] border-white' : ''
+                ]"
+              >
+                <div v-if="day.isSelected" class="size-[7px] rounded-full bg-white"></div>
+                <UIcon v-else-if="day.isActiveDay && !day.isSelected" name="i-lucide-check" class="m-auto size-3 mt-1.5 text-white/90" />
+              </div>
+              <div class="text-[11px]" :class="day.isSelected ? 'font-medium text-white' : 'text-white/65'">
+                {{ day.label }}
+              </div>
+            </button>
+          </div>
+          <div class="mt-[3px] text-right">
+            <span class="rounded-[3px] bg-black/[0.28] px-1.5 py-[1px] text-[11px] font-medium text-white/90">NEW</span>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div v-if="habits.length" class="mb-1.5 flex items-baseline justify-between">
+          <span class="text-[16px] font-medium text-white">
+            {{ completedCount }} <span class="text-[11px] text-white/70">/{{ habits.length }} {{ selectedDateLabel }}</span>
           </span>
-        </NuxtLink>
-        <div class="flex gap-2">
-          <NuxtLink
-            to="/discover"
-            aria-label="Add habit"
-            class="flex size-10 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20 transition-colors hover:bg-white/25"
-          >
-            <UIcon name="i-lucide-plus" class="size-5" />
-          </NuxtLink>
-          <NuxtLink
-            to="/settings"
-            aria-label="Settings"
-            class="flex size-10 items-center justify-center rounded-full bg-white/15 ring-1 ring-white/20 transition-colors hover:bg-white/25"
-          >
-            <UIcon name="i-lucide-menu" class="size-5" />
-          </NuxtLink>
+          <span class="text-[12px] text-white">{{ progress }}%</span>
+        </div>
+        <div v-if="habits.length" class="mb-2.5 h-[3px] rounded-[3px] bg-white/25">
+          <div class="h-[3px] rounded-[3px] bg-white transition-all duration-700" :style="{ width: progress + '%' }"/>
+        </div>
+
+        <!-- Micro Stats -->
+        <div class="flex items-center gap-1.5">
+          <div class="flex-1 rounded-[8px] bg-black/[0.15] px-1 py-1.5 text-center">
+            <div class="flex items-center justify-center gap-0.5 text-[13px] font-medium text-white">
+              <UIcon name="i-lucide-flame" class="size-3 text-white" />{{ maxStreak }}d
+            </div>
+            <div class="mt-[1px] text-[11px] text-white/65">streak</div>
+          </div>
+          <div class="flex-1 rounded-[8px] bg-black/[0.15] px-1 py-1.5 text-center">
+            <div class="text-[13px] font-medium text-white">{{ avgCompletionThisWeek }}%</div>
+            <div class="mt-[1px] text-[11px] text-white/65">this week</div>
+          </div>
+          <div class="flex-1 rounded-[8px] bg-black/[0.15] px-1 py-1.5 text-center">
+            <div class="text-[13px] font-medium text-white">{{ activeDaysThisWeek }}/7</div>
+            <div class="mt-[1px] text-[11px] text-white/65">days active</div>
+          </div>
+          <span class="whitespace-nowrap rounded-[3px] bg-black/[0.28] px-1.5 py-[1px] text-[11px] font-medium text-white/90">NEW</span>
         </div>
       </div>
 
-      <p class="mt-5 text-sm font-medium text-white/85">
-        {{ greeting }} {{ displayName }}
-      </p>
-      <h1 class="mt-1 text-[26px] font-semibold leading-tight tracking-tight">
-        Keep the streak alive,<br />spark your daily motivation.
-      </h1>
-
-      <!-- Today's progress -->
-      <div v-if="habits.length" class="mt-5">
-        <div class="flex items-end justify-between text-sm">
-          <span class="text-white/85">
-            <span class="tabular text-lg font-bold">{{ completedCount }}</span>
-            <span class="text-white/60">/{{ habits.length }}</span>
-            today
-          </span>
-          <span class="tabular text-lg font-bold">{{ progress }}%</span>
+      <!-- DARK HABIT AREA -->
+      <div class="bg-[#0a0a0a] p-2.5 min-h-[300px]">
+        
+        <div v-if="pending" class="space-y-4">
+          <USkeleton v-for="i in 3" :key="i" class="h-[60px] rounded-[13px] bg-white/[0.05]" />
         </div>
-        <div class="mt-2 h-2 overflow-hidden rounded-full bg-black/20">
-          <div
-            class="h-full rounded-full bg-white transition-all duration-500"
-            :style="{ width: progress + '%' }"
+
+        <template v-else-if="habits.length">
+          
+          <!-- Section Header (Mocked as MORNING for design) -->
+          <div class="mb-[7px] flex items-center justify-between">
+            <span class="text-[11px] font-medium tracking-[0.09em] text-[#555]">
+              YOUR HABITS
+            </span>
+          </div>
+
+          <!-- Habits -->
+          <div class="flex flex-col gap-[7px] mb-2">
+            <HabitCard
+              v-for="habit in visibleHabits"
+              :key="habit.id"
+              :habit="habit"
+              :completed="history[habit.id]?.has(selectedDate) ?? false"
+              :history="history[habit.id]"
+              @toggle="toggle(habit.id)"
+              @open="navigateTo(`/track/${habit.id}`)"
+            />
+          </div>
+
+          <!-- Expand Toggle -->
+          <button 
+            v-if="habits.length > 3"
+            class="mb-[7px] w-full rounded-[10px] bg-[#1c1c1c] py-2 text-center text-[11px] font-medium text-[#777] transition-colors hover:bg-[#222] hover:text-[#999]"
+            @click="isExpanded = !isExpanded"
+          >
+            {{ isExpanded ? 'Show less' : `Show ${habits.length - 3} more` }}
+          </button>
+
+          <!-- Insight Card -->
+          <div class="mb-[7px] rounded-[12px] border-[0.5px] border-[#f97316]/22 bg-[#15100a] p-2.5">
+            <div class="mb-1.5 flex items-center gap-1.5">
+              <UIcon name="i-lucide-lightbulb" class="size-3.5 text-[#f97316]" />
+              <span class="text-[11px] font-medium tracking-[0.06em] text-[#f97316]">INSIGHT</span>
+            </div>
+            <div class="text-[12px] leading-[1.5] text-[#bbb]" v-html="dynamicInsight"></div>
+          </div>
+
+          <!-- Weekly Trend Chart -->
+          <div class="rounded-[12px] bg-[#1c1c1c] p-2.5">
+            <div class="mb-2 flex items-center justify-between">
+              <span class="text-[11px] tracking-[0.07em] text-[#555]">WEEKLY TREND</span>
+            </div>
+            
+            <div class="mb-1.5 flex h-8 items-end gap-1">
+              <button 
+                v-for="day in last7Days" 
+                :key="'bar-'+day.date" 
+                class="flex-1 rounded-[2px] bg-[#f97316] transition-all duration-300 outline-none hover:opacity-100"
+                :class="day.isSelected ? 'ring-1 ring-white ring-offset-[1px] ring-offset-[#1c1c1c]' : ''"
+                :style="{ 
+                  height: Math.max(day.percentage, 15) + '%',
+                  opacity: day.isSelected ? 1 : (day.percentage === 0 ? 0.15 : (day.percentage / 100) * 0.7 + 0.3)
+                }"
+                @click="selectedDate = day.date"
+                :aria-label="day.label"
+              />
+            </div>
+            
+            <div class="flex justify-between">
+              <span 
+                v-for="day in last7Days" 
+                :key="'lbl-'+day.date" 
+                class="text-[11px]"
+                :class="day.isSelected ? 'font-medium text-[#f97316]' : 'text-[#444]'"
+              >
+                {{ day.label }}
+              </span>
+            </div>
+          </div>
+          
+        </template>
+
+        <div v-else class="mt-4">
+          <AppEmptyState
+            icon="i-lucide-sprout"
+            title="Start your first habit"
+            description="Browse habits that fit your lifestyle and start building streaks today."
+            cta-label="Discover habits"
+            cta-to="/discover"
           />
         </div>
       </div>
     </section>
-
-    <!-- Habit list -->
-    <section v-if="pending" class="mt-6 space-y-3">
-      <USkeleton v-for="i in 3" :key="i" class="h-[150px] rounded-3xl" />
-    </section>
-
-    <section v-else-if="habits.length" class="mt-6 space-y-3">
-      <div class="mb-1 flex items-center justify-between">
-        <h2 class="text-xs font-semibold uppercase tracking-wider text-stone-400">
-          Your habits
-        </h2>
-        <UButton
-          to="/discover"
-          variant="ghost"
-          size="xs"
-          icon="i-lucide-plus"
-          color="primary"
-        >
-          Add
-        </UButton>
-      </div>
-      <HabitCard
-        v-for="habit in habits"
-        :key="habit.id"
-        :habit="habit"
-        :completed="!!logs[habit.id]"
-        :history="history[habit.id]"
-        @toggle="toggle(habit.id)"
-        @open="navigateTo(`/track/${habit.id}`)"
-      />
-    </section>
-
-    <AppEmptyState
-      v-else
-      icon="i-lucide-sprout"
-      title="Start your first habit"
-      description="Browse habits that fit your lifestyle and start building streaks today."
-      cta-label="Discover habits"
-      cta-to="/discover"
-    />
   </div>
+
+  <!-- Milestone Celebration Modal -->
+  <UModal :model-value="!!milestoneEvent" @update:model-value="milestoneEvent = null" :ui="{ width: 'w-full max-w-sm', rounded: 'rounded-[24px]' }">
+    <div v-if="milestoneEvent" class="relative overflow-hidden bg-[#1c1c1c] p-8 text-center shadow-2xl">
+      
+      <!-- Glowing background effect -->
+      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
+      
+      <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-[16px] bg-[#f97316]/20 shadow-[0_0_40px_rgba(249,115,22,0.4)]">
+        <UIcon :name="milestoneEvent.icon" class="size-8 text-[#f97316]" />
+      </div>
+      
+      <h2 class="mb-1 text-[22px] font-bold tracking-tight text-white">Milestone Unlocked!</h2>
+      <p class="mb-6 text-[14px] leading-relaxed text-[#bbb]">
+        Incredible work! You've hit a <span class="font-bold text-[#f97316]">{{ milestoneEvent.streak }}-day</span> streak for <strong>{{ milestoneEvent.title }}</strong>.
+      </p>
+      
+      <button 
+        @click="milestoneEvent = null"
+        class="w-full rounded-[12px] bg-[#f97316] py-3 text-[14px] font-bold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
+      >
+        Keep it up
+      </button>
+    </div>
+  </UModal>
 </template>

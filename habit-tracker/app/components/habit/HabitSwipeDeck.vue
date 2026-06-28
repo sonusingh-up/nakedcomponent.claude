@@ -37,11 +37,11 @@ const intent = computed<'accept' | 'reject' | null>(() =>
 
 <template>
   <div>
-    <div class="relative mx-auto h-[60vh] max-h-[520px] w-full max-w-sm">
+    <div class="relative mx-auto h-[55vh] max-h-[480px] w-full max-w-[340px]">
       <!-- Card behind (peek) -->
       <div
         v-if="upcoming"
-        class="absolute inset-0 scale-[0.94] opacity-70"
+        class="absolute inset-0 scale-[0.95] opacity-60 transition-all duration-300"
         style="transform-origin: top center"
       >
         <HabitSwipeCard :habit="upcoming" />
@@ -64,31 +64,35 @@ const intent = computed<'accept' | 'reject' | null>(() =>
       <!-- Deck exhausted -->
       <div
         v-else
-        class="absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] border-2 border-dashed border-white/15 text-center"
+        class="absolute inset-0 flex flex-col items-center justify-center rounded-[24px] border border-dashed border-white/10 bg-white/[0.02] text-center"
       >
-        <UIcon name="i-lucide-party-popper" class="size-12 text-ember-400" />
-        <p class="mt-3 text-2xl font-semibold text-stone-100">You're all caught up</p>
-        <p class="mt-1 text-sm text-stone-400">No more habits in this category.</p>
+        <div class="flex size-14 items-center justify-center rounded-full bg-white/[0.04]">
+          <UIcon name="i-lucide-party-popper" class="size-6 text-stone-400" />
+        </div>
+        <p class="mt-4 text-[17px] font-semibold tracking-[-0.01em] text-stone-200">You're all caught up</p>
+        <p class="mt-1.5 text-[13px] text-stone-500">No more habits in this category.</p>
       </div>
     </div>
 
     <!-- Action buttons -->
-    <div v-if="current" class="mt-6 flex items-center justify-center gap-6">
+    <div v-if="current" class="mt-8 flex items-center justify-center gap-5">
       <button
-        class="glass flex size-16 items-center justify-center rounded-full text-rose-400 shadow-lg shadow-black/30 transition-transform active:scale-90"
+        class="flex size-14 items-center justify-center rounded-[20px] bg-white/[0.03] text-stone-400 ring-1 ring-inset ring-white/[0.05] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:bg-white/[0.06] hover:text-stone-300 active:scale-95 disabled:opacity-50"
         aria-label="Skip"
         :disabled="!!leaving"
         @click="fly('left')"
       >
-        <UIcon name="i-lucide-x" class="size-7" />
+        <UIcon name="i-lucide-x" class="size-6" />
       </button>
+      
       <button
-        class="spark-gradient flex size-20 items-center justify-center rounded-full text-white shadow-lg shadow-ember-500/30 transition-transform active:scale-90"
+        class="spark-gradient group relative flex size-[68px] items-center justify-center rounded-[24px] text-white shadow-[0_2px_16px_rgba(255,106,24,0.3)] transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:scale-105 hover:shadow-[0_4px_24px_rgba(255,106,24,0.4)] active:scale-95 disabled:opacity-50"
         aria-label="Add habit"
         :disabled="!!leaving"
         @click="fly('right')"
       >
-        <UIcon name="i-lucide-check" class="size-9" />
+        <div class="absolute inset-0 rounded-[24px] bg-white/0 transition-colors group-hover:bg-white/10" />
+        <UIcon name="i-lucide-check" class="relative z-10 size-8 drop-shadow-sm" />
       </button>
     </div>
   </div>

@@ -42,6 +42,11 @@ export function useJournal() {
     if (error) throw error
   }
 
+  async function update(id: string, updates: { title?: string | null; body?: string | null }): Promise<void> {
+    const { error } = await supabase.from('journal_entries').update(updates).eq('id', id)
+    if (error) throw error
+  }
+
   /** Upload a recorded audio blob; returns its public URL. */
   async function uploadAudio(blob: Blob): Promise<string> {
     const { data: sessionData } = await supabase.auth.getSession()

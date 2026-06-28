@@ -6,7 +6,6 @@ const props = withDefaults(
   defineProps<{
     habit: UserHabit
     completed: boolean
-    /** Set of YYYY-MM-DD dates this habit was completed (last ~70 days). */
     history?: Set<string>
   }>(),
   { history: () => new Set<string>() },
@@ -14,7 +13,7 @@ const props = withDefaults(
 
 const emit = defineEmits<{ toggle: []; open: [] }>()
 
-const WINDOW = 70 // 10 weeks of dots (7 rows x 10 cols)
+const WINDOW = 70
 
 const name = computed(
   () => props.habit.custom_name ?? props.habit.habit?.name ?? 'Habit',
@@ -22,83 +21,54 @@ const name = computed(
 const icon = computed(() => props.habit.habit?.icon ?? 'i-lucide-circle-dot')
 const streak = computed(() => props.habit.streak?.current_streak ?? 0)
 
-/** Oldest -> newest list of the last WINDOW days, flagged completed. */
-const cells = computed(() => {
-  const out: { date: string; done: boolean; today: boolean }[] = []
+// Keep the calculations for stats display
+const doneCount = computed(() => {
+  let count = 0
   const todayStr = localDate()
   const base = new Date()
   for (let i = WINDOW - 1; i >= 0; i--) {
     const d = new Date(base)
     d.setDate(base.getDate() - i)
     const ds = localDate(d)
-    out.push({ date: ds, done: props.history.has(ds), today: ds === todayStr })
+    if (props.history.has(ds)) count++
   }
-  return out
+  return count
 })
-
-const doneCount = computed(() => cells.value.filter((c) => c.done).length)
+const completionPct = computed(() =>
+  WINDOW > 0 ? Math.round((doneCount.value / WINDOW) * 100) : 0,
+)
 </script>
 
 <template>
   <div
-    class="glass rounded-3xl p-4 transition-colors hover:border-[var(--border-2)]"
+    class="flex items-center justify-between rounded-[13px] bg-[#1c1c1c] p-2.5 transition-transform hover:scale-[1.01] cursor-pointer"
+    @click="emit('open')"
   >
-    <!-- Top row: streak badge + complete toggle -->
-    <div class="flex items-start justify-between gap-3">
-      <span
-        class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
-        :class="
-          streak > 0
-            ? 'bg-ember-500/15 text-ember-300'
-            : 'bg-white/5 text-stone-400'
-        "
-      >
-        <UIcon name="i-lucide-flame" class="size-3.5" />
-        {{ streak }} day{{ streak === 1 ? '' : 's' }} streak
-      </span>
+    <!-- Left: Icon + Info -->
+    <div class="flex items-center gap-2">
+      <!-- Icon Wrapper -->
+      <div class="flex size-[30px] shrink-0 items-center justify-center rounded-[8px] bg-[#f97316]/15">
+        <UIcon :name="icon" class="size-[15px] text-[#f97316]" />
+      </div>
 
-      <button
-        class="flex size-8 shrink-0 items-center justify-center rounded-xl transition-all duration-200"
-        :class="
-          completed
-            ? 'spark-gradient text-white shadow-md shadow-ember-500/30'
-            : 'border border-white/15 text-transparent hover:border-ember-400/60'
-        "
-        :aria-label="completed ? 'Mark incomplete' : 'Mark complete'"
-        @click="emit('toggle')"
-      >
-        <UIcon name="i-lucide-check" class="size-5" />
-      </button>
+      <!-- Text Info -->
+      <div>
+        <div class="mb-[2px] text-[13px] font-medium text-white">{{ name }}</div>
+        <div class="flex items-center gap-[3px] text-[11px] text-[#555]">
+          <UIcon name="i-lucide-flame" class="size-[10px]" :class="streak > 0 ? 'text-[#f97316]' : ''" />
+          {{ streak }}d · {{ doneCount }}/{{ WINDOW }} · {{ completionPct }}%
+        </div>
+      </div>
     </div>
 
-    <!-- Title -->
-    <button class="mt-3 block w-full text-left" @click="emit('open')">
-      <div class="flex items-center gap-2">
-        <UIcon :name="icon" class="size-4 shrink-0 text-ember-400" />
-        <h3 class="truncate text-lg font-semibold leading-tight text-stone-100">
-          {{ name }}
-        </h3>
-      </div>
-      <p class="tabular mt-1 text-xs text-stone-400">
-        {{ doneCount }}/{{ WINDOW }} days completed
-      </p>
-    </button>
-
-    <!-- Dot-matrix heat grid (last 70 days) -->
+    <!-- Right: Toggle Check -->
     <button
-      class="mt-3 grid w-full grid-flow-col grid-rows-7 justify-start gap-[3px]"
-      aria-label="Open habit history"
-      @click="emit('open')"
+      class="flex size-[26px] shrink-0 items-center justify-center rounded-full transition-all outline-none"
+      :class="completed ? 'bg-[#f97316]' : 'border-[1.5px] border-[#f97316]/30 hover:bg-[#f97316]/15'"
+      :aria-label="completed ? 'Mark incomplete' : 'Mark complete'"
+      @click.stop="emit('toggle')"
     >
-      <span
-        v-for="cell in cells"
-        :key="cell.date"
-        class="size-2 rounded-[3px]"
-        :class="[
-          cell.done ? 'bg-ember-500' : 'bg-white/8',
-          cell.today ? 'ring-1 ring-ember-300 ring-offset-1 ring-offset-[var(--color-coal-900)]' : '',
-        ]"
-      />
+      <UIcon v-if="completed" name="i-lucide-check" class="size-[13px] text-white" />
     </button>
   </div>
 </template>
