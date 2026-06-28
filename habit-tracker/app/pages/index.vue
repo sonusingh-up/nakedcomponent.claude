@@ -198,12 +198,12 @@ const dynamicInsight = computed(() => {
 
 <template>
   <div class="mx-auto max-w-md pb-24">
-    <!-- ORANGE HERO SECTION (CARD) -->
-    <section class="mb-6 overflow-hidden rounded-[24px] bg-[#f97316] p-4 text-white shadow-[0_4px_20px_rgba(249,115,22,0.15)]">
+    <!-- ORANGE HERO SECTION (EDGE-TO-EDGE HEADER) -->
+    <section class="-mx-4 -mt-5 mb-6 overflow-hidden rounded-b-[32px] bg-[#f97316] px-5 pb-6 pt-7 text-white shadow-[0_8px_30px_rgba(249,115,22,0.15)]">
       
       <!-- Top Nav -->
-      <div class="mb-3 flex items-center justify-between">
-        <NuxtLink to="/settings" class="flex size-9 items-center justify-center rounded-[10px] bg-black/[0.18] text-[12px] font-medium transition-transform hover:scale-105">
+      <div class="mb-4 flex items-center justify-between">
+        <NuxtLink to="/settings" class="flex size-9 items-center justify-center rounded-[10px] bg-black/[0.18] text-[12px] font-bold transition-transform hover:scale-105">
           {{ initials }}
         </NuxtLink>
         <div class="flex gap-2">
