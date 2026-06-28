@@ -75,5 +75,27 @@ export function useHabitLogs() {
     return new Set((data ?? []).map((r: any) => r.log_date as string))
   }
 
-  return { logToday, removeTodayLog, fetchTodayLogs, fetchHistory }
+  /**
+   * Completion history for ALL of the user's habits within the last N days,
+   * in a single query. Returns a map of user_habit_id -> Set of YYYY-MM-DD.
+   * Powers the dot-matrix heat grid on the dashboard cards.
+   */
+  async function fetchHistoryAll(
+    days = 70,
+  ): Promise<Record<string, Set<string>>> {
+    const from = new Date()
+    from.setDate(from.getDate() - (days - 1))
+    const { data, error } = await supabase
+      .from('habit_logs')
+      .select('user_habit_id, log_date')
+      .gte('log_date', localDate(from))
+    if (error) throw error
+    const map: Record<string, Set<string>> = {}
+    for (const r of (data ?? []) as Array<{ user_habit_id: string; log_date: string }>) {
+      ;(map[r.user_habit_id] ??= new Set()).add(r.log_date)
+    }
+    return map
+  }
+
+  return { logToday, removeTodayLog, fetchTodayLogs, fetchHistory, fetchHistoryAll }
 }

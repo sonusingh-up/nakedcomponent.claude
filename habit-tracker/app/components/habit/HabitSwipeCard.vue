@@ -15,13 +15,13 @@ const color = computed(() => props.habit.color)
 
 <template>
   <div
-    class="relative flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-white shadow-lg ring-1 ring-black/5 select-none"
+    class="relative flex h-full w-full flex-col overflow-hidden rounded-[2rem] bg-[var(--color-coal-900)] shadow-xl shadow-black/40 ring-1 ring-white/10 select-none"
   >
     <!-- Visual header with brand-tinted gradient + giant icon -->
     <div
       class="relative flex flex-1 items-center justify-center overflow-hidden"
       :style="{
-        background: `linear-gradient(150deg, ${color}26 0%, ${color}0d 60%, #ffffff 100%)`,
+        background: `linear-gradient(150deg, ${color}40 0%, ${color}1a 55%, #1a1512 100%)`,
       }"
     >
       <UIcon
@@ -66,10 +66,10 @@ const color = computed(() => props.habit.color)
 
     <!-- Text content -->
     <div class="px-6 pb-6 pt-4">
-      <h2 class="display-serif text-3xl text-stone-900">{{ habit.name }}</h2>
-      <p class="mt-2 text-sm/relaxed text-stone-500">{{ habit.description }}</p>
+      <h2 class="text-3xl font-semibold tracking-tight text-stone-100">{{ habit.name }}</h2>
+      <p class="mt-2 text-sm/relaxed text-stone-300">{{ habit.description }}</p>
       <p class="mt-3 text-xs text-stone-400">
-        <span class="tabular font-medium text-stone-600">
+        <span class="tabular font-medium text-stone-200">
           {{ habit.social_proof_count.toLocaleString() }}
         </span>
         people are building this habit

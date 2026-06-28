@@ -59,12 +59,12 @@ async function magicLink() {
   <div class="flex flex-1 flex-col justify-center py-10">
     <div class="mb-8 text-center">
       <div
-        class="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-terracotta-500 text-white shadow-md"
+        class="spark-gradient mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl text-white shadow-lg shadow-ember-500/30"
       >
         <UIcon name="i-lucide-flame" class="size-7" />
       </div>
-      <h1 class="display-serif text-3xl text-stone-900">Welcome back</h1>
-      <p class="mt-1 text-sm text-stone-500">Sign in to keep your streaks going</p>
+      <h1 class="text-3xl font-semibold text-stone-100">Welcome back</h1>
+      <p class="mt-1 text-sm text-stone-400">Sign in to keep your streaks going</p>
     </div>
 
     <form class="space-y-3" @submit.prevent="signIn">
@@ -89,17 +89,17 @@ async function magicLink() {
         class="w-full"
       />
 
-      <p v-if="errorMsg" class="text-sm text-red-600">{{ errorMsg }}</p>
+      <p v-if="errorMsg" class="text-sm text-red-400">{{ errorMsg }}</p>
 
       <UButton type="submit" block color="primary" size="lg" :loading="loading">
         Sign in
       </UButton>
     </form>
 
-    <div class="my-5 flex items-center gap-3 text-xs text-stone-400">
-      <div class="h-px flex-1 bg-[var(--color-cream-200)]" />
+    <div class="my-5 flex items-center gap-3 text-xs text-stone-500">
+      <div class="h-px flex-1 bg-white/10" />
       OR
-      <div class="h-px flex-1 bg-[var(--color-cream-200)]" />
+      <div class="h-px flex-1 bg-white/10" />
     </div>
 
     <UButton
@@ -114,9 +114,9 @@ async function magicLink() {
       Email me a magic link
     </UButton>
 
-    <p class="mt-8 text-center text-sm text-stone-500">
+    <p class="mt-8 text-center text-sm text-stone-400">
       New here?
-      <NuxtLink to="/signup" class="font-semibold text-terracotta-600">
+      <NuxtLink to="/signup" class="font-semibold text-ember-400">
         Create an account
       </NuxtLink>
     </p>

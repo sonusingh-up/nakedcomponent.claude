@@ -17,7 +17,7 @@ watch(
 
 <template>
   <div class="flex flex-1 flex-col items-center justify-center gap-4">
-    <UIcon name="i-lucide-loader-circle" class="size-8 animate-spin text-terracotta-500" />
-    <p class="text-sm text-stone-500">Signing you in…</p>
+    <UIcon name="i-lucide-loader-circle" class="size-8 animate-spin text-ember-400" />
+    <p class="text-sm text-stone-400">Signing you in…</p>
   </div>
 </template>

@@ -49,8 +49,8 @@ function onReject(_habit: Habit) {
   <div>
     <header class="mb-4 mt-2 flex items-start justify-between">
       <div>
-        <h1 class="display-serif text-4xl text-stone-900">Discover</h1>
-        <p class="mt-1 text-sm text-stone-500">
+        <h1 class="text-4xl font-semibold tracking-tight text-stone-100">Discover</h1>
+        <p class="mt-1 text-sm text-stone-400">
           Swipe right to add, left to skip
         </p>
       </div>
@@ -69,8 +69,8 @@ function onReject(_habit: Habit) {
         class="shrink-0 rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
         :class="
           activeCategory === 'all'
-            ? 'bg-stone-800 text-white'
-            : 'border border-[var(--color-cream-200)] bg-white text-stone-600'
+            ? 'bg-ember-500 text-white'
+            : 'border border-white/10 bg-white/5 text-stone-300'
         "
         @click="activeCategory = 'all'"
       >
@@ -82,8 +82,8 @@ function onReject(_habit: Habit) {
         class="flex shrink-0 items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
         :class="
           activeCategory === cat
-            ? 'bg-stone-800 text-white'
-            : 'border border-[var(--color-cream-200)] bg-white text-stone-600'
+            ? 'bg-ember-500 text-white'
+            : 'border border-white/10 bg-white/5 text-stone-300'
         "
         @click="activeCategory = cat"
       >

@@ -3,7 +3,7 @@ export default defineAppConfig({
     // Map Nuxt UI's semantic colors onto the Naked Compound brand palette.
     // `terracotta` is a custom color scale defined in assets/css/main.css.
     colors: {
-      primary: 'terracotta',
+      primary: 'ember',
       neutral: 'stone',
     },
     button: {

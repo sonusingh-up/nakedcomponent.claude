@@ -107,33 +107,33 @@ async function stopTracking() {
           <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-7" />
         </div>
         <div>
-          <h1 class="display-serif text-3xl text-stone-900">{{ name }}</h1>
-          <p class="text-sm text-stone-500">{{ category?.label }}</p>
+          <h1 class="text-3xl font-semibold tracking-tight text-stone-100">{{ name }}</h1>
+          <p class="text-sm text-stone-400">{{ category?.label }}</p>
         </div>
       </header>
 
       <!-- Stats -->
       <div class="mb-5 grid grid-cols-3 gap-3">
-        <div class="rounded-2xl border border-[var(--color-cream-200)] bg-white p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-terracotta-600">
+        <div class="glass rounded-2xl p-4 text-center">
+          <p class="tabular text-3xl font-semibold text-ember-400">
             {{ currentStreak }}
           </p>
-          <p class="mt-1 text-xs text-stone-500">Current 🔥</p>
+          <p class="mt-1 text-xs text-stone-400">Current 🔥</p>
         </div>
-        <div class="rounded-2xl border border-[var(--color-cream-200)] bg-white p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-800">{{ longestStreak }}</p>
-          <p class="mt-1 text-xs text-stone-500">Longest</p>
+        <div class="glass rounded-2xl p-4 text-center">
+          <p class="tabular text-3xl font-semibold text-stone-100">{{ longestStreak }}</p>
+          <p class="mt-1 text-xs text-stone-400">Longest</p>
         </div>
-        <div class="rounded-2xl border border-[var(--color-cream-200)] bg-white p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-800">{{ totalDays }}</p>
-          <p class="mt-1 text-xs text-stone-500">Total days</p>
+        <div class="glass rounded-2xl p-4 text-center">
+          <p class="tabular text-3xl font-semibold text-stone-100">{{ totalDays }}</p>
+          <p class="mt-1 text-xs text-stone-400">Total days</p>
         </div>
       </div>
 
       <!-- 28-day grid -->
       <ClientOnly>
-        <section class="mb-6 rounded-[3rem] border border-[var(--color-cream-200)] bg-white p-6 shadow-sm">
-          <h2 class="mb-4 text-sm font-semibold tracking-wide text-stone-500">
+        <section class="glass mb-6 rounded-[3rem] p-6">
+          <h2 class="mb-4 text-sm font-semibold tracking-wide text-stone-400">
             LAST 4 WEEKS
           </h2>
           <div class="grid grid-cols-7 gap-2">
@@ -143,8 +143,8 @@ async function stopTracking() {
               class="flex aspect-square items-center justify-center rounded-full text-[11px] font-medium transition-colors"
               :style="
                 day.done
-                  ? { backgroundColor: '#5c8b51', color: '#fff' }
-                  : { backgroundColor: 'var(--color-cream-100)', color: '#9a948e' }
+                  ? { backgroundColor: '#ff6a18', color: '#fff' }
+                  : { backgroundColor: 'rgba(255,255,255,0.06)', color: '#78716c' }
               "
               :title="day.date"
             >
@@ -159,7 +159,7 @@ async function stopTracking() {
 
       <UButton
         class="rounded-full px-6 py-3.5 text-lg font-medium shadow-sm"
-        :class="completedToday ? 'bg-white text-stone-800 hover:bg-stone-50' : ''"
+        :class="completedToday ? 'bg-white/5 text-stone-100 ring-1 ring-white/10 hover:bg-white/10' : ''"
         block
         size="xl"
         :color="completedToday ? 'neutral' : 'primary'"
