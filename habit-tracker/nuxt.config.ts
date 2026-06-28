@@ -2,6 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-06-01',
   devtools: { enabled: true },
+  ssr: false,
 
   modules: ['@nuxt/ui', '@nuxtjs/supabase', '@vite-pwa/nuxt'],
 
