@@ -6,7 +6,8 @@ The app deploys as its **own Vercel project**, separate from the main
 ## 1. Supabase (one-time)
 
 1. Create a project at [supabase.com](https://supabase.com).
-2. In the SQL editor, run, in order:
+2. Open the SQL editor and run **`supabase/setup.sql`** (one paste — it bundles
+   both migrations + the seed). Or run them individually, in order:
    - `supabase/migrations/0001_init.sql`
    - `supabase/migrations/0002_storage.sql`
    - `supabase/seed.sql`
