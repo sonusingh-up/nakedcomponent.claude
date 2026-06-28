@@ -26,13 +26,13 @@ const color = computed(() => props.habit.color)
     >
       <UIcon
         :name="habit.icon"
-        class="size-32 opacity-90"
+        class="size-32 opacity-95 drop-shadow-[0_10px_40px_rgba(255,122,24,0.35)]"
         :style="{ color }"
       />
 
       <!-- Category badge -->
       <div
-        class="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold backdrop-blur"
+        class="absolute left-4 top-4 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1 text-xs font-semibold ring-1 ring-white/15 backdrop-blur"
         :style="{ color }"
       >
         <UIcon :name="category?.icon" class="size-3.5" />
@@ -41,10 +41,10 @@ const color = computed(() => props.habit.color)
 
       <!-- Social proof pill -->
       <div
-        class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-white/85 px-3 py-1 text-xs backdrop-blur"
+        class="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-black/40 px-3 py-1 text-xs ring-1 ring-white/15 backdrop-blur"
       >
-        <UIcon name="i-lucide-users" class="size-3.5 text-stone-500" />
-        <span class="tabular font-semibold text-stone-700">
+        <UIcon name="i-lucide-users" class="size-3.5 text-stone-300" />
+        <span class="tabular font-semibold text-stone-100">
           {{ habit.social_proof_count.toLocaleString() }}
         </span>
       </div>
