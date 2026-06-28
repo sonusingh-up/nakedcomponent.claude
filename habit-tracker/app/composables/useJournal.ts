@@ -2,7 +2,7 @@ import type { EntryType, JournalEntry, Mood } from '~/types'
 
 /** CRUD for journal entries + audio upload to Supabase Storage. */
 export function useJournal() {
-  const supabase = useSupabaseClient()
+  const supabase = useSupabaseClient<any>()
   const user = useSupabaseUser()
 
   async function list(): Promise<JournalEntry[]> {
@@ -20,13 +20,17 @@ export function useJournal() {
     body?: string | null
     audio_url?: string | null
     audio_duration?: number | null
+    image_url?: string | null
     user_habit_id?: string | null
     mood?: Mood | null
   }): Promise<JournalEntry> {
-    if (!user.value) throw new Error('Not authenticated')
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) throw new Error('Not authenticated')
+
     const { data, error } = await supabase
       .from('journal_entries')
-      .insert({ ...payload, user_id: user.value.id })
+      .insert({ ...payload, user_id: userId })
       .select()
       .single()
     if (error) throw error
@@ -40,9 +44,11 @@ export function useJournal() {
 
   /** Upload a recorded audio blob; returns its public URL. */
   async function uploadAudio(blob: Blob): Promise<string> {
-    if (!user.value) throw new Error('Not authenticated')
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) throw new Error('Not authenticated')
     const ext = blob.type.includes('mp4') ? 'mp4' : 'webm'
-    const path = `${user.value.id}/${crypto.randomUUID()}.${ext}`
+    const path = `${userId}/${crypto.randomUUID()}.${ext}`
     const { error } = await supabase.storage
       .from('journal-audio')
       .upload(path, blob, { contentType: blob.type || 'audio/webm' })
@@ -51,5 +57,20 @@ export function useJournal() {
     return data.publicUrl
   }
 
-  return { list, create, remove, uploadAudio }
+  /** Upload an image file; returns its public URL. */
+  async function uploadImage(file: File): Promise<string> {
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) throw new Error('Not authenticated')
+    const ext = file.name.split('.').pop() || 'jpg'
+    const path = `${userId}/${crypto.randomUUID()}.${ext}`
+    const { error } = await supabase.storage
+      .from('journal_images')
+      .upload(path, file, { contentType: file.type })
+    if (error) throw error
+    const { data } = supabase.storage.from('journal_images').getPublicUrl(path)
+    return data.publicUrl
+  }
+
+  return { list, create, remove, uploadAudio, uploadImage }
 }

@@ -12,7 +12,7 @@ const { data, pending, refresh } = await useAsyncData(
     ])
     return { habits, logs }
   },
-  { server: false, default: () => ({ habits: [], logs: {} }) },
+  { server: false, default: () => ({ habits: [], logs: {} as Record<string, any> }) },
 )
 
 const habits = computed(() => data.value?.habits ?? [])
@@ -27,18 +27,21 @@ const progress = computed(() =>
     : 0,
 )
 
-const greeting = computed(() => {
-  const h = new Date().getHours()
-  if (h < 12) return 'Good morning'
-  if (h < 18) return 'Good afternoon'
-  return 'Good evening'
-})
+const greeting = ref('Good morning')
+const today = ref('')
 
-const today = new Intl.DateTimeFormat('en-US', {
-  weekday: 'long',
-  day: 'numeric',
-  month: 'long',
-}).format(new Date())
+onMounted(() => {
+  const h = new Date().getHours()
+  if (h < 12) greeting.value = 'Good morning'
+  else if (h < 18) greeting.value = 'Good afternoon'
+  else greeting.value = 'Good evening'
+
+  today.value = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  }).format(new Date())
+})
 
 const toggling = ref<string | null>(null)
 async function toggle(userHabitId: string) {

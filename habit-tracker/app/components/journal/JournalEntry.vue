@@ -57,7 +57,14 @@ const date = computed(() =>
       :duration="entry.audio_duration"
     />
 
-    <div v-if="entry.mood || habitName" class="mt-2 flex items-center gap-2">
+    <img 
+      v-if="entry.image_url" 
+      :src="entry.image_url" 
+      class="mt-3 max-h-64 w-full rounded-xl border border-[var(--color-cream-200)] object-cover shadow-sm"
+      loading="lazy"
+    />
+
+    <div v-if="entry.mood || habitName" class="mt-3 flex items-center gap-2">
       <span v-if="entry.mood" class="text-base">{{ MOOD_EMOJI[entry.mood] }}</span>
       <span
         v-if="habitName"

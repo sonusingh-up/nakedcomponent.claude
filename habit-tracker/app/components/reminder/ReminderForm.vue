@@ -78,39 +78,39 @@ async function save() {
 </script>
 
 <template>
-  <section class="rounded-3xl border border-[var(--color-cream-200)] bg-white p-5">
+  <section class="rounded-[3rem] border border-[var(--color-cream-200)] bg-white p-6 shadow-sm">
     <div class="flex items-center justify-between">
       <h2 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-stone-500">
-        <UIcon name="i-lucide-bell" class="size-4" /> Reminder
+        <UIcon name="i-lucide-bell" class="size-4" /> REMINDER
       </h2>
       <USwitch v-model="enabled" color="primary" />
     </div>
 
     <div v-if="loading" class="mt-4">
-      <USkeleton class="h-10 rounded-xl" />
+      <USkeleton class="h-10 rounded-[2rem]" />
     </div>
 
-    <div v-else-if="enabled" class="mt-4 space-y-4">
+    <div v-else-if="enabled" class="mt-5 space-y-5">
       <div class="flex items-center justify-between">
-        <label class="text-sm text-stone-600">Time</label>
+        <label class="text-sm font-medium text-stone-600">Time</label>
         <input
           v-model="time"
           type="time"
-          class="rounded-xl border border-[var(--color-cream-200)] bg-[var(--color-cream-50)] px-3 py-1.5 text-sm tabular focus:border-terracotta-400 focus:outline-none"
+          class="rounded-full border border-[var(--color-cream-200)] bg-[var(--color-cream-50)] px-4 py-2 text-sm tabular focus:border-terracotta-400 focus:outline-none"
         />
       </div>
 
       <div>
-        <label class="mb-2 block text-sm text-stone-600">Repeat on</label>
+        <label class="mb-3 block text-sm font-medium text-stone-600">Repeat on</label>
         <div class="flex justify-between gap-1">
           <button
             v-for="d in WEEKDAYS"
             :key="d.key"
             type="button"
-            class="flex size-9 items-center justify-center rounded-full text-sm font-medium transition-colors"
+            class="flex size-10 items-center justify-center rounded-full text-sm font-medium transition-colors"
             :class="
               days.includes(d.key)
-                ? 'bg-terracotta-500 text-white'
+                ? 'bg-terracotta-500 text-white shadow-sm'
                 : 'bg-[var(--color-cream-100)] text-stone-500'
             "
             @click="toggleDay(d.key)"
@@ -122,20 +122,20 @@ async function save() {
 
       <p
         v-if="perm === 'denied'"
-        class="rounded-lg bg-amber-50 px-3 py-2 text-xs text-amber-700"
+        class="rounded-2xl bg-amber-50 px-4 py-3 text-sm text-amber-700"
       >
         Notifications are blocked in your browser. Reminders are saved but won't
         show until you re-enable them in site settings.
       </p>
     </div>
 
-    <p v-else class="mt-3 text-sm text-stone-400">
+    <p v-else class="mt-4 text-sm text-stone-400">
       Turn on to get a daily nudge for this habit.
     </p>
 
     <UButton
       v-if="!loading"
-      class="mt-4"
+      class="mt-6 rounded-full px-6 py-3 text-base font-medium shadow-none"
       block
       color="primary"
       variant="soft"

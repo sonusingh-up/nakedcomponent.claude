@@ -87,6 +87,7 @@ export interface JournalEntry {
   body: string | null
   audio_url: string | null
   audio_duration: number | null
+  image_url: string | null
   tags: string[] | null
   mood: Mood | null
   created_at: string
