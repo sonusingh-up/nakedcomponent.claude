@@ -7,7 +7,7 @@ const toast = useToast()
 const activeCategory = ref<HabitCategory | 'all'>('all')
 const categories = Object.keys(CATEGORY_META) as HabitCategory[]
 
-const { data, pending, refresh } = await useAsyncData(
+const { data, pending, refresh } = useAsyncData(
   'discover',
   async () => {
     const [catalog, mine] = await Promise.all([fetchCatalog(), fetchUserHabits()])
