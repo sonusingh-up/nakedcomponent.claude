@@ -56,5 +56,21 @@ export function useHabitLogs() {
     return map
   }
 
-  return { logToday, removeTodayLog, fetchTodayLogs }
+  /** Set of YYYY-MM-DD strings the habit was logged on, within the last N days. */
+  async function fetchHistory(
+    userHabitId: string,
+    days = 28,
+  ): Promise<Set<string>> {
+    const from = new Date()
+    from.setDate(from.getDate() - (days - 1))
+    const { data, error } = await supabase
+      .from('habit_logs')
+      .select('log_date')
+      .eq('user_habit_id', userHabitId)
+      .gte('log_date', localDate(from))
+    if (error) throw error
+    return new Set((data ?? []).map((r: any) => r.log_date as string))
+  }
+
+  return { logToday, removeTodayLog, fetchTodayLogs, fetchHistory }
 }

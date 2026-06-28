@@ -35,6 +35,22 @@ export function useHabits() {
     })) as UserHabit[]
   }
 
+  /** A single adopted habit by its user_habit id, with relations. */
+  async function fetchUserHabit(id: string): Promise<UserHabit | null> {
+    const { data, error } = await supabase
+      .from('user_habits')
+      .select('*, habit:habits(*), streak:habit_streaks(*)')
+      .eq('id', id)
+      .maybeSingle()
+    if (error) throw error
+    if (!data) return null
+    const row = data as any
+    return {
+      ...row,
+      streak: Array.isArray(row.streak) ? row.streak[0] : row.streak,
+    } as UserHabit
+  }
+
   /** Adopt a habit (atomic insert + social-proof bump via SQL function). */
   async function adoptHabit(habitId: string) {
     const { data, error } = await supabase.rpc('adopt_habit', {
@@ -53,5 +69,11 @@ export function useHabits() {
     if (error) throw error
   }
 
-  return { fetchCatalog, fetchUserHabits, adoptHabit, archiveHabit }
+  return {
+    fetchCatalog,
+    fetchUserHabits,
+    fetchUserHabit,
+    adoptHabit,
+    archiveHabit,
+  }
 }
