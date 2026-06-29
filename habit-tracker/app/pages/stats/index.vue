@@ -15,6 +15,7 @@ const { data, pending } = useAsyncData(
   },
   {
     server: false,
+    lazy: true,
     default: () => ({
       habits: [],
       history: {} as Record<string, Set<string>>,

@@ -13,7 +13,7 @@ const { data, pending, refresh } = useAsyncData(
     const [catalog, mine] = await Promise.all([fetchCatalog(), fetchUserHabits()])
     return { catalog, adoptedIds: new Set(mine.map((h) => h.habit_id)) }
   },
-  { server: false, default: () => ({ catalog: [], adoptedIds: new Set<string>() }) },
+  { server: false, lazy: true, default: () => ({ catalog: [], adoptedIds: new Set<string>() }) },
 )
 
 // Cards = catalog minus already-adopted, filtered by category.

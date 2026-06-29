@@ -4,6 +4,7 @@ const toast = useToast()
 
 const { data, pending, refresh } = useAsyncData('journal', () => list(), {
   server: false,
+  lazy: true,
   default: () => [],
 })
 
