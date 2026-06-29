@@ -110,13 +110,13 @@ async function save() {
 <template>
   <div>
     <button
-      class="mb-3 mt-1 flex items-center gap-1 text-sm font-medium text-stone-500"
+      class="mb-3 mt-1 flex items-center gap-1 text-sm font-medium text-stone-600 dark:text-stone-500"
       @click="navigateTo('/journal')"
     >
       <UIcon name="i-lucide-chevron-left" class="size-5" /> Cancel
     </button>
 
-    <h1 class="mb-4 text-3xl font-semibold text-stone-100">New entry</h1>
+    <h1 class="mb-4 text-3xl font-semibold text-stone-900 dark:text-stone-100">New entry</h1>
 
     <!-- Mode toggle -->
     <div class="mb-4 flex gap-1 rounded-full bg-white/5 p-1">
@@ -124,7 +124,7 @@ async function save() {
         v-for="m in (['text', 'audio'] as EntryType[])"
         :key="m"
         class="flex flex-1 items-center justify-center gap-1.5 rounded-full py-2 text-sm font-medium capitalize transition-colors"
-        :class="mode === m ? 'bg-white/10 text-stone-100 shadow-sm' : 'text-stone-400'"
+        :class="mode === m ? 'bg-stone-200 text-stone-900 shadow-sm dark:bg-white/10 dark:text-stone-100' : 'text-stone-500 dark:text-stone-400'"
         @click="mode = m"
       >
         <UIcon :name="m === 'text' ? 'i-lucide-pencil' : 'i-lucide-mic'" class="size-4" />
@@ -197,10 +197,10 @@ async function save() {
 
     <!-- Image Attachment -->
     <div class="mb-4">
-      <label class="mb-2 block text-sm text-stone-300">Attachment (optional)</label>
+      <label class="mb-2 block text-sm text-stone-600 dark:text-stone-300">Attachment (optional)</label>
 
       <div v-if="imagePreview" class="relative mb-2 inline-block">
-        <img :src="imagePreview" class="h-32 w-auto rounded-xl border border-white/10 object-cover" />
+        <NuxtImg :src="imagePreview" class="h-32 w-auto rounded-xl border border-white/10 object-cover" />
         <button
           class="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-rose-500 text-white shadow-md transition-transform hover:scale-105"
           @click="removeImage"
@@ -231,7 +231,7 @@ async function save() {
 
     <!-- Mood -->
     <div class="mb-4">
-      <label class="mb-2 block text-sm text-stone-300">Mood (optional)</label>
+      <label class="mb-2 block text-sm text-stone-600 dark:text-stone-300">Mood (optional)</label>
       <div class="flex gap-2">
         <button
           v-for="m in MOODS"
@@ -240,7 +240,7 @@ async function save() {
           :class="
             mood === m.key
               ? 'border-ember-400 bg-ember-500/15'
-              : 'border-white/10 bg-white/5'
+              : 'border-stone-200 bg-stone-50 dark:border-white/10 dark:bg-white/5'
           "
           @click="mood = mood === m.key ? null : m.key"
         >
@@ -251,10 +251,10 @@ async function save() {
 
     <!-- Linked habit -->
     <div class="mb-6">
-      <label class="mb-2 block text-sm text-stone-300">Link to a habit (optional)</label>
+      <label class="mb-2 block text-sm text-stone-600 dark:text-stone-300">Link to a habit (optional)</label>
       <select
         v-model="habitId"
-        class="w-full rounded-xl border border-white/10 bg-[var(--color-coal-900)] px-3 py-2.5 text-sm text-stone-200 focus:border-ember-400 focus:outline-none"
+        class="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-800 focus:border-ember-400 focus:outline-none dark:border-white/10 dark:bg-[var(--color-coal-900)] dark:text-stone-200"
       >
         <option value="">None</option>
         <option v-for="h in habits" :key="h.id" :value="h.id">

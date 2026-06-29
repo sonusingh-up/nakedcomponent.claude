@@ -155,7 +155,7 @@ async function doFreeze(userHabitId: string) {
     await refresh()
   } catch (e) {
     console.error(e)
-    alert("Could not freeze. You might be out of freezes.")
+    toast.add({ title: 'Could not freeze', description: 'You might be out of freezes.', color: 'error' })
   } finally {
     isFreezing.value = null
   }
@@ -374,8 +374,8 @@ const dynamicInsight = computed(() => {
     <!-- DARK HABIT AREA -->
     <section class="min-h-[300px]">
       
-      <div v-if="pending" class="space-y-4">
-        <USkeleton v-for="i in 3" :key="i" class="h-[72px] rounded-[16px] bg-white/[0.05]" />
+      <div v-if="pending" class="flex flex-col gap-2.5 mb-3">
+        <USkeleton v-for="i in 3" :key="i" class="h-[60px] rounded-[13px] bg-white/[0.05]" />
       </div>
 
       <template v-else-if="habits.length">

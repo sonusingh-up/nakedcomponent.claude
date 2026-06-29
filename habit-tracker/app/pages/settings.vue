@@ -113,7 +113,7 @@ async function signOut() {
       <div v-if="!isEditingName" class="flex items-center justify-between">
         <div class="flex items-center gap-4 min-w-0">
           <div
-            class="flex size-14 shrink-0 items-center justify-center rounded-full bg-ember-500/15 text-xl font-semibold uppercase text-ember-300"
+            class="flex size-14 shrink-0 items-center justify-center rounded-full bg-ember-500/15 text-xl font-semibold uppercase text-ember-600 dark:text-ember-300"
           >
             {{ displayName.charAt(0) }}
           </div>

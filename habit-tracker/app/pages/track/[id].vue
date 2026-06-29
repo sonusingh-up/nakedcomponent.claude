@@ -111,13 +111,13 @@ async function stopTracking() {
       <!-- Header -->
       <header class="mb-8 flex items-center gap-5">
         <div
-          class="flex size-16 items-center justify-center rounded-[20px] ring-1 ring-white/[0.08]"
+          class="flex size-16 items-center justify-center rounded-[20px] ring-1 ring-stone-200 dark:ring-white/[0.08]"
           :style="{ backgroundColor: color + '14', color }"
         >
           <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-8 drop-shadow-md" />
         </div>
         <div>
-          <h1 class="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-50">{{ name }}</h1>
+          <h1 class="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-900 dark:text-stone-50">{{ name }}</h1>
           <p class="mt-0.5 flex items-center gap-1.5 text-[13px] text-stone-400">
             <UIcon :name="category?.icon" class="size-3.5" />
             {{ category?.label }}
@@ -127,7 +127,7 @@ async function stopTracking() {
 
       <!-- Stats -->
       <div class="mb-6 grid grid-cols-3 gap-3">
-        <div class="relative overflow-hidden rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
+        <div class="relative overflow-hidden rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
           <!-- Glow if streak is active -->
           <div v-if="currentStreak > 0" class="absolute -bottom-4 left-1/2 h-16 w-16 -translate-x-1/2 rounded-full bg-ember-500/20 blur-xl"></div>
           <p class="relative z-10 tabular text-[32px] font-semibold tracking-tight text-ember-400">
@@ -135,19 +135,19 @@ async function stopTracking() {
           </p>
           <p class="relative z-10 mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Current 🔥</p>
         </div>
-        <div class="rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
-          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-100">{{ longestStreak }}</p>
+        <div class="rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">{{ longestStreak }}</p>
           <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Longest</p>
         </div>
-        <div class="rounded-[20px] bg-white/[0.02] p-5 text-center ring-1 ring-white/[0.05]">
-          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-100">{{ totalDays }}</p>
+        <div class="rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">{{ totalDays }}</p>
           <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Total days</p>
         </div>
       </div>
 
       <!-- 28-day grid -->
       <ClientOnly>
-        <section class="mb-8 rounded-[24px] bg-white/[0.02] p-6 ring-1 ring-white/[0.05]">
+        <section class="mb-8 rounded-[24px] bg-stone-100 p-6 ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
           <h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500">
             Last 4 Weeks
           </h2>
@@ -159,7 +159,7 @@ async function stopTracking() {
               :class="[
                 day.done ? 'bg-ember-500/20 text-ember-400 ring-1 ring-ember-500/30' : '',
                 day.frozen ? 'bg-sky-500/20 text-sky-400 ring-1 ring-sky-500/30' : '',
-                !day.done && !day.frozen ? 'bg-white/[0.03] text-stone-600' : ''
+                !day.done && !day.frozen ? 'bg-stone-50 text-stone-600 dark:bg-white/[0.03]' : ''
               ]"
               :title="day.date"
             >
@@ -168,7 +168,7 @@ async function stopTracking() {
           </div>
         </section>
         <template #fallback>
-          <USkeleton class="mb-8 h-48 rounded-[24px] bg-white/[0.02]" />
+          <USkeleton class="mb-8 h-48 rounded-[24px] bg-stone-100 dark:bg-white/[0.02]" />
         </template>
       </ClientOnly>
 
@@ -181,13 +181,13 @@ async function stopTracking() {
           <div
             v-for="date in frozenDays"
             :key="date"
-            class="flex items-center gap-3 rounded-[14px] bg-white/[0.02] p-3 ring-1 ring-white/[0.05]"
+            class="flex items-center gap-3 rounded-[14px] bg-stone-100 p-3 ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]"
           >
             <div class="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-sky-500/10">
               <UIcon name="i-lucide-snowflake" class="size-[18px] text-sky-400" />
             </div>
             <div>
-              <div class="mb-0.5 text-[13px] font-medium text-white">Freeze used</div>
+              <div class="mb-0.5 text-[13px] font-medium text-stone-900 dark:text-white">Freeze used</div>
               <div class="text-[11px] text-stone-400">
                 Protected your streak on {{ new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
               </div>
@@ -201,7 +201,7 @@ async function stopTracking() {
         class="group relative flex w-full items-center justify-center gap-2 rounded-[20px] py-4 text-[15px] font-semibold transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] disabled:opacity-50"
         :class="
           completedToday
-            ? 'bg-white/[0.04] text-stone-300 ring-1 ring-inset ring-white/[0.1] hover:bg-white/[0.06]'
+            ? 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200 hover:bg-stone-200 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.1] dark:hover:bg-white/[0.06]'
             : 'spark-gradient text-white shadow-[0_2px_16px_rgba(255,106,24,0.25)] hover:shadow-[0_4px_24px_rgba(255,106,24,0.4)]'
         "
         :disabled="busy"

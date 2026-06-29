@@ -109,7 +109,7 @@ async function saveEdit() {
       />
 
       <div v-if="entry.image_url" class="mt-4 overflow-hidden rounded-[16px] ring-1 ring-black/10 dark:ring-white/10">
-        <img 
+        <NuxtImg 
           :src="entry.image_url" 
           class="max-h-64 w-full object-cover transition-transform duration-700 hover:scale-105"
           loading="lazy"

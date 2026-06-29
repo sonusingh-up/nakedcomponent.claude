@@ -79,7 +79,7 @@ const completionPct = computed(() => {
             </template>
             <template v-else-if="status === 'frozen'">
               <span>{{ streak }}d streak</span>
-              <span class="inline-flex items-center gap-0.5 bg-[#0c1929] border border-[#1a3a5f] rounded px-1 text-blue-400 ml-1">
+              <span class="inline-flex items-center gap-0.5 bg-sky-50 border border-sky-200 rounded px-1 text-blue-500 ml-1 dark:bg-[#0c1929] dark:border-[#1a3a5f] dark:text-blue-400">
                 <UIcon name="i-lucide-snowflake" class="size-[9px]" /> 1 used
               </span>
             </template>
@@ -92,7 +92,7 @@ const completionPct = computed(() => {
 
       <!-- Right: Toggle Check or Freeze Button -->
       <button v-if="isAtRisk"
-        class="bg-[#0c1929] border border-[#1a3a5f] rounded-lg px-2.5 py-1 text-blue-400 text-[11px] flex items-center gap-1 whitespace-nowrap"
+        class="bg-sky-50 border border-sky-200 rounded-lg px-2.5 py-1 text-blue-600 text-[11px] flex items-center gap-1 whitespace-nowrap dark:bg-[#0c1929] dark:border-[#1a3a5f] dark:text-blue-400"
         @click.stop="emit('freeze')"
       >
         <UIcon name="i-lucide-snowflake" class="size-[11px]" />
@@ -111,9 +111,9 @@ const completionPct = computed(() => {
       </button>
     </div>
     
-    <div v-if="isAtRisk" class="mt-2 flex items-center gap-1.5 px-2 py-1.5 bg-[#111] rounded-md">
-      <UIcon name="i-lucide-clock" class="size-3 text-[#777]" />
-      <span class="text-[#666] text-[11px]">{{ freezeHoursLeft }} hrs left to use a freeze for yesterday</span>
+    <div v-if="isAtRisk" class="mt-2 flex items-center gap-1.5 px-2 py-1.5 bg-stone-100 rounded-md dark:bg-[#111]">
+      <UIcon name="i-lucide-clock" class="size-3 text-stone-400 dark:text-[#777]" />
+      <span class="text-stone-500 dark:text-[#666] text-[11px]">{{ freezeHoursLeft }} hrs left to use a freeze for yesterday</span>
     </div>
   </div>
 </template>

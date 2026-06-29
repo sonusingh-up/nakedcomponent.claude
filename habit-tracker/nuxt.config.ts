@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
 
-  modules: ['@nuxt/ui', '@nuxtjs/supabase', '@vite-pwa/nuxt'],
+  modules: ['@nuxt/ui', '@nuxtjs/supabase', '@vite-pwa/nuxt', '@nuxt/image'],
 
   css: ['~/assets/css/main.css'],
 
