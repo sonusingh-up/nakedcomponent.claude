@@ -77,5 +77,5 @@ export function useJournal() {
     return data.publicUrl
   }
 
-  return { list, create, remove, uploadAudio, uploadImage }
+  return { list, create, remove, update, uploadAudio, uploadImage }
 }

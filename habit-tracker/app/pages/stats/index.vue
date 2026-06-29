@@ -177,12 +177,12 @@ onMounted(() => {
           >
             <!-- Icon -->
             <div class="flex size-12 shrink-0 items-center justify-center rounded-[12px] bg-stone-100 transition-colors group-hover:bg-stone-200 dark:bg-[#1c1c1c] dark:group-hover:bg-[#252525]">
-              <UIcon :name="habit.icon || 'i-lucide-activity'" class="size-5 text-[#f97316]" />
+              <UIcon :name="habit.habit?.icon || 'i-lucide-activity'" class="size-5 text-[#f97316]" />
             </div>
             
             <!-- Details -->
             <div class="min-w-0 flex-1">
-              <div class="truncate text-[15px] font-semibold text-stone-800 dark:text-white">{{ habit.title }}</div>
+              <div class="truncate text-[15px] font-semibold text-stone-800 dark:text-white">{{ habit.custom_name || habit.habit?.name || 'Habit' }}</div>
               <div class="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-stone-500 dark:text-[#888]">
                 <span class="flex items-center gap-1 rounded-md bg-stone-100 px-2 py-0.5 dark:bg-[#1c1c1c]"><UIcon name="i-lucide-check-circle-2" class="size-3 text-stone-400 dark:text-[#aaa]" /> {{ history[habit.id]?.size ?? 0 }} total</span>
                 <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ habit.streak?.current_streak ?? 0 }} streak</span>

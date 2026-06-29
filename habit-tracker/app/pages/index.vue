@@ -16,8 +16,9 @@ const isTodaySelected = computed(() => selectedDate.value === localDate())
 
 const selectedDateLabel = computed(() => {
   if (isTodaySelected.value) return 'today'
-  // parse local date string properly to avoid timezone shifts
-  const [y, m, d] = selectedDate.value.split('-').map(Number)
+  const parts = selectedDate.value.split('-').map(Number)
+  if (parts.length < 3) return ''
+  const [y, m, d] = parts as [number, number, number]
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short' })
 })
 
@@ -31,7 +32,7 @@ const { data, pending, refresh } = useAsyncData(
     
     if (userId) {
       const { data: profile } = await supabase.from('profiles').select('streak_freezes').eq('id', userId).single()
-      freezes = profile?.streak_freezes ?? 0
+      freezes = (profile as any)?.streak_freezes ?? 0
     }
 
     const [habits, history] = await Promise.all([
@@ -116,7 +117,7 @@ async function toggle(userHabitId: string) {
     
     if (newStreak > oldStreak && [7, 21, 100].includes(newStreak)) {
       milestoneEvent.value = {
-        title: newHabit?.habit?.title || 'Habit',
+        title: newHabit?.habit?.name || 'Habit',
         icon: newHabit?.habit?.icon || 'i-lucide-activity',
         streak: newStreak
       }
@@ -394,8 +395,8 @@ const dynamicInsight = computed(() => {
   </div>
 
   <!-- Milestone Celebration Modal -->
-  <UModal :model-value="!!milestoneEvent" @update:model-value="milestoneEvent = null" :ui="{ width: 'w-full max-w-sm', rounded: 'rounded-[24px]' }">
-    <div v-if="milestoneEvent" class="relative overflow-hidden bg-white p-8 text-center shadow-2xl dark:bg-[#1c1c1c]">
+  <UModal :model-value="!!milestoneEvent" @update:model-value="milestoneEvent = null" :ui="({ content: 'sm:max-w-sm rounded-[24px]' } as any)">
+    <div v-if="milestoneEvent" class="relative overflow-hidden bg-white p-8 text-center shadow-2xl dark:bg-[#1c1c1c] rounded-[24px]">
       
       <!-- Glowing background effect -->
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
