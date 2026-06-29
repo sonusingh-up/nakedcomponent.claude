@@ -1,4 +1,4 @@
-import type { HabitLog } from '~/types'
+import type { HabitLog, FreezeBank } from '~/types'
 
 /** Returns today's date as a local YYYY-MM-DD string (not UTC). */
 export function localDate(d = new Date()): string {
@@ -13,7 +13,7 @@ export function useHabitLogs() {
   const user = useSupabaseUser()
 
   /** Mark a habit complete for a specific date (idempotent per day). */
-  async function logDate(userHabitId: string, date: string, count = 1): Promise<HabitLog> {
+  async function logDate(userHabitId: string, date: string, count = 1, status: 'completed' | 'missed' | 'frozen' = 'completed'): Promise<HabitLog> {
     const { data: sessionData } = await supabase.auth.getSession()
     const userId = sessionData.session?.user?.id
     if (!userId) throw new Error('Not authenticated')
@@ -26,6 +26,7 @@ export function useHabitLogs() {
           user_id: userId,
           log_date: date,
           count,
+          status,
         },
         { onConflict: 'user_habit_id,log_date' },
       )
@@ -73,16 +74,18 @@ export function useHabitLogs() {
   async function fetchHistory(
     userHabitId: string,
     days = 28,
-  ): Promise<Set<string>> {
+  ): Promise<Record<string, string>> {
     const from = new Date()
     from.setDate(from.getDate() - (days - 1))
     const { data, error } = await supabase
       .from('habit_logs')
-      .select('log_date')
+      .select('log_date, status')
       .eq('user_habit_id', userHabitId)
       .gte('log_date', localDate(from))
     if (error) throw error
-    return new Set((data ?? []).map((r: any) => r.log_date as string))
+    const map: Record<string, string> = {}
+    for (const r of data ?? []) map[r.log_date] = r.status
+    return map
   }
 
   /**
@@ -92,20 +95,99 @@ export function useHabitLogs() {
    */
   async function fetchHistoryAll(
     days = 70,
-  ): Promise<Record<string, Set<string>>> {
+  ): Promise<Record<string, Record<string, string>>> {
     const from = new Date()
     from.setDate(from.getDate() - (days - 1))
     const { data, error } = await supabase
       .from('habit_logs')
-      .select('user_habit_id, log_date')
+      .select('user_habit_id, log_date, status')
       .gte('log_date', localDate(from))
     if (error) throw error
-    const map: Record<string, Set<string>> = {}
-    for (const r of (data ?? []) as Array<{ user_habit_id: string; log_date: string }>) {
-      ;(map[r.user_habit_id] ??= new Set()).add(r.log_date)
+    const map: Record<string, Record<string, string>> = {}
+    for (const r of (data ?? [])) {
+      ;(map[r.user_habit_id] ??= {})[r.log_date] = r.status
     }
     return map
   }
 
-  return { logToday, removeTodayLog, logDate, removeDateLog, fetchTodayLogs, fetchHistory, fetchHistoryAll }
+  async function fetchFreezeBank(): Promise<FreezeBank | null> {
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) return null
+
+    const d = new Date()
+    const monthStart = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`
+    const { data, error } = await supabase
+      .from('freeze_banks')
+      .select('*')
+      .eq('month_start', monthStart)
+      .maybeSingle()
+    
+    if (error) throw error
+    if (data) return data as unknown as FreezeBank
+
+    const { data: newData, error: insertError } = await supabase
+      .from('freeze_banks')
+      .insert({ user_id: userId, month_start: monthStart })
+      .select()
+      .single()
+      
+    if (insertError) throw insertError
+    return newData as unknown as FreezeBank
+  }
+
+  async function freezeDate(userHabitId: string, date: string): Promise<HabitLog> {
+    const bank = await fetchFreezeBank()
+    if (!bank) throw new Error('No freeze bank available')
+    
+    const available = 2 - bank.base_used + (bank.bonus_earned && !bank.bonus_used ? 1 : 0)
+    if (available <= 0) throw new Error('No freezes available')
+    
+    let baseUpdate = bank.base_used
+    let bonusUpdate = bank.bonus_used
+    if (bank.base_used < 2) {
+      baseUpdate++
+    } else {
+      bonusUpdate = true
+    }
+
+    await supabase.from('freeze_banks').update({
+      base_used: baseUpdate,
+      bonus_used: bonusUpdate
+    }).eq('id', bank.id)
+
+    return logDate(userHabitId, date, 1, 'frozen')
+  }
+
+  async function awardBonusFreeze(): Promise<boolean> {
+    const bank = await fetchFreezeBank()
+    if (!bank) return false
+    if (bank.bonus_earned) return false
+
+    await supabase.from('freeze_banks').update({
+      bonus_earned: true
+    }).eq('id', bank.id)
+
+    return true
+  }
+
+  async function detectAtRiskHabits(habits: any[]) {
+    const d = new Date()
+    d.setDate(d.getDate() - 1)
+    const yesterday = localDate(d)
+
+    const history = await fetchHistoryAll(7)
+    
+    for (const h of habits) {
+      const streak = h.streak?.current_streak ?? 0
+      if (streak > 3) {
+        const log = history[h.id]?.[yesterday]
+        if (!log) {
+          await logDate(h.id, yesterday, 1, 'missed')
+        }
+      }
+    }
+  }
+
+  return { logToday, removeTodayLog, logDate, removeDateLog, fetchTodayLogs, fetchHistory, fetchHistoryAll, fetchFreezeBank, freezeDate, awardBonusFreeze, detectAtRiskHabits }
 }

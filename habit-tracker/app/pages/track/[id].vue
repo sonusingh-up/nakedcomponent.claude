@@ -6,10 +6,11 @@ const id = computed(() => route.params.id as string)
 
 const { fetchUserHabit, archiveHabit } = useHabits()
 const { fetchHistory, logToday, removeTodayLog } = useHabitLogs()
-// localDate() is auto-imported from composables/useHabitLogs.ts
+import { localDate } from '~/composables/useHabitLogs'
+
 const toast = useToast()
 
-const { data, pending, refresh } = await useAsyncData(
+const { data, pending, refresh } = useAsyncData(
   () => `track-${id.value}`,
   async () => {
     const [habit, history] = await Promise.all([
@@ -18,11 +19,11 @@ const { data, pending, refresh } = await useAsyncData(
     ])
     return { habit, history }
   },
-  { server: false, default: () => ({ habit: null, history: new Set<string>() }) },
+  { server: false, default: () => ({ habit: null, history: {} as Record<string, string> }) },
 )
 
 const habit = computed(() => data.value?.habit ?? null)
-const history = computed(() => data.value?.history ?? new Set<string>())
+const history = computed(() => data.value?.history ?? {})
 
 const name = computed(
   () => habit.value?.custom_name ?? habit.value?.habit?.name ?? 'Habit',
@@ -33,19 +34,28 @@ const category = computed(() =>
 )
 
 const todayStr = localDate()
-const completedToday = computed(() => history.value.has(todayStr))
+const completedToday = computed(() => history.value[todayStr] === 'completed')
 const currentStreak = computed(() => habit.value?.streak?.current_streak ?? 0)
 const longestStreak = computed(() => habit.value?.streak?.longest_streak ?? 0)
-const totalDays = computed(() => history.value.size)
+const totalDays = computed(() => Object.values(history.value).filter(s => s === 'completed').length)
+
+const frozenDays = computed(() => {
+  return Object.entries(history.value)
+    .filter(([_, status]) => status === 'frozen')
+    .map(([date]) => date)
+    .sort()
+    .reverse()
+})
 
 // Last 28 days, oldest → newest, for the heat grid.
 const grid = computed(() => {
-  const days: { date: string; done: boolean; label: number }[] = []
+  const days: { date: string; done: boolean; frozen: boolean; label: number }[] = []
   for (let i = 27; i >= 0; i--) {
     const d = new Date()
     d.setDate(d.getDate() - i)
     const ds = localDate(d)
-    days.push({ date: ds, done: history.value.has(ds), label: d.getDate() })
+    const st = history.value[ds]
+    days.push({ date: ds, done: st === 'completed', frozen: st === 'frozen', label: d.getDate() })
   }
   return days
 })
@@ -146,7 +156,11 @@ async function stopTracking() {
               v-for="day in grid"
               :key="day.date"
               class="flex aspect-square items-center justify-center rounded-[8px] text-[11px] font-semibold transition-all duration-300"
-              :class="day.done ? 'bg-ember-500/20 text-ember-400 ring-1 ring-ember-500/30' : 'bg-white/[0.03] text-stone-600'"
+              :class="[
+                day.done ? 'bg-ember-500/20 text-ember-400 ring-1 ring-ember-500/30' : '',
+                day.frozen ? 'bg-sky-500/20 text-sky-400 ring-1 ring-sky-500/30' : '',
+                !day.done && !day.frozen ? 'bg-white/[0.03] text-stone-600' : ''
+              ]"
               :title="day.date"
             >
               {{ day.label }}
@@ -157,6 +171,30 @@ async function stopTracking() {
           <USkeleton class="mb-8 h-48 rounded-[24px] bg-white/[0.02]" />
         </template>
       </ClientOnly>
+
+      <!-- Freeze History -->
+      <section v-if="frozenDays.length > 0" class="mb-8">
+        <h2 class="mb-3 pl-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500">
+          Freeze History
+        </h2>
+        <div class="flex flex-col gap-2">
+          <div
+            v-for="date in frozenDays"
+            :key="date"
+            class="flex items-center gap-3 rounded-[14px] bg-white/[0.02] p-3 ring-1 ring-white/[0.05]"
+          >
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-sky-500/10">
+              <UIcon name="i-lucide-snowflake" class="size-[18px] text-sky-400" />
+            </div>
+            <div>
+              <div class="mb-0.5 text-[13px] font-medium text-white">Freeze used</div>
+              <div class="text-[11px] text-stone-400">
+                Protected your streak on {{ new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Action Button -->
       <button

@@ -18,7 +18,7 @@ const { data, pending } = useAsyncData(
     lazy: true,
     default: () => ({
       habits: [],
-      history: {} as Record<string, Set<string>>,
+      history: {} as Record<string, Record<string, string>>,
     }),
   }
 )
@@ -30,25 +30,46 @@ const history = computed(() => data.value?.history ?? {})
 const totalCompletions = computed(() => {
   let total = 0
   for (const dates of Object.values(history.value)) {
-    total += dates.size
+    total += Object.values(dates).filter(s => s === 'completed').length
   }
   return total
 })
 
 const bestGlobalStreak = computed(() => {
   if (!habits.value.length) return 0
-  return Math.max(...habits.value.map(h => h.streak?.current_streak ?? 0))
+  return Math.max(...habits.value.map(h => h.streak?.longest_streak ?? 0))
 })
 
 const activeDaysCount = computed(() => {
   const uniqueDays = new Set<string>()
   for (const dates of Object.values(history.value)) {
-    for (const d of dates) {
-      uniqueDays.add(d)
+    for (const [d, s] of Object.entries(dates)) {
+      if (s === 'completed' || s === 'frozen') {
+        uniqueDays.add(d)
+      }
     }
   }
   return uniqueDays.size
 })
+
+function getAtRiskStreak(habitId: string): number {
+  const hHistory = history.value[habitId] || {}
+  let count = 0
+  const d = new Date()
+  d.setDate(d.getDate() - 2)
+  
+  while (true) {
+    const ds = localDate(d)
+    const st = hHistory[ds]
+    if (st === 'completed' || st === 'frozen') {
+      count++
+      d.setDate(d.getDate() - 1)
+    } else {
+      break
+    }
+  }
+  return count
+}
 
 // Heatmap Generation (Aligning to days of the week)
 const heatmapDays = computed(() => {
@@ -68,7 +89,7 @@ const heatmapDays = computed(() => {
     // Count how many habits completed on this day
     let completions = 0
     for (const h of habits.value) {
-      if (history.value[h.id]?.has(ds)) {
+      if (history.value[h.id]?.[ds] === 'completed') {
         completions++
       }
     }
@@ -185,8 +206,8 @@ onMounted(() => {
             <div class="min-w-0 flex-1">
               <div class="truncate text-[15px] font-semibold text-stone-800 dark:text-white">{{ habit.custom_name || habit.habit?.name || 'Habit' }}</div>
               <div class="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-stone-500 dark:text-[#888]">
-                <span class="flex items-center gap-1 rounded-md bg-stone-100 px-2 py-0.5 dark:bg-[#1c1c1c]"><UIcon name="i-lucide-check-circle-2" class="size-3 text-stone-400 dark:text-[#aaa]" /> {{ history[habit.id]?.size ?? 0 }} total</span>
-                <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ habit.streak?.current_streak ?? 0 }} streak</span>
+                <span class="flex items-center gap-1 rounded-md bg-stone-100 px-2 py-0.5 dark:bg-[#1c1c1c]"><UIcon name="i-lucide-check-circle-2" class="size-3 text-stone-400 dark:text-[#aaa]" /> {{ Object.values(history[habit.id] || {}).filter(s => s === 'completed').length }} total</span>
+                <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ habit.streak?.current_streak || getAtRiskStreak(habit.id) }} streak</span>
               </div>
             </div>
             

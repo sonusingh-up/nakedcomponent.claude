@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { localDate } from '~/composables/useHabitLogs'
+import FreezeBank from '~/components/habit/FreezeBank.vue'
 
 const { fetchUserHabits } = useHabits()
-const { logDate, removeDateLog, fetchHistoryAll } = useHabitLogs()
+const { logDate, removeDateLog, fetchHistoryAll, fetchFreezeBank, freezeDate, awardBonusFreeze, detectAtRiskHabits } = useHabitLogs()
 const user = useSupabaseUser()
+const toast = useToast()
 
 // Set theme color to orange for the dashboard so the mobile status bar blends seamlessly
 useHead({
@@ -26,40 +28,38 @@ const selectedDateLabel = computed(() => {
 const { data, pending, refresh } = useAsyncData(
   'dashboard',
   async () => {
-    const supabase = useSupabaseClient()
-    const userId = user.value?.id
-    let freezes = 0
-    
-    if (userId) {
-      const { data: profile } = await supabase.from('profiles').select('streak_freezes').eq('id', userId).single()
-      freezes = (profile as any)?.streak_freezes ?? 0
-    }
-
-    const [habits, history] = await Promise.all([
-      fetchUserHabits(),
-      fetchHistoryAll(70),
+    const [habits] = await Promise.all([
+      fetchUserHabits()
     ])
-    return { habits, history, freezes }
+    
+    // Auto-detect if yesterday was missed and insert 'missed' logs
+    await detectAtRiskHabits(habits)
+
+    const [history, freezeBank] = await Promise.all([
+      fetchHistoryAll(70),
+      fetchFreezeBank()
+    ])
+    return { habits, history, freezeBank }
   },
   {
     server: false,
     lazy: true,
     default: () => ({
       habits: [],
-      history: {} as Record<string, Set<string>>,
-      freezes: 0
+      history: {} as Record<string, Record<string, string>>,
+      freezeBank: null
     }),
   }
 )
 
 const habits = computed(() => data.value?.habits ?? [])
 const history = computed(() => data.value?.history ?? {})
-const streakFreezes = computed(() => data.value?.freezes ?? 0)
+const freezeBank = computed(() => data.value?.freezeBank ?? null)
 
 const completedCount = computed(() => {
   let count = 0
   for (const h of habits.value) {
-    if (history.value[h.id]?.has(selectedDate.value)) count++
+    if (history.value[h.id]?.[selectedDate.value] === 'completed') count++
   }
   return count
 })
@@ -100,13 +100,13 @@ async function toggle(userHabitId: string) {
   const oldStreak = oldHabit?.streak?.current_streak ?? 0
 
   try {
-    if (history.value[userHabitId]?.has(d)) {
-      history.value[userHabitId].delete(d)
+    if (history.value[userHabitId]?.[d] === 'completed') {
+      delete history.value[userHabitId][d]
       await removeDateLog(userHabitId, d)
     } else {
-      if (!history.value[userHabitId]) history.value[userHabitId] = new Set()
-      history.value[userHabitId].add(d)
-      await logDate(userHabitId, d)
+      if (!history.value[userHabitId]) history.value[userHabitId] = {}
+      history.value[userHabitId][d] = 'completed'
+      await logDate(userHabitId, d, 1, 'completed')
       if (import.meta.client && navigator.vibrate) navigator.vibrate(15)
     }
     
@@ -123,12 +123,67 @@ async function toggle(userHabitId: string) {
         streak: newStreak
       }
       if (import.meta.client && navigator.vibrate) navigator.vibrate([30, 50, 30])
+      
+      // Award Bonus Freeze on 7-day streak
+      if (newStreak === 7) {
+        const newlyAwarded = await awardBonusFreeze()
+        if (newlyAwarded) {
+          toast.add({
+            title: 'Bonus freeze unlocked!',
+            description: `7 days in a row on ${newHabit?.habit?.name}. An extra freeze slot has been added to your bank.`,
+            icon: 'i-lucide-trophy',
+            color: 'success'
+          })
+          await refresh()
+        }
+      }
     }
   } catch (e) {
     await refresh()
   } finally {
     toggling.value = null
   }
+}
+
+const isFreezing = ref<string | null>(null)
+async function doFreeze(userHabitId: string) {
+  isFreezing.value = userHabitId
+  const d = new Date()
+  d.setDate(d.getDate() - 1)
+  try {
+    await freezeDate(userHabitId, localDate(d))
+    await refresh()
+  } catch (e) {
+    console.error(e)
+    alert("Could not freeze. You might be out of freezes.")
+  } finally {
+    isFreezing.value = null
+  }
+}
+
+const yesterdayStr = computed(() => {
+  const d = new Date()
+  d.setDate(d.getDate() - 1)
+  return localDate(d)
+})
+
+function getAtRiskStreak(habitId: string): number {
+  const hHistory = history.value[habitId] || {}
+  let count = 0
+  const d = new Date()
+  d.setDate(d.getDate() - 2) // start counting from 2 days ago
+  
+  while (true) {
+    const ds = localDate(d)
+    const st = hHistory[ds]
+    if (st === 'completed' || st === 'frozen') {
+      count++
+      d.setDate(d.getDate() - 1)
+    } else {
+      break
+    }
+  }
+  return count
 }
 
 // --- NEW ADVANCED DASHBOARD STATS --- //
@@ -145,12 +200,19 @@ const last7Days = computed(() => {
     
     // Calculate how many habits were done on this day across ALL active habits
     let doneCount = 0
+    let frozenCount = 0
     let totalActive = habits.value.length
     habits.value.forEach(h => {
-      if (history.value[h.id]?.has(ds)) doneCount++
+      const st = history.value[h.id]?.[ds]
+      if (st === 'completed') doneCount++
+      if (st === 'frozen') frozenCount++
     })
     
-    const percentage = totalActive > 0 ? (doneCount / totalActive) * 100 : 0
+    // Percentage ignores frozen days for denominator? 
+    // In this view, totalActive includes frozen days, but to match HabitCard, 
+    // let's just do doneCount / (totalActive - frozenCount).
+    const denominator = totalActive - frozenCount
+    const percentage = denominator > 0 ? (doneCount / denominator) * 100 : 0
     
     days.push({ 
       date: ds, 
@@ -159,10 +221,18 @@ const last7Days = computed(() => {
       isSelected: ds === selectedDate.value,
       doneCount,
       percentage,
-      isActiveDay: doneCount > 0 // did they do anything at all?
+      isActiveDay: doneCount > 0 || frozenCount > 0, // did they do anything or freeze?
+      isFrozen: frozenCount > 0 && doneCount === 0 // If fully frozen
     })
   }
   return days
+})
+
+const freezeHoursLeft = computed(() => {
+  const now = new Date()
+  const midnight = new Date(now)
+  midnight.setHours(24, 0, 0, 0)
+  return Math.floor((midnight.getTime() - now.getTime()) / (1000 * 60 * 60))
 })
 
 const activeDaysThisWeek = computed(() => last7Days.value.filter(d => d.isActiveDay).length)
@@ -217,13 +287,7 @@ const dynamicInsight = computed(() => {
           {{ initials }}
         </NuxtLink>
         <div class="flex gap-2">
-          <div 
-            class="flex items-center gap-1 rounded-[10px] bg-black/[0.12] px-2.5 py-1 transition-transform hover:scale-105 hover:bg-black/20"
-            title="Streak Freezes Available"
-          >
-            <UIcon name="i-lucide-snowflake" class="size-4 text-sky-400" />
-            <span class="text-[12px] font-semibold text-sky-50">{{ streakFreezes }}</span>
-          </div>
+          <!-- Removed old streakFreezes since we have the full widget -->
           <NuxtLink to="/discover" class="flex size-8 items-center justify-center rounded-[10px] bg-black/[0.12] transition-transform hover:scale-105 hover:bg-black/20">
             <UIcon name="i-lucide-plus" class="size-4 text-white" />
           </NuxtLink>
@@ -258,7 +322,8 @@ const dynamicInsight = computed(() => {
               ]"
             >
               <div v-if="day.isSelected" class="size-[8px] rounded-full bg-white"></div>
-              <UIcon v-else-if="day.isActiveDay && !day.isSelected" name="i-lucide-check" class="m-auto size-3.5 mt-1 text-white/90" />
+              <UIcon v-else-if="day.isFrozen" name="i-lucide-snowflake" class="m-auto size-3.5 mt-1 text-sky-400" />
+              <UIcon v-else-if="day.isActiveDay" name="i-lucide-check" class="m-auto size-3.5 mt-1 text-white/90" />
             </div>
             <div class="text-[11px]" :class="day.isSelected ? 'font-medium text-white' : 'text-white/70'">
               {{ day.label }}
@@ -268,6 +333,11 @@ const dynamicInsight = computed(() => {
         <div class="mt-1 flex justify-end">
           <span class="rounded-[4px] bg-black/[0.28] px-1.5 py-[2px] text-[10px] font-bold tracking-wide text-white/90">NEW</span>
         </div>
+      </div>
+
+      <!-- Bank Widget -->
+      <div class="mb-4">
+        <FreezeBank :bank="freezeBank" />
       </div>
 
       <!-- Progress -->
@@ -323,10 +393,14 @@ const dynamicInsight = computed(() => {
             v-for="habit in visibleHabits"
             :key="habit.id"
             :habit="habit"
-            :completed="history[habit.id]?.has(selectedDate) ?? false"
+            :status="(history[habit.id]?.[selectedDate] as 'completed' | 'frozen' | 'missed') ?? null"
             :history="history[habit.id]"
+            :isAtRisk="selectedDate === yesterdayStr && history[habit.id]?.[selectedDate] === 'missed'"
+            :atRiskStreak="getAtRiskStreak(habit.id)"
+            :freezeHoursLeft="freezeHoursLeft"
             @toggle="toggle(habit.id)"
             @open="navigateTo(`/track/${habit.id}`)"
+            @freeze="doFreeze(habit.id)"
           />
         </div>
 
