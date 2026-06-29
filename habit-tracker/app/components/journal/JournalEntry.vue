@@ -85,7 +85,7 @@ async function saveEdit() {
         class="w-full bg-stone-100 ring-1 ring-stone-300 rounded-[12px] dark:bg-white/[0.05] dark:ring-white/[0.1]"
       />
       <div class="flex justify-end gap-2 pt-2">
-        <UButton color="gray" variant="ghost" size="xs" @click="isEditing = false">Cancel</UButton>
+        <UButton color="neutral" variant="ghost" size="xs" @click="isEditing = false">Cancel</UButton>
         <UButton color="primary" size="xs" :loading="saving" @click="saveEdit">Save</UButton>
       </div>
     </div>
