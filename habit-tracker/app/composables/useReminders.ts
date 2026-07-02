@@ -57,12 +57,17 @@ export function useReminders() {
       .select()
       .single()
     if (error) throw error
+    // Nudge the client-side scheduler (plugins/reminders.client.ts).
+    const version = useState('reminders-version', () => 0)
+    version.value++
     return data as unknown as Reminder
   }
 
   async function deleteReminder(id: string): Promise<void> {
     const { error } = await supabase.from('reminders').delete().eq('id', id)
     if (error) throw error
+    const version = useState('reminders-version', () => 0)
+    version.value++
   }
 
   /** Ask for notification permission. Returns true if granted. */

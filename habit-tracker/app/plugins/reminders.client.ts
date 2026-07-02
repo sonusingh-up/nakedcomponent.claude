@@ -12,6 +12,9 @@ export default defineNuxtPlugin(() => {
 
   const user = useSupabaseUser()
   const supabase = useSupabaseClient()
+  // Bumped by useReminders after save/delete so new reminders schedule
+  // without a full reload.
+  const version = useState('reminders-version', () => 0)
   const timers: number[] = []
 
   async function schedule() {
@@ -63,5 +66,5 @@ export default defineNuxtPlugin(() => {
     }
   }
 
-  watch(user, () => schedule(), { immediate: true })
+  watch([user, version], () => schedule(), { immediate: true })
 })

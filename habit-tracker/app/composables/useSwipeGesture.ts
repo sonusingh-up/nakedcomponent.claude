@@ -13,6 +13,7 @@ export function useSwipeGesture(opts: {
   const y = ref(0)
   const dragging = ref(false)
   const leaving = ref<'left' | 'right' | null>(null)
+  const resetting = ref(false)
 
   let startX = 0
   let startY = 0
@@ -56,9 +57,15 @@ export function useSwipeGesture(opts: {
     window.setTimeout(() => {
       dir === 'right' ? opts.onAccept() : opts.onReject()
       // Reset instantly (no transition) for the next card.
+      resetting.value = true
       leaving.value = null
       x.value = 0
       y.value = 0
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          resetting.value = false
+        })
+      })
     }, 260)
   }
 
@@ -68,7 +75,7 @@ export function useSwipeGesture(opts: {
   const style = computed(() => ({
     transform: `translate(${x.value}px, ${y.value}px) rotate(${rotation.value}deg)`,
     transition:
-      dragging.value && !leaving.value
+      resetting.value || (dragging.value && !leaving.value)
         ? 'none'
         : 'transform 260ms var(--ease-out)',
   }))
