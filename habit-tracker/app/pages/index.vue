@@ -37,7 +37,13 @@ const { data, pending, refresh } = useAsyncData(
       fetchFreezeBank(),
     ])
 
-    const missedIds = await detectAtRiskHabits(habits, history)
+    // Non-fatal: a failed at-risk write must not blank the dashboard.
+    let missedIds: string[] = []
+    try {
+      missedIds = await detectAtRiskHabits(habits, history)
+    } catch (e) {
+      console.error('at-risk detection failed', e)
+    }
     if (missedIds.length) {
       const d = new Date()
       d.setDate(d.getDate() - 1)
