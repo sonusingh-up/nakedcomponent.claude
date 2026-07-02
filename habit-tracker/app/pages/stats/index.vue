@@ -4,7 +4,9 @@ import { localDate, displayStreak } from '~/composables/useHabitLogs'
 const { fetchUserHabits } = useHabits()
 const { fetchHistoryAll } = useHabitLogs()
 
-const { data, pending } = useAsyncData(
+useHead({ title: 'Stats — Habits' })
+
+const { data, pending, refresh } = useAsyncData(
   'stats',
   async () => {
     const [habits, history] = await Promise.all([
@@ -16,9 +18,6 @@ const { data, pending } = useAsyncData(
   {
     server: false,
     lazy: true,
-    // Always refetch on mount — the static key otherwise serves data
-    // cached from a visit before the user toggled habits elsewhere.
-    getCachedData: () => undefined,
     default: () => ({
       habits: [],
       history: {} as Record<string, Record<string, string>>,
@@ -96,6 +95,10 @@ onMounted(() => {
       heatmapContainer.value.scrollLeft = heatmapContainer.value.scrollWidth
     }
   }, 100)
+
+  // Stale-while-revalidate: cached stats paint instantly on revisit,
+  // then refresh in the background so post-toggle numbers appear.
+  if (!pending.value) refresh()
 })
 
 </script>
@@ -109,10 +112,19 @@ onMounted(() => {
       <p class="mt-1 text-[13px] font-medium text-stone-500 dark:text-[#bbb]">Your all-time progress and history</p>
     </header>
 
-    <div v-if="pending" class="space-y-4">
+    <div v-if="pending && !habits.length" class="space-y-4">
       <USkeleton class="h-32 w-full rounded-[24px] bg-white/[0.05]" />
       <USkeleton class="h-48 w-full rounded-[24px] bg-white/[0.05]" />
     </div>
+
+    <AppEmptyState
+      v-else-if="!habits.length"
+      icon="i-lucide-bar-chart-2"
+      title="No stats yet"
+      description="Adopt a habit and start logging — your progress and heatmap will show up here."
+      cta-label="Discover habits"
+      cta-to="/discover"
+    />
 
     <template v-else>
       

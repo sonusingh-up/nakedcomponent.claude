@@ -69,6 +69,24 @@ export function useHabits() {
     if (error) throw error
   }
 
+  /** Resume tracking an archived habit (powers the undo toast). */
+  async function unarchiveHabit(userHabitId: string) {
+    const { error } = await supabase
+      .from('user_habits')
+      .update({ is_active: true })
+      .eq('id', userHabitId)
+    if (error) throw error
+  }
+
+  /** Rename the user's copy of a habit; null restores the catalog name. */
+  async function renameHabit(userHabitId: string, customName: string | null) {
+    const { error } = await supabase
+      .from('user_habits')
+      .update({ custom_name: customName })
+      .eq('id', userHabitId)
+    if (error) throw error
+  }
+
   async function createCustomHabit(payload: {
     name: string
     description: string | null
@@ -108,6 +126,8 @@ export function useHabits() {
     fetchUserHabit,
     adoptHabit,
     archiveHabit,
+    unarchiveHabit,
+    renameHabit,
     createCustomHabit,
   }
 }

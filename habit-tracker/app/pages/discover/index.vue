@@ -4,6 +4,8 @@ import { CATEGORY_META, type Habit, type HabitCategory } from '~/types'
 const { fetchCatalog, fetchUserHabits, adoptHabit } = useHabits()
 const toast = useToast()
 
+useHead({ title: 'Discover — Habits' })
+
 const activeCategory = ref<HabitCategory | 'all'>('all')
 const categories = Object.keys(CATEGORY_META) as HabitCategory[]
 
@@ -16,10 +18,14 @@ const { data, pending, refresh } = useAsyncData(
   {
     server: false,
     lazy: true,
-    getCachedData: () => undefined,
     default: () => ({ catalog: [], adoptedIds: new Set<string>() }),
   },
 )
+
+// Stale-while-revalidate on revisit.
+onMounted(() => {
+  if (!pending.value) refresh()
+})
 
 // Cards = catalog minus already-adopted, filtered by category.
 const deck = computed<Habit[]>(() => {
@@ -145,7 +151,7 @@ function onMouseMove(e: MouseEvent) {
       </button>
     </div>
 
-    <div v-if="pending" class="mx-auto h-[60vh] max-h-[520px] w-full max-w-sm">
+    <div v-if="pending && !(data && data.catalog.length)" class="mx-auto h-[60vh] max-h-[520px] w-full max-w-sm">
       <USkeleton class="h-full w-full rounded-[24px] bg-black/[0.03] ring-1 ring-black/[0.05] dark:bg-white/[0.02] dark:ring-white/[0.05]" />
     </div>
 

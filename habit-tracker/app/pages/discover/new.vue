@@ -2,6 +2,8 @@
 import type { HabitCategory } from '~/types'
 import { CATEGORY_META } from '~/types'
 
+useHead({ title: 'Custom habit — Habits' })
+
 const router = useRouter()
 const { createCustomHabit } = useHabits()
 const toast = useToast()

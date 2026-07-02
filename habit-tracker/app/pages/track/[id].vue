@@ -4,7 +4,7 @@ import { CATEGORY_META, type HabitCategory } from '~/types'
 const route = useRoute()
 const id = computed(() => route.params.id as string)
 
-const { fetchUserHabit, archiveHabit } = useHabits()
+const { fetchUserHabit, archiveHabit, unarchiveHabit, renameHabit } = useHabits()
 const { fetchHistory, logToday, removeTodayLog } = useHabitLogs()
 import { localDate, displayStreak } from '~/composables/useHabitLogs'
 
@@ -28,6 +28,31 @@ const history = computed(() => data.value?.history ?? {})
 const name = computed(
   () => habit.value?.custom_name ?? habit.value?.habit?.name ?? 'Habit',
 )
+
+useHead({ title: () => `${name.value} — Habits` })
+
+// ── Rename (sets user_habits.custom_name; empty restores catalog name) ──
+const isRenaming = ref(false)
+const renameValue = ref('')
+const renameBusy = ref(false)
+
+function startRename() {
+  renameValue.value = name.value
+  isRenaming.value = true
+}
+
+async function saveRename() {
+  renameBusy.value = true
+  try {
+    await renameHabit(id.value, renameValue.value.trim() || null)
+    await refresh()
+    isRenaming.value = false
+  } catch (e: any) {
+    toast.add({ title: 'Could not rename', description: e.message, color: 'error' })
+  } finally {
+    renameBusy.value = false
+  }
+}
 const color = computed(() => habit.value?.habit?.color ?? '#c96442')
 const category = computed(() =>
   habit.value ? CATEGORY_META[habit.value.habit?.category as HabitCategory] : null,
@@ -91,8 +116,27 @@ function fmtFreezeDate(date: string) {
 
 async function stopTracking() {
   if (!confirm(`Stop tracking "${name.value}"? Your history is kept.`)) return
-  await archiveHabit(id.value)
-  toast.add({ title: 'Habit archived', icon: 'i-lucide-archive' })
+  const habitId = id.value
+  try {
+    await archiveHabit(habitId)
+  } catch (e: any) {
+    toast.add({ title: 'Could not archive', description: e.message, color: 'error' })
+    return
+  }
+  toast.add({
+    title: 'Habit archived',
+    description: 'History is kept. Changed your mind?',
+    icon: 'i-lucide-archive',
+    actions: [
+      {
+        label: 'Undo',
+        onClick: async () => {
+          await unarchiveHabit(habitId)
+          await refreshNuxtData('dashboard')
+        },
+      },
+    ],
+  } as any)
   await navigateTo('/')
 }
 </script>
@@ -129,8 +173,22 @@ async function stopTracking() {
         >
           <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-8 drop-shadow-md" />
         </div>
-        <div>
-          <h1 class="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-900 dark:text-stone-50">{{ name }}</h1>
+        <div class="min-w-0 flex-1">
+          <div v-if="!isRenaming" class="flex items-center gap-2">
+            <h1 class="truncate text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-900 dark:text-stone-50">{{ name }}</h1>
+            <button
+              class="flex size-7 shrink-0 items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-600 dark:hover:bg-white/10 dark:hover:text-stone-200"
+              aria-label="Rename habit"
+              @click="startRename"
+            >
+              <UIcon name="i-lucide-pencil" class="size-3.5" />
+            </button>
+          </div>
+          <form v-else class="flex items-center gap-2" @submit.prevent="saveRename">
+            <UInput v-model="renameValue" size="sm" autofocus placeholder="Habit name" class="flex-1" />
+            <UButton type="submit" size="xs" color="primary" icon="i-lucide-check" aria-label="Save name" :loading="renameBusy" />
+            <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-x" aria-label="Cancel rename" :disabled="renameBusy" @click="isRenaming = false" />
+          </form>
           <p class="mt-0.5 flex items-center gap-1.5 text-[13px] text-stone-400">
             <UIcon :name="category?.icon" class="size-3.5" />
             {{ category?.label }}

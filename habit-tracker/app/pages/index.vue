@@ -9,6 +9,7 @@ const toast = useToast()
 
 // Set theme color to orange for the dashboard so the mobile status bar blends seamlessly
 useHead({
+  title: 'Today — Habits',
   meta: [{ name: 'theme-color', content: '#f97316' }]
 })
 
@@ -24,21 +25,26 @@ const selectedDateLabel = computed(() => {
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { weekday: 'short' })
 })
 
-// Client-side fetch
+// Client-side fetch — habits, history and freeze bank load in parallel;
+// at-risk detection reuses the fetched history instead of adding a
+// second history query plus one write per habit.
 const { data, pending, refresh } = useAsyncData(
   'dashboard',
   async () => {
-    const [habits] = await Promise.all([
-      fetchUserHabits()
-    ])
-    
-    // Auto-detect if yesterday was missed and insert 'missed' logs
-    await detectAtRiskHabits(habits)
-
-    const [history, freezeBank] = await Promise.all([
+    const [habits, history, freezeBank] = await Promise.all([
+      fetchUserHabits(),
       fetchHistoryAll(70),
-      fetchFreezeBank()
+      fetchFreezeBank(),
     ])
+
+    const missedIds = await detectAtRiskHabits(habits, history)
+    if (missedIds.length) {
+      const d = new Date()
+      d.setDate(d.getDate() - 1)
+      const yesterday = localDate(d)
+      for (const hid of missedIds) (history[hid] ??= {})[yesterday] = 'missed'
+    }
+
     return { habits, history, freezeBank }
   },
   {
@@ -90,6 +96,10 @@ onMounted(() => {
   if (h < 12) greeting.value = 'Good morning'
   else if (h < 18) greeting.value = 'Good afternoon'
   else greeting.value = 'Good evening'
+
+  // Stale-while-revalidate: on revisit the cached dashboard paints
+  // instantly and a background refresh brings it up to date.
+  if (!pending.value) refresh()
 })
 
 const toggling = ref<string | null>(null)
@@ -141,7 +151,8 @@ async function toggle(userHabitId: string) {
         }
       }
     }
-  } catch (e) {
+  } catch (e: any) {
+    toast.add({ title: 'Could not update habit', description: e?.message, color: 'error' })
     await refresh()
   } finally {
     toggling.value = null
@@ -311,9 +322,11 @@ const dynamicInsight = computed(() => {
       <!-- 7-Day Week Strip -->
       <div class="mb-3 rounded-[12px] bg-black/[0.15] px-2 pb-1.5 pt-2.5">
         <div class="flex justify-around">
-          <button 
-            v-for="day in last7Days" :key="day.date" 
+          <button
+            v-for="day in last7Days" :key="day.date"
             class="text-center outline-none transition-transform hover:scale-105"
+            :aria-label="'Show ' + day.date"
+            :aria-pressed="day.isSelected"
             @click="selectedDate = day.date"
           >
             <div 
@@ -377,7 +390,7 @@ const dynamicInsight = computed(() => {
     <!-- DARK HABIT AREA -->
     <section class="min-h-[300px]">
       
-      <div v-if="pending" class="flex flex-col gap-2.5 mb-3">
+      <div v-if="pending && !habits.length" class="flex flex-col gap-2.5 mb-3">
         <USkeleton v-for="i in 3" :key="i" class="h-[60px] rounded-[13px] bg-white/[0.05]" />
       </div>
 
@@ -396,6 +409,7 @@ const dynamicInsight = computed(() => {
             v-for="habit in visibleHabits"
             :key="habit.id"
             :habit="habit"
+            :busy="toggling === habit.id"
             :status="(history[habit.id]?.[selectedDate] as 'completed' | 'frozen' | 'missed') ?? null"
             :history="history[habit.id]"
             :isAtRisk="selectedDate === yesterdayStr && history[habit.id]?.[selectedDate] === 'missed'"
@@ -442,7 +456,7 @@ const dynamicInsight = computed(() => {
                 opacity: day.isSelected ? 1 : (day.percentage === 0 ? 0.15 : (day.percentage / 100) * 0.7 + 0.3)
               }"
               @click="selectedDate = day.date"
-              :aria-label="day.label"
+              :aria-label="day.date + ': ' + Math.round(day.percentage) + '% complete'"
             />
           </div>
           
@@ -478,6 +492,11 @@ const dynamicInsight = computed(() => {
       
       <!-- Glowing background effect -->
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
+
+      <!-- Confetti burst -->
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <span v-for="i in 14" :key="i" class="confetti-piece" :style="{ '--i': i }" />
+      </div>
       
       <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-[16px] bg-[#f97316]/20 shadow-[0_0_40px_rgba(249,115,22,0.4)]">
         <UIcon :name="milestoneEvent.icon" class="size-8 text-[#f97316]" />
@@ -497,3 +516,33 @@ const dynamicInsight = computed(() => {
     </div>
   </UModal>
 </template>
+
+<style scoped>
+.confetti-piece {
+  position: absolute;
+  top: -10px;
+  left: calc(3% + (var(--i) * 6.8%));
+  width: 6px;
+  height: 11px;
+  border-radius: 2px;
+  background: hsl(calc(var(--i) * 47deg), 90%, 60%);
+  opacity: 0;
+  animation: confetti-fall 1.7s ease-in forwards;
+  animation-delay: calc(var(--i) * 55ms);
+}
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(260px) rotate(540deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .confetti-piece {
+    animation: none;
+  }
+}
+</style>

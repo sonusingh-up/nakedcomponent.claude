@@ -2,10 +2,17 @@
 const { list, remove, update } = useJournal()
 const toast = useToast()
 
+useHead({ title: 'Journal — Habits' })
+
 const { data, pending, refresh } = useAsyncData('journal', () => list(), {
   server: false,
   lazy: true,
   default: () => [],
+})
+
+// Stale-while-revalidate on revisit.
+onMounted(() => {
+  if (!pending.value) refresh()
 })
 
 const search = ref('')
@@ -57,7 +64,7 @@ async function onUpdate(id: string, updates: { title?: string | null; body?: str
       class="mb-6 w-full rounded-[16px] bg-black/5 ring-1 ring-inset ring-black/10 dark:bg-white/[0.03] dark:ring-white/[0.08]"
     />
 
-    <div v-if="pending" class="columns-2 gap-3">
+    <div v-if="pending && !entries.length" class="columns-2 gap-3">
       <USkeleton
         v-for="i in 6"
         :key="i"

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ title: 'Settings — Habits' })
+
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()
 const toast = useToast()

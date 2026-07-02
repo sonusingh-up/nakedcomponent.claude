@@ -6,6 +6,7 @@ const props = withDefaults(
   defineProps<{
     habit: UserHabit
     status: 'completed' | 'missed' | 'frozen' | null
+    busy?: boolean
     history?: Record<string, string>
     isAtRisk?: boolean
     atRiskStreak?: number
@@ -105,9 +106,16 @@ const completionPct = computed(() => {
         class="flex size-[26px] shrink-0 items-center justify-center rounded-full transition-all outline-none"
         :class="status === 'completed' ? 'bg-[#f97316]' : 'border-[1.5px] border-[#f97316]/40 hover:bg-[#f97316]/10 dark:border-[#f97316]/30 dark:hover:bg-[#f97316]/15'"
         :aria-label="status === 'completed' ? 'Mark incomplete' : 'Mark complete'"
+        :disabled="busy"
         @click.stop="emit('toggle')"
       >
-        <UIcon v-if="status === 'completed'" name="i-lucide-check" class="size-[13px] text-white" />
+        <UIcon
+          v-if="busy"
+          name="i-lucide-loader-2"
+          class="size-[13px] animate-spin"
+          :class="status === 'completed' ? 'text-white' : 'text-[#f97316]'"
+        />
+        <UIcon v-else-if="status === 'completed'" name="i-lucide-check" class="size-[13px] text-white" />
       </button>
     </div>
     

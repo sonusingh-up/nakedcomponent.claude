@@ -31,8 +31,7 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         {
           name: 'viewport',
-          content:
-            'width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1',
+          content: 'width=device-width, initial-scale=1, viewport-fit=cover',
         },
         {
           name: 'description',
@@ -82,6 +81,8 @@ export default defineNuxtConfig({
     },
     workbox: {
       globPatterns: ['**/*.{js,css,png,svg,ico,woff2}'],
+      // SPA: serve the app shell for navigations while offline.
+      navigateFallback: '/',
     },
     devOptions: { enabled: false },
   },
