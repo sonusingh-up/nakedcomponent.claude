@@ -169,7 +169,7 @@ async function save() {
             class="size-8"
           />
         </button>
-        <p class="tabular text-lg font-medium text-stone-200">
+        <p class="tabular text-lg font-medium text-stone-800 dark:text-stone-200">
           {{ fmt(recorder.seconds.value) }}
         </p>
         <p class="text-xs text-stone-400">
@@ -200,7 +200,7 @@ async function save() {
       <label class="mb-2 block text-sm text-stone-600 dark:text-stone-300">Attachment (optional)</label>
 
       <div v-if="imagePreview" class="relative mb-2 inline-block">
-        <NuxtImg :src="imagePreview" class="h-32 w-auto rounded-xl border border-white/10 object-cover" />
+        <img :src="imagePreview" alt="Attachment preview" class="h-32 w-auto rounded-xl border border-black/10 object-cover dark:border-white/10" />
         <button
           class="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-rose-500 text-white shadow-md transition-transform hover:scale-105"
           @click="removeImage"

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UserHabit } from '~/types'
-import { localDate } from '~/composables/useHabitLogs'
+import { localDate, displayStreak } from '~/composables/useHabitLogs'
 
 const props = withDefaults(
   defineProps<{
@@ -22,7 +22,7 @@ const name = computed(
   () => props.habit.custom_name ?? props.habit.habit?.name ?? 'Habit',
 )
 const icon = computed(() => props.habit.habit?.icon ?? 'i-lucide-circle-dot')
-const streak = computed(() => props.habit.streak?.current_streak ?? 0)
+const streak = computed(() => displayStreak(props.habit.streak))
 
 // Keep the calculations for stats display
 const doneCount = computed(() => {
@@ -80,7 +80,7 @@ const completionPct = computed(() => {
             <template v-else-if="status === 'frozen'">
               <span>{{ streak }}d streak</span>
               <span class="inline-flex items-center gap-0.5 bg-sky-50 border border-sky-200 rounded px-1 text-blue-500 ml-1 dark:bg-[#0c1929] dark:border-[#1a3a5f] dark:text-blue-400">
-                <UIcon name="i-lucide-snowflake" class="size-[9px]" /> 1 used
+                <UIcon name="i-lucide-snowflake" class="size-[9px]" /> frozen
               </span>
             </template>
             <template v-else>

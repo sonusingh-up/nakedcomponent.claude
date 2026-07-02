@@ -13,7 +13,12 @@ const { data, pending, refresh } = useAsyncData(
     const [catalog, mine] = await Promise.all([fetchCatalog(), fetchUserHabits()])
     return { catalog, adoptedIds: new Set(mine.map((h) => h.habit_id)) }
   },
-  { server: false, lazy: true, default: () => ({ catalog: [], adoptedIds: new Set<string>() }) },
+  {
+    server: false,
+    lazy: true,
+    getCachedData: () => undefined,
+    default: () => ({ catalog: [], adoptedIds: new Set<string>() }),
+  },
 )
 
 // Cards = catalog minus already-adopted, filtered by category.
@@ -28,7 +33,11 @@ async function onAccept(habit: Habit) {
   if (import.meta.client && navigator.vibrate) navigator.vibrate(15)
   try {
     await adoptHabit(habit.id)
-    data.value?.adoptedIds.add(habit.id)
+    // data is a shallowRef (Nuxt 4): replace it rather than mutating
+    // the Set so the deck recomputes and drops the adopted card.
+    const adopted = new Set(data.value?.adoptedIds ?? [])
+    adopted.add(habit.id)
+    data.value = { catalog: data.value?.catalog ?? [], adoptedIds: adopted }
     toast.add({
       title: `Added "${habit.name}"`,
       description: 'Find it on your home screen.',

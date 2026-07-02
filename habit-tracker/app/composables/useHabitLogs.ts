@@ -7,6 +7,21 @@ export function localDate(d = new Date()): string {
   ).padStart(2, '0')}`
 }
 
+/**
+ * Streak to display *as of today*. The cached habit_streaks row only
+ * updates when a log is written, so a streak whose last log is older
+ * than yesterday has lapsed even though current_streak still holds
+ * the old value.
+ */
+export function displayStreak(
+  streak?: { current_streak: number; last_logged_date: string | null } | null,
+): number {
+  if (!streak?.current_streak || !streak.last_logged_date) return 0
+  const y = new Date()
+  y.setDate(y.getDate() - 1)
+  return streak.last_logged_date >= localDate(y) ? streak.current_streak : 0
+}
+
 /** Logging daily completions and reading today's progress. */
 export function useHabitLogs() {
   const supabase = useSupabaseClient<any>()
@@ -110,65 +125,32 @@ export function useHabitLogs() {
     return map
   }
 
+  /** The current month's freeze bank (created server-side on demand). */
   async function fetchFreezeBank(): Promise<FreezeBank | null> {
-    const { data: sessionData } = await supabase.auth.getSession()
-    const userId = sessionData.session?.user?.id
-    if (!userId) return null
-
-    const d = new Date()
-    const monthStart = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`
-    const { data, error } = await supabase
-      .from('freeze_banks')
-      .select('*')
-      .eq('month_start', monthStart)
-      .maybeSingle()
-    
+    const { data, error } = await supabase.rpc('get_or_create_freeze_bank')
     if (error) throw error
-    if (data) return data as unknown as FreezeBank
-
-    const { data: newData, error: insertError } = await supabase
-      .from('freeze_banks')
-      .insert({ user_id: userId, month_start: monthStart })
-      .select()
-      .single()
-      
-    if (insertError) throw insertError
-    return newData as unknown as FreezeBank
+    return (data ?? null) as FreezeBank | null
   }
 
-  async function freezeDate(userHabitId: string, date: string): Promise<HabitLog> {
-    const bank = await fetchFreezeBank()
-    if (!bank) throw new Error('No freeze bank available')
-    
-    const available = 2 - bank.base_used + (bank.bonus_earned && !bank.bonus_used ? 1 : 0)
-    if (available <= 0) throw new Error('No freezes available')
-    
-    let baseUpdate = bank.base_used
-    let bonusUpdate = bank.bonus_used
-    if (bank.base_used < 2) {
-      baseUpdate++
-    } else {
-      bonusUpdate = true
-    }
-
-    await supabase.from('freeze_banks').update({
-      base_used: baseUpdate,
-      bonus_used: bonusUpdate
-    }).eq('id', bank.id)
-
-    return logDate(userHabitId, date, 1, 'frozen')
+  /**
+   * Spend a freeze on a date. The RPC checks the balance, spends and
+   * writes the frozen log in one transaction, so double-taps or a
+   * second device can't double-spend (see migration 0008).
+   */
+  async function freezeDate(userHabitId: string, date: string): Promise<FreezeBank> {
+    const { data, error } = await supabase.rpc('use_freeze', {
+      p_user_habit_id: userHabitId,
+      p_date: date,
+    })
+    if (error) throw error
+    return data as unknown as FreezeBank
   }
 
+  /** Mark this month's bonus freeze earned. True only when newly awarded. */
   async function awardBonusFreeze(): Promise<boolean> {
-    const bank = await fetchFreezeBank()
-    if (!bank) return false
-    if (bank.bonus_earned) return false
-
-    await supabase.from('freeze_banks').update({
-      bonus_earned: true
-    }).eq('id', bank.id)
-
-    return true
+    const { data, error } = await supabase.rpc('award_bonus_freeze')
+    if (error) throw error
+    return data === true
   }
 
   async function detectAtRiskHabits(habits: any[]) {

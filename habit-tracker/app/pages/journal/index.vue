@@ -20,9 +20,14 @@ const entries = computed(() => {
   )
 })
 
-async function onDelete(id: string) {
-  await remove(id)
-  await refresh()
+async function onDelete(entry: { id: string; audio_url?: string | null; image_url?: string | null }) {
+  if (!confirm('Delete this entry? This cannot be undone.')) return
+  try {
+    await remove(entry)
+    await refresh()
+  } catch (e: any) {
+    toast.add({ title: 'Could not delete entry', description: e.message, color: 'error' })
+  }
 }
 
 async function onUpdate(id: string, updates: { title?: string | null; body?: string | null }) {
@@ -66,7 +71,7 @@ async function onUpdate(id: string, updates: { title?: string | null; body?: str
         v-for="e in entries"
         :key="e.id"
         :entry="e"
-        @delete="onDelete(e.id)"
+        @delete="onDelete(e)"
         @update="onUpdate(e.id, $event)"
       />
     </div>

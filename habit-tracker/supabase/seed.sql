@@ -1,7 +1,9 @@
--- Seed catalog of habits. Safe to re-run: clears and reinserts the catalog.
--- social_proof_count values are illustrative starting numbers.
-
-delete from public.habits;
+-- Seed catalog of habits. Idempotent: upserts by catalog name
+-- (requires the uq_habits_catalog_name index from migration 0008).
+-- NEVER deletes — a delete here cascades through user_habits into
+-- every user's logs, streaks and reminders.
+-- social_proof_count values are illustrative starting numbers and are
+-- only applied on first insert (re-running keeps the live counters).
 
 insert into public.habits (name, description, category, icon, color, social_proof_count, sort_order) values
   -- Hydration
@@ -31,4 +33,12 @@ insert into public.habits (name, description, category, icon, color, social_proo
   ('Deep work block',         'One distraction-free hour on what matters most.',                         'productivity','i-lucide-target',      '#b08a2e', 856,  19),
   ('Read 10 pages',           'A book a month, ten pages at a time.',                                    'productivity','i-lucide-book-open',   '#b08a2e', 1198, 20),
   ('Inbox to zero',           'Clear and triage your inbox once a day.',                                 'productivity','i-lucide-inbox',       '#b08a2e', 402,  21),
-  ('Tidy for 5 minutes',      'A quick daily reset keeps the space (and mind) clear.',                   'productivity','i-lucide-sparkles',    '#b08a2e', 389,  22);
+  ('Tidy for 5 minutes',      'A quick daily reset keeps the space (and mind) clear.',                   'productivity','i-lucide-sparkles',    '#b08a2e', 389,  22)
+on conflict (name) where owner_id is null
+do update set
+  description = excluded.description,
+  category    = excluded.category,
+  icon        = excluded.icon,
+  color       = excluded.color,
+  sort_order  = excluded.sort_order,
+  is_active   = true;

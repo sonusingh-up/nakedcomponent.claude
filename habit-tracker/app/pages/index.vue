@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { localDate } from '~/composables/useHabitLogs'
+import { localDate, displayStreak } from '~/composables/useHabitLogs'
 import FreezeBank from '~/components/habit/FreezeBank.vue'
 
 const { fetchUserHabits } = useHabits()
@@ -44,6 +44,9 @@ const { data, pending, refresh } = useAsyncData(
   {
     server: false,
     lazy: true,
+    // Nuxt 4 defaults data to a shallowRef; the optimistic history
+    // mutations in toggle() need deep reactivity to paint instantly.
+    deep: true,
     default: () => ({
       habits: [],
       history: {} as Record<string, Record<string, string>>,
@@ -245,7 +248,7 @@ const avgCompletionThisWeek = computed(() => {
 // Find highest active streak across all habits
 const maxStreak = computed(() => {
   if (!habits.value.length) return 0
-  return Math.max(...habits.value.map(h => h.streak?.current_streak ?? 0))
+  return Math.max(...habits.value.map(h => displayStreak(h.streak)))
 })
 
 const isExpanded = ref(false)
