@@ -279,6 +279,334 @@
       .picks-tab { flex: 1; text-align: center; padding: 8px 10px; }
       .feature-card { padding: var(--s-5); }
     }
+
+    /* ===================================================
+       HERO — dot-grid backdrop, entrance, underline draw
+       =================================================== */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(color-mix(in oklab, var(--ink) 16%, transparent) 1px, transparent 1.5px);
+      background-size: 26px 26px;
+      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 24% 18%, #000 0%, transparent 68%);
+      mask-image: radial-gradient(ellipse 75% 65% at 24% 18%, #000 0%, transparent 68%);
+      opacity: .5;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy > * { opacity: 0; transform: translateY(16px); animation: heroRise .75s var(--ease-out) forwards; }
+      .hero-copy > h1                    { animation-delay: .05s; }
+      .hero-copy > .lede                 { animation-delay: .16s; }
+      .hero-copy > .hero-ctas            { animation-delay: .27s; }
+      .hero-copy > .hero-secondary-links { animation-delay: .36s; }
+      .hero-copy > .trust-note           { animation-delay: .44s; }
+    }
+    @keyframes heroRise { to { opacity: 1; transform: none; } }
+
+    .hero h1 em {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C22 2.5 44 2 62 4.5S102 8 118 4' stroke='%23c96442' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom / 0% 0.14em;
+      padding-bottom: 0.08em;
+    }
+    [data-theme="dark"] .hero h1 em {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C22 2.5 44 2 62 4.5S102 8 118 4' stroke='%23e27a58' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero h1 em { animation: underlineDraw .6s var(--ease-out) .85s forwards; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1 em { background-size: 100% 0.14em; }
+    }
+    @keyframes underlineDraw { to { background-size: 100% 0.14em; } }
+
+    /* ===================================================
+       HERO ARTIFACTS — orbit ring + floating pills
+       =================================================== */
+    .hero-orbit {
+      position: absolute; inset: 4% 6% 8% 2%;
+      border: 1.5px dashed color-mix(in oklab, var(--ink) 26%, transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-orbit { animation: orbitSpin 46s linear infinite; }
+    }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+    .orbit-dot {
+      position: absolute; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); top: -5px; left: 50%;
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 16%, transparent);
+    }
+    .orbit-dot.d2 {
+      width: 8px; height: 8px; background: #5ba672;
+      top: 62%; left: auto; right: -4px;
+      box-shadow: 0 0 0 4px color-mix(in oklab, #5ba672 16%, transparent);
+    }
+    .orbit-dot.d3 {
+      width: 7px; height: 7px; background: #8fb4d9;
+      top: auto; bottom: 6%; left: 16%;
+      box-shadow: 0 0 0 4px color-mix(in oklab, #8fb4d9 16%, transparent);
+    }
+
+    .hero-pill { position: absolute; pointer-events: none; filter: drop-shadow(0 6px 14px rgba(26,23,20,.16)); }
+    .hero-pill.p1 { width: 56px; top: 15%; right: 6%; transform: rotate(-24deg); }
+    .hero-pill.p2 { width: 42px; bottom: 18%; right: 26%; transform: rotate(16deg); }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-pill.p1 { animation: pillFloat 9s ease-in-out infinite; }
+      .hero-pill.p2 { animation: pillFloat 11s ease-in-out 1.2s infinite reverse; }
+    }
+    @keyframes pillFloat {
+      0%, 100% { translate: 0 0; }
+      50%      { translate: 0 -12px; }
+    }
+
+    /* ===================================================
+       EVIDENCE TICKER — infinite marquee
+       =================================================== */
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-elev);
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker::before, .ticker::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 60px;
+      z-index: 1; pointer-events: none;
+    }
+    .ticker::before { left: 0;  background: linear-gradient(90deg, var(--bg-elev), transparent); }
+    .ticker::after  { right: 0; background: linear-gradient(270deg, var(--bg-elev), transparent); }
+    .ticker-track { display: flex; width: max-content; }
+    @media (prefers-reduced-motion: no-preference) {
+      .ticker-track { animation: tickerScroll 48s linear infinite; }
+      .ticker:hover .ticker-track { animation-play-state: paused; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker { overflow-x: auto; }
+    }
+    @keyframes tickerScroll { to { transform: translateX(-50%); } }
+    .ticker-list {
+      display: flex; align-items: center; gap: 42px;
+      list-style: none; margin: 0; padding: 13px 42px 13px 0;
+      white-space: nowrap;
+    }
+    .ticker-list:first-child { padding-left: 42px; }
+    .ticker-list li {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .03em;
+      color: var(--ink-soft);
+    }
+    .ticker-list li strong { color: var(--ink); font-weight: 500; }
+    .t-dot { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; }
+    .t-dot.strong { background: #5ba672; }
+    .t-dot.mod    { background: #d9a92f; }
+    .t-dot.flag   { background: var(--accent); }
+
+    /* ===================================================
+       STRIP THE LABEL — interactive demo
+       =================================================== */
+    .strip-grid {
+      display: grid; grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--s-8); align-items: center;
+    }
+    .strip-copy .eyebrow {
+      color: var(--ink-muted); font-size: 13px;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: var(--s-3);
+    }
+    .strip-copy h2 {
+      font-size: clamp(30px, 3.6vw, 44px);
+      letter-spacing: -.025em; line-height: 1.05;
+      margin-bottom: var(--s-4); max-width: 18ch;
+    }
+    .strip-copy h2 em {
+      font-style: normal;
+      font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
+      color: var(--accent); font-weight: 400;
+    }
+    .strip-copy .lede {
+      color: var(--ink-soft); font-size: 16.5px; line-height: 1.55;
+      max-width: 46ch; margin-bottom: var(--s-5);
+    }
+
+    .strip-toggle {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 10px 18px 10px 12px;
+      border: 1px solid var(--line-strong); border-radius: var(--r-pill);
+      background: var(--surface);
+      font-weight: 500; font-size: 14.5px;
+      transition: border-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .strip-toggle:hover { border-color: var(--ink); }
+    }
+    .strip-toggle:active { transform: scale(.97); }
+    .st-track {
+      width: 40px; height: 22px; border-radius: var(--r-pill);
+      background: var(--line-strong); position: relative; flex: 0 0 auto;
+      transition: background 200ms var(--ease-out);
+    }
+    .st-thumb {
+      position: absolute; top: 3px; left: 3px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.25);
+      transition: transform 250ms var(--ease-drawer);
+    }
+    .strip-toggle[aria-checked="true"] .st-track { background: var(--accent); }
+    .strip-toggle[aria-checked="true"] .st-thumb { transform: translateX(18px); }
+
+    .label-card {
+      background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--shadow-md);
+      max-width: 520px; margin-left: auto; width: 100%;
+    }
+    .lc-header {
+      position: relative; padding: var(--s-5) var(--s-6);
+      background: linear-gradient(120deg, #2a2340, #613a8f 55%, #b0412e);
+      color: #fff;
+      transition: filter .6s var(--ease-out), opacity .6s var(--ease-out);
+    }
+    .stripped .lc-header { filter: grayscale(1) contrast(.9); opacity: .65; }
+    .lc-title {
+      font-family: var(--font-display); font-weight: 700; font-style: italic;
+      font-size: 24px; letter-spacing: -.01em; line-height: 1.08;
+      text-transform: uppercase; padding-right: 70px;
+    }
+    .lc-sub {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .2em; margin-top: 8px; opacity: .8;
+    }
+    .lc-burst {
+      position: absolute; top: 16px; right: 18px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #ffd54d; color: #7a2000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1;
+      transform: rotate(12deg);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.35);
+    }
+    .lc-burst small { font-size: 7px; letter-spacing: .08em; margin-top: 2px; }
+    .lc-claims {
+      list-style: none; margin: 0;
+      padding: var(--s-3) var(--s-6);
+      display: flex; flex-direction: column;
+    }
+    .lc-claims li { padding: 13px 0; border-bottom: 1px dashed var(--line); }
+    .lc-claims li:last-child { border-bottom: 0; }
+    .lc-claim {
+      position: relative; display: inline-block;
+      font-weight: 600; font-size: 15px; letter-spacing: -.005em;
+      transition: opacity .45s var(--ease-out);
+    }
+    .lc-claim::after {
+      content: ''; position: absolute; left: -2px; right: -2px; top: 52%; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transform: scaleX(0); transform-origin: left center;
+      transition: transform .45s var(--ease-out);
+    }
+    .stripped .lc-claim { opacity: .38; }
+    .stripped .lc-claim::after { transform: scaleX(1); }
+    .lc-truth {
+      display: block; max-height: 0; opacity: 0; overflow: hidden;
+      font-size: 13px; line-height: 1.55; color: var(--accent-deep);
+      font-family: var(--font-mono);
+      transition: max-height .5s var(--ease-out), opacity .5s var(--ease-out), margin-top .5s var(--ease-out);
+    }
+    .stripped .lc-truth { max-height: 7em; opacity: 1; margin-top: 7px; }
+    .stripped .lc-claims li:nth-child(2) .lc-claim,
+    .stripped .lc-claims li:nth-child(2) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(2) .lc-truth { transition-delay: .12s; }
+    .stripped .lc-claims li:nth-child(3) .lc-claim,
+    .stripped .lc-claims li:nth-child(3) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(3) .lc-truth { transition-delay: .24s; }
+    .stripped .lc-claims li:nth-child(4) .lc-claim,
+    .stripped .lc-claims li:nth-child(4) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(4) .lc-truth { transition-delay: .36s; }
+    .lc-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: var(--s-4) var(--s-6);
+      border-top: 1px solid var(--line);
+      background: var(--bg-elev);
+      font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+    }
+    .lc-verdict {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink); white-space: nowrap;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity .5s var(--ease-out) .45s, transform .5s var(--ease-out) .45s;
+    }
+    .lc-verdict .v-score {
+      background: var(--accent); color: var(--accent-ink);
+      border-radius: var(--r-pill); padding: 2px 9px; font-weight: 600;
+    }
+    .stripped .lc-verdict { opacity: 1; transform: none; }
+
+    /* ===================================================
+       STAGGERED CARD REVEALS (home only)
+       =================================================== */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip) { opacity: 0; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip) {
+        opacity: 1;
+        animation: riseIn .55s var(--ease-out) backwards;
+      }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(2) { animation-delay: 60ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(3) { animation-delay: 120ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(4) { animation-delay: 180ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(5) { animation-delay: 240ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(6) { animation-delay: 300ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(7) { animation-delay: 360ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(8) { animation-delay: 420ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(n+9) { animation-delay: 480ms; }
+    }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } }
+
+    /* ===================================================
+       BACK TO TOP — with scroll progress ring
+       =================================================== */
+    .back-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 55;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      opacity: 0; transform: translateY(14px); pointer-events: none;
+      transition: opacity 250ms var(--ease-out), transform 250ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+    }
+    .back-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    @media (hover: hover) and (pointer: fine) {
+      .back-top:hover { border-color: var(--accent); color: var(--accent); }
+    }
+    .back-top:active { transform: scale(.94); }
+    .back-top .ring {
+      position: absolute; inset: -1px;
+      width: calc(100% + 2px); height: calc(100% + 2px);
+      transform: rotate(-90deg);
+    }
+    .back-top .ring .rfg {
+      fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round;
+      stroke-dasharray: 100; stroke-dashoffset: 100;
+    }
+    .back-top .arr { width: 17px; height: 17px; }
+    @media print { .back-top { display: none !important; } }
+
+    /* ===================================================
+       NEW SECTIONS — responsive
+       =================================================== */
+    @media (max-width: 900px) {
+      .strip-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+      .label-card { margin: 0 auto; }
+    }
+    @media (max-width: 720px) {
+      .hero-pill.p1 { width: 42px; }
+      .hero-pill.p2 { width: 32px; }
+      .ticker-list { gap: 28px; padding-right: 28px; }
+      .ticker-list:first-child { padding-left: 28px; }
+      .lc-claims { padding: var(--s-2) var(--s-5); }
+      .lc-header { padding: var(--s-4) var(--s-5); }
+      .lc-foot { padding: var(--s-3) var(--s-5); flex-wrap: wrap; }
+      .back-top { right: 14px; bottom: 14px; width: 44px; height: 44px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -328,19 +656,60 @@
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-blob"></div>
           <div class="hero-blob blob-2"></div>
-          <div class="hero-capsule c1">
+          <div class="hero-orbit" data-depth="8">
+            <span class="orbit-dot"></span>
+            <span class="orbit-dot d2"></span>
+            <span class="orbit-dot d3"></span>
+          </div>
+          <svg class="hero-pill p1" viewBox="0 0 64 28">
+            <rect x="1.5" y="1.5" width="61" height="25" rx="12.5" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <path d="M32 1.5h18A12.5 12.5 0 0 1 62.5 14 12.5 12.5 0 0 1 50 26.5H32Z" fill="var(--accent)" opacity=".85"/>
+          </svg>
+          <svg class="hero-pill p2" viewBox="0 0 64 28">
+            <rect x="1.5" y="1.5" width="61" height="25" rx="12.5" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <path d="M32 1.5h18A12.5 12.5 0 0 1 62.5 14 12.5 12.5 0 0 1 50 26.5H32Z" fill="#5ba672" opacity=".6"/>
+          </svg>
+          <div class="hero-capsule c1" data-depth="22">
             <span class="cap-label">Creatine · ON</span>
             <span class="cap-value">3.0g — 5.0g / day</span>
           </div>
-          <div class="hero-capsule c2">
+          <div class="hero-capsule c2" data-depth="34">
             <span class="cap-label">Score</span>
             <span class="cap-value">8.4 / 10</span>
           </div>
-          <div class="hero-capsule c3">
+          <div class="hero-capsule c3" data-depth="16">
             <span class="cap-label">Evidence</span>
             <span class="cap-value">142 studies reviewed</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EVIDENCE TICKER
+         ========================================================= -->
+    <section class="ticker" aria-label="Evidence ticker">
+      <div class="ticker-track">
+        <ul class="ticker-list">
+          <li><span class="t-dot strong"></span><strong>Creatine</strong> Strong evidence · 42 studies</li>
+          <li><span class="t-dot strong"></span><strong>Whey isolate</strong> 90%+ protein by weight</li>
+          <li><span class="t-dot flag"></span><strong>Fish oil</strong> 6 of 22 brands passed freshness testing</li>
+          <li><span class="t-dot mod"></span><strong>Ashwagandha KSM-66</strong> Moderate · 27 studies</li>
+          <li><span class="t-dot flag"></span><strong>Magnesium oxide</strong> ~4% absorption — skip it</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin D3</strong> 1,000–2,000 IU beats megadose sachets</li>
+          <li><span class="t-dot mod"></span><strong>Melatonin</strong> 0.3–1mg outperforms 10mg tablets</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin B12</strong> highest-yield fix for Indian vegetarians</li>
+        </ul>
+        <ul class="ticker-list" aria-hidden="true">
+          <li><span class="t-dot strong"></span><strong>Creatine</strong> Strong evidence · 42 studies</li>
+          <li><span class="t-dot strong"></span><strong>Whey isolate</strong> 90%+ protein by weight</li>
+          <li><span class="t-dot flag"></span><strong>Fish oil</strong> 6 of 22 brands passed freshness testing</li>
+          <li><span class="t-dot mod"></span><strong>Ashwagandha KSM-66</strong> Moderate · 27 studies</li>
+          <li><span class="t-dot flag"></span><strong>Magnesium oxide</strong> ~4% absorption — skip it</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin D3</strong> 1,000–2,000 IU beats megadose sachets</li>
+          <li><span class="t-dot mod"></span><strong>Melatonin</strong> 0.3–1mg outperforms 10mg tablets</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin B12</strong> highest-yield fix for Indian vegetarians</li>
+        </ul>
       </div>
     </section>
 
@@ -364,6 +733,53 @@
         <div class="stat">
           <div class="num"><span data-num="48700">0</span></div>
           <div class="label">Readers using Naked Compound each month</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STRIP THE LABEL — interactive demo
+         ========================================================= -->
+    <section class="section container reveal" id="strip-the-label" aria-label="Strip the label demo">
+      <div class="strip-grid">
+        <div class="strip-copy">
+          <div class="eyebrow">Interactive · Our whole thesis in one card</div>
+          <h2>Strip the label. <em>See the science.</em></h2>
+          <p class="lede">This is what we do to every product we review. Marketing terms get struck out; what survives is dose, form, and evidence. Try it on this fictional — but painfully familiar — label.</p>
+          <button class="strip-toggle" id="stripToggle" role="switch" aria-checked="false" aria-controls="labelCard">
+            <span class="st-track" aria-hidden="true"><span class="st-thumb"></span></span>
+            <span class="st-label">Strip the label</span>
+          </button>
+        </div>
+
+        <div class="label-card" id="labelCard">
+          <div class="lc-header">
+            <div class="lc-burst" aria-hidden="true">27×<small>ABSORPTION*</small></div>
+            <div class="lc-title">Xtreme Anabolic<br>Whey 5000™</div>
+            <div class="lc-sub">ULTRA PREMIUM · IMPORTED FORMULA · PRO SERIES</div>
+          </div>
+          <ul class="lc-claims">
+            <li>
+              <span class="lc-claim">Proprietary Anabolic Matrix™ — 5,000 mg</span>
+              <span class="lc-truth">A "matrix" hides every individual dose. This could be 4,600 mg maltodextrin — the label won't tell you.</span>
+            </li>
+            <li>
+              <span class="lc-claim">27× better absorption*</span>
+              <span class="lc-truth">*The asterisk points to one unpublished in-vitro study. No human RCT shows 27× anything.</span>
+            </li>
+            <li>
+              <span class="lc-claim">Clinically studied ingredients</span>
+              <span class="lc-truth">"Studied" ≠ dosed right. Creatine works at 3–5 g/day. A blend this size can't guarantee even 1 g.</span>
+            </li>
+            <li>
+              <span class="lc-claim">Steroid-like gains — 100% natural</span>
+              <span class="lc-truth">If this were true it would be a scheduled drug. It isn't. It's flavoured protein with a story.</span>
+            </li>
+          </ul>
+          <div class="lc-foot">
+            <span>Fictional label · real patterns</span>
+            <span class="lc-verdict"><span class="v-score">3.1 / 10</span> naked score</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1151,6 +1567,11 @@
 
   <div id="site-footer"></div>
 
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="rfg" cx="26" cy="26" r="24.5" pathLength="100"/></svg>
+    <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>
+  </button>
+
   <script src="nc-site.js?v=1001"></script>
 
   <!-- Picks tab switcher -->
@@ -1168,6 +1589,102 @@
           if (panel) panel.classList.add('active');
         });
       });
+    })();
+  </script>
+
+  <!-- Home page interactions: label stripper, hero parallax, tab keys, back-to-top -->
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── Strip-the-label toggle (auto-demos once when scrolled into view) ──
+      const toggle = document.getElementById('stripToggle');
+      const card   = document.getElementById('labelCard');
+      if (toggle && card) {
+        let userTouched = false;
+        const setStripped = (on) => {
+          card.classList.toggle('stripped', on);
+          toggle.setAttribute('aria-checked', String(on));
+          toggle.querySelector('.st-label').textContent = on ? 'Restore the label' : 'Strip the label';
+        };
+        toggle.addEventListener('click', () => {
+          userTouched = true;
+          setStripped(!card.classList.contains('stripped'));
+        });
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+          const demo = new IntersectionObserver((entries) => {
+            entries.forEach((en) => {
+              if (!en.isIntersecting) return;
+              demo.disconnect();
+              setTimeout(() => { if (!userTouched) setStripped(true); }, 1400);
+            });
+          }, { threshold: 0.5 });
+          demo.observe(card);
+        }
+      }
+
+      // ── Hero parallax (desktop pointers only; uses `translate` so it
+      //    composes with the existing float/blob transform animations) ──
+      const hero   = document.querySelector('.hero');
+      const layers = document.querySelectorAll('.hero [data-depth]');
+      if (hero && layers.length && !reduceMotion &&
+          window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+        const tick = () => {
+          cx += (tx - cx) * 0.08;
+          cy += (ty - cy) * 0.08;
+          layers.forEach((el) => {
+            const d = parseFloat(el.dataset.depth) || 10;
+            el.style.translate = (cx * d) + 'px ' + (cy * d) + 'px';
+          });
+          raf = (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001)
+            ? requestAnimationFrame(tick) : null;
+        };
+        const queue = () => { if (!raf) raf = requestAnimationFrame(tick); };
+        hero.addEventListener('pointermove', (e) => {
+          const r = hero.getBoundingClientRect();
+          tx = (e.clientX - r.left) / r.width  - 0.5;
+          ty = (e.clientY - r.top)  / r.height - 0.5;
+          queue();
+        });
+        hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; queue(); });
+      }
+
+      // ── Picks tabs: arrow-key navigation ──
+      const tablist = document.querySelector('.picks-tabs');
+      if (tablist) {
+        tablist.addEventListener('keydown', (e) => {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          const tabs = Array.from(tablist.querySelectorAll('.picks-tab'));
+          const i = tabs.indexOf(document.activeElement);
+          if (i === -1) return;
+          const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+          next.focus();
+          next.click();
+          e.preventDefault();
+        });
+      }
+
+      // ── Back to top with scroll progress ring ──
+      const btn = document.getElementById('backTop');
+      if (btn) {
+        const ring = btn.querySelector('.rfg');
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+          ring.style.strokeDashoffset = String(100 - p * 100);
+          btn.classList.toggle('show', window.scrollY > 480);
+        };
+        window.addEventListener('scroll', () => {
+          if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      }
     })();
   </script>
 </body>
