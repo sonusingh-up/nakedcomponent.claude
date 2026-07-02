@@ -63,7 +63,7 @@ async function magicLink() {
       >
         <UIcon name="i-lucide-flame" class="size-7" />
       </div>
-      <h1 class="text-3xl font-semibold text-stone-100">Welcome back</h1>
+      <h1 class="text-3xl font-semibold text-stone-900 dark:text-stone-100">Welcome back</h1>
       <p class="mt-1 text-sm text-stone-400">Sign in to keep your streaks going</p>
     </div>
 

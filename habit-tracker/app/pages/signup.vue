@@ -56,7 +56,7 @@ async function signUp() {
       >
         <UIcon name="i-lucide-sprout" class="size-7" />
       </div>
-      <h1 class="text-3xl font-semibold text-stone-100">Start building habits</h1>
+      <h1 class="text-3xl font-semibold text-stone-900 dark:text-stone-100">Start building habits</h1>
       <p class="mt-1 text-sm text-stone-400">Create your free account</p>
     </div>
 

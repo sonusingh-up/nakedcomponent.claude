@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { localDate } from '~/composables/useHabitLogs'
+import { localDate, displayStreak } from '~/composables/useHabitLogs'
 
 const { fetchUserHabits } = useHabits()
 const { fetchHistoryAll } = useHabitLogs()
@@ -16,6 +16,9 @@ const { data, pending } = useAsyncData(
   {
     server: false,
     lazy: true,
+    // Always refetch on mount — the static key otherwise serves data
+    // cached from a visit before the user toggled habits elsewhere.
+    getCachedData: () => undefined,
     default: () => ({
       habits: [],
       history: {} as Record<string, Record<string, string>>,
@@ -51,25 +54,6 @@ const activeDaysCount = computed(() => {
   }
   return uniqueDays.size
 })
-
-function getAtRiskStreak(habitId: string): number {
-  const hHistory = history.value[habitId] || {}
-  let count = 0
-  const d = new Date()
-  d.setDate(d.getDate() - 2)
-  
-  while (true) {
-    const ds = localDate(d)
-    const st = hHistory[ds]
-    if (st === 'completed' || st === 'frozen') {
-      count++
-      d.setDate(d.getDate() - 1)
-    } else {
-      break
-    }
-  }
-  return count
-}
 
 // Heatmap Generation (Aligning to days of the week)
 const heatmapDays = computed(() => {
@@ -207,7 +191,7 @@ onMounted(() => {
               <div class="truncate text-[15px] font-semibold text-stone-800 dark:text-white">{{ habit.custom_name || habit.habit?.name || 'Habit' }}</div>
               <div class="mt-1.5 flex items-center gap-2 text-[11px] font-medium text-stone-500 dark:text-[#888]">
                 <span class="flex items-center gap-1 rounded-md bg-stone-100 px-2 py-0.5 dark:bg-[#1c1c1c]"><UIcon name="i-lucide-check-circle-2" class="size-3 text-stone-400 dark:text-[#aaa]" /> {{ Object.values(history[habit.id] || {}).filter(s => s === 'completed').length }} total</span>
-                <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ habit.streak?.current_streak || getAtRiskStreak(habit.id) }} streak</span>
+                <span class="flex items-center gap-1 rounded-md bg-[#f97316]/10 px-2 py-0.5 text-[#f97316]"><UIcon name="i-lucide-flame" class="size-3" /> {{ displayStreak(habit.streak) }} streak</span>
               </div>
             </div>
             

@@ -51,10 +51,11 @@ export function useReminders() {
       remind_days: payload.remind_days,
       is_enabled: payload.is_enabled,
     }
-    const q = payload.id
-      ? supabase.from('reminders').update(base).eq('id', payload.id)
-      : supabase.from('reminders').insert(base)
-    const { data, error } = await q.select().single()
+    const { data, error } = await supabase
+      .from('reminders')
+      .upsert(base, { onConflict: 'user_habit_id' })
+      .select()
+      .single()
     if (error) throw error
     return data as unknown as Reminder
   }

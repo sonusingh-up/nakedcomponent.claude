@@ -53,21 +53,27 @@ const exporting = ref(false)
 async function exportData() {
   exporting.value = true
   try {
-    const [logsRes, journalsRes, habitsRes] = await Promise.all([
+    const [logsRes, journalsRes, habitsRes, streaksRes, remindersRes, freezeRes] = await Promise.all([
       supabase.from('habit_logs').select('*'),
       supabase.from('journal_entries').select('*'),
       supabase.from('user_habits').select('*'),
+      supabase.from('habit_streaks').select('*'),
+      supabase.from('reminders').select('*'),
+      supabase.from('freeze_banks').select('*'),
     ])
-    
-    if (logsRes.error) throw logsRes.error
-    if (journalsRes.error) throw journalsRes.error
-    if (habitsRes.error) throw habitsRes.error
+
+    for (const res of [logsRes, journalsRes, habitsRes, streaksRes, remindersRes, freezeRes]) {
+      if (res.error) throw res.error
+    }
 
     const data = {
       exported_at: new Date().toISOString(),
       user_habits: habitsRes.data,
       habit_logs: logsRes.data,
       journal_entries: journalsRes.data,
+      habit_streaks: streaksRes.data,
+      reminders: remindersRes.data,
+      freeze_banks: freezeRes.data,
     }
 
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
@@ -190,7 +196,7 @@ async function signOut() {
           <UIcon name="i-lucide-bell" class="size-5 text-stone-500 dark:text-stone-400" />
           Reminders
         </span>
-        <span class="text-xs text-stone-500 dark:text-stone-400">Coming soon</span>
+        <span class="text-xs text-stone-500 dark:text-stone-400">Set per habit on its page</span>
       </div>
       <button
         class="glass flex w-full items-center justify-between rounded-full px-6 py-4 transition-colors hover:bg-black/5 dark:hover:bg-white/8"

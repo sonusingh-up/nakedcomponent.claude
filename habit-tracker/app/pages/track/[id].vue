@@ -6,7 +6,7 @@ const id = computed(() => route.params.id as string)
 
 const { fetchUserHabit, archiveHabit } = useHabits()
 const { fetchHistory, logToday, removeTodayLog } = useHabitLogs()
-import { localDate } from '~/composables/useHabitLogs'
+import { localDate, displayStreak } from '~/composables/useHabitLogs'
 
 const toast = useToast()
 
@@ -35,7 +35,7 @@ const category = computed(() =>
 
 const todayStr = localDate()
 const completedToday = computed(() => history.value[todayStr] === 'completed')
-const currentStreak = computed(() => habit.value?.streak?.current_streak ?? 0)
+const currentStreak = computed(() => displayStreak(habit.value?.streak))
 const longestStreak = computed(() => habit.value?.streak?.longest_streak ?? 0)
 const totalDays = computed(() => Object.values(history.value).filter(s => s === 'completed').length)
 
@@ -71,9 +71,22 @@ async function toggleToday() {
       if (import.meta.client && navigator.vibrate) navigator.vibrate(15)
     }
     await refresh()
+  } catch (e: any) {
+    toast.add({ title: 'Could not update habit', description: e.message, color: 'error' })
   } finally {
     busy.value = false
   }
+}
+
+/** 'YYYY-MM-DD' → local date; new Date(str) would parse as UTC and
+ *  render a day early in timezones behind UTC. */
+function fmtFreezeDate(date: string) {
+  const [y, m, d] = date.split('-').map(Number)
+  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
 }
 
 async function stopTracking() {
@@ -141,7 +154,7 @@ async function stopTracking() {
         </div>
         <div class="rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
           <p class="tabular text-[32px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">{{ totalDays }}</p>
-          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Total days</p>
+          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Done · 4 wks</p>
         </div>
       </div>
 
@@ -189,7 +202,7 @@ async function stopTracking() {
             <div>
               <div class="mb-0.5 text-[13px] font-medium text-stone-900 dark:text-white">Freeze used</div>
               <div class="text-[11px] text-stone-400">
-                Protected your streak on {{ new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) }}
+                Protected your streak on {{ fmtFreezeDate(date) }}
               </div>
             </div>
           </div>
