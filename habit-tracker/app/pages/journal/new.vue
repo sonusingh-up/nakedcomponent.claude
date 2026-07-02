@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { EntryType, Mood } from '~/types'
 
+useHead({ title: 'New entry — Habits' })
+
 const { create, uploadAudio, uploadImage } = useJournal()
 const { fetchUserHabits } = useHabits()
 const recorder = useAudioRecorder({ maxSeconds: 180 })

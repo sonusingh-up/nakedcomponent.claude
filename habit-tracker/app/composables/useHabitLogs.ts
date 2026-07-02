@@ -153,22 +153,41 @@ export function useHabitLogs() {
     return data === true
   }
 
-  async function detectAtRiskHabits(habits: any[]) {
+  /**
+   * Insert 'missed' markers for yesterday on streaks worth protecting.
+   * Reuses the caller's already-fetched history and writes all markers
+   * in one batched upsert (previously one query per habit, serially).
+   * Returns the user_habit ids that were marked.
+   */
+  async function detectAtRiskHabits(
+    habits: any[],
+    history: Record<string, Record<string, string>>,
+  ): Promise<string[]> {
     const d = new Date()
     d.setDate(d.getDate() - 1)
     const yesterday = localDate(d)
 
-    const history = await fetchHistoryAll(7)
-    
-    for (const h of habits) {
-      const streak = h.streak?.current_streak ?? 0
-      if (streak > 3) {
-        const log = history[h.id]?.[yesterday]
-        if (!log) {
-          await logDate(h.id, yesterday, 1, 'missed')
-        }
-      }
-    }
+    const candidates = habits.filter(
+      (h) => (h.streak?.current_streak ?? 0) > 3 && !history[h.id]?.[yesterday],
+    )
+    if (!candidates.length) return []
+
+    const { data: sessionData } = await supabase.auth.getSession()
+    const userId = sessionData.session?.user?.id
+    if (!userId) return []
+
+    const rows = candidates.map((h) => ({
+      user_habit_id: h.id,
+      user_id: userId,
+      log_date: yesterday,
+      count: 1,
+      status: 'missed' as const,
+    }))
+    const { error } = await supabase
+      .from('habit_logs')
+      .upsert(rows, { onConflict: 'user_habit_id,log_date', ignoreDuplicates: true })
+    if (error) throw error
+    return candidates.map((h) => h.id)
   }
 
   return { logToday, removeTodayLog, logDate, removeDateLog, fetchTodayLogs, fetchHistory, fetchHistoryAll, fetchFreezeBank, freezeDate, awardBonusFreeze, detectAtRiskHabits }
