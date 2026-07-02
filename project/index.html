@@ -5,6 +5,8 @@
      crossorigin="anonymous"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
   <title>Naked Compound — Strip the label. See the science.</title>
   <meta name="description" content="Independent, evidence-based supplement research for India. Guides, ingredient analysis, unbiased product reviews, and ready-made protocols." />
   <link rel="canonical" href="https://www.nakedcompound.in/" />
@@ -606,6 +608,104 @@
       .lc-header { padding: var(--s-4) var(--s-5); }
       .lc-foot { padding: var(--s-3) var(--s-5); flex-wrap: wrap; }
       .back-top { right: 14px; bottom: 14px; width: 44px; height: 44px; }
+    }
+
+    /* ===================================================
+       MOBILE OPTIMIZATION — home page
+       =================================================== */
+    /* Anchor jumps clear the sticky header (all viewports) */
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+    body { -webkit-tap-highlight-color: transparent; }
+
+    /* Restore the horizontal gutters that .section/.hero/.stats/.press
+       shorthand padding (e.g. `padding: var(--s-9) 0`) strips from
+       elements that are also .container — without this, these sections
+       touch the screen edge on phones/tablets and sit 24px out of
+       alignment with inner-container sections on desktop. */
+    .hero.container, .stats.container, .section.container, .press.container {
+      padding-inline: 24px;
+    }
+    @media (max-width: 480px) {
+      .hero.container, .stats.container, .section.container, .press.container {
+        padding-inline: 16px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      /* — Hero: calmer backdrop, bigger tap targets — */
+      .hero::before { opacity: .3; }
+      .hero-secondary-links { gap: 8px 18px; font-size: 13px; }
+      .hero-secondary-links a { padding: 6px 0; }
+
+      /* — Card sections become swipeable snap carousels
+           (next card peeks in from the right as the affordance) — */
+      .card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active {
+        display: grid;
+        grid-template-columns: unset;
+        grid-auto-flow: column;
+        grid-auto-columns: min(86%, 340px);
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        margin-inline: -24px;
+        padding-inline: 24px;
+        scroll-padding-inline: 24px;
+        padding-bottom: 16px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line-strong) transparent;
+      }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar { height: 6px; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar-track { background: transparent; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active) > * {
+        scroll-snap-align: start;
+        min-width: 0;
+      }
+
+      /* — Picks: comfortable touch height for tabs and buy buttons — */
+      .picks-tab { padding: 11px 10px; }
+      .pick-buy { padding: 10px 16px; }
+
+      /* — Strip the label: full-width toggle, easier to hit — */
+      .strip-toggle { width: 100%; justify-content: center; padding: 12px 20px 12px 14px; }
+
+      /* — Back-to-top: respect iOS safe area — */
+      .back-top { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+    }
+
+    @media (max-width: 480px) {
+      /* Carousels align with the tighter 16px container padding */
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active) {
+        margin-inline: -16px;
+        padding-inline: 16px;
+        scroll-padding-inline: 16px;
+        grid-auto-columns: min(88%, 320px);
+      }
+
+      /* Hero CTAs stack full-width */
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { justify-content: center; }
+
+      /* Stats stay a compact 2×2 instead of a long single column */
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat { padding: var(--s-4); }
+      .stat .num { font-size: clamp(28px, 8.4vw, 38px); }
+      .stat .label { font-size: 12.5px; }
+
+      /* Denser category chips — more per row */
+      .chip { padding: 8px 13px; font-size: 13px; }
+      .chip .count { font-size: 10px; padding: 2px 6px; }
+
+      /* Strip the label — tighter type on small screens */
+      .strip-copy h2 { font-size: clamp(28px, 8.6vw, 34px); }
+      .lc-title { font-size: 20px; padding-right: 64px; }
+      .lc-burst { width: 52px; height: 52px; font-size: 15px; top: 12px; right: 14px; }
+      .lc-claim { font-size: 14px; }
+      .lc-truth { font-size: 12.5px; }
+
+      .ticker-list li { font-size: 12px; }
     }
   </style>
 
