@@ -611,6 +611,52 @@
     }
 
     /* ===================================================
+       LINKED CARDS — guides, reviews, picks, protocols, press
+       =================================================== */
+    a.card, a.review { text-decoration: none; color: inherit; cursor: pointer; }
+
+    .review-tags .rt-link {
+      font-size: 11px; padding: 3px 8px; border-radius: var(--r-pill);
+      font-family: var(--font-mono); white-space: nowrap;
+      color: var(--accent);
+      background: color-mix(in oklab, var(--accent) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--line));
+      margin-left: auto;
+      transition: background 160ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      a.review:hover .rt-link { background: color-mix(in oklab, var(--accent) 18%, transparent); }
+    }
+
+    .pick-review-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      width: fit-content;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: .03em; color: var(--accent);
+      border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+      padding-bottom: 1px;
+      transition: border-color 160ms var(--ease-out), gap 160ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .pick-review-link:hover { border-color: var(--accent); gap: 9px; }
+    }
+
+    .protocol { cursor: pointer; }
+
+    .press-row a { display: inline-block; }
+    @media (hover: hover) and (pointer: fine) {
+      .press-row a:hover span { color: var(--accent); }
+    }
+    .press-row a:active { transform: scale(0.97); }
+    .press-row a span { transition: color 160ms var(--ease-out); }
+
+    /* pages.css overrides the home review grid to 3 columns, orphaning
+       the 4th card on desktop — restore the intended 4-up layout there */
+    @media (min-width: 1025px) {
+      .review-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ===================================================
        MOBILE OPTIMIZATION — home page
        =================================================== */
     /* Anchor jumps clear the sticky header (all viewports) */
@@ -992,6 +1038,7 @@
                 <span class="pick-spec">~4g lactose / serving</span>
               </div>
               <p class="pick-verdict">The most replicated whey protein on the market. Blend of isolate + concentrate, standardised amino acid profile, and consistent third-party testing history. Best-in-class for lactose-tolerant lifters.</p>
+              <a href="/reviews/wheyprotein/on-gold-standard-whey-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹4,999 <span>/ 2lb · Amazon IN</span></div>
@@ -1036,6 +1083,7 @@
                 <span class="pick-spec">Blend (not isolate)</span>
               </div>
               <p class="pick-verdict">Solid protein numbers, but the "Biozyme" enzyme story is marketing-first. EAF blend adds cost without clear RCT support for digestion benefits at this dose. Pick it for availability, not the enzymes.</p>
+              <a href="/reviews/wheyprotein/muscleblaze-biozyme-performance-whey-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹3,199 <span>/ 1kg · Amazon IN</span></div>
@@ -1061,6 +1109,7 @@
                 <span class="pick-spec green">No excipients</span>
               </div>
               <p class="pick-verdict">Creapure-sourced monohydrate from AlzChem, Germany — the most studied raw material in sports nutrition. No loading needed. Unflavoured means it mixes into anything. Boring in the best possible way.</p>
+              <a href="/reviews/creatine/gnc-pro-performance-creatine" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹1,299 <span>/ 300g · Amazon IN</span></div>
@@ -1083,6 +1132,7 @@
                 <span class="pick-spec warn">Not Creapure-verified</span>
               </div>
               <p class="pick-verdict">Best value creatine in India at under ₹350/100g. Not Creapure-certified, but micronised monohydrate from a brand with reasonable label honesty. The budget pick that doesn't compromise the fundamentals.</p>
+              <a href="/reviews/creatine/as-it-is-one-creatine-monohydrate-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹849 <span>/ 250g · Amazon IN</span></div>
@@ -1205,71 +1255,71 @@
       </div>
 
       <div class="card-grid">
-        <article class="card guide-card g1">
+        <a class="card guide-card g1" href="/research/creatine-loading">
           <div class="visual"><span class="glyph">Cr</span></div>
           <span class="card-tag"><span class="swatch"></span>Creatine</span>
           <h3>Should you really "load" creatine? A look at 27 trials.</h3>
           <p>We mapped 27 RCTs to see whether the 20g/day loading phase actually beats a steady 3–5g. The honest answer is more interesting than either camp admits.</p>
           <div class="card-meta">
             <span>11 min read · Updated Apr 2026</span>
-            <a href="/research/creatine-loading" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g2">
+        <a class="card guide-card g2" href="/research/whey-isolate-vs-concentrate-lactose">
           <div class="visual"><span class="glyph">Wp</span></div>
           <span class="card-tag"><span class="swatch"></span>Protein</span>
           <h3>Whey isolate vs concentrate for the Indian lactose-sensitive lifter.</h3>
           <p>When the ₹800 price gap between isolate and concentrate matters — and when it's just brand marketing. Includes lactose thresholds and a decision flowchart.</p>
           <div class="card-meta">
             <span>14 min read · Updated Mar 2026</span>
-            <a href="/research/whey-isolate-vs-concentrate-lactose" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g3">
+        <a class="card guide-card g3" href="/research/fish-oil-freshness-q1-2026">
           <div class="visual"><span class="glyph">Ω3</span></div>
           <span class="card-tag"><span class="swatch"></span>Omega-3</span>
           <h3>Fish oil in India: why most bottles fail a simple freshness test.</h3>
           <p>We lab-tested 22 popular fish oil brands for peroxide and anisidine. Six passed. Here's what "TOTOX" actually means and how to check at home.</p>
           <div class="card-meta">
             <span>9 min read · Updated Feb 2026</span>
-            <a href="/research/fish-oil-freshness-q1-2026" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g4">
+        <a class="card guide-card g4" href="/ingredients/ashwagandha-ksm66-vs-sensoril">
           <div class="visual"><span class="glyph">Ash</span></div>
           <span class="card-tag"><span class="swatch"></span>Ashwagandha</span>
           <h3>Ashwagandha: what KSM-66 and Sensoril trials actually show.</h3>
           <p>Everyone sells it, few cite it right. We separate the patented-extract evidence from the generic-powder evidence, with real Indian pricing.</p>
           <div class="card-meta">
             <span>16 min read · Updated Mar 2026</span>
-            <a href="/ingredients/ashwagandha-ksm66-vs-sensoril" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g5">
+        <a class="card guide-card g5" href="/research/vitamin-d-60000iu-weekly-sachet">
           <div class="visual"><span class="glyph">D₃</span></div>
           <span class="card-tag"><span class="swatch"></span>Vitamin D</span>
           <h3>The 60,000 IU weekly sachet: a uniquely Indian problem.</h3>
           <p>South Asian vitamin D deficiency is real, but mega-dose sachets aren't the only answer. A look at serum response curves and the 2025 ICMR revision.</p>
           <div class="card-meta">
             <span>12 min read · Updated Jan 2026</span>
-            <a href="/research/vitamin-d-60000iu-weekly-sachet" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g6">
+        <a class="card guide-card g6" href="/research/magnesium-forms-glycinate-citrate-oxide">
           <div class="visual"><span class="glyph">Mg</span></div>
           <span class="card-tag"><span class="swatch"></span>Magnesium</span>
           <h3>Magnesium glycinate vs citrate vs oxide: the form actually matters.</h3>
           <p>Why the cheapest magnesium on Amazon India is also the least absorbed — and which form to pick depending on sleep, cramps, or bowel issues.</p>
           <div class="card-meta">
             <span>8 min read · Updated Apr 2026</span>
-            <a href="/research/magnesium-forms-glycinate-citrate-oxide" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
       </div>
 
       <div style="text-align:center; margin-top: 40px;">
@@ -1442,18 +1492,18 @@
       </div>
 
       <div class="category-cloud">
-        <a href="/pages/ingredients/creatine-monohydrate" class="chip">Creatine<span class="count">9</span></a>
-        <a href="/pages/ingredients/whey-protein-concentrate-wpc-80" class="chip">Protein<span class="count">42</span></a>
-        <a href="/pages/ingredients/omega-3-epa-dha" class="chip">Omega-3s<span class="count">8</span></a>
-        <a href="/ingredients/ashwagandha-ksm66-vs-sensoril" class="chip">Adaptogens<span class="count">18</span></a>
-        <a href="/pages/categories" class="chip">Amino acids<span class="count">22</span></a>
-        <a href="/pages/categories" class="chip">Energy &amp; focus<span class="count">26</span></a>
-        <a href="/pages/categories" class="chip">Gut health<span class="count">14</span></a>
+        <a href="/compare/creatine-india" class="chip">Creatine<span class="count">9</span></a>
+        <a href="/compare/whey-protein-india" class="chip">Protein<span class="count">42</span></a>
+        <a href="/compare/omega-3-india" class="chip">Omega-3s<span class="count">8</span></a>
+        <a href="/compare/herbal-supplements-india" class="chip">Adaptogens<span class="count">18</span></a>
+        <a href="/research/bcaa-worth-it-or-expensive-whey" class="chip">Amino acids<span class="count">22</span></a>
+        <a href="/research/caffeine-tolerance-chai-india" class="chip">Energy &amp; focus<span class="count">26</span></a>
+        <a href="/research/probiotics-gut-health-indian-diet" class="chip">Gut health<span class="count">14</span></a>
         <a href="/pages/categories" class="chip">Joints &amp; mobility<span class="count">11</span></a>
         <a href="/pages/categories" class="chip">Nootropics<span class="count">31</span></a>
-        <a href="/pages/categories" class="chip">Pre-workout<span class="count">24</span></a>
-        <a href="/pages/categories" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
-        <a href="/pages/categories" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
+        <a href="/research/preworkout-prop-blends-india" class="chip">Pre-workout<span class="count">24</span></a>
+        <a href="/compare/magnesium-india" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
+        <a href="/compare/vitamins-india" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Women's health<span class="count">In&nbsp;progress</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Testosterone<span class="count">In&nbsp;progress</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Longevity<span class="count">Planned</span></a>
@@ -1476,7 +1526,7 @@
       </div>
 
       <div class="review-grid">
-        <article class="review">
+        <a class="review" href="/reviews/wheyprotein/muscleblaze-biozyme-performance-whey-review">
           <div class="review-top">
             <div>
               <div class="brand-line">MuscleBlaze</div>
@@ -1485,10 +1535,10 @@
             <div class="score-badge md"><span class="big">6.4</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Solid protein per serving, but the EAF enzyme blend is marketing more than mechanism. You're paying ₹400/kg for a story.</p>
-          <div class="review-tags"><span>Whey · Blend</span><span>₹3,199 / 1kg</span></div>
-        </article>
+          <div class="review-tags"><span>Whey · Blend</span><span>₹3,199 / 1kg</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/creatine/gnc-pro-performance-creatine">
           <div class="review-top">
             <div>
               <div class="brand-line">GNC India</div>
@@ -1497,10 +1547,10 @@
             <div class="score-badge hi"><span class="big">8.7</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Creapure-sourced, unflavoured, priced sanely. Boring in the best way — exactly what a creatine monohydrate should be.</p>
-          <div class="review-tags"><span>Creatine · Creapure</span><span>₹1,299 / 300g</span></div>
-        </article>
+          <div class="review-tags"><span>Creatine · Creapure</span><span>₹1,299 / 300g</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/vitamins/wellbeing-slow-melts-d3-k2-review">
           <div class="review-top">
             <div>
               <div class="brand-line">Wellbeing Nutrition</div>
@@ -1509,10 +1559,10 @@
             <div class="score-badge md"><span class="big">7.2</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Smart D3 + K2 pairing with a clean label, but the nano-shot format is more novelty than bioavailability advantage at this dose.</p>
-          <div class="review-tags"><span>Vitamin D · K2</span><span>₹699 / 30d</span></div>
-        </article>
+          <div class="review-tags"><span>Vitamin D · K2</span><span>₹699 / 30d</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/omega3/himalayan-organics-plant-omega-3-6-9-review">
           <div class="review-top">
             <div>
               <div class="brand-line">Himalayan Organics</div>
@@ -1521,8 +1571,8 @@
             <div class="score-badge lo"><span class="big">4.1</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">ALA-only formulation sold as "omega-3" — conversion to EPA/DHA in humans is famously poor. Not what most buyers think they're getting.</p>
-          <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span></div>
-        </article>
+          <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span><span class="rt-link">Full review →</span></div>
+        </a>
       </div>
     </section>
 
@@ -1558,7 +1608,7 @@
         </a>
 
         <!-- Has individual page → use <a> -->
-        <a class="ingredient" href="/ingredients/ashwagandha-ksm66-vs-sensoril">
+        <a class="ingredient" href="/pages/ingredients/ashwagandha-ksm66">
           <div class="ing-head">
             <h3>Ashwagandha (KSM-66)</h3>
             <span class="evidence e-mod">Moderate</span>
@@ -1572,7 +1622,7 @@
         </a>
 
         <!-- Has individual page → use <a> -->
-        <a class="ingredient" href="/pages/ingredients/whey-protein-concentrate-wpc-80">
+        <a class="ingredient" href="/pages/ingredients/whey-protein-isolate">
           <div class="ing-head">
             <h3>Whey protein isolate</h3>
             <span class="evidence e-strong">Strong</span>
@@ -1599,27 +1649,31 @@
           </div>
         </a>
 
-        <!-- No individual page yet → keep as <article> -->
-        <article class="ingredient">
+        <a class="ingredient" href="/pages/ingredients/vitamin-d3-cholecalciferol">
           <div class="ing-head">
             <h3>Vitamin D3 (cholecalciferol)</h3>
             <span class="evidence e-strong">Strong</span>
           </div>
           <div class="ing-tax">Fat-soluble vitamin · Seco-steroid</div>
           <p>Acts as a precursor hormone regulating calcium, bone, and immune function. Supplementation matters in India given widespread deficiency, but dosing should follow serum levels.</p>
-          <div class="ing-foot"><span>Dose · 1,000–2,000 IU / day</span><span>80+ studies</span></div>
-        </article>
+          <div class="ing-foot-link">
+            <span>Dose · 1,000–2,000 IU / day · 80+ studies</span>
+            <span class="read-arrow">Deep-dive <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:11px;height:11px;display:inline;vertical-align:middle"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+        </a>
 
-        <!-- No individual page yet → keep as <article> -->
-        <article class="ingredient">
+        <a class="ingredient" href="/research/melatonin-indian-10mg-tablets-wrong">
           <div class="ing-head">
             <h3>Melatonin</h3>
             <span class="evidence e-mod">Moderate</span>
           </div>
           <div class="ing-tax">Hormone · Pineal</div>
           <p>Chronobiotic used to shift circadian phase — useful for jet lag and shift work. Lower doses (0.3–1mg) often outperform the 3–10mg tablets commonly sold in India.</p>
-          <div class="ing-foot"><span>Dose · 0.3–1mg, 30–60 min pre-bed</span><span>34 studies</span></div>
-        </article>
+          <div class="ing-foot-link">
+            <span>Dose · 0.3–1mg, 30–60 min pre-bed · 34 studies</span>
+            <span class="read-arrow">Research <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:11px;height:11px;display:inline;vertical-align:middle"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+        </a>
 
       </div>
 
@@ -1632,15 +1686,15 @@
          PRESS / TRUST STRIP
          ========================================================= -->
     <section class="press container reveal">
-      <p class="press-label">Brands &amp; We Reviewed</p>
+      <p class="press-label">Brands we've reviewed</p>
       <div class="press-row">
-        <span>MuscleBlaze</span>
-        <span><em>GNC India</em></span>
-        <span>Wellbeing Nutrition</span>
-        <span>Himalayan Organics</span>
-        <span><em>Transparentlabs</em></span>
-        <span>Optimum Nutrition</span>
-        <span>Dymatize</span>
+        <a href="/brands/muscleblaze"><span>MuscleBlaze</span></a>
+        <a href="/brands/gnc-india"><span><em>GNC India</em></span></a>
+        <a href="/brands/wellbeing-nutrition"><span>Wellbeing Nutrition</span></a>
+        <a href="/brands/himalayan-organics"><span>Himalayan Organics</span></a>
+        <a href="/reviews/wheyprotein/transparent-labs-grass-fed-whey-isolate-review"><span><em>Transparent Labs</em></span></a>
+        <a href="/brands/optimum-nutrition"><span>Optimum Nutrition</span></a>
+        <a href="/brands/dymatize"><span>Dymatize</span></a>
       </div>
     </section>
 
@@ -1672,7 +1726,7 @@
     <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>
   </button>
 
-  <script src="nc-site.js?v=1001"></script>
+  <script src="nc-site.js?v=1002"></script>
 
   <!-- Picks tab switcher -->
   <script>
@@ -1749,6 +1803,17 @@
         });
         hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; queue(); });
       }
+
+      // ── Protocol cards: whole card clickable (View button stays the
+      //    only real anchor, so no nested links) ──
+      document.querySelectorAll('.protocol').forEach((card) => {
+        const link = card.querySelector('.protocol-foot a[href]');
+        if (!link) return;
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          link.click();
+        });
+      });
 
       // ── Picks tabs: arrow-key navigation ──
       const tablist = document.querySelector('.picks-tabs');
