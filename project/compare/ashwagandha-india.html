@@ -165,6 +165,22 @@
       .td-name { max-width: 160px; }
       .td-form { display: none; }
     }
+    /* ── Reference-parity styles (matching whey-protein-india) ───── */
+    .crumbs{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--s-4);}
+    .crumbs a{color:var(--ink-muted);text-decoration:none;}
+    @media (hover: hover) and (pointer: fine) { .crumbs a:hover{color:var(--accent);} }
+    .crumbs .sep{opacity:.4;}
+    .compare-hero{background:linear-gradient(160deg,var(--bg-elev) 0%,var(--bg) 80%);}
+    .compare-h1{font-weight:500;letter-spacing:-.03em;line-height:1.1;font-size:clamp(28px,5vw,52px);}
+    .compare-sub{line-height:1.6;}
+    .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-2);}
+    .section-title{font-family:var(--font-display);font-size:clamp(22px,2.8vw,34px);font-weight:500;letter-spacing:-.025em;margin:var(--s-2) 0 var(--s-4);line-height:1.15;}
+    .count-badge{display:inline-block;font-family:var(--font-mono);font-size:13px;font-weight:600;letter-spacing:0;background:var(--accent);color:var(--accent-ink);padding:3px 11px;border-radius:var(--r-pill);vertical-align:middle;margin-left:8px;transform:translateY(-3px);}
+    @media (max-width: 640px){
+      .compare-table th:nth-child(4),.compare-table td:nth-child(4),
+      .compare-table th:nth-child(6),.compare-table td:nth-child(6){display:none;}
+      .section-title{font-size:22px;}
+    }
   </style>
 </head>
 <body>
@@ -181,14 +197,14 @@
         <a href="/pages/compare">Compare</a><span class="sep">/</span>
         <span>Ashwagandha</span>
       </div>
-      <p class="compare-kicker">Independent · India-market · 54 products scored</p>
+      <p class="compare-kicker">Independent · India-market · 54 products scored · May 2026</p>
+      <h1 class="compare-h1">Best Ashwagandha in India — 54 Products Compared</h1>
+      <p class="compare-sub">54 ashwagandha products available in India. Ranked by extract standardisation (withanolide %, KSM-66 vs Sensoril vs generic), dose vs clinical studies, and INR value.</p>
       <div class="meta-strip">
         <span class="meta-chip green"><span class="dot"></span>Last verified May 2026</span>
         <span class="meta-chip"><span class="dot"></span>54 products scored</span>
         <span class="meta-chip warn"><span class="dot"></span>Unsponsored · affiliate links disclosed</span>
       </div>
-      <h1 class="compare-h1">Best Ashwagandha in India — 54 Products Compared</h1>
-      <p class="compare-sub">54 ashwagandha products available in India. Ranked by extract standardisation (withanolide %, KSM-66 vs Sensoril vs generic), dose vs clinical studies, and INR value.</p>
       <a href="/data/products.json" class="data-download" download>
         ↓ Download products.json — full dataset (614 products)
       </a>
@@ -198,6 +214,7 @@
   <!-- ── Top 5 picks ───────────────────────────────────────────────── -->
   <section class="picks-section" id="top-picks">
     <div class="container">
+      <div class="eyebrow">Scored picks</div>
       <h2 class="section-title">Top 5 picks</h2>
       <p class="picks-intro">KSM-66 and Sensoril are the only ashwagandha extracts with published RCTs showing cortisol reduction and stress relief at their specific doses. Generic ashwagandha powder — even if labelled '5% withanolides' — lacks the extract-specific trial data. The difference is not marketing; it is the entire evidence base.</p>
       <div class="picks-grid">
@@ -264,6 +281,7 @@
   <section class="table-section" id="table">
     <div class="container">
       <div class="section-head">
+        <div class="eyebrow">All 54 products</div>
         <h2 class="section-title">Full comparison <span class="count-badge">54</span></h2>
       </div>
       <p class="table-meta">Sorted by score (highest first). KSM-66 = Ixoreal root-only extract, ≥5% withanolides, 24+ RCTs. Sensoril = Natreon root+leaf extract, ≥10% withanolides, different trial profile. Generic = unstandardised powder with no extract-specific RCT.</p>
@@ -722,6 +740,7 @@
   <!-- ── FAQ ───────────────────────────────────────────────────────── -->
   <section class="faq-section" id="faq">
     <div class="container" style="max-width: 760px;">
+      <div class="eyebrow">Common questions</div>
       <h2 class="section-title">Frequently asked questions</h2>
 
       <div class="faq-item">
