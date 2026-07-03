@@ -251,6 +251,18 @@
       .ref-list li{font-size:12px;padding-left:var(--s-4);}
       .buy-btn{font-size:10px;padding:8px 0;}
     }
+    /* ── Mobile overflow + touch fixes ─────────────────────────── */
+    .mechanism-grid>*{min-width:0;}
+    .form-table-wrap{max-width:100%;}
+    @media(max-width:640px){
+      .pick-header{grid-template-columns:auto 1fr;row-gap:6px;}
+      .pick-header>*{min-width:0;}
+      .pick-rank{grid-column:1/-1;white-space:normal;line-height:1.5;}
+      .pick-name{overflow-wrap:anywhere;}
+      .price-note{white-space:normal;}
+      .buy-btn{min-height:44px;padding:12px 0;font-size:12px;}
+      .mech-prose{font-size:15px;}
+    }
   </style>
 </head>
 <body>
@@ -497,7 +509,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71UUiHgreUL._SL1500_.jpg" alt="Pure Encapsulations Magnesium Glycinate 120mg 90ct" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71UUiHgreUL._SL1500_.jpg" alt="Pure Encapsulations Magnesium Glycinate 120mg 90ct" loading="lazy" decoding="async" width="152" height="152" /></div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Pure+Encapsulations+Magnesium+Glycinate+120mg&tag=nakedcompound-21" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
           <div class="pick-main-col">
@@ -533,7 +545,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71QbFRthNGL._AC_SX300_SY300_.jpg" alt="Carbamide Forte Magnesium Bisglycinate 400mg 60ct" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71QbFRthNGL._AC_SX300_SY300_.jpg" alt="Carbamide Forte Magnesium Bisglycinate 400mg 60ct" loading="lazy" decoding="async" width="152" height="152" /></div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Carbamide+Forte+Magnesium+Bisglycinate&tag=nakedcompound-21" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
           <div class="pick-main-col">
@@ -568,7 +580,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71HLaH8xH4L._AC_SX300_SY300_.jpg" alt="NOW Supplements Magnesium Citrate 200mg 100ct" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71HLaH8xH4L._AC_SX300_SY300_.jpg" alt="NOW Supplements Magnesium Citrate 200mg 100ct" loading="lazy" decoding="async" width="152" height="152" /></div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=NOW+Magnesium+Citrate+200mg&tag=nakedcompound-21" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
           <div class="pick-main-col">
@@ -603,7 +615,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/51tDM1eMZDL._AC_SL1000_.jpg" alt="Doctor's Best Magnesium Malate 100mg 200ct" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/51tDM1eMZDL._AC_SL1000_.jpg" alt="Doctor's Best Magnesium Malate 100mg 200ct" loading="lazy" decoding="async" width="152" height="152" /></div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Doctors+Best+Magnesium+Malate&tag=nakedcompound-21" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
           <div class="pick-main-col">
@@ -638,7 +650,7 @@
         </div>
         <div class="pick-body">
           <div class="pick-img-col">
-            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71UUiHgreUL._SL1500_.jpg" alt="Life Extension Neuro-Mag Magnesium L-Threonate 144mg 90ct" loading="lazy" /></div>
+            <div class="pick-img-wrap"><img src="https://m.media-amazon.com/images/I/71UUiHgreUL._SL1500_.jpg" alt="Life Extension Neuro-Mag Magnesium L-Threonate 144mg 90ct" loading="lazy" decoding="async" width="152" height="152" /></div>
             <a class="buy-btn" href="https://www.amazon.in/s?k=Life+Extension+Neuro-Mag+Magnesium+L-Threonate&tag=nakedcompound-21" target="_blank" rel="nofollow noopener">Buy on Amazon ↗</a>
           </div>
           <div class="pick-main-col">
