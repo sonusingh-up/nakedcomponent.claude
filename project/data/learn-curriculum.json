@@ -11,19 +11,19 @@
           "slug": "label-anatomy",
           "title": "The anatomy of a label — what's mandatory, what's decoration",
           "minutes": 7,
-          "published": false
+          "published": true
         },
         {
           "slug": "label-ingredient-names",
           "title": "Ingredient names — synonyms, salts, and hidden duplicates",
           "minutes": 7,
-          "published": false
+          "published": true
         },
         {
           "slug": "label-quantities",
           "title": "Quantities — mg, IU, %RDA, and per-serving tricks",
           "minutes": 8,
-          "published": false
+          "published": true
         },
         {
           "slug": "label-proprietary-blends",
@@ -35,13 +35,13 @@
           "slug": "label-claims-language",
           "title": "Claims language — “supports”, “promotes”, “clinically dosed”",
           "minutes": 8,
-          "published": false
+          "published": true
         },
         {
           "slug": "label-batch-expiry-storage",
           "title": "Batch, expiry, storage — the fine print that matters",
           "minutes": 8,
-          "published": false
+          "published": true
         }
       ]
     },
