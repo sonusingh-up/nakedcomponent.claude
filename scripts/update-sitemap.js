@@ -29,6 +29,7 @@ const RULES = [
   { prefix: '/compare/',               p: '0.8', cf: 'weekly' },
   { prefix: '/pages/best/',            p: '0.8', cf: 'weekly' },
   { prefix: '/guides/',                p: '0.8', cf: 'weekly' },
+  { prefix: '/medicines/',             p: '0.7', cf: 'monthly' },
   { prefix: '/research/',              p: '0.8', cf: 'monthly' },
   { prefix: '/reviews/',               p: '0.8', cf: 'monthly' },
   { prefix: '/pages/research',         p: '0.9', cf: 'weekly',  exact: true },
