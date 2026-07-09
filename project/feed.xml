@@ -8,7 +8,7 @@
     <copyright>© 2026 Naked Compound</copyright>
     <managingEditor>hello@nakedcompound.in (Naked Compound)</managingEditor>
     <webMaster>tech@nakedcompound.in (Naked Compound)</webMaster>
-    <lastBuildDate>Thu, 09 Jul 2026 08:00:00 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 08:09:54 +0530</lastBuildDate>
     <atom:link href="https://www.nakedcompound.in/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.nakedcompound.in/og-image.png</url>
@@ -17,6 +17,56 @@
     </image>
 
     
+    
+    
+    
+    
+    
+    <item>
+      <title>Batch, expiry, storage — the fine print that matters</title>
+      <link>https://www.nakedcompound.in/learn/label-batch-expiry-storage</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/label-batch-expiry-storage</guid>
+      <pubDate>Thu, 09 Jul 2026 08:02:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>Batch number, best-before vs expiry, and why “in date” doesn't mean “full potency” — especially on a hot Indian shelf. The fine print that decides if it works.</description>
+    </item>
+
+    <item>
+      <title>Claims language — "supports", "promotes", "clinically dosed"</title>
+      <link>https://www.nakedcompound.in/learn/label-claims-language</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/label-claims-language</guid>
+      <pubDate>Thu, 09 Jul 2026 08:03:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>“Supports”, “promotes”, “clinically dosed” — the grammar supplements use to imply a cure without making one. Decode the weasel verbs and the legal line.</description>
+    </item>
+
+    <item>
+      <title>Quantities — mg, IU, %RDA, and per-serving tricks</title>
+      <link>https://www.nakedcompound.in/learn/label-quantities</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/label-quantities</guid>
+      <pubDate>Thu, 09 Jul 2026 08:04:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>mcg vs mg vs IU, what %RDA really references, and the serving-size lever that quietly shrinks every number. Read supplement quantities like a pro.</description>
+    </item>
+
+    <item>
+      <title>Ingredient names — synonyms, salts, and hidden duplicates</title>
+      <link>https://www.nakedcompound.in/learn/label-ingredient-names</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/label-ingredient-names</guid>
+      <pubDate>Thu, 09 Jul 2026 08:05:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>One molecule wears many names, a salt weighs more than the mineral inside it, and the same active can appear three times. How to read past all three.</description>
+    </item>
+
+    <item>
+      <title>The anatomy of a label — what's mandatory, what's decoration</title>
+      <link>https://www.nakedcompound.in/learn/label-anatomy</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/label-anatomy</guid>
+      <pubDate>Thu, 09 Jul 2026 08:06:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>Every Indian supplement label has two layers: the fields the law forces on, and the decoration the brand chooses. Learn to see the seam between them.</description>
+    </item>
+
     <item>
       <title>"Proprietary blend" — what it actually hides</title>
       <link>https://www.nakedcompound.in/learn/label-proprietary-blends</link>

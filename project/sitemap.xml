@@ -320,7 +320,37 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.nakedcompound.in/learn/label-anatomy</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/learn/label-batch-expiry-storage</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/learn/label-claims-language</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/learn/label-ingredient-names</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.nakedcompound.in/learn/label-proprietary-blends</loc>
+    <lastmod>2026-07-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/learn/label-quantities</loc>
     <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -387,7 +417,7 @@
   </url>
   <url>
     <loc>https://www.nakedcompound.in/pages/learn</loc>
-    <lastmod>2026-06-26</lastmod>
+    <lastmod>2026-07-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
