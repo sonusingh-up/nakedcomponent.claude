@@ -8,7 +8,7 @@
     <copyright>© 2026 Naked Compound</copyright>
     <managingEditor>hello@nakedcompound.in (Naked Compound)</managingEditor>
     <webMaster>tech@nakedcompound.in (Naked Compound)</webMaster>
-    <lastBuildDate>Thu, 09 Jul 2026 08:09:54 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 09 Jul 2026 08:37:09 +0530</lastBuildDate>
     <atom:link href="https://www.nakedcompound.in/feed.xml" rel="self" type="application/rss+xml"/>
     <image>
       <url>https://www.nakedcompound.in/og-image.png</url>
@@ -22,6 +22,76 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    <item>
+      <title>Putting it together — how much evidence to demand, per supplement</title>
+      <link>https://www.nakedcompound.in/learn/evidence-how-much-to-demand</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-how-much-to-demand</guid>
+      <pubDate>Thu, 09 Jul 2026 08:10:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>You don’t need an RCT for everything. Scale the evidence bar to the stakes — cost, risk, and how bold the claim. The capstone rule of thumb, with a checklist.</description>
+    </item>
+
+    <item>
+      <title>Anecdote and n=1 — what self-experiments can and can't tell you</title>
+      <link>https://www.nakedcompound.in/learn/evidence-anecdote</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-anecdote</guid>
+      <pubDate>Thu, 09 Jul 2026 08:11:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>“It worked for me” is the most honest and least reliable evidence there is. Why your own experience fools you — and how to self-experiment less wrongly.</description>
+    </item>
+
+    <item>
+      <title>In-vitro and animal studies — the "in mice" problem</title>
+      <link>https://www.nakedcompound.in/learn/evidence-animal-invitro</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-animal-invitro</guid>
+      <pubDate>Thu, 09 Jul 2026 08:12:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>“Curcumin kills cancer cells” — in a dish, at doses you could never reach. Why cell and animal studies are where science starts, not where it ends.</description>
+    </item>
+
+    <item>
+      <title>Observational studies — correlation traps</title>
+      <link>https://www.nakedcompound.in/learn/evidence-observational</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-observational</guid>
+      <pubDate>Thu, 09 Jul 2026 08:13:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>Observational studies watch what people already do — great for hypotheses, terrible for proving cause, thanks to one sneaky third party: the confounder.</description>
+    </item>
+
+    <item>
+      <title>Meta-analyses and reviews — stronger, but not automatically</title>
+      <link>https://www.nakedcompound.in/learn/evidence-meta-analyses</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-meta-analyses</guid>
+      <pubDate>Thu, 09 Jul 2026 08:14:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>Pooling many trials into one number is the top of the evidence pyramid — and easy to do badly. How to read a forest plot and smell garbage-in, garbage-out.</description>
+    </item>
+
+    <item>
+      <title>RCTs — why randomisation is the whole point</title>
+      <link>https://www.nakedcompound.in/learn/evidence-rct</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-rct</guid>
+      <pubDate>Thu, 09 Jul 2026 08:15:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>The randomised controlled trial is the gold standard for one reason: randomisation. What it buys you, and how marketing “clinical trials” fake it.</description>
+    </item>
+
+    <item>
+      <title>The evidence pyramid — a five-minute map</title>
+      <link>https://www.nakedcompound.in/learn/evidence-pyramid</link>
+      <guid isPermaLink="true">https://www.nakedcompound.in/learn/evidence-pyramid</guid>
+      <pubDate>Thu, 09 Jul 2026 08:16:00 +0530</pubDate>
+      <category>Learn</category>
+      <description>“A study showed…” means almost nothing until you know which kind of study. The one mental map that ranks evidence from anecdote to meta-analysis.</description>
+    </item>
+
     <item>
       <title>Batch, expiry, storage — the fine print that matters</title>
       <link>https://www.nakedcompound.in/learn/label-batch-expiry-storage</link>

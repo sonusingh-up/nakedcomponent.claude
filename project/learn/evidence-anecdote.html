@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1911119578672689"
+     crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anecdote and n=1 experiments — Naked Compound</title>
+  <link rel="canonical" href="https://www.nakedcompound.in/learn/evidence-anecdote" />
+
+  <meta name="description" content="“It worked for me” is the most honest and least reliable evidence there is. Why your own experience fools you — and how to self-experiment a little less wrongly." />
+  <!--
+    published: authoritative publish date read by update-sitemap.js.
+    DO NOT edit this — it controls the lastmod in sitemap.xml.
+    Bump the modified tag below if you update the lesson content.
+  -->
+  <meta name="published" content="2026-07-09" />
+  <meta name="modified"  content="2026-07-09" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css?v=1001" />
+  <link rel="stylesheet" href="/pages.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    /* Page head */
+    .page-head { padding: var(--s-9) 0 var(--s-7); border-bottom: 1px solid var(--line); }
+    .page-head .crumbs { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-muted); font-family:var(--font-mono); letter-spacing:.02em; margin-bottom:var(--s-5); }
+    .page-head .crumbs a { color:var(--ink-muted); }
+    .page-head .crumbs a:hover { color:var(--accent); }
+    .page-head .crumbs .sep { opacity:.4; }
+    .path-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:var(--r-pill); background:var(--accent-soft); color:var(--accent); font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:var(--s-4); }
+    .page-head h1 { font-size:clamp(26px,4vw,46px); font-weight:500; letter-spacing:-.03em; line-height:1.1; margin-bottom:var(--s-4); max-width:24ch; }
+    .page-head h1 em { font-style:normal; font-family:"Instrument Serif",Georgia,serif; color:var(--accent); font-weight:400; }
+    .page-head .kicker { font-size:clamp(15px,1.4vw,17.5px); color:var(--ink-soft); max-width:58ch; line-height:1.6; margin-bottom:var(--s-5); }
+    .meta-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:var(--s-5); }
+    .meta-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:var(--r-pill); background:var(--bg-elev); border:1px solid var(--line); font-size:13px; color:var(--ink-soft); font-family:var(--font-mono); }
+    .meta-chip .dot { width:7px; height:7px; border-radius:50%; background:var(--ink-muted); flex:0 0 auto; }
+    .meta-chip.ok .dot { background:#5ba672; box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent); }
+
+    /* Progress dots (filled by /lesson.js) */
+    .lesson-dots { display:flex; align-items:center; gap:7px; }
+    .lesson-dots .dot { width:9px; height:9px; border-radius:50%; background:var(--bg-elev); border:1px solid var(--line); transition:background .15s; }
+    .lesson-dots .dot.past { background:color-mix(in oklab,var(--accent) 45%,var(--bg-elev)); border-color:transparent; }
+    .lesson-dots .dot.now { background:var(--accent); border-color:transparent; box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 22%,transparent); }
+
+    /* Layout */
+    .article-layout { display:grid; grid-template-columns:1fr 260px; gap:var(--s-8); align-items:start; padding:var(--s-8) 0 var(--s-10); }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:calc(var(--nav-h) + 24px); }
+
+    /* Prose */
+    .prose h2 { font-size:clamp(20px,2.6vw,28px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:var(--s-8) 0 var(--s-4); padding-top:var(--s-8); border-top:1px solid var(--line); scroll-margin-top:80px; }
+    .prose h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .prose h3 { font-size:clamp(16px,1.8vw,20px); font-weight:500; letter-spacing:-.02em; margin:var(--s-6) 0 var(--s-3); }
+    .prose p { font-size:17px; line-height:1.78; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .prose p strong { color:var(--ink); font-weight:500; }
+    .prose ul, .prose ol { margin:var(--s-3) 0 var(--s-5) var(--s-5); display:flex; flex-direction:column; gap:8px; }
+    .prose li { font-size:17px; line-height:1.7; color:var(--ink-soft); }
+    .prose li strong { color:var(--ink); font-weight:500; }
+    .prose sup { font-family:var(--font-mono); font-size:11px; color:var(--accent); }
+    .prose sup a { color:var(--accent); }
+    .prose a { color:var(--accent); border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent); }
+    .prose a:hover { border-color:var(--accent); }
+
+    /* Callouts */
+    .callout { border-radius:var(--r-md); padding:var(--s-5); margin:var(--s-6) 0; display:flex; gap:var(--s-4); }
+    .callout-icon { font-size:20px; flex:0 0 auto; margin-top:2px; }
+    .callout-body p { font-size:15px; margin:0; line-height:1.65; }
+    .callout-body strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .callout.info { background:var(--sky); border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky)); }
+    .callout.info .callout-body strong { color:#2e4a6b; }
+    .callout.warn { background:var(--butter); border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter)); }
+    .callout.warn .callout-body strong { color:#7a5f1a; }
+    .callout.good { background:var(--mint); border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint)); }
+    .callout.good .callout-body strong { color:#3a5c3f; }
+    [data-theme="dark"] .callout.info .callout-body strong { color:#9cc1e0; }
+    [data-theme="dark"] .callout.warn .callout-body strong { color:#e0c377; }
+    [data-theme="dark"] .callout.good .callout-body strong { color:#a7d2a9; }
+
+    /* Worked example — annotated label excerpt */
+    .worked-example { border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; margin:var(--s-6) 0; }
+    .we-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:12px 18px; background:var(--bg-elev); border-bottom:1px solid var(--line); }
+    .we-head .we-tag { font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+    .we-head .we-title { font-size:13.5px; color:var(--ink-soft); }
+    .we-body { padding:var(--s-5); }
+    .we-body > p { font-size:15px; line-height:1.65; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .we-body > p:last-child { margin-bottom:0; }
+    .we-body > p strong { color:var(--ink); font-weight:500; }
+    .jar-label { background:var(--bg-elev); border:1px dashed color-mix(in oklab,var(--ink) 25%,transparent); border-radius:var(--r-md); padding:var(--s-4) var(--s-5); font-family:var(--font-mono); font-size:12.5px; line-height:1.75; color:var(--ink); white-space:pre-wrap; overflow-x:auto; margin-bottom:var(--s-4); }
+    .jar-label mark { background:color-mix(in oklab,var(--accent) 18%,transparent); color:inherit; border-radius:3px; padding:0 3px; }
+
+    /* Figures (inline SVG) */
+    .figure { margin:var(--s-6) 0; border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; background:var(--bg-elev); }
+    .figure svg { display:block; width:100%; height:auto; }
+    .figure figcaption { padding:12px 18px; border-top:1px solid var(--line); font-size:13px; color:var(--ink-muted); line-height:1.55; }
+    .figure figcaption b { color:var(--ink-soft); font-weight:500; }
+    .figure text { font-family:var(--font-sans); }
+    .figure .t-main { fill:var(--ink); font-size:13px; }
+    .figure .t-key  { fill:var(--ink-soft); font-size:12px; }
+    .figure .t-mono { fill:var(--ink-muted); font-size:10.5px; font-family:var(--font-mono); letter-spacing:.04em; }
+    .figure .axis { stroke:var(--line); }
+    .figure .curve { fill:none; stroke:var(--accent); stroke-width:2.5; }
+    .figure .vmark { stroke:var(--ink-soft); stroke-dasharray:4 4; }
+    .figure .band { fill:var(--accent); opacity:.10; }
+
+    /* Data table */
+    .data-table-wrap { overflow-x:auto; margin:var(--s-6) 0; border-radius:var(--r-md); border:1px solid var(--line); }
+    .data-table { width:100%; border-collapse:collapse; font-size:14px; }
+    .data-table thead th { background:var(--bg-elev); padding:12px 16px; text-align:left; font-size:11.5px; font-family:var(--font-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); border-bottom:1px solid var(--line); white-space:nowrap; }
+    .data-table tbody td { padding:12px 16px; border-bottom:1px solid var(--line); color:var(--ink-soft); vertical-align:top; line-height:1.5; }
+    .data-table tbody tr:last-child td { border-bottom:none; }
+    .td-strong { color:var(--ink) !important; font-weight:500; }
+
+    /* Key takeaways */
+    .takeaways { background:var(--ink); color:#f0ece4; border-radius:var(--r-xl); padding:var(--s-6); margin:var(--s-7) 0; position:relative; overflow:hidden; }
+    [data-theme="dark"] .takeaways { background:var(--accent-soft); color:var(--ink); }
+    .takeaways::before { content:""; position:absolute; right:-40px; top:-40px; width:200px; height:200px; border-radius:50%; background:var(--accent); opacity:.18; filter:blur(30px); }
+    .takeaways .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#f0ece4; opacity:.65; margin-bottom:var(--s-3); position:relative; }
+    .takeaways h3 { font-size:clamp(18px,2vw,24px); letter-spacing:-.02em; margin-bottom:var(--s-4); color:#fff; position:relative; }
+    .takeaways ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; position:relative; }
+    .takeaways li { font-size:15px; line-height:1.6; color:#c8c2b8; padding-left:22px; position:relative; }
+    .takeaways li::before { content:"→"; position:absolute; left:0; color:var(--accent); }
+    .takeaways li strong { color:#f0ece4; font-weight:500; }
+    [data-theme="dark"] .takeaways .eyebrow { color:var(--ink-muted); }
+    [data-theme="dark"] .takeaways h3 { color:var(--ink); }
+    [data-theme="dark"] .takeaways li { color:var(--ink-soft); }
+    [data-theme="dark"] .takeaways li strong { color:var(--ink); }
+
+    /* Try it */
+    .try-it { border:1px solid color-mix(in oklab,var(--accent) 35%,var(--line)); border-radius:var(--r-lg); padding:var(--s-6); margin:var(--s-7) 0; background:color-mix(in oklab,var(--accent) 4%,var(--bg)); }
+    .try-it .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s-3); }
+    .try-it h3 { font-size:clamp(17px,1.9vw,21px); font-weight:500; letter-spacing:-.02em; margin-bottom:var(--s-3); }
+    .try-it p { font-size:15px; line-height:1.65; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .try-it ol { margin:0 0 0 var(--s-5); display:flex; flex-direction:column; gap:8px; }
+    .try-it li { font-size:15px; line-height:1.6; color:var(--ink-soft); }
+    .try-it li strong { color:var(--ink); font-weight:500; }
+
+    /* Related reading */
+    .related { margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .related h4 { font-size:12px; font-family:var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-4); }
+    .related-list { display:flex; flex-direction:column; gap:10px; }
+    .related-list a { display:flex; align-items:baseline; gap:10px; font-size:15px; color:var(--ink); padding:12px 16px; border:1px solid var(--line); border-radius:var(--r-md); transition:border-color .15s, background .15s; }
+    .related-list a:hover { border-color:var(--accent); background:var(--bg-elev); }
+    .related-list .rl-type { font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); flex:0 0 auto; }
+
+    /* References */
+    .references { margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .references h2 { font-size:20px; font-weight:500; letter-spacing:-.02em; margin-bottom:var(--s-5); }
+    .ref-list { display:flex; flex-direction:column; gap:var(--s-3); }
+    .ref-item { display:grid; grid-template-columns:28px 1fr; gap:var(--s-3); font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+    .ref-num { font-family:var(--font-mono); font-size:12px; color:var(--ink-muted); padding-top:2px; }
+    .ref-item a { color:var(--accent); border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent); transition:border-color .15s; }
+    .ref-item a:hover { border-color:var(--accent); }
+
+    /* Prev / next navigation (filled by /lesson.js) */
+    .lesson-nav { display:grid; grid-template-columns:1fr auto 1fr; gap:12px; margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .lesson-nav .ln { display:flex; flex-direction:column; gap:4px; padding:14px 16px; border:1px solid var(--line); border-radius:var(--r-md); transition:border-color .15s, background .15s; min-width:0; }
+    .lesson-nav .ln:hover { border-color:var(--accent); background:var(--bg-elev); }
+    .lesson-nav .ln.next { text-align:right; }
+    .lesson-nav .ln.up { text-align:center; justify-content:center; }
+    .lesson-nav .ln-dir { font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); }
+    .lesson-nav .ln-title { font-size:14px; color:var(--ink); line-height:1.4; }
+    .lesson-nav .ln.disabled { opacity:.45; pointer-events:none; }
+    .lesson-foot-note { margin-top:var(--s-4); font-family:var(--font-mono); font-size:12px; color:var(--ink-muted); text-align:center; }
+
+    /* Sidebar — path outline */
+    .toc-card { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); }
+    .toc-card h4 { font-size:12px; font-family:var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-4); }
+    .toc-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px; }
+    .toc-list a, .toc-list .ol-soon { display:flex; align-items:baseline; gap:9px; padding:8px 10px; border-radius:var(--r-sm); font-size:13.5px; color:var(--ink-soft); line-height:1.4; }
+    .toc-list a:hover { color:var(--ink); background:color-mix(in oklab,var(--ink) 5%,transparent); }
+    .toc-list a.active { color:var(--ink); background:color-mix(in oklab,var(--accent) 12%,transparent); font-weight:500; }
+    .toc-list .ol-num { font-family:var(--font-mono); font-size:11px; color:var(--ink-muted); flex:0 0 auto; }
+    .toc-list .ol-done { color:#5ba672; font-size:12px; margin-left:auto; }
+    .toc-list .ol-soon { color:var(--ink-muted); cursor:default; }
+    .toc-list .ol-soon em { font-style:normal; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; margin-left:auto; opacity:.7; }
+    .sidebar-meta { margin-top:var(--s-4); background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); display:flex; flex-direction:column; gap:12px; }
+    .sm-row { display:flex; justify-content:space-between; align-items:baseline; font-size:13px; gap:8px; }
+    .sm-label { color:var(--ink-muted); font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+    .sm-value { color:var(--ink); font-weight:500; text-align:right; }
+    .sm-divider { height:1px; background:var(--line); }
+
+    @media (max-width:900px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; order:-1; }
+      .lesson-nav { grid-template-columns:1fr; }
+      .lesson-nav .ln.next, .lesson-nav .ln.up { text-align:left; }
+    }
+  </style>
+  <script>window.PAGE_KEY = 'learn';</script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-84Q2LMHPV0');
+  </script>
+
+  <!-- Breadcrumb structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://www.nakedcompound.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://www.nakedcompound.in/pages/learn" },
+      { "@type": "ListItem", "position": 3, "name": "Anecdote and n=1 — what self-experiments can and can't tell you", "item": "https://www.nakedcompound.in/learn/evidence-anecdote" }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main data-lesson="evidence-anecdote" data-path="2">
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/pages/learn">Learn</a><span class="sep">/</span>
+        <span>Path 02 · Lesson 06</span>
+      </div>
+      <div class="path-chip">Path 02 · Evidence tiers — how to read a claim</div>
+      <h1>Anecdote and n=1 — what self-experiments can and can't tell <em>you</em></h1>
+      <p class="kicker">"It worked for me" is the most sincere sentence in health — and the least reliable. Your own experience is quietly rigged against you by timing, expectation and memory. The good news: understand the traps and you can run a personal experiment that's actually worth something.</p>
+      <div class="meta-chips">
+        <span class="meta-chip ok"><span class="dot"></span>Lesson 06 of 7</span>
+        <span class="meta-chip"><span class="dot"></span>~9 min</span>
+        <span class="meta-chip"><span class="dot"></span>Beginner</span>
+        <span class="meta-chip"><span class="dot"></span>Updated Jul 2026</span>
+      </div>
+      <div class="lesson-dots" id="lesson-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="article-layout">
+
+      <!-- ── Lesson body ──────────────────────────────────────────── -->
+      <article class="article-body">
+        <div class="prose">
+
+          <h2 id="why-weak">Why "it worked for me" fools you</h2>
+          <p>Anecdote sits at the bottom of the pyramid not because personal experience doesn't matter, but because a sample of one has no defences against the things that fool everyone. When you try a supplement, at least four forces conspire to manufacture a "success":</p>
+          <ul>
+            <li><strong>No control.</strong> You have no idea what would have happened if you'd done nothing. There's no placebo-you running in parallel.</li>
+            <li><strong>The placebo effect.</strong> Believing you're being helped produces real, measurable improvement — especially in symptoms you rate yourself: pain, energy, mood, sleep.</li>
+            <li><strong>Confirmation bias &amp; memory.</strong> You notice and remember the days it "worked" and quietly forget the rest.</li>
+            <li><strong>Regression to the mean.</strong> The big one, and the least intuitive — so it gets a picture.</li>
+          </ul>
+
+          <h2 id="regression">Regression to the mean</h2>
+          <p>We start supplements when we feel <em>worst</em> — the peak of a cold, the flare of a joint, the low point of a slump. But extremes are, by definition, unusual; things tend to drift back toward your normal on their own. Take something at the trough and the natural rebound gets credited to the pill.</p>
+
+          <figure class="figure">
+            <svg viewBox="0 0 500 260" role="img" aria-labelledby="figrm-title">
+              <title id="figrm-title">Symptom severity fluctuating over time, with a supplement taken at the worst point</title>
+              <!-- axes -->
+              <line x1="50" y1="30" x2="50" y2="210" class="axis"></line>
+              <line x1="50" y1="210" x2="474" y2="210" class="axis"></line>
+              <text x="16" y="120" transform="rotate(-90 16 120)" text-anchor="middle" class="t-mono">symptom severity</text>
+              <text x="262" y="234" text-anchor="middle" class="t-mono">time →</text>
+              <!-- 'average' baseline -->
+              <line x1="50" y1="150" x2="474" y2="150" class="vmark"></line>
+              <text x="474" y="145" text-anchor="end" class="t-mono">your normal</text>
+              <!-- fluctuating curve rising to a peak (worst) then settling back -->
+              <path d="M50,140 C90,120 110,160 140,120 C165,90 185,70 215,58 C240,70 255,110 285,140 C315,168 345,150 375,152 C405,154 440,146 474,150" class="curve"></path>
+              <!-- intervention marker at the peak (x=215,y=58) -->
+              <line x1="215" y1="48" x2="215" y2="210" class="vmark"></line>
+              <circle cx="215" cy="58" r="4" fill="var(--accent)"></circle>
+              <text x="215" y="40" text-anchor="middle" class="t-key" style="fill:var(--accent)">you start the supplement</text>
+              <text x="300" y="116" text-anchor="middle" class="t-mono">you feel better —</text>
+              <text x="300" y="130" text-anchor="middle" class="t-mono">but you'd get there anyway</text>
+            </svg>
+            <figcaption><b>You act at the worst moment, so improvement is nearly guaranteed.</b> Symptoms swing around your normal. You reach for a remedy at the peak — the only rational time to — and the inevitable drift back toward baseline feels like proof it worked. It would have happened with a sugar pill, or nothing at all.</figcaption>
+          </figure>
+
+          <h2 id="n1-value">What a personal experiment <em>can</em> tell you</h2>
+          <p>Here's the joyful part: a sample of one isn't worthless — it's just usually run badly. For the right kind of question, a careful "n=1" trial is genuinely useful. It works best for effects that are <strong>subjective, fast-acting and reversible</strong>: does caffeine after 3 pm wreck your sleep? Does this pre-workout give you the jitters? Does whey upset your stomach? You can actually test these on yourself if you borrow the RCT's tricks:</p>
+          <ul>
+            <li><strong>Blind yourself if you can.</strong> Identical capsules, one real, one placebo, shuffled by a friend so you don't know which week is which.</li>
+            <li><strong>Pick your outcome in advance</strong> and write it down — "hours of sleep", "1–10 gut comfort" — so you can't move the goalposts later.</li>
+            <li><strong>Use a washout.</strong> Give the last thing time to leave before testing the next.</li>
+            <li><strong>Repeat.</strong> One good week proves little; alternate a few times and look for a consistent pattern.</li>
+          </ul>
+
+          <div class="callout warn">
+            <span class="callout-icon">⚠</span>
+            <div class="callout-body">
+              <strong>What n=1 can never tell you</strong>
+              <p>Anything slow, invisible or statistical: long-term disease risk, whether it's quietly protecting your heart, rare side effects. You cannot feel your cholesterol or your cancer risk change. For those, you're back to needing trials — no amount of self-tracking substitutes.</p>
+            </div>
+          </div>
+
+          <div class="worked-example">
+            <div class="we-head">
+              <span class="we-tag">Worked example</span>
+              <span class="we-title">The vitamin C “it cured my cold” story</span>
+            </div>
+            <div class="we-body">
+              <p>You feel a cold coming on, take a big dose of vitamin C at the worst moment, and three days later you're fine. Obvious conclusion: it worked.</p>
+              <p>But <strong>colds resolve on their own in a few days</strong> — you started the vitamin exactly when you felt worst, so recovery was coming regardless (regression to the mean). Add the placebo effect and the fact that you'd never notice the times it <em>didn't</em> help, and you have a rock-solid personal belief built entirely on the four traps above. The large RCTs agree: routine vitamin C doesn't meaningfully prevent colds, and barely shortens them. Your experience was real; your conclusion was the mirage.</p>
+            </div>
+          </div>
+
+          <p>So take your own experience seriously as a <em>signal</em> — it's the reason to test something — but not as <em>proof</em>. And when the effect is fast and you can feel it, don't just wonder: run the little blinded experiment. It's a genuinely fun way to out-think your own biases.</p>
+
+        </div><!-- /prose -->
+
+        <!-- Key takeaways -->
+        <div class="takeaways">
+          <div class="eyebrow">What to remember</div>
+          <h3>Take your experience as a signal, never as proof.</h3>
+          <ul>
+            <li><strong>Four traps rig “it worked for me”:</strong> no control, the placebo effect, confirmation bias, and regression to the mean — you act at your worst moment, so rebound is nearly guaranteed.</li>
+            <li><strong>n=1 is useful for fast, subjective, reversible effects</strong> — sleep, jitters, gut comfort — if you blind yourself, pre-pick the outcome, wash out, and repeat.</li>
+            <li><strong>n=1 can't touch slow or invisible outcomes</strong> — disease risk, rare harms. You can't feel those change; for them you still need trials.</li>
+          </ul>
+        </div>
+
+        <!-- Try it -->
+        <div class="try-it">
+          <div class="eyebrow">Try it · ~1 min</div>
+          <h3>Design a tiny honest self-experiment.</h3>
+          <ol>
+            <li>Pick one <strong>fast, feelable</strong> question ("does X improve my sleep?").</li>
+            <li>Write the <strong>outcome</strong> you'll measure <em>before</em> you start, and decide how you'll <strong>blind</strong> it.</li>
+            <li>Plan to <strong>alternate and repeat</strong>. Notice how much harder this is to fool than "I took it and felt great".</li>
+          </ol>
+        </div>
+
+        <!-- Related reading -->
+        <div class="related">
+          <h4>Next in this path</h4>
+          <div class="related-list">
+            <a href="/learn/evidence-how-much-to-demand"><span class="rl-type">Lesson 07</span>Putting it together — how much evidence to demand</a>
+            <a href="/learn/evidence-rct"><span class="rl-type">Lesson 02</span>RCTs — the blinded, controlled version of your self-experiment</a>
+          </div>
+        </div>
+
+        <!-- References -->
+        <div class="references">
+          <h2>References</h2>
+          <div class="ref-list">
+            <div class="ref-item" id="ref1">
+              <div class="ref-num">1</div>
+              <div>Barnett AG, van der Pols JC, Dobson AJ. <em>Regression to the mean: what it is and how to deal with it.</em> Int J Epidemiol. 2005;34(1):215–220. <a href="https://doi.org/10.1093/ije/dyh299" target="_blank" rel="noopener">doi:10.1093/ije/dyh299</a></div>
+            </div>
+            <div class="ref-item" id="ref2">
+              <div class="ref-num">2</div>
+              <div>Hemilä H, Chalker E. <em>Vitamin C for preventing and treating the common cold.</em> Cochrane Database Syst Rev. 2013;(1):CD000980. <a href="https://doi.org/10.1002/14651858.CD000980.pub4" target="_blank" rel="noopener">doi:10.1002/14651858.CD000980.pub4</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prev / next — filled by /lesson.js -->
+        <nav class="lesson-nav">
+          <a class="ln prev" id="lesson-prev" href="#"><span class="ln-dir">← Previous</span><span class="ln-title"></span></a>
+          <a class="ln up" href="/pages/learn"><span class="ln-dir">All paths</span><span class="ln-title">Learn home</span></a>
+          <a class="ln next" id="lesson-next" href="#"><span class="ln-dir">Next →</span><span class="ln-title"></span></a>
+        </nav>
+        <p class="lesson-foot-note">Progress saves automatically in this browser · skip ahead anytime · no streak.</p>
+
+      </article><!-- /article-body -->
+
+      <!-- ── Sidebar — filled by /lesson.js ───────────────────────── -->
+      <aside class="article-sidebar">
+        <div class="toc-card">
+          <h4>This path</h4>
+          <ul class="toc-list" id="path-outline"><li class="ol-soon">Loading path…</li></ul>
+        </div>
+        <div class="sidebar-meta">
+          <div class="sm-row">
+            <span class="sm-label">Path</span>
+            <span class="sm-value">02 · Evidence tiers</span>
+          </div>
+          <div class="sm-row">
+            <span class="sm-label">Lesson</span>
+            <span class="sm-value">06 of 7</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Level</span>
+            <span class="sm-value">Beginner</span>
+          </div>
+          <div class="sm-row">
+            <span class="sm-label">Read time</span>
+            <span class="sm-value">~9 min</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Updated</span>
+            <span class="sm-value">Jul 2026</span>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /article-layout -->
+  </div><!-- /container -->
+</main>
+
+<div id="site-footer"></div>
+<script src="/nc-site.js?v=1001"></script>
+<script src="/lesson.js?v=1"></script>
+</body>
+</html>

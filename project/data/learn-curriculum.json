@@ -55,43 +55,43 @@
           "slug": "evidence-pyramid",
           "title": "The evidence pyramid — a five-minute map",
           "minutes": 7,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-rct",
           "title": "RCTs — why randomisation is the whole point",
           "minutes": 9,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-meta-analyses",
           "title": "Meta-analyses and reviews — stronger, but not automatically",
           "minutes": 9,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-observational",
           "title": "Observational studies — correlation traps",
           "minutes": 8,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-animal-invitro",
           "title": "In-vitro and animal studies — the “in mice” problem",
           "minutes": 7,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-anecdote",
           "title": "Anecdote and n=1 — what self-experiments can and can't tell you",
           "minutes": 9,
-          "published": false
+          "published": true
         },
         {
           "slug": "evidence-how-much-to-demand",
           "title": "Putting it together — how much evidence to demand, per supplement",
           "minutes": 11,
-          "published": false
+          "published": true
         }
       ]
     },
