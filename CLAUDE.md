@@ -54,7 +54,10 @@ When the user gives you a page title, generate the slug yourself using these rul
 | Protocols              | `project/protocols/`            | `/protocols/sleep-stack`                       |
 | Guides                 | `project/guides/`               | `/guides/whey-protein-india`                   |
 | Blog posts             | `project/blog/`                 | `/blog/shelf-survey-2026`                      |
+| Learn lessons          | `project/learn/`                | `/learn/label-proprietary-blends`              |
 | Static / utility pages | `project/pages/`                | `/pages/about`, `/pages/contact`               |
+
+> **Learn lessons are special:** never create them by hand. Scaffold with `node scripts/new-lesson.js --path <1-6> --lesson <n>`. The curriculum (paths, titles, slugs) lives in `project/data/learn-curriculum.json`; the script fills `templates/lesson-template.html`, flips the lesson's `published` flag, and updates sitemap + feed. Lesson sidebars and prev/next nav are rendered client-side by `/lesson.js` from that JSON, so old lesson pages never go stale.
 
 > **Never** put content pages inside `project/pages/`. That folder is for static utility pages only (about, contact, privacy, terms, etc.). Content always goes in its own typed folder.
 
