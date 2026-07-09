@@ -354,7 +354,8 @@ ${SVG_DEFS}
 </main>
 
 <div id="site-footer"></div>
-<script src="/script.js"></script>
+<!-- nc-site.js only: script.js duplicates its theme-toggle handler, and
+     loading both makes one click flip the theme twice (net no-op) -->
 <script src="/nc-site.js"></script>
 <script>
 (function(){
