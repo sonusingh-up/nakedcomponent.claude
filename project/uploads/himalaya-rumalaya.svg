@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Illustration of a Himalaya Rumalaya herbal joint tablet bottle">
+  <defs>
+    <linearGradient id="hrbody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e8e6de"/>
+      <stop offset="0.5" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#dcd9ce"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="220" rx="70" ry="8" fill="#000" opacity="0.10"/>
+  <!-- cap -->
+  <rect x="78" y="26" width="84" height="26" rx="6" fill="#f0f0ee"/>
+  <rect x="78" y="26" width="84" height="26" rx="6" fill="none" stroke="#c8c8c0" stroke-width="1.5"/>
+  <rect x="84" y="52" width="72" height="10" fill="#e4e4de"/>
+  <!-- body -->
+  <path d="M84 62 C64 70 54 84 54 104 L54 196 C54 210 64 218 78 218 L162 218 C176 218 186 210 186 196 L186 104 C186 84 176 70 156 62 Z" fill="url(#hrbody)" stroke="#c8c5b8" stroke-width="1.5"/>
+  <!-- label -->
+  <rect x="54" y="96" width="132" height="108" fill="#ffffff" stroke="#ddd9cc" stroke-width="1"/>
+  <rect x="54" y="96" width="132" height="26" fill="#3d7a3f"/>
+  <text x="120" y="113" text-anchor="middle" font-family="Georgia, serif" font-size="12.5" font-weight="bold" letter-spacing="0.5" fill="#ffffff">Himalaya</text>
+  <!-- leaf -->
+  <path d="M120 128 C112 136 112 146 120 152 C128 146 128 136 120 128 Z" fill="#6aa84f"/>
+  <path d="M120 130 L120 151" stroke="#3d7a3f" stroke-width="1.2"/>
+  <text x="120" y="170" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#c8392e">Rumalaya</text>
+  <text x="120" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#556">Boswellia &#183; herbal joint care</text>
+  <text x="120" y="198" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#789">60 TABLETS &#183; VEGETARIAN</text>
+</svg>
