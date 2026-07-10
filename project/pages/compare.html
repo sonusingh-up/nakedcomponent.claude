@@ -420,13 +420,31 @@
       .h2h-winner-bar{grid-template-columns:1fr 1fr;}
       .h2h-dims-header,.h2h-dim-row{grid-template-columns:1fr 120px 1fr;}
     }
-    @media(max-width:600px) { .cat-grid { grid-template-columns: 1fr 1fr; }
+    @media(max-width:600px) {
+      .cat-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
       .hub-stats-bar { grid-template-columns: 1fr 1fr; }
       .rubric-dims { grid-template-columns: 1fr; }
       .flags-grid { grid-template-columns: 1fr; }
-      .cat-pick { display: none; }
       .h2h-dims-header,.h2h-dim-row{grid-template-columns:1fr 90px 1fr;}
       .h2h-big-score{font-size:38px;}
+
+      /* ── Mobile card upgrades ── */
+      .cat-card { padding: var(--s-5) var(--s-3); gap: 7px; min-height: 198px; }
+      .cat-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .cat-glyph { width: 60px; height: 60px; font-size: 22px; border-radius: 16px; flex-shrink: 0; }
+      .cat-badge { font-size: 9px; padding: 2px 8px; letter-spacing: .04em; }
+      .cat-name { font-size: 14.5px; }
+      .cat-meta {
+        font-size: 10px; line-height: 1.4;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      /* Restore top-pick as single truncated line */
+      .cat-pick {
+        display: block; font-size: 11px;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        padding-top: 6px; border-top: 1px dashed var(--line);
+      }
+      .cat-arrow { font-size: 11px; }
     }
 
     /* ── Reduced motion ─────────────────────────────────────────── */
