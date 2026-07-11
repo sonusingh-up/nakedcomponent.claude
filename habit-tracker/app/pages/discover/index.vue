@@ -64,10 +64,22 @@ const scrollContainer = ref<HTMLElement | null>(null)
 let isDown = false
 let startX: number
 let scrollLeft: number
+// Distinguishes a drag-scroll from a tap so releasing a drag over a
+// category chip doesn't accidentally select it.
+const dragged = ref(false)
+
+function selectCategory(cat: HabitCategory | 'all') {
+  if (dragged.value) {
+    dragged.value = false
+    return
+  }
+  activeCategory.value = cat
+}
 
 function onMouseDown(e: MouseEvent) {
   if (!scrollContainer.value) return
   isDown = true
+  dragged.value = false
   scrollContainer.value.classList.add('cursor-grabbing')
   scrollContainer.value.classList.remove('cursor-grab')
   startX = e.pageX - scrollContainer.value.offsetLeft
@@ -93,6 +105,7 @@ function onMouseMove(e: MouseEvent) {
   e.preventDefault()
   const x = e.pageX - scrollContainer.value.offsetLeft
   const walk = (x - startX) * 2 // Scroll speed multiplier
+  if (Math.abs(walk) > 6) dragged.value = true
   scrollContainer.value.scrollLeft = scrollLeft - walk
 }
 </script>
@@ -131,7 +144,7 @@ function onMouseMove(e: MouseEvent) {
             ? 'spark-gradient text-white shadow-[0_2px_12px_rgba(255,106,24,0.3)] hover:shadow-[0_4px_16px_rgba(255,106,24,0.4)]'
             : 'bg-stone-100 text-stone-500 ring-1 ring-stone-200 hover:bg-stone-200 hover:text-stone-700 hover:ring-stone-300 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.08] dark:hover:bg-white/[0.08] dark:hover:text-white dark:hover:ring-white/[0.12]'
         "
-        @click="activeCategory = 'all'"
+        @click="selectCategory('all')"
       >
         All
       </button>
@@ -144,7 +157,7 @@ function onMouseMove(e: MouseEvent) {
             ? 'spark-gradient text-white shadow-[0_2px_12px_rgba(255,106,24,0.3)] hover:shadow-[0_4px_16px_rgba(255,106,24,0.4)]'
             : 'bg-stone-100 text-stone-500 ring-1 ring-stone-200 hover:bg-stone-200 hover:text-stone-700 hover:ring-stone-300 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.08] dark:hover:bg-white/[0.08] dark:hover:text-white dark:hover:ring-white/[0.12]'
         "
-        @click="activeCategory = cat"
+        @click="selectCategory(cat)"
       >
         <UIcon :name="CATEGORY_META[cat].icon" class="size-[16px] opacity-80" />
         {{ CATEGORY_META[cat].label }}
