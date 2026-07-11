@@ -2,6 +2,8 @@
 import type { HabitCategory } from '~/types'
 import { CATEGORY_META } from '~/types'
 
+useHead({ title: 'Custom habit — Habits' })
+
 const router = useRouter()
 const { createCustomHabit } = useHabits()
 const toast = useToast()
@@ -76,7 +78,7 @@ async function save() {
   <div>
     <!-- Sticky header matching other sub-pages -->
     <header
-      class="sticky top-0 z-10 -mx-4 mb-4 flex items-center justify-between bg-[var(--color-coal-1000)]/80 px-4 py-4 backdrop-blur-md sm:-mx-8 sm:px-8"
+      class="sticky top-0 z-10 -mx-4 mb-4 flex items-center justify-between bg-stone-100/80 px-4 py-4 backdrop-blur-md sm:-mx-8 sm:px-8 dark:bg-[var(--color-coal-1000)]/80"
     >
       <UButton
         icon="i-lucide-arrow-left"
@@ -85,7 +87,7 @@ async function save() {
         class="-ml-2"
         @click="router.back()"
       />
-      <h1 class="font-semibold text-stone-100">Create Custom Habit</h1>
+      <h1 class="font-semibold text-stone-900 dark:text-stone-100">Create Custom Habit</h1>
       <div class="w-8" /> <!-- spacer -->
     </header>
 
@@ -94,7 +96,7 @@ async function save() {
         <div class="space-y-5">
           <!-- Name -->
           <div>
-            <label class="mb-1.5 block text-sm font-medium text-stone-300">Habit Name</label>
+            <label class="mb-1.5 block text-sm font-medium text-stone-600 dark:text-stone-300">Habit Name</label>
             <UInput
               v-model="form.name"
               placeholder="e.g. Read 10 pages"
@@ -105,7 +107,7 @@ async function save() {
 
           <!-- Description -->
           <div>
-            <label class="mb-1.5 block text-sm font-medium text-stone-300">Description <span class="font-normal text-stone-400">(Optional)</span></label>
+            <label class="mb-1.5 block text-sm font-medium text-stone-600 dark:text-stone-300">Description <span class="font-normal text-stone-400">(Optional)</span></label>
             <UInput
               v-model="form.description"
               placeholder="Why are you doing this?"
@@ -116,10 +118,10 @@ async function save() {
 
           <!-- Category -->
           <div>
-            <label class="mb-1.5 block text-sm font-medium text-stone-300">Category</label>
+            <label class="mb-1.5 block text-sm font-medium text-stone-600 dark:text-stone-300">Category</label>
             <select
               v-model="form.category"
-              class="w-full rounded-full border border-white/10 bg-[var(--color-coal-900)] px-4 py-2.5 text-sm text-stone-200 focus:border-ember-400 focus:outline-none"
+              class="w-full rounded-full border border-stone-200 bg-white px-4 py-2.5 text-sm text-stone-800 focus:border-ember-400 focus:outline-none dark:border-white/10 dark:bg-[var(--color-coal-900)] dark:text-stone-200"
             >
               <option v-for="cat in categories" :key="cat.value" :value="cat.value">
                 {{ cat.label }}
@@ -129,14 +131,14 @@ async function save() {
 
           <!-- Icon selection -->
           <div>
-            <label class="mb-2 block text-sm font-medium text-stone-300">Icon</label>
+            <label class="mb-2 block text-sm font-medium text-stone-600 dark:text-stone-300">Icon</label>
             <div class="flex flex-wrap gap-2">
               <button
                 v-for="icon in ICONS"
                 :key="icon"
                 type="button"
                 class="flex size-12 items-center justify-center rounded-full border transition-colors"
-                :class="form.icon === icon ? 'border-ember-400 bg-ember-500/15 text-ember-300' : 'border-white/10 text-stone-400 hover:bg-white/10'"
+                :class="form.icon === icon ? 'border-ember-400 bg-ember-500/15 text-ember-500 dark:text-ember-300' : 'border-stone-200 text-stone-400 hover:bg-stone-100 dark:border-white/10 dark:hover:bg-white/10'"
                 @click="form.icon = icon"
               >
                 <UIcon :name="icon" class="size-6" />

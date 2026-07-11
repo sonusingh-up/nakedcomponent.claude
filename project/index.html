@@ -5,6 +5,8 @@
      crossorigin="anonymous"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#14110e" media="(prefers-color-scheme: dark)" />
   <title>Naked Compound — Strip the label. See the science.</title>
   <meta name="description" content="Independent, evidence-based supplement research for India. Guides, ingredient analysis, unbiased product reviews, and ready-made protocols." />
   <link rel="canonical" href="https://www.nakedcompound.in/" />
@@ -279,6 +281,478 @@
       .picks-tab { flex: 1; text-align: center; padding: 8px 10px; }
       .feature-card { padding: var(--s-5); }
     }
+
+    /* ===================================================
+       HERO — dot-grid backdrop, entrance, underline draw
+       =================================================== */
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: radial-gradient(color-mix(in oklab, var(--ink) 16%, transparent) 1px, transparent 1.5px);
+      background-size: 26px 26px;
+      -webkit-mask-image: radial-gradient(ellipse 75% 65% at 24% 18%, #000 0%, transparent 68%);
+      mask-image: radial-gradient(ellipse 75% 65% at 24% 18%, #000 0%, transparent 68%);
+      opacity: .5;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-copy > * { opacity: 0; transform: translateY(16px); animation: heroRise .75s var(--ease-out) forwards; }
+      .hero-copy > h1                    { animation-delay: .05s; }
+      .hero-copy > .lede                 { animation-delay: .16s; }
+      .hero-copy > .hero-ctas            { animation-delay: .27s; }
+      .hero-copy > .hero-secondary-links { animation-delay: .36s; }
+      .hero-copy > .trust-note           { animation-delay: .44s; }
+    }
+    @keyframes heroRise { to { opacity: 1; transform: none; } }
+
+    .hero h1 em {
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C22 2.5 44 2 62 4.5S102 8 118 4' stroke='%23c96442' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom / 0% 0.14em;
+      padding-bottom: 0.08em;
+    }
+    [data-theme="dark"] .hero h1 em {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 9' preserveAspectRatio='none'%3E%3Cpath d='M2 6.5C22 2.5 44 2 62 4.5S102 8 118 4' stroke='%23e27a58' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero h1 em { animation: underlineDraw .6s var(--ease-out) .85s forwards; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1 em { background-size: 100% 0.14em; }
+    }
+    @keyframes underlineDraw { to { background-size: 100% 0.14em; } }
+
+    /* ===================================================
+       HERO ARTIFACTS — orbit ring + floating pills
+       =================================================== */
+    .hero-orbit {
+      position: absolute; inset: 4% 6% 8% 2%;
+      border: 1.5px dashed color-mix(in oklab, var(--ink) 26%, transparent);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-orbit { animation: orbitSpin 46s linear infinite; }
+    }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+    .orbit-dot {
+      position: absolute; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent); top: -5px; left: 50%;
+      box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 16%, transparent);
+    }
+    .orbit-dot.d2 {
+      width: 8px; height: 8px; background: #5ba672;
+      top: 62%; left: auto; right: -4px;
+      box-shadow: 0 0 0 4px color-mix(in oklab, #5ba672 16%, transparent);
+    }
+    .orbit-dot.d3 {
+      width: 7px; height: 7px; background: #8fb4d9;
+      top: auto; bottom: 6%; left: 16%;
+      box-shadow: 0 0 0 4px color-mix(in oklab, #8fb4d9 16%, transparent);
+    }
+
+    .hero-pill { position: absolute; pointer-events: none; filter: drop-shadow(0 6px 14px rgba(26,23,20,.16)); }
+    .hero-pill.p1 { width: 56px; top: 15%; right: 6%; transform: rotate(-24deg); }
+    .hero-pill.p2 { width: 42px; bottom: 18%; right: 26%; transform: rotate(16deg); }
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-pill.p1 { animation: pillFloat 9s ease-in-out infinite; }
+      .hero-pill.p2 { animation: pillFloat 11s ease-in-out 1.2s infinite reverse; }
+    }
+    @keyframes pillFloat {
+      0%, 100% { translate: 0 0; }
+      50%      { translate: 0 -12px; }
+    }
+
+    /* ===================================================
+       EVIDENCE TICKER — infinite marquee
+       =================================================== */
+    .ticker {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-elev);
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker::before, .ticker::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 60px;
+      z-index: 1; pointer-events: none;
+    }
+    .ticker::before { left: 0;  background: linear-gradient(90deg, var(--bg-elev), transparent); }
+    .ticker::after  { right: 0; background: linear-gradient(270deg, var(--bg-elev), transparent); }
+    .ticker-track { display: flex; width: max-content; }
+    @media (prefers-reduced-motion: no-preference) {
+      .ticker-track { animation: tickerScroll 48s linear infinite; }
+      .ticker:hover .ticker-track { animation-play-state: paused; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker { overflow-x: auto; }
+    }
+    @keyframes tickerScroll { to { transform: translateX(-50%); } }
+    .ticker-list {
+      display: flex; align-items: center; gap: 42px;
+      list-style: none; margin: 0; padding: 13px 42px 13px 0;
+      white-space: nowrap;
+    }
+    .ticker-list:first-child { padding-left: 42px; }
+    .ticker-list li {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: var(--font-mono); font-size: 12.5px; letter-spacing: .03em;
+      color: var(--ink-soft);
+    }
+    .ticker-list li strong { color: var(--ink); font-weight: 500; }
+    .t-dot { width: 7px; height: 7px; border-radius: 50%; flex: 0 0 auto; }
+    .t-dot.strong { background: #5ba672; }
+    .t-dot.mod    { background: #d9a92f; }
+    .t-dot.flag   { background: var(--accent); }
+
+    /* ===================================================
+       STRIP THE LABEL — interactive demo
+       =================================================== */
+    .strip-grid {
+      display: grid; grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--s-8); align-items: center;
+    }
+    .strip-copy .eyebrow {
+      color: var(--ink-muted); font-size: 13px;
+      letter-spacing: .12em; text-transform: uppercase;
+      margin-bottom: var(--s-3);
+    }
+    .strip-copy h2 {
+      font-size: clamp(30px, 3.6vw, 44px);
+      letter-spacing: -.025em; line-height: 1.05;
+      margin-bottom: var(--s-4); max-width: 18ch;
+    }
+    .strip-copy h2 em {
+      font-style: normal;
+      font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
+      color: var(--accent); font-weight: 400;
+    }
+    .strip-copy .lede {
+      color: var(--ink-soft); font-size: 16.5px; line-height: 1.55;
+      max-width: 46ch; margin-bottom: var(--s-5);
+    }
+
+    .strip-toggle {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 10px 18px 10px 12px;
+      border: 1px solid var(--line-strong); border-radius: var(--r-pill);
+      background: var(--surface);
+      font-weight: 500; font-size: 14.5px;
+      transition: border-color 160ms var(--ease-out), transform 120ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .strip-toggle:hover { border-color: var(--ink); }
+    }
+    .strip-toggle:active { transform: scale(.97); }
+    .st-track {
+      width: 40px; height: 22px; border-radius: var(--r-pill);
+      background: var(--line-strong); position: relative; flex: 0 0 auto;
+      transition: background 200ms var(--ease-out);
+    }
+    .st-thumb {
+      position: absolute; top: 3px; left: 3px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.25);
+      transition: transform 250ms var(--ease-drawer);
+    }
+    .strip-toggle[aria-checked="true"] .st-track { background: var(--accent); }
+    .strip-toggle[aria-checked="true"] .st-thumb { transform: translateX(18px); }
+
+    .label-card {
+      background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: var(--r-lg); overflow: hidden;
+      box-shadow: var(--shadow-md);
+      max-width: 520px; margin-left: auto; width: 100%;
+    }
+    .lc-header {
+      position: relative; padding: var(--s-5) var(--s-6);
+      background: linear-gradient(120deg, #2a2340, #613a8f 55%, #b0412e);
+      color: #fff;
+      transition: filter .6s var(--ease-out), opacity .6s var(--ease-out);
+    }
+    .stripped .lc-header { filter: grayscale(1) contrast(.9); opacity: .65; }
+    .lc-title {
+      font-family: var(--font-display); font-weight: 700; font-style: italic;
+      font-size: 24px; letter-spacing: -.01em; line-height: 1.08;
+      text-transform: uppercase; padding-right: 70px;
+    }
+    .lc-sub {
+      font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: .2em; margin-top: 8px; opacity: .8;
+    }
+    .lc-burst {
+      position: absolute; top: 16px; right: 18px;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #ffd54d; color: #7a2000;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1;
+      transform: rotate(12deg);
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.35);
+    }
+    .lc-burst small { font-size: 7px; letter-spacing: .08em; margin-top: 2px; }
+    .lc-claims {
+      list-style: none; margin: 0;
+      padding: var(--s-3) var(--s-6);
+      display: flex; flex-direction: column;
+    }
+    .lc-claims li { padding: 13px 0; border-bottom: 1px dashed var(--line); }
+    .lc-claims li:last-child { border-bottom: 0; }
+    .lc-claim {
+      position: relative; display: inline-block;
+      font-weight: 600; font-size: 15px; letter-spacing: -.005em;
+      transition: opacity .45s var(--ease-out);
+    }
+    .lc-claim::after {
+      content: ''; position: absolute; left: -2px; right: -2px; top: 52%; height: 2px;
+      background: var(--accent); border-radius: 2px;
+      transform: scaleX(0); transform-origin: left center;
+      transition: transform .45s var(--ease-out);
+    }
+    .stripped .lc-claim { opacity: .38; }
+    .stripped .lc-claim::after { transform: scaleX(1); }
+    .lc-truth {
+      display: block; max-height: 0; opacity: 0; overflow: hidden;
+      font-size: 13px; line-height: 1.55; color: var(--accent-deep);
+      font-family: var(--font-mono);
+      transition: max-height .5s var(--ease-out), opacity .5s var(--ease-out), margin-top .5s var(--ease-out);
+    }
+    .stripped .lc-truth { max-height: 7em; opacity: 1; margin-top: 7px; }
+    .stripped .lc-claims li:nth-child(2) .lc-claim,
+    .stripped .lc-claims li:nth-child(2) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(2) .lc-truth { transition-delay: .12s; }
+    .stripped .lc-claims li:nth-child(3) .lc-claim,
+    .stripped .lc-claims li:nth-child(3) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(3) .lc-truth { transition-delay: .24s; }
+    .stripped .lc-claims li:nth-child(4) .lc-claim,
+    .stripped .lc-claims li:nth-child(4) .lc-claim::after,
+    .stripped .lc-claims li:nth-child(4) .lc-truth { transition-delay: .36s; }
+    .lc-foot {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: var(--s-4) var(--s-6);
+      border-top: 1px solid var(--line);
+      background: var(--bg-elev);
+      font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted);
+    }
+    .lc-verdict {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink); white-space: nowrap;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity .5s var(--ease-out) .45s, transform .5s var(--ease-out) .45s;
+    }
+    .lc-verdict .v-score {
+      background: var(--accent); color: var(--accent-ink);
+      border-radius: var(--r-pill); padding: 2px 9px; font-weight: 600;
+    }
+    .stripped .lc-verdict { opacity: 1; transform: none; }
+
+    /* ===================================================
+       STAGGERED CARD REVEALS (home only)
+       =================================================== */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip) { opacity: 0; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip) {
+        opacity: 1;
+        animation: riseIn .55s var(--ease-out) backwards;
+      }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(2) { animation-delay: 60ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(3) { animation-delay: 120ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(4) { animation-delay: 180ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(5) { animation-delay: 240ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(6) { animation-delay: 300ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(7) { animation-delay: 360ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(8) { animation-delay: 420ms; }
+      .reveal.in :is(.card, .protocol, .review, .ingredient, .pick-card, .feature, .feature-card, .stat, .chip):nth-child(n+9) { animation-delay: 480ms; }
+    }
+    @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } }
+
+    /* ===================================================
+       BACK TO TOP — with scroll progress ring
+       =================================================== */
+    .back-top {
+      position: fixed; right: 20px; bottom: 20px; z-index: 55;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--surface); border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow-md);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink);
+      opacity: 0; transform: translateY(14px); pointer-events: none;
+      transition: opacity 250ms var(--ease-out), transform 250ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+    }
+    .back-top.show { opacity: 1; transform: none; pointer-events: auto; }
+    @media (hover: hover) and (pointer: fine) {
+      .back-top:hover { border-color: var(--accent); color: var(--accent); }
+    }
+    .back-top:active { transform: scale(.94); }
+    .back-top .ring {
+      position: absolute; inset: -1px;
+      width: calc(100% + 2px); height: calc(100% + 2px);
+      transform: rotate(-90deg);
+    }
+    .back-top .ring .rfg {
+      fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round;
+      stroke-dasharray: 100; stroke-dashoffset: 100;
+    }
+    .back-top .arr { width: 17px; height: 17px; }
+    @media print { .back-top { display: none !important; } }
+
+    /* ===================================================
+       NEW SECTIONS — responsive
+       =================================================== */
+    @media (max-width: 900px) {
+      .strip-grid { grid-template-columns: 1fr; gap: var(--s-6); }
+      .label-card { margin: 0 auto; }
+    }
+    @media (max-width: 720px) {
+      .hero-pill.p1 { width: 42px; }
+      .hero-pill.p2 { width: 32px; }
+      .ticker-list { gap: 28px; padding-right: 28px; }
+      .ticker-list:first-child { padding-left: 28px; }
+      .lc-claims { padding: var(--s-2) var(--s-5); }
+      .lc-header { padding: var(--s-4) var(--s-5); }
+      .lc-foot { padding: var(--s-3) var(--s-5); flex-wrap: wrap; }
+      .back-top { right: 14px; bottom: 14px; width: 44px; height: 44px; }
+    }
+
+    /* ===================================================
+       LINKED CARDS — guides, reviews, picks, protocols, press
+       =================================================== */
+    a.card, a.review { text-decoration: none; color: inherit; cursor: pointer; }
+
+    .review-tags .rt-link {
+      font-size: 11px; padding: 3px 8px; border-radius: var(--r-pill);
+      font-family: var(--font-mono); white-space: nowrap;
+      color: var(--accent);
+      background: color-mix(in oklab, var(--accent) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--line));
+      margin-left: auto;
+      transition: background 160ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      a.review:hover .rt-link { background: color-mix(in oklab, var(--accent) 18%, transparent); }
+    }
+
+    .pick-review-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      width: fit-content;
+      font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+      letter-spacing: .03em; color: var(--accent);
+      border-bottom: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+      padding-bottom: 1px;
+      transition: border-color 160ms var(--ease-out), gap 160ms var(--ease-out);
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .pick-review-link:hover { border-color: var(--accent); gap: 9px; }
+    }
+
+    .protocol { cursor: pointer; }
+
+    .press-row a { display: inline-block; }
+    @media (hover: hover) and (pointer: fine) {
+      .press-row a:hover span { color: var(--accent); }
+    }
+    .press-row a:active { transform: scale(0.97); }
+    .press-row a span { transition: color 160ms var(--ease-out); }
+
+    /* pages.css overrides the home review grid to 3 columns, orphaning
+       the 4th card on desktop — restore the intended 4-up layout there */
+    @media (min-width: 1025px) {
+      .review-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ===================================================
+       MOBILE OPTIMIZATION — home page
+       =================================================== */
+    /* Anchor jumps clear the sticky header (all viewports) */
+    section[id] { scroll-margin-top: calc(var(--nav-h) + 16px); }
+    body { -webkit-tap-highlight-color: transparent; }
+
+    /* Restore the horizontal gutters that .section/.hero/.stats/.press
+       shorthand padding (e.g. `padding: var(--s-9) 0`) strips from
+       elements that are also .container — without this, these sections
+       touch the screen edge on phones/tablets and sit 24px out of
+       alignment with inner-container sections on desktop. */
+    .hero.container, .stats.container, .section.container, .press.container {
+      padding-inline: 24px;
+    }
+    @media (max-width: 480px) {
+      .hero.container, .stats.container, .section.container, .press.container {
+        padding-inline: 16px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      /* — Hero: calmer backdrop, bigger tap targets — */
+      .hero::before { opacity: .3; }
+      .hero-secondary-links { gap: 8px 18px; font-size: 13px; }
+      .hero-secondary-links a { padding: 6px 0; }
+
+      /* — Card sections become swipeable snap carousels
+           (next card peeks in from the right as the affordance) — */
+      .card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active {
+        display: grid;
+        grid-template-columns: unset;
+        grid-auto-flow: column;
+        grid-auto-columns: min(86%, 340px);
+        gap: 14px;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        margin-inline: -24px;
+        padding-inline: 24px;
+        scroll-padding-inline: 24px;
+        padding-bottom: 16px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line-strong) transparent;
+      }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar { height: 6px; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar-track { background: transparent; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active)::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active) > * {
+        scroll-snap-align: start;
+        min-width: 0;
+      }
+
+      /* — Picks: comfortable touch height for tabs and buy buttons — */
+      .picks-tab { padding: 11px 10px; }
+      .pick-buy { padding: 10px 16px; }
+
+      /* — Strip the label: full-width toggle, easier to hit — */
+      .strip-toggle { width: 100%; justify-content: center; padding: 12px 20px 12px 14px; }
+
+      /* — Back-to-top: respect iOS safe area — */
+      .back-top { bottom: calc(14px + env(safe-area-inset-bottom, 0px)); }
+    }
+
+    @media (max-width: 480px) {
+      /* Carousels align with the tighter 16px container padding */
+      :is(.card-grid, .protocol-grid, .review-grid, .ingredient-grid, .picks-panel.active) {
+        margin-inline: -16px;
+        padding-inline: 16px;
+        scroll-padding-inline: 16px;
+        grid-auto-columns: min(88%, 320px);
+      }
+
+      /* Hero CTAs stack full-width */
+      .hero-ctas { flex-direction: column; align-items: stretch; }
+      .hero-ctas .btn { justify-content: center; }
+
+      /* Stats stay a compact 2×2 instead of a long single column */
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat { padding: var(--s-4); }
+      .stat .num { font-size: clamp(28px, 8.4vw, 38px); }
+      .stat .label { font-size: 12.5px; }
+
+      /* Denser category chips — more per row */
+      .chip { padding: 8px 13px; font-size: 13px; }
+      .chip .count { font-size: 10px; padding: 2px 6px; }
+
+      /* Strip the label — tighter type on small screens */
+      .strip-copy h2 { font-size: clamp(28px, 8.6vw, 34px); }
+      .lc-title { font-size: 20px; padding-right: 64px; }
+      .lc-burst { width: 52px; height: 52px; font-size: 15px; top: 12px; right: 14px; }
+      .lc-claim { font-size: 14px; }
+      .lc-truth { font-size: 12.5px; }
+
+      .ticker-list li { font-size: 12px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -328,19 +802,60 @@
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-blob"></div>
           <div class="hero-blob blob-2"></div>
-          <div class="hero-capsule c1">
+          <div class="hero-orbit" data-depth="8">
+            <span class="orbit-dot"></span>
+            <span class="orbit-dot d2"></span>
+            <span class="orbit-dot d3"></span>
+          </div>
+          <svg class="hero-pill p1" viewBox="0 0 64 28">
+            <rect x="1.5" y="1.5" width="61" height="25" rx="12.5" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <path d="M32 1.5h18A12.5 12.5 0 0 1 62.5 14 12.5 12.5 0 0 1 50 26.5H32Z" fill="var(--accent)" opacity=".85"/>
+          </svg>
+          <svg class="hero-pill p2" viewBox="0 0 64 28">
+            <rect x="1.5" y="1.5" width="61" height="25" rx="12.5" fill="var(--surface)" stroke="var(--line-strong)" stroke-width="1.5"/>
+            <path d="M32 1.5h18A12.5 12.5 0 0 1 62.5 14 12.5 12.5 0 0 1 50 26.5H32Z" fill="#5ba672" opacity=".6"/>
+          </svg>
+          <div class="hero-capsule c1" data-depth="22">
             <span class="cap-label">Creatine · ON</span>
             <span class="cap-value">3.0g — 5.0g / day</span>
           </div>
-          <div class="hero-capsule c2">
+          <div class="hero-capsule c2" data-depth="34">
             <span class="cap-label">Score</span>
             <span class="cap-value">8.4 / 10</span>
           </div>
-          <div class="hero-capsule c3">
+          <div class="hero-capsule c3" data-depth="16">
             <span class="cap-label">Evidence</span>
             <span class="cap-value">142 studies reviewed</span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         EVIDENCE TICKER
+         ========================================================= -->
+    <section class="ticker" aria-label="Evidence ticker">
+      <div class="ticker-track">
+        <ul class="ticker-list">
+          <li><span class="t-dot strong"></span><strong>Creatine</strong> Strong evidence · 42 studies</li>
+          <li><span class="t-dot strong"></span><strong>Whey isolate</strong> 90%+ protein by weight</li>
+          <li><span class="t-dot flag"></span><strong>Fish oil</strong> 6 of 22 brands passed freshness testing</li>
+          <li><span class="t-dot mod"></span><strong>Ashwagandha KSM-66</strong> Moderate · 27 studies</li>
+          <li><span class="t-dot flag"></span><strong>Magnesium oxide</strong> ~4% absorption — skip it</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin D3</strong> 1,000–2,000 IU beats megadose sachets</li>
+          <li><span class="t-dot mod"></span><strong>Melatonin</strong> 0.3–1mg outperforms 10mg tablets</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin B12</strong> highest-yield fix for Indian vegetarians</li>
+        </ul>
+        <ul class="ticker-list" aria-hidden="true">
+          <li><span class="t-dot strong"></span><strong>Creatine</strong> Strong evidence · 42 studies</li>
+          <li><span class="t-dot strong"></span><strong>Whey isolate</strong> 90%+ protein by weight</li>
+          <li><span class="t-dot flag"></span><strong>Fish oil</strong> 6 of 22 brands passed freshness testing</li>
+          <li><span class="t-dot mod"></span><strong>Ashwagandha KSM-66</strong> Moderate · 27 studies</li>
+          <li><span class="t-dot flag"></span><strong>Magnesium oxide</strong> ~4% absorption — skip it</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin D3</strong> 1,000–2,000 IU beats megadose sachets</li>
+          <li><span class="t-dot mod"></span><strong>Melatonin</strong> 0.3–1mg outperforms 10mg tablets</li>
+          <li><span class="t-dot strong"></span><strong>Vitamin B12</strong> highest-yield fix for Indian vegetarians</li>
+        </ul>
       </div>
     </section>
 
@@ -364,6 +879,53 @@
         <div class="stat">
           <div class="num"><span data-num="48700">0</span></div>
           <div class="label">Readers using Naked Compound each month</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         STRIP THE LABEL — interactive demo
+         ========================================================= -->
+    <section class="section container reveal" id="strip-the-label" aria-label="Strip the label demo">
+      <div class="strip-grid">
+        <div class="strip-copy">
+          <div class="eyebrow">Interactive · Our whole thesis in one card</div>
+          <h2>Strip the label. <em>See the science.</em></h2>
+          <p class="lede">This is what we do to every product we review. Marketing terms get struck out; what survives is dose, form, and evidence. Try it on this fictional — but painfully familiar — label.</p>
+          <button class="strip-toggle" id="stripToggle" role="switch" aria-checked="false" aria-controls="labelCard">
+            <span class="st-track" aria-hidden="true"><span class="st-thumb"></span></span>
+            <span class="st-label">Strip the label</span>
+          </button>
+        </div>
+
+        <div class="label-card" id="labelCard">
+          <div class="lc-header">
+            <div class="lc-burst" aria-hidden="true">27×<small>ABSORPTION*</small></div>
+            <div class="lc-title">Xtreme Anabolic<br>Whey 5000™</div>
+            <div class="lc-sub">ULTRA PREMIUM · IMPORTED FORMULA · PRO SERIES</div>
+          </div>
+          <ul class="lc-claims">
+            <li>
+              <span class="lc-claim">Proprietary Anabolic Matrix™ — 5,000 mg</span>
+              <span class="lc-truth">A "matrix" hides every individual dose. This could be 4,600 mg maltodextrin — the label won't tell you.</span>
+            </li>
+            <li>
+              <span class="lc-claim">27× better absorption*</span>
+              <span class="lc-truth">*The asterisk points to one unpublished in-vitro study. No human RCT shows 27× anything.</span>
+            </li>
+            <li>
+              <span class="lc-claim">Clinically studied ingredients</span>
+              <span class="lc-truth">"Studied" ≠ dosed right. Creatine works at 3–5 g/day. A blend this size can't guarantee even 1 g.</span>
+            </li>
+            <li>
+              <span class="lc-claim">Steroid-like gains — 100% natural</span>
+              <span class="lc-truth">If this were true it would be a scheduled drug. It isn't. It's flavoured protein with a story.</span>
+            </li>
+          </ul>
+          <div class="lc-foot">
+            <span>Fictional label · real patterns</span>
+            <span class="lc-verdict"><span class="v-score">3.1 / 10</span> naked score</span>
+          </div>
         </div>
       </div>
     </section>
@@ -476,6 +1038,7 @@
                 <span class="pick-spec">~4g lactose / serving</span>
               </div>
               <p class="pick-verdict">The most replicated whey protein on the market. Blend of isolate + concentrate, standardised amino acid profile, and consistent third-party testing history. Best-in-class for lactose-tolerant lifters.</p>
+              <a href="/reviews/wheyprotein/on-gold-standard-whey-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹4,999 <span>/ 2lb · Amazon IN</span></div>
@@ -520,6 +1083,7 @@
                 <span class="pick-spec">Blend (not isolate)</span>
               </div>
               <p class="pick-verdict">Solid protein numbers, but the "Biozyme" enzyme story is marketing-first. EAF blend adds cost without clear RCT support for digestion benefits at this dose. Pick it for availability, not the enzymes.</p>
+              <a href="/reviews/wheyprotein/muscleblaze-biozyme-performance-whey-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹3,199 <span>/ 1kg · Amazon IN</span></div>
@@ -545,6 +1109,7 @@
                 <span class="pick-spec green">No excipients</span>
               </div>
               <p class="pick-verdict">Creapure-sourced monohydrate from AlzChem, Germany — the most studied raw material in sports nutrition. No loading needed. Unflavoured means it mixes into anything. Boring in the best possible way.</p>
+              <a href="/reviews/creatine/gnc-pro-performance-creatine" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹1,299 <span>/ 300g · Amazon IN</span></div>
@@ -567,6 +1132,7 @@
                 <span class="pick-spec warn">Not Creapure-verified</span>
               </div>
               <p class="pick-verdict">Best value creatine in India at under ₹350/100g. Not Creapure-certified, but micronised monohydrate from a brand with reasonable label honesty. The budget pick that doesn't compromise the fundamentals.</p>
+              <a href="/reviews/creatine/as-it-is-one-creatine-monohydrate-review" class="pick-review-link">Read the full review →</a>
             </div>
             <div class="pick-footer">
               <div class="pick-price">₹849 <span>/ 250g · Amazon IN</span></div>
@@ -689,71 +1255,71 @@
       </div>
 
       <div class="card-grid">
-        <article class="card guide-card g1">
+        <a class="card guide-card g1" href="/research/creatine-loading">
           <div class="visual"><span class="glyph">Cr</span></div>
           <span class="card-tag"><span class="swatch"></span>Creatine</span>
           <h3>Should you really "load" creatine? A look at 27 trials.</h3>
           <p>We mapped 27 RCTs to see whether the 20g/day loading phase actually beats a steady 3–5g. The honest answer is more interesting than either camp admits.</p>
           <div class="card-meta">
             <span>11 min read · Updated Apr 2026</span>
-            <a href="/research/creatine-loading" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g2">
+        <a class="card guide-card g2" href="/research/whey-isolate-vs-concentrate-lactose">
           <div class="visual"><span class="glyph">Wp</span></div>
           <span class="card-tag"><span class="swatch"></span>Protein</span>
           <h3>Whey isolate vs concentrate for the Indian lactose-sensitive lifter.</h3>
           <p>When the ₹800 price gap between isolate and concentrate matters — and when it's just brand marketing. Includes lactose thresholds and a decision flowchart.</p>
           <div class="card-meta">
             <span>14 min read · Updated Mar 2026</span>
-            <a href="/research/whey-isolate-vs-concentrate-lactose" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g3">
+        <a class="card guide-card g3" href="/research/fish-oil-freshness-q1-2026">
           <div class="visual"><span class="glyph">Ω3</span></div>
           <span class="card-tag"><span class="swatch"></span>Omega-3</span>
           <h3>Fish oil in India: why most bottles fail a simple freshness test.</h3>
           <p>We lab-tested 22 popular fish oil brands for peroxide and anisidine. Six passed. Here's what "TOTOX" actually means and how to check at home.</p>
           <div class="card-meta">
             <span>9 min read · Updated Feb 2026</span>
-            <a href="/research/fish-oil-freshness-q1-2026" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g4">
+        <a class="card guide-card g4" href="/ingredients/ashwagandha-ksm66-vs-sensoril">
           <div class="visual"><span class="glyph">Ash</span></div>
           <span class="card-tag"><span class="swatch"></span>Ashwagandha</span>
           <h3>Ashwagandha: what KSM-66 and Sensoril trials actually show.</h3>
           <p>Everyone sells it, few cite it right. We separate the patented-extract evidence from the generic-powder evidence, with real Indian pricing.</p>
           <div class="card-meta">
             <span>16 min read · Updated Mar 2026</span>
-            <a href="/ingredients/ashwagandha-ksm66-vs-sensoril" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g5">
+        <a class="card guide-card g5" href="/research/vitamin-d-60000iu-weekly-sachet">
           <div class="visual"><span class="glyph">D₃</span></div>
           <span class="card-tag"><span class="swatch"></span>Vitamin D</span>
           <h3>The 60,000 IU weekly sachet: a uniquely Indian problem.</h3>
           <p>South Asian vitamin D deficiency is real, but mega-dose sachets aren't the only answer. A look at serum response curves and the 2025 ICMR revision.</p>
           <div class="card-meta">
             <span>12 min read · Updated Jan 2026</span>
-            <a href="/research/vitamin-d-60000iu-weekly-sachet" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
 
-        <article class="card guide-card g6">
+        <a class="card guide-card g6" href="/research/magnesium-forms-glycinate-citrate-oxide">
           <div class="visual"><span class="glyph">Mg</span></div>
           <span class="card-tag"><span class="swatch"></span>Magnesium</span>
           <h3>Magnesium glycinate vs citrate vs oxide: the form actually matters.</h3>
           <p>Why the cheapest magnesium on Amazon India is also the least absorbed — and which form to pick depending on sleep, cramps, or bowel issues.</p>
           <div class="card-meta">
             <span>8 min read · Updated Apr 2026</span>
-            <a href="/research/magnesium-forms-glycinate-citrate-oxide" class="read-link">Read<span aria-hidden="true">→</span></a>
+            <span class="read-link">Read<span aria-hidden="true">→</span></span>
           </div>
-        </article>
+        </a>
       </div>
 
       <div style="text-align:center; margin-top: 40px;">
@@ -926,18 +1492,18 @@
       </div>
 
       <div class="category-cloud">
-        <a href="/pages/ingredients/creatine-monohydrate" class="chip">Creatine<span class="count">9</span></a>
-        <a href="/pages/ingredients/whey-protein-concentrate-wpc-80" class="chip">Protein<span class="count">42</span></a>
-        <a href="/pages/ingredients/omega-3-epa-dha" class="chip">Omega-3s<span class="count">8</span></a>
-        <a href="/ingredients/ashwagandha-ksm66-vs-sensoril" class="chip">Adaptogens<span class="count">18</span></a>
-        <a href="/pages/categories" class="chip">Amino acids<span class="count">22</span></a>
-        <a href="/pages/categories" class="chip">Energy &amp; focus<span class="count">26</span></a>
-        <a href="/pages/categories" class="chip">Gut health<span class="count">14</span></a>
+        <a href="/compare/creatine-india" class="chip">Creatine<span class="count">9</span></a>
+        <a href="/compare/whey-protein-india" class="chip">Protein<span class="count">42</span></a>
+        <a href="/compare/omega-3-india" class="chip">Omega-3s<span class="count">8</span></a>
+        <a href="/compare/herbal-supplements-india" class="chip">Adaptogens<span class="count">18</span></a>
+        <a href="/research/bcaa-worth-it-or-expensive-whey" class="chip">Amino acids<span class="count">22</span></a>
+        <a href="/research/caffeine-tolerance-chai-india" class="chip">Energy &amp; focus<span class="count">26</span></a>
+        <a href="/research/probiotics-gut-health-indian-diet" class="chip">Gut health<span class="count">14</span></a>
         <a href="/pages/categories" class="chip">Joints &amp; mobility<span class="count">11</span></a>
         <a href="/pages/categories" class="chip">Nootropics<span class="count">31</span></a>
-        <a href="/pages/categories" class="chip">Pre-workout<span class="count">24</span></a>
-        <a href="/pages/categories" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
-        <a href="/pages/categories" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
+        <a href="/research/preworkout-prop-blends-india" class="chip">Pre-workout<span class="count">24</span></a>
+        <a href="/compare/magnesium-india" class="chip">Sleep &amp; recovery<span class="count">19</span></a>
+        <a href="/compare/vitamins-india" class="chip">Vitamins &amp; minerals<span class="count">37</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Women's health<span class="count">In&nbsp;progress</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Testosterone<span class="count">In&nbsp;progress</span></a>
         <a href="/pages/categories" class="chip wip"><span class="dot"></span>Longevity<span class="count">Planned</span></a>
@@ -960,7 +1526,7 @@
       </div>
 
       <div class="review-grid">
-        <article class="review">
+        <a class="review" href="/reviews/wheyprotein/muscleblaze-biozyme-performance-whey-review">
           <div class="review-top">
             <div>
               <div class="brand-line">MuscleBlaze</div>
@@ -969,10 +1535,10 @@
             <div class="score-badge md"><span class="big">6.4</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Solid protein per serving, but the EAF enzyme blend is marketing more than mechanism. You're paying ₹400/kg for a story.</p>
-          <div class="review-tags"><span>Whey · Blend</span><span>₹3,199 / 1kg</span></div>
-        </article>
+          <div class="review-tags"><span>Whey · Blend</span><span>₹3,199 / 1kg</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/creatine/gnc-pro-performance-creatine">
           <div class="review-top">
             <div>
               <div class="brand-line">GNC India</div>
@@ -981,10 +1547,10 @@
             <div class="score-badge hi"><span class="big">8.7</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Creapure-sourced, unflavoured, priced sanely. Boring in the best way — exactly what a creatine monohydrate should be.</p>
-          <div class="review-tags"><span>Creatine · Creapure</span><span>₹1,299 / 300g</span></div>
-        </article>
+          <div class="review-tags"><span>Creatine · Creapure</span><span>₹1,299 / 300g</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/vitamins/wellbeing-slow-melts-d3-k2-review">
           <div class="review-top">
             <div>
               <div class="brand-line">Wellbeing Nutrition</div>
@@ -993,10 +1559,10 @@
             <div class="score-badge md"><span class="big">7.2</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">Smart D3 + K2 pairing with a clean label, but the nano-shot format is more novelty than bioavailability advantage at this dose.</p>
-          <div class="review-tags"><span>Vitamin D · K2</span><span>₹699 / 30d</span></div>
-        </article>
+          <div class="review-tags"><span>Vitamin D · K2</span><span>₹699 / 30d</span><span class="rt-link">Full review →</span></div>
+        </a>
 
-        <article class="review">
+        <a class="review" href="/reviews/omega3/himalayan-organics-plant-omega-3-6-9-review">
           <div class="review-top">
             <div>
               <div class="brand-line">Himalayan Organics</div>
@@ -1005,8 +1571,8 @@
             <div class="score-badge lo"><span class="big">4.1</span><span class="sml">/ 10</span></div>
           </div>
           <p class="summary">ALA-only formulation sold as "omega-3" — conversion to EPA/DHA in humans is famously poor. Not what most buyers think they're getting.</p>
-          <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span></div>
-        </article>
+          <div class="review-tags"><span>ALA · Plant-based</span><span>₹599 / 60ct</span><span class="rt-link">Full review →</span></div>
+        </a>
       </div>
     </section>
 
@@ -1042,7 +1608,7 @@
         </a>
 
         <!-- Has individual page → use <a> -->
-        <a class="ingredient" href="/ingredients/ashwagandha-ksm66-vs-sensoril">
+        <a class="ingredient" href="/pages/ingredients/ashwagandha-ksm66">
           <div class="ing-head">
             <h3>Ashwagandha (KSM-66)</h3>
             <span class="evidence e-mod">Moderate</span>
@@ -1056,7 +1622,7 @@
         </a>
 
         <!-- Has individual page → use <a> -->
-        <a class="ingredient" href="/pages/ingredients/whey-protein-concentrate-wpc-80">
+        <a class="ingredient" href="/pages/ingredients/whey-protein-isolate">
           <div class="ing-head">
             <h3>Whey protein isolate</h3>
             <span class="evidence e-strong">Strong</span>
@@ -1083,27 +1649,31 @@
           </div>
         </a>
 
-        <!-- No individual page yet → keep as <article> -->
-        <article class="ingredient">
+        <a class="ingredient" href="/pages/ingredients/vitamin-d3-cholecalciferol">
           <div class="ing-head">
             <h3>Vitamin D3 (cholecalciferol)</h3>
             <span class="evidence e-strong">Strong</span>
           </div>
           <div class="ing-tax">Fat-soluble vitamin · Seco-steroid</div>
           <p>Acts as a precursor hormone regulating calcium, bone, and immune function. Supplementation matters in India given widespread deficiency, but dosing should follow serum levels.</p>
-          <div class="ing-foot"><span>Dose · 1,000–2,000 IU / day</span><span>80+ studies</span></div>
-        </article>
+          <div class="ing-foot-link">
+            <span>Dose · 1,000–2,000 IU / day · 80+ studies</span>
+            <span class="read-arrow">Deep-dive <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:11px;height:11px;display:inline;vertical-align:middle"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+        </a>
 
-        <!-- No individual page yet → keep as <article> -->
-        <article class="ingredient">
+        <a class="ingredient" href="/research/melatonin-indian-10mg-tablets-wrong">
           <div class="ing-head">
             <h3>Melatonin</h3>
             <span class="evidence e-mod">Moderate</span>
           </div>
           <div class="ing-tax">Hormone · Pineal</div>
           <p>Chronobiotic used to shift circadian phase — useful for jet lag and shift work. Lower doses (0.3–1mg) often outperform the 3–10mg tablets commonly sold in India.</p>
-          <div class="ing-foot"><span>Dose · 0.3–1mg, 30–60 min pre-bed</span><span>34 studies</span></div>
-        </article>
+          <div class="ing-foot-link">
+            <span>Dose · 0.3–1mg, 30–60 min pre-bed · 34 studies</span>
+            <span class="read-arrow">Research <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="width:11px;height:11px;display:inline;vertical-align:middle"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+        </a>
 
       </div>
 
@@ -1116,15 +1686,15 @@
          PRESS / TRUST STRIP
          ========================================================= -->
     <section class="press container reveal">
-      <p class="press-label">Brands &amp; We Reviewed</p>
+      <p class="press-label">Brands we've reviewed</p>
       <div class="press-row">
-        <span>MuscleBlaze</span>
-        <span><em>GNC India</em></span>
-        <span>Wellbeing Nutrition</span>
-        <span>Himalayan Organics</span>
-        <span><em>Transparentlabs</em></span>
-        <span>Optimum Nutrition</span>
-        <span>Dymatize</span>
+        <a href="/brands/muscleblaze"><span>MuscleBlaze</span></a>
+        <a href="/brands/gnc-india"><span><em>GNC India</em></span></a>
+        <a href="/brands/wellbeing-nutrition"><span>Wellbeing Nutrition</span></a>
+        <a href="/brands/himalayan-organics"><span>Himalayan Organics</span></a>
+        <a href="/reviews/wheyprotein/transparent-labs-grass-fed-whey-isolate-review"><span><em>Transparent Labs</em></span></a>
+        <a href="/brands/optimum-nutrition"><span>Optimum Nutrition</span></a>
+        <a href="/brands/dymatize"><span>Dymatize</span></a>
       </div>
     </section>
 
@@ -1151,7 +1721,12 @@
 
   <div id="site-footer"></div>
 
-  <script src="nc-site.js?v=1001"></script>
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="rfg" cx="26" cy="26" r="24.5" pathLength="100"/></svg>
+    <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>
+  </button>
+
+  <script src="nc-site.js?v=1003"></script>
 
   <!-- Picks tab switcher -->
   <script>
@@ -1168,6 +1743,113 @@
           if (panel) panel.classList.add('active');
         });
       });
+    })();
+  </script>
+
+  <!-- Home page interactions: label stripper, hero parallax, tab keys, back-to-top -->
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── Strip-the-label toggle (auto-demos once when scrolled into view) ──
+      const toggle = document.getElementById('stripToggle');
+      const card   = document.getElementById('labelCard');
+      if (toggle && card) {
+        let userTouched = false;
+        const setStripped = (on) => {
+          card.classList.toggle('stripped', on);
+          toggle.setAttribute('aria-checked', String(on));
+          toggle.querySelector('.st-label').textContent = on ? 'Restore the label' : 'Strip the label';
+        };
+        toggle.addEventListener('click', () => {
+          userTouched = true;
+          setStripped(!card.classList.contains('stripped'));
+        });
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+          const demo = new IntersectionObserver((entries) => {
+            entries.forEach((en) => {
+              if (!en.isIntersecting) return;
+              demo.disconnect();
+              setTimeout(() => { if (!userTouched) setStripped(true); }, 1400);
+            });
+          }, { threshold: 0.5 });
+          demo.observe(card);
+        }
+      }
+
+      // ── Hero parallax (desktop pointers only; uses `translate` so it
+      //    composes with the existing float/blob transform animations) ──
+      const hero   = document.querySelector('.hero');
+      const layers = document.querySelectorAll('.hero [data-depth]');
+      if (hero && layers.length && !reduceMotion &&
+          window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+        const tick = () => {
+          cx += (tx - cx) * 0.08;
+          cy += (ty - cy) * 0.08;
+          layers.forEach((el) => {
+            const d = parseFloat(el.dataset.depth) || 10;
+            el.style.translate = (cx * d) + 'px ' + (cy * d) + 'px';
+          });
+          raf = (Math.abs(tx - cx) > 0.001 || Math.abs(ty - cy) > 0.001)
+            ? requestAnimationFrame(tick) : null;
+        };
+        const queue = () => { if (!raf) raf = requestAnimationFrame(tick); };
+        hero.addEventListener('pointermove', (e) => {
+          const r = hero.getBoundingClientRect();
+          tx = (e.clientX - r.left) / r.width  - 0.5;
+          ty = (e.clientY - r.top)  / r.height - 0.5;
+          queue();
+        });
+        hero.addEventListener('pointerleave', () => { tx = 0; ty = 0; queue(); });
+      }
+
+      // ── Protocol cards: whole card clickable (View button stays the
+      //    only real anchor, so no nested links) ──
+      document.querySelectorAll('.protocol').forEach((card) => {
+        const link = card.querySelector('.protocol-foot a[href]');
+        if (!link) return;
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          link.click();
+        });
+      });
+
+      // ── Picks tabs: arrow-key navigation ──
+      const tablist = document.querySelector('.picks-tabs');
+      if (tablist) {
+        tablist.addEventListener('keydown', (e) => {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          const tabs = Array.from(tablist.querySelectorAll('.picks-tab'));
+          const i = tabs.indexOf(document.activeElement);
+          if (i === -1) return;
+          const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+          next.focus();
+          next.click();
+          e.preventDefault();
+        });
+      }
+
+      // ── Back to top with scroll progress ring ──
+      const btn = document.getElementById('backTop');
+      if (btn) {
+        const ring = btn.querySelector('.rfg');
+        let ticking = false;
+        const update = () => {
+          ticking = false;
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+          ring.style.strokeDashoffset = String(100 - p * 100);
+          btn.classList.toggle('show', window.scrollY > 480);
+        };
+        window.addEventListener('scroll', () => {
+          if (!ticking) { ticking = true; requestAnimationFrame(update); }
+        }, { passive: true });
+        update();
+        btn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+      }
     })();
   </script>
 </body>

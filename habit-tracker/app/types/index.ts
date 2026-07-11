@@ -53,6 +53,7 @@ export interface HabitLog {
   user_id: string
   user_habit_id: string
   log_date: string
+  status: 'completed' | 'missed' | 'frozen'
   count: number
   notes: string | null
   mood: Mood | null
@@ -105,3 +106,14 @@ export const CATEGORY_META: Record<
   hydration: { label: 'Hydration', tint: 'var(--color-sky)', icon: 'i-lucide-glass-water' },
   productivity: { label: 'Productivity', tint: 'var(--color-butter)', icon: 'i-lucide-target' },
 }
+
+export interface FreezeBank {
+  id: string
+  user_id: string
+  month_start: string
+  base_used: number
+  bonus_earned: boolean
+  bonus_used: boolean
+  updated_at: string
+}
+

@@ -4,12 +4,13 @@ import { CATEGORY_META, type HabitCategory } from '~/types'
 const route = useRoute()
 const id = computed(() => route.params.id as string)
 
-const { fetchUserHabit, archiveHabit } = useHabits()
+const { fetchUserHabit, archiveHabit, unarchiveHabit, renameHabit } = useHabits()
 const { fetchHistory, logToday, removeTodayLog } = useHabitLogs()
-// localDate() is auto-imported from composables/useHabitLogs.ts
+import { localDate, displayStreak } from '~/composables/useHabitLogs'
+
 const toast = useToast()
 
-const { data, pending, refresh } = await useAsyncData(
+const { data, pending, refresh } = useAsyncData(
   () => `track-${id.value}`,
   async () => {
     const [habit, history] = await Promise.all([
@@ -18,34 +19,68 @@ const { data, pending, refresh } = await useAsyncData(
     ])
     return { habit, history }
   },
-  { server: false, default: () => ({ habit: null, history: new Set<string>() }) },
+  { server: false, default: () => ({ habit: null, history: {} as Record<string, string> }) },
 )
 
 const habit = computed(() => data.value?.habit ?? null)
-const history = computed(() => data.value?.history ?? new Set<string>())
+const history = computed(() => data.value?.history ?? {})
 
 const name = computed(
   () => habit.value?.custom_name ?? habit.value?.habit?.name ?? 'Habit',
 )
+
+useHead({ title: () => `${name.value} — Habits` })
+
+// ── Rename (sets user_habits.custom_name; empty restores catalog name) ──
+const isRenaming = ref(false)
+const renameValue = ref('')
+const renameBusy = ref(false)
+
+function startRename() {
+  renameValue.value = name.value
+  isRenaming.value = true
+}
+
+async function saveRename() {
+  renameBusy.value = true
+  try {
+    await renameHabit(id.value, renameValue.value.trim() || null)
+    await refresh()
+    isRenaming.value = false
+  } catch (e: any) {
+    toast.add({ title: 'Could not rename', description: e.message, color: 'error' })
+  } finally {
+    renameBusy.value = false
+  }
+}
 const color = computed(() => habit.value?.habit?.color ?? '#c96442')
 const category = computed(() =>
   habit.value ? CATEGORY_META[habit.value.habit?.category as HabitCategory] : null,
 )
 
 const todayStr = localDate()
-const completedToday = computed(() => history.value.has(todayStr))
-const currentStreak = computed(() => habit.value?.streak?.current_streak ?? 0)
+const completedToday = computed(() => history.value[todayStr] === 'completed')
+const currentStreak = computed(() => displayStreak(habit.value?.streak))
 const longestStreak = computed(() => habit.value?.streak?.longest_streak ?? 0)
-const totalDays = computed(() => history.value.size)
+const totalDays = computed(() => Object.values(history.value).filter(s => s === 'completed').length)
+
+const frozenDays = computed(() => {
+  return Object.entries(history.value)
+    .filter(([_, status]) => status === 'frozen')
+    .map(([date]) => date)
+    .sort()
+    .reverse()
+})
 
 // Last 28 days, oldest → newest, for the heat grid.
 const grid = computed(() => {
-  const days: { date: string; done: boolean; label: number }[] = []
+  const days: { date: string; done: boolean; frozen: boolean; label: number }[] = []
   for (let i = 27; i >= 0; i--) {
     const d = new Date()
     d.setDate(d.getDate() - i)
     const ds = localDate(d)
-    days.push({ date: ds, done: history.value.has(ds), label: d.getDate() })
+    const st = history.value[ds]
+    days.push({ date: ds, done: st === 'completed', frozen: st === 'frozen', label: d.getDate() })
   }
   return days
 })
@@ -61,31 +96,63 @@ async function toggleToday() {
       if (import.meta.client && navigator.vibrate) navigator.vibrate(15)
     }
     await refresh()
+  } catch (e: any) {
+    toast.add({ title: 'Could not update habit', description: e.message, color: 'error' })
   } finally {
     busy.value = false
   }
 }
 
+/** 'YYYY-MM-DD' → local date; new Date(str) would parse as UTC and
+ *  render a day early in timezones behind UTC. */
+function fmtFreezeDate(date: string) {
+  const [y, m, d] = date.split('-').map(Number)
+  return new Date(y ?? 1970, (m ?? 1) - 1, d ?? 1).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
 async function stopTracking() {
   if (!confirm(`Stop tracking "${name.value}"? Your history is kept.`)) return
-  await archiveHabit(id.value)
-  toast.add({ title: 'Habit archived', icon: 'i-lucide-archive' })
+  const habitId = id.value
+  try {
+    await archiveHabit(habitId)
+  } catch (e: any) {
+    toast.add({ title: 'Could not archive', description: e.message, color: 'error' })
+    return
+  }
+  toast.add({
+    title: 'Habit archived',
+    description: 'History is kept. Changed your mind?',
+    icon: 'i-lucide-archive',
+    actions: [
+      {
+        label: 'Undo',
+        onClick: async () => {
+          await unarchiveHabit(habitId)
+          await refreshNuxtData('dashboard')
+        },
+      },
+    ],
+  } as any)
   await navigateTo('/')
 }
 </script>
 
 <template>
-  <div>
+  <div class="px-2">
     <button
-      class="mb-3 mt-1 flex items-center gap-1 text-sm font-medium text-stone-500"
+      class="mb-6 mt-2 flex items-center gap-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:text-stone-300"
       @click="navigateTo('/')"
     >
-      <UIcon name="i-lucide-chevron-left" class="size-5" /> Back
+      <UIcon name="i-lucide-chevron-left" class="size-4" /> Back
     </button>
 
     <div v-if="pending" class="space-y-4">
-      <USkeleton class="h-24 rounded-3xl" />
-      <USkeleton class="h-32 rounded-3xl" />
+      <USkeleton class="h-24 rounded-[24px] bg-white/[0.02]" />
+      <USkeleton class="h-32 rounded-[24px] bg-white/[0.02]" />
     </div>
 
     <AppEmptyState
@@ -99,53 +166,72 @@ async function stopTracking() {
 
     <template v-else>
       <!-- Header -->
-      <header class="mb-5 flex items-center gap-4">
+      <header class="mb-8 flex items-center gap-5">
         <div
-          class="flex size-14 items-center justify-center rounded-2xl"
-          :style="{ backgroundColor: color + '1f', color }"
+          class="flex size-16 items-center justify-center rounded-[20px] ring-1 ring-stone-200 dark:ring-white/[0.08]"
+          :style="{ backgroundColor: color + '14', color }"
         >
-          <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-7" />
+          <UIcon :name="habit.habit?.icon ?? 'i-lucide-circle-dot'" class="size-8 drop-shadow-md" />
         </div>
-        <div>
-          <h1 class="text-3xl font-semibold tracking-tight text-stone-100">{{ name }}</h1>
-          <p class="text-sm text-stone-400">{{ category?.label }}</p>
+        <div class="min-w-0 flex-1">
+          <div v-if="!isRenaming" class="flex items-center gap-2">
+            <h1 class="truncate text-[28px] font-semibold leading-tight tracking-[-0.02em] text-stone-900 dark:text-stone-50">{{ name }}</h1>
+            <button
+              class="flex size-7 shrink-0 items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-600 dark:hover:bg-white/10 dark:hover:text-stone-200"
+              aria-label="Rename habit"
+              @click="startRename"
+            >
+              <UIcon name="i-lucide-pencil" class="size-3.5" />
+            </button>
+          </div>
+          <form v-else class="flex items-center gap-2" @submit.prevent="saveRename">
+            <UInput v-model="renameValue" size="sm" autofocus placeholder="Habit name" class="flex-1" />
+            <UButton type="submit" size="xs" color="primary" icon="i-lucide-check" aria-label="Save name" :loading="renameBusy" />
+            <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-x" aria-label="Cancel rename" :disabled="renameBusy" @click="isRenaming = false" />
+          </form>
+          <p class="mt-0.5 flex items-center gap-1.5 text-[13px] text-stone-400">
+            <UIcon :name="category?.icon" class="size-3.5" />
+            {{ category?.label }}
+          </p>
         </div>
       </header>
 
       <!-- Stats -->
-      <div class="mb-5 grid grid-cols-3 gap-3">
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-ember-400">
+      <div class="mb-6 grid grid-cols-3 gap-3">
+        <div class="relative overflow-hidden rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <!-- Glow if streak is active -->
+          <div v-if="currentStreak > 0" class="absolute -bottom-4 left-1/2 h-16 w-16 -translate-x-1/2 rounded-full bg-ember-500/20 blur-xl"></div>
+          <p class="relative z-10 tabular text-[32px] font-semibold tracking-tight text-ember-400">
             {{ currentStreak }}
           </p>
-          <p class="mt-1 text-xs text-stone-400">Current 🔥</p>
+          <p class="relative z-10 mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Current 🔥</p>
         </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-100">{{ longestStreak }}</p>
-          <p class="mt-1 text-xs text-stone-400">Longest</p>
+        <div class="rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">{{ longestStreak }}</p>
+          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Longest</p>
         </div>
-        <div class="glass rounded-2xl p-4 text-center">
-          <p class="tabular text-3xl font-semibold text-stone-100">{{ totalDays }}</p>
-          <p class="mt-1 text-xs text-stone-400">Total days</p>
+        <div class="rounded-[20px] bg-stone-100 p-5 text-center ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <p class="tabular text-[32px] font-semibold tracking-tight text-stone-800 dark:text-stone-100">{{ totalDays }}</p>
+          <p class="mt-1 text-[11px] font-medium tracking-wide uppercase text-stone-500">Done · 4 wks</p>
         </div>
       </div>
 
       <!-- 28-day grid -->
       <ClientOnly>
-        <section class="glass mb-6 rounded-[3rem] p-6">
-          <h2 class="mb-4 text-sm font-semibold tracking-wide text-stone-400">
-            LAST 4 WEEKS
+        <section class="mb-8 rounded-[24px] bg-stone-100 p-6 ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]">
+          <h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500">
+            Last 4 Weeks
           </h2>
-          <div class="grid grid-cols-7 gap-2">
+          <div class="grid grid-cols-7 gap-2.5">
             <div
               v-for="day in grid"
               :key="day.date"
-              class="flex aspect-square items-center justify-center rounded-full text-[11px] font-medium transition-colors"
-              :style="
-                day.done
-                  ? { backgroundColor: '#ff6a18', color: '#fff' }
-                  : { backgroundColor: 'rgba(255,255,255,0.06)', color: '#78716c' }
-              "
+              class="flex aspect-square items-center justify-center rounded-[8px] text-[11px] font-semibold transition-all duration-300"
+              :class="[
+                day.done ? 'bg-ember-500/20 text-ember-400 ring-1 ring-ember-500/30' : '',
+                day.frozen ? 'bg-sky-500/20 text-sky-400 ring-1 ring-sky-500/30' : '',
+                !day.done && !day.frozen ? 'bg-stone-50 text-stone-600 dark:bg-white/[0.03]' : ''
+              ]"
               :title="day.date"
             >
               {{ day.label }}
@@ -153,31 +239,63 @@ async function stopTracking() {
           </div>
         </section>
         <template #fallback>
-          <USkeleton class="mb-6 h-48 rounded-[3rem]" />
+          <USkeleton class="mb-8 h-48 rounded-[24px] bg-stone-100 dark:bg-white/[0.02]" />
         </template>
       </ClientOnly>
 
-      <UButton
-        class="rounded-full px-6 py-3.5 text-lg font-medium shadow-sm"
-        :class="completedToday ? 'bg-white/5 text-stone-100 ring-1 ring-white/10 hover:bg-white/10' : ''"
-        block
-        size="xl"
-        :color="completedToday ? 'neutral' : 'primary'"
-        :variant="completedToday ? 'solid' : 'solid'"
-        :loading="busy"
-        :icon="completedToday ? 'i-lucide-rotate-ccw' : 'i-lucide-check'"
+      <!-- Freeze History -->
+      <section v-if="frozenDays.length > 0" class="mb-8">
+        <h2 class="mb-3 pl-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-stone-500">
+          Freeze History
+        </h2>
+        <div class="flex flex-col gap-2">
+          <div
+            v-for="date in frozenDays"
+            :key="date"
+            class="flex items-center gap-3 rounded-[14px] bg-stone-100 p-3 ring-1 ring-stone-200 dark:bg-white/[0.02] dark:ring-white/[0.05]"
+          >
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-sky-500/10">
+              <UIcon name="i-lucide-snowflake" class="size-[18px] text-sky-400" />
+            </div>
+            <div>
+              <div class="mb-0.5 text-[13px] font-medium text-stone-900 dark:text-white">Freeze used</div>
+              <div class="text-[11px] text-stone-400">
+                Protected your streak on {{ fmtFreezeDate(date) }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Button -->
+      <button
+        class="group relative flex w-full items-center justify-center gap-2 rounded-[20px] py-4 text-[15px] font-semibold transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.98] disabled:opacity-50"
+        :class="
+          completedToday
+            ? 'bg-stone-100 text-stone-600 ring-1 ring-inset ring-stone-200 hover:bg-stone-200 dark:bg-white/[0.04] dark:text-stone-300 dark:ring-white/[0.1] dark:hover:bg-white/[0.06]'
+            : 'spark-gradient text-white shadow-[0_2px_16px_rgba(255,106,24,0.25)] hover:shadow-[0_4px_24px_rgba(255,106,24,0.4)]'
+        "
+        :disabled="busy"
         @click="toggleToday"
       >
-        {{ completedToday ? 'Completed today — undo' : 'Mark complete for today' }}
-      </UButton>
+        <!-- Inner hover highlight for active button -->
+        <div v-if="!completedToday" class="absolute inset-0 rounded-[20px] bg-white/0 transition-colors group-hover:bg-white/10" />
+        
+        <UIcon 
+          :name="busy ? 'i-lucide-loader-2' : completedToday ? 'i-lucide-rotate-ccw' : 'i-lucide-check'" 
+          class="relative z-10 size-[18px]" 
+          :class="{ 'animate-spin': busy }"
+        />
+        <span class="relative z-10">{{ completedToday ? 'Completed today — undo' : 'Mark complete for today' }}</span>
+      </button>
 
       <ReminderForm class="mt-6 block" :user-habit-id="id" />
 
       <button
-        class="mx-auto mt-6 flex items-center gap-1.5 text-sm text-stone-400 hover:text-rose-500"
+        class="mx-auto mt-8 flex items-center gap-1.5 text-[13px] font-medium text-stone-500 transition-colors hover:text-rose-400"
         @click="stopTracking"
       >
-        <UIcon name="i-lucide-archive" class="size-4" /> Stop tracking
+        <UIcon name="i-lucide-archive" class="size-[14px]" /> Stop tracking
       </button>
     </template>
   </div>

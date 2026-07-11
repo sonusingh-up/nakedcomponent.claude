@@ -158,7 +158,6 @@ function makeHTML(title, type, slug, config, publishDate) {
 </main>
 
 <div id="site-footer"></div>
-<script src="${cssDepth}script.js"></script>
 <script src="${cssDepth}nc-site.js"></script>
 </body>
 </html>

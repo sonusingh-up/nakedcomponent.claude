@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1911119578672689"
+     crossorigin="anonymous"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batch, expiry &amp; storage on labels — Naked Compound</title>
+  <link rel="canonical" href="https://www.nakedcompound.in/learn/label-batch-expiry-storage" />
+
+  <meta name="description" content="Batch number, best-before vs expiry, and why “in date” doesn't mean “full potency” — especially on an Indian shelf. The fine print that decides if it works." />
+  <!--
+    published: authoritative publish date read by update-sitemap.js.
+    DO NOT edit this — it controls the lastmod in sitemap.xml.
+    Bump the modified tag below if you update the lesson content.
+  -->
+  <meta name="published" content="2026-07-09" />
+  <meta name="modified"  content="2026-07-09" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css?v=1001" />
+  <link rel="stylesheet" href="/pages.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <style>
+    /* Page head */
+    .page-head { padding: var(--s-9) 0 var(--s-7); border-bottom: 1px solid var(--line); }
+    .page-head .crumbs { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink-muted); font-family:var(--font-mono); letter-spacing:.02em; margin-bottom:var(--s-5); }
+    .page-head .crumbs a { color:var(--ink-muted); }
+    .page-head .crumbs a:hover { color:var(--accent); }
+    .page-head .crumbs .sep { opacity:.4; }
+    .path-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:var(--r-pill); background:var(--accent-soft); color:var(--accent); font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:var(--s-4); }
+    .page-head h1 { font-size:clamp(26px,4vw,46px); font-weight:500; letter-spacing:-.03em; line-height:1.1; margin-bottom:var(--s-4); max-width:24ch; }
+    .page-head h1 em { font-style:normal; font-family:"Instrument Serif",Georgia,serif; color:var(--accent); font-weight:400; }
+    .page-head .kicker { font-size:clamp(15px,1.4vw,17.5px); color:var(--ink-soft); max-width:58ch; line-height:1.6; margin-bottom:var(--s-5); }
+    .meta-chips { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:var(--s-5); }
+    .meta-chip { display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border-radius:var(--r-pill); background:var(--bg-elev); border:1px solid var(--line); font-size:13px; color:var(--ink-soft); font-family:var(--font-mono); }
+    .meta-chip .dot { width:7px; height:7px; border-radius:50%; background:var(--ink-muted); flex:0 0 auto; }
+    .meta-chip.ok .dot { background:#5ba672; box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent); }
+
+    /* Progress dots (filled by /lesson.js) */
+    .lesson-dots { display:flex; align-items:center; gap:7px; }
+    .lesson-dots .dot { width:9px; height:9px; border-radius:50%; background:var(--bg-elev); border:1px solid var(--line); transition:background .15s; }
+    .lesson-dots .dot.past { background:color-mix(in oklab,var(--accent) 45%,var(--bg-elev)); border-color:transparent; }
+    .lesson-dots .dot.now { background:var(--accent); border-color:transparent; box-shadow:0 0 0 3px color-mix(in oklab,var(--accent) 22%,transparent); }
+
+    /* Layout */
+    .article-layout { display:grid; grid-template-columns:1fr 260px; gap:var(--s-8); align-items:start; padding:var(--s-8) 0 var(--s-10); }
+    .article-body { min-width:0; }
+    .article-sidebar { position:sticky; top:calc(var(--nav-h) + 24px); }
+
+    /* Prose */
+    .prose h2 { font-size:clamp(20px,2.6vw,28px); font-weight:500; letter-spacing:-.025em; line-height:1.15; margin:var(--s-8) 0 var(--s-4); padding-top:var(--s-8); border-top:1px solid var(--line); scroll-margin-top:80px; }
+    .prose h2:first-child { margin-top:0; padding-top:0; border-top:none; }
+    .prose h3 { font-size:clamp(16px,1.8vw,20px); font-weight:500; letter-spacing:-.02em; margin:var(--s-6) 0 var(--s-3); }
+    .prose p { font-size:17px; line-height:1.78; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .prose p strong { color:var(--ink); font-weight:500; }
+    .prose ul, .prose ol { margin:var(--s-3) 0 var(--s-5) var(--s-5); display:flex; flex-direction:column; gap:8px; }
+    .prose li { font-size:17px; line-height:1.7; color:var(--ink-soft); }
+    .prose li strong { color:var(--ink); font-weight:500; }
+    .prose sup { font-family:var(--font-mono); font-size:11px; color:var(--accent); }
+    .prose sup a { color:var(--accent); }
+    .prose a { color:var(--accent); border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent); }
+    .prose a:hover { border-color:var(--accent); }
+
+    /* Callouts */
+    .callout { border-radius:var(--r-md); padding:var(--s-5); margin:var(--s-6) 0; display:flex; gap:var(--s-4); }
+    .callout-icon { font-size:20px; flex:0 0 auto; margin-top:2px; }
+    .callout-body p { font-size:15px; margin:0; line-height:1.65; }
+    .callout-body strong { display:block; margin-bottom:4px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; }
+    .callout.info { background:var(--sky); border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky)); }
+    .callout.info .callout-body strong { color:#2e4a6b; }
+    .callout.warn { background:var(--butter); border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter)); }
+    .callout.warn .callout-body strong { color:#7a5f1a; }
+    .callout.good { background:var(--mint); border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint)); }
+    .callout.good .callout-body strong { color:#3a5c3f; }
+    [data-theme="dark"] .callout.info .callout-body strong { color:#9cc1e0; }
+    [data-theme="dark"] .callout.warn .callout-body strong { color:#e0c377; }
+    [data-theme="dark"] .callout.good .callout-body strong { color:#a7d2a9; }
+
+    /* Worked example — annotated label excerpt */
+    .worked-example { border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; margin:var(--s-6) 0; }
+    .we-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:12px 18px; background:var(--bg-elev); border-bottom:1px solid var(--line); }
+    .we-head .we-tag { font-family:var(--font-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); }
+    .we-head .we-title { font-size:13.5px; color:var(--ink-soft); }
+    .we-body { padding:var(--s-5); }
+    .we-body > p { font-size:15px; line-height:1.65; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .we-body > p:last-child { margin-bottom:0; }
+    .we-body > p strong { color:var(--ink); font-weight:500; }
+    .jar-label { background:var(--bg-elev); border:1px dashed color-mix(in oklab,var(--ink) 25%,transparent); border-radius:var(--r-md); padding:var(--s-4) var(--s-5); font-family:var(--font-mono); font-size:12.5px; line-height:1.75; color:var(--ink); white-space:pre-wrap; overflow-x:auto; margin-bottom:var(--s-4); }
+    .jar-label mark { background:color-mix(in oklab,var(--accent) 18%,transparent); color:inherit; border-radius:3px; padding:0 3px; }
+
+    /* Figures (inline SVG) */
+    .figure { margin:var(--s-6) 0; border:1px solid var(--line); border-radius:var(--r-lg); overflow:hidden; background:var(--bg-elev); }
+    .figure svg { display:block; width:100%; height:auto; }
+    .figure figcaption { padding:12px 18px; border-top:1px solid var(--line); font-size:13px; color:var(--ink-muted); line-height:1.55; }
+    .figure figcaption b { color:var(--ink-soft); font-weight:500; }
+    .figure text { font-family:var(--font-sans); }
+    .figure .t-key  { fill:var(--ink-soft); font-size:12px; }
+    .figure .t-mono { fill:var(--ink-muted); font-size:10.5px; font-family:var(--font-mono); letter-spacing:.04em; }
+    .figure .axis { stroke:var(--line); }
+    .figure .grid { stroke:var(--line); stroke-dasharray:3 4; }
+    .figure .line-cool { fill:none; stroke:#5ba672; stroke-width:2.5; }
+    .figure .line-hot  { fill:none; stroke:var(--accent); stroke-width:2.5; }
+    .figure .line-dash { fill:none; stroke:var(--ink-muted); stroke-width:1.5; stroke-dasharray:5 4; }
+    .figure .shade-bad { fill:var(--accent); opacity:.12; }
+    [data-theme="dark"] .figure .line-cool { stroke:#7fb98d; }
+
+    /* Data table */
+    .data-table-wrap { overflow-x:auto; margin:var(--s-6) 0; border-radius:var(--r-md); border:1px solid var(--line); }
+    .data-table { width:100%; border-collapse:collapse; font-size:14px; }
+    .data-table thead th { background:var(--bg-elev); padding:12px 16px; text-align:left; font-size:11.5px; font-family:var(--font-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); border-bottom:1px solid var(--line); white-space:nowrap; }
+    .data-table tbody td { padding:12px 16px; border-bottom:1px solid var(--line); color:var(--ink-soft); vertical-align:top; line-height:1.5; }
+    .data-table tbody tr:last-child td { border-bottom:none; }
+    .td-strong { color:var(--ink) !important; font-weight:500; }
+
+    /* Key takeaways */
+    .takeaways { background:var(--ink); color:#f0ece4; border-radius:var(--r-xl); padding:var(--s-6); margin:var(--s-7) 0; position:relative; overflow:hidden; }
+    [data-theme="dark"] .takeaways { background:var(--accent-soft); color:var(--ink); }
+    .takeaways::before { content:""; position:absolute; right:-40px; top:-40px; width:200px; height:200px; border-radius:50%; background:var(--accent); opacity:.18; filter:blur(30px); }
+    .takeaways .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#f0ece4; opacity:.65; margin-bottom:var(--s-3); position:relative; }
+    .takeaways h3 { font-size:clamp(18px,2vw,24px); letter-spacing:-.02em; margin-bottom:var(--s-4); color:#fff; position:relative; }
+    .takeaways ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; position:relative; }
+    .takeaways li { font-size:15px; line-height:1.6; color:#c8c2b8; padding-left:22px; position:relative; }
+    .takeaways li::before { content:"→"; position:absolute; left:0; color:var(--accent); }
+    .takeaways li strong { color:#f0ece4; font-weight:500; }
+    [data-theme="dark"] .takeaways .eyebrow { color:var(--ink-muted); }
+    [data-theme="dark"] .takeaways h3 { color:var(--ink); }
+    [data-theme="dark"] .takeaways li { color:var(--ink-soft); }
+    [data-theme="dark"] .takeaways li strong { color:var(--ink); }
+
+    /* Try it */
+    .try-it { border:1px solid color-mix(in oklab,var(--accent) 35%,var(--line)); border-radius:var(--r-lg); padding:var(--s-6); margin:var(--s-7) 0; background:color-mix(in oklab,var(--accent) 4%,var(--bg)); }
+    .try-it .eyebrow { font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin-bottom:var(--s-3); }
+    .try-it h3 { font-size:clamp(17px,1.9vw,21px); font-weight:500; letter-spacing:-.02em; margin-bottom:var(--s-3); }
+    .try-it p { font-size:15px; line-height:1.65; color:var(--ink-soft); margin-bottom:var(--s-4); }
+    .try-it ol { margin:0 0 0 var(--s-5); display:flex; flex-direction:column; gap:8px; }
+    .try-it li { font-size:15px; line-height:1.6; color:var(--ink-soft); }
+    .try-it li strong { color:var(--ink); font-weight:500; }
+
+    /* Related reading */
+    .related { margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .related h4 { font-size:12px; font-family:var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-4); }
+    .related-list { display:flex; flex-direction:column; gap:10px; }
+    .related-list a { display:flex; align-items:baseline; gap:10px; font-size:15px; color:var(--ink); padding:12px 16px; border:1px solid var(--line); border-radius:var(--r-md); transition:border-color .15s, background .15s; }
+    .related-list a:hover { border-color:var(--accent); background:var(--bg-elev); }
+    .related-list .rl-type { font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); flex:0 0 auto; }
+
+    /* References */
+    .references { margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .references h2 { font-size:20px; font-weight:500; letter-spacing:-.02em; margin-bottom:var(--s-5); }
+    .ref-list { display:flex; flex-direction:column; gap:var(--s-3); }
+    .ref-item { display:grid; grid-template-columns:28px 1fr; gap:var(--s-3); font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+    .ref-num { font-family:var(--font-mono); font-size:12px; color:var(--ink-muted); padding-top:2px; }
+    .ref-item a { color:var(--accent); border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent); transition:border-color .15s; }
+    .ref-item a:hover { border-color:var(--accent); }
+
+    /* Prev / next navigation (filled by /lesson.js) */
+    .lesson-nav { display:grid; grid-template-columns:1fr auto 1fr; gap:12px; margin-top:var(--s-8); padding-top:var(--s-6); border-top:1px solid var(--line); }
+    .lesson-nav .ln { display:flex; flex-direction:column; gap:4px; padding:14px 16px; border:1px solid var(--line); border-radius:var(--r-md); transition:border-color .15s, background .15s; min-width:0; }
+    .lesson-nav .ln:hover { border-color:var(--accent); background:var(--bg-elev); }
+    .lesson-nav .ln.next { text-align:right; }
+    .lesson-nav .ln.up { text-align:center; justify-content:center; }
+    .lesson-nav .ln-dir { font-family:var(--font-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); }
+    .lesson-nav .ln-title { font-size:14px; color:var(--ink); line-height:1.4; }
+    .lesson-nav .ln.disabled { opacity:.45; pointer-events:none; }
+    .lesson-foot-note { margin-top:var(--s-4); font-family:var(--font-mono); font-size:12px; color:var(--ink-muted); text-align:center; }
+
+    /* Sidebar — path outline */
+    .toc-card { background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); }
+    .toc-card h4 { font-size:12px; font-family:var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:var(--s-4); }
+    .toc-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2px; }
+    .toc-list a, .toc-list .ol-soon { display:flex; align-items:baseline; gap:9px; padding:8px 10px; border-radius:var(--r-sm); font-size:13.5px; color:var(--ink-soft); line-height:1.4; }
+    .toc-list a:hover { color:var(--ink); background:color-mix(in oklab,var(--ink) 5%,transparent); }
+    .toc-list a.active { color:var(--ink); background:color-mix(in oklab,var(--accent) 12%,transparent); font-weight:500; }
+    .toc-list .ol-num { font-family:var(--font-mono); font-size:11px; color:var(--ink-muted); flex:0 0 auto; }
+    .toc-list .ol-done { color:#5ba672; font-size:12px; margin-left:auto; }
+    .toc-list .ol-soon { color:var(--ink-muted); cursor:default; }
+    .toc-list .ol-soon em { font-style:normal; font-family:var(--font-mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase; margin-left:auto; opacity:.7; }
+    .sidebar-meta { margin-top:var(--s-4); background:var(--bg-elev); border:1px solid var(--line); border-radius:var(--r-lg); padding:var(--s-5); display:flex; flex-direction:column; gap:12px; }
+    .sm-row { display:flex; justify-content:space-between; align-items:baseline; font-size:13px; gap:8px; }
+    .sm-label { color:var(--ink-muted); font-family:var(--font-mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; }
+    .sm-value { color:var(--ink); font-weight:500; text-align:right; }
+    .sm-divider { height:1px; background:var(--line); }
+
+    @media (max-width:900px) {
+      .article-layout { grid-template-columns:1fr; }
+      .article-sidebar { position:static; order:-1; }
+      .lesson-nav { grid-template-columns:1fr; }
+      .lesson-nav .ln.next, .lesson-nav .ln.up { text-align:left; }
+    }
+  </style>
+  <script>window.PAGE_KEY = 'learn';</script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-84Q2LMHPV0');
+  </script>
+
+  <!-- Breadcrumb structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home",  "item": "https://www.nakedcompound.in/" },
+      { "@type": "ListItem", "position": 2, "name": "Learn", "item": "https://www.nakedcompound.in/pages/learn" },
+      { "@type": "ListItem", "position": 3, "name": "Batch, expiry, storage — the fine print that matters", "item": "https://www.nakedcompound.in/learn/label-batch-expiry-storage" }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main data-lesson="label-batch-expiry-storage" data-path="1">
+  <section class="page-head">
+    <div class="container">
+      <div class="crumbs">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/pages/learn">Learn</a><span class="sep">/</span>
+        <span>Path 01 · Lesson 06</span>
+      </div>
+      <div class="path-chip">Path 01 · Reading a supplement label</div>
+      <h1>Batch, expiry, storage — the fine print that <em>matters</em></h1>
+      <p class="kicker">The smallest print on the jar decides whether the good formula inside is still good. Batch number, "best before" versus "expiry", and a storage line most people never read — in Indian heat and humidity, this fine print is doing more work than you'd think.</p>
+      <div class="meta-chips">
+        <span class="meta-chip ok"><span class="dot"></span>Lesson 06 of 6</span>
+        <span class="meta-chip"><span class="dot"></span>~8 min</span>
+        <span class="meta-chip"><span class="dot"></span>Beginner</span>
+        <span class="meta-chip"><span class="dot"></span>Updated Jul 2026</span>
+      </div>
+      <div class="lesson-dots" id="lesson-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="article-layout">
+
+      <!-- ── Lesson body ──────────────────────────────────────────── -->
+      <article class="article-body">
+        <div class="prose">
+
+          <h2 id="batch">The batch number: boring, until it isn't</h2>
+          <p>The batch or lot number (e.g. <code>WPC2216</code>) exists for <strong>traceability</strong>. If a production run is contaminated, under-filled, or recalled, the batch code is how the manufacturer — and you — identify exactly which jars are affected. It's not decoration and it's not optional; a packaged food sold in India must carry one.</p>
+          <p>Two practical uses most people never make of it:</p>
+          <ul>
+            <li><strong>Complaints and recalls.</strong> When you report a problem, the batch number is the first thing customer care asks for. No batch number on the jar is a genuine red flag — it means the maker has opted out of accountability.</li>
+            <li><strong>Sometimes it encodes the date.</strong> Many batch codes embed the manufacture week or month (<code>2216</code> = week 22 of 2016, or similar). You can't rely on decoding it, but a batch code that clearly disagrees with the printed manufacture date is worth a second look.</li>
+          </ul>
+
+          <h2 id="dates">“Best before” is not “expiry” — and neither means “full strength”</h2>
+          <p>FSSAI treats two date labels differently, and the difference matters:</p>
+          <ul>
+            <li><strong>Best Before</strong> — a <em>quality</em> date. After it, the product isn't dangerous, but the maker no longer guarantees peak quality/potency. Most supplements use this.</li>
+            <li><strong>Expiry / Use By</strong> — a <em>safety</em> date, used where consuming the product after it could be genuinely unsafe. You'll see this on some higher-risk formats.</li>
+          </ul>
+          <p>Indian supplements usually print "<strong>Best before X months from manufacture</strong>", so you have to do the arithmetic yourself: manufacture 03/2026 + "best before 18 months" = use by ~09/2027. But here's the part the date hides completely — <strong>the declared dose is typically guaranteed at the time of manufacture, not through to the best-before date.</strong> Potency of many actives decays over that window, and how fast depends almost entirely on storage.</p>
+
+          <figure class="figure">
+            <svg viewBox="0 0 500 300" role="img" aria-labelledby="fig6-title">
+              <title id="fig6-title">Potency decay of a supplement from manufacture to best-before, under cool versus hot storage</title>
+              <!-- axes -->
+              <line x1="60" y1="40" x2="60" y2="250" class="axis"></line>
+              <line x1="60" y1="250" x2="474" y2="250" class="axis"></line>
+              <!-- label-dose reference line at y=117 (=100%) -->
+              <line x1="60" y1="117" x2="474" y2="117" class="line-dash"></line>
+              <text x="66" y="111" class="t-mono">100% — dose printed on label</text>
+              <!-- shaded 'under-dosed but in date' region -->
+              <path d="M175,117 L474,117 L474,177 Q265,150 175,117 Z" class="shade-bad"></path>
+              <!-- cool storage curve -->
+              <path d="M60,83 Q265,95 474,113" class="line-cool"></path>
+              <!-- hot storage curve -->
+              <path d="M60,83 Q265,150 474,177" class="line-hot"></path>
+              <!-- start dot (overage) -->
+              <circle cx="60" cy="83" r="3.5" fill="var(--ink-muted)"></circle>
+              <text x="66" y="78" class="t-mono">makers add a bit extra (“overage”)</text>
+              <!-- curve labels -->
+              <text x="474" y="108" text-anchor="end" class="t-key" style="fill:#5ba672">cool, dry storage</text>
+              <text x="474" y="192" text-anchor="end" class="t-key" style="fill:var(--accent)">hot, humid shelf</text>
+              <text x="330" y="140" text-anchor="middle" class="t-mono" style="fill:var(--accent)">under-dosed, still “in date”</text>
+              <!-- x axis labels -->
+              <text x="60"  y="268" text-anchor="middle" class="t-mono">Mfg</text>
+              <text x="474" y="268" text-anchor="end" class="t-mono">Best before</text>
+              <text x="267" y="286" text-anchor="middle" class="t-key">time in the tub  →</text>
+            </svg>
+            <figcaption><b>“In date” and “full potency” are not the same line.</b> Makers add a small overage so the product still meets its dose for a while. Stored cool and dry, potency drifts down gently. Stored hot and humid — a kitchen shelf in an Indian summer — it can fall below the printed dose <em>long before</em> the best-before date. The curve is illustrative, but the direction is real for vitamin C, probiotics, and omega-3s especially.</figcaption>
+          </figure>
+
+          <h2 id="fragile">The fragile actives — where this really bites</h2>
+          <p>Some ingredients are far more perishable than others, and several of them are popular in India:</p>
+          <ul>
+            <li><strong>Probiotics.</strong> The CFU count (live bacteria) is often declared "at time of manufacture". Live cells die over time and die faster when warm — so an unrefrigerated probiotic can deliver a fraction of its labelled count by the time you take it. Look for "CFU <em>at expiry</em>", which is the honest guarantee.</li>
+            <li><strong>Fish oil / omega-3.</strong> These oxidise — go rancid — with heat, light and air, and a rancid capsule isn't just useless, it's an off-tasting source of oxidised fats. Freshness at purchase and cool storage matter more than the printed date.</li>
+            <li><strong>Vitamin C and some B-vitamins.</strong> Water-soluble and heat-sensitive; they degrade steadily, which is part of why big "overages" and megadoses are common.</li>
+          </ul>
+
+          <h2 id="storage">The storage line you've never read</h2>
+          <p>"Store in a cool, dry place, away from direct sunlight. Keep out of reach of children." It's mandatory, it's tiny, and in India it's doing heavy lifting. A jar left on a sunny kitchen shelf, or in a car, or in a bathroom cabinet steamy from hot showers, ages on the <em>hot</em> curve above, not the cool one. For probiotics and omega-3s, "refrigerate after opening" is often the difference between a working product and an expensive placebo — even well within the best-before date.</p>
+
+          <div class="worked-example">
+            <div class="we-head">
+              <span class="we-tag">Worked example</span>
+              <span class="we-title">Two probiotics, same shelf, very different honesty</span>
+            </div>
+            <div class="we-body">
+              <div class="jar-label">PROBIOTIC A
+  50 Billion CFU <mark>at time of manufacture</mark>
+  Batch PA/0126   Mfg 01/2026   Best before 07/2027
+  Store in a cool, dry place.
+
+PROBIOTIC B
+  20 Billion CFU <mark>guaranteed through expiry</mark>
+  Batch PB/0326   Mfg 03/2026   Use by 03/2027
+  <mark>Refrigerate. Keep cold chain.</mark></div>
+              <p><strong>The bigger number loses.</strong> Product A's "50 Billion" is measured the day it was made and stored at room temperature — by the time you swallow it a year later on a warm shelf, the real count could be a small fraction of that.</p>
+              <p><strong>Product B's "20 Billion through expiry", cold-chain-stored,</strong> is a promise about the count <em>when you actually take it</em>. Read alongside the storage line, the honest 20 billion is very likely the stronger product on the day it matters. The date and the storage line, together, told you more than the giant front-of-jar number did.</p>
+            </div>
+          </div>
+
+          <p>This is the last stop in "reading a label", and it's a fitting one: the fanciest formula in the world is only as good as the fine print keeping it alive. Do the date arithmetic, respect the storage line, and for anything living or oily, buy fresh and keep it cold. That's the difference between the dose on the label and the dose in your body.</p>
+
+        </div><!-- /prose -->
+
+        <!-- Key takeaways -->
+        <div class="takeaways">
+          <div class="eyebrow">What to remember</div>
+          <h3>“In date” is not “full potency”. Storage decides the difference.</h3>
+          <ul>
+            <li><strong>The batch number is accountability.</strong> It's how recalls and complaints work — its absence is a red flag. "Best before" is a quality date; "expiry/use by" is a safety date.</li>
+            <li><strong>Declared dose is usually guaranteed at manufacture, not through best-before.</strong> Potency decays over the tub's life, faster when hot — it can drop below the printed dose while still "in date".</li>
+            <li><strong>Living and oily actives are fragile.</strong> Prefer probiotics that guarantee CFU <em>through expiry</em>, buy omega-3 fresh, and obey the storage line — for these, "refrigerate" is the whole ballgame.</li>
+          </ul>
+        </div>
+
+        <!-- Try it -->
+        <div class="try-it">
+          <div class="eyebrow">Try it · ~1 min</div>
+          <h3>Date-check a supplement in your cupboard.</h3>
+          <ol>
+            <li>Find the <strong>manufacture date</strong> and the <strong>best-before</strong> (or compute it from "X months from mfg"). How far into its life is it right now?</li>
+            <li>If it's a <strong>probiotic</strong>, check whether the CFU is "at manufacture" or "through expiry". If it's <strong>fish oil</strong>, was it stored cool and dark?</li>
+            <li>Read the <strong>storage line</strong> — then look at where the jar actually lives. Sunny shelf? Warm kitchen? Move it somewhere cool and dry.</li>
+          </ol>
+        </div>
+
+        <!-- Related reading -->
+        <div class="related">
+          <h4>Goes deeper</h4>
+          <div class="related-list">
+            <a href="/research/probiotics-gut-health-indian-diet"><span class="rl-type">Research</span>Probiotics for the Indian gut — CFU, strains, and the cold-chain problem</a>
+            <a href="/research/fish-oil-freshness-q1-2026"><span class="rl-type">Research</span>Fish oil freshness — how to spot a rancid omega-3</a>
+          </div>
+        </div>
+
+        <!-- References -->
+        <div class="references">
+          <h2>References</h2>
+          <div class="ref-list">
+            <div class="ref-item" id="ref1">
+              <div class="ref-num">1</div>
+              <div>FSSAI. <em>Food Safety and Standards (Labelling and Display) Regulations, 2020</em> — batch/lot number, date of manufacture, "best before" and "expiry/use by", and storage-condition declarations.</div>
+            </div>
+            <div class="ref-item" id="ref2">
+              <div class="ref-num">2</div>
+              <div>Fenster K, et al. <em>The production and delivery of probiotics: a review of a practical approach.</em> Microorganisms. 2019;7(3):83 — CFU viability, temperature sensitivity, at-manufacture vs at-expiry labelling.</div>
+            </div>
+            <div class="ref-item" id="ref3">
+              <div class="ref-num">3</div>
+              <div>Albert BB, et al. <em>Fish oil supplements in New Zealand are highly oxidised and do not meet label content of n-3 PUFA.</em> Sci Rep. 2015;5:7928 — oxidation and real vs labelled omega-3 content.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prev / next — filled by /lesson.js -->
+        <nav class="lesson-nav">
+          <a class="ln prev" id="lesson-prev" href="#"><span class="ln-dir">← Previous</span><span class="ln-title"></span></a>
+          <a class="ln up" href="/pages/learn"><span class="ln-dir">All paths</span><span class="ln-title">Learn home</span></a>
+          <a class="ln next" id="lesson-next" href="#"><span class="ln-dir">Next →</span><span class="ln-title"></span></a>
+        </nav>
+        <p class="lesson-foot-note">Progress saves automatically in this browser · skip ahead anytime · no streak.</p>
+
+      </article><!-- /article-body -->
+
+      <!-- ── Sidebar — filled by /lesson.js ───────────────────────── -->
+      <aside class="article-sidebar">
+        <div class="toc-card">
+          <h4>This path</h4>
+          <ul class="toc-list" id="path-outline"><li class="ol-soon">Loading path…</li></ul>
+        </div>
+        <div class="sidebar-meta">
+          <div class="sm-row">
+            <span class="sm-label">Path</span>
+            <span class="sm-value">01 · Reading a supplement label</span>
+          </div>
+          <div class="sm-row">
+            <span class="sm-label">Lesson</span>
+            <span class="sm-value">06 of 6</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Level</span>
+            <span class="sm-value">Beginner</span>
+          </div>
+          <div class="sm-row">
+            <span class="sm-label">Read time</span>
+            <span class="sm-value">~8 min</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Updated</span>
+            <span class="sm-value">Jul 2026</span>
+          </div>
+        </div>
+      </aside>
+
+    </div><!-- /article-layout -->
+  </div><!-- /container -->
+</main>
+
+<div id="site-footer"></div>
+<script src="/nc-site.js?v=1001"></script>
+<script src="/lesson.js?v=1"></script>
+</body>
+</html>

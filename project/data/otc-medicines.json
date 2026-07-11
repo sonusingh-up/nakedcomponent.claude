@@ -1,0 +1,447 @@
+{
+  "categories": {
+    "pain": "Fever & Pain",
+    "stomach": "Stomach",
+    "cold": "Allergy & Cold",
+    "skin": "Skin & First Aid"
+  },
+  "medicines": [
+    {
+      "slug": "paracetamol-650",
+      "name": "Paracetamol 650",
+      "salt": "Paracetamol (acetaminophen) 650 mg",
+      "category": "pain",
+      "title": "Paracetamol 650: Uses, Dose, Side Effects",
+      "metaDescription": "Paracetamol 650 (Dolo, Crocin, Calpol) for Indian homes — what it treats, safe adult dose, max per day, side effects, brands and indicative prices.",
+      "tagline": "The safest default for fever and everyday pain — as long as you respect the daily cap.",
+      "ill": "sv-strip",
+      "illVars": "--ill-a:#f8f0df;--ill-b:#b8865a;",
+      "quick": { "Form": "Tablet", "Adult dose*": "1 tablet every 6–8 hrs", "Max in 24 hrs": "4 tablets (3 g)", "Works in": "30–60 min" },
+      "uses": ["Fever", "Headache", "Body ache", "Toothache", "Period pain", "Post-vaccination fever"],
+      "benefits": [
+        "Gentlest common painkiller on the stomach — no food needed first",
+        "Safe first choice in dengue-season fevers, unlike NSAIDs",
+        "Works for both fever and pain, so one strip covers most households",
+        "Decades of safety data at label doses"
+      ],
+      "sideCommon": ["Uncommon at label doses", "Occasional nausea", "Rare skin rash"],
+      "sideSerious": ["Overdose is silent and hits the liver — never exceed 4 tablets in 24 hours", "Yellowing eyes/skin, dark urine — stop and see a doctor", "Rash with swelling of face or throat — emergency"],
+      "cautions": [
+        "Cold-and-flu combos (D'Cold, Cheston Cold) already contain paracetamol — count them toward the daily 3 g",
+        "Regular alcohol use, liver disease or low body weight shrinks the safe margin — ask a doctor first",
+        "Fever beyond 3 days on paracetamol is a doctor visit, not a higher dose"
+      ],
+      "brands": [
+        { "brand": "Dolo 650", "maker": "Micro Labs", "pack": "Strip of 15 tablets", "mrp": "₹31–35", "img": "" },
+        { "brand": "Crocin 650 Advance", "maker": "Haleon (GSK)", "pack": "Strip of 15 tablets", "mrp": "₹30–35", "img": "" },
+        { "brand": "Calpol 650", "maker": "GSK", "pack": "Strip of 15 tablets", "mrp": "₹30–34", "img": "" }
+      ],
+      "buyQuery": "dolo 650"
+    },
+    {
+      "slug": "ibuprofen-400",
+      "name": "Ibuprofen 400",
+      "salt": "Ibuprofen 400 mg",
+      "category": "pain",
+      "title": "Ibuprofen 400: Uses, Dose, Side Effects",
+      "metaDescription": "Ibuprofen 400 (Brufen) — when it beats paracetamol, safe adult dosing after food, who must avoid it, side effects, Indian brands and indicative prices.",
+      "tagline": "The anti-inflammatory workhorse — stronger on swelling than paracetamol, harder on the stomach.",
+      "ill": "sv-tablet",
+      "illVars": "--ill-a:#f4d7cf;--ill-b:#a64d2e;",
+      "quick": { "Form": "Tablet", "Adult dose*": "400 mg every 6–8 hrs, after food", "Max in 24 hrs": "1,200 mg (self-care)", "Works in": "30–45 min" },
+      "uses": ["Sprains & strains", "Period pain", "Toothache", "Inflammatory pain", "Fever (second-line)", "Backache"],
+      "benefits": [
+        "Reduces inflammation, not just pain — better for sprains and swollen joints",
+        "Often stronger than paracetamol for period pain and dental pain",
+        "Short-acting, so occasional use clears the body quickly"
+      ],
+      "sideCommon": ["Stomach pain or heartburn", "Nausea", "Dizziness"],
+      "sideSerious": ["Black stools or vomiting blood — stop immediately, emergency", "Swelling, breathlessness or reduced urination — kidney warning", "Wheezing in asthmatics — avoid if aspirin-sensitive"],
+      "cautions": [
+        "Never on an empty stomach — always after food or milk",
+        "Avoid entirely in suspected dengue or any bleeding disorder",
+        "Skip it if you have ulcers, kidney disease, uncontrolled BP or heart failure",
+        "Don't combine with other NSAIDs (diclofenac, aspirin) — the risks stack"
+      ],
+      "brands": [
+        { "brand": "Brufen 400", "maker": "Abbott", "pack": "Strip of 15 tablets", "mrp": "₹25–33", "img": "" },
+        { "brand": "Ibugesic 400", "maker": "Cipla", "pack": "Strip of 15 tablets", "mrp": "₹22–30", "img": "" }
+      ],
+      "buyQuery": "brufen 400"
+    },
+    {
+      "slug": "diclofenac-gel",
+      "name": "Diclofenac gel",
+      "salt": "Diclofenac diethylamine 1.16% w/w (topical)",
+      "category": "pain",
+      "title": "Diclofenac Gel: Uses & Side Effects",
+      "metaDescription": "Diclofenac pain-relief gel (Volini, Voveran Emulgel) — how to apply it for muscle and joint pain, side effects, cautions, brands and indicative prices.",
+      "tagline": "An NSAID you rub on instead of swallowing — pain relief where it hurts, with less stomach risk.",
+      "ill": "sv-tube",
+      "illVars": "--ill-a:#f2e6cd;--ill-b:#c96442;--ill-c:#8a6a42;",
+      "quick": { "Form": "Gel (topical)", "Adult dose*": "Thin layer on the painful area", "Frequency": "3–4× a day", "Works in": "20–40 min" },
+      "uses": ["Muscle pulls", "Neck & back pain", "Knee and joint pain", "Sports strains", "Tennis elbow"],
+      "benefits": [
+        "Acts locally — far less of the drug reaches your stomach and kidneys",
+        "Good first option for localised pain before reaching for tablets",
+        "Easy to combine with rest and ice/heat therapy"
+      ],
+      "sideCommon": ["Mild itching or redness where applied", "Dry skin at the site", "Increased sun-sensitivity of treated skin"],
+      "sideSerious": ["Widespread rash or blistering — stop and see a doctor", "Wheezing or breathlessness after use — NSAID sensitivity"],
+      "cautions": [
+        "Not on broken, infected or eczema-affected skin",
+        "Wash hands after applying; keep away from eyes and mouth",
+        "Don't stack with full-dose oral NSAIDs without asking a doctor",
+        "Cover from direct sun — treated skin burns faster"
+      ],
+      "brands": [
+        { "brand": "Volini Gel", "maker": "Sun Pharma", "pack": "30 g tube", "mrp": "₹150–175", "img": "" },
+        { "brand": "Voveran Emulgel", "maker": "Novartis", "pack": "30 g tube", "mrp": "₹165–190", "img": "" },
+        { "brand": "Omni Gel", "maker": "Cipla", "pack": "30 g tube", "mrp": "₹120–140", "img": "" }
+      ],
+      "buyQuery": "volini gel"
+    },
+    {
+      "slug": "who-ors",
+      "name": "WHO-ORS",
+      "salt": "Oral rehydration salts (WHO reduced-osmolarity formula)",
+      "category": "stomach",
+      "title": "WHO-ORS (Electral): How to Use It Right",
+      "metaDescription": "WHO-ORS (Electral) — the most life-saving OTC item in India. How to mix it correctly, when to use it, why ORSL tetra packs don't count, brands and prices.",
+      "tagline": "The most life-saving thing in your medicine drawer — if you mix it right and pick the real one.",
+      "ill": "sv-sachet",
+      "illVars": "--ill-a:#f2e6cd;--ill-b:#2a7a5e;--ill-c:#1f5744;",
+      "quick": { "Form": "Powder sachet", "Mix": "1 large sachet in 1 L clean water", "Use within": "24 hrs of mixing", "Sip": "Small, frequent sips" },
+      "uses": ["Diarrhoea", "Vomiting", "Heat exhaustion", "Dehydration in fever", "Post-exercise salt loss"],
+      "benefits": [
+        "Replaces water AND salts in the exact ratio the gut absorbs best",
+        "Reduces the need for IV drips in most home diarrhoea cases",
+        "Safe for all ages when mixed correctly — including children",
+        "Costs less than ₹25 per litre of protection"
+      ],
+      "sideCommon": ["None at correct dilution", "Mild nausea if gulped too fast"],
+      "sideSerious": ["Vomiting everything for over 6 hours — needs a doctor", "No urine for 8+ hours, sunken eyes, drowsiness — emergency dehydration signs"],
+      "cautions": [
+        "ORSL, Rebalanz and similar tetra packs are fruit drinks — NOT WHO-ORS. Look for 'WHO-ORS' on the sachet",
+        "Never mix in less water to make it 'stronger' — wrong concentration harms",
+        "Kidney or heart patients on fluid restriction should ask a doctor first",
+        "Pair with zinc for children's diarrhoea (doctor-guided)"
+      ],
+      "brands": [
+        { "brand": "Electral", "maker": "FDC", "pack": "21.8 g sachet (for 1 L)", "mrp": "₹22–25", "img": "" },
+        { "brand": "WHO-ORS IP sachets", "maker": "Various (generic)", "pack": "20.5–21.8 g sachet", "mrp": "₹10–20", "img": "" }
+      ],
+      "buyQuery": "electral powder"
+    },
+    {
+      "slug": "antacid-gel",
+      "name": "Antacid gel",
+      "salt": "Aluminium hydroxide + magnesium hydroxide + simethicone",
+      "category": "stomach",
+      "title": "Antacid Gel (Digene): Uses & Cautions",
+      "metaDescription": "Antacid gels and tablets (Digene, Gelusil) — how they neutralise acidity, correct dose, side effects, medicine interactions, brands and indicative prices.",
+      "tagline": "Neutralises acid on contact — honest relief for occasional acidity, a mask for chronic reflux.",
+      "ill": "sv-bottle",
+      "illVars": "--ill-a:#f3c9d4;--ill-b:#b04a68;--ill-c:#6e4a2a;",
+      "quick": { "Form": "Gel / chewable tablet", "Adult dose*": "2 tsp or 2 tablets", "When": "After meals & at bedtime", "Works in": "5–15 min" },
+      "uses": ["Heartburn", "Acidity after meals", "Gas & bloating", "Sour burps"],
+      "benefits": [
+        "Fastest common relief for meal-related acidity — works in minutes",
+        "Simethicone in most Indian formulas also breaks up gas",
+        "Doesn't need absorption into the blood — acts inside the stomach"
+      ],
+      "sideCommon": ["Constipation (aluminium side)", "Loose stools (magnesium side)", "Chalky taste"],
+      "sideSerious": ["Kidney patients can accumulate aluminium/magnesium — ask a doctor", "Black or tarry stools are NOT from antacids — see a doctor"],
+      "cautions": [
+        "Needing antacids beyond 2 weeks means see a doctor, not buy a bigger bottle",
+        "Take other medicines 2 hours apart — antacids block absorption of many drugs",
+        "Recurring night-time reflux or difficulty swallowing needs proper evaluation"
+      ],
+      "brands": [
+        { "brand": "Digene Gel", "maker": "Abbott", "pack": "200 ml bottle", "mrp": "₹140–155", "img": "" },
+        { "brand": "Digene Tablets", "maker": "Abbott", "pack": "Strip of 15", "mrp": "₹32–36", "img": "" },
+        { "brand": "Gelusil MPS", "maker": "Pfizer", "pack": "200 ml bottle", "mrp": "₹130–145", "img": "" }
+      ],
+      "buyQuery": "digene gel"
+    },
+    {
+      "slug": "eno-fruit-salt",
+      "name": "Fruit salt (ENO)",
+      "salt": "Sodium bicarbonate + citric acid + sodium carbonate",
+      "category": "stomach",
+      "title": "ENO Fruit Salt: Uses, Dose & Cautions",
+      "metaDescription": "ENO fruit salt — how the fizz neutralises acid in minutes, correct dose, why the sodium matters for BP and heart patients, and indicative prices.",
+      "tagline": "Instant fizz for occasional heartburn — with a sodium load your blood pressure notices.",
+      "ill": "sv-glass",
+      "illVars": "--ill-a:#d7e9ee;",
+      "quick": { "Form": "Powder sachet", "Adult dose*": "1 sachet (5 g) in water", "Frequency": "As needed, occasionally", "Works in": "2–6 min" },
+      "uses": ["Sudden heartburn", "Acidity after heavy meals", "Bloated, over-full feeling"],
+      "benefits": [
+        "Among the fastest OTC acidity fixes — relief in minutes",
+        "Single-use sachets travel well",
+        "No drowsiness, no interactions with most medicines at occasional use"
+      ],
+      "sideCommon": ["Belching", "Temporary bloating", "Salty aftertaste"],
+      "sideSerious": ["Regular use adds significant sodium — risky with high BP, heart or kidney disease", "Swelling of feet or sudden BP spikes with frequent use — stop and see a doctor"],
+      "cautions": [
+        "It's a rescue, not a routine — daily acidity needs a doctor, not daily ENO",
+        "On a salt-restricted diet (BP, heart, kidney, pregnancy-induced hypertension)? Ask first",
+        "Wait for the fizz to settle before drinking to avoid gulping gas"
+      ],
+      "brands": [
+        { "brand": "ENO Sachet", "maker": "Haleon", "pack": "5 g sachet", "mrp": "₹10–12", "img": "" },
+        { "brand": "ENO Bottle", "maker": "Haleon", "pack": "100 g bottle", "mrp": "₹95–110", "img": "" }
+      ],
+      "buyQuery": "eno fruit salt"
+    },
+    {
+      "slug": "isabgol",
+      "name": "Isabgol",
+      "salt": "Psyllium husk (Plantago ovata)",
+      "category": "stomach",
+      "title": "Isabgol: Uses, Dose & Side Effects",
+      "metaDescription": "Isabgol (psyllium husk) for constipation — how the fibre bulk-former works, correct dose with water, side effects, cautions, brands and indicative prices.",
+      "tagline": "A fibre, not a drug — the gentlest fix for constipation, as long as the water glass is full.",
+      "ill": "sv-bottle",
+      "illVars": "--ill-a:#e8c188;--ill-b:#8a5a2a;--ill-c:#6e4a2a;",
+      "quick": { "Form": "Husk powder", "Adult dose*": "1–2 tsp in a full glass of water", "When": "At night, after dinner", "Works in": "12–48 hrs" },
+      "uses": ["Constipation", "Irregular bowel habit", "Mild diarrhoea (stool bulking)", "Fibre supplementation"],
+      "benefits": [
+        "Not habit-forming, unlike stimulant laxatives",
+        "Works with your gut's own rhythm — softens and bulks stool naturally",
+        "Also steadies mild loose motions by absorbing excess water",
+        "Modest LDL-cholesterol benefit with regular use"
+      ],
+      "sideCommon": ["Bloating or gas in the first days", "Feeling of fullness"],
+      "sideSerious": ["Taken with too little water it can swell and choke or block — always a FULL glass", "Severe abdominal pain, vomiting or no stool + no gas — possible obstruction, emergency"],
+      "cautions": [
+        "Never take dry or with a sip — minimum one full glass (250 ml) of water",
+        "Skip it during severe abdominal pain or suspected blockage",
+        "Take other medicines 1–2 hours apart — fibre can slow their absorption",
+        "Diabetics: some flavoured brands carry added sugar — check the label"
+      ],
+      "brands": [
+        { "brand": "Telephone Brand Isabgol", "maker": "Sidhpur Sat-Isabgol Factory", "pack": "100 g pack", "mrp": "₹120–140", "img": "" },
+        { "brand": "Dabur Nature Care Isabgol", "maker": "Dabur", "pack": "100 g pack", "mrp": "₹115–135", "img": "" }
+      ],
+      "buyQuery": "isabgol"
+    },
+    {
+      "slug": "loperamide",
+      "name": "Loperamide 2 mg",
+      "salt": "Loperamide hydrochloride 2 mg",
+      "category": "stomach",
+      "title": "Loperamide 2 mg: Uses & Warnings",
+      "metaDescription": "Loperamide (Imodium, Eldoper) for acute watery diarrhoea — when it's appropriate, strict adult dosing, when it's dangerous, brands and indicative prices.",
+      "tagline": "Stops the runs when you can't stop — but the wrong situation makes it genuinely dangerous.",
+      "ill": "sv-capsule",
+      "illVars": "--ill-a:#f6ead1;--ill-b:#3a7a4a;",
+      "quick": { "Form": "Capsule / tablet", "Adult dose*": "2 mg after each loose stool", "Max": "3–4 caps/day · 2 days", "Works in": "1–2 hrs" },
+      "uses": ["Acute watery diarrhoea (adults)", "Travel days & transit", "Work situations where a toilet isn't reachable"],
+      "benefits": [
+        "Slows the gut fast — buys you a safe journey or meeting",
+        "Single capsules work; no course needed",
+        "Pairs with ORS, which remains the actual treatment"
+      ],
+      "sideCommon": ["Constipation afterward", "Dry mouth", "Mild cramps", "Dizziness"],
+      "sideSerious": ["NEVER with fever or blood in stool (dysentery) — it traps the infection inside", "Severe bloating or constipation after use — possible ileus, see a doctor", "High doses affect heart rhythm — never exceed the label"],
+      "cautions": [
+        "Not for children — paediatric diarrhoea is ORS + zinc + doctor",
+        "Maximum 2 days of self-use — diarrhoea persisting beyond that needs a doctor",
+        "Rehydration with ORS comes first; loperamide only manages the symptom",
+        "Skip it if diarrhoea started right after antibiotics — ask a doctor"
+      ],
+      "brands": [
+        { "brand": "Imodium", "maker": "Kenvue (J&J)", "pack": "Strip of 4 capsules", "mrp": "₹28–35", "img": "" },
+        { "brand": "Eldoper", "maker": "Micro Labs", "pack": "Strip of 10 capsules", "mrp": "₹28–34", "img": "" }
+      ],
+      "buyQuery": "eldoper"
+    },
+    {
+      "slug": "cetirizine",
+      "name": "Cetirizine 10 mg",
+      "salt": "Cetirizine dihydrochloride 10 mg",
+      "category": "cold",
+      "title": "Cetirizine 10 mg: Uses & Side Effects",
+      "metaDescription": "Cetirizine 10 mg (Okacet, Cetzine, Alerid) — allergy, sneezing and hives relief, correct adult dose, drowsiness warning, brands and indicative prices.",
+      "tagline": "One tablet, most allergies quieted for a day — just don't plan on driving right after.",
+      "ill": "sv-tablet",
+      "illVars": "--ill-a:#f8f0df;--ill-b:#3a6ea5;",
+      "quick": { "Form": "Tablet", "Adult dose*": "10 mg once daily", "When": "Preferably at night", "Works in": "20–60 min" },
+      "uses": ["Sneezing fits", "Allergic rhinitis", "Dust & pollen allergy", "Hives (urticaria)", "Itchy skin reactions", "Mosquito-bite itching"],
+      "benefits": [
+        "24-hour cover from a single tablet",
+        "Less sedating than older antihistamines like chlorpheniramine — though not zero",
+        "Also calms itchy skin reactions, not just the nose"
+      ],
+      "sideCommon": ["Drowsiness", "Dry mouth", "Headache", "Fatigue"],
+      "sideSerious": ["Confusion or urinary retention in the elderly — use with care", "A true allergic emergency (throat swelling, breathlessness) needs a hospital, not a tablet"],
+      "cautions": [
+        "Skip driving and machinery until you know how sleepy it makes you",
+        "Alcohol multiplies the drowsiness — avoid the combination",
+        "Allergy 'season' lasting beyond 2–3 weeks of self-dosing deserves a doctor's look",
+        "Pregnancy and breastfeeding — ask a doctor first"
+      ],
+      "brands": [
+        { "brand": "Okacet", "maker": "Cipla", "pack": "Strip of 10 tablets", "mrp": "₹25–30", "img": "" },
+        { "brand": "Cetzine", "maker": "Dr. Reddy's", "pack": "Strip of 10 tablets", "mrp": "₹32–36", "img": "" },
+        { "brand": "Alerid", "maker": "Cipla", "pack": "Strip of 10 tablets", "mrp": "₹28–33", "img": "" }
+      ],
+      "buyQuery": "okacet"
+    },
+    {
+      "slug": "cold-combo-tablets",
+      "name": "Cold combo tablets",
+      "salt": "Typically paracetamol + phenylephrine + chlorpheniramine/cetirizine",
+      "category": "cold",
+      "title": "Cold Combo Tablets: What's Inside",
+      "metaDescription": "Cold combination tablets (D'Cold Total, Cheston Cold) — what's actually inside, the paracetamol-stacking trap, who should avoid them, brands and prices.",
+      "tagline": "Three drugs in one tablet — convenient, effective, and the easiest way to accidentally double-dose paracetamol.",
+      "ill": "sv-strip",
+      "illVars": "--ill-a:#f8f0df;--ill-b:#c0392b;",
+      "quick": { "Form": "Tablet", "Adult dose*": "1 tablet every 8 hrs", "Max": "3 tablets in 24 hrs", "Works in": "30–60 min" },
+      "uses": ["Blocked nose", "Runny nose", "Cold with mild fever", "Sinus heaviness"],
+      "benefits": [
+        "One tablet covers fever, congestion and runny nose together",
+        "Cheaper than buying three separate medicines for a short cold",
+        "Night doses help you actually sleep through a cold"
+      ],
+      "sideCommon": ["Drowsiness", "Dry mouth and nose", "Mild BP rise (phenylephrine)"],
+      "sideSerious": ["Stacking with Dolo/Crocin overdoses paracetamol — count every source toward 3 g/day", "Palpitations or severe restlessness — stop and see a doctor"],
+      "cautions": [
+        "Check the composition on the strip — most already contain 325–650 mg paracetamol",
+        "High BP, heart disease, thyroid, glaucoma or prostate trouble? Ask a doctor before decongestants",
+        "A cold is viral — antibiotics don't help; 5–7 days of rest and fluids do",
+        "Avoid alcohol; drowsiness stacks"
+      ],
+      "brands": [
+        { "brand": "D'Cold Total", "maker": "Reckitt", "pack": "Strip of 10 tablets", "mrp": "₹58–65", "img": "" },
+        { "brand": "Cheston Cold", "maker": "Cipla", "pack": "Strip of 10 tablets", "mrp": "₹55–62", "img": "" }
+      ],
+      "buyQuery": "cheston cold"
+    },
+    {
+      "slug": "menthol-camphor-balm",
+      "name": "Menthol-camphor balm",
+      "salt": "Menthol + camphor + eucalyptus oil (topical)",
+      "category": "cold",
+      "title": "Vicks & Menthol Balms: Safe Use",
+      "metaDescription": "Menthol-camphor balms (Vicks VapoRub, Amrutanjan) — blocked-nose and headache relief done safely, child-safety warnings, brands and indicative prices.",
+      "tagline": "The smell of every Indian winter — safe comfort for adults, with real rules around small children.",
+      "ill": "sv-tin",
+      "illVars": "--ill-a:#2f7c6b;--ill-b:#215a4f;--ill-c:#173f38;",
+      "quick": { "Form": "Balm / ointment", "Adult use*": "Rub on chest, back, throat", "Frequency": "2–3× a day, or in steam", "Works in": "5–15 min (comfort)" },
+      "uses": ["Blocked nose comfort", "Cough-y nights", "Tension headache (temples)", "Steam inhalation add-in", "Muscle-rub warmth"],
+      "benefits": [
+        "Instant sensory relief that helps sleep through a cold",
+        "No tablets, no interactions with other medicines",
+        "One tin serves the whole family's adults for months"
+      ],
+      "sideCommon": ["Skin irritation or burning on sensitive skin", "Watery eyes from fumes"],
+      "sideSerious": ["Camphor is poisonous if swallowed — keep away from children", "On or under an infant's nostrils it can trigger breathing distress — never do this"],
+      "cautions": [
+        "Not for children under 2 at all; for older children, chest and back only",
+        "Never inside the nose, on broken skin, or near the eyes",
+        "It comforts symptoms — it doesn't shorten the cold; persistent cough needs a doctor"
+      ],
+      "brands": [
+        { "brand": "Vicks VapoRub", "maker": "P&G", "pack": "50 ml jar", "mrp": "₹140–155", "img": "" },
+        { "brand": "Amrutanjan Balm", "maker": "Amrutanjan Health Care", "pack": "30 g jar", "mrp": "₹45–55", "img": "" },
+        { "brand": "Zandu Balm", "maker": "Emami", "pack": "25 ml jar", "mrp": "₹55–65", "img": "" }
+      ],
+      "buyQuery": "vicks vaporub"
+    },
+    {
+      "slug": "povidone-iodine",
+      "name": "Povidone-iodine",
+      "salt": "Povidone-iodine 5–10% (topical antiseptic)",
+      "category": "skin",
+      "title": "Povidone-Iodine (Betadine): First Aid",
+      "metaDescription": "Povidone-iodine (Betadine) antiseptic — cleaning cuts, scrapes and minor burns correctly, when a wound needs a doctor, brands and indicative prices.",
+      "tagline": "The brown bottle that guards every Indian first-aid box — for wounds you can see the bottom of.",
+      "ill": "sv-tube",
+      "illVars": "--ill-a:#f2e6cd;--ill-b:#8a4a1f;--ill-c:#6e3a15;",
+      "quick": { "Form": "Ointment / solution", "Use*": "Thin layer on cleaned wound", "Frequency": "1–2× a day, covered", "For": "Minor cuts, scrapes, burns" },
+      "uses": ["Cuts & scrapes", "Minor burns", "Blisters (opened)", "Post-shave nicks", "Preventing wound infection"],
+      "benefits": [
+        "Broad germ kill — bacteria, fungi and viruses on the skin surface",
+        "Ointment form stays put on a bandaged wound",
+        "Decades of first-aid track record; easy to use correctly"
+      ],
+      "sideCommon": ["Mild stinging on application", "Temporary brown staining of skin"],
+      "sideSerious": ["Allergy — hives, swelling, worsening redness: stop and see a doctor", "Large-area or long-term use can affect thyroid function — ask a doctor"],
+      "cautions": [
+        "Clean the wound with running water FIRST — antiseptic isn't a substitute for cleaning",
+        "Deep, dirty, gaping or animal-bite wounds need a doctor and possibly a tetanus shot",
+        "Thyroid disorders, pregnancy or breastfeeding — check before regular use",
+        "A wound getting redder, warmer or oozier after 2 days is infected — doctor"
+      ],
+      "brands": [
+        { "brand": "Betadine 10% Ointment", "maker": "Win-Medicare", "pack": "20 g tube", "mrp": "₹100–115", "img": "" },
+        { "brand": "Wokadine 5% Ointment", "maker": "Wockhardt", "pack": "25 g tube", "mrp": "₹75–90", "img": "" }
+      ],
+      "buyQuery": "betadine ointment"
+    },
+    {
+      "slug": "clotrimazole-cream",
+      "name": "Clotrimazole 1%",
+      "salt": "Clotrimazole 1% w/w (topical antifungal)",
+      "category": "skin",
+      "title": "Clotrimazole Cream: Uses & Dose",
+      "metaDescription": "Clotrimazole 1% cream (Candid, Canesten) for ringworm and fungal itch — correct duration, why steroid-combo creams backfire, brands and indicative prices.",
+      "tagline": "The honest answer to ringworm — if you use it long enough and skip the steroid-combo shortcuts.",
+      "ill": "sv-tube",
+      "illVars": "--ill-a:#f2e6cd;--ill-b:#5a7ab5;--ill-c:#8a6a42;",
+      "quick": { "Form": "Cream", "Use*": "Thin layer over + 2 cm beyond the patch", "Frequency": "2–3× a day, 2–4 weeks", "Continue": "1 week after it clears" },
+      "uses": ["Ringworm (tinea)", "Athlete's foot", "Jock itch", "Fungal skin folds itch", "Candidal skin infection"],
+      "benefits": [
+        "Treats the infection itself, not just the itch",
+        "Well tolerated on most skin, including skin folds",
+        "Cheap, widely available, and effective when the full course is completed"
+      ],
+      "sideCommon": ["Mild burning or redness in the first applications", "Slight peeling as skin heals"],
+      "sideSerious": ["Rash spreading or blistering despite 2 weeks of correct use — see a doctor (may need oral therapy)"],
+      "cautions": [
+        "Avoid steroid-antifungal combo creams (widely misused in India) — they hide the rash while the fungus spreads",
+        "Stopping when the itch stops = relapse; continue 1 week beyond visible clearing",
+        "Keep the area dry — fungus thrives in Indian humidity; loose cotton helps",
+        "Everyone in the house with a patch should treat at the same time; don't share towels"
+      ],
+      "brands": [
+        { "brand": "Candid Cream", "maker": "Glenmark", "pack": "20 g tube", "mrp": "₹88–98", "img": "" },
+        { "brand": "Canesten Cream", "maker": "Bayer", "pack": "20 g tube", "mrp": "₹95–110", "img": "" }
+      ],
+      "buyQuery": "candid cream"
+    },
+    {
+      "slug": "calamine-lotion",
+      "name": "Calamine lotion",
+      "salt": "Calamine (zinc oxide + ferric oxide) lotion",
+      "category": "skin",
+      "title": "Calamine Lotion: Uses & Side Effects",
+      "metaDescription": "Calamine lotion for prickly heat, itchy rashes, insect bites and chickenpox itch — how to use it, when a rash needs a doctor, brands and indicative prices.",
+      "tagline": "The pink bottle for angry skin — cools, dries and calms most everyday itches.",
+      "ill": "sv-bottle",
+      "illVars": "--ill-a:#f3c9d4;--ill-b:#b04a68;--ill-c:#8a3a52;",
+      "quick": { "Form": "Lotion", "Use*": "Shake well, dab on with cotton", "Frequency": "3–4× a day", "Works in": "Minutes (cooling)" },
+      "uses": ["Prickly heat", "Itchy rashes", "Insect bites", "Chickenpox itch", "Mild sunburn", "Contact-irritation patches"],
+      "benefits": [
+        "Cools on contact and takes the edge off scratching",
+        "Gentle enough for children's chickenpox itch",
+        "No drug interactions — it works on the surface"
+      ],
+      "sideCommon": ["Dry skin with frequent use", "Visible pink film"],
+      "sideSerious": ["A rash that spreads, blisters or comes with fever isn't a calamine job — see a doctor"],
+      "cautions": [
+        "Skin only — never on eyes, mouth or broken, oozing skin",
+        "If itch persists beyond a week of use, get the rash diagnosed",
+        "Moisturise between applications if skin over-dries"
+      ],
+      "brands": [
+        { "brand": "Calamine Lotion IP", "maker": "Various (generic)", "pack": "100 ml bottle", "mrp": "₹60–90", "img": "" },
+        { "brand": "Lacto Calamine", "maker": "Piramal", "pack": "120 ml bottle (skincare variant)", "mrp": "₹135–150", "img": "" }
+      ],
+      "buyQuery": "calamine lotion"
+    }
+  ]
+}

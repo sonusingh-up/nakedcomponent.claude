@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Garden of Life mykind Organics Women's Multi bottle">
+  <defs>
+    <linearGradient id="golbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2d5a1b"/>
+      <stop offset="1" stop-color="#1e3d12"/>
+    </linearGradient>
+    <linearGradient id="golbody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2a5218"/>
+      <stop offset="0.4" stop-color="#4a8c28"/>
+      <stop offset="0.7" stop-color="#3e7420"/>
+      <stop offset="1" stop-color="#2a5218"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="226" rx="58" ry="7" fill="#000" opacity="0.10"/>
+  <!-- cap -->
+  <rect x="82" y="22" width="76" height="24" rx="5" fill="#8ab040"/>
+  <!-- neck -->
+  <rect x="86" y="44" width="68" height="12" fill="#3e7420"/>
+  <!-- bottle body -->
+  <path d="M72 56 C58 64 50 78 50 96 L50 196 C50 208 60 218 72 218 L168 218 C180 218 190 208 190 196 L190 96 C190 78 182 64 168 56 Z" fill="url(#golbody)" stroke="#2a5218" stroke-width="1.5"/>
+  <!-- label -->
+  <rect x="52" y="84" width="136" height="116" rx="2" fill="#f8f6f0" stroke="#c8d890" stroke-width="1"/>
+  <!-- green header band -->
+  <rect x="52" y="84" width="136" height="22" fill="url(#golbg)"/>
+  <text x="120" y="99" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" font-weight="bold" letter-spacing="1" fill="#c8e890">GARDEN OF LIFE</text>
+  <!-- leaf / sun logo -->
+  <circle cx="120" cy="123" r="14" fill="none" stroke="#4a8c28" stroke-width="1.5"/>
+  <path d="M120 112 C113 118 113 128 120 130 C127 128 127 118 120 112 Z" fill="#5aa030"/>
+  <line x1="120" y1="110" x2="120" y2="134" stroke="#3e7420" stroke-width="1"/>
+  <!-- mykind text -->
+  <text x="120" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="12.5" font-weight="bold" fill="#2d5a1b" letter-spacing="0.5">mykind</text>
+  <text x="120" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#3e7420" letter-spacing="1">ORGANICS</text>
+  <line x1="68" y1="165" x2="172" y2="165" stroke="#c8d890" stroke-width="0.8"/>
+  <text x="120" y="176" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#4a6020">Women's Multi</text>
+  <!-- green footer band -->
+  <rect x="52" y="188" width="136" height="12" fill="#4a8c28"/>
+  <text x="120" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#f0f8e0" letter-spacing="0.5">CERTIFIED ORGANIC · WHOLE FOOD</text>
+</svg>

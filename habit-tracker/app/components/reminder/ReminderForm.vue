@@ -92,16 +92,16 @@ async function save() {
 
     <div v-else-if="enabled" class="mt-5 space-y-5">
       <div class="flex items-center justify-between">
-        <label class="text-sm font-medium text-stone-300">Time</label>
+        <label class="text-sm font-medium text-stone-600 dark:text-stone-300">Time</label>
         <input
           v-model="time"
           type="time"
-          class="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm tabular text-stone-200 focus:border-ember-400 focus:outline-none"
+          class="rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm tabular text-stone-800 focus:border-ember-400 focus:outline-none dark:border-white/10 dark:bg-white/5 dark:text-stone-200"
         />
       </div>
 
       <div>
-        <label class="mb-3 block text-sm font-medium text-stone-300">Repeat on</label>
+        <label class="mb-3 block text-sm font-medium text-stone-600 dark:text-stone-300">Repeat on</label>
         <div class="flex justify-between gap-1">
           <button
             v-for="d in WEEKDAYS"
@@ -111,7 +111,7 @@ async function save() {
             :class="
               days.includes(d.key)
                 ? 'spark-gradient text-white shadow-sm'
-                : 'bg-white/5 text-stone-400'
+                : 'bg-stone-100 text-stone-500 dark:bg-white/5 dark:text-stone-400'
             "
             @click="toggleDay(d.key)"
           >
@@ -122,7 +122,7 @@ async function save() {
 
       <p
         v-if="perm === 'denied'"
-        class="rounded-2xl bg-amber-500/10 px-4 py-3 text-sm text-amber-300"
+        class="rounded-2xl bg-amber-500/10 px-4 py-3 text-sm text-amber-600 dark:text-amber-300"
       >
         Notifications are blocked in your browser. Reminders are saved but won't
         show until you re-enable them in site settings.

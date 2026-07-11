@@ -37,8 +37,31 @@ export function useJournal() {
     return data as unknown as JournalEntry
   }
 
-  async function remove(id: string): Promise<void> {
-    const { error } = await supabase.from('journal_entries').delete().eq('id', id)
+  function storagePath(url: string, bucket: string): string | null {
+    const marker = `/storage/v1/object/public/${bucket}/`
+    const i = url.indexOf(marker)
+    return i === -1 ? null : decodeURIComponent(url.slice(i + marker.length))
+  }
+
+  async function remove(entry: {
+    id: string
+    audio_url?: string | null
+    image_url?: string | null
+  }): Promise<void> {
+    const { error } = await supabase.from('journal_entries').delete().eq('id', entry.id)
+    if (error) throw error
+    // Best-effort file cleanup — the buckets are public, so files left
+    // behind would stay reachable at their URLs after the entry is gone.
+    const jobs: Promise<unknown>[] = []
+    const audioPath = entry.audio_url && storagePath(entry.audio_url, 'journal-audio')
+    if (audioPath) jobs.push(supabase.storage.from('journal-audio').remove([audioPath]))
+    const imagePath = entry.image_url && storagePath(entry.image_url, 'journal_images')
+    if (imagePath) jobs.push(supabase.storage.from('journal_images').remove([imagePath]))
+    await Promise.allSettled(jobs)
+  }
+
+  async function update(id: string, updates: { title?: string | null; body?: string | null }): Promise<void> {
+    const { error } = await supabase.from('journal_entries').update(updates).eq('id', id)
     if (error) throw error
   }
 
@@ -72,5 +95,5 @@ export function useJournal() {
     return data.publicUrl
   }
 
-  return { list, create, remove, uploadAudio, uploadImage }
+  return { list, create, remove, update, uploadAudio, uploadImage }
 }

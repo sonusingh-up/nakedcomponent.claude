@@ -2,7 +2,7 @@
 import type { JournalEntry } from '~/types'
 
 const props = defineProps<{ entry: JournalEntry & { user_habit?: any } }>()
-const emit = defineEmits<{ delete: [] }>()
+const emit = defineEmits<{ delete: []; update: [updates: { title?: string | null; body?: string | null }] }>()
 
 const MOOD_EMOJI: Record<string, string> = {
   great: '😄',
@@ -24,54 +24,108 @@ const date = computed(() =>
     new Date(props.entry.created_at),
   ),
 )
+
+// Edit state
+const isEditing = ref(false)
+const editTitle = ref(props.entry.title || '')
+const editBody = ref(props.entry.body || '')
+const saving = ref(false)
+
+async function saveEdit() {
+  saving.value = true
+  try {
+    emit('update', { title: editTitle.value, body: editBody.value })
+    isEditing.value = false
+  } finally {
+    saving.value = false
+  }
+}
 </script>
 
 <template>
   <div
-    class="glass mb-3 break-inside-avoid rounded-2xl p-4"
+    class="relative mb-4 break-inside-avoid overflow-hidden rounded-[24px] bg-stone-50 p-5 shadow-md shadow-stone-200/50 ring-1 ring-inset ring-stone-200 transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] hover:bg-stone-100 hover:ring-stone-300 dark:bg-white/[0.03] dark:shadow-lg dark:shadow-black/20 dark:ring-white/[0.06] dark:hover:bg-white/[0.04] dark:hover:ring-white/[0.1]"
   >
-    <div class="mb-1 flex items-center justify-between">
-      <span class="text-xs text-stone-400">{{ date }}</span>
-      <button
-        class="text-stone-500 transition-colors hover:text-rose-400"
-        aria-label="Delete entry"
-        @click="emit('delete')"
-      >
-        <UIcon name="i-lucide-trash-2" class="size-4" />
-      </button>
+    <!-- Header: Date and Actions -->
+    <div class="mb-3 flex items-center justify-between">
+      <span class="text-[12px] font-semibold uppercase tracking-wider text-stone-500">{{ date }}</span>
+      <div class="flex items-center gap-1 opacity-60 transition-opacity hover:opacity-100">
+        <button
+          v-if="!isEditing"
+          class="flex size-7 items-center justify-center rounded-full bg-stone-200 text-stone-500 transition-colors hover:bg-stone-300 hover:text-stone-700 dark:bg-white/[0.05] dark:text-stone-400 dark:hover:bg-white/[0.1] dark:hover:text-stone-200"
+          aria-label="Edit entry"
+          @click="isEditing = true"
+        >
+          <UIcon name="i-lucide-pencil" class="size-3.5" />
+        </button>
+        <button
+          class="flex size-7 items-center justify-center rounded-full bg-stone-200 text-stone-500 transition-colors hover:bg-rose-100 hover:text-rose-600 dark:bg-white/[0.05] dark:text-stone-400 dark:hover:bg-rose-500/20 dark:hover:text-rose-400"
+          aria-label="Delete entry"
+          @click="emit('delete')"
+        >
+          <UIcon name="i-lucide-trash-2" class="size-3.5" />
+        </button>
+      </div>
     </div>
 
-    <h3 v-if="entry.title" class="font-medium text-stone-100">{{ entry.title }}</h3>
-
-    <p
-      v-if="entry.entry_type === 'text' && entry.body"
-      class="mt-1 whitespace-pre-wrap text-sm/relaxed text-stone-300"
-    >
-      {{ entry.body }}
-    </p>
-
-    <JournalAudioPlayer
-      v-if="entry.entry_type === 'audio' && entry.audio_url"
-      class="mt-2"
-      :src="entry.audio_url"
-      :duration="entry.audio_duration"
-    />
-
-    <img 
-      v-if="entry.image_url" 
-      :src="entry.image_url" 
-      class="mt-3 max-h-64 w-full rounded-xl border border-white/10 object-cover"
-      loading="lazy"
-    />
-
-    <div v-if="entry.mood || habitName" class="mt-3 flex items-center gap-2">
-      <span v-if="entry.mood" class="text-base">{{ MOOD_EMOJI[entry.mood] }}</span>
-      <span
-        v-if="habitName"
-        class="rounded-full bg-white/8 px-2 py-0.5 text-xs text-stone-300"
-      >
-        {{ habitName }}
-      </span>
+    <!-- Edit Mode -->
+    <div v-if="isEditing" class="space-y-3">
+      <UInput
+        v-model="editTitle"
+        placeholder="Title"
+        variant="none"
+        class="w-full bg-stone-100 ring-1 ring-stone-300 rounded-[10px] dark:bg-white/[0.05] dark:ring-white/[0.1]"
+      />
+      <UTextarea
+        v-if="entry.entry_type === 'text'"
+        v-model="editBody"
+        placeholder="Note body..."
+        variant="none"
+        autoresize
+        class="w-full bg-stone-100 ring-1 ring-stone-300 rounded-[12px] dark:bg-white/[0.05] dark:ring-white/[0.1]"
+      />
+      <div class="flex justify-end gap-2 pt-2">
+        <UButton color="neutral" variant="ghost" size="xs" @click="isEditing = false">Cancel</UButton>
+        <UButton color="primary" size="xs" :loading="saving" @click="saveEdit">Save</UButton>
+      </div>
     </div>
+
+    <!-- View Mode -->
+    <template v-else>
+      <h3 v-if="entry.title" class="text-[17px] font-semibold tracking-[-0.01em] text-stone-900 dark:text-stone-100">{{ entry.title }}</h3>
+
+      <p
+        v-if="entry.entry_type === 'text' && entry.body"
+        class="mt-1.5 whitespace-pre-wrap text-[14px] leading-relaxed text-stone-600 dark:text-stone-300"
+      >
+        {{ entry.body }}
+      </p>
+
+      <JournalAudioPlayer
+        v-if="entry.entry_type === 'audio' && entry.audio_url"
+        class="mt-3"
+        :src="entry.audio_url"
+        :duration="entry.audio_duration"
+      />
+
+      <div v-if="entry.image_url" class="mt-4 overflow-hidden rounded-[16px] ring-1 ring-black/10 dark:ring-white/10">
+        <img
+          :src="entry.image_url"
+          alt=""
+          class="max-h-64 w-full object-cover transition-transform duration-700 hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+
+      <div v-if="entry.mood || habitName" class="mt-4 flex items-center gap-2">
+        <span v-if="entry.mood" class="text-base drop-shadow-sm">{{ MOOD_EMOJI[entry.mood] }}</span>
+        <span
+          v-if="habitName"
+          class="rounded-full bg-stone-200 px-2.5 py-1 text-[11px] font-medium tracking-wide text-stone-600 ring-1 ring-stone-300 dark:bg-white/10 dark:text-stone-300 dark:ring-white/[0.05]"
+        >
+          {{ habitName }}
+        </span>
+      </div>
+    </template>
   </div>
 </template>

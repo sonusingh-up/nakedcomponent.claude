@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 600" role="img" aria-label="Illustration of the Solgar Glucosamine Hyaluronic Acid Chondroitin MSM amber glass bottle with gold cap and gold label, 120 tablets">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2e1c0d"/>
+      <stop offset="0.18" stop-color="#54341a"/>
+      <stop offset="0.45" stop-color="#6b4423"/>
+      <stop offset="0.75" stop-color="#4a2c14"/>
+      <stop offset="1" stop-color="#241407"/>
+    </linearGradient>
+    <linearGradient id="glassTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#3a2410"/>
+      <stop offset="0.5" stop-color="#7a4f28"/>
+      <stop offset="1" stop-color="#2e1c0d"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a6a2a"/>
+      <stop offset="0.22" stop-color="#d9b95c"/>
+      <stop offset="0.5" stop-color="#f0dfa0"/>
+      <stop offset="0.78" stop-color="#c9a84a"/>
+      <stop offset="1" stop-color="#7a5c22"/>
+    </linearGradient>
+    <linearGradient id="label" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d9c184"/>
+      <stop offset="0.18" stop-color="#efe0b4"/>
+      <stop offset="0.5" stop-color="#f6ecca"/>
+      <stop offset="0.82" stop-color="#e6d29a"/>
+      <stop offset="1" stop-color="#c9ae6e"/>
+    </linearGradient>
+    <linearGradient id="labelTopCurve" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9ae6e"/>
+      <stop offset="1" stop-color="#efe0b4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- shadow -->
+  <ellipse cx="220" cy="576" rx="150" ry="14" fill="#000" opacity="0.14"/>
+
+  <!-- cap -->
+  <rect x="146" y="30" width="148" height="58" rx="10" fill="url(#cap)"/>
+  <g stroke="#8a6a2a" stroke-width="1.6" opacity="0.55">
+    <line x1="158" y1="36" x2="158" y2="82"/><line x1="170" y1="34" x2="170" y2="84"/>
+    <line x1="182" y1="33" x2="182" y2="85"/><line x1="194" y1="32" x2="194" y2="86"/>
+    <line x1="206" y1="32" x2="206" y2="86"/><line x1="218" y1="32" x2="218" y2="86"/>
+    <line x1="230" y1="32" x2="230" y2="86"/><line x1="242" y1="32" x2="242" y2="86"/>
+    <line x1="254" y1="33" x2="254" y2="85"/><line x1="266" y1="34" x2="266" y2="84"/>
+    <line x1="278" y1="36" x2="278" y2="82"/>
+  </g>
+  <rect x="146" y="30" width="148" height="10" rx="5" fill="#f4e7b6" opacity="0.7"/>
+
+  <!-- neck -->
+  <rect x="158" y="86" width="124" height="34" fill="url(#glassTop)"/>
+
+  <!-- shoulders -->
+  <path d="M158 120 C120 130 96 152 96 190 L344 190 C344 152 320 130 282 120 Z" fill="url(#glass)"/>
+
+  <!-- body -->
+  <rect x="96" y="186" width="248" height="376" rx="34" fill="url(#glass)"/>
+
+  <!-- glass highlight -->
+  <rect x="112" y="140" width="26" height="400" rx="13" fill="#ffffff" opacity="0.10"/>
+  <rect x="306" y="150" width="12" height="380" rx="6" fill="#ffffff" opacity="0.05"/>
+
+  <!-- label -->
+  <g>
+    <path d="M112 236 C150 224 290 224 328 236 L328 500 L112 500 Z" fill="url(#label)"/>
+    <path d="M112 236 C150 224 290 224 328 236 L328 244 C290 232 150 232 112 244 Z" fill="url(#labelTopCurve)" opacity="0.6"/>
+
+    <!-- SOLGAR wordmark -->
+    <text x="220" y="272" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="bold" letter-spacing="3" fill="#2e2008">SOLGAR</text>
+    <text x="163" y="286" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-style="italic" fill="#4a3a14">Since</text>
+    <text x="278" y="286" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-style="italic" fill="#4a3a14">1947</text>
+    <line x1="188" y1="282" x2="252" y2="282" stroke="#4a3a14" stroke-width="1"/>
+
+    <!-- EXTRA STRENGTH band -->
+    <rect x="134" y="296" width="172" height="20" fill="#241a06"/>
+    <text x="220" y="310" text-anchor="middle" font-family="Georgia, serif" font-size="12" letter-spacing="2.5" fill="#e8d492">EXTRA STRENGTH</text>
+
+    <!-- shellfish-free -->
+    <text x="220" y="334" text-anchor="middle" font-family="Georgia, serif" font-size="10.5" letter-spacing="1.6" fill="#3a2c0e">SHELLFISH-FREE</text>
+
+    <!-- product name -->
+    <text x="220" y="358" text-anchor="middle" font-family="Georgia, serif" font-size="19" font-weight="bold" letter-spacing="0.4" fill="#241a06">GLUCOSAMINE</text>
+    <text x="220" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="16.5" font-weight="bold" letter-spacing="0.3" fill="#241a06">HYALURONIC ACID</text>
+    <text x="220" y="402" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" letter-spacing="0.6" fill="#241a06">CHONDROITIN</text>
+    <text x="220" y="424" text-anchor="middle" font-family="Georgia, serif" font-size="18" font-weight="bold" letter-spacing="2" fill="#241a06">MSM</text>
+
+    <!-- claims -->
+    <line x1="150" y1="434" x2="290" y2="434" stroke="#4a3a14" stroke-width="0.8"/>
+    <text x="220" y="447" text-anchor="middle" font-family="Georgia, serif" font-size="8.5" letter-spacing="0.8" fill="#3a2c0e">PROMOTES HEALTHY JOINTS*</text>
+    <text x="220" y="458" text-anchor="middle" font-family="Georgia, serif" font-size="8.5" letter-spacing="0.6" fill="#3a2c0e">SUPPORTS COMFORTABLE MOVEMENT*</text>
+    <text x="220" y="471" text-anchor="middle" font-family="Georgia, serif" font-size="8" letter-spacing="0.6" fill="#3a2c0e">NON-GMO &#183; GLUTEN, WHEAT &amp; DAIRY FREE</text>
+
+    <!-- 120 tablets box -->
+    <rect x="168" y="477" width="104" height="14" fill="none" stroke="#2e2008" stroke-width="1"/>
+    <text x="220" y="487.5" text-anchor="middle" font-family="Georgia, serif" font-size="9.5" letter-spacing="1.4" fill="#241a06">120 TABLETS</text>
+  </g>
+
+  <!-- red stripe + footer under label -->
+  <rect x="112" y="500" width="216" height="9" fill="#c8392e"/>
+  <rect x="112" y="509" width="216" height="26" fill="url(#label)"/>
+  <text x="220" y="526" text-anchor="middle" font-family="Georgia, serif" font-size="9" letter-spacing="1.8" fill="#3a2c0e">DIETARY SUPPLEMENT</text>
+</svg>

@@ -786,6 +786,101 @@
 
 
 /* ══════════════════════════════════════════════════════════════════
+   v2 ADDITIONS — components used by the Nordic-style review pages
+   (joints / omega3). Fixes classes referenced in markup that had no
+   definitions, plus dark-card verdict legibility.
+   ══════════════════════════════════════════════════════════════════ */
+
+
+/* ── Verdict: Nordic elements placed inside the dark .verdict-card ── */
+
+.verdict-card .verdict-top { padding: 0; margin-bottom: var(--s-4); }
+.verdict-card .verdict-label { color: #a7d2a9; }
+.verdict-card .verdict-summary { color: #cfc8bb; }
+.verdict-card .verdict-summary strong { color: #f6f0e2; }
+.verdict-card .verdict-summary a { color: #e8c7a8; }
+.verdict-card .score-grid { margin: var(--s-4) 0 0; }
+[data-theme="dark"] .verdict-card .verdict-summary { color: var(--ink-soft); }
+[data-theme="dark"] .verdict-card .verdict-summary strong { color: var(--ink); }
+
+/* Score circle colour variants (only .hi existed) */
+.verdict-score.mid { background: color-mix(in oklab, #d9a03a 14%, var(--surface)); border-color: color-mix(in oklab, #d9a03a 50%, var(--line)); }
+.verdict-score.mid .vs-num { color: #8a6a15; }
+.verdict-score.lo { background: color-mix(in oklab, var(--accent) 12%, var(--surface)); border-color: color-mix(in oklab, var(--accent) 45%, var(--line)); }
+.verdict-score.lo .vs-num { color: var(--accent-deep); }
+
+
+/* ── Sidebar quick-stat rows (.sc-row / .dim / .val) ──────────── */
+
+.sc-body:has(.sc-row) { gap: 0; }
+.sc-body .sc-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.sc-body .sc-row:last-child { border-bottom: 0; }
+.sc-body .sc-row .dim { color: var(--ink-muted); }
+.sc-body .sc-row .val { font-family: var(--font-mono); font-size: 12.5px; font-weight: 500; color: var(--ink); text-align: right; }
+.sc-body .sc-row .val.hi { color: #3a6b4a; }
+.sc-body .sc-row .val.mid { color: #8a6a15; }
+.sc-body .sc-row .val.lo { color: var(--accent-deep); }
+[data-theme="dark"] .sc-body .sc-row .val.hi { color: #a7d2a9; }
+[data-theme="dark"] .sc-body .sc-row .val.mid { color: #e0c377; }
+
+
+/* ── Competitor cards: comp-badge / comp-img / comp-score etc. ── */
+
+.comp-card.best { border-color: color-mix(in oklab, #5ba672 45%, var(--line)); }
+.comp-card.this { border-style: dashed; border-color: color-mix(in oklab, var(--accent) 40%, var(--line)); background: color-mix(in oklab, var(--accent) 4%, var(--bg-elev)); }
+.comp-badge { display: inline-block; align-self: flex-start; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--r-pill); margin-bottom: 2px; }
+.comp-badge.winner { background: color-mix(in oklab, #5ba672 18%, transparent); color: #3a6b4a; }
+.comp-badge.this-product { background: color-mix(in oklab, var(--accent) 10%, transparent); color: var(--accent-deep); border: 1px dashed color-mix(in oklab, var(--accent) 50%, var(--line)); }
+[data-theme="dark"] .comp-badge.winner { color: #a7d2a9; }
+[data-theme="dark"] .comp-badge.this-product { color: var(--accent); }
+.comp-img { height: 140px; border-radius: var(--r-md); background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.comp-img img { width: 100%; height: 100%; object-fit: contain; padding: var(--s-3); }
+.comp-img-fallback { font-family: var(--font-display); font-size: 26px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink-muted); display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.comp-brand { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin-top: 4px; }
+.comp-name { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.comp-score { font-family: var(--font-display); font-size: 24px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); }
+.comp-score.hi { color: #3a6b4a; }
+.comp-score.mid { color: #8a6a15; }
+.comp-score.lo { color: var(--accent-deep); }
+[data-theme="dark"] .comp-score.hi { color: #a7d2a9; }
+[data-theme="dark"] .comp-score.mid { color: #e0c377; }
+.comp-key { font-size: 12px; color: var(--ink-muted); line-height: 1.5; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 2px; }
+
+
+/* ── Chart box (.chart-box / .chart-note) ─────────────────────── */
+
+.chart-box { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-xl); padding: var(--s-5); margin: var(--s-6) 0; }
+.chart-box h4 { font-family: var(--font-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 var(--s-4); font-weight: 500; }
+.chart-box svg { width: 100%; height: auto; display: block; }
+.chart-note { font-size: 12.5px; color: var(--ink-muted); margin-top: var(--s-3); line-height: 1.5; }
+
+
+/* ── Callout icon boxes (.c-icon) + missing ok/note backgrounds ── */
+
+.callout .c-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: 0 0 auto; }
+.callout.ok { background: color-mix(in oklab, #5ba672 8%, var(--bg-elev)); border: 1px solid color-mix(in oklab, #5ba672 30%, var(--line)); }
+.callout.ok .c-icon { background: color-mix(in oklab, #5ba672 18%, transparent); color: #3a6b4a; }
+.callout.note { background: var(--sky); border: 1px solid color-mix(in oklab, #2e4a6b 25%, var(--line)); }
+.callout.note .c-icon { background: color-mix(in oklab, #2e4a6b 14%, transparent); color: #2e4a6b; }
+.callout.warn .c-icon { background: color-mix(in oklab, var(--accent) 16%, transparent); color: var(--accent-deep); }
+[data-theme="dark"] .callout.ok .c-icon { color: #a7d2a9; }
+[data-theme="dark"] .callout.note .c-icon { color: #9cc1e0; }
+.review-section .callout p { font-size: 14px; line-height: 1.6; margin-bottom: 6px; }
+.review-section .callout p:last-child { margin-bottom: 0; }
+
+
+/* ── Anchored review sections: offset for sticky nav ──────────── */
+
+.review-section[id] { scroll-margin-top: 90px; }
+
+
+/* ── Small aliases: fssai tag + improvements list ─────────────── */
+
+.fssai-note .fn-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: var(--r-pill); background: var(--bg); border: 1px solid var(--line); color: var(--ink-muted); flex-shrink: 0; margin-top: 2px; }
+.imp-list { display: flex; flex-direction: column; gap: var(--s-3); margin-top: var(--s-4); }
+
+
+/* ══════════════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ══════════════════════════════════════════════════════════════════ */
 

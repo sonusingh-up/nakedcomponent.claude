@@ -766,11 +766,12 @@
         <span class="share-copied" hidden>Copied!</span>
       </button>
     `;
-    const hero = document.querySelector('.product-hero');
+    // Always place the bar at the top of the article, under the page
+    // header. (It used to be inserted after .product-hero on review
+    // pages, which stranded it mid-article between the product card
+    // and the stat tiles.)
     const articleBody = document.querySelector('.article-body, .review-prose, .prose, .doc-wrap');
-    if (hero && hero.parentNode) {
-      hero.parentNode.insertBefore(shareBar, hero.nextSibling);
-    } else if (articleBody) {
+    if (articleBody) {
       articleBody.insertBefore(shareBar, articleBody.firstChild);
     }
   }

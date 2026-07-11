@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Centrum Advance multivitamin bottle India">
+  <defs>
+    <linearGradient id="cenbody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#006ab4"/>
+      <stop offset="0.4" stop-color="#1a8cd8"/>
+      <stop offset="0.7" stop-color="#0078c8"/>
+      <stop offset="1" stop-color="#006ab4"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="226" rx="58" ry="7" fill="#000" opacity="0.08"/>
+  <!-- cap -->
+  <rect x="82" y="22" width="76" height="24" rx="5" fill="#005a9e" stroke="#004a88" stroke-width="1"/>
+  <!-- neck -->
+  <rect x="86" y="44" width="68" height="12" fill="#0068b0"/>
+  <!-- bottle body -->
+  <path d="M72 56 C58 64 50 78 50 96 L50 196 C50 208 60 218 72 218 L168 218 C180 218 190 208 190 196 L190 96 C190 78 182 64 168 56 Z" fill="url(#cenbody)" stroke="#004a88" stroke-width="1.5"/>
+  <!-- label -->
+  <rect x="52" y="88" width="136" height="114" rx="2" fill="#ffffff" stroke="#0068b0" stroke-width="1"/>
+  <!-- blue header -->
+  <rect x="52" y="88" width="136" height="24" fill="#006ab4"/>
+  <text x="120" y="104" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" font-weight="bold" letter-spacing="1.5" fill="#ffffff">CENTRUM</text>
+  <!-- inner content -->
+  <text x="120" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#006ab4">Advance</text>
+  <!-- circular emblem -->
+  <circle cx="120" cy="155" r="14" fill="#e8f4ff" stroke="#006ab4" stroke-width="1.5"/>
+  <text x="120" y="152" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#006ab4" font-weight="bold">COMPLETE</text>
+  <text x="120" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#006ab4">FORMULA</text>
+  <line x1="68" y1="172" x2="172" y2="172" stroke="#c0d8f0" stroke-width="0.8"/>
+  <text x="120" y="183" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="#446090">30 essential nutrients</text>
+  <!-- footer -->
+  <rect x="52" y="190" width="136" height="12" fill="#e8f0f8"/>
+  <text x="120" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#006ab4" letter-spacing="0.5">PFIZER · 100 TABLETS</text>
+</svg>

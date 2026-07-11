@@ -1,0 +1,287 @@
+{
+  "note": "Single source of truth for the /pages/learn paths. Read by scripts/new-lesson.js (scaffolding) and /lesson.js (sidebar outline, dots, prev/next on lesson pages). The 'published' flag is flipped automatically by new-lesson.js — do not hand-edit unless deleting a lesson.",
+  "paths": [
+    {
+      "num": 1,
+      "slug": "label",
+      "name": "Reading a supplement label",
+      "level": "Beginner",
+      "lessons": [
+        {
+          "slug": "label-anatomy",
+          "title": "The anatomy of a label — what's mandatory, what's decoration",
+          "minutes": 7,
+          "published": true
+        },
+        {
+          "slug": "label-ingredient-names",
+          "title": "Ingredient names — synonyms, salts, and hidden duplicates",
+          "minutes": 7,
+          "published": true
+        },
+        {
+          "slug": "label-quantities",
+          "title": "Quantities — mg, IU, %RDA, and per-serving tricks",
+          "minutes": 8,
+          "published": true
+        },
+        {
+          "slug": "label-proprietary-blends",
+          "title": "“Proprietary blend” — what it actually hides",
+          "minutes": 7,
+          "published": true
+        },
+        {
+          "slug": "label-claims-language",
+          "title": "Claims language — “supports”, “promotes”, “clinically dosed”",
+          "minutes": 8,
+          "published": true
+        },
+        {
+          "slug": "label-batch-expiry-storage",
+          "title": "Batch, expiry, storage — the fine print that matters",
+          "minutes": 8,
+          "published": true
+        }
+      ]
+    },
+    {
+      "num": 2,
+      "slug": "evidence",
+      "name": "Evidence tiers — how to read a claim",
+      "level": "Beginner",
+      "lessons": [
+        {
+          "slug": "evidence-pyramid",
+          "title": "The evidence pyramid — a five-minute map",
+          "minutes": 7,
+          "published": true
+        },
+        {
+          "slug": "evidence-rct",
+          "title": "RCTs — why randomisation is the whole point",
+          "minutes": 9,
+          "published": true
+        },
+        {
+          "slug": "evidence-meta-analyses",
+          "title": "Meta-analyses and reviews — stronger, but not automatically",
+          "minutes": 9,
+          "published": true
+        },
+        {
+          "slug": "evidence-observational",
+          "title": "Observational studies — correlation traps",
+          "minutes": 8,
+          "published": true
+        },
+        {
+          "slug": "evidence-animal-invitro",
+          "title": "In-vitro and animal studies — the “in mice” problem",
+          "minutes": 7,
+          "published": true
+        },
+        {
+          "slug": "evidence-anecdote",
+          "title": "Anecdote and n=1 — what self-experiments can and can't tell you",
+          "minutes": 9,
+          "published": true
+        },
+        {
+          "slug": "evidence-how-much-to-demand",
+          "title": "Putting it together — how much evidence to demand, per supplement",
+          "minutes": 11,
+          "published": true
+        }
+      ]
+    },
+    {
+      "num": 3,
+      "slug": "forms",
+      "name": "Dose, form, and bioavailability",
+      "level": "Intermediate",
+      "lessons": [
+        {
+          "slug": "forms-dose",
+          "title": "Dose — the number that makes or breaks everything",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "forms-bioavailability",
+          "title": "Bioavailability — what actually reaches your blood",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "forms-magnesium",
+          "title": "Magnesium — glycinate vs citrate vs oxide",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "forms-b12",
+          "title": "B12 — cyanocobalamin vs methylcobalamin",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "forms-curcumin",
+          "title": "Curcumin — why plain turmeric barely absorbs",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "forms-iron",
+          "title": "Iron — forms, enhancers, and inhibitors",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "forms-timing-food",
+          "title": "Timing and food — what to take when, and with what",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "forms-individual-variation",
+          "title": "Individual variation — genetics, gut, and your mileage",
+          "minutes": 10,
+          "published": false
+        }
+      ]
+    },
+    {
+      "num": 4,
+      "slug": "regulation",
+      "name": "The Indian regulatory landscape",
+      "level": "Intermediate",
+      "lessons": [
+        {
+          "slug": "regulation-fssai-101",
+          "title": "FSSAI 101 — food, supplement, or medicine?",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "regulation-fssai-approval",
+          "title": "What FSSAI approval does and doesn't mean",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "regulation-ayush",
+          "title": "AYUSH licences — Ayurveda on a modern label",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "regulation-imports",
+          "title": "Imported supplements — the “import permitted” maze",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "regulation-third-party-testing",
+          "title": "Third-party testing — who actually checks the jar",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "regulation-red-flags",
+          "title": "Red flags — patterns that predict a bad brand",
+          "minutes": 8,
+          "published": false
+        }
+      ]
+    },
+    {
+      "num": 5,
+      "slug": "stack",
+      "name": "Building a stack you can defend",
+      "level": "Advanced",
+      "lessons": [
+        {
+          "slug": "stack-goal-first",
+          "title": "Start with the goal, not the jar",
+          "minutes": 8,
+          "published": false
+        },
+        {
+          "slug": "stack-diet-audit",
+          "title": "Audit your plate — find the real gaps first",
+          "minutes": 10,
+          "published": false
+        },
+        {
+          "slug": "stack-budget-math",
+          "title": "Budget math — cost per effective dose",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "stack-contraindications",
+          "title": "Contraindications — medicines, conditions, conflicts",
+          "minutes": 10,
+          "published": false
+        },
+        {
+          "slug": "stack-interactions",
+          "title": "Interactions — what helps and what cancels out",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "stack-two-layers",
+          "title": "Foundation vs situational — two-layer stacking",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "stack-protocol-design",
+          "title": "Protocol design — doses, timing, and a written plan",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "stack-tracking",
+          "title": "Tracking — how to know if anything is working",
+          "minutes": 9,
+          "published": false
+        },
+        {
+          "slug": "stack-common-mistakes",
+          "title": "The ten most common stacking mistakes",
+          "minutes": 7,
+          "published": false
+        }
+      ]
+    },
+    {
+      "num": 6,
+      "slug": "marketing",
+      "name": "Spotting marketing tricks",
+      "level": "Any level",
+      "lessons": [
+        {
+          "slug": "marketing-clinically-proven",
+          "title": "“Clinically proven” — the legal loophole",
+          "minutes": 7,
+          "published": false
+        },
+        {
+          "slug": "marketing-dosage-theatre",
+          "title": "Dosage theatre — the right ingredient at the wrong dose",
+          "minutes": 7,
+          "published": false
+        },
+        {
+          "slug": "marketing-borrowed-science",
+          "title": "Borrowed science — cherry-picked studies and surrogate endpoints",
+          "minutes": 6,
+          "published": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Vegetarian joint formula symbol: green leaves">
+  <defs>
+    <linearGradient id="vegbg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef6ec"/>
+      <stop offset="1" stop-color="#d8ecd4"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="16" width="208" height="208" rx="28" fill="url(#vegbg)" stroke="#b8d8b0" stroke-width="2"/>
+  <!-- big leaf -->
+  <path d="M120 52 C82 84 74 128 96 160 C104 146 116 132 132 122 C114 138 102 156 98 172 C104 176 112 179 120 180 C158 172 176 128 156 84 C146 66 132 56 120 52 Z" fill="#4d9155"/>
+  <path d="M120 58 C104 96 100 138 104 170" stroke="#2f6b3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- small leaf -->
+  <path d="M78 148 C60 158 54 176 62 190 C76 188 88 176 92 160 C90 154 84 149 78 148 Z" fill="#6aa84f"/>
+  <!-- veg dot mark -->
+  <rect x="158" y="158" width="34" height="34" rx="6" fill="#ffffff" stroke="#3d7a3f" stroke-width="2.5"/>
+  <circle cx="175" cy="175" r="9" fill="#3d7a3f"/>
+  <text x="120" y="212" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" letter-spacing="1.5" fill="#2f6b3a">100% VEGETARIAN</text>
+</svg>
