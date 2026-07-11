@@ -493,33 +493,39 @@ const dynamicInsight = computed(() => {
   </div>
 
   <!-- Milestone Celebration Modal -->
-  <UModal :model-value="!!milestoneEvent" @update:model-value="milestoneEvent = null" :ui="({ content: 'sm:max-w-sm rounded-[24px]' } as any)">
-    <div v-if="milestoneEvent" class="relative overflow-hidden bg-white p-8 text-center shadow-2xl dark:bg-[#1c1c1c] rounded-[24px]">
-      
-      <!-- Glowing background effect -->
-      <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
+  <UModal
+    :open="!!milestoneEvent"
+    @update:open="(val: boolean) => { if (!val) milestoneEvent = null }"
+    :ui="({ content: 'sm:max-w-sm rounded-[24px]' } as any)"
+  >
+    <template #content>
+      <div v-if="milestoneEvent" class="relative overflow-hidden bg-white p-8 text-center dark:bg-[#1c1c1c]">
 
-      <!-- Confetti burst -->
-      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <span v-for="i in 14" :key="i" class="confetti-piece" :style="{ '--i': i }" />
+        <!-- Glowing background effect -->
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[#f97316]/20 to-transparent" />
+
+        <!-- Confetti burst -->
+        <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+          <span v-for="i in 14" :key="i" class="confetti-piece" :style="{ '--i': i }" />
+        </div>
+
+        <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-[16px] bg-[#f97316]/20 shadow-[0_0_40px_rgba(249,115,22,0.4)]">
+          <UIcon :name="milestoneEvent.icon" class="size-8 text-[#f97316]" />
+        </div>
+
+        <h2 class="mb-1 text-[22px] font-bold tracking-tight text-stone-900 dark:text-white">Milestone Unlocked!</h2>
+        <p class="mb-6 text-[14px] leading-relaxed text-stone-600 dark:text-[#bbb]">
+          Incredible work! You've hit a <span class="font-bold text-[#f97316]">{{ milestoneEvent.streak }}-day</span> streak for <strong>{{ milestoneEvent.title }}</strong>.
+        </p>
+
+        <button
+          @click="milestoneEvent = null"
+          class="w-full rounded-[12px] bg-[#f97316] py-3 text-[14px] font-bold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
+        >
+          Keep it up
+        </button>
       </div>
-      
-      <div class="mx-auto mb-4 flex size-16 items-center justify-center rounded-[16px] bg-[#f97316]/20 shadow-[0_0_40px_rgba(249,115,22,0.4)]">
-        <UIcon :name="milestoneEvent.icon" class="size-8 text-[#f97316]" />
-      </div>
-      
-      <h2 class="mb-1 text-[22px] font-bold tracking-tight text-stone-900 dark:text-white">Milestone Unlocked!</h2>
-      <p class="mb-6 text-[14px] leading-relaxed text-stone-600 dark:text-[#bbb]">
-        Incredible work! You've hit a <span class="font-bold text-[#f97316]">{{ milestoneEvent.streak }}-day</span> streak for <strong>{{ milestoneEvent.title }}</strong>.
-      </p>
-      
-      <button 
-        @click="milestoneEvent = null"
-        class="w-full rounded-[12px] bg-[#f97316] py-3 text-[14px] font-bold text-white transition-transform hover:scale-[1.02] active:scale-[0.98]"
-      >
-        Keep it up
-      </button>
-    </div>
+    </template>
   </UModal>
 </template>
 
