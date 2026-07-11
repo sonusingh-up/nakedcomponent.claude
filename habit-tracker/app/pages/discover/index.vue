@@ -12,8 +12,18 @@ const categories = Object.keys(CATEGORY_META) as HabitCategory[]
 const { data, pending, refresh } = useAsyncData(
   'discover',
   async () => {
-    const [catalog, mine] = await Promise.all([fetchCatalog(), fetchUserHabits()])
-    return { catalog, adoptedIds: new Set(mine.map((h) => h.habit_id)) }
+    // The catalog is the whole point of Discover, so it loads critically.
+    // The adopted set only hides already-added cards; if that read fails we
+    // still show the full catalog rather than blanking the page.
+    const catalog = await fetchCatalog()
+    let adoptedIds = new Set<string>()
+    try {
+      const mine = await fetchUserHabits()
+      adoptedIds = new Set(mine.map((h) => h.habit_id))
+    } catch (e) {
+      console.error('adopted-habits fetch failed', e)
+    }
+    return { catalog, adoptedIds }
   },
   {
     server: false,

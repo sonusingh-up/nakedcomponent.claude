@@ -125,10 +125,18 @@ export function useHabitLogs() {
     return map
   }
 
-  /** The current month's freeze bank (created server-side on demand). */
+  /**
+   * The current month's freeze bank (created server-side on demand).
+   * This is a passive read for a secondary feature: it must never throw,
+   * or a freeze-bank hiccup would take the whole dashboard down with it.
+   * Returns null on any error so callers can degrade gracefully.
+   */
   async function fetchFreezeBank(): Promise<FreezeBank | null> {
     const { data, error } = await supabase.rpc('get_or_create_freeze_bank')
-    if (error) throw error
+    if (error) {
+      console.error('freeze bank fetch failed', error)
+      return null
+    }
     return (data ?? null) as FreezeBank | null
   }
 

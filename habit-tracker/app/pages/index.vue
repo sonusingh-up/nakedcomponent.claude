@@ -31,11 +31,16 @@ const selectedDateLabel = computed(() => {
 const { data, pending, refresh } = useAsyncData(
   'dashboard',
   async () => {
-    const [habits, history, freezeBank] = await Promise.all([
+    // Habits + history are the dashboard's reason to exist, so they load
+    // as the critical pair. The freeze bank is a secondary widget and is
+    // fetched non-fatally below — a freeze failure must never blank the
+    // habit list (this was the "added habits don't show" bug).
+    const [habits, history] = await Promise.all([
       fetchUserHabits(),
       fetchHistoryAll(70),
-      fetchFreezeBank(),
     ])
+
+    const freezeBank = await fetchFreezeBank()
 
     // Non-fatal: a failed at-risk write must not blank the dashboard.
     let missedIds: string[] = []
