@@ -75,12 +75,16 @@ async function toggle(userHabitId: string) {
 
 <template>
   <div>
-    <!-- Gradient hero -->
+    <!-- Immersive full-bleed gradient hero -->
     <section
-      class="spark-gradient relative mt-1 overflow-hidden rounded-[28px] p-5 text-white shadow-xl shadow-ember-900/30"
+      class="spark-gradient relative -mx-4 -mt-5 overflow-hidden rounded-b-[32px] px-5 pb-7 pt-7 text-white shadow-xl shadow-ember-900/30"
     >
-      <div class="flex items-center justify-between">
-        <NuxtLink to="/settings" class="flex items-center gap-3">
+      <!-- depth sheens -->
+      <div class="pointer-events-none absolute -right-12 -top-16 size-48 rounded-full bg-white/20 blur-3xl" />
+      <div class="pointer-events-none absolute -left-10 -bottom-12 size-44 rounded-full bg-amber-200/20 blur-3xl" />
+
+      <div class="relative flex items-center justify-between">
+        <NuxtLink to="/settings" aria-label="Profile" class="flex items-center gap-3">
           <span
             class="tabular flex size-11 items-center justify-center rounded-full bg-white/20 text-sm font-bold ring-1 ring-white/30 backdrop-blur"
           >
@@ -105,24 +109,27 @@ async function toggle(userHabitId: string) {
         </div>
       </div>
 
-      <p class="mt-5 text-sm font-medium text-white/85">
-        {{ greeting }} {{ displayName }}
+      <p class="relative mt-6 text-sm font-medium text-white/85">
+        {{ greeting }}, {{ displayName }}
       </p>
-      <h1 class="mt-1 text-[26px] font-semibold leading-tight tracking-tight">
+      <h1 class="relative mt-1.5 text-[28px] font-semibold leading-[1.15] tracking-tight">
         Keep the streak alive,<br />spark your daily motivation.
       </h1>
 
-      <!-- Today's progress -->
-      <div v-if="habits.length" class="mt-5">
-        <div class="flex items-end justify-between text-sm">
-          <span class="text-white/85">
-            <span class="tabular text-lg font-bold">{{ completedCount }}</span>
-            <span class="text-white/60">/{{ habits.length }}</span>
-            today
+      <!-- Today's progress (glass panel) -->
+      <div
+        v-if="habits.length"
+        class="relative mt-6 rounded-2xl bg-black/15 p-3.5 ring-1 ring-white/15 backdrop-blur"
+      >
+        <div class="flex items-center justify-between text-sm">
+          <span class="flex items-center gap-1.5 font-medium text-white/90">
+            <UIcon name="i-lucide-flame" class="size-4" />
+            <span class="tabular font-bold">{{ completedCount }}</span><span class="text-white/60">/{{ habits.length }}</span>
+            done today
           </span>
-          <span class="tabular text-lg font-bold">{{ progress }}%</span>
+          <span class="tabular text-base font-bold">{{ progress }}%</span>
         </div>
-        <div class="mt-2 h-2 overflow-hidden rounded-full bg-black/20">
+        <div class="mt-2.5 h-2 overflow-hidden rounded-full bg-black/25">
           <div
             class="h-full rounded-full bg-white transition-all duration-500"
             :style="{ width: progress + '%' }"

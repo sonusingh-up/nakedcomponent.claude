@@ -44,7 +44,7 @@ const doneCount = computed(() => cells.value.filter((c) => c.done).length)
     class="glass rounded-3xl p-4 transition-colors hover:border-[var(--border-2)]"
   >
     <!-- Top row: streak badge + complete toggle -->
-    <div class="flex items-start justify-between gap-3">
+    <div class="flex items-center justify-between gap-3">
       <span
         class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
         :class="
@@ -71,34 +71,35 @@ const doneCount = computed(() => cells.value.filter((c) => c.done).length)
       </button>
     </div>
 
-    <!-- Title -->
-    <button class="mt-3 block w-full text-left" @click="emit('open')">
-      <div class="flex items-center gap-2">
-        <UIcon :name="icon" class="size-4 shrink-0 text-ember-400" />
-        <h3 class="truncate text-lg font-semibold leading-tight text-stone-100">
-          {{ name }}
-        </h3>
-      </div>
-      <p class="tabular mt-1 text-xs text-stone-400">
-        {{ doneCount }}/{{ WINDOW }} days completed
-      </p>
-    </button>
+    <!-- Title (left) + heat grid (right) -->
+    <div class="mt-3 flex items-center justify-between gap-4">
+      <button class="min-w-0 flex-1 text-left" @click="emit('open')">
+        <div class="flex items-center gap-2">
+          <UIcon :name="icon" class="size-4 shrink-0 text-ember-400" />
+          <h3 class="truncate text-lg font-semibold leading-tight text-stone-100">
+            {{ name }}
+          </h3>
+        </div>
+        <p class="tabular mt-1 text-xs text-stone-400">
+          {{ doneCount }}/{{ WINDOW }} days completed
+        </p>
+      </button>
 
-    <!-- Dot-matrix heat grid (last 70 days) -->
-    <button
-      class="mt-3 grid w-full grid-flow-col grid-rows-7 justify-start gap-[3px]"
-      aria-label="Open habit history"
-      @click="emit('open')"
-    >
-      <span
-        v-for="cell in cells"
-        :key="cell.date"
-        class="size-2 rounded-[3px]"
-        :class="[
-          cell.done ? 'bg-ember-500' : 'bg-white/8',
-          cell.today ? 'ring-1 ring-ember-300 ring-offset-1 ring-offset-[var(--color-coal-900)]' : '',
-        ]"
-      />
-    </button>
+      <button
+        class="grid shrink-0 grid-flow-col grid-rows-7 gap-[3px]"
+        aria-label="Open habit history"
+        @click="emit('open')"
+      >
+        <span
+          v-for="cell in cells"
+          :key="cell.date"
+          class="size-2 rounded-[3px]"
+          :class="[
+            cell.done ? 'bg-ember-500' : 'bg-white/8',
+            cell.today ? 'ring-1 ring-ember-300 ring-offset-1 ring-offset-[var(--color-coal-900)]' : '',
+          ]"
+        />
+      </button>
+    </div>
   </div>
 </template>
