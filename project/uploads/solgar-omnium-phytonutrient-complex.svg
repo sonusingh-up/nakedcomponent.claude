@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 340" role="img" aria-label="Solgar Omnium Phytonutrient Complex amber glass bottle, 90 tablets">
+  <defs>
+    <linearGradient id="obody" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7a5c2e"/>
+      <stop offset="0.18" stop-color="#c8983e"/>
+      <stop offset="0.45" stop-color="#f0c870"/>
+      <stop offset="0.72" stop-color="#c8983e"/>
+      <stop offset="1" stop-color="#6a4e24"/>
+    </linearGradient>
+    <linearGradient id="ocap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b89020"/>
+      <stop offset="0.5" stop-color="#f0d060"/>
+      <stop offset="1" stop-color="#b89020"/>
+    </linearGradient>
+    <linearGradient id="olabel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf8ee"/>
+      <stop offset="1" stop-color="#f5eedc"/>
+    </linearGradient>
+    <filter id="oshadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#2a1a00" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- bottle shadow -->
+  <ellipse cx="130" cy="330" rx="60" ry="7" fill="#000" opacity="0.12"/>
+
+  <!-- bottle body -->
+  <path d="M72 90 C58 100 50 116 50 136 L50 294 C50 310 62 320 76 320 L184 320 C198 320 210 310 210 294 L210 136 C210 116 202 100 188 90 Z"
+    fill="url(#obody)" stroke="#5a3e14" stroke-width="1.5" filter="url(#oshadow)"/>
+
+  <!-- glass highlight -->
+  <path d="M72 90 C62 102 56 120 56 140 L56 290 C56 305 64 316 76 320"
+    stroke="#f0d888" stroke-width="3" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+  <!-- neck -->
+  <rect x="92" y="54" width="76" height="38" rx="4" fill="url(#obody)" stroke="#5a3e14" stroke-width="1.2"/>
+  <rect x="88" y="88" width="84" height="8" fill="#5a3e14" opacity="0.5"/>
+
+  <!-- gold cap -->
+  <rect x="84" y="22" width="92" height="34" rx="7" fill="url(#ocap)" stroke="#9a7010" stroke-width="1.5"/>
+  <!-- cap ribs -->
+  <line x1="104" y1="24" x2="104" y2="54" stroke="#9a7010" stroke-width="0.8" opacity="0.6"/>
+  <line x1="120" y1="24" x2="120" y2="54" stroke="#9a7010" stroke-width="0.8" opacity="0.6"/>
+  <line x1="136" y1="24" x2="136" y2="54" stroke="#c8a030" stroke-width="1" opacity="0.8"/>
+  <line x1="152" y1="24" x2="152" y2="54" stroke="#9a7010" stroke-width="0.8" opacity="0.6"/>
+
+  <!-- label area -->
+  <rect x="52" y="108" width="156" height="196" rx="2" fill="url(#olabel)" stroke="#d4b86a" stroke-width="1.2"/>
+
+  <!-- gold top band -->
+  <rect x="52" y="108" width="156" height="24" fill="#c8983e"/>
+  <text x="130" y="125" text-anchor="middle" font-family="Georgia, serif" font-size="11" font-weight="bold" letter-spacing="2.5" fill="#fff8e0">SOLGAR®</text>
+
+  <!-- gold bottom band -->
+  <rect x="52" y="280" width="156" height="24" fill="#c8983e"/>
+  <text x="130" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" letter-spacing="1" fill="#fff8e0">90 TABLETS · VEGAN · NON-GMO</text>
+
+  <!-- olive leaf accent -->
+  <path d="M108 146 C98 158 100 172 112 174 C116 164 116 152 108 146 Z" fill="#7a9840" opacity="0.7"/>
+  <path d="M152 146 C162 158 160 172 148 174 C144 164 144 152 152 146 Z" fill="#7a9840" opacity="0.7"/>
+  <path d="M130 140 L130 176" stroke="#5a7828" stroke-width="1.5" fill="none"/>
+
+  <!-- OMNIUM text -->
+  <text x="130" y="200" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="bold" letter-spacing="2" fill="#2a1a00">OMNIUM®</text>
+
+  <!-- divider line -->
+  <line x1="68" y1="208" x2="192" y2="208" stroke="#c8983e" stroke-width="1"/>
+
+  <!-- subtitle -->
+  <text x="130" y="222" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" letter-spacing="1.5" fill="#4a3210">PHYTONUTRIENT COMPLEX</text>
+  <text x="130" y="237" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="#6a5030">Multiple Vitamin &amp; Mineral</text>
+  <text x="130" y="249" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="#6a5030">Formula</text>
+
+  <!-- divider line -->
+  <line x1="80" y1="256" x2="180" y2="256" stroke="#d4b86a" stroke-width="0.8" opacity="0.7"/>
+
+  <!-- 47 ingredients claim -->
+  <text x="130" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="#4a3210">47 Active Ingredients</text>
+  <text x="130" y="279" text-anchor="middle" font-family="Georgia, serif" font-size="7" fill="#7a6040" font-style="italic">Since 1947</text>
+</svg>
