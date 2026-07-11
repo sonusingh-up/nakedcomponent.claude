@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Solgar VM-75 comprehensive multivitamin amber glass bottle">
+  <defs>
+    <linearGradient id="vm75body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7a5c2e"/>
+      <stop offset="0.2" stop-color="#c8983e"/>
+      <stop offset="0.5" stop-color="#e8b84a"/>
+      <stop offset="0.78" stop-color="#c8983e"/>
+      <stop offset="1" stop-color="#6a4e24"/>
+    </linearGradient>
+    <linearGradient id="vm75cap" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b89020"/>
+      <stop offset="0.5" stop-color="#f0d060"/>
+      <stop offset="1" stop-color="#b89020"/>
+    </linearGradient>
+    <linearGradient id="vm75label" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fdf8ee"/>
+      <stop offset="1" stop-color="#f2e8d8"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="120" cy="226" rx="56" ry="7" fill="#000" opacity="0.10"/>
+  <!-- cap -->
+  <rect x="84" y="22" width="72" height="26" rx="6" fill="url(#vm75cap)" stroke="#9a7010" stroke-width="1.5"/>
+  <line x1="100" y1="24" x2="100" y2="46" stroke="#9a7010" stroke-width="0.8" opacity="0.6"/>
+  <line x1="120" y1="24" x2="120" y2="46" stroke="#d0a030" stroke-width="1" opacity="0.8"/>
+  <line x1="140" y1="24" x2="140" y2="46" stroke="#9a7010" stroke-width="0.8" opacity="0.6"/>
+  <!-- neck -->
+  <rect x="88" y="46" width="64" height="12" fill="url(#vm75body)" stroke="#5a3e14" stroke-width="1"/>
+  <!-- body -->
+  <path d="M74 58 C60 66 52 80 52 100 L52 194 C52 206 62 216 74 216 L166 216 C178 216 188 206 188 194 L188 100 C188 80 180 66 166 58 Z" fill="url(#vm75body)" stroke="#5a3e14" stroke-width="1.5"/>
+  <!-- highlight -->
+  <path d="M74 58 C64 70 58 86 58 104 L58 192" stroke="#f0d888" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <!-- label -->
+  <rect x="54" y="80" width="132" height="120" rx="2" fill="url(#vm75label)" stroke="#d4b86a" stroke-width="1.2"/>
+  <!-- gold header -->
+  <rect x="54" y="80" width="132" height="20" fill="#c8983e"/>
+  <text x="120" y="94" text-anchor="middle" font-family="Georgia, serif" font-size="10" font-weight="bold" letter-spacing="2" fill="#fff8e0">SOLGAR®</text>
+  <!-- VM-75 text -->
+  <text x="120" y="122" text-anchor="middle" font-family="Georgia, serif" font-size="24" font-weight="bold" fill="#2a1a00">VM-75</text>
+  <line x1="68" y1="128" x2="172" y2="128" stroke="#c8983e" stroke-width="1"/>
+  <text x="120" y="142" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" font-weight="bold" letter-spacing="1" fill="#4a3210">COMPREHENSIVE MULTINUTRIENT</text>
+  <text x="120" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#6a5030">with Vitamin D3 · Iron-Free</text>
+  <line x1="74" y1="164" x2="166" y2="164" stroke="#d4b86a" stroke-width="0.8" opacity="0.7"/>
+  <text x="120" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="7.5" fill="#4a3210">100 Tablets</text>
+  <!-- gold footer -->
+  <rect x="54" y="188" width="132" height="12" fill="#c8983e"/>
+  <text x="120" y="197" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" letter-spacing="0.8" fill="#fff8e0">VEGAN · NON-GMO · Since 1947</text>
+</svg>
