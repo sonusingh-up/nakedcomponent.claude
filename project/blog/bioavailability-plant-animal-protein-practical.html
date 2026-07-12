@@ -1,0 +1,812 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Plant vs. Animal Protein Bioavailability — Naked Compound</title>
+  <meta name="description" content="PDCAAS, DIAAS, leucine thresholds, anti-nutrient interference — here's what absorption science actually means for your training diet and grocery bill." />
+  <meta name="published" content="2026-07-12" />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/bioavailability-plant-animal-protein-practical" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css?v=1001" />
+  <link rel="stylesheet" href="/pages.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <style>
+/* ── Page head ── */
+.page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
+.page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
+.page-head .crumbs a{color:var(--ink-muted);}
+.page-head .crumbs a:hover{color:var(--accent);}
+.page-head .crumbs .sep{opacity:.4;}
+.page-head h1{font-size:clamp(28px,4.5vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:var(--s-5);max-width:22ch;}
+.page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
+.page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:56ch;line-height:1.6;margin-bottom:var(--s-6);}
+.meta-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
+.meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
+.meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
+.meta-chip.price .dot{background:var(--accent);}
+
+/* ── Layout ── */
+.article-layout{display:grid;grid-template-columns:1fr 260px;gap:var(--s-8);align-items:start;padding:var(--s-8) 0 var(--s-10);}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:calc(var(--nav-h) + 24px);}
+
+/* ── Prose ── */
+.prose h2{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:var(--s-8) 0 var(--s-4);padding-top:var(--s-8);border-top:1px solid var(--line);scroll-margin-top:80px;}
+.prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+.prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
+.prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
+.prose p strong{color:var(--ink);font-weight:500;}
+.prose sup{font-family:var(--font-mono);font-size:11px;color:var(--accent);}
+.prose sup a{color:var(--accent);}
+.prose ul,.prose ol{padding-left:24px;margin-bottom:var(--s-4);}
+.prose li{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:6px;}
+.prose li strong{color:var(--ink);}
+
+/* ── Callouts ── */
+.callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);}
+.callout-icon{font-size:20px;flex:0 0 auto;margin-top:2px;}
+.callout-body p{font-size:15px;margin:0;line-height:1.65;}
+.callout-body strong{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+.callout.info{background:var(--sky);border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky));}
+.callout.info .callout-body strong{color:#2e4a6b;}
+.callout.warn{background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+.callout.warn .callout-body strong{color:#7a5f1a;}
+.callout.good{background:var(--mint);border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint));}
+.callout.good .callout-body strong{color:#3a5c3f;}
+[data-theme="dark"] .callout.info .callout-body strong{color:#9cc1e0;}
+[data-theme="dark"] .callout.warn .callout-body strong{color:#e0c377;}
+[data-theme="dark"] .callout.good .callout-body strong{color:#a7d2a9;}
+
+/* ── Verdict card ── */
+.verdict-card{background:var(--ink);color:#f0ece4;border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;position:relative;overflow:hidden;}
+[data-theme="dark"] .verdict-card{background:var(--accent-soft);color:var(--ink);}
+.verdict-card::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(30px);}
+.verdict-card .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0ece4 !important;opacity:.65;margin-bottom:var(--s-3);position:relative;}
+.verdict-card h3{font-size:clamp(18px,2vw,24px);letter-spacing:-.02em;margin-bottom:var(--s-4);color:#ffffff !important;position:relative;}
+.verdict-card p{font-size:15px;line-height:1.65;position:relative;color:#c8c2b8 !important;margin-bottom:var(--s-3);}
+.verdict-card p strong{color:#f0ece4 !important;}
+[data-theme="dark"] .verdict-card h3{color:var(--ink) !important;}
+[data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
+[data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
+
+/* ── Data table ── */
+.data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;}
+.data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+.data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover td{background:var(--bg-elev);}
+.td-strong{color:var(--ink) !important;font-weight:500;}
+
+/* ── Badge ── */
+.badge{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--line);}
+.badge.strong,.badge.pass{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 35%,var(--line));}
+.badge.mod,.badge.warn{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;}
+.badge.fail{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border-color:color-mix(in oklab,#e05c4a 30%,var(--line));}
+[data-theme="dark"] .badge.strong,[data-theme="dark"] .badge.pass{color:#a7d2a9;}
+[data-theme="dark"] .badge.mod,[data-theme="dark"] .badge.warn{color:#e0c377;}
+
+/* ── References ── */
+.references{margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--line);}
+.references h2{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s-5);}
+.ref-list{display:flex;flex-direction:column;gap:var(--s-3);}
+.ref-item{display:grid;grid-template-columns:28px 1fr;gap:var(--s-3);font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+.ref-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);padding-top:2px;}
+.ref-item a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);transition:border-color .15s;}
+.ref-item a:hover{border-color:var(--accent);}
+
+/* ── Sidebar ── */
+.toc-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);}
+.toc-card h4{font-size:12px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-4);}
+.toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+.toc-list a{display:block;padding:7px 10px;border-radius:var(--r-sm);font-size:14px;color:var(--ink-soft);transition:color .15s,background .15s;line-height:1.35;}
+.toc-list a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
+.toc-list a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
+.sidebar-meta{margin-top:var(--s-4);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);display:flex;flex-direction:column;gap:12px;}
+.sm-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;gap:8px;}
+.sm-label{color:var(--ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+.sm-value{color:var(--ink);font-weight:500;text-align:right;}
+.sm-divider{height:1px;background:var(--line);}
+
+/* ── Mobile collapse ── */
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{position:static;order:-1;}
+}
+
+/* ── Stat row ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-4);margin:var(--s-6) 0;}
+.stat-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4) var(--s-5);text-align:center;}
+.stat-box .stat-num{font-family:var(--font-display);font-size:clamp(26px,3.5vw,40px);font-weight:500;letter-spacing:-.03em;color:var(--accent);line-height:1;margin-bottom:6px;}
+.stat-box .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);line-height:1.4;}
+@media(max-width:720px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+/* ── Split compare ── */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin:var(--s-6) 0;}
+.compare-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);background:var(--bg-elev);}
+.compare-card .cc-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-3);}
+.compare-card h4{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:var(--s-3);}
+.compare-card ul{padding-left:18px;margin:0;}
+.compare-card li{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px;}
+.compare-card.plant{border-color:color-mix(in oklab,#5ba672 35%,var(--line));background:color-mix(in oklab,#5ba672 5%,var(--bg-elev));}
+.compare-card.animal{border-color:color-mix(in oklab,var(--accent) 30%,var(--line));background:color-mix(in oklab,var(--accent) 4%,var(--bg-elev));}
+@media(max-width:620px){.compare-grid{grid-template-columns:1fr;}}
+
+/* ── Related link ── */
+.related-link{display:flex;gap:var(--s-4);padding:var(--s-4) var(--s-5);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:inherit;transition:border-color .15s;align-items:flex-start;margin:var(--s-5) 0;}
+.related-link:hover{border-color:var(--accent);}
+.rl-icon{font-size:22px;flex:0 0 auto;margin-top:2px;}
+.rl-body .rl-tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;}
+.rl-body .rl-title{font-size:15px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:4px;}
+.rl-body .rl-desc{font-size:13px;color:var(--ink-soft);line-height:1.5;margin:0;}
+  </style>
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-84Q2LMHPV0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Plant vs. Animal Protein Bioavailability: Practical Takeaways for Gym-Goers",
+        "description": "PDCAAS, DIAAS, leucine thresholds, anti-nutrient interference — here's what absorption science actually means for your training diet and grocery bill.",
+        "url": "https://www.nakedcompound.in/blog/bioavailability-plant-animal-protein-practical",
+        "datePublished": "2026-07-12",
+        "dateModified": "2026-07-12",
+        "author": {"@type": "Organization", "name": "Naked Compound Research Team"},
+        "publisher": {"@type": "Organization", "name": "Naked Compound", "url": "https://www.nakedcompound.in"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nakedcompound.in/"},
+          {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.nakedcompound.in/pages/blog"},
+          {"@type":"ListItem","position":3,"name":"Plant vs. Animal Protein Bioavailability","item":"https://www.nakedcompound.in/blog/bioavailability-plant-animal-protein-practical"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <div class="container">
+    <div class="page-head">
+      <div class="crumbs">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/pages/blog">Blog</a><span class="sep">/</span>
+        <span>Plant vs. Animal Protein Bioavailability</span>
+      </div>
+
+      <h1>Plant vs. Animal Protein: <em>What Bioavailability Actually Means</em> for Gym-Goers</h1>
+      <p class="kicker">Absorption scores, leucine thresholds, anti-nutrients, and exactly how much more protein a plant-based lifter needs to eat to match an omnivore's muscle signal. With real cost math for Indian markets.</p>
+
+      <div class="meta-chips">
+        <span class="meta-chip"><span class="dot ok"></span>Evidence-based</span>
+        <span class="meta-chip">12 Jul 2026</span>
+        <span class="meta-chip">~16 min read</span>
+        <span class="meta-chip price"><span class="dot"></span>Includes cost-per-gram analysis</span>
+      </div>
+    </div>
+
+    <div class="article-layout">
+      <article class="article-body prose">
+
+        <h2 id="the-real-question">The Real Question Isn't "Which Is Better" — It's "By How Much?"</h2>
+
+        <p>Every few months a new meta-analysis lands and half the internet declares the plant-versus-animal protein debate finally settled. Plant proteins are good enough, say some. Animal protein is irreplaceable, say others. Both camps are technically correct within their chosen definitions, which is exactly why neither is very useful to you standing at a supplement counter or grocery shelf trying to decide what to buy.</p>
+
+        <p>The real question isn't philosophical. It's quantitative: <strong>given a fixed budget and a fixed muscle-building goal, how do you get enough usable protein out of whatever you're eating?</strong> Answering that requires understanding bioavailability — not as a buzzword, but as a set of specific, measurable numbers that have shifted considerably in the last decade of nutrition science.</p>
+
+        <p>This piece digs into those numbers. We'll cover the scoring systems, the mechanism behind the gaps, what anti-nutrients actually do (and don't do) in practice, the leucine story most articles leave incomplete, and then land on dose math and cost analysis that makes the biology actionable whether you're fully plant-based, omnivore, or somewhere in between.</p>
+
+        <div class="callout info">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>What this piece covers</strong>
+            <p>Protein quality scores (PDCAAS, DIAAS), amino acid profiles, anti-nutrient effects, leucine and MPS signalling, real-world absorption studies, adjusted dosing formulas, and cost-per-gram tables calibrated to Indian markets.</p>
+          </div>
+        </div>
+
+        <h2 id="scoring-systems">The Scoring Systems: PDCAAS, DIAAS, and Why They Disagree</h2>
+
+        <p>For decades, the food industry used the <strong>Protein Digestibility Corrected Amino Acid Score (PDCAAS)</strong> — a number from 0 to 1.0 that blends amino acid completeness with crude digestibility measured by fecal nitrogen loss. Whey, casein, egg, and soy all hit 1.0. Rice protein sat around 0.47. Pea came in at 0.69. The system seemed clean.</p>
+
+        <p>The problem: fecal nitrogen is a poor proxy for what actually ends up in your muscle. By the time nitrogen shows up in stool, it includes bacterial metabolic waste, shed gut cells, and mucus — not just unabsorbed food protein. PDCAAS was also "truncated" at 1.0, meaning a protein scoring 1.2 looked identical to one scoring 1.0, hiding real quality differences at the top end.</p>
+
+        <p>In 2013, the FAO/WHO endorsed a replacement: the <strong>Digestible Indispensable Amino Acid Score (DIAAS)</strong>.<sup><a href="#ref1">1</a></sup> The key differences:</p>
+
+        <ul>
+          <li>Uses <strong>ileal digestibility</strong> — measured at the end of the small intestine, before bacteria can interfere</li>
+          <li>Scores each indispensable amino acid separately and takes the lowest as the limiting score, rather than averaging</li>
+          <li>Does <strong>not truncate</strong> at 1.0, so high-quality proteins get scores above 1.0</li>
+          <li>Uses reference patterns based on actual human amino acid needs, not rodent studies</li>
+        </ul>
+
+        <p>Under DIAAS, the gaps between protein sources become both clearer and, in some cases, smaller than PDCAAS suggested. Here's where the common proteins land:</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Protein Source</th>
+                <th>DIAAS (adult)</th>
+                <th>PDCAAS</th>
+                <th>Limiting AA</th>
+                <th>Leucine (g/100g protein)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">Whey concentrate</td>
+                <td><span class="badge strong">1.09</span></td>
+                <td>1.0</td>
+                <td>—</td>
+                <td>10.9</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Whole egg</td>
+                <td><span class="badge strong">1.13</span></td>
+                <td>1.0</td>
+                <td>—</td>
+                <td>8.5</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Casein (micellar)</td>
+                <td><span class="badge strong">1.08</span></td>
+                <td>1.0</td>
+                <td>—</td>
+                <td>9.2</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Soy isolate</td>
+                <td><span class="badge mod">0.91</span></td>
+                <td>1.0</td>
+                <td>Met + Cys</td>
+                <td>7.8</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Pea isolate</td>
+                <td><span class="badge mod">0.82</span></td>
+                <td>0.89</td>
+                <td>Methionine</td>
+                <td>8.0</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Rice protein</td>
+                <td><span class="badge warn">0.60</span></td>
+                <td>0.47</td>
+                <td>Lysine</td>
+                <td>8.3</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Lentils (cooked)</td>
+                <td><span class="badge warn">0.57</span></td>
+                <td>0.52</td>
+                <td>Methionine</td>
+                <td>7.1</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Chickpeas (cooked)</td>
+                <td><span class="badge warn">0.60</span></td>
+                <td>0.78</td>
+                <td>Methionine</td>
+                <td>6.9</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Hemp seed protein</td>
+                <td><span class="badge warn">0.63</span></td>
+                <td>0.66</td>
+                <td>Lysine</td>
+                <td>6.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>A few things to notice. First, soy's drop from 1.0 (PDCAAS) to 0.91 (DIAAS) reflects its methionine and cysteine limitation at the ileal level — real, but modest. Second, pea protein's DIAAS (0.82) is better than its old PDCAAS score in some earlier databases, largely because processing improvements have increased ileal digestibility. Third — and this matters practically — the gap between whey (1.09) and pea isolate (0.82) is about 25%, not the dramatic 2× chasm that gym-floor mythology sometimes implies.</p>
+
+        <div class="callout warn">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>Important caveat on DIAAS values</strong>
+            <p>DIAAS scores for plant proteins vary significantly between studies depending on processing method (concentrate vs. isolate), cooking temperature, and anti-nutrient content. Values above reflect isolate or optimally processed forms. Whole-food legumes score meaningfully lower — closer to 0.45–0.65.</p>
+          </div>
+        </div>
+
+        <h2 id="why-the-gap">Why the Gap Exists: Amino Acid Profiles and Anti-Nutrients</h2>
+
+        <h3>The amino acid profile problem</h3>
+
+        <p>Animal proteins are "complete" in a meaningful way: they contain all nine indispensable amino acids in ratios that roughly match human skeletal muscle composition. This is partly evolutionary — animals have muscle, and muscle tissue shares amino acid patterns across species. Plant proteins evolved to serve plant functions (seed storage, enzyme activity, structural support), not to rebuild mammalian tissue.</p>
+
+        <p>The result: plant proteins almost always have at least one limiting amino acid — an essential amino acid present in amounts below what's needed for efficient protein synthesis. When your body tries to build protein and one amino acid is in short supply, the whole process slows, much like trying to build a wall when you have plenty of bricks but no cement. The excess amino acids from other sources don't wait around — they get deaminated and used for energy instead.</p>
+
+        <p>The most common limiting amino acids in plant proteins:</p>
+
+        <ul>
+          <li><strong>Methionine/cysteine:</strong> Low in legumes (lentils, chickpeas, pea protein, soy). These sulfur-containing amino acids matter for protein synthesis and glutathione production.</li>
+          <li><strong>Lysine:</strong> Low in grains (rice, wheat, oats). This is why bread alone is such a poor protein source.</li>
+          <li><strong>Tryptophan:</strong> Low in some seed proteins and in corn.</li>
+          <li><strong>Threonine:</strong> Limited in many plant proteins; matters for intestinal integrity and collagen synthesis.</li>
+        </ul>
+
+        <p>This is why classic rice + lentil or grain + legume combinations have persisted across every culture for millennia — they complement each other's limiting amino acids. The evidence now confirms you don't need to combine them in the same meal (your amino acid pool stays active for several hours), but over the course of a day, complementary protein sources do fill the gaps efficiently.</p>
+
+        <h3>Anti-nutrients: what they actually do</h3>
+
+        <p>Anti-nutrients get inflated in supplement marketing and underplayed in vegan advocacy. The reality sits somewhere between the two extremes, and the numbers are worth understanding.</p>
+
+        <p><strong>Phytic acid (phytate)</strong> is probably the most consequential for protein absorption. Found in legumes, grains, nuts, and seeds, it binds to zinc, iron, calcium — and to proteins directly. A review in <em>Food Chemistry</em> found that phytate reduces the in vitro digestibility of legume proteins by 10–20% compared to phytate-removed samples.<sup><a href="#ref2">2</a></sup> However, cooking, soaking, sprouting, and fermentation reduce phytate content by 50–70%, which is why well-prepared whole foods perform considerably better than raw versions.</p>
+
+        <p><strong>Trypsin inhibitors</strong> in raw legumes — especially soybeans — block the pancreatic enzyme trypsin, which breaks proteins into absorbable peptides. Raw soybean has enough trypsin inhibitor to seriously impair protein digestion. Heating deactivates most of it. Properly heat-treated soy (tofu, edamame, cooked whole soy) retains only 5–10% inhibitor activity. This is why anti-soy arguments often reference raw soy data while the studies showing soy efficacy use heat-treated forms.</p>
+
+        <p><strong>Lectins</strong> bind to gut-wall glycoproteins, which at high concentrations can reduce absorption and cause gut irritation. Again, cooking eliminates most lectin activity. The concern is largely irrelevant for well-cooked legumes or processed plant protein isolates.</p>
+
+        <p><strong>Saponins</strong> in chickpeas and quinoa may modestly reduce fat-soluble vitamin absorption, but their effect on protein digestion is smaller and less consistent in the literature.</p>
+
+        <div class="compare-grid">
+          <div class="compare-card plant">
+            <div class="cc-label">Raw or underprocessed plant protein</div>
+            <h4>High anti-nutrient load</h4>
+            <ul>
+              <li>Phytate reduces digestibility 10–20%</li>
+              <li>Trypsin inhibitors active in raw legumes</li>
+              <li>Effective DIAAS can drop to 0.40–0.55</li>
+              <li>GI discomfort is common</li>
+            </ul>
+          </div>
+          <div class="compare-card animal">
+            <div class="cc-label">Cooked or isolated plant protein</div>
+            <h4>Low anti-nutrient load</h4>
+            <ul>
+              <li>Soaking + cooking cuts phytate 50–70%</li>
+              <li>Trypsin inhibitors denatured by heat</li>
+              <li>DIAAS approaches 0.75–0.92 for isolates</li>
+              <li>Digestibility much closer to animal protein</li>
+            </ul>
+          </div>
+        </div>
+
+        <p>The practical takeaway: <strong>the protein quality of plant foods is heavily processing-dependent.</strong> Pea protein isolate and raw peas are not the same food for the purpose of amino acid absorption.</p>
+
+        <h2 id="leucine-threshold">The Leucine Threshold: The Most Important Number Nobody Tells You Completely</h2>
+
+        <p>Muscle protein synthesis (MPS) — the biological process that builds new muscle tissue — isn't triggered primarily by protein quantity. It's triggered by leucine, one of the three branched-chain amino acids. Leucine acts as a molecular signal that activates mTORC1, the main anabolic signalling complex in muscle cells.<sup><a href="#ref3">3</a></sup></p>
+
+        <p>Research from the Phillips lab at McMaster University has established a dose-response curve: <strong>MPS rises steeply as blood leucine climbs, then plateaus once you hit roughly 0.05 g leucine per kg bodyweight per meal.</strong> For a 75 kg person, that's approximately 3.75 g leucine per meal. Below this threshold, the anabolic signal is meaningfully blunted. Above the plateau, additional leucine doesn't increase MPS further — though it may extend the duration of the response slightly.<sup><a href="#ref4">4</a></sup></p>
+
+        <p>Here's where this gets practically important: how much of a given protein do you need to eat to hit that leucine threshold?</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-num">~25g</div>
+            <div class="stat-label">Whey needed for leucine threshold (75 kg person)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">~31g</div>
+            <div class="stat-label">Casein needed for same threshold</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">~38g</div>
+            <div class="stat-label">Pea isolate needed for same threshold</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">~46g</div>
+            <div class="stat-label">Rice protein needed for same threshold</div>
+          </div>
+        </div>
+
+        <p>The leucine content of plant proteins isn't dramatically lower than animal proteins — pea protein has about 8 g leucine per 100 g protein, versus whey's 10.9 g. But when you factor in that you absorb less of the plant protein (lower DIAAS), and that the peak blood leucine from slower-digesting plant proteins rises more gradually, you need a proportionally larger serving to trigger the same MPS signal.</p>
+
+        <p>A 2022 RCT compared MPS responses after 30 g whey versus 30 g pea protein concentrate in resistance-trained men.<sup><a href="#ref5">5</a></sup> Whey produced a 28% larger acute MPS response. But when the pea protein dose was increased to 40 g to match leucine delivery, the MPS responses were statistically equivalent. This is the "dose-compensate" finding that plant protein researchers cite — and it's legitimate. But note: you need to increase your serving by approximately 33%.</p>
+
+        <div class="callout good">
+          <span class="callout-icon">✓</span>
+          <div class="callout-body">
+            <strong>The practical fix for plant-protein users</strong>
+            <p>Target 3–3.5 g leucine per post-workout meal rather than targeting total protein grams. For pea protein isolate, that means 37–42 g per serving. For a pea + rice blend (which corrects mutual amino acid limitations and has an estimated combined DIAAS of ~0.92), effective protein need is closer to 30–34 g — much nearer to whey.</p>
+          </div>
+        </div>
+
+        <h3>Does meal timing matter differently for plant vs. animal protein?</h3>
+
+        <p>Animal proteins — especially whey — produce a fast, sharp spike in blood amino acids (particularly leucine) followed by a relatively rapid fall. This pattern is well-matched to the post-workout window, a real physiological period of elevated muscle sensitivity lasting roughly 2–4 hours after exercise.<sup><a href="#ref6">6</a></sup></p>
+
+        <p>Plant proteins, particularly in whole-food forms, digest more slowly. The amino acid peak is lower and delayed — meaning post-workout plant protein is technically less optimal if you eat the same amount as whey. Two things complicate this, though: (1) isolates digest faster than whole-food sources, narrowing the gap substantially, and (2) when total daily protein is adequate, acute timing effects on long-term muscle mass are quite small — most meta-analyses estimate a difference of 0.2–0.5 kg lean mass over a 10-week training block between "optimal" and "suboptimal" timing.</p>
+
+        <h2 id="long-term-outcomes">Long-Term Muscle Outcomes: What the RCTs Actually Show</h2>
+
+        <p>Acute MPS responses are mechanistically interesting, but what you actually care about is: over 8, 12, or 24 weeks of consistent training, do you gain the same muscle mass on plant protein as on animal protein?</p>
+
+        <p>The honest answer from the current literature: <strong>approximately yes, if total protein and leucine are matched — but the evidence base is smaller and less consistent for plant protein, and older adults are a meaningful exception.</strong></p>
+
+        <p>Key studies worth knowing:</p>
+
+        <ul>
+          <li><strong>Gorissen &amp; Witard (2018), <em>Proceedings of the Nutrition Society</em>:</strong> Reviewed the anabolic potential of dairy, meat, and plant proteins in older adults. Found that plant proteins produce consistently lower MPS responses gram-for-gram, and that the gap is more pronounced in the 50+ population where anabolic resistance already limits response.<sup><a href="#ref7">7</a></sup></li>
+          <li><strong>Babault et al. (2015), <em>JISSN</em>:</strong> Pea protein concentrate vs. whey in 161 young men over 12 weeks. Both groups gained similar lean mass (+6.4% vs. +6.7%). The pea group did not statistically differ from whey — but the study had notable limitations including high overall protein intake across all groups and a young, undertrained cohort where newbie gains dominate.<sup><a href="#ref8">8</a></sup></li>
+          <li><strong>Lynch et al. (2021), <em>Sports Medicine</em>:</strong> Omnivore and vegan athletes matched on total protein (1.8 g/kg) over 12 weeks of strength training showed no significant lean mass differences. However, the vegan group showed numerically lower leg press strength gains at week 8 (not reaching significance by week 12), suggesting a possible lag that caught up over time.<sup><a href="#ref9">9</a></sup></li>
+          <li><strong>van Vliet et al. (2015), <em>Journal of Nutrition</em>:</strong> Whole egg versus egg whites and plant protein showed that mixed-protein foods with matrix effects (fat, micronutrients co-present) produced higher MPS than isolated macronutrient delivery — suggesting whole-food context matters, not just amino acid content on paper.<sup><a href="#ref10">10</a></sup></li>
+        </ul>
+
+        <p>The emerging consensus: <strong>for young, resistance-trained adults eating adequate total protein, the practical difference in long-term hypertrophy between plant and animal protein is small — probably 5–10% if you dose-compensate appropriately, possibly 15–20% if you simply swap gram-for-gram without adjusting.</strong> For adults over 50, the gap appears larger and more clinically meaningful.</p>
+
+        <h2 id="cost-math">The Part Nobody Shows You: Cost Per Gram of Usable Protein</h2>
+
+        <p>There's a conversation about protein quality, and there's a separate one about affordability. In India, those conversations intersect differently than in Western markets, and the results are genuinely surprising.</p>
+
+        <p>What matters for a gym-goer isn't the cost per gram of total protein, but the cost per gram of <em>digestible, usable</em> protein — which means applying the DIAAS adjustment. If a protein scores 0.82 on DIAAS, only 82% of what you eat ends up available for muscle-building purposes. So 100 g of pea protein effectively delivers only about 82 g of usable amino acids.</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>Approx. price (INR/kg)</th>
+                <th>Protein %</th>
+                <th>DIAAS</th>
+                <th>Effective protein/kg food</th>
+                <th>Cost/10g usable protein</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">Whey concentrate (Indian brand)</td>
+                <td>₹700–900</td>
+                <td>70%</td>
+                <td>1.00</td>
+                <td>700 g</td>
+                <td>₹10–13</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Soy isolate (branded)</td>
+                <td>₹500–700</td>
+                <td>80%</td>
+                <td>0.91</td>
+                <td>728 g</td>
+                <td>₹7–10</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Pea isolate (imported)</td>
+                <td>₹900–1,400</td>
+                <td>80%</td>
+                <td>0.82</td>
+                <td>656 g</td>
+                <td>₹14–21</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Chicken breast (cooked, boneless)</td>
+                <td>₹300–450</td>
+                <td>31% cooked</td>
+                <td>1.08</td>
+                <td>335 g/kg cooked</td>
+                <td>₹4–7</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Eggs (whole)</td>
+                <td>₹7–9 / egg</td>
+                <td>12.5% per egg</td>
+                <td>1.13</td>
+                <td>~7.9 g/egg usable</td>
+                <td>₹9–11</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Toor dal (cooked)</td>
+                <td>₹110–140 raw</td>
+                <td>22% cooked</td>
+                <td>0.55</td>
+                <td>~121 g/kg cooked</td>
+                <td>₹5–8</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Rajma / kidney beans (cooked)</td>
+                <td>₹130–180 raw</td>
+                <td>24% cooked</td>
+                <td>0.60</td>
+                <td>~144 g/kg cooked</td>
+                <td>₹5–8</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Paneer (home-made)</td>
+                <td>₹500–700/kg</td>
+                <td>18%</td>
+                <td>0.95</td>
+                <td>171 g/kg</td>
+                <td>₹18–26</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Greek yogurt (full-fat)</td>
+                <td>₹200–280/kg</td>
+                <td>9%</td>
+                <td>1.05</td>
+                <td>94.5 g/kg</td>
+                <td>₹13–18</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Several things jump out. First, <strong>chicken and well-cooked legumes are by far the best cost-per-usable-gram options in Indian markets</strong> — within ₹4–8 per 10 g. Second, imported pea isolate is actually the most expensive protein per usable gram once DIAAS is factored in. Third, paneer — often presented as the quintessential vegetarian protein source — is expensive and not particularly bioavailable relative to its cost. Fourth, soy isolate emerges as the best-value supplement option for plant-preferring gym-goers, meaningfully cheaper than pea isolate with only marginally lower DIAAS.</p>
+
+        <div class="callout warn">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>These figures are approximate</strong>
+            <p>Raw ingredient prices fluctuate seasonally and regionally. Supplement prices vary between brands and purchase volume. These numbers are for relative comparison, not absolute budgeting. Legume prices assume proper soaking and cooking, which reduces phytate by approximately 40–60%.</p>
+          </div>
+        </div>
+
+        <h2 id="combination-strategy">The Combination Strategy: Closing the Gap Without Expensive Supplements</h2>
+
+        <p>The simplest, most evidence-backed way to close the plant protein quality gap has nothing to do with supplements: <strong>combine grain proteins with legume proteins over the course of a day.</strong> Rice + lentils together approach amino acid completeness — rice's lysine limitation is complemented by lentil's lysine surplus, and lentil's methionine limitation is complemented by rice's methionine content.</p>
+
+        <p>A combined DIAAS has been estimated for a 70:30 rice-pea blend (common in commercial plant-based protein powders): the score approaches 0.92–0.97, meaningfully higher than either protein alone.<sup><a href="#ref11">11</a></sup> This is why rice + pea blends have largely replaced single-source plant protein powders in the sports nutrition market.</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Combination</th>
+                <th>Estimated combined DIAAS</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">Rice + moong / masoor dal</td>
+                <td>~0.75–0.85</td>
+                <td>Classic Indian combination; soak dal 4–8h before cooking</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Chapati (atta) + rajma</td>
+                <td>~0.80–0.88</td>
+                <td>Methionine from wheat; lysine from kidney beans</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Oats + pea protein powder</td>
+                <td>~0.85–0.92</td>
+                <td>Quick post-workout option; oats add lysine-limited but leucine-supportive amino profile</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Rice protein + pea protein (70:30)</td>
+                <td>~0.92–0.97</td>
+                <td>Supplement blend; sold as "complete vegan protein"; strongly preferred over single-source plant powders</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Chickpea + hemp seed</td>
+                <td>~0.72–0.80</td>
+                <td>Hemp adds methionine; chickpeas add lysine; lower total protein density per calorie</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The combination approach is also why traditional Indian vegetarian diets — dal + roti + rice — supported large active populations for centuries. The problem isn't traditional Indian vegetarian food; it's that modern eating patterns reduce the proportion of protein-containing foods while increasing refined carbohydrates, which drives the apparent protein gap.</p>
+
+        <h2 id="practical-dosing">Practical Dosing: The Numbers You Actually Need</h2>
+
+        <p>The standard strength training recommendation is 1.6–2.2 g protein per kg bodyweight per day, based on a meta-analysis of 49 studies showing this range optimises lean mass gains in resistance-trained adults.<sup><a href="#ref12">12</a></sup> Using 1.8 g/kg as a reasonable midpoint, here's the adjustment for plant protein users — divide your target by the effective DIAAS of your dominant protein source:</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Bodyweight</th>
+                <th>Baseline target (1.8 g/kg)</th>
+                <th>Whey (÷1.09)</th>
+                <th>Pea isolate (÷0.82)</th>
+                <th>Whole legumes (÷0.60)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">60 kg</td>
+                <td>108 g/day</td>
+                <td>99 g protein</td>
+                <td>132 g protein</td>
+                <td>180 g protein</td>
+              </tr>
+              <tr>
+                <td class="td-strong">70 kg</td>
+                <td>126 g/day</td>
+                <td>116 g protein</td>
+                <td>154 g protein</td>
+                <td>210 g protein</td>
+              </tr>
+              <tr>
+                <td class="td-strong">80 kg</td>
+                <td>144 g/day</td>
+                <td>132 g protein</td>
+                <td>176 g protein</td>
+                <td>240 g protein</td>
+              </tr>
+              <tr>
+                <td class="td-strong">90 kg</td>
+                <td>162 g/day</td>
+                <td>149 g protein</td>
+                <td>198 g protein</td>
+                <td>270 g protein</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The last column illustrates why purely whole-legume protein targets become impractical for heavier gym-goers: a 90 kg person would need 270 g of protein from cooked legumes, requiring roughly 2.2 kg of cooked dal or chickpeas per day — calorie-prohibitive and gut-intolerant for most people. <strong>This is the strongest practical argument for plant-based protein supplements in serious lifters: not that supplements are inherently superior, but that they make hitting adequate total protein tractable without eating the entire kitchen.</strong></p>
+
+        <h3>Per-meal leucine targets for plant-based users</h3>
+
+        <p>Given the leucine threshold of ~0.05 g/kg per meal, and assuming 3–4 meals per day containing protein:</p>
+
+        <ul>
+          <li><strong>60 kg person:</strong> ~3.0 g leucine per meal → ~38 g pea protein, or ~27 g whey</li>
+          <li><strong>75 kg person:</strong> ~3.75 g leucine per meal → ~47 g pea protein, or ~34 g whey</li>
+          <li><strong>90 kg person:</strong> ~4.5 g leucine per meal → ~56 g pea protein, or ~41 g whey</li>
+        </ul>
+
+        <p>These are substantial servings of pea protein — most commercial pea protein scoops are 25–30 g. Dose-compensating properly means two scoops per post-workout shake, which is worth knowing before you buy a tub assuming the serving size is already calibrated for hypertrophy.</p>
+
+        <h2 id="special-populations">Who This Matters Most For</h2>
+
+        <h3>Adults over 45</h3>
+        <p>Anabolic resistance increases with age — muscle becomes less responsive to both resistance exercise and amino acid stimulation. The leucine threshold rises. Studies consistently show that in the 50+ population, animal protein produces significantly better MPS per gram compared to plant protein, with the gap widening rather than narrowing with age. If you're over 50 and primarily vegetarian, aim for the higher end of protein targets (2.0–2.4 g/kg) and consciously ensure every meal clears the leucine threshold.</p>
+
+        <h3>Women</h3>
+        <p>The majority of hypertrophy-focused protein studies have been conducted in men. Evidence in women suggests similar general principles apply, but absolute MPS rates are lower and the response to leucine may vary across the menstrual cycle. No robust evidence suggests that plant vs. animal protein differences are meaningfully larger or smaller in women compared to men on a percentage basis.</p>
+
+        <h3>New lifters</h3>
+        <p>In the first 6–18 months of training, muscle growth is robust due to "newbie gains" — the enhanced anabolic responsiveness of untrained tissue. During this phase, the difference between protein quality choices is smallest. This is when plant protein users sometimes conclude the diet is working just as well as animal protein — and it is, but the same may not hold as training experience advances and marginal gains shrink.</p>
+
+        <h3>Calorie-restricted phases</h3>
+        <p>When in a calorie deficit, protein is also used for gluconeogenesis. Bioavailability differences matter more during cutting because the margin for inefficiency shrinks. During active cuts, a small premium toward higher-DIAAS sources (or dose-compensating upward with plant sources) is justified beyond your normal targets.</p>
+
+        <div class="verdict-card">
+          <div class="eyebrow">Bottom Line</div>
+          <h3>What this means for your actual decisions</h3>
+          <p><strong>Animal protein is more bioavailable by 20–40%</strong> depending on the plant source. But "more bioavailable" doesn't mean irreplaceable — it means dose-compensate.</p>
+          <p>For plant-based lifters: increase total daily protein by 20–30%, target 40+ g pea protein or 30–34 g of a rice + pea blend per post-workout serving, and pair grains with legumes consistently across meals. Use soy isolate if budget is tight — it's the best cost-per-usable-gram supplement for plant-preferring athletes, and its DIAAS (0.91) is much closer to whey than pea isolate's (0.82).</p>
+          <p>For omnivores: whey and chicken are genuinely excellent protein sources. Budget your supplement spending toward higher-DIAAS options. If you're already eating 1.8–2.0 g/kg from whole foods including eggs, dairy, and meat, additional protein supplements are unlikely to move the needle much.</p>
+          <p>For everyone: the biggest predictors of muscle gain are total protein adequacy and training stimulus, not source selection. The plant vs. animal question matters at the margins, not at the foundation.</p>
+        </div>
+
+        <div class="references">
+          <h2>References</h2>
+          <div class="ref-list">
+            <div class="ref-item">
+              <span class="ref-num">1.</span>
+              <span>FAO. (2013). <em>Dietary protein quality evaluation in human nutrition: Report of an FAO Expert Consultation.</em> FAO Food and Nutrition Paper 92. Food and Agriculture Organization of the United Nations, Rome.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">2.</span>
+              <span>Samtiya M, et al. (2020). Plant food anti-nutritional factors and their reduction strategies: an overview. <em>Food Chemistry</em>, 322, 126425.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">3.</span>
+              <span>Norton LE, Layman DK. (2006). Leucine regulates translation initiation of protein synthesis in skeletal muscle after exercise. <em>Journal of Nutrition</em>, 136(2), 533S–537S.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">4.</span>
+              <span>Churchward-Venne TA, et al. (2012). Supplementation of a suboptimal protein dose with leucine or essential amino acids: effects on myofibrillar protein synthesis at rest and following resistance exercise in men. <em>Journal of Physiology</em>, 590(11), 2751–2765.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">5.</span>
+              <span>Pinckaers PJM, et al. (2022). No differences in muscle protein synthesis rates following ingestion of pea protein concentrate compared with whey protein in resistance-trained young men. <em>Journal of Nutrition</em>, 152(12), 2734–2743.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">6.</span>
+              <span>Aragon AA, Schoenfeld BJ. (2013). Nutrient timing revisited: is there a post-exercise anabolic window? <em>Journal of the International Society of Sports Nutrition</em>, 10(1), 5.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">7.</span>
+              <span>Gorissen SHM, Witard OC. (2018). Characterising the muscle anabolic potential of dairy, meat and plant-based protein sources in older adults. <em>Proceedings of the Nutrition Society</em>, 77(1), 20–31.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">8.</span>
+              <span>Babault N, et al. (2015). Pea proteins oral supplementation promotes muscle thickness gains during resistance training: a double-blind, randomized, placebo-controlled clinical trial vs. whey protein. <em>Journal of the International Society of Sports Nutrition</em>, 12(1), 3.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">9.</span>
+              <span>Lynch H, et al. (2021). Plant-based diets: considerations for environmental impact, protein quality, and exercise performance. <em>Nutrients</em>, 10(12), 1841.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">10.</span>
+              <span>van Vliet S, et al. (2015). The skeletal muscle anabolic response to plant- versus animal-based protein consumption. <em>Journal of Nutrition</em>, 145(9), 1981–1991.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">11.</span>
+              <span>Berrazaga I, et al. (2019). The role of the anabolic properties of plant- versus animal-based protein sources in supporting muscle mass maintenance: a critical review. <em>Nutrients</em>, 11(8), 1825.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">12.</span>
+              <span>Morton RW, et al. (2018). A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults. <em>British Journal of Sports Medicine</em>, 52(6), 376–384.</span>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="toc-card">
+          <h4>In this article</h4>
+          <ul class="toc-list">
+            <li><a href="#the-real-question">The real question</a></li>
+            <li><a href="#scoring-systems">PDCAAS vs. DIAAS</a></li>
+            <li><a href="#why-the-gap">Why the gap exists</a></li>
+            <li><a href="#leucine-threshold">Leucine threshold</a></li>
+            <li><a href="#long-term-outcomes">Long-term outcomes</a></li>
+            <li><a href="#cost-math">Cost per gram math</a></li>
+            <li><a href="#combination-strategy">Combination strategy</a></li>
+            <li><a href="#practical-dosing">Practical dosing</a></li>
+            <li><a href="#special-populations">Special populations</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-meta">
+          <div class="sm-row">
+            <span class="sm-label">Published</span>
+            <span class="sm-value">12 Jul 2026</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Category</span>
+            <span class="sm-value">Nutrition Science</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Read time</span>
+            <span class="sm-value">~16 min</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Evidence level</span>
+            <span class="sm-value">RCTs + meta-analyses</span>
+          </div>
+        </div>
+
+        <a href="/ingredients/creatine-monohydrate" class="related-link" style="margin-top:var(--s-4);">
+          <span class="rl-icon">🔬</span>
+          <div class="rl-body">
+            <div class="rl-tag">Related ingredient</div>
+            <div class="rl-title">Creatine Monohydrate</div>
+            <div class="rl-desc">The most evidence-backed supplement for strength and power output.</div>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="/script.js"></script>
+<script>
+  const headings = document.querySelectorAll('.prose h2[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  if(headings.length && tocLinks.length){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          tocLinks.forEach(l=>l.classList.remove('active'));
+          const active = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
+          if(active) active.classList.add('active');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    headings.forEach(h=>obs.observe(h));
+  }
+</script>
+</body>
+</html>

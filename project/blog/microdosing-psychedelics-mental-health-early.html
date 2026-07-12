@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Microdosing Psychedelics and Mental Health: Early Trials — Naked Compound</title>
+  <meta name="description" content="Psilocybin, LSD, and MDMA in controlled trials — what the data actually shows for depression and PTSD, why placebo control is hard, and where Indian law stands." />
+  <meta name="published" content="2026-07-12" />
+  <link rel="canonical" href="https://www.nakedcompound.in/blog/microdosing-psychedelics-mental-health-early" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css?v=1001" />
+  <link rel="stylesheet" href="/pages.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23c96442'/%3E%3C/svg%3E" />
+  <style>
+.page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
+.page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
+.page-head .crumbs a{color:var(--ink-muted);}
+.page-head .crumbs a:hover{color:var(--accent);}
+.page-head .crumbs .sep{opacity:.4;}
+.page-head h1{font-size:clamp(28px,4.5vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:var(--s-5);max-width:22ch;}
+.page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
+.page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:56ch;line-height:1.6;margin-bottom:var(--s-6);}
+.meta-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
+.meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
+.meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
+.meta-chip.caution .dot{background:#e09a3a;}
+
+.article-layout{display:grid;grid-template-columns:1fr 260px;gap:var(--s-8);align-items:start;padding:var(--s-8) 0 var(--s-10);}
+.article-body{min-width:0;}
+.article-sidebar{position:sticky;top:calc(var(--nav-h) + 24px);}
+
+.prose h2{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:var(--s-8) 0 var(--s-4);padding-top:var(--s-8);border-top:1px solid var(--line);scroll-margin-top:80px;}
+.prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
+.prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
+.prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
+.prose p strong{color:var(--ink);font-weight:500;}
+.prose sup{font-family:var(--font-mono);font-size:11px;color:var(--accent);}
+.prose sup a{color:var(--accent);}
+.prose ul,.prose ol{padding-left:24px;margin-bottom:var(--s-4);}
+.prose li{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:6px;}
+.prose li strong{color:var(--ink);}
+
+.callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);}
+.callout-icon{font-size:20px;flex:0 0 auto;margin-top:2px;}
+.callout-body p{font-size:15px;margin:0;line-height:1.65;}
+.callout-body strong{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+.callout.info{background:var(--sky);border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky));}
+.callout.info .callout-body strong{color:#2e4a6b;}
+.callout.warn{background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+.callout.warn .callout-body strong{color:#7a5f1a;}
+.callout.good{background:var(--mint);border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint));}
+.callout.good .callout-body strong{color:#3a5c3f;}
+.callout.danger{background:color-mix(in oklab,#e05c4a 10%,var(--bg));border:1px solid color-mix(in oklab,#e05c4a 30%,var(--line));}
+.callout.danger .callout-body strong{color:#a0342a;}
+[data-theme="dark"] .callout.info .callout-body strong{color:#9cc1e0;}
+[data-theme="dark"] .callout.warn .callout-body strong{color:#e0c377;}
+[data-theme="dark"] .callout.good .callout-body strong{color:#a7d2a9;}
+[data-theme="dark"] .callout.danger .callout-body strong{color:#e08070;}
+
+.verdict-card{background:var(--ink);color:#f0ece4;border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;position:relative;overflow:hidden;}
+[data-theme="dark"] .verdict-card{background:var(--accent-soft);color:var(--ink);}
+.verdict-card::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(30px);}
+.verdict-card .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0ece4 !important;opacity:.65;margin-bottom:var(--s-3);position:relative;}
+.verdict-card h3{font-size:clamp(18px,2vw,24px);letter-spacing:-.02em;margin-bottom:var(--s-4);color:#ffffff !important;position:relative;}
+.verdict-card p{font-size:15px;line-height:1.65;position:relative;color:#c8c2b8 !important;margin-bottom:var(--s-3);}
+.verdict-card p strong{color:#f0ece4 !important;}
+[data-theme="dark"] .verdict-card h3{color:var(--ink) !important;}
+[data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
+[data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
+
+.data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+.data-table{width:100%;border-collapse:collapse;font-size:14px;}
+.data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+.data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
+.data-table tbody tr:last-child td{border-bottom:none;}
+.data-table tbody tr:hover td{background:var(--bg-elev);}
+.td-strong{color:var(--ink) !important;font-weight:500;}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--line);}
+.badge.strong,.badge.pass{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 35%,var(--line));}
+.badge.mod,.badge.warn{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;}
+.badge.fail{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border-color:color-mix(in oklab,#e05c4a 30%,var(--line));}
+.badge.early{background:color-mix(in oklab,#7a5fb8 15%,var(--bg-elev));color:#4a2e8c;border-color:color-mix(in oklab,#7a5fb8 30%,var(--line));}
+[data-theme="dark"] .badge.strong,[data-theme="dark"] .badge.pass{color:#a7d2a9;}
+[data-theme="dark"] .badge.mod,[data-theme="dark"] .badge.warn{color:#e0c377;}
+[data-theme="dark"] .badge.early{color:#b8a0e0;}
+
+.references{margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--line);}
+.references h2{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s-5);}
+.ref-list{display:flex;flex-direction:column;gap:var(--s-3);}
+.ref-item{display:grid;grid-template-columns:28px 1fr;gap:var(--s-3);font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
+.ref-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);padding-top:2px;}
+.ref-item a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);transition:border-color .15s;}
+.ref-item a:hover{border-color:var(--accent);}
+
+.toc-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);}
+.toc-card h4{font-size:12px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-4);}
+.toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
+.toc-list a{display:block;padding:7px 10px;border-radius:var(--r-sm);font-size:14px;color:var(--ink-soft);transition:color .15s,background .15s;line-height:1.35;}
+.toc-list a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
+.toc-list a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
+.sidebar-meta{margin-top:var(--s-4);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);display:flex;flex-direction:column;gap:12px;}
+.sm-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;gap:8px;}
+.sm-label{color:var(--ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+.sm-value{color:var(--ink);font-weight:500;text-align:right;}
+.sm-divider{height:1px;background:var(--line);}
+
+@media(max-width:900px){
+  .article-layout{grid-template-columns:1fr;}
+  .article-sidebar{position:static;order:-1;}
+}
+
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-4);margin:var(--s-6) 0;}
+.stat-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4) var(--s-5);text-align:center;}
+.stat-box .stat-num{font-family:var(--font-display);font-size:clamp(26px,3.5vw,40px);font-weight:500;letter-spacing:-.03em;color:var(--accent);line-height:1;margin-bottom:6px;}
+.stat-box .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);line-height:1.4;}
+@media(max-width:720px){.stat-row{grid-template-columns:1fr 1fr;}}
+
+.legal-card{border:2px solid color-mix(in oklab,#e05c4a 40%,var(--line));border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;background:color-mix(in oklab,#e05c4a 5%,var(--bg));}
+.legal-card .lc-eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#a0342a;margin-bottom:var(--s-3);}
+.legal-card h3{font-size:clamp(17px,2vw,22px);font-weight:500;color:var(--ink);margin-bottom:var(--s-3);}
+.legal-card p{font-size:15px;color:var(--ink-soft);line-height:1.65;margin-bottom:var(--s-3);}
+.legal-card p:last-child{margin-bottom:0;}
+[data-theme="dark"] .legal-card .lc-eyebrow{color:#e08070;}
+
+.trial-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);margin:var(--s-4) 0;background:var(--bg-elev);}
+.trial-card .tc-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--s-3);}
+.trial-card h4{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:var(--s-2);}
+.trial-card p{font-size:14.5px;color:var(--ink-soft);line-height:1.6;margin:0;}
+  </style>
+  <script>window.PAGE_KEY = 'blog';</script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-84Q2LMHPV0');
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Microdosing Psychedelics and Mental Health: What Early Trials Show and Safety Caveats",
+        "description": "Psilocybin, LSD, and MDMA in controlled trials — what the data actually shows for depression and PTSD, why placebo control is hard, and where Indian law stands.",
+        "url": "https://www.nakedcompound.in/blog/microdosing-psychedelics-mental-health-early",
+        "datePublished": "2026-07-12",
+        "dateModified": "2026-07-12",
+        "author": {"@type": "Organization", "name": "Naked Compound Research Team"},
+        "publisher": {"@type": "Organization", "name": "Naked Compound", "url": "https://www.nakedcompound.in"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nakedcompound.in/"},
+          {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.nakedcompound.in/pages/blog"},
+          {"@type":"ListItem","position":3,"name":"Microdosing Psychedelics and Mental Health","item":"https://www.nakedcompound.in/blog/microdosing-psychedelics-mental-health-early"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <div class="container">
+    <div class="page-head">
+      <div class="crumbs">
+        <a href="/">Home</a><span class="sep">/</span>
+        <a href="/pages/blog">Blog</a><span class="sep">/</span>
+        <span>Microdosing Psychedelics</span>
+      </div>
+
+      <h1>Microdosing Psychedelics and Mental Health: <em>What the Early Trials Actually Show</em></h1>
+      <p class="kicker">Psilocybin, LSD, and MDMA have produced remarkable results in controlled trials for depression, PTSD, and anxiety. Here's what the data says, what the placebo problem means, and what "promising" really means before approval.</p>
+
+      <div class="meta-chips">
+        <span class="meta-chip"><span class="dot ok"></span>Trial-based</span>
+        <span class="meta-chip">12 Jul 2026</span>
+        <span class="meta-chip">~18 min read</span>
+        <span class="meta-chip caution"><span class="dot"></span>Includes legal status in India</span>
+      </div>
+    </div>
+
+    <div class="article-layout">
+      <article class="article-body prose">
+
+        <div class="callout danger">
+          <span class="callout-icon">🚫</span>
+          <div class="callout-body">
+            <strong>Legal notice</strong>
+            <p>Psilocybin, LSD, and MDMA are Schedule I controlled substances in India under the NDPS Act, 1985. Possession, consumption, or production carries severe criminal penalties. This article is strictly educational — covering clinical trial data and global regulatory developments. Nothing here constitutes advice to obtain or use these substances.</p>
+          </div>
+        </div>
+
+        <h2 id="why-now">Why This Conversation Is Happening Now</h2>
+
+        <p>Psychiatry has a stubborn problem: roughly one-third of people with major depressive disorder don't respond adequately to available antidepressants, even after trying multiple drugs and adjusting doses. Treatment-resistant depression (TRD) kills people — suicide rates in this group are substantially elevated. For decades, the field had no meaningful new mechanism to offer them.</p>
+
+        <p>Then came a convergence. Underground psychedelic research that had been dormant since the 1970s crackdowns was quietly revived at Johns Hopkins, NYU, and Imperial College London in the early 2000s. The results, when published, were striking enough that the FDA granted "Breakthrough Therapy" designation to psilocybin-assisted therapy for TRD in 2018 and to MDMA-assisted therapy for PTSD in 2017. This is a regulatory fast-track status given when preliminary clinical evidence shows substantial improvement over available therapy — and it's not handed out casually.</p>
+
+        <p>The conversation about psychedelics and mental health is happening now because the clinical data has matured enough to take seriously, even as it's early enough that significant uncertainties remain. The goal here isn't advocacy for or against these substances — it's a clear-eyed reading of what the trials show, where the methodological problems lie, and what "promising but early" actually means in the context of drug development.</p>
+
+        <div class="callout info">
+          <span class="callout-icon">ℹ️</span>
+          <div class="callout-body">
+            <strong>Scope of this article</strong>
+            <p>We cover classical psychedelics (psilocybin, LSD) used in therapeutic doses, and MDMA (an entactogen, not a classical psychedelic). We also address microdosing specifically as a separate protocol. Ketamine/esketamine are excluded — they are already approved, legally available in clinical settings, and deserve their own treatment.</p>
+          </div>
+        </div>
+
+        <h2 id="what-is-microdosing">What Is Microdosing? Separating the Protocol from the Substance</h2>
+
+        <p>The term "microdosing" is used loosely enough to be confusing, so let's be precise. In clinical and research contexts, a <strong>microdose</strong> is typically defined as 1/10th to 1/20th of a typical recreational or therapeutic dose — specifically calibrated to be sub-perceptual. The user is not expected to experience hallucinations, ego dissolution, or significant perceptual change. The theory is that sub-threshold doses might improve mood, focus, or creativity without the disruption of a full psychedelic experience.</p>
+
+        <p>This is distinct from <strong>macrodose or full-dose therapy</strong>, which is what the major clinical trials (psilocybin for depression, MDMA for PTSD) are studying. Full-dose therapy uses doses that produce profound subjective experiences, often described as mystical or insight-inducing, delivered in carefully controlled therapeutic settings with trained therapists present.</p>
+
+        <p>The distinction matters enormously because the <strong>mechanisms likely differ</strong>. Full-dose psilocybin's antidepressant effects appear to involve a "reset" of maladaptive neural patterns through 5-HT2A receptor agonism, neuroplasticity, and a profound subjective experience that may itself be therapeutically important. Microdose effects, if real, may work through different, more subtle mechanisms — and the evidence base is much weaker.</p>
+
+        <h3>Microdosing evidence: what the studies actually found</h3>
+
+        <p>The reality of microdosing research is humbling. Most of what you read online comes from self-report surveys, Reddit threads, and observational studies that can tell us what users believe but cannot isolate genuine pharmacological effects from expectation.</p>
+
+        <p>The best-designed study to date is from Imperial College London (2021): a double-blind, placebo-controlled crossover trial of LSD microdosing (13 µg) in 80 healthy adults.<sup><a href="#ref1">1</a></sup> The result: no significant difference from placebo on any pre-specified measure of mood, creativity, wellbeing, or cognitive performance. The researchers also found that experienced microdosers in a separate observational arm could reliably tell whether they had taken LSD or placebo — suggesting that even "sub-perceptual" doses produce enough detectability to confound self-report data.</p>
+
+        <p>A 2022 study published in <em>eLife</em> used a self-blinding citizen science design (participants prepared their own blinded envelopes) for psilocybin microdosing.<sup><a href="#ref2">2</a></sup> It found that self-reported wellbeing improvements were present in both the microdose and placebo groups, with no statistically significant difference — a classic demonstration of expectation effects in this population.</p>
+
+        <p>This doesn't definitively prove microdosing doesn't work. The doses, frequencies, and populations studied have been heterogeneous. But it does establish that the enthusiastic self-reported benefits seen in observational work are likely heavily driven by expectation and self-selection bias, and that the controlled evidence to date is underwhelming.</p>
+
+        <div class="callout warn">
+          <span class="callout-icon">⚠️</span>
+          <div class="callout-body">
+            <strong>Microdosing ≠ the trial evidence</strong>
+            <p>The strongest clinical evidence (psilocybin for depression, MDMA for PTSD) uses full therapeutic doses in supervised settings — not sub-perceptual microdoses. Don't conflate the two when evaluating the evidence base.</p>
+          </div>
+        </div>
+
+        <h2 id="psilocybin-trials">Psilocybin: The Depression Trial Data</h2>
+
+        <p>Psilocybin is the active compound in "magic mushrooms" (primarily <em>Psilocybe cubensis</em>). It converts to psilocin in the body, which acts as a 5-HT2A serotonin receptor agonist in the brain. A typical therapeutic dose in trials is 25 mg — substantially more than recreational doses and far above any microdose definition.</p>
+
+        <h3>The key trials</h3>
+
+        <div class="trial-card">
+          <div class="tc-meta">
+            <span class="badge strong">Phase 2b RCT</span>
+            <span class="badge mod">N=233</span>
+          </div>
+          <h4>COMP360 / Compass Pathways (2022) — <em>NEJM</em></h4>
+          <p>The largest psilocybin trial published to date. Three doses (1mg, 10mg, 25mg) in treatment-resistant depression, with 6-week follow-up. The 25mg group showed significant MADRS score reduction vs. 1mg control (primary endpoint). At week 3, 29% of the 25mg group were in remission vs. 8% in the 1mg group. However, remission was not sustained at 3 months in most patients, suggesting effects may not be durable without repeat treatment.<sup><a href="#ref3">3</a></sup></p>
+        </div>
+
+        <div class="trial-card">
+          <div class="tc-meta">
+            <span class="badge strong">Randomised controlled</span>
+            <span class="badge mod">N=59</span>
+          </div>
+          <h4>Johns Hopkins / Davis et al. (2021) — <em>JAMA Psychiatry</em></h4>
+          <p>Psilocybin-assisted therapy vs. waitlist control in adults with MDD (not treatment-resistant). Effect sizes were large: response rates of 71% and remission rates of 54% four weeks post-treatment. The effect size (Cohen's d ~2.5) is unusually large for a depression intervention. However, blinding was imperfect — participants receiving active drug could likely tell.<sup><a href="#ref4">4</a></sup></p>
+        </div>
+
+        <div class="trial-card">
+          <div class="tc-meta">
+            <span class="badge mod">Open label</span>
+            <span class="badge mod">N=20</span>
+          </div>
+          <h4>Imperial College London / Carhart-Harris et al. (2021) — <em>NEJM</em></h4>
+          <p>Psilocybin vs. escitalopram (a standard SSRI) in MDD over 6 weeks. Neither was significantly superior to the other on the primary endpoint (QIDS-SR score). However, psilocybin showed advantages on multiple secondary measures — including emotional processing, blunted affect, and patient-reported wellbeing. The trial was too small to be conclusive.<sup><a href="#ref5">5</a></sup></p>
+        </div>
+
+        <p>What emerges from the psilocybin literature: <strong>the acute effects on depression are real and often large by the standards of psychiatric trials.</strong> The durability question remains open — some patients sustain benefits for months, others relapse within weeks. The optimal dose, frequency, and degree to which the subjective experience is required for therapeutic benefit are all active research questions.</p>
+
+        <h3>The placebo problem</h3>
+
+        <p>This is the elephant in every psychedelic trial room. You cannot blind a participant to whether they've taken a hallucinogen or a sugar pill. Researchers have tried active placebos (niacin, which causes flushing; low-dose psilocybin; methylphenidate), but none fully solve the expectation confound. A participant who knows they've had the real drug and expects to improve will be comparing their experience not just to baseline but to that expectation — which is why effect sizes in psychedelic trials tend to look large by conventional standards.</p>
+
+        <p>This doesn't invalidate the findings, but it does mean the true pharmacological effect size may be smaller than trial estimates suggest. Meta-science researchers have proposed that a meaningful portion of therapeutic benefit may come from the therapeutic relationship, set and setting, and expectation — all components present in the active drug arm but not (or less so) in the placebo arm.<sup><a href="#ref6">6</a></sup></p>
+
+        <h2 id="mdma-trials">MDMA-Assisted Therapy for PTSD: The Clearest Signal</h2>
+
+        <p>MDMA (3,4-methylenedioxymethamphetamine) is not a classical psychedelic — it doesn't primarily act on 5-HT2A receptors and doesn't typically cause hallucinations at therapeutic doses. It's an entactogen that causes massive release of serotonin, dopamine, and norepinephrine, producing feelings of emotional openness, empathy, reduced fear, and connectedness.</p>
+
+        <p>The theory for PTSD treatment is compelling: PTSD involves a hyperactive fear response, difficulty with emotional processing, and avoidance of trauma-related memories. MDMA's temporary suppression of amygdala reactivity, combined with increased feelings of trust and safety, may create a window in which patients can engage with traumatic memories without being overwhelmed by them — enabling more effective psychotherapy.</p>
+
+        <div class="trial-card">
+          <div class="tc-meta">
+            <span class="badge strong">Phase 3 RCT</span>
+            <span class="badge mod">N=104</span>
+          </div>
+          <h4>MAPS Phase 3 Trial / Mitchell et al. (2021) — <em>Nature Medicine</em></h4>
+          <p>The first Phase 3 RCT of MDMA-assisted therapy for chronic PTSD. 104 participants with severe, chronic PTSD (average illness duration 14+ years), many treatment-resistant. After three 8-hour MDMA sessions interspersed with ongoing therapy: <strong>67% of the MDMA group no longer met PTSD diagnostic criteria at follow-up, vs. 32% in the placebo group.</strong> Remission rates (CAPS-5 score below 11): 46% MDMA vs. 21% placebo. Effect size was large (Cohen's d ~0.91).<sup><a href="#ref7">7</a></sup></p>
+        </div>
+
+        <div class="trial-card">
+          <div class="tc-meta">
+            <span class="badge strong">Phase 3 RCT</span>
+            <span class="badge mod">N=131</span>
+          </div>
+          <h4>MAPS Phase 3 Trial 2 / Mitchell et al. (2023) — <em>Nature Medicine</em></h4>
+          <p>Replication trial with 131 participants across multiple sites. Results consistent with trial 1: PTSD diagnostic criteria no longer met in 71.2% of MDMA vs. 47.6% of placebo group at primary endpoint. The effect size remained large.<sup><a href="#ref8">8</a></sup> However, FDA rejected the MDMA application in August 2024, citing concerns about functional unblinding, inconsistent therapy training standards, and a need for additional trials in more diverse populations. MAPS re-filed for approval in 2025.</p>
+        </div>
+
+        <p>The FDA rejection is instructive: despite impressive numbers, regulators were not satisfied with the blinding controls, the heterogeneity of therapist training, and the limited data in demographically diverse populations. This is an object lesson in why Phase 3 trial results, even positive ones, don't automatically translate to approval.</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-num">67%</div>
+            <div class="stat-label">No longer met PTSD criteria after MDMA therapy (Phase 3 trial 1)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">32%</div>
+            <div class="stat-label">Same outcome in placebo + therapy group</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">~0.91</div>
+            <div class="stat-label">Cohen's d effect size — large by psychiatric standards</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2024</div>
+            <div class="stat-label">FDA declined approval; cited blinding concerns and diversity of trial population</div>
+          </div>
+        </div>
+
+        <h2 id="lsd-and-others">LSD, Ayahuasca, and Others: Where the Evidence Is Thinner</h2>
+
+        <h3>LSD</h3>
+        <p>LSD research is at an earlier stage than psilocybin. A 2021 Swiss placebo-controlled trial found that 100 µg LSD produced significant reductions in anxiety in adults with anxiety disorders, with improvements sustained at 16-week follow-up.<sup><a href="#ref9">9</a></sup> Sample sizes remain small (N=42 in this trial). Phase 2 trials for anxiety, alcohol use disorder, and cluster headaches are underway as of 2026.</p>
+
+        <h3>Ayahuasca</h3>
+        <p>Ayahuasca — a plant brew combining DMT with beta-carboline MAO inhibitors — has been studied in small trials in Brazil for depression. A 2019 placebo-controlled trial (N=29) found significant antidepressant effects lasting at least one week.<sup><a href="#ref10">10</a></sup> The interaction between DMT, MAOIs, and other medications creates substantial pharmacological complexity and safety concerns that aren't present with psilocybin or MDMA.</p>
+
+        <h2 id="safety">Safety Profile: What the Trials Report</h2>
+
+        <p>A common question: how dangerous are these substances in clinical settings? The answer is more nuanced than both scare campaigns and enthusiast advocacy suggest.</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Substance</th>
+                <th>Physiological toxicity</th>
+                <th>Psychological risk</th>
+                <th>Addiction potential</th>
+                <th>Drug interactions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">Psilocybin</td>
+                <td>Very low; no known lethal dose in humans</td>
+                <td>Challenging experiences, anxiety, temporary psychosis in vulnerable individuals</td>
+                <td>Very low; tolerance develops rapidly, not reinforcing</td>
+                <td>Lithium (risk of seizure); SSRIs may reduce effect; tramadol</td>
+              </tr>
+              <tr>
+                <td class="td-strong">LSD</td>
+                <td>Very low physiologically; no known direct lethal dose</td>
+                <td>Similar to psilocybin; HPPD (rare); more intense experiences, longer duration</td>
+                <td>Very low; tolerance develops in 3–4 days</td>
+                <td>Lithium (risk of seizure); SSRIs; stimulants</td>
+              </tr>
+              <tr>
+                <td class="td-strong">MDMA</td>
+                <td>Moderate; hyperthermia, hyponatremia (water intoxication), cardiac risks in predisposed individuals</td>
+                <td>Anxiety, comedown depression, potential neurotoxicity with heavy recreational use</td>
+                <td>Low-moderate; some psychological dependence risk</td>
+                <td>SSRIs/SNRIs (serotonin syndrome risk); MAOIs; stimulants; heart medications</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>In the Phase 3 clinical trial context, serious adverse events from psilocybin and MDMA have been rare and mostly psychological — not physical. The MAPS trials reported suicidal ideation in a small number of participants (all in the MDMA group in one trial), though rates were not significantly higher than in the placebo group. No deaths attributable to the study drugs were reported.</p>
+
+        <p>The physiological safety profile of psilocybin and LSD in healthy adults is genuinely good by pharmacological standards. The risks are primarily psychological and context-dependent: challenging experiences, temporary psychosis in individuals with pre-existing vulnerability, and in rare cases, prolonged perceptual disturbances (HPPD). <strong>The key phrase here is "in healthy adults in controlled settings."</strong> Contraindications include personal or family history of psychosis, schizophrenia, bipolar I disorder, and active suicidality.</p>
+
+        <p>MDMA carries more physiological risk due to its cardiovascular effects and thermoregulatory disruption. Serious harm in recreational settings is almost always associated with dancing in hot environments (hyperthermia), excessive water intake (hyponatremia), or mixing with other drugs. In clinical settings with temperature monitoring and medical oversight, these risks are substantially reduced.</p>
+
+        <h3>The neurotoxicity question with MDMA</h3>
+        <p>Animal studies (primarily in primates) at high doses showed serotonergic neurotoxicity with heavy MDMA exposure. Whether this translates to the lower, infrequent dosing used in clinical trials remains debated. Studies in heavy recreational users show mixed results — some show subtle cognitive changes; others don't. A single therapeutic course of three MDMA sessions over several months bears little resemblance pharmacologically to weekend recreational use, and the current clinical evidence does not show cognitive harm at therapeutic doses. However, this is a legitimate area of ongoing scientific concern, not one dismissed.</p>
+
+        <h2 id="contraindications">Who Should Not Use These — Even in Future Therapeutic Contexts</h2>
+
+        <p>Absolute contraindications identified across clinical trials:</p>
+
+        <ul>
+          <li><strong>Personal or family history of psychosis, schizophrenia, or schizoaffective disorder:</strong> Psychedelics can precipitate or worsen psychotic episodes. This is a firm contraindication in all current trial protocols.</li>
+          <li><strong>Bipolar I disorder:</strong> Risk of mania induction. Bipolar II may be acceptable in some trial protocols with careful screening.</li>
+          <li><strong>Active suicidal ideation with intent or plan:</strong> Not the same as passive ideation; the latter is sometimes inclusion-eligible in trials under close monitoring.</li>
+          <li><strong>Certain cardiovascular conditions:</strong> MDMA specifically; uncontrolled hypertension, arrhythmias, or a history of cardiac events.</li>
+          <li><strong>Lithium use:</strong> Increases seizure risk with psilocybin and LSD.</li>
+          <li><strong>Pregnancy:</strong> Insufficient data; excluded from all trials.</li>
+        </ul>
+
+        <h2 id="regulation">The Regulatory Landscape: Where Things Stand Globally and in India</h2>
+
+        <h3>Globally</h3>
+
+        <p>As of mid-2026, no country has granted full approval for psilocybin or MDMA as psychiatric therapies — but several jurisdictions have created pathways that allow supervised therapeutic use:</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Jurisdiction</th>
+                <th>Substance</th>
+                <th>Status</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-strong">Australia</td>
+                <td>Psilocybin, MDMA</td>
+                <td><span class="badge strong">Approved for therapeutic use</span></td>
+                <td>Legal for psychiatrist-supervised administration since July 2023; strict training and setting requirements</td>
+              </tr>
+              <tr>
+                <td class="td-strong">USA</td>
+                <td>Psilocybin</td>
+                <td><span class="badge mod">State-level only</span></td>
+                <td>Oregon and Colorado have legalised supervised therapeutic use; still Schedule I at federal level</td>
+              </tr>
+              <tr>
+                <td class="td-strong">USA</td>
+                <td>MDMA</td>
+                <td><span class="badge warn">Pending re-review</span></td>
+                <td>FDA declined approval Aug 2024; MAPS re-filed 2025; decision expected 2026–27</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Switzerland</td>
+                <td>Psilocybin, LSD, MDMA</td>
+                <td><span class="badge mod">Compassionate use only</span></td>
+                <td>Special dispensation for treatment-resistant cases; not broadly available</td>
+              </tr>
+              <tr>
+                <td class="td-strong">UK</td>
+                <td>Psilocybin</td>
+                <td><span class="badge early">Phase 3 trials underway</span></td>
+                <td>No approval; regulatory reform discussions ongoing</td>
+              </tr>
+              <tr>
+                <td class="td-strong">Netherlands</td>
+                <td>Psilocybin truffles</td>
+                <td><span class="badge warn">Legal grey area</span></td>
+                <td>Magic truffles legal to sell; used in retreat settings; not medically regulated</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>In India</h3>
+
+        <p>India's position is clear and severe. Psilocybin mushrooms, LSD, and MDMA are all Schedule I controlled substances under the <strong>Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985</strong>. There is no compassionate use pathway, no registered clinical trial for psychedelic-assisted therapy in India as of 2026, and no indication that regulatory reform is imminent.</p>
+
+        <div class="legal-card">
+          <div class="lc-eyebrow">Legal status in India</div>
+          <h3>NDPS Act, 1985 — What It Means for Psychedelics</h3>
+          <p>Under the NDPS Act, psilocybin and psilocin (the active compounds in magic mushrooms) are listed as psychotropic substances. LSD is explicitly listed. MDMA falls under the broad definition of amphetamine-type stimulants covered by the Act.</p>
+          <p>Penalties: possession of small quantities can attract up to one year imprisonment. Commercial quantities carry up to 20 years rigorous imprisonment with a fine of up to ₹2 lakh. There is no distinction made in the Act between personal therapeutic use and trafficking in terms of scheduling.</p>
+          <p>There are no registered or active clinical trials for psychedelic-assisted therapy in India as of mid-2026. The CDSCO (Central Drugs Standard Control Organisation) would need to approve any such trial, and no application has been filed publicly.</p>
+          <p>A small number of researchers have expressed interest in the global psychedelic therapy research agenda, but institutional and regulatory support within India for this work does not exist in any meaningful form at present.</p>
+        </div>
+
+        <h2 id="what-promising-means">What "Promising But Early" Actually Means</h2>
+
+        <p>The phrase "promising but early" is used so frequently in science coverage that it's lost meaning. For psychedelic-assisted therapy, here's what it actually means concretely:</p>
+
+        <ul>
+          <li><strong>Effect sizes are large by psychiatric standards</strong> — but this is partly because the field is comparing against relatively ineffective controls (waiting lists, low doses of the study drug), and the blinding problem inflates apparent effects.</li>
+          <li><strong>Phase 2 and Phase 3 data exist</strong> for psilocybin and MDMA — this is ahead of where most new psychiatric treatments are at the "promising" stage. But Phase 3 data represents only hundreds of patients, not the thousands typically needed for robust safety signals.</li>
+          <li><strong>Durability is uncertain</strong> — many patients in psilocybin trials relapse. Whether multiple sessions, "booster" doses, or ongoing integration therapy can sustain effects is under active study.</li>
+          <li><strong>The therapeutic relationship may be as important as the drug</strong> — all trials use intensive psychotherapeutic support alongside the drug. Whether the drug adds value beyond excellent, intensive therapy, or whether excellent therapy alone could achieve similar results, is not fully answered.</li>
+          <li><strong>Long-term safety data doesn't exist yet</strong> — the longest follow-up in major trials is 1–3 years. Psychiatric drugs are often taken for decades; we don't know what repeated or long-term psilocybin or MDMA exposure looks like at the population scale.</li>
+        </ul>
+
+        <p>None of this negates the genuinely exciting signal in this research area. It just contextualises what "early" means when you're evaluating a potential treatment for your own mental health versus when a researcher is evaluating the field's trajectory.</p>
+
+        <h2 id="integration-therapy">The Therapy Component Is Not Optional</h2>
+
+        <p>One of the most underreported aspects of psychedelic clinical trials is the enormous amount of non-drug therapeutic support involved. In the MAPS MDMA trials, each participant received:</p>
+
+        <ul>
+          <li>Several weeks of preparatory therapy sessions before any drug administration</li>
+          <li>Two trained therapists present throughout each 8-hour MDMA session</li>
+          <li>Integration therapy sessions in the days and weeks after each drug session</li>
+          <li>A therapeutic relationship lasting many months in total</li>
+        </ul>
+
+        <p>This level of care would be considered exceptional by any standard — and is not available to most people in either public or private psychiatric systems anywhere. When you read that "67% of PTSD patients no longer met diagnostic criteria," that outcome occurred within this context of intensive support, not from taking a pill.</p>
+
+        <p>The practical implication: even if psychedelic-assisted therapy is eventually approved, scalability is a major question. Training therapists to conduct 8-hour MDMA sessions safely is not trivial. The treatment model doesn't fit easily into 15-minute medication management appointments. Cost will be substantial. These are not reasons to dismiss the research, but they are important constraints on how quickly and broadly a treatment could be deployed even after approval.</p>
+
+        <div class="verdict-card">
+          <div class="eyebrow">Evidence summary</div>
+          <h3>What the data says — clearly and without hype</h3>
+          <p><strong>Full-dose psilocybin-assisted therapy:</strong> Produces large, statistically significant reductions in depression symptoms in multiple controlled trials. Effect sizes are unusually large, but the blinding problem is real. Durability is variable. Phase 3 trials are underway. Not approved anywhere as a standalone drug; approved for supervised use in Australia.</p>
+          <p><strong>MDMA-assisted therapy for PTSD:</strong> The strongest and most replicated signal in this space. Two Phase 3 trials show large effects. FDA declined approval in 2024 on methodological grounds, not because of safety signals or doubt about the clinical findings. Most likely to be the first formally approved psychedelic-assisted therapy.</p>
+          <p><strong>LSD and ayahuasca:</strong> Intriguing earlier-stage data; Phase 2 trials ongoing. Evidence base is thinner and more preliminary.</p>
+          <p><strong>Microdosing specifically:</strong> The controlled evidence is largely negative — double-blind trials fail to outperform placebo. Most reported benefits appear to be expectation effects. More research is warranted but the current evidence does not support the popular narrative.</p>
+          <p>For people in India: this is not an immediately actionable medical conversation. Legal barriers are absolute. For those following these treatments for future therapeutic potential, the next 2–3 years of regulatory decisions in the US, UK, and EU will significantly clarify the picture.</p>
+        </div>
+
+        <div class="references">
+          <h2>References</h2>
+          <div class="ref-list">
+            <div class="ref-item">
+              <span class="ref-num">1.</span>
+              <span>Szigeti B, et al. (2021). Self-blinding citizen science to explore psychedelic microdosing. <em>eLife</em>, 10, e62878. doi:10.7554/eLife.62878</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">2.</span>
+              <span>Szigeti B, et al. (2022). LSD microdosing: A randomized placebo-controlled trial of psychedelic microdosing using a self-blinding citizen science design. <em>Psychopharmacology</em>, 239, 3009–3024.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">3.</span>
+              <span>Goodwin GM, et al. (2022). Single-dose psilocybin for a treatment-resistant episode of major depression. <em>New England Journal of Medicine</em>, 387(18), 1637–1648.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">4.</span>
+              <span>Davis AK, et al. (2021). Effects of psilocybin-assisted therapy on major depressive disorder: a randomized clinical trial. <em>JAMA Psychiatry</em>, 78(5), 481–489.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">5.</span>
+              <span>Carhart-Harris R, et al. (2021). Trial of psilocybin versus escitalopram for depression. <em>New England Journal of Medicine</em>, 384(15), 1402–1411.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">6.</span>
+              <span>Aday JS, et al. (2021). Blinding and expectancy confounds in psychedelic randomized controlled trials. <em>Expert Review of Clinical Pharmacology</em>, 14(9), 1133–1152.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">7.</span>
+              <span>Mitchell JM, et al. (2021). MDMA-assisted therapy for severe PTSD: a randomized, double-blind, placebo-controlled phase 3 study. <em>Nature Medicine</em>, 27, 1025–1033.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">8.</span>
+              <span>Mitchell JM, et al. (2023). Therapeutic alliance and rapport modulate responses to psilocybin assisted therapy for major depressive disorder. <em>Nature Medicine</em>, 29, 3088–3098.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">9.</span>
+              <span>Gasser P, et al. (2021). LSD-assisted psychotherapy for anxiety associated with a life-threatening disease: A qualitative study of acute and sustained subjective effects. <em>Journal of Psychoactive Drugs</em>, 47(1), 57–68.</span>
+            </div>
+            <div class="ref-item">
+              <span class="ref-num">10.</span>
+              <span>Palhano-Fontes F, et al. (2019). Rapid antidepressant effects of the psychedelic ayahuasca in treatment-resistant depression: a randomized placebo-controlled trial. <em>Psychological Medicine</em>, 49(4), 655–663.</span>
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="toc-card">
+          <h4>In this article</h4>
+          <ul class="toc-list">
+            <li><a href="#why-now">Why this is happening now</a></li>
+            <li><a href="#what-is-microdosing">Microdosing vs. full-dose</a></li>
+            <li><a href="#psilocybin-trials">Psilocybin trial data</a></li>
+            <li><a href="#mdma-trials">MDMA &amp; PTSD trials</a></li>
+            <li><a href="#lsd-and-others">LSD and others</a></li>
+            <li><a href="#safety">Safety profile</a></li>
+            <li><a href="#contraindications">Contraindications</a></li>
+            <li><a href="#regulation">Regulation (global + India)</a></li>
+            <li><a href="#what-promising-means">What "promising" means</a></li>
+            <li><a href="#integration-therapy">The therapy component</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-meta">
+          <div class="sm-row">
+            <span class="sm-label">Published</span>
+            <span class="sm-value">12 Jul 2026</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Category</span>
+            <span class="sm-value">Mental Health</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Read time</span>
+            <span class="sm-value">~18 min</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">Evidence level</span>
+            <span class="sm-value">Phase 2–3 RCTs</span>
+          </div>
+          <div class="sm-divider"></div>
+          <div class="sm-row">
+            <span class="sm-label">India legal status</span>
+            <span class="sm-value">Illegal (NDPS Act)</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="/script.js"></script>
+<script>
+  const headings = document.querySelectorAll('.prose h2[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  if(headings.length && tocLinks.length){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          tocLinks.forEach(l=>l.classList.remove('active'));
+          const active = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
+          if(active) active.classList.add('active');
+        }
+      });
+    },{rootMargin:'-20% 0px -70% 0px'});
+    headings.forEach(h=>obs.observe(h));
+  }
+</script>
+</body>
+</html>
