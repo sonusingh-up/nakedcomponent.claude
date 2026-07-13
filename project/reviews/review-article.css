@@ -243,6 +243,11 @@
 .ph-track { grid-column: 1 / -1; height: 5px; background: var(--line); border-radius: 99px; overflow: hidden; }
 .ph-fill { height: 100%; border-radius: 99px; background: var(--accent); }
 
+/* Product hero image placeholder (used when no product photo is available) */
+.product-hero .ph-img-ph { width: 180px; height: 180px; border-radius: var(--r-lg); background: linear-gradient(160deg, var(--bg-elev), var(--surface)); border: 1px solid var(--line); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; flex-shrink: 0; }
+.ph-img-ph .ph-ph-mark { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-size: 46px; line-height: 1; color: var(--accent-deep); letter-spacing: -.02em; }
+.ph-img-ph .ph-ph-cat { font-family: var(--font-mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); }
+
 /* Product hero (compact/flexbox variant) */
 .product-hero-info { flex: 1; min-width: 0; }
 .product-hero-info h3 { font-size: 18px; font-weight: 500; letter-spacing: -.02em; margin-bottom: 6px; color: var(--ink); }
