@@ -13,147 +13,85 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/style.css?v=1001" />
   <link rel="stylesheet" href="/pages.css" />
+  <link rel="stylesheet" href="blog-components.css" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
-/* ── Page head ── */
-.page-head{padding:var(--s-9) 0 var(--s-8);border-bottom:1px solid var(--line);}
-.page-head .crumbs{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-muted);font-family:var(--font-mono);letter-spacing:.02em;margin-bottom:var(--s-5);flex-wrap:wrap;}
-.page-head .crumbs a{color:var(--ink-muted);}
-.page-head .crumbs a:hover{color:var(--accent);}
-.page-head .crumbs .sep{opacity:.4;}
-.page-head h1{font-size:clamp(28px,4.5vw,54px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:var(--s-5);max-width:22ch;}
-.page-head h1 em{font-style:normal;font-family:"Instrument Serif",Georgia,serif;color:var(--accent);font-weight:400;}
-.page-head .kicker{font-size:clamp(15px,1.4vw,18px);color:var(--ink-soft);max-width:56ch;line-height:1.6;margin-bottom:var(--s-6);}
-.meta-chips{display:flex;flex-wrap:wrap;gap:10px;}
-.meta-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:var(--r-pill);background:var(--bg-elev);border:1px solid var(--line);font-size:13px;color:var(--ink-soft);font-family:var(--font-mono);}
-.meta-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-muted);flex:0 0 auto;}
-.meta-chip.ok .dot{background:#5ba672;box-shadow:0 0 0 3px color-mix(in oklab,#5ba672 25%,transparent);}
-.meta-chip.price .dot{background:var(--accent);}
+    /* Category accent — Nutrition science (green) */
+    :root { --cat-color:#3a7a4a; --cat-bg:var(--mint); }
 
-/* ── Layout ── */
-.article-layout{display:grid;grid-template-columns:1fr 260px;gap:var(--s-8);align-items:start;padding:var(--s-8) 0 var(--s-10);}
-.article-body{min-width:0;}
-.article-sidebar{position:sticky;top:calc(var(--nav-h) + 24px);}
+    /* ── Body lists ── */
+    .blog-article ul,.blog-article ol{padding-left:24px;margin-bottom:var(--s-4);}
+    .blog-article li{font-size:1rem;color:var(--ink-soft);line-height:1.75;margin-bottom:6px;}
+    .blog-article li strong{color:var(--ink);}
 
-/* ── Prose ── */
-.prose h2{font-size:clamp(20px,2.6vw,28px);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:var(--s-8) 0 var(--s-4);padding-top:var(--s-8);border-top:1px solid var(--line);scroll-margin-top:80px;}
-.prose h2:first-child{margin-top:0;padding-top:0;border-top:none;}
-.prose h3{font-size:clamp(16px,1.8vw,20px);font-weight:500;letter-spacing:-.02em;margin:var(--s-6) 0 var(--s-3);}
-.prose p{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:var(--s-4);}
-.prose p strong{color:var(--ink);font-weight:500;}
-.prose sup{font-family:var(--font-mono);font-size:11px;color:var(--accent);}
-.prose sup a{color:var(--accent);}
-.prose ul,.prose ol{padding-left:24px;margin-bottom:var(--s-4);}
-.prose li{font-size:17px;line-height:1.78;color:var(--ink-soft);margin-bottom:6px;}
-.prose li strong{color:var(--ink);}
+    /* ── Callouts ── */
+    .callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);}
+    .callout-icon{font-size:20px;flex:0 0 auto;margin-top:2px;}
+    .callout-body p{font-size:15px;margin:0;line-height:1.65;}
+    .callout-body strong{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
+    .callout.info{background:var(--sky);border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky));}
+    .callout.info .callout-body strong{color:#2e4a6b;}
+    .callout.warn{background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
+    .callout.warn .callout-body strong{color:#7a5f1a;}
+    .callout.good{background:var(--mint);border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint));}
+    .callout.good .callout-body strong{color:#3a5c3f;}
+    [data-theme="dark"] .callout.info .callout-body strong{color:#9cc1e0;}
+    [data-theme="dark"] .callout.warn .callout-body strong{color:#e0c377;}
+    [data-theme="dark"] .callout.good .callout-body strong{color:#a7d2a9;}
 
-/* ── Callouts ── */
-.callout{border-radius:var(--r-md);padding:var(--s-5);margin:var(--s-6) 0;display:flex;gap:var(--s-4);}
-.callout-icon{font-size:20px;flex:0 0 auto;margin-top:2px;}
-.callout-body p{font-size:15px;margin:0;line-height:1.65;}
-.callout-body strong{display:block;margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;}
-.callout.info{background:var(--sky);border:1px solid color-mix(in oklab,#2e4a6b 25%,var(--sky));}
-.callout.info .callout-body strong{color:#2e4a6b;}
-.callout.warn{background:var(--butter);border:1px solid color-mix(in oklab,#7a5f1a 25%,var(--butter));}
-.callout.warn .callout-body strong{color:#7a5f1a;}
-.callout.good{background:var(--mint);border:1px solid color-mix(in oklab,#3a5c3f 25%,var(--mint));}
-.callout.good .callout-body strong{color:#3a5c3f;}
-[data-theme="dark"] .callout.info .callout-body strong{color:#9cc1e0;}
-[data-theme="dark"] .callout.warn .callout-body strong{color:#e0c377;}
-[data-theme="dark"] .callout.good .callout-body strong{color:#a7d2a9;}
+    /* ── Verdict card ── */
+    .verdict-card{background:var(--ink);color:#f0ece4;border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;position:relative;overflow:hidden;}
+    [data-theme="dark"] .verdict-card{background:var(--accent-soft);color:var(--ink);}
+    .verdict-card::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(30px);}
+    .verdict-card .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0ece4 !important;opacity:.65;margin-bottom:var(--s-3);position:relative;}
+    .verdict-card h3{font-size:clamp(18px,2vw,24px);letter-spacing:-.02em;margin-bottom:var(--s-4);color:#ffffff !important;position:relative;}
+    .verdict-card p{font-size:15px;line-height:1.65;position:relative;color:#c8c2b8 !important;margin-bottom:var(--s-3);}
+    .verdict-card p strong{color:#f0ece4 !important;}
+    [data-theme="dark"] .verdict-card h3{color:var(--ink) !important;}
+    [data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
+    [data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
 
-/* ── Verdict card ── */
-.verdict-card{background:var(--ink);color:#f0ece4;border-radius:var(--r-xl);padding:var(--s-6);margin:var(--s-7) 0;position:relative;overflow:hidden;}
-[data-theme="dark"] .verdict-card{background:var(--accent-soft);color:var(--ink);}
-.verdict-card::before{content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:var(--accent);opacity:.18;filter:blur(30px);}
-.verdict-card .eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0ece4 !important;opacity:.65;margin-bottom:var(--s-3);position:relative;}
-.verdict-card h3{font-size:clamp(18px,2vw,24px);letter-spacing:-.02em;margin-bottom:var(--s-4);color:#ffffff !important;position:relative;}
-.verdict-card p{font-size:15px;line-height:1.65;position:relative;color:#c8c2b8 !important;margin-bottom:var(--s-3);}
-.verdict-card p strong{color:#f0ece4 !important;}
-[data-theme="dark"] .verdict-card h3{color:var(--ink) !important;}
-[data-theme="dark"] .verdict-card p{color:var(--ink-soft) !important;}
-[data-theme="dark"] .verdict-card .eyebrow{color:var(--ink-muted) !important;}
+    /* ── Data table ── */
+    .data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
+    .data-table{width:100%;border-collapse:collapse;font-size:14px;}
+    .data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
+    .data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
+    .data-table tbody tr:last-child td{border-bottom:none;}
+    .data-table tbody tr:hover td{background:var(--bg-elev);}
+    .td-strong{color:var(--ink) !important;font-weight:500;}
 
-/* ── Data table ── */
-.data-table-wrap{overflow-x:auto;margin:var(--s-6) 0;border-radius:var(--r-md);border:1px solid var(--line);}
-.data-table{width:100%;border-collapse:collapse;font-size:14px;}
-.data-table thead th{background:var(--bg-elev);padding:12px 16px;text-align:left;font-size:11.5px;font-family:var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);border-bottom:1px solid var(--line);white-space:nowrap;}
-.data-table tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top;line-height:1.5;}
-.data-table tbody tr:last-child td{border-bottom:none;}
-.data-table tbody tr:hover td{background:var(--bg-elev);}
-.td-strong{color:var(--ink) !important;font-weight:500;}
+    /* ── Badge ── */
+    .badge{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--line);}
+    .badge.strong,.badge.pass{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 35%,var(--line));}
+    .badge.mod,.badge.warn{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;}
+    .badge.fail{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border-color:color-mix(in oklab,#e05c4a 30%,var(--line));}
+    [data-theme="dark"] .badge.strong,[data-theme="dark"] .badge.pass{color:#a7d2a9;}
+    [data-theme="dark"] .badge.mod,[data-theme="dark"] .badge.warn{color:#e0c377;}
 
-/* ── Badge ── */
-.badge{display:inline-block;padding:2px 8px;border-radius:var(--r-pill);font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;border:1px solid var(--line);}
-.badge.strong,.badge.pass{background:color-mix(in oklab,#5ba672 16%,var(--bg-elev));color:#3a6b4a;border-color:color-mix(in oklab,#5ba672 35%,var(--line));}
-.badge.mod,.badge.warn{background:color-mix(in oklab,var(--butter) 60%,var(--bg-elev));color:#7a5f1a;}
-.badge.fail{background:color-mix(in oklab,#e05c4a 14%,var(--bg-elev));color:#a0342a;border-color:color-mix(in oklab,#e05c4a 30%,var(--line));}
-[data-theme="dark"] .badge.strong,[data-theme="dark"] .badge.pass{color:#a7d2a9;}
-[data-theme="dark"] .badge.mod,[data-theme="dark"] .badge.warn{color:#e0c377;}
+    /* ── Stat row ── */
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-4);margin:var(--s-6) 0;}
+    .stat-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4) var(--s-5);text-align:center;}
+    .stat-box .stat-num{font-family:var(--font-display);font-size:clamp(26px,3.5vw,40px);font-weight:500;letter-spacing:-.03em;color:var(--accent);line-height:1;margin-bottom:6px;}
+    .stat-box .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);line-height:1.4;}
+    @media(max-width:720px){.stat-row{grid-template-columns:1fr 1fr;}}
 
-/* ── References ── */
-.references{margin-top:var(--s-9);padding-top:var(--s-7);border-top:1px solid var(--line);}
-.references h2{font-size:20px;font-weight:500;letter-spacing:-.02em;margin-bottom:var(--s-5);}
-.ref-list{display:flex;flex-direction:column;gap:var(--s-3);}
-.ref-item{display:grid;grid-template-columns:28px 1fr;gap:var(--s-3);font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
-.ref-num{font-family:var(--font-mono);font-size:12px;color:var(--ink-muted);padding-top:2px;}
-.ref-item a{color:var(--accent);border-bottom:1px solid color-mix(in oklab,var(--accent) 35%,transparent);transition:border-color .15s;}
-.ref-item a:hover{border-color:var(--accent);}
+    /* ── Split compare ── */
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin:var(--s-6) 0;}
+    .compare-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);background:var(--bg-elev);}
+    .compare-card .cc-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-3);}
+    .compare-card h4{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:var(--s-3);}
+    .compare-card ul{padding-left:18px;margin:0;}
+    .compare-card li{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px;}
+    .compare-card.plant{border-color:color-mix(in oklab,#5ba672 35%,var(--line));background:color-mix(in oklab,#5ba672 5%,var(--bg-elev));}
+    .compare-card.animal{border-color:color-mix(in oklab,var(--accent) 30%,var(--line));background:color-mix(in oklab,var(--accent) 4%,var(--bg-elev));}
+    @media(max-width:620px){.compare-grid{grid-template-columns:1fr;}}
 
-/* ── Sidebar ── */
-.toc-card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);}
-.toc-card h4{font-size:12px;font-family:var(--font-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-4);}
-.toc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px;}
-.toc-list a{display:block;padding:7px 10px;border-radius:var(--r-sm);font-size:14px;color:var(--ink-soft);transition:color .15s,background .15s;line-height:1.35;}
-.toc-list a:hover{color:var(--ink);background:color-mix(in oklab,var(--ink) 5%,transparent);}
-.toc-list a.active{color:var(--accent);background:color-mix(in oklab,var(--accent) 8%,transparent);}
-.sidebar-meta{margin-top:var(--s-4);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);display:flex;flex-direction:column;gap:12px;}
-.sm-row{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;gap:8px;}
-.sm-label{color:var(--ink-muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
-.sm-value{color:var(--ink);font-weight:500;text-align:right;}
-.sm-divider{height:1px;background:var(--line);}
-
-/* ── Mobile collapse ── */
-@media(max-width:900px){
-  .article-layout{grid-template-columns:1fr;}
-  .article-sidebar{position:static;order:-1;}
-}
-
-/* ── Stat row ── */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-4);margin:var(--s-6) 0;}
-.stat-box{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-4) var(--s-5);text-align:center;}
-.stat-box .stat-num{font-family:var(--font-display);font-size:clamp(26px,3.5vw,40px);font-weight:500;letter-spacing:-.03em;color:var(--accent);line-height:1;margin-bottom:6px;}
-.stat-box .stat-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);line-height:1.4;}
-@media(max-width:720px){.stat-row{grid-template-columns:1fr 1fr;}}
-
-/* ── Split compare ── */
-.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4);margin:var(--s-6) 0;}
-.compare-card{border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s-5);background:var(--bg-elev);}
-.compare-card .cc-label{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:var(--s-3);}
-.compare-card h4{font-size:16px;font-weight:500;color:var(--ink);margin-bottom:var(--s-3);}
-.compare-card ul{padding-left:18px;margin:0;}
-.compare-card li{font-size:14px;color:var(--ink-soft);line-height:1.6;margin-bottom:4px;}
-.compare-card.plant{border-color:color-mix(in oklab,#5ba672 35%,var(--line));background:color-mix(in oklab,#5ba672 5%,var(--bg-elev));}
-.compare-card.animal{border-color:color-mix(in oklab,var(--accent) 30%,var(--line));background:color-mix(in oklab,var(--accent) 4%,var(--bg-elev));}
-@media(max-width:620px){.compare-grid{grid-template-columns:1fr;}}
-
-/* ── Related link ── */
-.related-link{display:flex;gap:var(--s-4);padding:var(--s-4) var(--s-5);background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r-lg);text-decoration:none;color:inherit;transition:border-color .15s;align-items:flex-start;margin:var(--s-5) 0;}
-.related-link:hover{border-color:var(--accent);}
-.rl-icon{font-size:22px;flex:0 0 auto;margin-top:2px;}
-.rl-body .rl-tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;}
-.rl-body .rl-title{font-size:15px;font-weight:500;color:var(--ink);line-height:1.3;margin-bottom:4px;}
-.rl-body .rl-desc{font-size:13px;color:var(--ink-soft);line-height:1.5;margin:0;}
-
-.byline{display:flex;flex-wrap:wrap;gap:var(--s-3);margin-bottom:var(--s-7);padding-bottom:var(--s-6);border-bottom:1px solid var(--line);align-items:flex-start;}
-.byline-group{display:flex;flex-direction:column;gap:3px;}
-.byline-role{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);}
-.byline-name{font-size:14px;font-weight:500;color:var(--ink);}
-.byline-cred{font-size:12px;color:var(--ink-muted);font-family:var(--font-mono);}
-.byline-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",Georgia,serif;font-size:16px;font-style:italic;flex-shrink:0;margin-top:2px;}
-.byline-avatar.author{background:linear-gradient(135deg,var(--mint),var(--sky));color:#3a5c3f;}
-.byline-divider{width:1px;height:36px;background:var(--line);margin:4px var(--s-2) 0;flex-shrink:0;}
-@media(max-width:600px){.byline-divider{display:none;}}
+    /* ── Sidebar at-a-glance ── */
+    .sb-facts{padding:var(--s-4);}
+    .sb-facts .sb-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+    .sb-facts .sb-row:last-child{border-bottom:none;}
+    .sb-facts .sb-k{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-muted);white-space:nowrap;}
+    .sb-facts .sb-v{font-size:13px;font-weight:500;color:var(--ink);text-align:right;}
   </style>
   <script>window.PAGE_KEY = 'blog';</script>
 
@@ -183,7 +121,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           {"@type":"ListItem","position":1,"name":"Home","item":"https://www.nakedcompound.in/"},
-          {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.nakedcompound.in/pages/blog"},
+          {"@type":"ListItem","position":2,"name":"Blog","item":"https://www.nakedcompound.in/blog"},
           {"@type":"ListItem","position":3,"name":"Plant vs. Animal Protein Bioavailability","item":"https://www.nakedcompound.in/blog/bioavailability-plant-animal-protein-practical"}
         ]
       }
@@ -195,41 +133,61 @@
 <div id="site-header"></div>
 
 <main>
-  <div class="container">
-    <div class="page-head">
-      <div class="crumbs">
-        <a href="/">Home</a><span class="sep">/</span>
-        <a href="/pages/blog">Blog</a><span class="sep">/</span>
-        <span>Plant vs. Animal Protein Bioavailability</span>
+
+  <!-- ── Hero ──────────────────────────────────────────────────── -->
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Nutrition science
       </div>
 
-      <h1>Plant vs. Animal Protein: <em>What Bioavailability Actually Means</em> for Gym-Goers</h1>
-      <p class="kicker">Absorption scores, leucine thresholds, anti-nutrients, and exactly how much more protein a plant-based lifter needs to eat to match an omnivore's muscle signal. With real cost math for Indian markets.</p>
+      <h1>Plant vs. animal protein — <em>what bioavailability actually means for gym-goers.</em></h1>
 
-      <div class="meta-chips">
-        <span class="meta-chip"><span class="dot ok"></span>Evidence-based</span>
-        <span class="meta-chip">12 Jul 2026</span>
-        <span class="meta-chip">~16 min read</span>
-        <span class="meta-chip price"><span class="dot"></span>Includes cost-per-gram analysis</span>
+      <p class="blog-hero-deck">
+        Absorption scores, leucine thresholds, anti-nutrients, and exactly how much more
+        protein a plant-based lifter needs to eat to match an omnivore's muscle signal —
+        with real cost-per-gram math for Indian markets.
+      </p>
+
+      <div class="blog-meta-row">
+        <span>12 July 2026</span>
+        <span class="sep">·</span>
+        <span>16 min read</span>
+        <span class="sep">·</span>
+        <span>Nutrition science</span>
       </div>
-    </div>
 
-    <div class="article-layout">
-      <article class="article-body prose">
-
-        <div class="byline">
-          <div class="byline-avatar author">N</div>
-          <div class="byline-group">
-            <div class="byline-role">Written by</div>
-            <div class="byline-name">Naked Compound Research Team</div>
-            <div class="byline-cred">Nutrition science · Evidence-graded analysis</div>
-          </div>
-          <div class="byline-divider"></div>
-          <div class="byline-group" style="margin-top:6px;">
-            <div class="byline-role">Published</div>
-            <div class="byline-name" style="font-size:13px;font-weight:400;color:var(--ink-soft);">12 Jul 2026</div>
-          </div>
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">N</div>
+        <div class="ab-text">
+          Naked Compound Research Team
+          <span>Evidence-graded analysis · Authors page →</span>
         </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Article + Sidebar ─────────────────────────────────────── -->
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+
+      <article class="blog-article">
+
+        <details class="mobile-toc">
+          <summary>On this page</summary>
+          <ul>
+            <li><a href="#the-real-question">The real question</a></li>
+            <li><a href="#scoring-systems">PDCAAS vs. DIAAS</a></li>
+            <li><a href="#why-the-gap">Why the gap exists</a></li>
+            <li><a href="#leucine-threshold">Leucine threshold</a></li>
+            <li><a href="#long-term-outcomes">Long-term outcomes</a></li>
+            <li><a href="#cost-math">Cost per gram math</a></li>
+            <li><a href="#combination-strategy">Combination strategy</a></li>
+            <li><a href="#practical-dosing">Practical dosing</a></li>
+            <li><a href="#special-populations">Special populations</a></li>
+          </ul>
+        </details>
 
         <h2 id="the-real-question">The Real Question Isn't "Which Is Better" — It's "By How Much?"</h2>
 
@@ -708,130 +666,100 @@
           <p>For everyone: the biggest predictors of muscle gain are total protein adequacy and training stimulus, not source selection. The plant vs. animal question matters at the margins, not at the foundation.</p>
         </div>
 
-        <div class="references">
-          <h2>References</h2>
-          <div class="ref-list">
-            <div class="ref-item">
-              <span class="ref-num">1.</span>
-              <span>FAO. (2013). <em>Dietary protein quality evaluation in human nutrition: Report of an FAO Expert Consultation.</em> FAO Food and Nutrition Paper 92. Food and Agriculture Organization of the United Nations, Rome.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">2.</span>
-              <span>Samtiya M, et al. (2020). Plant food anti-nutritional factors and their reduction strategies: an overview. <em>Food Chemistry</em>, 322, 126425.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">3.</span>
-              <span>Norton LE, Layman DK. (2006). Leucine regulates translation initiation of protein synthesis in skeletal muscle after exercise. <em>Journal of Nutrition</em>, 136(2), 533S–537S.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">4.</span>
-              <span>Churchward-Venne TA, et al. (2012). Supplementation of a suboptimal protein dose with leucine or essential amino acids: effects on myofibrillar protein synthesis at rest and following resistance exercise in men. <em>Journal of Physiology</em>, 590(11), 2751–2765.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">5.</span>
-              <span>Pinckaers PJM, et al. (2022). No differences in muscle protein synthesis rates following ingestion of pea protein concentrate compared with whey protein in resistance-trained young men. <em>Journal of Nutrition</em>, 152(12), 2734–2743.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">6.</span>
-              <span>Aragon AA, Schoenfeld BJ. (2013). Nutrient timing revisited: is there a post-exercise anabolic window? <em>Journal of the International Society of Sports Nutrition</em>, 10(1), 5.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">7.</span>
-              <span>Gorissen SHM, Witard OC. (2018). Characterising the muscle anabolic potential of dairy, meat and plant-based protein sources in older adults. <em>Proceedings of the Nutrition Society</em>, 77(1), 20–31.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">8.</span>
-              <span>Babault N, et al. (2015). Pea proteins oral supplementation promotes muscle thickness gains during resistance training: a double-blind, randomized, placebo-controlled clinical trial vs. whey protein. <em>Journal of the International Society of Sports Nutrition</em>, 12(1), 3.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">9.</span>
-              <span>Lynch H, et al. (2021). Plant-based diets: considerations for environmental impact, protein quality, and exercise performance. <em>Nutrients</em>, 10(12), 1841.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">10.</span>
-              <span>van Vliet S, et al. (2015). The skeletal muscle anabolic response to plant- versus animal-based protein consumption. <em>Journal of Nutrition</em>, 145(9), 1981–1991.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">11.</span>
-              <span>Berrazaga I, et al. (2019). The role of the anabolic properties of plant- versus animal-based protein sources in supporting muscle mass maintenance: a critical review. <em>Nutrients</em>, 11(8), 1825.</span>
-            </div>
-            <div class="ref-item">
-              <span class="ref-num">12.</span>
-              <span>Morton RW, et al. (2018). A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults. <em>British Journal of Sports Medicine</em>, 52(6), 376–384.</span>
-            </div>
-          </div>
-        </div>
+        <h2 id="refs">References</h2>
+        <ol class="ref-list">
+          <li><span class="ref-num">1.</span><div>FAO. (2013). <em>Dietary protein quality evaluation in human nutrition: Report of an FAO Expert Consultation.</em> FAO Food and Nutrition Paper 92. Food and Agriculture Organization of the United Nations, Rome.</div></li>
+          <li><span class="ref-num">2.</span><div>Samtiya M, et al. (2020). Plant food anti-nutritional factors and their reduction strategies: an overview. <em>Food Chemistry</em>, 322, 126425.</div></li>
+          <li><span class="ref-num">3.</span><div>Norton LE, Layman DK. (2006). Leucine regulates translation initiation of protein synthesis in skeletal muscle after exercise. <em>Journal of Nutrition</em>, 136(2), 533S–537S.</div></li>
+          <li><span class="ref-num">4.</span><div>Churchward-Venne TA, et al. (2012). Supplementation of a suboptimal protein dose with leucine or essential amino acids: effects on myofibrillar protein synthesis at rest and following resistance exercise in men. <em>Journal of Physiology</em>, 590(11), 2751–2765.</div></li>
+          <li><span class="ref-num">5.</span><div>Pinckaers PJM, et al. (2022). No differences in muscle protein synthesis rates following ingestion of pea protein concentrate compared with whey protein in resistance-trained young men. <em>Journal of Nutrition</em>, 152(12), 2734–2743.</div></li>
+          <li><span class="ref-num">6.</span><div>Aragon AA, Schoenfeld BJ. (2013). Nutrient timing revisited: is there a post-exercise anabolic window? <em>Journal of the International Society of Sports Nutrition</em>, 10(1), 5.</div></li>
+          <li><span class="ref-num">7.</span><div>Gorissen SHM, Witard OC. (2018). Characterising the muscle anabolic potential of dairy, meat and plant-based protein sources in older adults. <em>Proceedings of the Nutrition Society</em>, 77(1), 20–31.</div></li>
+          <li><span class="ref-num">8.</span><div>Babault N, et al. (2015). Pea proteins oral supplementation promotes muscle thickness gains during resistance training: a double-blind, randomized, placebo-controlled clinical trial vs. whey protein. <em>Journal of the International Society of Sports Nutrition</em>, 12(1), 3.</div></li>
+          <li><span class="ref-num">9.</span><div>Lynch H, et al. (2021). Plant-based diets: considerations for environmental impact, protein quality, and exercise performance. <em>Nutrients</em>, 10(12), 1841.</div></li>
+          <li><span class="ref-num">10.</span><div>van Vliet S, et al. (2015). The skeletal muscle anabolic response to plant- versus animal-based protein consumption. <em>Journal of Nutrition</em>, 145(9), 1981–1991.</div></li>
+          <li><span class="ref-num">11.</span><div>Berrazaga I, et al. (2019). The role of the anabolic properties of plant- versus animal-based protein sources in supporting muscle mass maintenance: a critical review. <em>Nutrients</em>, 11(8), 1825.</div></li>
+          <li><span class="ref-num">12.</span><div>Morton RW, et al. (2018). A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults. <em>British Journal of Sports Medicine</em>, 52(6), 376–384.</div></li>
+        </ol>
+
+        <p class="affiliate-note">
+          <strong>Affiliate disclosure.</strong> Naked Compound participates in the Amazon Associates India affiliate programme. Some product links earn a small commission at no additional cost to you. Commission does not influence our scores, rankings, or conclusions. Full policy:
+          <a href="/pages/conflicts-policy">conflicts-policy</a>
+        </p>
 
       </article>
 
-      <aside class="article-sidebar">
-        <div class="toc-card">
-          <h4>In this article</h4>
-          <ul class="toc-list">
-            <li><a href="#the-real-question">The real question</a></li>
-            <li><a href="#scoring-systems">PDCAAS vs. DIAAS</a></li>
-            <li><a href="#why-the-gap">Why the gap exists</a></li>
-            <li><a href="#leucine-threshold">Leucine threshold</a></li>
-            <li><a href="#long-term-outcomes">Long-term outcomes</a></li>
-            <li><a href="#cost-math">Cost per gram math</a></li>
-            <li><a href="#combination-strategy">Combination strategy</a></li>
-            <li><a href="#practical-dosing">Practical dosing</a></li>
-            <li><a href="#special-populations">Special populations</a></li>
-          </ul>
-        </div>
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="blog-sidebar">
 
-        <div class="sidebar-meta">
-          <div class="sm-row">
-            <span class="sm-label">Published</span>
-            <span class="sm-value">12 Jul 2026</span>
-          </div>
-          <div class="sm-divider"></div>
-          <div class="sm-row">
-            <span class="sm-label">Category</span>
-            <span class="sm-value">Nutrition Science</span>
-          </div>
-          <div class="sm-divider"></div>
-          <div class="sm-row">
-            <span class="sm-label">Read time</span>
-            <span class="sm-value">~16 min</span>
-          </div>
-          <div class="sm-divider"></div>
-          <div class="sm-row">
-            <span class="sm-label">Evidence level</span>
-            <span class="sm-value">RCTs + meta-analyses</span>
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">At a glance</div>
+          <div class="sb-facts">
+            <div class="sb-row"><span class="sb-k">Category</span><span class="sb-v">Nutrition science</span></div>
+            <div class="sb-row"><span class="sb-k">Read time</span><span class="sb-v">~16 min</span></div>
+            <div class="sb-row"><span class="sb-k">Evidence level</span><span class="sb-v">RCTs + meta-analyses</span></div>
+            <div class="sb-row"><span class="sb-k">Bottom line</span><span class="sb-v">Dose-compensate, don't avoid</span></div>
           </div>
         </div>
 
-        <a href="/ingredients/creatine-monohydrate" class="related-link" style="margin-top:var(--s-4);">
-          <span class="rl-icon">🔬</span>
-          <div class="rl-body">
-            <div class="rl-tag">Related ingredient</div>
-            <div class="rl-title">Creatine Monohydrate</div>
-            <div class="rl-desc">The most evidence-backed supplement for strength and power output.</div>
-          </div>
-        </a>
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">More reading</div>
+
+          <a href="/blog/fake-protein-powder-india" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Guide</span>
+              <span class="sri-title">Is your protein powder lying to you? How to spot a fake.</span>
+            </div>
+          </a>
+
+          <a href="/blog/clinical-dose-question" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Behind the score</span>
+              <span class="sri-title">The "clinical dose" question we keep arguing about.</span>
+            </div>
+          </a>
+
+          <a href="/blog/shelf-survey-four-cities-2026" class="sidebar-related-item">
+            <span class="sri-dot"></span>
+            <div>
+              <span class="sri-tag">Field notes</span>
+              <span class="sri-title">Three days, four cities, one shopping list.</span>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="sidebar-block" style="padding:var(--s-4);">
+          <p style="font-size:12px;color:var(--ink-muted);margin:0;line-height:1.6;">
+            <strong style="color:var(--ink-soft);">How we grade evidence.</strong>
+            We weight human RCTs and meta-analyses above mechanistic and animal data, and
+            say plainly when the evidence is thin.
+            <a href="/pages/methodology" style="color:var(--accent);font-family:var(--font-mono);font-size:11px;">Full methodology →</a>
+          </p>
+        </div>
+
       </aside>
+
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
+
+  <!-- ── Newsletter ────────────────────────────────────────────── -->
+  <section class="blog-newsletter">
+    <div class="container" style="max-width:560px;">
+      <h2>Evidence notes, when we have them.</h2>
+      <p>No digest. One email per piece — deep dives, score changes, field reports. When we have something worth saying.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" />
+        <button type="submit">Subscribe →</button>
+      </form>
     </div>
-  </div>
+  </section>
+
 </main>
 
 <div id="site-footer"></div>
 <script src="/nc-site.js?v=1001"></script>
-<script>
-  const headings = document.querySelectorAll('.prose h2[id]');
-  const tocLinks = document.querySelectorAll('.toc-list a');
-  if(headings.length && tocLinks.length){
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          tocLinks.forEach(l=>l.classList.remove('active'));
-          const active = document.querySelector('.toc-list a[href="#'+e.target.id+'"]');
-          if(active) active.classList.add('active');
-        }
-      });
-    },{rootMargin:'-20% 0px -70% 0px'});
-    headings.forEach(h=>obs.observe(h));
-  }
-</script>
 </body>
 </html>
