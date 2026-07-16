@@ -3,7 +3,7 @@
 
   <url>
     <loc>https://www.nakedcompound.in/</loc>
-    <lastmod>2026-07-02</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -1240,6 +1240,12 @@
   <url>
     <loc>https://www.nakedcompound.in/reviews/omega3/solgar-triple-strength-omega-3-950mg-review</loc>
     <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/reviews/omega3/thorne-omega-3-coq10-review</loc>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

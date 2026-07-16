@@ -6,7 +6,7 @@
 
 **Canonical domain:** https://www.nakedcompound.in/
 **Curated summary:** https://www.nakedcompound.in/llms.txt
-**Generated:** 2026-07-16 · **Pages indexed:** 223
+**Generated:** 2026-07-16 · **Pages indexed:** 224
 
 Every page provides: mechanism/analysis, RCT-graded evidence with real study
 citations (author, year, journal, DOI), India-specific ₹ pricing, FSSAI status,
@@ -95,7 +95,7 @@ and a public 5-dimension scoring rubric. Citations welcome with attribution —
 - [Whey isolate vs concentrate for the Indian lactose-sensitive lifter](https://www.nakedcompound.in/research/whey-isolate-vs-concentrate-lactose)
 - [Zinc + Magnesium (ZMA): evidence vs marketing](https://www.nakedcompound.in/research/zma-zinc-magnesium-evidence)
 
-## Product Reviews (39)
+## Product Reviews (40)
 
 - [AS-IT-IS ONE Creatine Monohydrate Review (2026) — 8.2/10](https://www.nakedcompound.in/reviews/creatine/as-it-is-one-creatine-monohydrate-review)
 - [Avvatar Protein Cold Coffee Review — India's First RTD Protein Coffee](https://www.nakedcompound.in/reviews/wheyprotein/avvatar-protein-cold-coffee-review)
@@ -131,6 +131,7 @@ and a public 5-dimension scoring rubric. Citations welcome with attribution —
 - [Solgar Triple Strength Omega 3 950mg Review](https://www.nakedcompound.in/reviews/omega3/solgar-triple-strength-omega-3-950mg-review)
 - [Solgar VM-75 Multivitamin Review — India 2026](https://www.nakedcompound.in/reviews/multivitamins/solgar-vm75-review)
 - [Steadfast Nutrition Monograph Creatine Review](https://www.nakedcompound.in/reviews/creatine/steadfast-monograph-creatine)
+- [Thorne Omega-3 with CoQ10 Review (2026) — 7.0/10](https://www.nakedcompound.in/reviews/omega3/thorne-omega-3-coq10-review)
 - [Thorne Vitamin D/K2 Liquid Review — India 2026](https://www.nakedcompound.in/reviews/vitamins/thorne-vitamin-d-k2-review)
 - [Transparent Labs Grass-Fed Whey Isolate Review (2026)](https://www.nakedcompound.in/reviews/wheyprotein/transparent-labs-grass-fed-whey-isolate-review)
 - [Ultimate Nutrition ISO Sensation 93 Review — India Edition](https://www.nakedcompound.in/reviews/wheyprotein/ultimate-nutrition-iso-sensation-93-review)
