@@ -11,4 +11,11 @@ node scripts/update-sitemap.js
 # Stage the updated sitemap so it's included in this commit
 git add project/sitemap.xml
 
+# Rebuild the machine-readable LLM index from the fresh sitemap
+if [ -f scripts/update-llms.js ]; then
+  echo "→ Updating llms-full.txt..."
+  node scripts/update-llms.js
+  git add project/llms-full.txt
+fi
+
 echo ""

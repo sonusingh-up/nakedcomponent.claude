@@ -1,5 +1,5 @@
 {
-  "buildCommand": "([ -f scripts/update-sitemap.js ] && node scripts/update-sitemap.js || echo 'sitemap script not found, skipping') && npx pagefind --site project",
+  "buildCommand": "([ -f scripts/update-sitemap.js ] && node scripts/update-sitemap.js || echo 'sitemap script not found, skipping') && ([ -f scripts/update-llms.js ] && node scripts/update-llms.js || echo 'llms script not found, skipping') && npx pagefind --site project",
   "outputDirectory": "project",
   "framework": null,
   "cleanUrls": true,
