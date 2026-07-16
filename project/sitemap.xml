@@ -639,7 +639,7 @@
   </url>
   <url>
     <loc>https://www.nakedcompound.in/pages/reviews</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -1258,6 +1258,12 @@
   <url>
     <loc>https://www.nakedcompound.in/reviews/vitamins/pure-encapsulations-vitamin-d3-vegan-review</loc>
     <lastmod>2026-06-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.nakedcompound.in/reviews/vitamins/thorne-basic-b-complex-review</loc>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
