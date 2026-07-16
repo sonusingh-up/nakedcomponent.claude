@@ -22,6 +22,75 @@
   <meta property="og:image" content="https://www.nakedcompound.in/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.nakedcompound.in/og-image.png" />
+
+  <!-- Sitewide entity graph: Organization + WebSite + homepage WebPage.
+       Establishes the authoritative Naked Compound entity for search and AI
+       systems. Per-page Article schema references this Organization as publisher. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.nakedcompound.in/#organization",
+        "name": "Naked Compound",
+        "url": "https://www.nakedcompound.in/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.nakedcompound.in/favicon.png",
+          "width": 64,
+          "height": 64
+        },
+        "image": "https://www.nakedcompound.in/og-image.png",
+        "description": "Independent, evidence-based supplement research for India — ingredient deep-dives, unbiased product reviews, India brand comparisons in ₹, and ready-made protocol stacks. No industry sponsorship, no affiliate softening.",
+        "sameAs": [
+          "https://instagram.com/nakedcompound",
+          "https://substack.com/@nakedcompoundinsider",
+          "https://in.pinterest.com/nakedcompound/"
+        ],
+        "email": "contact@nakedcompound.in",
+        "foundingDate": "2026",
+        "areaServed": { "@type": "Country", "name": "India" },
+        "knowsAbout": [
+          "dietary supplements",
+          "sports nutrition",
+          "ayurvedic ingredients",
+          "clinical evidence grading",
+          "FSSAI regulation",
+          "supplement safety",
+          "the Indian supplement market"
+        ],
+        "publishingPrinciples": "https://www.nakedcompound.in/pages/methodology",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@nakedcompound.in",
+          "contactType": "editorial"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.nakedcompound.in/#website",
+        "url": "https://www.nakedcompound.in/",
+        "name": "Naked Compound",
+        "alternateName": "Naked Compound — supplement research India",
+        "description": "Independent, evidence-based supplement research for India. Guides, ingredient analysis, unbiased product reviews, and ready-made protocols.",
+        "publisher": { "@id": "https://www.nakedcompound.in/#organization" },
+        "inLanguage": "en-IN"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.nakedcompound.in/#webpage",
+        "url": "https://www.nakedcompound.in/",
+        "name": "Naked Compound — Strip the label. See the science.",
+        "description": "Independent, evidence-based supplement research for India. Guides, ingredient analysis, unbiased product reviews, and ready-made protocols.",
+        "isPartOf": { "@id": "https://www.nakedcompound.in/#website" },
+        "about": { "@id": "https://www.nakedcompound.in/#organization" },
+        "inLanguage": "en-IN"
+      }
+    ]
+  }
+  </script>
+
   <script>window.PAGE_KEY = 'home';</script>
 
   <style>

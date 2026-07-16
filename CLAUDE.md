@@ -160,6 +160,17 @@ Also update `<lastBuildDate>` in the `<channel>` header to today's date.
 
 ---
 
+## 4b. AI / LLM discovery files — keep these current
+
+The site is optimised for AI crawlers and generative search (GEO). Two files describe the site to LLMs:
+
+- **`project/llms-full.txt`** — complete machine index of every page. **Auto-generated** by `scripts/update-llms.js` from `sitemap.xml`. Never hand-edit it. It regenerates on every `git commit` (pre-commit hook) and every Vercel deploy (`buildCommand`), always after the sitemap. To refresh manually: `node scripts/update-sitemap.js && node scripts/update-llms.js`.
+- **`project/llms.txt`** — curated, hand-written front-door summary (prose + key links). Update it by hand when you add a **new content type** or a **new protocol/major page** you want surfaced: add the link + a one-line description, and fix the counts in the intro. Keep it curated, not exhaustive (that's what `llms-full.txt` is for).
+
+Other AI-surface files that rarely change: `project/robots.txt` (AI-crawler allowlist), `project/.well-known/ai-plugin.json` (model-facing manifest — update `description_for_model` if a major new content type appears), and the `Organization` + `WebSite` JSON-LD `@graph` in `index.html` (the sitewide entity). Every content page should carry `Article` + `BreadcrumbList` (and `FAQPage` where relevant) JSON-LD, a self-canonical, and `og:`/`twitter:` tags pointing at `/og-image.png`.
+
+---
+
 ## 5. CSS/JS paths — depth-aware
 
 Because content folders are at different depths from `project/`, use the right relative path:
