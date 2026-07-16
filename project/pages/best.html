@@ -23,25 +23,173 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.nakedcompound.in/"},{"@type":"ListItem","position":2,"name":"Best Of","item":"https://www.nakedcompound.in/pages/best"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Creapure creatine worth the price premium in India?","acceptedAnswer":{"@type":"Answer","text":"Yes. Creapure is produced to pharmaceutical-grade purity (99.9%, <10ppm DCD) by AlzChem, Germany. Indian Creapure brands carry a ~25% premium over generic — justified by COA transparency."}},{"@type":"Question","name":"Why do Indian omega-3 products under-deliver?","acceptedAnswer":{"@type":"Answer","text":"Labels show total fish oil weight, not EPA+DHA. A 1000mg standard concentrate has ~300mg EPA+DHA. Clinical threshold for TG reduction is 2–4g EPA+DHA/day."}},{"@type":"Question","name":"What does FSSAI certification mean?","acceptedAnswer":{"@type":"Answer","text":"FSSAI confirms GMP manufacturing and labelling compliance under the 2022 Health Supplements Regulations. It does not verify potency claims or test individual batches."}},{"@type":"Question","name":"KSM-66 vs generic ashwagandha?","acceptedAnswer":{"@type":"Answer","text":"KSM-66 is patented, standardised to ≥5% withanolides, with 24+ RCTs. Generic extracts have unverified withanolide content. The clinical evidence is not transferable."}},{"@type":"Question","name":"Which magnesium form to buy in India?","acceptedAnswer":{"@type":"Answer","text":"Magnesium glycinate or bisglycinate (~80% bioavailability). Avoid oxide (~4% bioavailability). Most Indian pharmacy brands use oxide."}},{"@type":"Question","name":"Do I need K2 with D3?","acceptedAnswer":{"@type":"Answer","text":"Yes, above 2000 IU D3 daily. K2 MK-7 (100mcg/day) activates Matrix Gla Protein and osteocalcin, routing calcium to bone not arteries."}}]}</script>
 <style>
-.bestof-hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-5);margin-top:var(--s-6);padding-top:var(--s-6);border-top:1px solid var(--line);}
-.bhs-item{display:flex;align-items:flex-start;gap:12px;}
-.bhs-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+/* ── Best-Of hub — liquid glass layer (page-scoped, on top of best-shared.css) ── */
+:root{
+  --bo-glass: color-mix(in oklab, var(--bg-elev) 62%, transparent);
+  --bo-glass-strong: color-mix(in oklab, var(--bg-elev) 82%, transparent);
+  --bo-line: color-mix(in oklab, var(--ink) 12%, transparent);
+  --bo-blur: blur(14px) saturate(140%);
+  --bo-inset: rgba(255,255,255,.55);
+}
+[data-theme="dark"]{ --bo-inset: rgba(255,255,255,.08); }
+
+/* Ambient orbs behind the whole page */
+.bo-orbs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;}
+.bo-orb{position:absolute;filter:blur(70px);opacity:.5;will-change:transform;}
+.bo-orb-1{width:44vw;height:44vw;left:-12vw;top:4vh;
+  background:radial-gradient(circle at 35% 35%, color-mix(in oklab,var(--accent) 26%,transparent), transparent 68%);
+  border-radius:44% 56% 58% 42%/52% 44% 56% 48%;animation:bo-drift-a 28s ease-in-out infinite;}
+.bo-orb-2{width:34vw;height:34vw;right:-8vw;top:38vh;
+  background:radial-gradient(circle at 60% 40%, color-mix(in oklab,var(--butter) 60%,transparent), transparent 70%);
+  border-radius:58% 42% 46% 54%/46% 58% 42% 54%;animation:bo-drift-b 34s ease-in-out infinite;}
+.bo-orb-3{width:28vw;height:28vw;left:30vw;bottom:-6vh;
+  background:radial-gradient(circle at 45% 55%, color-mix(in oklab,var(--mint) 65%,transparent), transparent 70%);
+  border-radius:50% 50% 42% 58%/58% 42% 52% 48%;animation:bo-drift-a 40s ease-in-out reverse infinite;}
+@keyframes bo-drift-a{0%,100%{transform:translate(0,0) rotate(0) scale(1);}33%{transform:translate(5vw,-4vh) rotate(10deg) scale(1.07);}66%{transform:translate(-3vw,4vh) rotate(-7deg) scale(.95);}}
+@keyframes bo-drift-b{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-6vw,5vh) rotate(-12deg) scale(1.09);}}
+@keyframes bo-rise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+
+/* ── Hero ── */
+.page-head{position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(60% 90% at 12% 0%, color-mix(in oklab,var(--accent-soft) 60%,transparent), transparent 60%),
+    radial-gradient(50% 80% at 90% 10%, color-mix(in oklab,var(--butter) 45%,transparent), transparent 65%),
+    linear-gradient(175deg, var(--bg-elev) 0%, var(--bg) 70%);}
+.page-head::before{content:"";position:absolute;inset:-20%;
+  background:linear-gradient(112deg, transparent 42%, color-mix(in oklab,var(--accent) 14%,transparent) 50%, transparent 60%);
+  filter:blur(26px);pointer-events:none;animation:bo-beam 16s ease-in-out infinite;}
+@keyframes bo-beam{0%,100%{transform:translateX(-3%);opacity:.8;}50%{transform:translateX(3%);opacity:1;}}
+.page-head .container{position:relative;z-index:1;}
+.page-head .nc-breadcrumb{animation:bo-rise .7s var(--ease-out) .02s both;}
+.page-head .independence-bar{animation:bo-rise .7s var(--ease-out) .12s both;}
+.page-head h1{animation:bo-rise .8s var(--ease-out) .22s both;}
+.page-head h1 + p{animation:bo-rise .8s var(--ease-out) .34s both;}
+.bestof-hero-stats{animation:bo-rise .8s var(--ease-out) .46s both;}
+
+/* Hero stats → glass tiles */
+.bestof-hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:var(--s-6);padding-top:0;border-top:0;}
+.bhs-item{display:flex;align-items:flex-start;gap:12px;padding:var(--s-4);border-radius:var(--r-md);
+  background:var(--bo-glass);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border:1px solid var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 8px 24px color-mix(in oklab,var(--ink) 7%,transparent);
+  transition:transform .25s var(--ease-out), border-color .25s;}
+@media (hover:hover) and (pointer:fine){
+  .bhs-item:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--accent) 40%,var(--line));}
+}
+.bhs-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(150deg,var(--accent-soft),color-mix(in oklab,var(--accent) 22%,var(--bg-elev)));display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4), 0 3px 8px color-mix(in oklab,var(--accent) 16%,transparent);}
+[data-theme="dark"] .bhs-icon{box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 3px 8px rgba(0,0,0,.3);}
 .bhs-icon svg{width:18px;height:18px;color:var(--accent);}
 .bhs-num{font-family:var(--font-display);font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--ink);}
 .bhs-label{font-size:12.5px;color:var(--ink-muted);margin-top:3px;line-height:1.3;}
+
 .nc-breadcrumb{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;color:var(--ink-muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--s-4);overflow:hidden;white-space:nowrap;}
 .nc-breadcrumb a{color:var(--ink-muted);transition:color .12s;}.nc-breadcrumb a:hover{color:var(--accent);}
 .nc-breadcrumb .sep{opacity:.35;flex-shrink:0;}
 .nc-breadcrumb span{overflow:hidden;text-overflow:ellipsis;color:var(--ink-soft);}
-.independence-bar{display:inline-flex;align-items:center;gap:var(--s-3);padding:8px 14px;background:color-mix(in oklab,var(--mint) 70%,var(--bg));border:1px solid color-mix(in oklab,#5ba672 25%,transparent);border-radius:var(--r-pill);font-size:13px;color:#2e4a30;margin-bottom:var(--s-5);flex-wrap:wrap;}
-[data-theme="dark"] .independence-bar{background:var(--mint);color:#9fcea2;}
-.ib-dot{width:7px;height:7px;border-radius:50%;background:#5ba672;flex-shrink:0;}
+.independence-bar{display:inline-flex;align-items:center;gap:var(--s-3);padding:8px 14px;
+  background:color-mix(in oklab,var(--mint) 55%,transparent);
+  -webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border:1px solid color-mix(in oklab,#5ba672 28%,transparent);border-radius:var(--r-pill);font-size:13px;color:#2e4a30;margin-bottom:var(--s-5);flex-wrap:wrap;
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 6px 16px color-mix(in oklab,var(--ink) 5%,transparent);}
+[data-theme="dark"] .independence-bar{background:color-mix(in oklab,var(--mint) 80%,transparent);color:#9fcea2;}
+.ib-dot{width:7px;height:7px;border-radius:50%;background:#5ba672;flex-shrink:0;animation:ib-pulse 3s ease-in-out infinite;}
+@keyframes ib-pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,#5ba672 45%,transparent);}50%{box-shadow:0 0 0 6px transparent;}}
+
+/* ── Sticky filter bar — stronger glass ── */
+.bestof-filter{background:color-mix(in oklab,var(--bg) 78%,transparent);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:0 8px 24px color-mix(in oklab,var(--ink) 6%,transparent);}
+.bestof-filter-btn{background:var(--bo-glass);border-color:var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset);}
+@media (hover:hover) and (pointer:fine){
+  .bestof-filter-btn:hover{border-color:color-mix(in oklab,var(--accent) 45%,var(--line));color:var(--ink);transform:translateY(-1px);}
+}
+
+/* ── Main pick cards → glass + sheen sweep ── */
+.bestof-main-pick{background:var(--bo-glass);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border-color:var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 10px 30px color-mix(in oklab,var(--ink) 7%,transparent);}
+.bestof-main-pick::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg, transparent 42%, color-mix(in oklab,#fff 26%,transparent) 50%, transparent 58%);
+  transform:translateX(-130%);transition:transform .8s var(--ease-out);pointer-events:none;}
+@media (hover:hover) and (pointer:fine){
+  .bestof-main-pick:hover{border-color:color-mix(in oklab,var(--accent) 50%,var(--line));transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+  .bestof-main-pick:hover::after{transform:translateX(130%);}
+}
+
+/* Alt pick cards → glass */
+.alt-pick-card{background:var(--bo-glass);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border-color:var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 6px 18px color-mix(in oklab,var(--ink) 5%,transparent);}
+@media (hover:hover) and (pointer:fine){
+  .alt-pick-card:hover{border-color:color-mix(in oklab,var(--accent) 45%,var(--line));transform:translateY(-3px);}
+}
+.alt-icon{box-shadow:inset 0 1px 0 rgba(255,255,255,.4), 0 4px 10px color-mix(in oklab,var(--ink) 10%,transparent);}
+[data-theme="dark"] .alt-icon{box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 4px 10px rgba(0,0,0,.3);}
+
+/* Key stat banners — glass depth (tinted ones keep their inline tint) */
+.key-stat-banner{-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 8px 24px color-mix(in oklab,var(--ink) 6%,transparent);}
+
+/* Collapsible panels — glass summaries */
+.compare-toggle,.ing-panel{border-color:var(--bo-line);
+  box-shadow:0 6px 18px color-mix(in oklab,var(--ink) 5%,transparent);}
+.compare-toggle > summary,.ing-panel > summary{background:var(--bo-glass);
+  -webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  box-shadow:inset 0 1px 0 var(--bo-inset);}
+
+/* Lab section + tier cards */
+.bestof-lab-section{background:color-mix(in oklab,var(--bg-elev) 75%,transparent);}
+.lab-tier-card{background:var(--bo-glass-strong);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border-color:var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 8px 24px color-mix(in oklab,var(--ink) 6%,transparent);
+  transition:transform .25s var(--ease-out), border-color .25s;}
+@media (hover:hover) and (pointer:fine){
+  .lab-tier-card:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--accent) 35%,var(--line));}
+}
+
+/* Hub link cards → glass */
+.hub-link-card{background:var(--bo-glass);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border-color:var(--bo-line);position:relative;overflow:hidden;
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 6px 18px color-mix(in oklab,var(--ink) 5%,transparent);}
+.hub-link-card::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg, transparent 42%, color-mix(in oklab,#fff 22%,transparent) 50%, transparent 58%);
+  transform:translateX(-130%);transition:transform .8s var(--ease-out);pointer-events:none;}
+@media (hover:hover) and (pointer:fine){
+  .hub-link-card:hover{border-color:color-mix(in oklab,var(--accent) 50%,var(--line));transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .hub-link-card:hover::after{transform:translateX(130%);}
+}
+
+/* FAQ cards → glass */
+.faq-item{background:var(--bo-glass);-webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);
+  border-color:var(--bo-line);
+  box-shadow:inset 0 1px 0 var(--bo-inset), 0 6px 18px color-mix(in oklab,var(--ink) 5%,transparent);}
+
+/* Transparency bar */
+.bestof-transparency{background:color-mix(in oklab,var(--bg-elev) 75%,transparent);
+  -webkit-backdrop-filter:var(--bo-blur);backdrop-filter:var(--bo-blur);}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce){
+  .bo-orb,.page-head::before,.page-head .nc-breadcrumb,.page-head .independence-bar,
+  .page-head h1,.page-head h1 + p,.bestof-hero-stats,.ib-dot,
+  .bestof-main-pick::after,.hub-link-card::after{animation:none !important;}
+  .reveal{opacity:1;transform:none;transition:none;}
+  .bhs-item,.bestof-main-pick,.alt-pick-card,.lab-tier-card,.hub-link-card,.bestof-filter-btn{transition:none;}
+}
+
 @media(max-width:700px){.bestof-section-head{grid-template-columns:1fr!important;}.section-cta-btn{width:100%;text-align:center;justify-content:center;}}
-@media(max-width:480px){.bestof-hero-stats{grid-template-columns:repeat(2,1fr);gap:var(--s-4);}}
+@media(max-width:480px){.bestof-hero-stats{grid-template-columns:repeat(2,1fr);gap:10px;}.bhs-item{padding:var(--s-3);gap:9px;}}
 </style>
 </head>
 <body>
 <div id="site-header"></div>
+<div class="bo-orbs" aria-hidden="true">
+  <span class="bo-orb bo-orb-1"></span>
+  <span class="bo-orb bo-orb-2"></span>
+  <span class="bo-orb bo-orb-3"></span>
+</div>
 <main>
 
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
@@ -56,7 +204,7 @@
     <a href="/pages/conflicts-policy" style="color:#2e6b40;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;">Conflicts policy →</a>
   </div>
   <h1 style="font-size:clamp(32px,5vw,60px);letter-spacing:-.03em;line-height:1.02;margin:0 0 var(--s-3);">Best Supplements<br><em style="font-style:normal;font-family:'Instrument Serif',Georgia,serif;color:var(--accent);font-weight:400;">in India</em></h1>
-  <p style="max-width:56ch;color:var(--ink-soft);font-size:15px;line-height:1.55;margin:0;">Six categories. Every major Indian brand evaluated. Prices in INR, FSSAI status verified, COA confirmed. <strong style="color:var(--ink);">Updated May 2026.</strong></p>
+  <p style="max-width:58ch;color:var(--ink-soft);font-size:15px;line-height:1.55;margin:0;">Six categories, thirty-four brands, and a paper trail for every claim — prices in rupees, FSSAI licences checked, and the COAs read so you don't have to. <strong style="color:var(--ink);">Updated May 2026.</strong></p>
   <div class="bestof-hero-stats reveal">
     <div class="bhs-item">
       <div class="bhs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg></div>
@@ -1048,9 +1196,25 @@ window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
 /* ── Reveal animation ──────────────────────────────────────────── */
+/* Extend reveals to card components (added via JS so no-JS users never
+   see hidden content). Small stagger within each parent group. */
+document.querySelectorAll('.alt-pick-card,.hub-link-card,.faq-item,.lab-tier-card,.compare-toggle,.ing-panel').forEach(el => {
+  if (!el.classList.contains('reveal')) {
+    el.classList.add('reveal');
+    const sibs = el.parentElement ? Array.from(el.parentElement.children) : [el];
+    el.style.transitionDelay = Math.min(sibs.indexOf(el), 5) * 55 + 'ms';
+  }
+});
 if ('IntersectionObserver' in window) {
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+        /* clear delay after entrance so hover transitions stay snappy */
+        setTimeout(() => { e.target.style.transitionDelay = ''; }, 700);
+      }
+    });
   }, { threshold: 0.07 });
   document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 } else {
