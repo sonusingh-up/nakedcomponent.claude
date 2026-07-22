@@ -67,6 +67,14 @@
     .bc-spec-val.good { color:#265e38; }
     .bc-spec-val.warn { color:#7a5010; }
     .bc-spec-val.bad { color:#8c2e22; }
+    /* Product & logo images */
+    .bc-logo { width:40px;height:40px;border-radius:9px;border:1px solid var(--line);background:#fff;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;vertical-align:middle; }
+    .bc-logo img { width:100%;height:100%;object-fit:contain;padding:3px;display:block; }
+    .bc-imgs { display:flex;gap:10px;margin-top:var(--s-3);flex-wrap:wrap;align-items:flex-start; }
+    .bc-img-item { display:flex;flex-direction:column;align-items:center;gap:5px; }
+    .bc-img-item img { width:90px;height:90px;border-radius:var(--r-md);border:1px solid var(--line);background:#fff;object-fit:contain;padding:4px;display:block; }
+    .bc-img-item span { font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;color:var(--ink-muted);text-align:center;max-width:90px;line-height:1.3; }
+    @media(max-width:640px) { .bc-img-item img { width:72px;height:72px; } .bc-imgs { gap:8px; } }
     /* Tags */
     .bc-tags { display:flex;flex-wrap:wrap;gap:5px;margin-top:var(--s-3); }
     .btag { display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.04em;padding:3px 8px;border-radius:var(--r-pill);font-weight:600; }
@@ -268,7 +276,7 @@
         <div class="brand-num amber">1</div>
         <div>
           <div class="bc-rank gold">🏆 Best Overall · Market Leader</div>
-          <div class="bc-brand">Amul</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Amul</div><span class="bc-logo"><img src="#" alt="Amul brand logo" loading="lazy"/></span></div>
           <div class="bc-tagline">GCMMF · Established 1946 · Ice cream since 1969 · Anand, Gujarat</div>
         </div>
       </div>
@@ -285,6 +293,7 @@
           <span class="btag ok">₹10 to ₹500+</span>
           <span class="btag ok">Camel milk variant</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="https://www.nakedcompound.in/uploads/amul-kesar.jpg" alt="Amul Kesar Pista ice cream cup" loading="lazy"/><span>Kesar Pista</span></div><div class="bc-img-item"><img src="https://m.media-amazon.com/images/I/813V27HxCZL._SL1500_.jpg" alt="Amul Cassatta ice cream brick" loading="lazy"/><span>Cassatta</span></div><div class="bc-img-item"><img src="https://www.nakedcompound.in/uploads/Amul-Gold-TriCone-Butterscotch-Ice-Cream-Cone.webp" alt="Amul Tricone cone ice cream" loading="lazy"/><span>Tricone Cone</span></div><div class="bc-img-item"><img src="/uploads/amul-ice.jpg" alt="Amul Creme Rich premium tub" loading="lazy"/><span>Creme Rich</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Market share</span><span class="bc-spec-val good">~21% value share</span></div>
@@ -304,7 +313,7 @@
         <div class="brand-num green">2</div>
         <div>
           <div class="bc-rank green">🍓 Best Artisanal · Real Fruit Champion</div>
-          <div class="bc-brand">Naturals Ice Cream</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Naturals Ice Cream</div><span class="bc-logo"><img src="#" alt="Naturals Ice Cream logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Kamaths Ourtimes Icecreams · Est. 1984 · Mumbai · ₹380 Cr brand</div>
         </div>
       </div>
@@ -320,6 +329,7 @@
           <span class="btag ok">Seasonal specials</span>
           <span class="btag ok">Taste Atlas global recognition</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Naturals Tender Coconut ice cream" loading="lazy"/><span>Tender Coconut</span></div><div class="bc-img-item"><img src="#" alt="Naturals Sitaphal custard apple ice cream" loading="lazy"/><span>Sitaphal</span></div><div class="bc-img-item"><img src="#" alt="Naturals Alphonso Mango ice cream" loading="lazy"/><span>Alphonso Mango</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">1984, Mumbai</span></div>
@@ -339,7 +349,7 @@
         <div class="brand-num" style="background:#3a6040;">3</div>
         <div>
           <div class="bc-rank green">🥛 Best Real Dairy · Premium Indian Brand</div>
-          <div class="bc-brand">Havmor</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Havmor</div><span class="bc-logo"><img src="#" alt="Havmor ice cream logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Lotte Confectionery (South Korea) · Est. 1944 · Gujarat origin</div>
         </div>
       </div>
@@ -355,6 +365,7 @@
           <span class="btag ok">Own restaurant chain</span>
           <span class="btag ok">Lotte-backed quality</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Havmor Choco Blast ice cream bar" loading="lazy"/><span>Choco Blast</span></div><div class="bc-img-item"><img src="#" alt="Havmor Chikoo ice cream" loading="lazy"/><span>Chikoo</span></div><div class="bc-img-item"><img src="#" alt="Havmor Real Mango ice cream" loading="lazy"/><span>Real Mango</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">1944 (Gujarat)</span></div>
@@ -374,7 +385,7 @@
         <div class="brand-num">4</div>
         <div>
           <div class="bc-rank">🏛 India's Oldest Ice Cream Brand</div>
-          <div class="bc-brand">Vadilal</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Vadilal</div><span class="bc-logo"><img src="#" alt="Vadilal ice cream logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Vadilal Industries Ltd (BSE listed) · Est. 1907 · Ahmedabad</div>
         </div>
       </div>
@@ -390,6 +401,7 @@
           <span class="btag ok">50+ countries export</span>
           <span class="btag ok">Heritage brand since 1907</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Vadilal Alphonso Mango ice cream bar" loading="lazy"/><span>Alphonso Mango</span></div><div class="bc-img-item"><img src="#" alt="Vadilal Rose Petals Kulfi" loading="lazy"/><span>Rose Petals Kulfi</span></div><div class="bc-img-item"><img src="#" alt="Vadilal Rajbhog ice cream" loading="lazy"/><span>Rajbhog</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">1907 (ice cream 1926)</span></div>
@@ -409,7 +421,7 @@
         <div class="brand-num">5</div>
         <div>
           <div class="bc-rank">🏅 Widest Mass-Market Range</div>
-          <div class="bc-brand">Kwality Wall's</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Kwality Wall's</div><span class="bc-logo"><img src="#" alt="Kwality Walls Magnum Ice Cream Company logo" loading="lazy"/></span></div>
           <div class="bc-tagline">The Magnum Ice Cream Company (formerly HUL) · Founded 1956 · Mumbai</div>
         </div>
       </div>
@@ -425,6 +437,7 @@
           <span class="btag ok">Cornetto, Feast, Magnum</span>
           <span class="btag ok">April 2026: Magnum Caramel Pop</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Kwality Walls Cornetto cone ice cream" loading="lazy"/><span>Cornetto</span></div><div class="bc-img-item"><img src="#" alt="Kwality Walls Feast chocolate bar" loading="lazy"/><span>Feast</span></div><div class="bc-img-item"><img src="#" alt="Magnum Classic ice cream bar" loading="lazy"/><span>Magnum Classic</span></div><div class="bc-img-item"><img src="#" alt="Magnum Caramel Pop 2026 India" loading="lazy"/><span>Caramel Pop</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Parent (2025–)</span><span class="bc-spec-val">Magnum Ice Cream Co.</span></div>
@@ -444,7 +457,7 @@
         <div class="brand-num">6</div>
         <div>
           <div class="bc-rank">🏡 North India's Trusted Household Brand</div>
-          <div class="bc-brand">Mother Dairy</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Mother Dairy</div><span class="bc-logo"><img src="#" alt="Mother Dairy ice cream logo" loading="lazy"/></span></div>
           <div class="bc-tagline">National Dairy Development Board · Est. 1974 · Delhi</div>
         </div>
       </div>
@@ -459,6 +472,7 @@
           <span class="btag ok">Trusted quality since 1974</span>
           <span class="btag neutral">Limited to North India</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Mother Dairy Kesar Pista ice cream" loading="lazy"/><span>Kesar Pista</span></div><div class="bc-img-item"><img src="#" alt="Mother Dairy Rajbhog ice cream" loading="lazy"/><span>Rajbhog</span></div><div class="bc-img-item"><img src="#" alt="Mother Dairy Mango bar" loading="lazy"/><span>Mango Bar</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">1974 (NDDB)</span></div>
@@ -478,7 +492,7 @@
         <div class="brand-num">7</div>
         <div>
           <div class="bc-rank">⚡ Best Value Innovation · North &amp; East India</div>
-          <div class="bc-brand">Creambell</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Creambell</div><span class="bc-logo"><img src="#" alt="Creambell ice cream logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Devyani International Ltd · Est. 2003 · Gurugram, Haryana</div>
         </div>
       </div>
@@ -493,6 +507,7 @@
           <span class="btag ok">Youth-oriented formats</span>
           <span class="btag neutral">Limited South India</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Creambell Choco Dip ice cream bar" loading="lazy"/><span>Choco Dip</span></div><div class="bc-img-item"><img src="#" alt="Creambell Sundae ice cream" loading="lazy"/><span>Sundae</span></div><div class="bc-img-item"><img src="#" alt="Creambell family pack ice cream" loading="lazy"/><span>Family Pack</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">2003 (Devyani Intl.)</span></div>
@@ -511,7 +526,7 @@
         <div class="brand-num">8</div>
         <div>
           <div class="bc-rank">🌍 Best International Brand · Premium Accessible</div>
-          <div class="bc-brand">Baskin-Robbins</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Baskin-Robbins</div><span class="bc-logo"><img src="#" alt="Baskin-Robbins 31 flavors logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Graviss Foods (India franchise) · Global est. 1945 · India since 1993</div>
         </div>
       </div>
@@ -526,6 +541,7 @@
           <span class="btag ok">Ice cream cakes</span>
           <span class="btag ok">650+ India outlets</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Baskin-Robbins Pralines and Cream ice cream scoop" loading="lazy"/><span>Pralines & Cream</span></div><div class="bc-img-item"><img src="#" alt="Baskin-Robbins Chocolate Fudge Brownie ice cream" loading="lazy"/><span>Choc Fudge Brownie</span></div><div class="bc-img-item"><img src="#" alt="Baskin-Robbins custom ice cream cake India" loading="lazy"/><span>Ice Cream Cake</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">India since</span><span class="bc-spec-val">1993</span></div>
@@ -545,7 +561,7 @@
         <div class="brand-num">9</div>
         <div>
           <div class="bc-rank">🌴 South India's Undisputed Champion</div>
-          <div class="bc-brand">Arun Ice Creams</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Arun Ice Creams</div><span class="bc-logo"><img src="#" alt="Arun Ice Creams Hatsun logo" loading="lazy"/></span></div>
           <div class="bc-tagline">Hatsun Agro Products Ltd (BSE listed) · Est. 1970 · Chennai</div>
         </div>
       </div>
@@ -561,6 +577,7 @@
           <span class="btag ok">From ₹5</span>
           <span class="btag ok">Ibaco premium sub-brand</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Arun ice cream vanilla cup South India" loading="lazy"/><span>Vanilla Cup</span></div><div class="bc-img-item"><img src="#" alt="Arun ice cream mango bar" loading="lazy"/><span>Mango Bar</span></div><div class="bc-img-item"><img src="#" alt="Ibaco premium ice cream parlour cup" loading="lazy"/><span>Ibaco Cup</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">Founded</span><span class="bc-spec-val">1970, Chennai</span></div>
@@ -580,7 +597,7 @@
         <div class="brand-num">10</div>
         <div>
           <div class="bc-rank">💎 Best Ultra-Premium · Special Occasions</div>
-          <div class="bc-brand">Häagen-Dazs</div>
+          <div style="display:flex;align-items:center;gap:8px;"><div class="bc-brand">Häagen-Dazs</div><span class="bc-logo"><img src="#" alt="Haagen-Dazs logo" loading="lazy"/></span></div>
           <div class="bc-tagline">General Mills · Global est. 1961 · India since 2009</div>
         </div>
       </div>
@@ -596,6 +613,7 @@
           <span class="btag neutral">Limited premium outlets</span>
           <span class="btag neutral">₹350+ per scoop</span>
         </div>
+        <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Haagen-Dazs Belgian Chocolate pint India" loading="lazy"/><span>Belgian Chocolate</span></div><div class="bc-img-item"><img src="#" alt="Haagen-Dazs Cookies and Cream pint India" loading="lazy"/><span>Cookies & Cream</span></div><div class="bc-img-item"><img src="#" alt="Haagen-Dazs macadamia nuts ice cream India" loading="lazy"/><span>Macadamia Nuts</span></div></div>
       </div>
       <div class="bc-specs">
         <div class="bc-spec-row"><span class="bc-spec-label">India since</span><span class="bc-spec-val">2009</span></div>
