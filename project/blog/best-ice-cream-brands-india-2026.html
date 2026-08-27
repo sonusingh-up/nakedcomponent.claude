@@ -16,8 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="/style.css?v=1001"/>
-<link rel="stylesheet" href="/pages.css"/>
+
 <link rel="icon" type="image/png" href="/favicon.png"/>
 <script>window.PAGE_KEY='blog';</script>
 <script type="application/ld+json">
@@ -75,431 +74,20 @@
 }
 </script>
 
+<link rel="stylesheet" href="../../style.css?v=1001" />
+<link rel="stylesheet" href="../../pages.css" />
+<link rel="stylesheet" href="blog-components.css" />
+
 <style>
-/* ── Blog layout ────────────────────────────────── */
-.blog-wrap {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 var(--s-4) var(--s-12);
-}
+  /* Stats strip */
+  .stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); margin: var(--s-6) 0; }
+  .stat-strip-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-4); text-align: center; min-width: 0; }
+  .stat-strip-val { font-family: "Instrument Serif", Georgia, serif; font-size: 2rem; font-weight: 400; font-style: italic; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+  .stat-strip-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-muted); line-height: 1.3; }
 
-/* Category eyebrow */
-.blog-cat {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: var(--s-3);
-}
-
-/* H1 */
-.blog-wrap h1 {
-  font-size: clamp(28px, 5vw, 48px);
-  letter-spacing: -.03em;
-  line-height: 1.05;
-  margin: 0 0 var(--s-4);
-}
-.blog-wrap h1 em {
-  font-style: normal;
-  font-family: 'Instrument Serif', Georgia, serif;
-  color: var(--accent);
-}
-
-/* Lede */
-.blog-lede {
-  font-size: 18px;
-  line-height: 1.65;
-  color: var(--ink-soft);
-  margin: 0 0 var(--s-4);
-  max-width: 60ch;
-}
-
-/* Byline row */
-.blog-byline {
-  display: flex;
-  align-items: center;
-  gap: var(--s-3);
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: var(--s-6);
-  flex-wrap: wrap;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: var(--s-4);
-}
-.blog-byline .author-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-  padding: 4px 12px 4px 6px;
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-}
-.author-chip .author-avatar {
-  width: 22px; height: 22px;
-  background: var(--accent);
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  color: #fff;
-}
-.blog-byline .sep { color: var(--line); }
-
-/* TOC */
-.blog-toc {
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  padding: var(--s-5);
-  margin: var(--s-6) 0;
-}
-.blog-toc-label {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: var(--s-3);
-}
-.blog-toc ol {
-  margin: 0;
-  padding-left: var(--s-5);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.blog-toc li { font-size: 13.5px; line-height: 1.4; }
-.blog-toc a {
-  color: var(--accent);
-  text-decoration: none;
-  text-underline-offset: 2px;
-}
-.blog-toc a:hover { text-decoration: underline; }
-
-/* Body text */
-.blog-wrap p {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--ink-soft);
-  margin: 0 0 var(--s-4);
-}
-.blog-wrap strong { color: var(--ink); font-weight: 600; }
-.blog-wrap a { color: var(--accent); }
-
-/* H2 */
-.blog-wrap h2 {
-  font-size: clamp(20px, 3vw, 26px);
-  letter-spacing: -.025em;
-  line-height: 1.2;
-  margin: var(--s-9) 0 var(--s-3);
-  color: var(--ink);
-  scroll-margin-top: 80px;
-}
-.blog-wrap h2 em {
-  font-style: normal;
-  font-family: 'Instrument Serif', Georgia, serif;
-  color: var(--accent);
-}
-
-/* H3 */
-.blog-wrap h3 {
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -.015em;
-  margin: var(--s-6) 0 var(--s-2);
-  color: var(--ink);
-  padding: var(--s-3) var(--s-4);
-  background: var(--bg-elev);
-  border-left: 3px solid var(--accent);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
-}
-.blog-wrap h3 .brand-sub {
-  display: block;
-  font-size: 11.5px;
-  font-weight: 400;
-  color: var(--ink-muted);
-  font-family: var(--font-mono);
-  letter-spacing: .06em;
-  margin-top: 2px;
-}
-
-/* Callout boxes */
-.callout-box {
-  display: flex;
-  gap: var(--s-4);
-  padding: var(--s-5);
-  border-radius: var(--r-xl);
-  margin: var(--s-6) 0;
-  border: 1px solid;
-}
-.callout-box .cb-icon {
-  font-size: 20px;
-  line-height: 1;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-.callout-box .cb-body {}
-.callout-box .cb-body h4 {
-  font-size: 13.5px;
-  font-weight: 700;
-  margin: 0 0 var(--s-2);
-  color: var(--ink);
-}
-.callout-box .cb-body p {
-  font-size: 13.5px;
-  margin: 0;
-  line-height: 1.65;
-}
-.callout-box.info {
-  background: color-mix(in oklab, var(--sky) 12%, var(--bg));
-  border-color: color-mix(in oklab, #5a9ec4 30%, transparent);
-}
-.callout-box.warn {
-  background: color-mix(in oklab, var(--butter) 18%, var(--bg));
-  border-color: color-mix(in oklab, #c9a23a 30%, transparent);
-}
-.callout-box.ok {
-  background: color-mix(in oklab, var(--mint) 15%, var(--bg));
-  border-color: color-mix(in oklab, #5ba672 30%, transparent);
-}
-.callout-box.note {
-  background: var(--bg-elev);
-  border-color: var(--line);
-}
-
-/* Inline stat block */
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--s-4);
-  margin: var(--s-6) 0;
-  text-align: center;
-}
-@media (max-width:560px){ .stat-row { grid-template-columns: 1fr 1fr; } }
-.stat-block {}
-.stat-num {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: 36px;
-  color: var(--accent);
-  line-height: 1;
-}
-.stat-label {
-  font-size: 11.5px;
-  color: var(--ink-muted);
-  margin-top: 4px;
-  line-height: 1.4;
-}
-
-/* Tables */
-.blog-table-wrap {
-  overflow-x: auto;
-  margin: var(--s-5) 0;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--line);
-}
-.blog-table {
-  width: 100%;
-  min-width: 560px;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.blog-table th {
-  background: var(--bg-elev);
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  padding: 10px 14px;
-  text-align: left;
-  border-bottom: 1px solid var(--line);
-}
-.blog-table td {
-  padding: 11px 14px;
-  border-bottom: 1px solid color-mix(in oklab, var(--line) 60%, transparent);
-  color: var(--ink-soft);
-  vertical-align: top;
-  line-height: 1.5;
-}
-.blog-table tr:last-child td { border-bottom: 0; }
-.blog-table tr:hover td { background: color-mix(in oklab, var(--bg-elev) 70%, var(--bg)); }
-.blog-table .brand-col { font-weight: 600; color: var(--ink); }
-.blog-table .tier-1 { color: #265e38; }
-.blog-table .tier-2 { color: #6b4f10; }
-.blog-table .tier-3 { color: #1a3a5c; }
-
-/* Pull quote */
-.pull-quote {
-  margin: var(--s-7) 0;
-  padding: var(--s-5) 0 var(--s-5) var(--s-6);
-  border-left: 3px solid var(--accent);
-}
-.pull-quote p {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-size: clamp(17px, 2.5vw, 22px) !important;
-  line-height: 1.5 !important;
-  color: var(--ink) !important;
-  margin: 0 !important;
-}
-.pull-quote cite {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: .08em;
-  color: var(--ink-muted);
-  margin-top: var(--s-2);
-  font-style: normal;
-}
-
-/* Verdict verdict list */
-.verdict-list {
-  list-style: none;
-  padding: 0;
-  margin: var(--s-4) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-}
-.verdict-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--s-3);
-  font-size: 14.5px;
-  color: var(--ink-soft);
-  line-height: 1.55;
-  padding: var(--s-3) var(--s-4);
-  background: var(--bg-elev);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--line);
-}
-.verdict-list li strong { color: var(--ink); min-width: 160px; display: inline-block; }
-@media (max-width:480px){ .verdict-list li strong { min-width: 0; } .verdict-list li { flex-direction: column; gap: 2px; } }
-
-/* References */
-.blog-refs {
-  margin-top: var(--s-9);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--line);
-}
-.blog-refs h4 {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin: 0 0 var(--s-4);
-}
-.blog-refs ol {
-  padding-left: var(--s-5);
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-}
-.blog-refs li { font-size: 12.5px; color: var(--ink-muted); line-height: 1.55; }
-.blog-refs li a { color: var(--accent); }
-
-/* At a glance sidebar */
-.at-a-glance {
-  background: var(--bg-elev);
-  border: 1px solid var(--line);
-  border-radius: var(--r-xl);
-  padding: var(--s-5);
-  margin: var(--s-8) 0 var(--s-4);
-}
-.aag-label {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: var(--s-4);
-}
-.aag-rows {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-  margin-bottom: var(--s-5);
-  padding-bottom: var(--s-5);
-  border-bottom: 1px solid var(--line);
-}
-.aag-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 13px;
-}
-.aag-key { color: var(--ink-muted); }
-.aag-val { font-weight: 600; color: var(--ink); font-size: 13px; }
-.aag-more-label {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: var(--s-3);
-}
-.aag-more {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-2);
-}
-.aag-more a {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  text-decoration: none;
-  padding: var(--s-3);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--line);
-  background: var(--bg);
-  transition: border-color .15s;
-}
-.aag-more a:hover { border-color: var(--accent); }
-.aag-more-type {
-  font-size: 9.5px;
-  font-family: var(--font-mono);
-  letter-spacing: .1em;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-.aag-more-title { font-size: 12.5px; font-weight: 500; color: var(--ink); line-height: 1.35; }
-
-/* Editorial note */
-.editorial-note {
-  font-size: 12.5px;
-  color: var(--ink-muted);
-  line-height: 1.6;
-  margin: var(--s-6) 0;
-  padding: var(--s-4);
-  background: var(--bg-elev);
-  border-radius: var(--r-lg);
-  border: 1px solid var(--line);
-}
-
-/* Hero image */
-.blog-hero {
-  width: 100%;
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  margin: var(--s-5) 0 var(--s-7);
-}
-.blog-hero img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16/7;
-  object-fit: cover;
-  display: block;
-}
+  @media (max-width: 700px) {
+    .stat-strip  { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -508,40 +96,55 @@
 <div class="container" style="padding-top:var(--s-7);">
 <nav class="nc-breadcrumb" style="margin-bottom:var(--s-5);"><a href="/">Home</a><span class="sep">/</span><a href="/blog">Blog</a><span class="sep">/</span><span>Best Ice Cream Brands India 2026</span></nav>
 
-<div class="blog-wrap">
 
-  <!-- CATEGORY -->
-  <div class="blog-cat">Food &amp; Nutrition</div>
+  <section class="blog-hero">
+    <div class="container">
+      <div class="blog-category-pill">
+        <span class="dot"></span>
+        Food &amp; Nutrition
+      </div>
+      
+      <h1>Best ice cream brands in India 2026 — <em>what the market actually looks like now.</em></h1>
+      
+      <p class="blog-hero-deck">
+        India's ₹25,000 crore ice cream market has quietly split into three structurally different buying categories. Most guides still rank them in the same list. That's why you keep ending up disappointed.
+      </p>
 
-  <!-- H1 -->
-  <h1>Best ice cream brands in India 2026 — <em>what the market actually looks like now.</em></h1>
+      <div class="blog-meta-row">
+        <span>25 August 2026</span>
+        <span class="sep">·</span>
+        <span>~12 min read</span>
+        <span class="sep">·</span>
+        <span>Food &amp; Nutrition</span>
+      </div>
 
-  <!-- LEDE -->
-  <p class="blog-lede">India's ₹25,000 crore ice cream market has quietly split into three structurally different buying categories. Most guides still rank them in the same list. That's why you keep ending up disappointed.</p>
+      <a href="/pages/authors" class="author-byline">
+        <div class="ab-avatar">N</div>
+        <div class="ab-text">
+          Naked Compound Research Team
+          <span>Editorial analysis · Authors page →</span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-  <!-- HERO -->
-  <div class="blog-hero">
-    <img src="#" alt="Assortment of ice cream cups and tubs from Indian brands on a warm marble surface, editorial food photography" loading="eager"/>
-  </div>
+  <!-- Hero Image (moved outside of the container) -->
+  <section style="background:var(--bg);padding:var(--s-5) 0;">
+    <div class="container" style="max-width:800px;">
+       <img src="/uploads/icecrean-by-nakedcompound.png" alt="Assortment of ice cream cups and tubs from Indian brands on a warm marble surface, editorial food photography" style="width:100%;border-radius:var(--r-xl);border:1px solid var(--line);" />
+    </div>
+  </section>
 
-  <!-- BYLINE -->
-  <div class="blog-byline">
-    <a href="/pages/authors" class="author-chip">
-      <span class="author-avatar">N</span>
-      Naked Compound Research Team · Editorial analysis
-    </a>
-    <span class="sep">·</span>
-    <span>25 August 2026</span>
-    <span class="sep">·</span>
-    <span>~12 min read</span>
-    <span class="sep">·</span>
-    <span>Food &amp; Nutrition</span>
-  </div>
+  <div class="blog-body-wrap">
+    <div class="blog-layout">
+      <!-- Article -->
+      <article class="blog-article" style="min-width:0;">
 
-  <!-- TOC -->
-  <div class="blog-toc">
-    <div class="blog-toc-label">On this page</div>
-    <ol>
+
+  <details class="mobile-toc">
+  <summary>On this page</summary>
+  <ul>
+
       <li><a href="#market-split">The market split nobody's writing about</a></li>
       <li><a href="#tier-1">Tier 1 — The health-first brands: Noto and Go Zero</a></li>
       <li><a href="#tier-2">Tier 2 — The artisanal brands: Naturals and NIC</a></li>
@@ -550,17 +153,19 @@
       <li><a href="#structural-forces">The structural forces reshaping the market</a></li>
       <li><a href="#verdict">Verdict — matched to your actual need</a></li>
       <li><a href="#references">References</a></li>
-    </ol>
-  </div>
+      </ul>
+</details>
 
   <!-- MINTO ANSWER BOX -->
-  <div class="callout-box info">
-    <span class="cb-icon">ℹ️</span>
-    <div class="cb-body">
+  <div class="callout">
+  <div class="ico">ℹ️</div>
+  <div>
+    
       <h4>The answer, before the article</h4>
       <p>India's best ice cream brand in 2026 is whoever is closest to what you're actually optimising for. Noto and Amul are not competing for the same customer. Naturals and Kwality Wall's are not in the same conversation. Once you know which of the three tiers below matches your need, the best brand inside that tier becomes obvious. That structure — answer first, evidence second — is how this article is written.</p>
-    </div>
+    
   </div>
+</div>
 
   <!-- ─────────────────────────────────────────────────
        SECTION 1 — THE MARKET SPLIT
@@ -571,22 +176,21 @@
 
   <p>The problem with that format is not that it's lazy — it's that it's wrong. Between 2021 and 2026, the Indian ice cream market underwent a structural change significant enough that brands from different tiers are no longer usefully comparable. <strong>Noto, Naturals, and Amul do not sell the same thing</strong> — they sell ice cream, yes, but they answer completely different questions for completely different buyers.</p>
 
-  <div class="stat-row">
-    <div class="stat-block">
-      <div class="stat-num">$3.07B</div>
-      <div class="stat-label">Indian ice cream market size, 2026<sup><a href="#ref1">1</a></sup></div>
+  <div class="stat-strip">
+    <div class="stat-strip-card">
+      <div class="stat-strip-val">$3.07B</div>
+      <div class="stat-strip-label">Indian ice cream market size, 2026<sup><a href="#ref1">1</a></sup></div>
     </div>
-    <div class="stat-block">
-      <div class="stat-num">9.84%</div>
-      <div class="stat-label">Projected CAGR through 2032<sup><a href="#ref1">1</a></sup></div>
+    <div class="stat-strip-card">
+      <div class="stat-strip-val">9.84%</div>
+      <div class="stat-strip-label">Projected CAGR through 2032<sup><a href="#ref1">1</a></sup></div>
     </div>
-    <div class="stat-block">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Structurally distinct buying tiers in the market today</div>
+    <div class="stat-strip-card">
+      <div class="stat-strip-val">3</div>
+      <div class="stat-strip-label">Structurally distinct buying tiers in the market today</div>
     </div>
   </div>
-
-  <p>The three tiers are not marketing segments — they reflect genuinely different product propositions, distribution models, and customer expectations. <strong>Tier 1</strong> is the health-first category: sugar-free, high-protein, formulated for buyers who want the pleasure of ice cream without the metabolic trade-off. <strong>Tier 2</strong> is the artisanal and flavour-first category: brands whose proposition is that ice cream made from three real ingredients tastes categorically different from anything made with synthetic flavours, and who have spent decades proving that claim. <strong>Tier 3</strong> is the everyday value category: nationally distributed, reliably made, honestly priced, and available at 11pm from your neighbourhood store.</p>
+<p>The three tiers are not marketing segments — they reflect genuinely different product propositions, distribution models, and customer expectations. <strong>Tier 1</strong> is the health-first category: sugar-free, high-protein, formulated for buyers who want the pleasure of ice cream without the metabolic trade-off. <strong>Tier 2</strong> is the artisanal and flavour-first category: brands whose proposition is that ice cream made from three real ingredients tastes categorically different from anything made with synthetic flavours, and who have spent decades proving that claim. <strong>Tier 3</strong> is the everyday value category: nationally distributed, reliably made, honestly priced, and available at 11pm from your neighbourhood store.</p>
 
   <p>Buying from the wrong tier is not a brand failure — it's a category error. Someone who buys Noto expecting Naturals-style creamy indulgence, or someone who buys Amul expecting Noto's protein-per-100ml, is simply shopping in the wrong tier. The guide below is structured so you won't make that mistake.</p>
 
@@ -599,13 +203,15 @@
 
   <p>The key distinction from every other ice cream category is formulation depth: these brands do not reduce sugar cosmetically. They rebuild the recipe from scratch, using erythritol and stevia as the sweetener base (both of which produce minimal glycaemic response compared to sucrose), and in Noto's case integrate a protein source into the base itself — so the ice cream genuinely functions differently metabolically, not just in its label claims.</p>
 
-  <div class="callout-box warn">
-    <span class="cb-icon">⚠️</span>
-    <div class="cb-body">
+  <div class="callout">
+  <div class="ico" style="background:var(--butter);color:#6b4f10;">⚠️</div>
+  <div>
+    
       <h4>What sugar-free actually means here</h4>
       <p>Noto and Go Zero use erythritol and stevia — neither of which are problematic for most adults in normal serving sizes, though some individuals notice GI discomfort with erythritol in large amounts. "Sugar-free" on these products refers to added sucrose, not to natural lactose present in the milk base. If you're managing blood sugar for clinical reasons, check individual product labels rather than relying on the brand-level claim.</p>
-    </div>
+    
   </div>
+</div>
 
   <h3>Noto <span class="brand-sub">Sugar-free · High-protein · Quick commerce, D2C · ₹180–299 per unit</span></h3>
 
@@ -678,13 +284,15 @@
 
   <p>Kwality Wall's sits at a deliberate price premium over Amul and Vadilal on most SKUs, and the Cornetto and Magnum bar formats justify that premium on the experience of the format itself: the quality of the chocolate coating on a Magnum bar, the structural integrity of the wafer cone on a Cornetto, are not cosmetic differences from a commodity ice cream bar at two-thirds the price. For format-specific cravings — cone, bar on a stick, ice cream sandwich — this is the tier where the format is genuinely best executed.</p>
 
-  <div class="callout-box note">
-    <span class="cb-icon">📋</span>
-    <div class="cb-body">
+  <div class="callout">
+  <div class="ico">📋</div>
+  <div>
+    
       <h4>The brand not covered here: Baskin-Robbins</h4>
       <p>Baskin-Robbins (operated by Jubilant FoodWorks in India) operates in a distinct premium-outlet format that is not directly comparable with the brands above. Its proposition is variety (the "31 flavours" positioning) in a café-style outlet rather than at-home tub buying. It competes more with gelato shops and premium dessert brands than with the eight brands evaluated here, and would warrant separate treatment in a guide focused on premium-outlet dessert experiences.</p>
-    </div>
+    
   </div>
+</div>
 
   <!-- ─────────────────────────────────────────────────
        COMPARISON TABLE
@@ -803,13 +411,15 @@
     <li><strong>Cone or bar format specifically</strong> → Kwality Wall's / Magnum — Cornetto and Magnum bar are category-best in their formats.</li>
   </ul>
 
-  <div class="callout-box ok">
-    <span class="cb-icon">✓</span>
-    <div class="cb-body">
+  <div class="callout">
+  <div class="ico" style="background:var(--mint);color:#3a6040;">✓</div>
+  <div>
+    
       <h4>The single most useful reframe</h4>
       <p>Stop asking "which ice cream brand is best?" and start asking "which ice cream brand is best for the job I'm hiring it to do?" Noto and Amul are both genuinely good at what they do. The mistake is expecting them to do the same thing. Pick your tier first. The best brand in that tier almost picks itself.</p>
-    </div>
+    
   </div>
+</div>
 
   <!-- ─────────────────────────────────────────────────
        REFERENCES
@@ -866,7 +476,28 @@
   <!-- TRANSPARENCY -->
   <div class="page-transparency"><div class="transparency-inner"><div class="t-item"><div class="t-dot"></div>Published: 25 August 2026</div><div class="t-item"><div class="t-dot"></div>Reviewed by: <a href="/pages/authors">Naked Compound Research Team</a></div><div class="t-item"><div class="t-dot"></div>Internal link: <a href="https://www.nakedcompound.in/guides/best-ice-cream-brands-india">guides version →</a></div></div></div>
 
-</div><!-- /blog-wrap -->
+
+      </article><!-- /article -->
+
+      <!-- Sidebar -->
+      <aside class="blog-sidebar">
+        <!-- Recommended products -->
+        <div class="sidebar-block">
+          <div class="sidebar-block-head">Featured in this guide</div>
+          <div class="rec-product">
+            <div class="rec-product-img">
+              <span class="img-placeholder">🍨</span>
+            </div>
+            <div class="rec-product-name">Noto Sugar-Free Ice Cream</div>
+            <div class="rec-product-sub">Sugar-free · High-protein</div>
+            <div class="rec-product-actions">
+              <a href="#" class="btn-review">Read full review →</a>
+            </div>
+          </div>
+        </div>
+      </aside><!-- /sidebar -->
+    </div><!-- /.blog-layout -->
+  </div><!-- /.blog-body-wrap -->
 </div><!-- /container -->
 
 <!-- NEWSLETTER -->
