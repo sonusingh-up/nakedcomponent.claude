@@ -140,6 +140,21 @@
     document.head.appendChild(rssLink);
   }
 
+  // ─── Web App Manifest & Apple Touch Icon ──────────────────────────────────
+  if (!document.querySelector('link[rel="manifest"]')) {
+    const manifest = document.createElement('link');
+    manifest.rel = 'manifest';
+    manifest.href = '/site.webmanifest';
+    document.head.appendChild(manifest);
+  }
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const appleIcon = document.createElement('link');
+    appleIcon.rel = 'apple-touch-icon';
+    appleIcon.sizes = '180x180';
+    appleIcon.href = '/apple-touch-icon.png';
+    document.head.appendChild(appleIcon);
+  }
+
   // ─── DNS prefetch for third-party domains ─────────────────────────────────
   ['https://pagead2.googlesyndication.com', 'https://www.googletagmanager.com'].forEach(href => {
     if (!document.querySelector(`link[href="${href}"]`)) {
