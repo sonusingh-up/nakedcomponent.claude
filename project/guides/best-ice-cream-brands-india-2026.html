@@ -192,7 +192,9 @@
     .aqa-a strong { font-weight:600; }
     @media(max-width:600px) { .aqa-row { grid-template-columns:1fr;gap:3px;padding:10px var(--s-4); } .aqa-q { font-size:10px; } }
     /* Reveal */
-    .reveal { opacity:0;transform:translateY(12px);transition:opacity 280ms var(--ease-out),transform 280ms var(--ease-out); }
+    .reveal { opacity:0;transform:translateY(12px);transition:opacity 280ms ease-out,transform 280ms ease-out; }
+    /* Guarantee brand cards are never permanently invisible */
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1;transform:none; } }
     .reveal.in { opacity:1;transform:none; }
   </style>
 </head>
@@ -353,6 +355,7 @@
           <span class="btag ok">Camel milk variant</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="https://www.nakedcompound.in/uploads/amul-kesar.jpg" alt="Amul Kesar Pista ice cream cup" loading="lazy"/><span>Kesar Pista</span></div><div class="bc-img-item"><img src="https://m.media-amazon.com/images/I/813V27HxCZL._SL1500_.jpg" alt="Amul Cassatta ice cream brick" loading="lazy"/><span>Cassatta</span></div><div class="bc-img-item"><img src="https://www.nakedcompound.in/uploads/Amul-Gold-TriCone-Butterscotch-Ice-Cream-Cone.webp" alt="Amul Tricone cone ice cream" loading="lazy"/><span>Tricone Cone</span></div><div class="bc-img-item"><img src="/uploads/amul-ice.jpg" alt="Amul Creme Rich premium tub" loading="lazy"/><span>Creme Rich</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy Instamart</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ amul.com</a></div>
       </div>
       <div class="bc-specs">
@@ -390,6 +393,7 @@
           <span class="btag ok">Taste Atlas global recognition</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Naturals Tender Coconut ice cream" loading="lazy"/><span>Tender Coconut</span></div><div class="bc-img-item"><img src="#" alt="Naturals Sitaphal custard apple ice cream" loading="lazy"/><span>Sitaphal</span></div><div class="bc-img-item"><img src="#" alt="Naturals Alphonso Mango ice cream" loading="lazy"/><span>Alphonso Mango</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-store" target="_blank" rel="noopener sponsored">📍 Find an outlet</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy (select cities)</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ naturals-icecream.com</a></div>
       </div>
       <div class="bc-specs">
@@ -427,6 +431,7 @@
           <span class="btag ok">Lotte-backed quality</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Havmor Choco Blast ice cream bar" loading="lazy"/><span>Choco Blast</span></div><div class="bc-img-item"><img src="#" alt="Havmor Chikoo ice cream" loading="lazy"/><span>Chikoo</span></div><div class="bc-img-item"><img src="#" alt="Havmor Real Mango ice cream" loading="lazy"/><span>Real Mango</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy Instamart</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ havmor.com</a></div>
       </div>
       <div class="bc-specs">
@@ -464,6 +469,7 @@
           <span class="btag ok">Heritage brand since 1907</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Vadilal Alphonso Mango ice cream bar" loading="lazy"/><span>Alphonso Mango</span></div><div class="bc-img-item"><img src="#" alt="Vadilal Rose Petals Kulfi" loading="lazy"/><span>Rose Petals Kulfi</span></div><div class="bc-img-item"><img src="#" alt="Vadilal Rajbhog ice cream" loading="lazy"/><span>Rajbhog</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ vadilal.com</a></div>
       </div>
       <div class="bc-specs">
@@ -501,6 +507,7 @@
           <span class="btag ok">April 2026: Magnum Caramel Pop</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Kwality Walls Cornetto cone ice cream" loading="lazy"/><span>Cornetto</span></div><div class="bc-img-item"><img src="#" alt="Kwality Walls Feast chocolate bar" loading="lazy"/><span>Feast</span></div><div class="bc-img-item"><img src="#" alt="Magnum Classic ice cream bar" loading="lazy"/><span>Magnum Classic</span></div><div class="bc-img-item"><img src="#" alt="Magnum Caramel Pop 2026 India" loading="lazy"/><span>Caramel Pop</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy Instamart</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ magnumicecream.com</a></div>
       </div>
       <div class="bc-specs">
@@ -537,6 +544,7 @@
           <span class="btag neutral">Limited to North India</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Mother Dairy Kesar Pista ice cream" loading="lazy"/><span>Kesar Pista</span></div><div class="bc-img-item"><img src="#" alt="Mother Dairy Rajbhog ice cream" loading="lazy"/><span>Rajbhog</span></div><div class="bc-img-item"><img src="#" alt="Mother Dairy Mango bar" loading="lazy"/><span>Mango Bar</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit (Delhi NCR)</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy Instamart</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ motherdairy.com</a></div>
       </div>
       <div class="bc-specs">
@@ -573,6 +581,7 @@
           <span class="btag neutral">Limited South India</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Creambell Choco Dip ice cream bar" loading="lazy"/><span>Choco Dip</span></div><div class="bc-img-item"><img src="#" alt="Creambell Sundae ice cream" loading="lazy"/><span>Sundae</span></div><div class="bc-img-item"><img src="#" alt="Creambell family pack ice cream" loading="lazy"/><span>Family Pack</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-blinkit" target="_blank" rel="noopener sponsored">⚡ Blinkit</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy Instamart</a></div>
       </div>
       <div class="bc-specs">
@@ -608,6 +617,7 @@
           <span class="btag ok">650+ India outlets</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Baskin-Robbins Pralines and Cream ice cream scoop" loading="lazy"/><span>Pralines & Cream</span></div><div class="bc-img-item"><img src="#" alt="Baskin-Robbins Chocolate Fudge Brownie ice cream" loading="lazy"/><span>Choc Fudge Brownie</span></div><div class="bc-img-item"><img src="#" alt="Baskin-Robbins custom ice cream cake India" loading="lazy"/><span>Ice Cream Cake</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-store" target="_blank" rel="noopener sponsored">📍 Find a store</a><a href="#" class="buy-btn buy-zomato" target="_blank" rel="noopener sponsored">🍽 Zomato delivery</a><a href="#" class="buy-btn buy-swiggy" target="_blank" rel="noopener sponsored">🧡 Swiggy delivery</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ baskinrobbins.co.in</a></div>
       </div>
       <div class="bc-specs">
@@ -645,6 +655,7 @@
           <span class="btag ok">Ibaco premium sub-brand</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Arun ice cream vanilla cup South India" loading="lazy"/><span>Vanilla Cup</span></div><div class="bc-img-item"><img src="#" alt="Arun ice cream mango bar" loading="lazy"/><span>Mango Bar</span></div><div class="bc-img-item"><img src="#" alt="Ibaco premium ice cream parlour cup" loading="lazy"/><span>Ibaco Cup</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-store" target="_blank" rel="noopener sponsored">📍 Find a store (South India)</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ hatsun.com</a><a href="#" class="buy-btn buy-store" target="_blank" rel="noopener sponsored">🍦 Ibaco parlours</a></div>
       </div>
       <div class="bc-specs">
@@ -682,6 +693,7 @@
           <span class="btag neutral">₹350+ per scoop</span>
         </div>
         <div class="bc-imgs"><div class="bc-img-item"><img src="#" alt="Haagen-Dazs Belgian Chocolate pint India" loading="lazy"/><span>Belgian Chocolate</span></div><div class="bc-img-item"><img src="#" alt="Haagen-Dazs Cookies and Cream pint India" loading="lazy"/><span>Cookies & Cream</span></div><div class="bc-img-item"><img src="#" alt="Haagen-Dazs macadamia nuts ice cream India" loading="lazy"/><span>Macadamia Nuts</span></div>
+        </div>
         <div class="bc-buy"><span class="bc-buy-label">Buy</span><a href="#" class="buy-btn buy-amz" target="_blank" rel="noopener sponsored">🛒 Amazon</a><a href="#" class="buy-btn buy-store" target="_blank" rel="noopener sponsored">📍 Find a café</a><a href="#" class="buy-btn buy-official" target="_blank" rel="noopener sponsored">↗ haagendazs.co.in</a></div>
       </div>
       <div class="bc-specs">
@@ -945,14 +957,28 @@
 <div id="site-footer"></div>
 <script src="/nc-site.js?v=1001"></script>
 <script>
-  if('IntersectionObserver' in window){
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
-    },{threshold:0.07});
-    document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
-  } else {
-    document.querySelectorAll('.reveal').forEach(r=>r.classList.add('in'));
-  }
+  (function(){
+    var revEls = document.querySelectorAll('.reveal');
+    if(!revEls.length) return;
+    // Immediately show anything already in viewport + generous pre-load margin
+    if('IntersectionObserver' in window){
+      var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px 200px 0px' });
+      revEls.forEach(function(r){ obs.observe(r); });
+    } else {
+      revEls.forEach(function(r){ r.classList.add('in'); });
+    }
+    // Fallback: make ALL reveal elements visible after 400ms
+    // (catches full-page screenshot tools & slow IO callbacks)
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.in)').forEach(function(r){
+        r.classList.add('in');
+      });
+    }, 400);
+  })();
 </script>
 </body>
 </html>
