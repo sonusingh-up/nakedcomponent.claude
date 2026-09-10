@@ -44,11 +44,7 @@
   // Inline SVG brand mark — terracotta rounded square with NC monogram.
   // Embedded so it works regardless of favicon path resolution.
   const BRAND_MARK_SVG = `
-    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <rect width="32" height="32" rx="7" style="fill: var(--accent, #c96442);"/>
-      <path d="M9 23 V9 L19 23 V9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M25 12 a6 6 0 1 0 0 8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
-    </svg>`;
+    <img class="mark" src="/favicon.png" alt="Naked Compound Logo" style="width: 30px; height: 30px; object-fit: contain; border-radius: 8px;" />`;
 
   // ─── Header ───────────────────────────────────────────────────────────────
   const header = document.getElementById('site-header');
