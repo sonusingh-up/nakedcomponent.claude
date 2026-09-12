@@ -399,7 +399,7 @@
       pointer-events: none;
     }
     @media (prefers-reduced-motion: no-preference) {
-      .hero-orbit { animation: orbitSpin 46s linear infinite; }
+      .hero-orbit { animation: orbitSpin 34s linear infinite; }
     }
     @keyframes orbitSpin { to { transform: rotate(360deg); } }
     .orbit-dot {
@@ -823,6 +823,146 @@
 
       .ticker-list li { font-size: 12px; }
     }
+
+    /* ===================================================
+       AMBIENT ORBS — soft drifting background atmosphere
+       =================================================== */
+    .amb-orbs { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+    .amb-orb {
+      position: absolute; border-radius: 50%; filter: blur(60px);
+      opacity: .38; will-change: transform;
+    }
+    .amb-orb.o1 {
+      width: 34vw; height: 34vw; top: -10%; right: -8%;
+      background: radial-gradient(circle at 35% 35%, var(--accent-soft), transparent 70%);
+    }
+    .amb-orb.o2 {
+      width: 26vw; height: 26vw; bottom: -8%; left: -6%;
+      background: radial-gradient(circle at 55% 45%, var(--mint), transparent 70%);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .amb-orb.o1 { animation: ambDrift 24s ease-in-out infinite; }
+      .amb-orb.o2 { animation: ambDrift 30s ease-in-out infinite reverse; }
+    }
+    @keyframes ambDrift {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50%      { transform: translate(-4%, 4%) scale(1.08); }
+    }
+    [data-theme="dark"] .amb-orb { opacity: .22; }
+
+    /* ===================================================
+       BOLDER MOTION — homepage-only hover intensification
+       (overrides the shared, subtler card hovers site-wide)
+       =================================================== */
+    .pick-card, .protocol, .review, .ingredient, .card, .guide-card {
+      transition: transform .32s cubic-bezier(.2,.8,.3,1), box-shadow .32s cubic-bezier(.2,.8,.3,1), border-color .32s;
+    }
+    .pick-card:hover, .protocol:hover, .review:hover, .ingredient:hover, .card:hover, .guide-card:hover {
+      transform: translateY(-6px) scale(1.012);
+      box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in oklab, var(--accent) 14%, transparent);
+      border-color: color-mix(in oklab, var(--accent) 38%, var(--line));
+    }
+    .stat { transition: transform .3s var(--ease-out); }
+    .reveal.in .stat { animation: statPop .5s cubic-bezier(.2,.8,.3,1) backwards; }
+    @keyframes statPop {
+      0%   { opacity: 0; transform: scale(.88) translateY(10px); }
+      60%  { opacity: 1; transform: scale(1.03) translateY(0); }
+      100% { transform: scale(1) translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal.in .stat { animation: none; }
+    }
+
+    /* ===================================================
+       HERO — new-beauty pill badge
+       =================================================== */
+    .hero-beauty-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px 7px 8px; margin-bottom: var(--s-4);
+      border-radius: var(--r-pill);
+      background: linear-gradient(120deg, var(--rose), var(--butter));
+      border: 1px solid color-mix(in oklab, var(--accent) 24%, transparent);
+      font-size: 12.5px; font-weight: 500; color: var(--ink);
+      text-decoration: none; width: fit-content;
+      box-shadow: 0 4px 14px color-mix(in oklab, var(--accent) 14%, transparent);
+      transition: transform .2s var(--ease-out), box-shadow .2s;
+    }
+    .hero-beauty-pill .hbp-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 55%, transparent);
+      animation: hbpPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes hbpPulse {
+      0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 45%, transparent); }
+      50%      { box-shadow: 0 0 0 6px transparent; }
+    }
+    @media (hover:hover) and (pointer:fine) {
+      .hero-beauty-pill:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    }
+
+    /* ===================================================
+       BEAUTY BAND — new homepage section
+       =================================================== */
+    .beauty-band {
+      position: relative; overflow: hidden;
+      padding: var(--s-9) 0;
+      background:
+        radial-gradient(60% 90% at 88% 0%, color-mix(in oklab, var(--rose) 55%, transparent), transparent 60%),
+        radial-gradient(50% 80% at 6% 100%, color-mix(in oklab, var(--butter) 40%, transparent), transparent 65%),
+        var(--bg-elev);
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    }
+    .beauty-band .section-head { margin-bottom: var(--s-7); }
+    .beauty-band h2 em {
+      font-style: normal; font-family: "Instrument Serif", "Source Serif 4", Georgia, serif;
+      color: var(--accent); font-weight: 400;
+    }
+    .beauty-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--s-5);
+      margin-bottom: var(--s-7);
+    }
+    .beauty-card {
+      display: flex; flex-direction: column; text-decoration: none; color: inherit;
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+      overflow: hidden; transition: transform .32s cubic-bezier(.2,.8,.3,1), box-shadow .32s, border-color .32s;
+    }
+    @media (hover:hover) and (pointer:fine) {
+      .beauty-card:hover {
+        transform: translateY(-8px) scale(1.015);
+        box-shadow: var(--shadow-lg), 0 0 0 1px color-mix(in oklab, var(--accent) 16%, transparent);
+        border-color: color-mix(in oklab, var(--accent) 38%, var(--line));
+      }
+      .beauty-card:hover .bc-media img { transform: scale(1.08); }
+    }
+    .bc-media {
+      aspect-ratio: 1/1; background: #fff; display: flex; align-items: center; justify-content: center;
+      padding: 18px; position: relative; overflow: hidden;
+    }
+    .bc-media img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform .5s var(--ease-out); }
+    .bc-tag {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--ink); color: var(--bg);
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 9px; border-radius: var(--r-pill);
+    }
+    .bc-body { padding: var(--s-4); }
+    .bc-body .bc-brand { font-size: 11px; color: var(--ink-muted); letter-spacing: .03em; margin-bottom: 3px; }
+    .bc-body h4 { font-size: 14.5px; font-weight: 600; letter-spacing: -.01em; line-height: 1.3; margin: 0 0 8px; }
+    .bc-arrow {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--accent-deep);
+    }
+    [data-theme="dark"] .bc-arrow { color: var(--accent); }
+    .beauty-band-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+    .beauty-band-foot p { color: var(--ink-soft); font-size: 14px; margin: 0; max-width: 48ch; }
+    @media (max-width: 900px) {
+      .beauty-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .beauty-grid { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+      .bc-body h4 { font-size: 13px; }
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -843,8 +983,16 @@
          HERO
          ========================================================= -->
     <section class="hero container">
+      <div class="amb-orbs" aria-hidden="true">
+        <span class="amb-orb o1"></span>
+        <span class="amb-orb o2"></span>
+      </div>
       <div class="hero-grid">
         <div class="hero-copy">
+          <a href="/pages/best/best-beauty-india" class="hero-beauty-pill">
+            <span class="hbp-dot" aria-hidden="true"></span>
+            Now live: Beauty &amp; Skincare, decoded the same way →
+          </a>
           <h1>India's supplement shelf, <em>stripped back</em> to the evidence.</h1>
           <p class="lede">Long-form research guides, dosage-aware ingredient breakdowns, and unsponsored product reviews — built for what's actually sold in India, priced in INR, and graded against a public rubric.</p>
 
@@ -1307,6 +1455,73 @@
           Amazon affiliate links — commission earned does not affect ranking. Prices checked May 2026; verify before purchase.
           Not a medical recommendation.
         </p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         BEAUTY BAND — new pillar, image-led
+         ========================================================= -->
+    <section class="beauty-band reveal" id="beauty" aria-label="Beauty and skincare">
+      <div class="container">
+        <div class="section-head">
+          <div class="head-left">
+            <div class="eyebrow">Now Live · The Edit</div>
+            <h2>Beauty, <em>decoded</em> the same way.</h2>
+          </div>
+          <a href="/pages/best/best-beauty-india" class="ghost-link">Explore The Edit <span class="arrow" aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="beauty-grid">
+          <a href="/pages/luxury" class="beauty-card">
+            <div class="bc-media">
+              <span class="bc-tag">Luxury</span>
+              <img src="https://pub-cfbcca8550f5404f92083870525d6d19.r2.dev/products/el-serum0adv.webp" alt="Estée Lauder Advanced Night Repair Serum" loading="lazy"/>
+            </div>
+            <div class="bc-body">
+              <div class="bc-brand">Estée Lauder</div>
+              <h4>Prestige at marketplace prices — if the seller checks out.</h4>
+              <span class="bc-arrow">Read the story →</span>
+            </div>
+          </a>
+          <a href="/pages/skin" class="beauty-card">
+            <div class="bc-media">
+              <span class="bc-tag">Skin Care</span>
+              <img src="https://m.media-amazon.com/images/I/51gQUz3N6ZL._SL1200_.jpg" alt="The Derma Co 1% Hyaluronic Sunscreen" loading="lazy"/>
+            </div>
+            <div class="bc-body">
+              <div class="bc-brand">The Derma Co</div>
+              <h4>The SPF number is only half the story.</h4>
+              <span class="bc-arrow">Read the story →</span>
+            </div>
+          </a>
+          <a href="/pages/fragrance" class="beauty-card">
+            <div class="bc-media">
+              <span class="bc-tag">Fragrance</span>
+              <img src="https://m.media-amazon.com/images/I/616eNomV7rL._SL1254_.jpg" alt="Bella Vita Luxury White Oud Eau de Parfum" loading="lazy"/>
+            </div>
+            <div class="bc-body">
+              <div class="bc-brand">Bella Vita Luxury</div>
+              <h4>Read the concentration before the bottle.</h4>
+              <span class="bc-arrow">Read the story →</span>
+            </div>
+          </a>
+          <a href="/pages/grooming" class="beauty-card">
+            <div class="bc-media">
+              <span class="bc-tag">Grooming</span>
+              <img src="https://m.media-amazon.com/images/I/617WV3K81EL._SL1500_.jpg" alt="Philips BT3221/15 Beard and Moustache Trimmer" loading="lazy"/>
+            </div>
+            <div class="bc-body">
+              <div class="bc-brand">Philips</div>
+              <h4>Runtime claims are a lab number.</h4>
+              <span class="bc-arrow">Read the story →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="beauty-band-foot">
+          <p>Same independence, same label-literacy standard, same "no brand paid to appear" rule — now covering Skin Care, Makeup, Hair, Fragrance, Luxury, and Grooming.</p>
+          <a href="/pages/best/best-beauty-india" class="btn btn-primary">Explore The Edit →</a>
+        </div>
       </div>
     </section>
 
