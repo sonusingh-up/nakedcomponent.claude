@@ -80,7 +80,7 @@
       en.target.classList.add('in');
       
       // Dynamic Stagger Reveal for child cards, protocols, chips, etc.
-      const staggerItems = en.target.querySelectorAll('.card, .protocol, .stat, .pick-card, .chip, .review, .ingredient, .brand-card, .alt-pick-card, .step, .hub-link-card, .faq-item, .picks-summary-grid > *, .evid-tier-box, .beauty-card');
+      const staggerItems = en.target.querySelectorAll('.card, .protocol, .stat, .pick-card, .chip, .review, .ingredient, .brand-card, .alt-pick-card, .step, .hub-link-card, .faq-item, .picks-summary-grid > *, .evid-tier-box');
       if (staggerItems.length > 0) {
         staggerItems.forEach((item, idx) => {
           item.style.opacity = '0';
