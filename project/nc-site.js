@@ -5,6 +5,30 @@
 (function () {
   'use strict';
 
+  // Non-essential third-party services are loaded only after the visitor
+  // explicitly accepts optional cookies. This keeps the banner meaningful
+  // instead of loading Google Analytics and AdSense before a choice is made.
+  const CONSENT_KEY = 'nc-cookie-consent';
+  function loadOptionalTracking() {
+    if (window.__ncOptionalTrackingLoaded) return;
+    window.__ncOptionalTrackingLoaded = true;
+
+    const analytics = document.createElement('script');
+    analytics.async = true;
+    analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-84Q2LMHPV0';
+    document.head.appendChild(analytics);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-84Q2LMHPV0');
+
+    const ads = document.createElement('script');
+    ads.async = true;
+    ads.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1911119578672689';
+    ads.crossOrigin = 'anonymous';
+    document.head.appendChild(ads);
+  }
+
   const HOME  = '/';
   const PAGES = {
     research:        '/pages/research',
@@ -90,7 +114,7 @@
       </header>
       <div class="pricing-notice-bar">
         <div class="container">
-          (<strong>Pricing Notice:</strong> Prices displayed for all products and brands are subject to change. Please click the "Buy" button to verify the most up-to-date pricing.)
+          <strong>Pricing notice:</strong> Prices can change. Verify the current price on the retailer's product page before buying.
         </div>
       </div>
 
@@ -639,6 +663,42 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // ─── Back to top + reading position ───────────────────────────────────────
+  let backTop = document.getElementById('backTop');
+  if (!backTop) {
+    backTop = document.createElement('button');
+    backTop.id = 'backTop';
+    backTop.className = 'back-top';
+    backTop.type = 'button';
+    document.body.appendChild(backTop);
+  }
+  backTop.className = 'back-top';
+  backTop.type = 'button';
+  backTop.setAttribute('aria-label', 'Back to top');
+  backTop.innerHTML = `
+    <svg class="ring" viewBox="0 0 52 52" aria-hidden="true"><circle class="rfg" cx="26" cy="26" r="23" pathLength="100"/></svg>
+    <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>`;
+  const backTopRing = backTop.querySelector('.rfg');
+  let backTopRaf = null;
+  const updateBackTop = () => {
+    backTopRaf = null;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    backTopRing.style.strokeDashoffset = String(100 - progress * 100);
+    const isVisible = window.scrollY > 360;
+    backTop.classList.toggle('show', isVisible);
+    backTop.tabIndex = isVisible ? 0 : -1;
+  };
+  window.addEventListener('scroll', () => {
+    if (backTopRaf === null) backTopRaf = requestAnimationFrame(updateBackTop);
+  }, { passive: true });
+  window.addEventListener('resize', updateBackTop, { passive: true });
+  updateBackTop();
+  backTop.addEventListener('click', () => {
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reducedMotion ? 'auto' : 'smooth' });
+  });
+
   // ─── Mobile nav drawer (open / close / backdrop / esc / body-lock) ────────
   function setMenuState(open) {
     const drawer   = document.querySelector('.mobile-nav');
@@ -686,7 +746,7 @@
   window.addEventListener('resize', () => {
     if (_resizeRaf) cancelAnimationFrame(_resizeRaf);
     _resizeRaf = requestAnimationFrame(() => {
-      if (window.innerWidth > 980) setMenuState(false);
+      if (window.innerWidth > 1100) setMenuState(false);
     });
   });
 
@@ -725,6 +785,7 @@
   });
 
   // ─── Reveal + counter animations ─────────────────────────────────────────
+  if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver((entries) => {
     for (const en of entries) {
       if (!en.isIntersecting) continue;
@@ -765,6 +826,9 @@
   }, { threshold: 0.18 });
 
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
 
   // ─── Reading progress bar (review pages only) ────────────────────────────
   if (location.pathname.startsWith('/reviews/')) {
@@ -819,8 +883,10 @@
   document.head.appendChild(siScript);
 
   // ─── Cookie Consent Banner ────────────────────────────────────────────────
-  const CONSENT_KEY = 'nc-cookie-consent';
-  if (!localStorage.getItem(CONSENT_KEY)) {
+  const savedConsent = localStorage.getItem(CONSENT_KEY);
+  if (savedConsent === 'accepted') {
+    loadOptionalTracking();
+  } else if (!savedConsent) {
     const banner = document.createElement('div');
     banner.id = 'cookie-consent';
     banner.innerHTML = `
@@ -836,6 +902,7 @@
 
     banner.querySelector('.cc-accept').addEventListener('click', () => {
       localStorage.setItem(CONSENT_KEY, 'accepted');
+      loadOptionalTracking();
       banner.classList.add('cc-hide');
       setTimeout(() => banner.remove(), 400);
     });
