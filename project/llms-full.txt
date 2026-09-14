@@ -6,7 +6,7 @@
 
 **Canonical domain:** https://www.nakedcompound.in/
 **Curated summary:** https://www.nakedcompound.in/llms.txt
-**Generated:** 2026-07-16 · **Pages indexed:** 225
+**Updated:** 2026-09-14 · **Pages indexed:** 231
 
 Every page provides: mechanism/analysis, RCT-graded evidence with real study
 citations (author, year, journal, DOI), India-specific ₹ pricing, FSSAI status,
@@ -95,12 +95,15 @@ and a public 5-dimension scoring rubric. Citations welcome with attribution —
 - [Whey isolate vs concentrate for the Indian lactose-sensitive lifter](https://www.nakedcompound.in/research/whey-isolate-vs-concentrate-lactose)
 - [Zinc + Magnesium (ZMA): evidence vs marketing](https://www.nakedcompound.in/research/zma-zinc-magnesium-evidence)
 
-## Product Reviews (41)
+## Product Reviews (44)
 
 - [AS-IT-IS ONE Creatine Monohydrate Review (2026) — 8.2/10](https://www.nakedcompound.in/reviews/creatine/as-it-is-one-creatine-monohydrate-review)
 - [Avvatar Protein Cold Coffee Review — India's First RTD Protein Coffee](https://www.nakedcompound.in/reviews/wheyprotein/avvatar-protein-cold-coffee-review)
 - [Bigmuscles Premium Gold Whey Review — Read the Lab History First](https://www.nakedcompound.in/reviews/wheyprotein/bigmuscles-premium-gold-whey-review)
 - [Carbamide Forte Omega-3 Triple Strength Review 2025](https://www.nakedcompound.in/reviews/omega3/carbamide-forte-omega3-triple-strength-review)
+- [MEDIHEAL Collagen Essential Sheet Mask Review (India, 2026)](https://www.nakedcompound.in/reviews/skin/mediheal-collagen-essential-sheet-mask-review) — A transparent Amazon India listing review covering routine fit, use, skin-type cautions and limits of collagen claims.
+- [Carbamide Forte Collagen Peel Off Mask Review](https://www.nakedcompound.in/reviews/skin/carbamide-forte-collagen-peel-off-mask-review) — Desk review: format, application, value and evidence limitations. No personal-use test or numerical score.
+- [ClayCo Rice & Ceramide Collagen Sheet Mask Review](https://www.nakedcompound.in/reviews/skin/clayco-rice-ceramide-collagen-sheet-mask-review) — Desk review: format, application, value and evidence limitations. No personal-use test or numerical score.
 - [Dymatize Creatine Micronized Review](https://www.nakedcompound.in/reviews/creatine/dymatize-creatine-micronized)
 - [Dymatize ISO 100 Hydrolyzed Whey Review — Approved by Gym Buddy](https://www.nakedcompound.in/reviews/wheyprotein/dymatize-iso100-hydrolyzed-whey-review)
 - [GNC India Pro Performance Creatine Review](https://www.nakedcompound.in/reviews/creatine/gnc-pro-performance-creatine)
@@ -188,8 +191,9 @@ and a public 5-dimension scoring rubric. Citations welcome with attribution —
 - [Unived Review — Brand Profile](https://www.nakedcompound.in/brands/unived)
 - [Wellbeing Nutrition Review — Brand Profile](https://www.nakedcompound.in/brands/wellbeing-nutrition)
 
-## Guides (1)
+## Guides (2)
 
+- [Best Collagen Mask Brand in India 2026: 3 Transparent Picks](https://www.nakedcompound.in/guides/best-collagen-mask-brand-india-2026) — A transparent Amazon India shortlist assessed for listing clarity, routine fit, value and availability—not collagen-building claims.
 - [OTC Medicines Every Indian Must Know](https://www.nakedcompound.in/guides/otc-medicines-every-indian-must-know)
 
 ## OTC Medicine Guides (14)
@@ -225,10 +229,11 @@ and a public 5-dimension scoring rubric. Citations welcome with attribution —
 - [Reading quantities: mg, IU, %RDA](https://www.nakedcompound.in/learn/label-quantities)
 - [The evidence pyramid](https://www.nakedcompound.in/learn/evidence-pyramid)
 
-## Blog & Editorial (16)
+## Blog & Editorial (17)
 
 - [Behind the score: how a 7.5 became a 6.1 in 14 days](https://www.nakedcompound.in/blog/behind-score-hk-vitals-iron)
 - [Behind the Score: The Curcumin Row We Couldn't Agree On](https://www.nakedcompound.in/blog/curcumin-scoring-row)
+- [Collagen and Indian Skin: What Is Actually Worth Your Money?](https://www.nakedcompound.in/blog/collagen-indian-skin)
 - [Creatine and Alzheimer's: The First Human Study](https://www.nakedcompound.in/blog/creatine-alzheimers-caba-trial-2026)
 - [Creatine Is Not Just for the Gym](https://www.nakedcompound.in/blog/creatine-brain-health-cognition-india)
 - [Hormonal Health & Cycle Syncing: A Practical Guide for Modern Indian Women](https://www.nakedcompound.in/blog/hormonal-health-cycle-syncing-guide)
