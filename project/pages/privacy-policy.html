@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy | Naked Compound</title>
+<meta name="description" content="How Naked Compound collects, uses, and protects your personal data — covering the DPDP Act 2023, GDPR, cookies, affiliate links, and your rights. Updated September 2026." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.nakedcompound.in/pages/privacy-policy" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../style.css?v=1001" />
+<link rel="stylesheet" href="../pages.css" />
+<link rel="icon" type="image/png" href="../favicon.png" />
+<script>window.PAGE_KEY = 'about';</script>
+<style>
+/* ── Privacy Policy page-scoped styles ── */
+.pp-page { max-width: 780px; margin: 0 auto; padding: var(--s-9) var(--s-5) var(--s-10); }
+
+.pp-hero { padding-bottom: var(--s-7); border-bottom: 1px solid var(--line); margin-bottom: var(--s-8); }
+.pp-hero .eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: var(--s-3); display: block; }
+.pp-hero h1 { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(28px, 4.5vw, 42px); font-weight: 400; letter-spacing: -.025em; line-height: 1.08; margin: 0 0 var(--s-4); }
+.pp-hero h1 em { font-style: italic; color: var(--accent); }
+.pp-meta { display: flex; gap: var(--s-5); flex-wrap: wrap; }
+.pp-meta span { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; color: var(--ink-muted); display: flex; align-items: center; gap: 7px; }
+.pp-meta span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+/* Summary box */
+.pp-summary { background: var(--bg-elev); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 0 var(--r-md) var(--r-md) 0; padding: var(--s-5) var(--s-5) var(--s-5) var(--s-5); margin-bottom: var(--s-8); }
+.pp-summary p { font-size: 14.5px; line-height: 1.65; color: var(--ink-soft); margin: 0; }
+.pp-summary strong { color: var(--ink); }
+
+/* TOC */
+.pp-toc { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5) var(--s-6); margin-bottom: var(--s-8); }
+.pp-toc h2 { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 var(--s-4); }
+.pp-toc ol { margin: 0; padding-left: var(--s-5); display: grid; grid-template-columns: 1fr 1fr; gap: 4px var(--s-6); }
+.pp-toc li { font-size: 13px; line-height: 1.5; }
+.pp-toc a { color: var(--ink-soft); transition: color .12s; }
+.pp-toc a:hover { color: var(--accent); }
+@media(max-width: 580px) { .pp-toc ol { grid-template-columns: 1fr; } }
+
+/* Sections */
+.pp-section { margin-bottom: var(--s-9); }
+.pp-section h2 { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(20px, 2.5vw, 27px); font-weight: 400; letter-spacing: -.02em; margin: 0 0 var(--s-4); padding-top: var(--s-7); border-top: 1px solid var(--line); scroll-margin-top: 80px; }
+.pp-section h3 { font-size: 15px; font-weight: 600; letter-spacing: -.01em; margin: var(--s-5) 0 var(--s-2); color: var(--ink); }
+.pp-section p, .pp-section li { font-size: 14.5px; line-height: 1.7; color: var(--ink-soft); }
+.pp-section p { margin: 0 0 var(--s-3); }
+.pp-section ul, .pp-section ol { margin: var(--s-2) 0 var(--s-4) var(--s-5); }
+.pp-section li { margin-bottom: 6px; }
+.pp-section a { color: var(--accent); }
+.pp-section a:hover { text-decoration: underline; }
+.pp-section strong { color: var(--ink); font-weight: 600; }
+
+/* Data table */
+.pp-data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: var(--s-4) 0; }
+.pp-data-table th { text-align: left; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); padding: 10px 12px; border-bottom: 2px solid var(--line); }
+.pp-data-table td { padding: 12px; border-bottom: 1px solid var(--bg-elev); color: var(--ink-soft); vertical-align: top; line-height: 1.5; }
+.pp-data-table tr:last-child td { border-bottom: 0; }
+.pp-data-table tbody tr:hover td { background: var(--bg-elev); }
+@media(max-width: 600px) {
+  .pp-data-table thead { display: none; }
+  .pp-data-table td { display: block; padding: 8px 0; border-bottom: 0; }
+  .pp-data-table td::before { content: attr(data-label) ": "; font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); display: block; margin-bottom: 3px; }
+  .pp-data-table tr { display: block; border-bottom: 1px solid var(--line); padding: 12px 0; }
+}
+
+/* Callout box */
+.pp-callout { display: flex; gap: var(--s-3); padding: var(--s-4) var(--s-5); background: color-mix(in oklab, var(--mint) 55%, transparent); border: 1px solid color-mix(in oklab, #5ba672 28%, transparent); border-radius: var(--r-md); margin: var(--s-5) 0; }
+.pp-callout.warn { background: color-mix(in oklab, var(--butter) 55%, transparent); border-color: color-mix(in oklab, #c9a23a 30%, transparent); }
+.pp-callout-icon { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+.pp-callout p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+.pp-callout p strong { color: var(--ink); }
+
+/* Rights grid */
+.pp-rights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); margin: var(--s-4) 0; }
+.pp-right-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--s-4); }
+.pp-right-card h4 { font-size: 13.5px; font-weight: 600; letter-spacing: -.01em; margin: 0 0 6px; color: var(--ink); }
+.pp-right-card p { font-size: 12.5px; color: var(--ink-soft); margin: 0; line-height: 1.55; }
+@media(max-width: 520px) { .pp-rights-grid { grid-template-columns: 1fr; } }
+
+/* Contact block */
+.pp-contact-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--r-lg); padding: var(--s-5) var(--s-6); margin-top: var(--s-5); }
+.pp-contact-card h4 { font-size: 14px; font-weight: 600; margin: 0 0 var(--s-3); }
+.pp-contact-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 6px; }
+.pp-contact-card a { color: var(--accent); font-weight: 500; }
+
+/* Version badge */
+.pp-version { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; padding: 4px 11px; border-radius: var(--r-pill); margin-bottom: var(--s-4); }
+</style>
+</head>
+<body>
+<div id="site-header"></div>
+<main>
+<div class="pp-page">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <div class="pp-hero">
+    <span class="pp-version">v 3.0</span>
+    <span class="eyebrow">Legal · Privacy Policy</span>
+    <h1>How we handle<br/><em>your data.</em></h1>
+    <div class="pp-meta">
+      <span>Effective: 1 September 2026</span>
+      <span>Last updated: 14 September 2026</span>
+      <span>Governed by: DPDP Act 2023 (India)</span>
+    </div>
+  </div>
+
+  <!-- ── ONE-PARAGRAPH PLAIN-ENGLISH SUMMARY ─────────────── -->
+  <div class="pp-summary">
+    <p><strong>The short version:</strong> Naked Compound collects your email address if you choose to subscribe to our newsletter or contact us. We use Google Analytics to understand how the site is used. We earn affiliate commissions through links to Amazon.in — clicking those links does not share any personal information with us. We do not sell your data, show you ads from advertisers, or share your information with anyone beyond the service providers listed in this policy. Your rights under India's DPDP Act 2023 and (where applicable) the GDPR are explained in full below.</p>
+  </div>
+
+  <!-- ── TOC ───────────────────────────────────────────────── -->
+  <nav class="pp-toc" aria-label="Table of contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#who-we-are">Who we are</a></li>
+      <li><a href="#what-we-collect">What data we collect</a></li>
+      <li><a href="#how-we-use">How we use it</a></li>
+      <li><a href="#legal-basis">Legal basis for processing</a></li>
+      <li><a href="#third-parties">Third parties we use</a></li>
+      <li><a href="#affiliate-links">Affiliate links</a></li>
+      <li><a href="#cookies">Cookies &amp; tracking</a></li>
+      <li><a href="#retention">How long we keep data</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#your-rights">Your rights</a></li>
+      <li><a href="#dpdp">India: DPDP Act 2023</a></li>
+      <li><a href="#gdpr">EEA / UK: GDPR</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact &amp; grievances</a></li>
+    </ol>
+  </nav>
+
+  <!-- ── 1. WHO WE ARE ─────────────────────────────────────── -->
+  <section class="pp-section" id="who-we-are">
+    <h2>1. Who we are</h2>
+    <p><strong>Naked Compound</strong> ("we," "us," or "our") operates the website <a href="https://www.nakedcompound.in">nakedcompound.in</a> — an independent editorial platform covering health supplements, nutrition, and beauty products for an Indian audience. We are based in India.</p>
+    <p>Under India's <strong>Digital Personal Data Protection (DPDP) Act 2023</strong>, we are a <strong>Data Fiduciary</strong> — the entity that determines the purpose and means of processing your personal data. You, the individual whose data we process, are the <strong>Data Principal</strong>.</p>
+    <p>For visitors from the European Economic Area (EEA) or the United Kingdom, we are the <strong>Data Controller</strong> under the GDPR/UK GDPR.</p>
+    <p>For questions about this policy or to exercise your rights, contact us at <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a>.</p>
+  </section>
+
+  <!-- ── 2. WHAT WE COLLECT ───────────────────────────────── -->
+  <section class="pp-section" id="what-we-collect">
+    <h2>2. What data we collect</h2>
+
+    <h3>Data you give us directly</h3>
+    <table class="pp-data-table">
+      <thead>
+        <tr><th>Data</th><th>When &amp; why</th><th>Required?</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Data"><strong>Email address</strong></td>
+          <td data-label="When & why">When you subscribe to the Naked Compound newsletter. Used to send editorial update emails only.</td>
+          <td data-label="Required?">Required to subscribe. Entirely optional.</td>
+        </tr>
+        <tr>
+          <td data-label="Data"><strong>Name</strong></td>
+          <td data-label="When & why">Optionally provided via the contact form. Used only to address a reply.</td>
+          <td data-label="Required?">Optional.</td>
+        </tr>
+        <tr>
+          <td data-label="Data"><strong>Message contents</strong></td>
+          <td data-label="When & why">When you contact us via the contact form or by email.</td>
+          <td data-label="Required?">Required to receive a response.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Data collected automatically</h3>
+    <p>When you visit any page on nakedcompound.in, the following data is collected automatically through your browser and our analytics tools:</p>
+    <ul>
+      <li><strong>IP address</strong> — used by our hosting provider for security and geolocation (country-level only in analytics).</li>
+      <li><strong>Browser type and version</strong></li>
+      <li><strong>Operating system</strong></li>
+      <li><strong>Referring URL</strong> — the page you arrived from</li>
+      <li><strong>Pages visited and time spent</strong></li>
+      <li><strong>Device type</strong> (desktop, mobile, tablet)</li>
+    </ul>
+    <p>This data is collected by <strong>Google Analytics</strong> in aggregated, pseudonymised form. We cannot identify you personally from this data alone.</p>
+
+    <div class="pp-callout">
+      <span class="pp-callout-icon">✓</span>
+      <p><strong>What we do not collect:</strong> We do not collect payment information, health records, government IDs, passwords, or any data classified as "sensitive personal data" under the DPDP Act 2023 (financial data, health data, biometric data, caste, religious belief, or sexual orientation). We have no user account system.</p>
+    </div>
+  </section>
+
+  <!-- ── 3. HOW WE USE IT ─────────────────────────────────── -->
+  <section class="pp-section" id="how-we-use">
+    <h2>3. How we use your data</h2>
+    <table class="pp-data-table">
+      <thead>
+        <tr><th>Purpose</th><th>Data used</th><th>Legal basis</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Purpose">Sending the Naked Compound newsletter</td>
+          <td data-label="Data used">Email address</td>
+          <td data-label="Legal basis">Consent (you opted in)</td>
+        </tr>
+        <tr>
+          <td data-label="Purpose">Responding to contact-form messages or emails</td>
+          <td data-label="Data used">Name, email address, message contents</td>
+          <td data-label="Legal basis">Consent / legitimate interest</td>
+        </tr>
+        <tr>
+          <td data-label="Purpose">Understanding how the site is used (analytics)</td>
+          <td data-label="Data used">Aggregated usage data via Google Analytics</td>
+          <td data-label="Legal basis">Legitimate interest (site improvement)</td>
+        </tr>
+        <tr>
+          <td data-label="Purpose">Maintaining site security and preventing abuse</td>
+          <td data-label="Data used">IP address, server logs</td>
+          <td data-label="Legal basis">Legitimate interest</td>
+        </tr>
+        <tr>
+          <td data-label="Purpose">Complying with applicable legal obligations</td>
+          <td data-label="Data used">Any data required by law</td>
+          <td data-label="Legal basis">Legal obligation</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>We do not use your data for automated decision-making or profiling. We do not sell, rent, or trade your personal data to any third party for their own marketing or commercial purposes.</p>
+  </section>
+
+  <!-- ── 4. LEGAL BASIS ────────────────────────────────────── -->
+  <section class="pp-section" id="legal-basis">
+    <h2>4. Legal basis for processing</h2>
+    <p>Under both the DPDP Act 2023 and the GDPR, we process personal data only where a lawful basis exists:</p>
+    <ul>
+      <li><strong>Consent:</strong> You have given clear, specific, and informed consent — for example, by subscribing to our newsletter. You may withdraw consent at any time without penalty (see <a href="#your-rights">Your rights</a>).</li>
+      <li><strong>Legitimate interests:</strong> We have a legitimate interest in understanding how our site is used and in maintaining its security. These interests are weighed against your rights and we process only the minimum data necessary.</li>
+      <li><strong>Legal obligation:</strong> Where we are required by Indian or applicable international law to process or retain data.</li>
+    </ul>
+    <p>We do not process any special category data (as defined under GDPR Art. 9) or sensitive personal data (as defined under DPDP Act 2023).</p>
+  </section>
+
+  <!-- ── 5. THIRD PARTIES ─────────────────────────────────── -->
+  <section class="pp-section" id="third-parties">
+    <h2>5. Third parties we use</h2>
+    <p>We share data only with the service providers listed below, and only to the extent necessary to operate the site.</p>
+    <table class="pp-data-table">
+      <thead>
+        <tr><th>Provider</th><th>Purpose</th><th>Data shared</th><th>Privacy policy</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Provider"><strong>Google Analytics</strong><br/>(Google Ireland Ltd / Google LLC)</td>
+          <td data-label="Purpose">Site usage analytics. Helps us understand which content is useful.</td>
+          <td data-label="Data shared">Pseudonymised usage data, IP address (truncated by Google before storage).</td>
+          <td data-label="Privacy policy"><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td data-label="Provider"><strong>Newsletter provider</strong><br/>(e.g. Mailchimp / ConvertKit — update as applicable)</td>
+          <td data-label="Purpose">Sending editorial newsletter emails.</td>
+          <td data-label="Data shared">Email address, first name if provided.</td>
+          <td data-label="Privacy policy">See provider's policy.</td>
+        </tr>
+        <tr>
+          <td data-label="Provider"><strong>Web host / CDN</strong><br/>(Cloudflare / hosting provider — update as applicable)</td>
+          <td data-label="Purpose">Serving the site, DDoS protection, performance.</td>
+          <td data-label="Data shared">IP address, HTTP request logs.</td>
+          <td data-label="Privacy policy"><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">cloudflare.com/privacypolicy</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>We do not use advertising networks, retargeting pixels, social media tracking widgets, or any other tracking technology beyond Google Analytics. No advertiser or brand has access to any data collected through this website.</p>
+
+    <h3>International data transfers</h3>
+    <p>Google Analytics and newsletter providers may process data outside India. Where this occurs, we rely on the contractual mechanisms approved for cross-border data transfers under the DPDP Act 2023 and, for EEA data, Standard Contractual Clauses (SCCs) as approved by the European Commission.</p>
+  </section>
+
+  <!-- ── 6. AFFILIATE LINKS ────────────────────────────────── -->
+  <section class="pp-section" id="affiliate-links">
+    <h2>6. Affiliate links</h2>
+    <div class="pp-callout">
+      <span class="pp-callout-icon">🔗</span>
+      <p><strong>Clicking an affiliate link does not share your personal data with Naked Compound.</strong> When you follow a link to Amazon.in marked with <code>tag=nakedcompound-21</code> or using a <code>link.amazon/…</code> short link, Amazon records that the referral came from Naked Compound's affiliate account and may pay us a commission if you make a purchase. This is governed by Amazon's own Privacy Notice, not ours.</p>
+    </div>
+    <p>We are a participant in the <strong>Amazon Associates India</strong> programme. Affiliate commission does not influence our editorial recommendations, scores, or rankings. Our affiliate policy is published at <a href="/pages/conflicts-policy">nakedcompound.in/pages/conflicts-policy</a>.</p>
+    <p>No health, purchase, or personal data about you passes from Amazon to Naked Compound as a result of using affiliate links.</p>
+  </section>
+
+  <!-- ── 7. COOKIES ────────────────────────────────────────── -->
+  <section class="pp-section" id="cookies">
+    <h2>7. Cookies &amp; tracking technologies</h2>
+    <p>We use a small number of cookies. You can manage or block cookies through your browser settings without losing access to any content on this site.</p>
+    <table class="pp-data-table">
+      <thead>
+        <tr><th>Cookie</th><th>Set by</th><th>Purpose</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Cookie"><strong>_ga, _ga_*</strong></td>
+          <td data-label="Set by">Google Analytics</td>
+          <td data-label="Purpose">Distinguishes unique visitors for analytics. No personally identifiable information is stored.</td>
+          <td data-label="Duration">2 years</td>
+        </tr>
+        <tr>
+          <td data-label="Cookie"><strong>_gid</strong></td>
+          <td data-label="Set by">Google Analytics</td>
+          <td data-label="Purpose">Distinguishes users within a session.</td>
+          <td data-label="Duration">24 hours</td>
+        </tr>
+        <tr>
+          <td data-label="Cookie"><strong>Theme preference</strong></td>
+          <td data-label="Set by">nakedcompound.in</td>
+          <td data-label="Purpose">Remembers whether you have set dark mode. Stored in localStorage only.</td>
+          <td data-label="Duration">Persistent (local only)</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>We do not set advertising cookies, social-sharing cookies, or fingerprinting scripts. We do not use cross-site tracking.</p>
+
+    <h3>Google Analytics IP anonymisation</h3>
+    <p>We have enabled IP anonymisation in Google Analytics. This means your IP address is truncated before being stored by Google — we never have access to your full IP address through analytics. You may opt out of Google Analytics tracking entirely at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
+  </section>
+
+  <!-- ── 8. RETENTION ─────────────────────────────────────── -->
+  <section class="pp-section" id="retention">
+    <h2>8. How long we keep your data</h2>
+    <table class="pp-data-table">
+      <thead>
+        <tr><th>Data</th><th>Retention period</th><th>Reason</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Data"><strong>Newsletter email address</strong></td>
+          <td data-label="Retention period">Until you unsubscribe</td>
+          <td data-label="Reason">Required to send emails. Deleted within 30 days of unsubscription.</td>
+        </tr>
+        <tr>
+          <td data-label="Data"><strong>Contact form / email messages</strong></td>
+          <td data-label="Retention period">Up to 2 years</td>
+          <td data-label="Reason">To maintain a record of correspondence and respond to follow-up questions.</td>
+        </tr>
+        <tr>
+          <td data-label="Data"><strong>Analytics data (Google)</strong></td>
+          <td data-label="Retention period">14 months (our setting in GA)</td>
+          <td data-label="Reason">Understanding long-term traffic trends. Anonymised; cannot be traced to an individual.</td>
+        </tr>
+        <tr>
+          <td data-label="Data"><strong>Server access logs</strong></td>
+          <td data-label="Retention period">90 days</td>
+          <td data-label="Reason">Security monitoring and abuse prevention.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>When the retention period ends or when you request deletion, we delete or anonymise the data unless a legal obligation requires us to retain it for longer.</p>
+  </section>
+
+  <!-- ── 9. SECURITY ──────────────────────────────────────── -->
+  <section class="pp-section" id="security">
+    <h2>9. Security</h2>
+    <p>We take reasonable technical and organisational measures to protect the data we hold, including:</p>
+    <ul>
+      <li>HTTPS (TLS) encryption on all pages of this site</li>
+      <li>Access controls limiting who can view subscriber or contact data</li>
+      <li>Using reputable, SOC 2-certified service providers for newsletter and analytics</li>
+    </ul>
+    <div class="pp-callout warn">
+      <span class="pp-callout-icon">⚠️</span>
+      <p><strong>No system is perfectly secure.</strong> While we do our best to protect your data, no electronic transmission over the internet can be guaranteed 100% secure. If you believe your data has been compromised as a result of an interaction with Naked Compound, please email <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a> immediately.</p>
+    </div>
+  </section>
+
+  <!-- ── 10. YOUR RIGHTS ───────────────────────────────────── -->
+  <section class="pp-section" id="your-rights">
+    <h2>10. Your rights</h2>
+    <p>Depending on where you are located, you have the following rights regarding your personal data. To exercise any of them, email us at <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a> with the subject line "Data Rights Request." We will respond within 30 days.</p>
+
+    <div class="pp-rights-grid">
+      <div class="pp-right-card">
+        <h4>Right to access</h4>
+        <p>Request a copy of the personal data we hold about you.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to correction</h4>
+        <p>Ask us to correct inaccurate or incomplete data about you.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to erasure</h4>
+        <p>Ask us to delete your personal data. We will do so unless a legal obligation requires us to retain it.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to withdraw consent</h4>
+        <p>Where processing is based on consent, you may withdraw it at any time. Unsubscribe links are included in every newsletter email.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to object</h4>
+        <p>Object to processing based on legitimate interests. We will stop unless we have compelling grounds to continue.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to portability</h4>
+        <p>Receive your data in a machine-readable format where technically feasible.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to nominate (DPDP)</h4>
+        <p>Under the DPDP Act 2023, you may nominate another individual to exercise your data rights on your behalf in the event of your death or incapacity.</p>
+      </div>
+      <div class="pp-right-card">
+        <h4>Right to complain</h4>
+        <p>You may lodge a complaint with the Data Protection Board of India (DPDP Act) or the relevant supervisory authority in your jurisdiction (GDPR).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 11. DPDP ACT 2023 ─────────────────────────────────── -->
+  <section class="pp-section" id="dpdp">
+    <h2>11. India: DPDP Act 2023</h2>
+    <p>The <strong>Digital Personal Data Protection Act 2023</strong> ("DPDP Act") is India's primary personal data protection law. This section explains how we comply with its requirements.</p>
+
+    <h3>Consent notice</h3>
+    <p>Under the DPDP Act, we are required to provide a clear consent notice before collecting your personal data. By subscribing to our newsletter or submitting the contact form, you are providing <strong>free, specific, informed, and unambiguous consent</strong> to the processing described in this policy. You may withdraw consent at any time without affecting the lawfulness of processing prior to withdrawal.</p>
+
+    <h3>Data Fiduciary obligations</h3>
+    <p>As a Data Fiduciary, we commit to:</p>
+    <ul>
+      <li>Collecting only the data necessary for the stated purpose (data minimisation)</li>
+      <li>Not retaining data beyond the period necessary for the stated purpose</li>
+      <li>Implementing reasonable security safeguards</li>
+      <li>Notifying you and the Data Protection Board of India in the event of a personal data breach that is likely to affect your interests</li>
+      <li>Establishing a <strong>Grievance Redressal Mechanism</strong> (see <a href="#contact">Contact &amp; grievances</a>)</li>
+    </ul>
+
+    <h3>Children's data (DPDP Act)</h3>
+    <p>We do not knowingly collect personal data from children below the age of 18. If we become aware that a child has provided data without verifiable parental consent, we will delete it promptly. Our site does not offer services directed at children. (See also <a href="#children">Section 13</a>.)</p>
+
+    <h3>Cross-border transfers</h3>
+    <p>We may transfer personal data to countries outside India through our use of Google Analytics and our newsletter provider. We ensure that any such transfer is subject to adequate safeguards as required under the DPDP Act and any applicable rules notified by the Indian Government.</p>
+
+    <h3>Grievance redressal (DPDP Act)</h3>
+    <p>Under the DPDP Act, you have the right to have your grievance addressed by us before approaching the Data Protection Board of India. To raise a grievance, contact us at <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a> with the subject line "DPDP Grievance." We will acknowledge your grievance within 48 hours and resolve it within 30 days.</p>
+    <p>If your grievance is not resolved to your satisfaction, you may escalate it to the <strong>Data Protection Board of India</strong> at <a href="https://dpb.gov.in" target="_blank" rel="noopener">dpb.gov.in</a>.</p>
+  </section>
+
+  <!-- ── 12. GDPR ──────────────────────────────────────────── -->
+  <section class="pp-section" id="gdpr">
+    <h2>12. EEA / UK: GDPR</h2>
+    <p>If you are located in the European Economic Area (EEA) or the United Kingdom, the General Data Protection Regulation (GDPR / UK GDPR) applies to your data. The following additional information is relevant to you.</p>
+
+    <h3>Data Controller</h3>
+    <p>Naked Compound is the Data Controller for personal data collected from EEA/UK visitors. Contact: <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a>.</p>
+
+    <h3>Legal bases under GDPR</h3>
+    <ul>
+      <li><strong>Article 6(1)(a) — Consent:</strong> Newsletter subscription and contact form submissions.</li>
+      <li><strong>Article 6(1)(f) — Legitimate interests:</strong> Site analytics and security. Our legitimate interest: improving the site and protecting it from abuse. Your interests are protected by IP anonymisation and the use of aggregated analytics only.</li>
+    </ul>
+
+    <h3>Your GDPR rights</h3>
+    <p>In addition to the rights listed in <a href="#your-rights">Section 10</a>, you have the right to lodge a complaint with your national data protection authority. In the EU, find your authority at <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a>. In the UK, contact the <a href="https://ico.org.uk" target="_blank" rel="noopener">ICO</a>.</p>
+
+    <h3>International transfers (GDPR)</h3>
+    <p>Google LLC is an international data transfer recipient. Google is certified under the EU-US Data Privacy Framework and provides Standard Contractual Clauses (SCCs) for data transfers from the EEA. See <a href="https://policies.google.com/privacy/frameworks" target="_blank" rel="noopener">Google's transfer documentation</a>.</p>
+  </section>
+
+  <!-- ── 13. CHILDREN ─────────────────────────────────────── -->
+  <section class="pp-section" id="children">
+    <h2>13. Children's privacy</h2>
+    <p>This site is not directed at children under 18 years of age. We do not knowingly collect personal data from anyone under 18. If you are a parent or guardian and believe your child has provided us with personal data, please contact us at <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a> and we will promptly delete the data.</p>
+    <p>Under the DPDP Act 2023, we are required to obtain verifiable parental consent before processing the personal data of any child. We do not have the infrastructure to verify age or obtain parental consent, and therefore our services are available to adults only. If we discover that a minor has subscribed, we will delete the data and the subscription.</p>
+  </section>
+
+  <!-- ── 14. CHANGES ──────────────────────────────────────── -->
+  <section class="pp-section" id="changes">
+    <h2>14. Changes to this policy</h2>
+    <p>We review this policy at least once a year and whenever there is a material change to how we process data. When we make significant changes, we will:</p>
+    <ul>
+      <li>Update the "Last updated" date at the top of this page</li>
+      <li>If you are a newsletter subscriber and the change affects you materially, notify you by email before the change takes effect</li>
+    </ul>
+    <p>Continuing to use the site after a policy update constitutes acceptance of the updated policy.</p>
+    <p>Previous versions of this policy are available on request by emailing <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a>.</p>
+  </section>
+
+  <!-- ── 15. CONTACT ──────────────────────────────────────── -->
+  <section class="pp-section" id="contact">
+    <h2>15. Contact &amp; grievances</h2>
+    <p>For all privacy-related questions, data rights requests, or DPDP grievances, contact us here:</p>
+    <div class="pp-contact-card">
+      <h4>Naked Compound</h4>
+      <p><strong>Email:</strong> <a href="mailto:naked.business@yahoo.com">naked.business@yahoo.com</a></p>
+      <p><strong>Subject line for rights requests:</strong> "Data Rights Request"</p>
+      <p><strong>Subject line for DPDP grievances:</strong> "DPDP Grievance"</p>
+      <p><strong>Website:</strong> <a href="https://www.nakedcompound.in">nakedcompound.in</a></p>
+      <p><strong>Country:</strong> India</p>
+      <p style="margin-top: var(--s-3); padding-top: var(--s-3); border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-muted);">We will acknowledge all requests within 48 hours and respond in full within 30 days. For unresolved grievances under the DPDP Act 2023, you may contact the <strong>Data Protection Board of India</strong> at <a href="https://dpb.gov.in" target="_blank" rel="noopener">dpb.gov.in</a>. For EEA/UK complaints under GDPR, contact your local supervisory authority.</p>
+    </div>
+  </section>
+
+</div><!-- /.pp-page -->
+</main>
+<div id="site-footer"></div>
+<script src="../nc-site.js?v=1001"></script>
+</body>
+</html>
