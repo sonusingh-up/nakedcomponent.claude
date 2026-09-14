@@ -580,7 +580,6 @@
                 <li><a href="${PAGES.scoringRubric}">Scoring rubric</a></li>
                 <li><a href="${PAGES.conflictsPolicy}">Conflicts policy</a></li>
                 <li><a href="${PAGES.contact}">Contact</a></li>
-                <li><a href="${PAGES.privacyPolicy}">Privacy policy</a></li>
               </ul>
             </div>
           </div>
